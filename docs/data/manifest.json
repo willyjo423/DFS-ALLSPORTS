@@ -1,27 +1,6 @@
 {
- "updated_at": "2026-09-19T21:11:29+00:00",
+ "updated_at": "2026-09-20T15:16:21+00:00",
  "slates": [
-  {
-   "sport": "mlb",
-   "site": "dk",
-   "kind": "classic",
-   "label": "3 games \u00b7 locks 6:10pm et \u00b7 MLB $5K Extra Inning",
-   "file": "data/mlb_dk_classic_153740.json"
-  },
-  {
-   "sport": "mlb",
-   "site": "dk",
-   "kind": "classic",
-   "label": "8 games \u00b7 locks 7:05pm et \u00b7 MLB $85K Walk-Off Home Run",
-   "file": "data/mlb_dk_classic_153742.json"
-  },
-  {
-   "sport": "mlb",
-   "site": "dk",
-   "kind": "classic",
-   "label": "2 games \u00b7 locks 9:10pm et \u00b7 MLB $15K Relay Throw",
-   "file": "data/mlb_dk_classic_153748.json"
-  },
   {
    "sport": "mlb",
    "site": "dk",
@@ -35,6 +14,13 @@
    "kind": "classic",
    "label": "4 games \u00b7 locks 4:07pm et \u00b7 MLB $3K Extra Inning",
    "file": "data/mlb_dk_classic_153757.json"
+  },
+  {
+   "sport": "mlb",
+   "site": "dk",
+   "kind": "classic",
+   "label": "3 games \u00b7 locks 6:35pm et \u00b7 MLB $100K Heavy Hitter",
+   "file": "data/mlb_dk_classic_153761.json"
   }
  ]
 }

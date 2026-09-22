@@ -1,26 +1,47 @@
 {
- "updated_at": "2026-09-21T21:12:08+00:00",
+ "updated_at": "2026-09-22T15:17:55+00:00",
  "slates": [
-  {
-   "sport": "mlb",
-   "site": "dk",
-   "kind": "classic",
-   "label": "3 games \u00b7 locks 6:35pm et \u00b7 MLB $60K Perfect Game",
-   "file": "data/mlb_dk_classic_153761.json"
-  },
-  {
-   "sport": "mlb",
-   "site": "dk",
-   "kind": "classic",
-   "label": "3 games \u00b7 locks 6:35pm et \u00b7 MLB Tiers $1K Solo Shot",
-   "file": "data/mlb_dk_classic_153762.json"
-  },
   {
    "sport": "mlb",
    "site": "dk",
    "kind": "classic",
    "label": "5 games \u00b7 locks 6:35pm et \u00b7 MLB $15K Extra Inning",
    "file": "data/mlb_dk_classic_153849.json"
+  },
+  {
+   "sport": "mlb",
+   "site": "dk",
+   "kind": "classic",
+   "label": "10 games \u00b7 locks 7:05pm et \u00b7 MLB $300K Mega 8's",
+   "file": "data/mlb_dk_classic_153851.json"
+  },
+  {
+   "sport": "mlb",
+   "site": "dk",
+   "kind": "classic",
+   "label": "10 games \u00b7 locks 7:05pm et \u00b7 MLB Tiers $4K Knuckleball",
+   "file": "data/mlb_dk_classic_153852.json"
+  },
+  {
+   "sport": "mlb",
+   "site": "dk",
+   "kind": "classic",
+   "label": "2 games \u00b7 locks 8:05pm et \u00b7 MLB $4K Extra Inning",
+   "file": "data/mlb_dk_classic_153856.json"
+  },
+  {
+   "sport": "mlb",
+   "site": "dk",
+   "kind": "classic",
+   "label": "4 games \u00b7 locks 9:40pm et \u00b7 MLB $41K Perfect Game",
+   "file": "data/mlb_dk_classic_153857.json"
+  },
+  {
+   "sport": "mlb",
+   "site": "dk",
+   "kind": "classic",
+   "label": "10 games \u00b7 locks 7:05pm et \u00b7 MLB $100K Baseball Pocket Cup mini-MAX",
+   "file": "data/mlb_dk_classic_153866.json"
   }
  ]
 }

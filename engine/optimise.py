@@ -26,6 +26,26 @@ For multi-entry, a second lineup that overlaps the first by five of six players
 is not a second bet. Each additional lineup is constrained to share at most
 `max_overlap` players with every lineup already chosen, which is enforced in
 the solver rather than filtered afterwards.
+
+The salary floor
+----------------
+`roster["min_salary_pct"]` is a FRACTION of the cap the lineup must spend, and
+it exists because unspent salary is not free - it is points declined. In MLB
+the marginal rate is about 1.16 projected points per $1,000, in NFL about 2.0,
+so $1,500 left on the table is one to three points the lineup simply chose not
+to buy.
+
+The usual argument for leaving money - it makes the lineup unique - mostly does
+not survive contact with a small player pool, because the cheap plays there are
+what everybody else rosters in order to afford the expensive ones. Leaving
+salary to reach a punt can RAISE duplication while costing points.
+
+A floor that no legal lineup can reach would make the whole slate infeasible,
+which is the failure mode this project has already paid for once: one broken
+constraint discarded fourteen good boards. So the floor is attempted, and if
+the very first lineup cannot be built under it the floor is dropped for the
+run, loudly, and the slate still publishes. A board built without the floor is
+worth far more than no board at all.
 """
 from __future__ import annotations
 
@@ -45,10 +65,59 @@ class Infeasible(RuntimeError):
     """No legal lineup exists under these constraints."""
 
 
+# ---------------------------------------------------------- the salary floor
+def salary_floor(roster: dict) -> float:
+    """The fewest dollars a lineup may spend, in dollars.
+
+    Stored as a fraction of the cap rather than a dollar amount so the same
+    number means the same thing on a $50,000 classic board and on any other
+    cap a site might use.
+    """
+    pct = float(roster.get("min_salary_pct") or 0.0)
+    if pct <= 0:
+        return 0.0
+    if pct > 1.0:                      # somebody passed 98 instead of 0.98
+        pct = pct / 100.0
+    # Values between 1 and 2 are genuinely ambiguous - 1.4 could mean 1.4% or
+    # 140% - and they are read as a PERCENT, so 1.4 is $700 rather than an
+    # impossible floor. That direction is deliberate: a floor set too low
+    # merely fails to bind, while one set too high would be dropped entirely
+    # and the setting would appear to do nothing at all. Nobody asks for a
+    # 1.4% floor by accident, and if they do they get a no-op rather than a
+    # silent override of the thing they were trying to control.
+    pct = min(pct, 1.0)
+    # Rounded to whole dollars because salaries are whole dollars, and
+    # because the arithmetic otherwise leaves dust: 1.4/100 * 50000 is
+    # 699.9999999999999, which every int() in the logs would print as 699.
+    return float(round(pct * float(roster["salary_cap"])))
+
+
+def reachable_salary(pool: pd.DataFrame, roster: dict) -> float:
+    """An UPPER BOUND on what any legal lineup could spend.
+
+    Position and team rules can only ever make this smaller, so a floor above
+    this number is definitely impossible while a floor below it merely might
+    be. That is the right shape for a diagnostic: it never wrongly accuses a
+    reachable floor of being unreachable.
+    """
+    sal = pd.to_numeric(pool["salary"], errors="coerce").dropna()
+    if sal.empty:
+        return 0.0
+    size = len(roster["slots"])
+    top = sal.sort_values(ascending=False).head(size)
+    total = float(top.sum())
+    if "CPT" in roster["slots"]:
+        # The captain is charged a multiple, so the priciest player counts
+        # for more than his listed salary.
+        mult = float(roster.get("captain_multiplier", 1.5))
+        total += (mult - 1.0) * float(top.iloc[0])
+    return total
+
+
 # --------------------------------------------------------------- the solver
 def _classic_problem(pool: pd.DataFrame, roster: dict,
                      banned: list[list[int]], max_overlap: int,
-                     objective: np.ndarray):
+                     objective: np.ndarray, min_salary: float = 0.0):
     """A classic roster: fixed position counts plus one flex."""
     n = len(pool)
     prob = pulp.LpProblem("lineup", pulp.LpMaximize)
@@ -65,8 +134,11 @@ def _classic_problem(pool: pd.DataFrame, roster: dict,
 
     prob += pulp.lpSum(objective[i] * x[i] for i in range(n))
     prob += pulp.lpSum(x) == size
-    prob += pulp.lpSum(float(pool["salary"].iloc[i]) * x[i]
-                       for i in range(n)) <= roster["salary_cap"]
+    spend = pulp.lpSum(float(pool["salary"].iloc[i]) * x[i]
+                       for i in range(n))
+    prob += spend <= roster["salary_cap"]
+    if min_salary > 0:
+        prob += spend >= min_salary
 
     pos = pool["position"].astype(str).tolist()
     for p, count in fixed.items():
@@ -95,7 +167,7 @@ def _classic_problem(pool: pd.DataFrame, roster: dict,
 
 def _showdown_problem(pool: pd.DataFrame, roster: dict,
                       banned: list[list[int]], max_overlap: int,
-                      objective: np.ndarray):
+                      objective: np.ndarray, min_salary: float = 0.0):
     """Showdown: one captain at 1.5x salary and 1.5x points, five flex.
 
     The captain has to be its own decision variable. Treating it as "the best
@@ -117,8 +189,11 @@ def _showdown_problem(pool: pd.DataFrame, roster: dict,
         prob += x[i] + c[i] <= 1          # nobody is his own captain twice
 
     sal = pool["salary"].astype(float).tolist()
-    prob += pulp.lpSum(sal[i] * x[i] + mult * sal[i] * c[i]
-                       for i in range(n)) <= roster["salary_cap"]
+    spend = pulp.lpSum(sal[i] * x[i] + mult * sal[i] * c[i]
+                       for i in range(n))
+    prob += spend <= roster["salary_cap"]
+    if min_salary > 0:
+        prob += spend >= min_salary
 
     # Both teams must be represented: a showdown lineup drawn entirely from one
     # side is legal on some sites and catastrophic on all of them, and on
@@ -137,12 +212,13 @@ def _showdown_problem(pool: pd.DataFrame, roster: dict,
 
 
 def solve_one(pool: pd.DataFrame, roster: dict, objective: np.ndarray,
-              banned: list[list[int]], max_overlap: int
-              ) -> tuple[list[int], int | None]:
+              banned: list[list[int]], max_overlap: int,
+              min_salary: float = 0.0) -> tuple[list[int], int | None]:
     """One legal lineup. Returns the player rows and the captain row, if any."""
     showdown = "CPT" in roster["slots"]
     build = _showdown_problem if showdown else _classic_problem
-    prob, x, c = build(pool, roster, banned, max_overlap, objective)
+    prob, x, c = build(pool, roster, banned, max_overlap, objective,
+                       min_salary)
     prob.solve(pulp.PULP_CBC_CMD(msg=False))
 
     if pulp.LpStatus[prob.status] != "Optimal":
@@ -175,12 +251,39 @@ def candidates(pool: pd.DataFrame, roster: dict, draws: np.ndarray,
 
     mean = draws.mean(axis=1)
     spread = draws.std(axis=1)
+
+    floor = salary_floor(roster)
+    if floor > 0:
+        cap_total = float(roster["salary_cap"])
+        log.info("salary floor $%s (%.1f%% of the $%s cap); an upper bound on "
+                 "what any lineup here could spend is $%s",
+                 f"{int(floor):,}", 100 * floor / cap_total,
+                 f"{int(cap_total):,}",
+                 f"{int(reachable_salary(pool, roster)):,}")
+
     out, banned = [], []
     for k in range(n_candidates):
         obj = mean if k == 0 else mean + rng.normal(0, 1, len(mean)) * spread
         try:
-            rows, cap = solve_one(pool, roster, obj, banned, max_overlap)
+            rows, cap = solve_one(pool, roster, obj, banned, max_overlap,
+                                  min_salary=floor)
         except Infeasible:
+            if k == 0 and floor > 0:
+                # Nothing at all could be built under the floor. Drop it and
+                # keep the slate: a board without the floor is worth immensely
+                # more than no board, and this is exactly the shape of failure
+                # that once threw away fourteen good slates.
+                log.error(
+                    "NO legal lineup reaches the $%s salary floor, so the "
+                    "floor is being IGNORED for this board. The richest "
+                    "lineup the position and team rules permit spends about "
+                    "$%s. Lower min_salary_pct below %.0f%% to make it bind.",
+                    f"{int(floor):,}",
+                    f"{int(reachable_salary(pool, roster)):,}",
+                    100 * reachable_salary(pool, roster)
+                    / float(roster["salary_cap"]))
+                floor = 0.0
+                continue
             break
         banned.append(rows)
         out.append({"rows": rows, "captain": cap})
@@ -321,13 +424,22 @@ def _gpp_line(draws: np.ndarray, roster: dict) -> float:
 def report(lineups: pd.DataFrame, roster: dict) -> str:
     """One block per entry."""
     lines = []
+    floor = salary_floor(roster)
     for entry, g in lineups.groupby("entry"):
         r = g.iloc[0]
+        spent = int(g["charged"].sum())
+        left = int(roster["salary_cap"]) - spent
+        tail = f"  (${left:,} left"
+        if floor > 0:
+            tail += f", floor ${int(floor):,}"
+            if spent < floor:
+                tail += " NOT MET - the floor was dropped, see the log"
+        tail += ")"
         lines += [
             "",
             f"{r['objective'].upper()}  entry {entry}"
-            f"    salary ${int(g['charged'].sum()):,} of "
-            f"${roster['salary_cap']:,}",
+            f"    salary ${spent:,} of "
+            f"${roster['salary_cap']:,}{tail}",
             "-" * 70,
             f"{'slot':<6}{'player':<24}{'pos':<5}{'team':<5}"
             f"{'charged':>9}{'median':>8}",

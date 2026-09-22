@@ -132,6 +132,9 @@ footer{border-top:1px solid var(--line);padding-top:16px;font-size:12.5px;
       <input id="field" type="number" min="2" step="1000" value="100000"></div>
     <div class="ctl"><label for="stack">Stack size</label>
       <input id="stack" type="number" min="0" max="5" value="4"></div>
+    <div class="ctl"><label for="minsal"
+      title="The least a lineup may spend, as a percent of the cap. Unspent salary is points you declined to buy — about 1.16 of them per $1,000 in MLB. 0 turns the floor off.">Min salary %</label>
+      <input id="minsal" type="number" min="0" max="100" step="0.5" value="98"></div>
     <div class="ctl"><label for="sims">Simulations</label>
       <select id="sims">
         <option value="20000">20,000</option>
@@ -161,6 +164,13 @@ footer{border-top:1px solid var(--line);padding-top:16px;font-size:12.5px;
     <p class="sub">Click <b>L</b> to force a player in, <b>X</b> to force him
       out. Ownership is modelled, not measured. Leverage is the gap between how
       much the model likes a player and how much the field will.</p>
+    <div class="row" style="margin-top:10px">
+      <button id="copysheet" class="ghost"
+        title="Copies the whole board as tab-separated text. Paste straight into a Google Sheet and it lands in columns.">Copy for Sheets</button>
+      <button id="csv" class="ghost"
+        title="Downloads the same board as a .csv file.">Download CSV</button>
+      <span id="exportnote" class="sub"></span>
+    </div>
     <div class="panel scroll" style="margin-top:12px">
       <table id="board">
         <thead><tr>
@@ -192,6 +202,23 @@ let SLATE = null;           // the loaded slate payload
 const LOCK = new Set();
 const FADE = new Set();
 let SORT = { key: "med", dir: -1 };
+
+// A player's identity, for boards that list him more than once.
+//
+// DraftKings' feed can carry the same man twice - Frank Gore Jr. appeared
+// twice on a live showdown board, both rows at $400 - and every index-based
+// assumption on this page then breaks quietly. Fading one row leaves the
+// other pickable, so a player you deliberately excluded turns up in the
+// lineups anyway and the page looks broken. Worse, nothing stops a lineup
+// taking BOTH rows, which is an entry DraftKings would reject.
+//
+// So locks, fades and roster legality all key on WHO he is rather than on
+// which row he happens to occupy.
+const who = p => `${p.name}|${p.team}|${p.pos}`;
+const sameMan = (players, i) => {
+  const k = who(players[i]);
+  return [...Array(players.length).keys()].filter(j => who(players[j]) === k);
+};
 
 /* ---------------------------------------------------------------- loading */
 async function boot() {
@@ -226,6 +253,14 @@ async function loadSlate(file) {
   LOCK.clear(); FADE.clear();
   $("field").value = SLATE.field_size || 100000;
   $("overlap").value = Math.max(1, SLATE.roster.slots.length - 3);
+  // Start where the server's own build started, so the exact lineup shipped
+  // with the slate and the one this page builds are answering the same
+  // question. Anything else makes the two incomparable for a reason that is
+  // invisible on screen.
+  if (SLATE.roster.min_salary_pct != null) {
+    $("minsal").value = (SLATE.roster.min_salary_pct * 100).toFixed(1)
+      .replace(/\.0$/, "");
+  }
   drawBoard();
   drawHonesty();
   showServerLineups();
@@ -419,6 +454,12 @@ function legalLineup(players, roster, weights, rng, opts) {
   const noVsPitcher = roster.no_hitter_vs_pitcher !== false;
   const stackTeam = opts.stackTeam || null;
   const stackSize = opts.stackSize || 0;
+  // The least this lineup may spend. Unspent salary is not free - it is
+  // points declined, about 1.16 per $1,000 in MLB - and the usual defence
+  // (that leaving money makes you unique) inverts in a small player pool,
+  // where the cheap plays you free up salary for are the ones everybody
+  // rosters in order to afford the expensive ones.
+  const minSpend = Math.max(0, opts.minSpend || 0);
   const pitcherOpp = new Set();     // teams whose hitters are now barred
   const hitterTeams = new Set();    // teams with a hitter already rostered
 
@@ -447,6 +488,19 @@ function legalLineup(players, roster, weights, rng, opts) {
   }
   if (!Number.isFinite(floorPrice)) floorPrice = 0;
 
+  // The mirror of floorPrice, and it exists for the mirror reason. The cap
+  // look-ahead stops a build spending itself into a dead end; this one stops
+  // a build saving itself into one - picking cheap early, then finding that
+  // even the priciest players left cannot lift it over the salary floor. An
+  // upper bound is the right shape here: position and team rules can only
+  // make the real ceiling smaller, so this never wrongly rejects a pick that
+  // would actually have worked.
+  let ceilPrice = 0;
+  for (let i = 0; i < n; i++) if (eligible(i)) {
+    ceilPrice = Math.max(ceilPrice, players[i].salary);
+  }
+  if (showdown) ceilPrice *= (roster.captain_multiplier || 1.5);
+
   const tryAdd = (i, asCaptain) => {
     const p = players[i];
     const isPitcher = p.pos === "P";
@@ -459,6 +513,8 @@ function legalLineup(players, roster, weights, rng, opts) {
       : p.salary;
     const stillToFill = slots.length - pick.length - 1;
     if (spend + cost + floorPrice * stillToFill > cap) return false;
+    if (minSpend > 0
+        && spend + cost + ceilPrice * stillToFill < minSpend) return false;
     if ((teamCount[p.team] || 0) + 1 > maxTeam) return false;
     if (!showdown) {
       if (need[p.pos] > 0) need[p.pos]--;
@@ -466,6 +522,7 @@ function legalLineup(players, roster, weights, rng, opts) {
       else return false;
     } else if (asCaptain) { captain = i; }
     else { if (flexLeft <= 0) return false; flexLeft--; }
+    if (pick.some(x => who(players[x.i]) === who(p))) return false;
     pick.push({ i, cpt: !!asCaptain, cost });
     teamCount[p.team] = (teamCount[p.team] || 0) + 1;
     if (isPitcher) pitcherOpp.add(p.opp); else hitterTeams.add(p.team);
@@ -504,6 +561,11 @@ function legalLineup(players, roster, weights, rng, opts) {
   }
   if (pick.length !== slots.length) return null;
   if (!showdown && Object.values(need).some(v => v > 0)) return null;
+  // The look-ahead only ever refused picks that made the floor unreachable;
+  // a build can still finish under it by running out of expensive players it
+  // was allowed to take. Checked here so a lineup that misses the floor is
+  // never returned wearing the label of one that met it.
+  if (minSpend > 0 && spend < minSpend) return null;
   return pick;
 }
 
@@ -553,6 +615,8 @@ function build() {
   const objective = $("objective").value;
   // Zero means "do not force one". Five is DraftKings' hitters-per-team cap.
   const STACK = Math.max(0, Math.min(5, Number($("stack").value) || 0));
+  const minPct = Math.max(0, Math.min(100, Number($("minsal").value) || 0));
+  const MINSPEND = Math.round(minPct / 100 * roster.salary_cap);
 
   const zq = SLATE.quantiles.map(normalQuantile);
   const plan = buildFactorPlan(players);
@@ -627,15 +691,28 @@ function build() {
 
     const seen = new Set(), cands = [];
     const tries = Math.max(400, plans.length * 60);
-    for (let k = 0; k < tries && cands.length < 260; k++) {
-      const w = mean.map(v => Math.max(v, 0.01));
-      const pick = legalLineup(players, roster, w, rng,
-                               plans[k % plans.length]);
-      if (!pick) continue;
-      const key = pick.map(p => p.i).sort((a, b) => a - b).join(",");
-      if (seen.has(key)) continue;
-      seen.add(key);
+    // The floor is ATTEMPTED, not assumed. If a whole pass produces nothing
+    // that reaches it, the floor is dropped and the pass is run again, and
+    // the page says so. A board built without the floor is worth immensely
+    // more than an empty one, and a constraint quietly emptying the page is
+    // the failure this project has already paid for once.
+    let spendFloor = MINSPEND, floorDropped = false;
+    for (let pass = 0; pass < 2; pass++) {
+      for (let k = 0; k < tries && cands.length < 260; k++) {
+        const w = mean.map(v => Math.max(v, 0.01));
+        const pick = legalLineup(players, roster, w, rng,
+          Object.assign({ minSpend: spendFloor }, plans[k % plans.length]));
+        if (!pick) continue;
+        const key0 = pick.map(p => p.i).sort((a, b) => a - b).join(",");
+        if (seen.has(key0)) continue;
+        seen.add(key0);
+        cands.push(measure(pick, key0));
+      }
+      if (cands.length || !spendFloor) break;
+      spendFloor = 0; floorDropped = true;
+    }
 
+    function measure(pick, key) {
       const tot = scoreLineup(draws, sims, pick, mult);
       const sorted = Float64Array.from(tot).sort();
       let pc = 0, pg = 0;
@@ -646,7 +723,7 @@ function build() {
       pc /= sims; pg /= sims;
       let dupes = field;
       for (const p of pick) dupes *= Math.max(players[p.i].own, 1e-9);
-      cands.push({
+      return {
         pick, key,
         mean: sorted.reduce((a, b) => a + b, 0) / sims,
         floor: quantile(sorted, 0.10),
@@ -656,7 +733,7 @@ function build() {
         salary: pick.reduce((a, p) => a + p.cost, 0),
         own: pick.reduce((a, p) => a + players[p.i].own, 0),
         stack: biggestStack(players, pick),
-      });
+      };
     }
 
     if (!cands.length) {
@@ -682,7 +759,8 @@ function build() {
     }
 
     render(chosen, { sims, cashLine, gppLine, gppTarget, objective, field,
-                     ms: performance.now() - t0, pool: cands.length });
+                     ms: performance.now() - t0, pool: cands.length,
+                     minSpend: MINSPEND, floorDropped });
   }, 20);
 }
 
@@ -734,12 +812,19 @@ function render(chosen, meta) {
         <span>reaches the bar <b>${fmt(c.pg * 100, 2)}%</b></span>
         <span>expected duplicates <b>${c.dupes < 1 ? c.dupes.toFixed(2)
           : Math.round(c.dupes).toLocaleString()}</b></span>
+        ${meta.objective === "cash" ? "" :
+          `<span>ranked on <b>${fmt(c.edge * 100, 3)}</b></span>`}
       </div></div>`;
   }).join("");
 
   $("status").textContent =
     `${chosen.length} lineup${chosen.length > 1 ? "s" : ""} from ` +
-    `${meta.pool.toLocaleString()} candidates in ${(meta.ms / 1000).toFixed(1)}s`;
+    `${meta.pool.toLocaleString()} candidates in ${(meta.ms / 1000).toFixed(1)}s` +
+    (meta.floorDropped
+      ? ` — the $${meta.minSpend.toLocaleString()} salary floor was UNREACHABLE and has been ignored`
+      : meta.minSpend
+        ? ` — every lineup spends at least $${meta.minSpend.toLocaleString()}`
+        : "");
 }
 
 function drawBoard() {
@@ -776,11 +861,17 @@ function drawBoard() {
     const f = e.target.dataset && e.target.dataset.fade;
     if (l !== undefined && l !== null) {
       const i = Number(l);
-      LOCK.has(i) ? LOCK.delete(i) : (LOCK.add(i), FADE.delete(i));
+      const on = LOCK.has(i);
+      for (const j of sameMan(SLATE.players, i)) {
+        on ? LOCK.delete(j) : (LOCK.add(j), FADE.delete(j));
+      }
       drawBoard();
     } else if (f !== undefined && f !== null) {
       const i = Number(f);
-      FADE.has(i) ? FADE.delete(i) : (FADE.add(i), LOCK.delete(i));
+      const on = FADE.has(i);
+      for (const j of sameMan(SLATE.players, i)) {
+        on ? FADE.delete(j) : (FADE.add(j), LOCK.delete(j));
+      }
       drawBoard();
     }
   };
@@ -861,6 +952,126 @@ function drawHonesty() {
     limits — but it searches rather than proves. The exact integer program runs
     on the server and its answer is shown above for comparison.`;
 }
+
+/* ---------------------------------------------------------- taking it out */
+// Two buttons rather than one, because "export to Google Sheets" has two
+// honest answers and neither is an API call. A static page on GitHub Pages
+// cannot write to a spreadsheet without an OAuth client and a consent screen,
+// and a login prompt is a worse experience than a paste.
+//
+// The clipboard route is the good one: Sheets splits pasted TAB-separated
+// text into columns on its own, so Copy then Ctrl+V is a two-step import with
+// nothing to configure. CSV is here for everything else - Excel, Numbers, a
+// script, or a Sheet you would rather import into than paste over.
+//
+// The numbers are written RAW: no dollar signs, no percent signs, no thousands
+// separators. A spreadsheet that receives "$4,200" stores text, and text does
+// not sort, average, or chart. Formatting is the spreadsheet's job and it can
+// only do it if the cell holds a number.
+const EXPORT_COLS = [
+  ["player",   p => p.name],
+  ["pos",      p => p.pos],
+  ["team",     p => p.team],
+  ["opp",      p => p.opp || ""],
+  ["game",     p => p.game || ""],
+  // Blank, not 9. An unposted card is an unknown, and a spreadsheet that reads
+  // "9" cannot tell the difference between a confirmed nine-hole hitter and a
+  // man who may not play at all.
+  ["bat",      p => (p.pos === "P" ? "" : (p.bat == null ? "" : p.bat))],
+  ["confirmed", p => (p.pos === "P" ? "" : (p.bat == null ? "no" : "yes"))],
+  ["salary",   p => p.salary],
+  ["median",   p => round2(p.med)],
+  ["ceiling",  p => round2(p.ceil)],
+  ["per_1k",   p => (p.salary ? round2(p.med / (p.salary / 1000)) : "")],
+  ["own_pct",  p => round2(p.own * 100)],
+  ["leverage", p => round2(p.lev)],
+  // The two the board does not show but a spreadsheet wants: the chance he
+  // plays at all, and the plate-appearance multiplier his batting slot earns.
+  // Sorting a sheet by median without them hides why a cheap bat projects
+  // well - he may simply be unlikely to appear.
+  ["p_play",   p => round2(p.pp)],
+  ["order_factor", p => round2(p.of)],
+];
+
+function round2(v) {
+  const n = Number(v);
+  return Number.isFinite(n) ? Math.round(n * 100) / 100 : "";
+}
+
+function boardRows() {
+  // Exported in the order shown, so what lands in the sheet matches what is
+  // on screen rather than some hidden internal order.
+  const k = SORT.key;
+  const rows = SLATE.players.map((p, i) => ({ p, i }));
+  rows.sort((a, b) => {
+    const num = !(k === "name" || k === "pos" || k === "team");
+    const av = num ? Number(a.p[k]) : a.p[k];
+    const bv = num ? Number(b.p[k]) : b.p[k];
+    return (av < bv ? -1 : av > bv ? 1 : 0) * SORT.dir;
+  });
+  return rows.map(({ p }) => EXPORT_COLS.map(([, get]) => get(p)));
+}
+
+function exportText(sep) {
+  const head = EXPORT_COLS.map(([h]) => h);
+  const esc1 = v => {
+    const s = v === null || v === undefined ? "" : String(v);
+    if (sep === "," && /[",\n]/.test(s)) return '"' + s.replace(/"/g, '""') + '"';
+    // A tab or newline inside a cell would silently shift every column to its
+    // right, so they are stripped rather than quoted - Sheets does not honour
+    // quoting on a clipboard paste the way a CSV parser does.
+    if (sep === "\t") return s.replace(/[\t\r\n]+/g, " ");
+    return s;
+  };
+  return [head, ...boardRows()]
+    .map(r => r.map(esc1).join(sep)).join("\n");
+}
+
+function exportName(ext) {
+  const day = (SLATE.generated_at || "").slice(0, 10) || "slate";
+  return `mlb-board-${day}-dg${SLATE.draft_group || "x"}.${ext}`;
+}
+
+function flash(msg) {
+  $("exportnote").textContent = msg;
+  setTimeout(() => { $("exportnote").textContent = ""; }, 4000);
+}
+
+$("copysheet").onclick = async () => {
+  if (!SLATE) return;
+  const tsv = exportText("\t");
+  try {
+    await navigator.clipboard.writeText(tsv);
+    flash(`${SLATE.players.length} players copied — paste into a Google Sheet`);
+  } catch (err) {
+    // Clipboard access is refused on insecure origins and in some embedded
+    // views. Falling back to a selectable textarea keeps the feature working
+    // instead of failing with nothing on screen.
+    const ta = document.createElement("textarea");
+    ta.value = tsv;
+    ta.style.cssText = "position:fixed;left:0;top:0;width:100%;height:40vh;z-index:99";
+    document.body.appendChild(ta);
+    ta.select();
+    const ok = document.execCommand && document.execCommand("copy");
+    document.body.removeChild(ta);
+    flash(ok ? `${SLATE.players.length} players copied — paste into a Google Sheet`
+             : "This browser blocked the clipboard — use Download CSV instead");
+  }
+};
+
+$("csv").onclick = () => {
+  if (!SLATE) return;
+  const blob = new Blob(["﻿" + exportText(",")],
+                        { type: "text/csv;charset=utf-8" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = exportName("csv");
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  flash(`saved ${exportName("csv")} — in Sheets use File ▸ Import ▸ Upload`);
+};
 
 $("run").onclick = build;
 $("reset").onclick = () => { LOCK.clear(); FADE.clear(); drawBoard(); };

@@ -19,6 +19,12 @@ on:
       sims:
         description: "Simulations for the server's own lineups"
         default: "20000"
+      min_salary_pct:
+        description: "Least a LINEUP may spend, % of the $50k cap (98 = at most $1,000 left; 0 = off)"
+        default: "98"
+      ownership:
+        description: "Ownership CSV to use (blank = first one found in the repo)"
+        required: false
       confirmed_only:
         description: "Only hitters in a posted lineup (tick this once cards are up)"
         type: boolean
@@ -85,6 +91,10 @@ jobs:
           python test_opp_starter.py
           python test_statcast.py
           python test_board_dedup.py
+          # The salary floor must bind when it can and be DROPPED when it
+          # cannot. A floor no lineup can reach would empty a board, which is
+          # the shape of failure that once discarded fourteen good slates.
+          python test_min_salary.py
 
       - name: Build the slate file
         id: build
@@ -103,6 +113,16 @@ jobs:
           if [ "${{ inputs.confirmed_only }}" = "true" ]; then
             ARGS="$ARGS --confirmed-only"
           fi
+          if [ -n "${{ inputs.ownership }}" ]; then
+            ARGS="$ARGS --ownership ${{ inputs.ownership }}"
+          fi
+          # Quoted and defaulted separately, because "0" is a meaningful value
+          # here and [ -n "0" ] is true - an unquoted test would be fine, but
+          # a missing input on a SCHEDULED run is empty, and empty must fall
+          # back to the default rather than passing --min-salary-pct with no
+          # argument and taking the next flag as its value.
+          MSP="${{ inputs.min_salary_pct }}"
+          ARGS="$ARGS --min-salary-pct ${MSP:-98}"
           echo "EFFECTIVE ARGS: $ARGS"
           python mlb_publish.py $ARGS 2>&1 | tee publish.txt
 

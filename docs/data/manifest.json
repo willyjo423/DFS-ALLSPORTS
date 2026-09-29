@@ -1,26 +1,69 @@
 {
- "updated_at": "2026-09-29T17:43:07+00:00",
+ "updated_at": "2026-09-29T20:36:25+00:00",
  "slates": [
   {
    "sport": "mlb",
    "site": "dk",
    "kind": "classic",
    "label": "4 games \u00b7 locks 2:00pm et \u00b7 MLB $300K Postseason Perfect Game",
-   "file": "data/mlb_dk_classic_153972.json"
+   "file": "data/mlb_dk_classic_153972.json",
+   "locks": "2026-09-29T18:00:00+00:00"
   },
   {
    "sport": "mlb",
    "site": "dk",
    "kind": "classic",
    "label": "4 games \u00b7 locks 2:00pm et \u00b7 MLB Tiers $4K Knuckleball",
-   "file": "data/mlb_dk_classic_154172.json"
+   "file": "data/mlb_dk_classic_154172.json",
+   "locks": "2026-09-29T18:00:00+00:00"
   },
   {
    "sport": "mlb",
    "site": "dk",
    "kind": "classic",
    "label": "2 games \u00b7 locks 8:00pm et \u00b7 MLB $40K Relay Throw",
-   "file": "data/mlb_dk_classic_154178.json"
+   "file": "data/mlb_dk_classic_154178.json",
+   "locks": "2026-09-30T00:00:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "2 teams \u00b7 1:00pm \u00b7 (FLA @ CAR)",
+   "file": "data/nhl_dk_classic_153976.json",
+   "locks": "2026-09-29T17:00:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "8 teams \u00b7 3:00pm",
+   "file": "data/nhl_dk_classic_153977.json",
+   "locks": "2026-09-29T19:00:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "2 teams \u00b7 4:00pm \u00b7 (NYR @ BOS)",
+   "file": "data/nhl_dk_classic_153981.json",
+   "locks": "2026-09-29T20:00:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "4 teams \u00b7 6:00pm \u00b7 (Late)",
+   "file": "data/nhl_dk_classic_153982.json",
+   "locks": "2026-09-29T22:00:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "2 teams \u00b7 6:30pm \u00b7 (CHI @ VGK)",
+   "file": "data/nhl_dk_classic_153983.json",
+   "locks": "2026-09-29T22:30:00+00:00"
   }
  ]
 }

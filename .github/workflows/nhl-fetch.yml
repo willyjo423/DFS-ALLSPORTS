@@ -1,0 +1,192 @@
+name: NHL fetch history
+
+# Fills data/nhl_<season>.csv.gz and commits it.
+#
+# Separate from publishing because the two have completely different shapes.
+# Publishing is a two-minute job that runs twice a day; this is a thousand
+# HTTP requests that should run about once a season. MoneyPuck publishes
+# CAREERS rather than slates, so a season is assembled by pulling every
+# player's whole history and keeping the rows that belong to it.
+#
+# The cache is committed - see .gitignore, which un-ignores data/*.csv.gz on
+# purpose. A finished season never changes, so re-fetching it is pure waste,
+# and the publish job is fast precisely because it never does.
+#
+# START WITH A LIMIT. `limit: 25` runs the entire path end to end in about a
+# minute: the season summary, the career fetch, the date window, the cache
+# write. If something is wrong you find out in a minute instead of twenty.
+
+on:
+  workflow_dispatch:
+    inputs:
+      seasons:
+        description: "Seasons to fetch, space separated. A season is named for the year it STARTS, so 2025 = 2025-26."
+        default: "2025"
+      refresh:
+        description: "Seasons to re-fetch even if already cached (blank = only fetch what is missing)"
+        required: false
+      limit:
+        description: "Players per side — set 25 for a one-minute smoke test, leave blank for the real thing"
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nhl-fetch
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    # A thousand requests with a pause between them, twice. Twenty minutes is
+    # typical and the ceiling is generous, because a fetch killed at 99% has
+    # cached nothing at all.
+    timeout-minutes: 120
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Make the engine importable
+        run: |
+          ENGINE_FILES="__init__.py spec.py frame.py features.py model.py grade.py factors.py cache.py simulate.py ownership.py optimise.py"
+          mkdir -p engine
+          for f in $ENGINE_FILES; do
+            if [ -f "$f" ]; then
+              echo "  moving $f -> engine/$f"
+              mv -f "$f" "engine/$f"
+            fi
+          done
+          missing=""
+          for f in $ENGINE_FILES; do
+            [ -f "engine/$f" ] || missing="$missing $f"
+          done
+          if [ -n "$missing" ]; then
+            echo "FATAL: these engine files are nowhere in this repo:$missing"
+            exit 1
+          fi
+          python -c "import engine; print('engine imports OK')"
+
+      # Every import checked before a twenty-minute fetch starts, not three
+      # steps into it. A missing module found now is a one-line fix; found at
+      # minute nineteen it is the whole run.
+      - name: Every import resolves
+        run: |
+          python - <<'PY'
+          import ast, importlib.util, sys
+          want = set()
+          for f in ("nhl_fetch.py", "nhl_data.py", "nhl_sport.py"):
+              for node in ast.walk(ast.parse(open(f).read())):
+                  if isinstance(node, ast.Import):
+                      want |= {a.name.split(".")[0] for a in node.names}
+                  elif isinstance(node, ast.ImportFrom) and node.level == 0 and node.module:
+                      want.add(node.module.split(".")[0])
+          missing = [m for m in sorted(want) if importlib.util.find_spec(m) is None]
+          for m in sorted(want):
+              print(("  MISSING  " if m in missing else "  ok       ") + m)
+          if missing:
+              print("\nUpload these, or the fetch dies on the first line: "
+                    + ", ".join(missing))
+              sys.exit(1)
+          PY
+
+      - name: Fetch
+        id: fetch
+        continue-on-error: true
+        run: |
+          # Without pipefail the step cannot fail: a pipeline reports the exit
+          # status of its LAST command and `tee` always succeeds. That is the
+          # bug that let an MLB publish report success while Python had died.
+          set -o pipefail
+
+          ARGS="--seasons ${{ inputs.seasons }}"
+          if [ -n "${{ inputs.refresh }}" ]; then
+            ARGS="$ARGS --refresh ${{ inputs.refresh }}"
+          fi
+          if [ -n "${{ inputs.limit }}" ]; then
+            ARGS="$ARGS --limit ${{ inputs.limit }}"
+          fi
+          echo "RUNNING: python nhl_fetch.py $ARGS"
+          python nhl_fetch.py $ARGS 2>&1 | tee fetch.txt
+
+      - name: Commit the cache
+        if: always()
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          find . -path ./.git -prune -o -name '__pycache__' -print0 2>/dev/null \
+            | xargs -0 rm -rf 2>/dev/null || true
+          # -f because .gitignore ignores data/ broadly and un-ignores the
+          # gzipped caches; being explicit here means a change to that file
+          # cannot quietly stop the cache being saved after a long fetch.
+          git add -f data/*.csv.gz 2>/dev/null || true
+          git add -A engine
+          if git diff --cached --quiet; then
+            echo "nothing changed - the cache already held these seasons"
+            exit 0
+          fi
+          git commit -m "NHL history cache: $(date -u +%Y-%m-%d\ %H:%M)"
+          git push || (git fetch origin main && git rebase origin/main && git push)
+
+      - name: Say what happened
+        if: always()
+        run: |
+          {
+            if [ "${{ steps.fetch.outcome }}" = "success" ]; then
+              echo "### NHL history fetched"
+            else
+              echo "### FETCH FAILED — the cache is unchanged"
+            fi
+            echo ''
+            echo '```'
+            tail -n 40 fetch.txt 2>/dev/null || echo "(no output captured)"
+            echo '```'
+            echo ''
+            echo 'Cache files present:'
+            echo '```'
+            ls -la data/*.csv.gz 2>/dev/null || echo "none — nothing was cached"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Keep the log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nhl-fetch-log
+          path: fetch.txt
+          retention-days: 14
+          if-no-files-found: warn
+
+      # The fetch step is continue-on-error so a failure still commits
+      # whatever was cached and still writes the summary. That is right, and
+      # it also makes a run that cached NOTHING finish green - which is
+      # indistinguishable from a good one in the Actions list. A whole round
+      # was lost to exactly that on the baseball build.
+      - name: Fail if nothing was cached
+        if: always()
+        run: |
+          if [ "${{ steps.fetch.outcome }}" != "success" ]; then
+            echo "The fetch failed. Read the 'Fetch' step above - the last 40"
+            echo "lines are also on this run's summary page."
+            exit 1
+          fi
+          # A smoke test deliberately writes nothing, so it is not a failure.
+          if [ -n "${{ inputs.limit }}" ]; then
+            echo "Smoke test with limit=${{ inputs.limit }}: the whole path"
+            echo "ran and NOTHING was cached, which is correct. Re-run with"
+            echo "the limit box empty for the real fetch."
+            exit 0
+          fi
+          if ! ls data/*.csv.gz >/dev/null 2>&1; then
+            echo "The fetch reported success but wrote no cache file at all."
+            exit 1
+          fi

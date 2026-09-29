@@ -19,6 +19,9 @@ on:
       sims:
         description: "Simulations for the server's own lineups"
         default: "20000"
+      date:
+        description: "Slate date YYYY-MM-DD (blank = derived from the draft group, or the next unlocked slate)"
+        required: false
       min_salary_pct:
         description: "Least a LINEUP may spend, % of the $50k cap (98 = at most $1,000 left; 0 = off)"
         default: "98"
@@ -96,13 +99,57 @@ jobs:
           # the shape of failure that once discarded fourteen good slates.
           python test_min_salary.py
 
+      # Every module mlb_publish.py imports, checked BEFORE the build spends
+      # a minute loading history. A missing file here is a one-line fix and a
+      # thirty-second run; found later it is a traceback three steps deep
+      # that the summary reported as a success.
+      - name: Every import resolves
+        run: |
+          python - <<'PY'
+          import ast, importlib.util, sys
+          src = ast.parse(open("mlb_publish.py").read())
+          want = set()
+          for node in ast.walk(src):
+              if isinstance(node, ast.Import):
+                  want |= {a.name.split(".")[0] for a in node.names}
+              elif isinstance(node, ast.ImportFrom) and node.level == 0 and node.module:
+                  want.add(node.module.split(".")[0])
+          missing = [m for m in sorted(want)
+                     if importlib.util.find_spec(m) is None]
+          for m in sorted(want):
+              print(("  MISSING  " if m in missing else "  ok       ") + m)
+          if missing:
+              print("\nmlb_publish.py imports modules this repo does not have: "
+                    + ", ".join(missing)
+                    + "\nUpload them, or the build dies on the first line.")
+              sys.exit(1)
+          PY
+
       - name: Build the slate file
         id: build
         continue-on-error: true
         run: |
+          # WITHOUT THIS LINE THE STEP CANNOT FAIL.
+          #
+          # The build ends in `python mlb_publish.py | tee publish.txt`, and a
+          # shell pipeline reports the exit status of its LAST command. tee
+          # always succeeds. So when mlb_publish.py died on a missing import,
+          # the step went green, the summary said "MLB slate published", and
+          # the "Fail if nothing was published" guard at the bottom - which
+          # exists precisely to catch a silent no-op - read outcome=success
+          # and passed too. Every safeguard in this file was downstream of a
+          # status that could never be anything but zero.
+          set -o pipefail
+
           ARGS=""
           if [ -n "${{ inputs.draft_group }}" ]; then
             ARGS="$ARGS --draft-group ${{ inputs.draft_group }}"
+          fi
+          # The escape hatch for the day. Normally unnecessary - a named draft
+          # group now decides its own date - but if the two ever disagree
+          # again, this settles it without a code change.
+          if [ -n "${{ inputs.date }}" ]; then
+            ARGS="$ARGS --date ${{ inputs.date }}"
           fi
           if [ -n "${{ inputs.field }}" ]; then
             ARGS="$ARGS --field ${{ inputs.field }}"

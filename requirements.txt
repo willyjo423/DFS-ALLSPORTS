@@ -4,7 +4,7 @@ requests>=2.31
 # The optimiser, once the projections land. A mixed-integer solve is the right
 # tool for roster constraints - greedy picking cannot respect a salary cap and
 # positional minimums at the same time without getting stuck.
-pulp>=2.8
+pulp>=2.8,<4
 scikit-learn>=1.4
 scipy>=1.11
 joblib>=1.3

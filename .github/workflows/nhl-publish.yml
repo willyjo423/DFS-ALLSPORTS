@@ -1,0 +1,189 @@
+name: Publish NHL page
+
+# Reads the committed history cache, projects tonight's board, writes
+# docs/data/nhl_dk_classic_<draft group>.json and rebuilds the manifest.
+#
+# Fast because it never fetches history: nhl-fetch.yml did that once and
+# committed data/nhl_2025.csv.gz. If this job ever starts taking ten minutes,
+# the cache has gone missing and it is re-downloading a thousand careers.
+
+on:
+  schedule:
+    # Hockey is an evening sport and lines go up at the morning skate. 21:00
+    # UTC is 5pm Eastern - about two hours before a 7pm puck drop, which is
+    # when the board is closest to the one that actually plays. The earlier
+    # run keeps the page from going stale during the day.
+    - cron: "0 15 * * *"
+    - cron: "0 21 * * *"
+  workflow_dispatch:
+    inputs:
+      draft_group:
+        description: "Exact draft group (blank = the busiest live slate)"
+        default: ""
+      field:
+        description: "Contest size, for the duplication estimate"
+        default: "100000"
+      sims:
+        description: "Simulations for the server's own lineups"
+        default: "20000"
+      date:
+        description: "Slate date YYYY-MM-DD (blank = derived from the draft group, or the next unlocked slate)"
+        required: false
+      min_salary_pct:
+        description: "Least a LINEUP may spend, % of the $50k cap (99 = at most $500 left; 0 = off)"
+        default: "99"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nhl-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Make the engine importable
+        run: |
+          ENGINE_FILES="__init__.py spec.py frame.py features.py model.py grade.py factors.py cache.py simulate.py ownership.py optimise.py"
+          mkdir -p engine
+          for f in $ENGINE_FILES; do
+            if [ -f "$f" ]; then
+              echo "  moving $f -> engine/$f"
+              mv -f "$f" "engine/$f"
+            fi
+          done
+          missing=""
+          for f in $ENGINE_FILES; do
+            [ -f "engine/$f" ] || missing="$missing $f"
+          done
+          if [ -n "$missing" ]; then
+            echo "FATAL: these engine files are nowhere in this repo:$missing"
+            exit 1
+          fi
+          python -c "import engine; print('engine imports OK')"
+
+      - name: Every import resolves
+        run: |
+          python - <<'PY'
+          import ast, importlib.util, sys
+          want = set()
+          for f in ("nhl_publish.py", "nhl_fetch.py", "nhl_data.py", "nhl_sport.py"):
+              for node in ast.walk(ast.parse(open(f).read())):
+                  if isinstance(node, ast.Import):
+                      want |= {a.name.split(".")[0] for a in node.names}
+                  elif isinstance(node, ast.ImportFrom) and node.level == 0 and node.module:
+                      want.add(node.module.split(".")[0])
+          missing = [m for m in sorted(want) if importlib.util.find_spec(m) is None]
+          for m in sorted(want):
+              print(("  MISSING  " if m in missing else "  ok       ") + m)
+          if missing:
+              print("\nUpload these: " + ", ".join(missing))
+              sys.exit(1)
+          PY
+
+      # The cache is the whole reason this job is fast. Without it the publish
+      # silently re-downloads a thousand careers - a twelve-minute job wearing
+      # a two-minute job's name - and the first sign is a timeout.
+      - name: The history cache is present
+        run: |
+          if ! ls data/nhl_*.csv.gz >/dev/null 2>&1; then
+            echo "NO NHL HISTORY CACHE in data/."
+            echo "Run the 'NHL fetch history' workflow first - it takes about"
+            echo "twelve minutes and commits data/nhl_<season>.csv.gz."
+            exit 1
+          fi
+          ls -la data/nhl_*.csv.gz
+
+      - name: Build the slate file
+        id: build
+        continue-on-error: true
+        run: |
+          # Without this the step cannot fail: a pipeline reports the exit
+          # status of its LAST command and `tee` always succeeds.
+          set -o pipefail
+
+          ARGS=""
+          if [ -n "${{ inputs.draft_group }}" ]; then
+            ARGS="$ARGS --draft-group ${{ inputs.draft_group }}"
+          fi
+          if [ -n "${{ inputs.date }}" ]; then
+            ARGS="$ARGS --date ${{ inputs.date }}"
+          fi
+          FIELD="${{ inputs.field }}";  ARGS="$ARGS --field ${FIELD:-100000}"
+          SIMS="${{ inputs.sims }}";    ARGS="$ARGS --sims ${SIMS:-20000}"
+          # Quoted and defaulted separately, because "0" is meaningful here and
+          # a scheduled run passes an EMPTY string, which must fall back to the
+          # default rather than passing the flag with no argument.
+          MSP="${{ inputs.min_salary_pct }}"
+          ARGS="$ARGS --min-salary-pct ${MSP:-99}"
+          echo "EFFECTIVE ARGS: $ARGS"
+          python nhl_publish.py $ARGS 2>&1 | tee publish.txt
+
+      - name: Say what happened
+        if: always()
+        run: |
+          {
+            if [ "${{ steps.build.outcome }}" = "success" ]; then
+              echo "### NHL slate published"
+            else
+              echo "### PUBLISH FAILED - the page still has the last good data"
+            fi
+            echo ''
+            echo 'Last 60 lines:'
+            echo '```'
+            tail -n 60 publish.txt 2>/dev/null || echo "(no output captured)"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+          ls -la docs/data/ 2>/dev/null || echo "docs/data is missing entirely"
+
+      - name: Publish
+        if: always()
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          find . -path ./.git -prune -o -name '__pycache__' -print0 2>/dev/null \
+            | xargs -0 rm -rf 2>/dev/null || true
+          git add -A docs engine
+          if git diff --cached --quiet; then
+            echo "nothing changed"
+            exit 0
+          fi
+          git commit -m "NHL slate: $(date -u +%Y-%m-%d\ %H:%M)"
+          git push || (git fetch origin main && git rebase origin/main && git push)
+
+      - name: Keep the log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nhl-publish-log
+          path: publish.txt
+          retention-days: 14
+          if-no-files-found: warn
+
+      # The build step is continue-on-error so a failure leaves the last good
+      # slate on the page instead of blanking it. That is right, and it also
+      # makes a run that published NOTHING finish green - indistinguishable in
+      # the Actions list from one that worked.
+      - name: Fail if nothing was published
+        if: always()
+        run: |
+          if [ "${{ steps.build.outcome }}" != "success" ]; then
+            echo "The slate build failed. The page is unchanged and still"
+            echo "shows whatever it had before this run."
+            exit 1
+          fi

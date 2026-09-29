@@ -71,6 +71,8 @@ tbody td{padding:7px 10px;border-bottom:1px solid var(--soft);text-align:right;
 tbody td.l{text-align:left;white-space:normal}
 tbody tr:hover td{background:var(--sunken)}
 tr.locked td{background:var(--accent-soft)}
+td.good{color:var(--good);font-weight:600}
+td.bad{color:var(--bad);font-weight:600}
 tr.excluded td{opacity:.35;text-decoration:line-through}
 .pill{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.05em;
   padding:1px 5px;border-radius:2px;margin-left:5px;vertical-align:1px}
@@ -156,6 +158,11 @@ footer{border-top:1px solid var(--line);padding-top:16px;font-size:12.5px;
   <section>
     <h2>Lineups</h2>
     <p class="sub" id="lineup-note"></p>
+    <div class="note" id="stale" hidden style="margin-top:10px">
+      <b>These lineups are stale.</b> The locks and fades changed after they
+      were solved, so what is on screen is the previous answer with the new
+      marks painted on it. Press <b>Build lineups</b> to solve again.
+    </div>
     <div class="grid2" id="lineups" style="margin-top:12px"></div>
   </section>
 
@@ -199,6 +206,11 @@ const esc = s => String(s).replace(/[&<>"]/g, c =>
   ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
 let SLATE = null;           // the loaded slate payload
+// The last solved answer, kept so a lock can repaint the cards without
+// re-running the simulation, and a flag saying the paint is now ahead of
+// the solve.
+let LAST = null;
+let STALE = false;
 const LOCK = new Set();
 const FADE = new Set();
 let SORT = { key: "med", dir: -1 };
@@ -604,6 +616,8 @@ function quantile(sorted, q) {
 
 function build() {
   if (!SLATE) return;
+  // A fresh solve is no longer behind the locks.
+  STALE = false;
   const t0 = performance.now();
   const players = SLATE.players;
   const roster = SLATE.roster;
@@ -788,19 +802,40 @@ function render(chosen, meta) {
     + "how many other entries are expected to field the same "
     + SLATE.roster.slots.length + " players.";
 
+  LAST = { chosen, meta };
+
   $("lineups").innerHTML = chosen.map((c, n) => {
     const rows = c.pick.slice().sort((a, b) => (b.cpt - a.cpt) ||
       (players[b.i].med - players[a.i].med)).map(p => {
       const pl = players[p.i];
-      return `<tr><td class="l">${p.cpt ? '<span class="chip">CPT</span> ' : ""}
+      // Leverage is the gap between two RANKS - how the model rates him
+      // against how the field will - so a sign is the whole story and the
+      // colour says it faster than the number does.
+      const lev = Number(pl.lev);
+      const lcls = !Number.isFinite(lev) ? "" : lev > 0.05 ? "good"
+                 : lev < -0.05 ? "bad" : "";
+      const cls = LOCK.has(p.i) ? "locked" : FADE.has(p.i) ? "excluded" : "";
+      return `<tr class="${cls}"><td class="l">${p.cpt ? '<span class="chip">CPT</span> ' : ""}
         ${esc(pl.name)}</td><td class="l">${esc(pl.pos)}</td>
         <td class="l">${esc(pl.team)}</td><td>${money(p.cost)}</td>
-        <td>${fmt(pl.med)}</td><td>${fmt(pl.own * 100)}%</td></tr>`;
+        <td>${fmt(pl.med)}</td><td>${fmt(pl.own * 100)}%</td>
+        <td class="${lcls}">${Number.isFinite(lev)
+          ? (lev > 0 ? "+" : "") + lev.toFixed(2) : "—"}</td>
+        <td class="l">
+          <button class="tog ${LOCK.has(p.i) ? "on" : ""}" data-lock="${p.i}">L</button>
+          <button class="tog ${FADE.has(p.i) ? "off" : ""}" data-fade="${p.i}">X</button>
+        </td></tr>`;
     }).join("");
     return `<div class="lineup">
       <h3>Entry ${n + 1}<span class="chip">${esc(meta.objective.toUpperCase())}</span>
         ${c.stack ? `<span class="chip">${esc(c.stack.team)} x${c.stack.size}</span>` : ""}</h3>
-      <div class="scroll"><table><tbody>${rows}</tbody></table></div>
+      <div class="scroll"><table>
+        <thead><tr>
+          <th class="l">Player</th><th class="l">Pos</th><th class="l">Team</th>
+          <th>Salary</th><th>Median</th><th>Own%</th><th>Lev</th>
+          <th class="l">Lock</th>
+        </tr></thead>
+        <tbody>${rows}</tbody></table></div>
       <div class="stats">
         <span>salary <b>${money(c.salary)}</b> of ${money(SLATE.roster.salary_cap)}</span>
         <span>mean <b>${fmt(c.mean)}</b></span>
@@ -817,6 +852,31 @@ function render(chosen, meta) {
       </div></div>`;
   }).join("");
 
+  // L and X straight off a lineup, using the same two sets the board uses.
+  //
+  // What it deliberately does NOT do is re-solve. A rebuild is twenty
+  // thousand correlated simulations, and locking four players one at a time
+  // would run it four times. So the click updates the sets, repaints, and
+  // SAYS the lineups on screen are now stale - because a lineup that quietly
+  // no longer reflects its own locks is worse than one that admits it.
+  $("lineups").onclick = e => {
+    const l = e.target.dataset && e.target.dataset.lock;
+    const f = e.target.dataset && e.target.dataset.fade;
+    if (l === undefined && f === undefined) return;
+    const i = Number(l !== undefined ? l : f);
+    const set = l !== undefined ? LOCK : FADE;
+    const other = l !== undefined ? FADE : LOCK;
+    const on = set.has(i);
+    // Every row for the same man, because DraftKings lists a multi-position
+    // player once per eligibility and a lock on one of them is not a lock.
+    for (const j of sameMan(SLATE.players, i)) {
+      on ? set.delete(j) : (set.add(j), other.delete(j));
+    }
+    drawBoard();
+    STALE = true;
+    render(LAST.chosen, LAST.meta);
+  };
+
   $("status").textContent =
     `${chosen.length} lineup${chosen.length > 1 ? "s" : ""} from ` +
     `${meta.pool.toLocaleString()} candidates in ${(meta.ms / 1000).toFixed(1)}s` +
@@ -825,6 +885,8 @@ function render(chosen, meta) {
       : meta.minSpend
         ? ` — every lineup spends at least $${meta.minSpend.toLocaleString()}`
         : "");
+
+  $("stale").hidden = !STALE;
 }
 
 function drawBoard() {

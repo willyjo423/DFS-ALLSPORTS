@@ -1,0 +1,86 @@
+name: NHL probe
+
+# Prints what MoneyPuck and DraftKings actually contain, and builds nothing.
+#
+# It exists to end guessing. nhl_data.py was written on a machine that cannot
+# reach either source, so every column name in it is a candidate rather than a
+# fact. One run of this turns all of them into facts at once, instead of one
+# per round trip - which is how the baseball build lost whole afternoons.
+#
+# Nothing here writes to the repo. It is safe to run as often as you like.
+
+on:
+  workflow_dispatch:
+    inputs:
+      season:
+        description: "MoneyPuck season to sample (the year the season STARTED, so 2025 for 2025-26)"
+        default: "2025"
+      draft_group:
+        description: "A specific DraftKings NHL draft group (blank = the busiest live one)"
+        required: false
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas requests
+
+      - name: Probe
+        id: probe
+        continue-on-error: true
+        run: |
+          # Without pipefail the step cannot fail: a pipeline reports the exit
+          # status of its LAST command, and `tee` always succeeds. That is the
+          # bug that made an MLB publish report success while Python had died
+          # on a missing import.
+          set -o pipefail
+
+          ARGS="--probe"
+          if [ -n "${{ inputs.season }}" ]; then
+            ARGS="$ARGS --season ${{ inputs.season }}"
+          fi
+          if [ -n "${{ inputs.draft_group }}" ]; then
+            ARGS="$ARGS --draft-group ${{ inputs.draft_group }}"
+          fi
+          echo "RUNNING: python nhl_data.py $ARGS"
+          python nhl_data.py $ARGS 2>&1 | tee probe.txt
+
+      # On the run's front page, not twelve clicks into a collapsed step.
+      # Every round spent asking "what did the log say" is a round not spent
+      # fixing what it said.
+      - name: Put it on the summary
+        if: always()
+        run: |
+          {
+            if [ "${{ steps.probe.outcome }}" != "success" ]; then
+              echo "### The probe did not finish — the output below still says why"
+            else
+              echo "### NHL probe"
+            fi
+            echo ''
+            echo 'Copy everything below this line and paste it back.'
+            echo ''
+            echo '```'
+            cat probe.txt 2>/dev/null || echo "(no output captured at all)"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Keep the output
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nhl-probe
+          path: probe.txt
+          retention-days: 14
+          if-no-files-found: warn

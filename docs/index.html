@@ -77,6 +77,7 @@ tr.excluded td{opacity:.35;text-decoration:line-through}
 .pill{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.05em;
   padding:1px 5px;border-radius:2px;margin-left:5px;vertical-align:1px}
 .pill.q{background:var(--warn-bg);color:var(--warn)}
+.pill.ok{background:#1a7f4b1f;color:var(--good)}
 .chip{font-size:10px;font-weight:700;padding:2px 5px;border-radius:2px;
   background:var(--sunken);color:var(--muted)}
 .tog{cursor:pointer;border:1px solid var(--line);background:var(--surface);
@@ -137,6 +138,12 @@ footer{border-top:1px solid var(--line);padding-top:16px;font-size:12.5px;
     <div class="ctl"><label for="minsal"
       title="The least a lineup may spend, as a percent of the cap. Unspent salary is points you declined to buy — about 1.16 of them per $1,000 in MLB. 0 turns the floor off.">Min salary %</label>
       <input id="minsal" type="number" min="0" max="100" step="0.5" value="98"></div>
+    <div class="ctl" id="ctl-goalie" hidden><label for="goaliemode"
+      title="Hockey only. A goalie who does not start scores exactly zero, and the G slot has no alternative. Confirmed only refuses to roster any goalie you have not marked with G on the board.">Goalies</label>
+      <select id="goaliemode">
+        <option value="all" selected>Any goalie</option>
+        <option value="confirmed">Confirmed starters only</option>
+      </select></div>
     <div class="ctl"><label for="sims">Simulations</label>
       <select id="sims">
         <option value="20000">20,000</option>
@@ -169,7 +176,9 @@ footer{border-top:1px solid var(--line);padding-top:16px;font-size:12.5px;
   <section>
     <h2>The board</h2>
     <p class="sub">Click <b>L</b> to force a player in, <b>X</b> to force him
-      out. Ownership is modelled, not measured. Leverage is the gap between how
+      out. On a hockey board goalies also carry a <b>G</b> button: press it for
+      the men confirmed to start tonight, and no other goalie can be rostered.
+      Ownership is modelled, not measured. Leverage is the gap between how
       much the model likes a player and how much the field will.</p>
     <div class="row" style="margin-top:10px">
       <button id="copysheet" class="ghost"
@@ -182,7 +191,7 @@ footer{border-top:1px solid var(--line);padding-top:16px;font-size:12.5px;
       <table id="board">
         <thead><tr>
           <th class="l">Player</th><th class="l">Pos</th><th class="l">Team</th>
-          <th>Bat</th><th>Salary</th><th>Median</th><th>Ceiling</th>
+          <th id="th-op">Bat</th><th>Salary</th><th>Median</th><th>Ceiling</th>
           <th>Per $1k</th><th>Own%</th><th>Leverage</th><th class="l">Lock</th>
         </tr></thead>
         <tbody></tbody>
@@ -213,7 +222,48 @@ let LAST = null;
 let STALE = false;
 const LOCK = new Set();
 const FADE = new Set();
+// Goalies you have confirmed as tonight's starters, and everything the gate
+// therefore refuses to roster. Kept apart from FADE on purpose: a fade is a
+// judgement you made about a player, and "Clear locks and fades" must not
+// throw away a fact you looked up.
+const START = new Set();
+let BLOCK = new Set();
 let SORT = { key: "med", dir: -1 };
+
+const isNHL = () => !!(SLATE && SLATE.sport === "nhl");
+const isGoalie = p => p.pos === "G";
+// A pitcher and a goalie are the same object in two sports: one roster spot
+// whose points are earned by the other side failing. Every rule that keeps a
+// lineup from betting against itself has to see them as one kind.
+const isAnchor = p => p.pos === "P" || p.pos === "G";
+
+// Every name a site gives to "any eligible player". Hockey's is UTIL.
+const FLEX_SLOTS = new Set(["FLEX", "UTIL", "UTIL/FLEX", "SFLEX", "G/UTIL"]);
+
+const goalieGate = () => isNHL() && $("goaliemode").value === "confirmed";
+
+// Hockey's single largest unknown, and the reason this exists. A goalie who
+// is not in the crease does not score badly - he scores exactly zero, out of
+// a roster slot that admits no substitute and costs about a sixth of the cap.
+// No projection built from games he has played can know whether he dresses
+// tonight, and there is no free feed that says so: the NHL publishes no
+// pre-game lineup card, and its own scratch list only appears once the puck
+// has dropped. So the fact comes from you, and until it does the board will
+// not spend the slot.
+function refreshBlock() {
+  BLOCK = new Set();
+  if (!SLATE || !goalieGate()) return;
+  SLATE.players.forEach((p, i) => {
+    // An explicit lock outranks the gate. Locking a goalie you never marked
+    // is a statement in its own right, and a lock the page silently drops is
+    // the worst of both answers.
+    if (isGoalie(p) && !START.has(i) && !LOCK.has(i)) BLOCK.add(i);
+  });
+}
+
+const goalieCount = () => SLATE ? SLATE.players.filter(isGoalie).length : 0;
+const startedCount = () =>
+  SLATE ? [...START].filter(i => isGoalie(SLATE.players[i])).length : 0;
 
 // A player's identity, for boards that list him more than once.
 //
@@ -262,7 +312,16 @@ async function boot() {
 async function loadSlate(file) {
   $("status").textContent = "Loading " + file + "…";
   SLATE = await (await fetch(file + "?" + Date.now())).json();
-  LOCK.clear(); FADE.clear();
+  LOCK.clear(); FADE.clear(); START.clear();
+  LAST = null; STALE = false; $("stale").hidden = true;
+  // The board is sport-aware in exactly two places: the opportunity column,
+  // which is a batting slot in baseball and ice time in hockey, and the goalie
+  // gate, which has no meaning outside hockey.
+  $("ctl-goalie").hidden = !isNHL();
+  $("th-op").textContent = isNHL() ? "TOI" : "Bat";
+  refreshBlock();
+  // A sort key from the previous board may not exist on this one.
+  if (SORT.key === "bat" || SORT.key === "toi") SORT = { key: "med", dir: -1 };
   $("field").value = SLATE.field_size || 100000;
   $("overlap").value = Math.max(1, SLATE.roster.slots.length - 3);
   // Start where the server's own build started, so the exact lineup shipped
@@ -475,14 +534,25 @@ function legalLineup(players, roster, weights, rng, opts) {
   const pitcherOpp = new Set();     // teams whose hitters are now barred
   const hitterTeams = new Set();    // teams with a hitter already rostered
 
-  const eligible = i => !FADE.has(i);
+  // BLOCK is folded in here rather than added to FADE so that everything
+  // downstream - the stack search, the cheapest-and-dearest look-aheads, the
+  // "nothing fits" message - sees one consistent notion of who is pickable.
+  const eligible = i => !FADE.has(i) && !BLOCK.has(i);
   const order = [...Array(n).keys()].filter(eligible)
     .sort((a, b) => (weights[b] + rng() * weights[b] * 0.55)
                   - (weights[a] + rng() * weights[a] * 0.55));
 
+  // What counts as a flex slot is a NAME, and the name is not the same in
+  // every sport. Football calls it FLEX; hockey calls it UTIL. Matching only
+  // the literal string "FLEX" turned UTIL into a required position that no
+  // player on earth can fill, so `need` could never reach zero and the hockey
+  // board returned "Nothing fits" for every build, on every slate, silently -
+  // it looks exactly like an over-tight lock.
   const need = {};
-  for (const s of slots) if (s !== "FLEX" && s !== "CPT") need[s] = (need[s] || 0) + 1;
-  const flexCount = slots.filter(s => s === "FLEX").length;
+  for (const s of slots) {
+    if (!FLEX_SLOTS.has(s) && s !== "CPT") need[s] = (need[s] || 0) + 1;
+  }
+  const flexCount = slots.filter(s => FLEX_SLOTS.has(s)).length;
   const flexPos = new Set(roster.flex_positions || []);
 
   const pick = [], teamCount = {};
@@ -515,10 +585,10 @@ function legalLineup(players, roster, weights, rng, opts) {
 
   const tryAdd = (i, asCaptain) => {
     const p = players[i];
-    const isPitcher = p.pos === "P";
+    const anchor = isAnchor(p);
     if (noVsPitcher) {
-      if (isPitcher && hitterTeams.has(p.opp)) return false;
-      if (!isPitcher && pitcherOpp.has(p.team)) return false;
+      if (anchor && hitterTeams.has(p.opp)) return false;
+      if (!anchor && pitcherOpp.has(p.team)) return false;
     }
     const cost = asCaptain
       ? (p.cpt || Math.round(p.salary * (roster.captain_multiplier || 1.5)))
@@ -537,7 +607,7 @@ function legalLineup(players, roster, weights, rng, opts) {
     if (pick.some(x => who(players[x.i]) === who(p))) return false;
     pick.push({ i, cpt: !!asCaptain, cost });
     teamCount[p.team] = (teamCount[p.team] || 0) + 1;
-    if (isPitcher) pitcherOpp.add(p.opp); else hitterTeams.add(p.team);
+    if (anchor) pitcherOpp.add(p.opp); else hitterTeams.add(p.team);
     spend += cost;
     return true;
   };
@@ -556,14 +626,69 @@ function legalLineup(players, roster, weights, rng, opts) {
   if (stackTeam && stackSize > 0) {
     const mates = [...Array(n).keys()]
       .filter(i => eligible(i) && players[i].team === stackTeam
-                   && players[i].pos !== "P" && !pick.some(x => x.i === i))
-      .sort((a, b) => (players[a].bat || 99) - (players[b].bat || 99));
+                   && !isAnchor(players[i]) && !pick.some(x => x.i === i))
+      // Who goes in the stack first. Baseball orders by batting slot, because
+      // consecutive hitters come to bat in the same innings. Hockey's
+      // equivalent is the power play: a goal there pays the scorer and up to
+      // two assisters at once, and the top unit is on the ice together for
+      // almost all of it. Ordering by PP ice time, then by total ice time,
+      // builds the correlated stack rather than the merely same-jersey one.
+      .sort((a, b) => isNHL()
+        ? ((players[b].pptoi || 0) - (players[a].pptoi || 0)) ||
+          ((players[b].toi || 0) - (players[a].toi || 0))
+        : (players[a].bat || 99) - (players[b].bat || 99));
     let taken = 0;
     for (const i of mates) {
       if (taken >= stackSize) break;
       if (tryAdd(i, false)) taken++;
     }
     if (taken < stackSize) return null;
+  }
+
+  // The anchor - pitcher or goalie - goes in BEFORE the rest of the board,
+  // and after the stack.
+  //
+  // He bars every skater on the team he is facing, and they bar him, so
+  // whoever is placed last loses the argument. Left to points-per-dollar a
+  // greedy build reaches the goalie ninth, by which time skaters from every
+  // team on the board are rostered and EVERY goalie is illegal: the search
+  // then returns nothing at all rather than a marginally worse lineup. On a
+  // four-team test board that was 0 legal lineups out of 400 attempts.
+  //
+  // Baseball never showed this because a starting pitcher is the dearest and
+  // best-projected man on the slate and so was always taken early by
+  // accident. A goalie is mid-priced and mid-projected, so the accident stops
+  // happening and the bug appears. After the stack rather than before it, so
+  // the stack the plan asked for still gets built and only then constrains
+  // which anchor is legal.
+  if (!showdown) {
+    const anchorsLeft = () => (need["G"] || 0) + (need["P"] || 0);
+    for (const i of order) {
+      if (anchorsLeft() <= 0) break;
+      if (!isAnchor(players[i])) continue;
+      if (pick.some(x => x.i === i)) continue;
+      tryAdd(i, false);
+    }
+    if (anchorsLeft() > 0) return null;
+  }
+
+  // DraftKings requires skaters from at least THREE teams in a hockey lineup.
+  // That is a minimum on distinct teams, and a minimum cannot be written as
+  // the per-team maximum the solver understands: six and two is legal by the
+  // maximum and rejected at the window. So it is seeded here and verified
+  // below. An entry the site refuses is worse than a weaker one it accepts.
+  const minTeams = roster.min_skater_teams || 0;
+  const skaterTeams = () => new Set(
+    pick.filter(x => !isAnchor(players[x.i])).map(x => players[x.i].team));
+  if (minTeams > 1) {
+    let have = skaterTeams();
+    for (const i of order) {
+      if (have.size >= minTeams || pick.length >= slots.length) break;
+      const p = players[i];
+      if (isAnchor(p) || have.has(p.team)) continue;
+      if (pick.some(x => x.i === i)) continue;
+      if (tryAdd(i, false)) have = skaterTeams();
+    }
   }
 
   for (const i of order) {
@@ -578,6 +703,10 @@ function legalLineup(players, roster, weights, rng, opts) {
   // was allowed to take. Checked here so a lineup that misses the floor is
   // never returned wearing the label of one that met it.
   if (minSpend > 0 && spend < minSpend) return null;
+  // Verified, not assumed. The seeding above usually satisfies this, but a
+  // forced stack plus the team cap can still land on two teams, and that
+  // entry does not exist as far as DraftKings is concerned.
+  if (minTeams > 1 && skaterTeams().size < minTeams) return null;
   return pick;
 }
 
@@ -598,7 +727,7 @@ function biggestStack(players, pick) {
   const count = new Map();
   for (const p of pick) {
     const pl = players[p.i];
-    if (pl.pos === "P") continue;
+    if (isAnchor(pl)) continue;
     count.set(pl.team, (count.get(pl.team) || 0) + 1);
   }
   let best = null;
@@ -616,6 +745,24 @@ function quantile(sorted, q) {
 
 function build() {
   if (!SLATE) return;
+  refreshBlock();
+  // Refuse rather than guess. With the gate on and nothing marked, every
+  // goalie is blocked and the solver would come back with "no legal lineup" -
+  // a true sentence that points at entirely the wrong thing. Say what is
+  // actually missing instead.
+  if (goalieGate() && goalieCount() > 0 && startedCount() === 0) {
+    $("status").textContent = "No confirmed goalie marked.";
+    $("lineups").innerHTML =
+      '<div class="note"><b>Mark tonight\'s starting goalies first.</b> ' +
+      'Press <b>G</b> on the board beside each goalie confirmed to start. ' +
+      'Nothing on this page knows who starts — the NHL publishes no pre-game ' +
+      'lineup card, and a goalie who does not dress scores zero out of a slot ' +
+      'with no substitute, so the board will not spend it on a guess. ' +
+      'If you would rather let the model pick, set <b>Goalies</b> to ' +
+      '<b>Any goalie</b>.</div>';
+    $("stale").hidden = true;
+    return;
+  }
   // A fresh solve is no longer behind the locks.
   STALE = false;
   const t0 = performance.now();
@@ -691,12 +838,14 @@ function build() {
     if (objective !== "cash") {
       const byTeam = new Map();
       players.forEach((p, i) => {
-        if (p.pos === "P") return;
+        if (isAnchor(p)) return;
         if (!byTeam.has(p.team)) byTeam.set(p.team, []);
         byTeam.get(p.team).push(i);
       });
       for (const [t, idx] of byTeam) {
-        if (idx.filter(i => !FADE.has(i)).length >= STACK) stackable.push(t);
+        if (idx.filter(i => !FADE.has(i) && !BLOCK.has(i)).length >= STACK) {
+          stackable.push(t);
+        }
       }
     }
     const plans = stackable.length
@@ -872,6 +1021,7 @@ function render(chosen, meta) {
     for (const j of sameMan(SLATE.players, i)) {
       on ? set.delete(j) : (set.add(j), other.delete(j));
     }
+    refreshBlock();
     drawBoard();
     STALE = true;
     render(LAST.chosen, LAST.meta);
@@ -898,21 +1048,37 @@ function drawBoard() {
     const bv = k === "name" || k === "pos" || k === "team" ? b.p[k] : Number(b.p[k]);
     return (av < bv ? -1 : av > bv ? 1 : 0) * SORT.dir;
   });
+  const nhl = isNHL();
   tb.innerHTML = rows.map(({ p, i }) => {
     const per = p.salary ? p.med / (p.salary / 1000) : 0;
-    const cls = LOCK.has(i) ? "locked" : FADE.has(i) ? "excluded" : "";
-    // A blank batting order is not a ninth-place hitter - it is a hitter
-    // whose card is not posted yet, and he may not play at all. Saying so on
-    // the row is the difference between leverage and a zero.
-    const q = (p.pos !== "P" && (p.bat === null || p.bat === undefined))
-      ? '<span class="pill q">NOT CONFIRMED</span>' : "";
-    const bat = p.pos === "P" ? "—" : (p.bat ? p.bat : "?");
+    const cls = LOCK.has(i) ? "locked"
+      : (FADE.has(i) || BLOCK.has(i)) ? "excluded" : "";
+    // What "not confirmed" means depends on the sport. In baseball it is a
+    // blank batting order: not a ninth-place hitter, a hitter whose card is
+    // not posted and who may not play. In hockey it is a goalie nobody has
+    // told this page about. Both are the difference between leverage and a
+    // zero, so both get said on the row.
+    let q = "";
+    if (nhl) {
+      if (isGoalie(p)) {
+        q = START.has(i) ? '<span class="pill ok">STARTING</span>'
+                         : '<span class="pill q">NOT CONFIRMED</span>';
+      }
+    } else if (p.pos !== "P" && (p.bat === null || p.bat === undefined)) {
+      q = '<span class="pill q">NOT CONFIRMED</span>';
+    }
+    const op = nhl ? (isGoalie(p) ? "—" : fmt(p.toi, 1))
+                   : (p.pos === "P" ? "—" : (p.bat ? p.bat : "?"));
+    const g = (nhl && isGoalie(p))
+      ? `<button class="tog ${START.has(i) ? "on" : ""}" data-start="${i}"
+          title="Mark this goalie as a confirmed starter tonight">G</button> `
+      : "";
     return `<tr class="${cls}">
       <td class="l">${esc(p.name)}${q}</td><td class="l">${esc(p.pos)}</td>
-      <td class="l">${esc(p.team)}</td><td>${bat}</td><td>${money(p.salary)}</td>
+      <td class="l">${esc(p.team)}</td><td>${op}</td><td>${money(p.salary)}</td>
       <td>${fmt(p.med)}</td><td>${fmt(p.ceil)}</td><td>${fmt(per, 2)}</td>
       <td>${fmt(p.own * 100)}%</td><td>${fmt(p.lev, 2)}</td>
-      <td class="l">
+      <td class="l">${g}
         <button class="tog ${LOCK.has(i) ? "on" : ""}" data-lock="${i}">L</button>
         <button class="tog ${FADE.has(i) ? "off" : ""}" data-fade="${i}">X</button>
       </td></tr>`;
@@ -921,12 +1087,27 @@ function drawBoard() {
   tb.onclick = e => {
     const l = e.target.dataset && e.target.dataset.lock;
     const f = e.target.dataset && e.target.dataset.fade;
+    const s = e.target.dataset && e.target.dataset.start;
+    if (s !== undefined && s !== null) {
+      const i = Number(s);
+      const on = START.has(i);
+      for (const j of sameMan(SLATE.players, i)) {
+        on ? START.delete(j) : (START.add(j), FADE.delete(j));
+      }
+      refreshBlock();
+      drawBoard();
+      // Confirming a goalie changes who is pickable, so anything already on
+      // screen was solved against a different board.
+      if (LAST) { STALE = true; render(LAST.chosen, LAST.meta); }
+      return;
+    }
     if (l !== undefined && l !== null) {
       const i = Number(l);
       const on = LOCK.has(i);
       for (const j of sameMan(SLATE.players, i)) {
         on ? LOCK.delete(j) : (LOCK.add(j), FADE.delete(j));
       }
+      refreshBlock();
       drawBoard();
     } else if (f !== undefined && f !== null) {
       const i = Number(f);
@@ -934,12 +1115,14 @@ function drawBoard() {
       for (const j of sameMan(SLATE.players, i)) {
         on ? FADE.delete(j) : (FADE.add(j), LOCK.delete(j));
       }
+      refreshBlock();
       drawBoard();
     }
   };
 
   document.querySelectorAll("#board thead th").forEach((th, n) => {
-    const keys = ["name", "pos", "team", "bat", "salary", "med", "ceil", null, "own", "lev"];
+    const keys = ["name", "pos", "team", nhl ? "toi" : "bat",
+                  "salary", "med", "ceil", null, "own", "lev"];
     th.onclick = () => {
       if (!keys[n]) return;
       SORT = { key: keys[n], dir: SORT.key === keys[n] ? -SORT.dir : -1 };
@@ -962,6 +1145,7 @@ function showServerLineups() {
 }
 
 function drawHonesty() {
+  if (isNHL()) return drawHonestyNHL();
   const slots = (SLATE.roster && SLATE.roster.slots) || [];
   const pitchers = slots.filter(s => s === "P").length || 1;
   $("honesty").innerHTML = `
@@ -1015,6 +1199,50 @@ function drawHonesty() {
     on the server and its answer is shown above for comparison.`;
 }
 
+function drawHonestyNHL() {
+  const extra = (SLATE.caveats || []).map(c => `<br><br>${esc(c)}`).join("");
+  $("honesty").innerHTML = `
+    <b>Nobody here knows who is starting in goal.</b> Baseball gives this page
+    an official lineup card about two hours before first pitch, free and
+    machine-readable, and the board is filtered against it. Hockey has no
+    equivalent. The NHL publishes no pre-game lineup card and no starting
+    goalie; its own scratch list does not appear until the puck has dropped.
+    Confirmations come from beat reporters. So the <b>G</b> button is where
+    that fact enters the model, and with <b>Goalies</b> set to
+    <b>Confirmed starters only</b> no goalie you have not marked can be
+    rostered. This is not fussiness: the goalie is one slot of nine, costs
+    roughly a sixth of the cap, and a man who does not dress scores zero with
+    no substitute available. It is the largest single unknown on the board and
+    the only one you can remove for free.
+    <br><br>
+    <b>Skaters who are out are handled, mostly.</b> DraftKings flags a player
+    it knows is unavailable and the build drops him before he ever reaches
+    this page. What that does not catch is a healthy scratch or a late line
+    change decided at warmups, which DraftKings often never flags at all. Use
+    <b>X</b> on anyone you know is not dressing.
+    <br><br>
+    <b>Lines and power-play units are averages, not tonight's sheet.</b> The
+    <b>TOI</b> column is the player's own recent ice time, exponentially
+    weighted, and <b>PP TOI</b> behind it drives the stack order. A promotion
+    to the top power-play unit this morning is invisible to the model and is
+    the single most profitable thing you can know that it does not.
+    <br><br>
+    <b>The stack is a power-play bet.</b> One goal pays the scorer and up to
+    two assisters at the same instant, which is why team correlation here is
+    the highest in the project — well above a baseball batting order. The
+    stack is filled in order of power-play ice time, so it tends to be the
+    unit that is actually on the ice together rather than four men who merely
+    share a jersey. The solver also refuses to roster a goalie against skaters
+    from the team he is facing, for the same reason it will not put a hitter
+    against his own pitcher: that is one event bet in two directions.
+    <br><br>
+    <b>Ownership has never been graded.</b> There is no public record of what
+    an NHL field actually played, so the ownership column and every leverage
+    and duplication number derived from it are modelled guesses. Treat them as
+    directional. Nothing on this page has been backtested against real hockey
+    contest results.${extra}`;
+}
+
 /* ---------------------------------------------------------- taking it out */
 // Two buttons rather than one, because "export to Google Sheets" has two
 // honest answers and neither is an API call. A static page on GitHub Pages
@@ -1030,37 +1258,52 @@ function drawHonesty() {
 // separators. A spreadsheet that receives "$4,200" stores text, and text does
 // not sort, average, or chart. Formatting is the spreadsheet's job and it can
 // only do it if the cell holds a number.
-const EXPORT_COLS = [
-  ["player",   p => p.name],
-  ["pos",      p => p.pos],
-  ["team",     p => p.team],
-  ["opp",      p => p.opp || ""],
-  ["game",     p => p.game || ""],
-  // Blank, not 9. An unposted card is an unknown, and a spreadsheet that reads
-  // "9" cannot tell the difference between a confirmed nine-hole hitter and a
-  // man who may not play at all.
-  ["bat",      p => (p.pos === "P" ? "" : (p.bat == null ? "" : p.bat))],
-  ["confirmed", p => (p.pos === "P" ? "" : (p.bat == null ? "no" : "yes"))],
-  ["salary",   p => p.salary],
-  ["median",   p => round2(p.med)],
-  ["ceiling",  p => round2(p.ceil)],
-  ["per_1k",   p => (p.salary ? round2(p.med / (p.salary / 1000)) : "")],
-  ["own_pct",  p => round2(p.own * 100)],
-  ["leverage", p => round2(p.lev)],
-  // The two the board does not show but a spreadsheet wants: the chance he
-  // plays at all, and the plate-appearance multiplier his batting slot earns.
-  // Sorting a sheet by median without them hides why a cheap bat projects
-  // well - he may simply be unlikely to appear.
-  ["p_play",   p => round2(p.pp)],
-  ["order_factor", p => round2(p.of)],
-];
+function exportCols() {
+  // The opportunity columns are the only ones that differ, because the two
+  // sports measure opportunity differently and a sheet with an empty "bat"
+  // column beside a hockey board is worse than no column at all.
+  const opportunity = isNHL()
+    ? [["toi",    p => (isGoalie(p) ? "" : round2(p.toi))],
+       ["pp_toi", p => (isGoalie(p) ? "" : round2(p.pptoi))],
+       // Exported so a sheet can reproduce the gate. A blank here is a
+       // skater; "no" is a goalie nobody has confirmed.
+       ["confirmed_starter",
+        (p, i) => (isGoalie(p) ? (START.has(i) ? "yes" : "no") : "")]]
+    // Blank, not 9. An unposted card is an unknown, and a spreadsheet that
+    // reads "9" cannot tell a confirmed nine-hole hitter from a man who may
+    // not play at all.
+    : [["bat",       p => (p.pos === "P" ? "" : (p.bat == null ? "" : p.bat))],
+       ["confirmed", p => (p.pos === "P" ? "" : (p.bat == null ? "no" : "yes"))]];
+  // The chance he takes part at all, and - baseball only - the
+  // plate-appearance multiplier his batting slot earns. Sorting a sheet by
+  // median without the first hides why a cheap name projects well: he may
+  // simply be unlikely to appear.
+  const tail = isNHL()
+    ? [["p_play", p => round2(p.pp)]]
+    : [["p_play", p => round2(p.pp)], ["order_factor", p => round2(p.of)]];
+  return [
+    ["player",   p => p.name],
+    ["pos",      p => p.pos],
+    ["team",     p => p.team],
+    ["opp",      p => p.opp || ""],
+    ["game",     p => p.game || ""],
+    ...opportunity,
+    ["salary",   p => p.salary],
+    ["median",   p => round2(p.med)],
+    ["ceiling",  p => round2(p.ceil)],
+    ["per_1k",   p => (p.salary ? round2(p.med / (p.salary / 1000)) : "")],
+    ["own_pct",  p => round2(p.own * 100)],
+    ["leverage", p => round2(p.lev)],
+    ...tail,
+  ];
+}
 
 function round2(v) {
   const n = Number(v);
   return Number.isFinite(n) ? Math.round(n * 100) / 100 : "";
 }
 
-function boardRows() {
+function boardRows(cols) {
   // Exported in the order shown, so what lands in the sheet matches what is
   // on screen rather than some hidden internal order.
   const k = SORT.key;
@@ -1071,11 +1314,12 @@ function boardRows() {
     const bv = num ? Number(b.p[k]) : b.p[k];
     return (av < bv ? -1 : av > bv ? 1 : 0) * SORT.dir;
   });
-  return rows.map(({ p }) => EXPORT_COLS.map(([, get]) => get(p)));
+  return rows.map(({ p, i }) => cols.map(([, get]) => get(p, i)));
 }
 
 function exportText(sep) {
-  const head = EXPORT_COLS.map(([h]) => h);
+  const cols = exportCols();
+  const head = cols.map(([h]) => h);
   const esc1 = v => {
     const s = v === null || v === undefined ? "" : String(v);
     if (sep === "," && /[",\n]/.test(s)) return '"' + s.replace(/"/g, '""') + '"';
@@ -1085,13 +1329,14 @@ function exportText(sep) {
     if (sep === "\t") return s.replace(/[\t\r\n]+/g, " ");
     return s;
   };
-  return [head, ...boardRows()]
+  return [head, ...boardRows(cols)]
     .map(r => r.map(esc1).join(sep)).join("\n");
 }
 
 function exportName(ext) {
   const day = (SLATE.generated_at || "").slice(0, 10) || "slate";
-  return `mlb-board-${day}-dg${SLATE.draft_group || "x"}.${ext}`;
+  const sport = (SLATE.sport || "dfs").toLowerCase();
+  return `${sport}-board-${day}-dg${SLATE.draft_group || "x"}.${ext}`;
 }
 
 function flash(msg) {
@@ -1136,7 +1381,19 @@ $("csv").onclick = () => {
 };
 
 $("run").onclick = build;
-$("reset").onclick = () => { LOCK.clear(); FADE.clear(); drawBoard(); };
+// Confirmed starters survive this deliberately. A lock is an opinion and a
+// fade is an opinion; "Kochetkov is starting" is a fact you went and looked
+// up, and clearing the board should not make you look it up again.
+$("reset").onclick = () => {
+  LOCK.clear(); FADE.clear();
+  refreshBlock();
+  drawBoard();
+};
+$("goaliemode").onchange = () => {
+  refreshBlock();
+  drawBoard();
+  if (LAST) { STALE = true; render(LAST.chosen, LAST.meta); }
+};
 boot();
 </script>
 </body>

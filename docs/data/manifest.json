@@ -1,32 +1,11 @@
 {
- "updated_at": "2026-09-30T15:22:38+00:00",
+ "updated_at": "2026-09-30T21:12:26+00:00",
  "slates": [
   {
    "sport": "mlb",
    "site": "dk",
    "kind": "classic",
-   "label": "4 games \u00b7 locks 2:00pm et \u00b7 MLB $200K Perfect Game",
-   "file": "data/mlb_dk_classic_154194.json"
-  },
-  {
-   "sport": "mlb",
-   "site": "dk",
-   "kind": "classic",
-   "label": "4 games \u00b7 locks 2:00pm et \u00b7 MLB Tiers $3.3K Knuckleball",
-   "file": "data/mlb_dk_classic_154195.json"
-  },
-  {
-   "sport": "mlb",
-   "site": "dk",
-   "kind": "classic",
-   "label": "2 games \u00b7 locks 5:00pm et \u00b7 MLB $7K Extra Inning",
-   "file": "data/mlb_dk_classic_154199.json"
-  },
-  {
-   "sport": "mlb",
-   "site": "dk",
-   "kind": "classic",
-   "label": "2 games \u00b7 locks 8:00pm et \u00b7 MLB $21K Perfect Game",
+   "label": "2 games \u00b7 locks 8:00pm et \u00b7 MLB $50K Relay Throw",
    "file": "data/mlb_dk_classic_154201.json"
   }
  ]

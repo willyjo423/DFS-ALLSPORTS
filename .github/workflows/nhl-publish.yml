@@ -9,12 +9,18 @@ name: Publish NHL page
 
 on:
   schedule:
-    # Hockey is an evening sport and lines go up at the morning skate. 21:00
-    # UTC is 5pm Eastern - about two hours before a 7pm puck drop, which is
-    # when the board is closest to the one that actually plays. The earlier
-    # run keeps the page from going stale during the day.
-    - cron: "0 15 * * *"
-    - cron: "0 21 * * *"
+    # Hockey is an evening sport and lines go up at the morning skate. 22:00
+    # UTC is 6pm Eastern - about an hour before a 7pm puck drop, which is when
+    # the board is closest to the one that actually plays. The earlier run
+    # keeps the page from going stale during the day.
+    #
+    # BOTH TIMES ARE AFTER THE STAT MODEL PUBLISHES. The projections repo
+    # fetches at 13:31 UTC and projects at 15:31; running this at 15:00 would
+    # have read YESTERDAY's file every single morning and quietly labelled the
+    # board with the wrong opponents. Fifteen minutes of margin on a schedule
+    # GitHub delays routinely is not much, so the early run is at 16:15.
+    - cron: "15 16 * * *"
+    - cron: "0 22 * * *"
   workflow_dispatch:
     inputs:
       draft_group:
@@ -132,6 +138,11 @@ jobs:
           MSP="${{ inputs.min_salary_pct }}"
           ARGS="$ARGS --min-salary-pct ${MSP:-99}"
           echo "EFFECTIVE ARGS: $ARGS"
+          # pipefail, because a pipeline reports the status of its LAST
+          # command: without it `python x.py | tee log` can never fail, and
+          # this repo has already shipped a workflow that reported success
+          # while the build was crashing.
+          set -o pipefail
           python nhl_publish.py $ARGS 2>&1 | tee publish.txt
 
       - name: Say what happened

@@ -399,9 +399,20 @@ async function loadSlate(file) {
   showServerLineups();
   // Say which games are in this slate, out loud. "Is this actually the early
   // slate?" should be answerable by looking, not by trusting the dropdown.
-  const games = [...new Set(SLATE.players.map(p => p.game).filter(Boolean))];
+  //
+  // Taken from the BUILD's game list when it ships one, because that is
+  // derived from the draft group rather than from whoever survived the
+  // projection join. Built from the players, a game with nobody projected
+  // simply disappears - which is how a sixteen-team slate displayed as five
+  // games with nothing on screen to say ten clubs had been dropped.
+  const gl = Array.isArray(SLATE.games) ? SLATE.games : null;
+  const games = gl
+    ? gl.map(g => g.players ? g.label : g.label + " (no players)")
+    : [...new Set(SLATE.players.map(p => p.game).filter(Boolean))];
+  const blank = gl ? gl.filter(g => !g.players).length : 0;
   $("status").textContent =
-    SLATE.players.length + " players · " + games.length + " games · " +
+    SLATE.players.length + " players · " + games.length + " games"
+    + (blank ? ` (${blank} with no projected players)` : "") + " · " +
     "draft group " + (SLATE.draft_group || "?") +
     " · generated " + SLATE.generated_at;
   // A stack board: what a stack of each team is actually projected to score.

@@ -118,6 +118,12 @@ jobs:
       - name: Build the slate file
         id: build
         continue-on-error: true
+        env:
+          # The betting market, for implied team totals. Settings -> Secrets
+          # and variables -> Actions -> New repository secret, named
+          # ODDS_API_KEY. Never commit the key; a secret referenced this way
+          # is masked in the logs.
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
         run: |
           # Without this the step cannot fail: a pipeline reports the exit
           # status of its LAST command and `tee` always succeeds.

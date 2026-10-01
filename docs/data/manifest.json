@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-09-30T22:21:27+00:00",
+ "updated_at": "2026-10-01T14:50:45+00:00",
  "slates": [
   {
    "sport": "mlb",
@@ -13,17 +13,25 @@
    "sport": "nhl",
    "site": "dk",
    "kind": "classic",
-   "label": "6 teams \u00b7 3:30pm",
-   "file": "data/nhl_dk_classic_154305.json",
-   "locks": "2026-09-30T19:30:00+00:00"
+   "label": "6 teams \u00b7 3:00pm",
+   "file": "data/nhl_dk_classic_154311.json",
+   "locks": "2026-10-01T19:00:00+00:00"
   },
   {
    "sport": "nhl",
    "site": "dk",
    "kind": "classic",
-   "label": "2 teams \u00b7 3:30pm \u00b7 (NYI @ TOR)",
-   "file": "data/nhl_dk_classic_154308.json",
-   "locks": "2026-09-30T19:30:00+00:00"
+   "label": "4 teams \u00b7 5:00pm \u00b7 (Late)",
+   "file": "data/nhl_dk_classic_154316.json",
+   "locks": "2026-10-01T21:00:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "3 teams \u00b7 6:00pm \u00b7 (Later)",
+   "file": "data/nhl_dk_classic_154320.json",
+   "locks": "2026-10-01T22:00:00+00:00"
   }
  ]
 }

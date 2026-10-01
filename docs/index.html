@@ -134,6 +134,9 @@ footer{border-top:1px solid var(--line);padding-top:16px;font-size:12.5px;
       <input id="overlap" type="number" min="0" max="9" value="3"></div>
     <div class="ctl"><label for="field">Contest size</label>
       <input id="field" type="number" min="2" step="1000" value="100000"></div>
+    <div class="ctl"><label for="stackteam"
+      title="Which team to stack. Auto tries every team and keeps whichever ranks best - which, without a game-environment signal, tends to mean whichever team has the best individual players, the same team most nights.">Stack team</label>
+      <select id="stackteam"><option value="">Auto (try every team)</option></select></div>
     <div class="ctl"><label for="stack">Stack size</label>
       <input id="stack" type="number" min="0" max="5" value="4"></div>
     <div class="ctl"><label for="minsal"
@@ -175,6 +178,7 @@ footer{border-top:1px solid var(--line);padding-top:16px;font-size:12.5px;
   </div>
 
   <p class="sub mono" id="games" style="margin:-10px 0 0"></p>
+  <div class="games" id="stackboard" style="font-size:12.5px"></div>
 
   <div class="tiles" id="tiles"></div>
 
@@ -400,6 +404,35 @@ async function loadSlate(file) {
     SLATE.players.length + " players · " + games.length + " games · " +
     "draft group " + (SLATE.draft_group || "?") +
     " · generated " + SLATE.generated_at;
+  // A stack board: what a stack of each team is actually projected to score.
+  // The point is to make the choice legible. "Toronto again" is a different
+  // thing when you can see that Toronto's top four project 3.1 points more
+  // than Colorado's - you can agree with it or override it, but you are no
+  // longer guessing at what the optimiser was thinking.
+  const n = Math.max(2, Number($("stack").value) || 4);
+  const byTeam = new Map();
+  SLATE.players.forEach(p => {
+    if (isAnchor(p)) return;
+    if (!byTeam.has(p.team)) byTeam.set(p.team, []);
+    byTeam.get(p.team).push(p);
+  });
+  const board = [...byTeam.entries()].map(([t, ps]) => {
+    const top = ps.slice().sort((a, b) => b.med - a.med).slice(0, n);
+    return {
+      team: t,
+      pts: top.reduce((a, p) => a + (Number(p.med) || 0), 0),
+      own: top.reduce((a, p) => a + (Number(p.own) || 0), 0) / top.length,
+      lev: top.reduce((a, p) => a + levOf(p), 0) / top.length,
+    };
+  }).sort((a, b) => b.pts - a.pts);
+  $("stackteam").innerHTML = '<option value="">Auto (try every team)</option>'
+    + board.map(b => `<option value="${esc(b.team)}">${esc(b.team)} — `
+      + `${b.pts.toFixed(1)} pts</option>`).join("");
+  $("stackboard").innerHTML = "<b>Top-" + n + " stack, by projected points.</b> "
+    + board.map(b => `<span class="game">${esc(b.team)} `
+      + `<b>${b.pts.toFixed(1)}</b> · own ${(100 * b.own).toFixed(0)}%`
+      + ` · lev ${b.lev > 0 ? "+" : ""}${b.lev.toFixed(2)}</span>`).join(" ");
+
   $("games").textContent = games.length
     ? games.join("   ·   ")
     : "this slate carries no game labels";
@@ -801,7 +834,11 @@ function quantile(sorted, q) {
   return sorted[i];
 }
 
+let NOTES = [];
+const log = m => NOTES.push(m);
+
 function build() {
+  NOTES = [];
   if (!SLATE) return;
   refreshBlock();
   // Refuse rather than guess. With the gate on and nothing marked, every
@@ -907,9 +944,20 @@ function build() {
         }
       }
     }
-    const plans = stackable.length
-      ? stackable.map(t => ({ stackTeam: t, stackSize: STACK }))
-      : [{}];
+    // An explicit choice overrides the search. "Auto" tries every team and
+    // keeps whatever ranks best; that ranking is P(reaching the bar), which
+    // without a game-environment signal is mostly "who has the best players"
+    // - and that is the same team most nights. Being able to say "stack
+    // Colorado" is the difference between a model and an oracle.
+    const WANT = $("stackteam").value;
+    const plans = (WANT && stackable.includes(WANT))
+      ? [{ stackTeam: WANT, stackSize: STACK }]
+      : stackable.length
+        ? stackable.map(t => ({ stackTeam: t, stackSize: STACK }))
+        : [{}];
+    if (WANT && !stackable.includes(WANT)) {
+      log(`${WANT} cannot be stacked ${STACK} deep on this board`);
+    }
 
     const seen = new Set(), cands = [];
     const tries = Math.max(400, plans.length * 60);
@@ -1128,6 +1176,7 @@ function render(chosen, meta) {
         : "");
 
   $("stale").hidden = !STALE;
+  if (NOTES.length) $("status").textContent += " — " + NOTES.join("; ");
 
   const hidden = SLATE.players.filter((p, i) =>
     isDoubtful(p) && BLOCK.has(i)).length;

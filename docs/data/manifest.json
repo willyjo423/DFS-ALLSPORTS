@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-01T15:49:18+00:00",
+ "updated_at": "2026-10-01T16:26:36+00:00",
  "slates": [
   {
    "sport": "mlb",
@@ -40,14 +40,6 @@
    "label": "2 teams \u00b7 6:00pm \u00b7 (FLA @ SJS)",
    "file": "data/nhl_dk_classic_154321.json",
    "locks": "2026-10-01T22:00:00+00:00"
-  },
-  {
-   "sport": "nhl",
-   "site": "dk",
-   "kind": "classic",
-   "label": "2 teams \u00b7 4:00pm \u00b7 (MIN @ NSH)",
-   "file": "data/nhl_dk_classic_154438.json",
-   "locks": "2026-10-01T20:00:00+00:00"
   }
  ]
 }

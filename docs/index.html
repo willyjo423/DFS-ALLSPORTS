@@ -72,6 +72,7 @@ tbody td.l{text-align:left;white-space:normal}
 tbody tr:hover td{background:var(--sunken)}
 tr.locked td{background:var(--accent-soft)}
 td.good{color:var(--good);font-weight:600}
+.lev-up{color:var(--good)} .lev-dn{color:var(--warn)}
 td.bad{color:var(--bad);font-weight:600}
 tr.excluded td{opacity:.35;text-decoration:line-through}
 .pill{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.05em;
@@ -138,6 +139,21 @@ footer{border-top:1px solid var(--line);padding-top:16px;font-size:12.5px;
     <div class="ctl"><label for="minsal"
       title="The least a lineup may spend, as a percent of the cap. Unspent salary is points you declined to buy — about 1.16 of them per $1,000 in MLB. 0 turns the floor off.">Min salary %</label>
       <input id="minsal" type="number" min="0" max="100" step="0.5" value="98"></div>
+    <div class="ctl"><label for="levmode"
+      title="Leverage is the model's percentile rank MINUS the field's. Positive means underowned for how good he is - the usual tournament edge. Negative means chalk the model does not rate. Chasing it raises your ceiling and your variance; fading it puts you on the same players as everyone else.">Leverage</label>
+      <select id="levmode">
+        <option value="1">Chase it (underowned)</option>
+        <option value="0.5">Lean toward it</option>
+        <option value="0" selected>Ignore</option>
+        <option value="-0.5">Lean against it</option>
+        <option value="-1">Fade it (prefer chalk)</option>
+      </select></div>
+    <div class="ctl" id="ctl-doubtful" hidden><label for="hidedoubtful"
+      title="A player who has not been in a lineup for a month is not cheap value - he is injured, scratched, or in the minors. His salary fell and his projection did not, which is exactly why an optimiser keeps picking him.">Doubtful players</label>
+      <select id="hidedoubtful">
+        <option value="hide" selected>Keep out of lineups</option>
+        <option value="show">Allow</option>
+      </select></div>
     <div class="ctl" id="ctl-goalie" hidden><label for="goaliemode"
       title="Hockey only. A goalie who does not start scores exactly zero, and the G slot has no alternative. Confirmed only refuses to roster any goalie you have not marked with G on the board.">Goalies</label>
       <select id="goaliemode">
@@ -241,6 +257,37 @@ const isAnchor = p => p.pos === "P" || p.pos === "G";
 const FLEX_SLOTS = new Set(["FLEX", "UTIL", "UTIL/FLEX", "SFLEX", "G/UTIL"]);
 
 const goalieGate = () => isNHL() && $("goaliemode").value === "confirmed";
+// Anyone the build marked doubtful: no game in the last thirty days, while
+// his league played the whole month.
+// FAILS CLOSED. Written as `=== "hide"` this returns false whenever the
+// control has not been read properly - an empty value, a stale element, a
+// browser that has not applied the selected attribute yet - and failing open
+// on a safety filter means the injured player quietly gets into the lineup,
+// which is the exact thing it exists to prevent. Anything but an explicit
+// "show" hides.
+const hidingDoubtful = () => $("hidedoubtful").value !== "show";
+
+// How hard to steer toward (positive) or away from (negative) leverage.
+//
+// LEVERAGE IS SIGNED, AND THE SIGN IS THE WHOLE POINT: it is the player's
+// percentile rank on projection MINUS his percentile rank on ownership. A
+// POSITIVE number is a man the model rates above what the field will pay him
+// in ownership, which is the ordinary tournament edge. A NEGATIVE number is
+// chalk the model does not rate.
+//
+// Fading it - preferring the negative - is a real strategy in a small field
+// or a cash game, where being on the same players as everybody else is safe
+// rather than costly. It pulls directly against the duplication penalty in
+// `edge`, which is the point, and the two are left to fight it out rather
+// than one being hard-coded.
+const levWeight = () => Number($("levmode").value) || 0;
+const levOf = p => {
+  const v = Number(p.lev);
+  return Number.isFinite(v) ? v : 0;
+};
+const isDoubtful = p => !!p.doubtful;
+const anyDoubtful = () =>
+  !!(SLATE && SLATE.players.some(isDoubtful));
 
 // Hockey's single largest unknown, and the reason this exists. A goalie who
 // is not in the crease does not score badly - he scores exactly zero, out of
@@ -252,7 +299,17 @@ const goalieGate = () => isNHL() && $("goaliemode").value === "confirmed";
 // not spend the slot.
 function refreshBlock() {
   BLOCK = new Set();
-  if (!SLATE || !goalieGate()) return;
+  if (!SLATE) return;
+  // Doubtful players first, and independently of the goalie gate. This is the
+  // one that answers "why is a man who has not played since October in my
+  // lineup": his salary fell, his projection did not, and points per dollar
+  // did the rest. A lock still overrides it.
+  if (hidingDoubtful()) {
+    SLATE.players.forEach((p, i) => {
+      if (isDoubtful(p) && !LOCK.has(i)) BLOCK.add(i);
+    });
+  }
+  if (!goalieGate()) return;
   SLATE.players.forEach((p, i) => {
     // An explicit lock outranks the gate. Locking a goalie you never marked
     // is a statement in its own right, and a lock the page silently drops is
@@ -318,6 +375,7 @@ async function loadSlate(file) {
   // which is a batting slot in baseball and ice time in hockey, and the goalie
   // gate, which has no meaning outside hockey.
   $("ctl-goalie").hidden = !isNHL();
+  $("ctl-doubtful").hidden = !anyDoubtful();
   $("th-op").textContent = isNHL() ? "TOI" : "Bat";
   refreshBlock();
   // A sort key from the previous board may not exist on this one.
@@ -776,6 +834,7 @@ function build() {
   const objective = $("objective").value;
   // Zero means "do not force one". Five is DraftKings' hitters-per-team cap.
   const STACK = Math.max(0, Math.min(5, Number($("stack").value) || 0));
+  const LEVW = levWeight();
   const minPct = Math.max(0, Math.min(100, Number($("minsal").value) || 0));
   const MINSPEND = Math.round(minPct / 100 * roster.salary_cap);
 
@@ -862,7 +921,14 @@ function build() {
     let spendFloor = MINSPEND, floorDropped = false;
     for (let pass = 0; pass < 2; pass++) {
       for (let k = 0; k < tries && cands.length < 260; k++) {
-        const w = mean.map(v => Math.max(v, 0.01));
+        // Bias what gets BUILT, not only what gets chosen. Ranking alone
+        // can do nothing about a lineup the search never generated: on a
+        // board where every good play is chalk, a "fade leverage" setting
+        // that only re-sorted would hand back the same lineups in the same
+        // order and look broken. Floored well above zero so a strong setting
+        // steers the search rather than deleting half the board from it.
+        const w = mean.map((v, i) => Math.max(v, 0.01)
+          * Math.max(0.15, 1 + LEVW * levOf(players[i])));
         const pick = legalLineup(players, roster, w, rng,
           Object.assign({ minSpend: spendFloor }, plans[k % plans.length]));
         if (!pick) continue;
@@ -893,6 +959,9 @@ function build() {
         ceiling: quantile(sorted, 0.99),
         pc, pg, dupes,
         edge: pg / (1 + dupes),
+        // The lineup's own leverage: the mean over its players, so a nine-man
+        // roster and a six-man showdown are on the same scale.
+        lev: pick.reduce((a, p) => a + levOf(players[p.i]), 0) / pick.length,
         salary: pick.reduce((a, p) => a + p.cost, 0),
         own: pick.reduce((a, p) => a + players[p.i].own, 0),
         stack: biggestStack(players, pick),
@@ -910,7 +979,15 @@ function build() {
     }
 
     const key = objective === "cash" ? "pc" : "edge";
-    cands.sort((a, b) => b[key] - a[key]);
+    // A multiplier rather than an added term, because `edge` and `pc` are on
+    // completely different scales and anything additive would mean one thing
+    // for a tournament and something else entirely for a cash game. Clamped
+    // positive so a strongly-faded lineup is ranked low, never negative -
+    // a negative score would sort it ABOVE a merely bad one.
+    for (const c of cands) {
+      c.score = c[key] * Math.max(0.05, 1 + LEVW * c.lev);
+    }
+    cands.sort((a, b) => b.score - a.score);
 
     const chosen = [];
     for (const c of cands) {
@@ -923,7 +1000,7 @@ function build() {
 
     render(chosen, { sims, cashLine, gppLine, gppTarget, objective, field,
                      ms: performance.now() - t0, pool: cands.length,
-                     minSpend: MINSPEND, floorDropped });
+                     minSpend: MINSPEND, floorDropped, levw: LEVW });
   }, 20);
 }
 
@@ -944,7 +1021,18 @@ function render(chosen, meta) {
     `<div class="tile"><span class="k">${k}</span><span class="v">${v}</span>
      <span class="n">${n}</span></div>`).join("");
 
-  $("lineup-note").textContent = meta.objective === "cash"
+  if (meta.levw) {
+    $("lineup-note").textContent =
+      (meta.levw > 0
+        ? "Steered TOWARD leverage: players the model rates above what the "
+        + "field will own them at. Higher ceiling, higher variance, fewer "
+        + "duplicate lineups."
+        : "Steered AWAY from leverage: the lineups below deliberately prefer "
+        + "chalk the model does not rate highly. That is safe in a small "
+        + "field and expensive in a large one - it pulls directly against "
+        + "the duplication penalty, which is the thing that wins tournaments.")
+      + " Set Leverage to Ignore to turn this off.";
+  } else $("lineup-note").textContent = meta.objective === "cash"
     ? "Ranked by how often the lineup beats the cash line. Duplication is "
     + "ignored on purpose: beating half the field is not a prize anyone splits."
     : "Ranked by how often the lineup reaches the tournament bar, divided by "
@@ -996,6 +1084,9 @@ function render(chosen, meta) {
         <span>reaches the bar <b>${fmt(c.pg * 100, 2)}%</b></span>
         <span>expected duplicates <b>${c.dupes < 1 ? c.dupes.toFixed(2)
           : Math.round(c.dupes).toLocaleString()}</b></span>
+        <span>leverage <b class="${c.lev > 0.03 ? "lev-up"
+          : c.lev < -0.03 ? "lev-dn" : ""}">${c.lev > 0 ? "+" : ""}${
+          fmt(c.lev, 2)}</b></span>
         ${meta.objective === "cash" ? "" :
           `<span>ranked on <b>${fmt(c.edge * 100, 3)}</b></span>`}
       </div></div>`;
@@ -1037,6 +1128,13 @@ function render(chosen, meta) {
         : "");
 
   $("stale").hidden = !STALE;
+
+  const hidden = SLATE.players.filter((p, i) =>
+    isDoubtful(p) && BLOCK.has(i)).length;
+  if (hidden) {
+    $("status").textContent += ` — ${hidden} player${hidden > 1 ? "s" : ""} `
+      + "with no game in 30 days kept out";
+  }
 }
 
 function drawBoard() {
@@ -1066,6 +1164,12 @@ function drawBoard() {
       }
     } else if (p.pos !== "P" && (p.bat === null || p.bat === undefined)) {
       q = '<span class="pill q">NOT CONFIRMED</span>';
+    }
+    // Said on the row, with the date, so a player kept out of lineups is
+    // explained rather than merely missing.
+    if (isDoubtful(p)) {
+      q += `<span class="pill q">NO GAME IN 30 DAYS${
+        p.last ? " · last " + esc(p.last) : ""}</span>`;
     }
     const op = nhl ? (isGoalie(p) ? "—" : fmt(p.toi, 1))
                    : (p.pos === "P" ? "—" : (p.bat ? p.bat : "?"));
@@ -1388,6 +1492,11 @@ $("reset").onclick = () => {
   LOCK.clear(); FADE.clear();
   refreshBlock();
   drawBoard();
+};
+$("hidedoubtful").onchange = () => {
+  refreshBlock();
+  drawBoard();
+  if (LAST) { STALE = true; render(LAST.chosen, LAST.meta); }
 };
 $("goaliemode").onchange = () => {
   refreshBlock();

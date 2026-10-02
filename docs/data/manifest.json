@@ -1,12 +1,53 @@
 {
- "updated_at": "2026-10-02T15:20:46+00:00",
+ "updated_at": "2026-10-02T16:03:09+00:00",
  "slates": [
   {
    "sport": "mlb",
    "site": "dk",
    "kind": "classic",
    "label": "2 games \u00b7 locks 6:30pm et \u00b7 MLB $20K Relay Throw",
-   "file": "data/mlb_dk_classic_154450.json"
+   "file": "data/mlb_dk_classic_154450.json",
+   "locks": "2026-10-03T22:30:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "8 teams \u00b7 3:00pm",
+   "file": "data/nhl_dk_classic_154323.json",
+   "locks": "2026-10-02T19:00:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "2 teams \u00b7 2:30pm \u00b7 (NYR @ DET)",
+   "file": "data/nhl_dk_classic_154327.json",
+   "locks": "2026-10-02T18:30:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "2 teams \u00b7 4:00pm \u00b7 (BOS @ WPG)",
+   "file": "data/nhl_dk_classic_154328.json",
+   "locks": "2026-10-02T20:00:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "4 teams \u00b7 5:00pm \u00b7 (Late)",
+   "file": "data/nhl_dk_classic_154329.json",
+   "locks": "2026-10-02T21:00:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "2 teams \u00b7 6:00pm \u00b7 (ANA @ VGK)",
+   "file": "data/nhl_dk_classic_154330.json",
+   "locks": "2026-10-02T22:00:00+00:00"
   }
  ]
 }

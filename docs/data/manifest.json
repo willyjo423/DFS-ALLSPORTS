@@ -1,33 +1,61 @@
 {
- "updated_at": "2026-10-02T21:12:23+00:00",
+ "updated_at": "2026-10-02T22:09:40+00:00",
  "slates": [
   {
    "sport": "mlb",
    "site": "dk",
    "kind": "classic",
    "label": "4 games \u00b7 locks 1:00pm et \u00b7 MLB $81K Perfect Game",
-   "file": "data/mlb_dk_classic_154443.json"
+   "file": "data/mlb_dk_classic_154443.json",
+   "locks": "2026-10-03T17:00:00+00:00"
   },
   {
    "sport": "mlb",
    "site": "dk",
    "kind": "classic",
    "label": "4 games \u00b7 locks 1:00pm et \u00b7 MLB Tiers $3K Knuckleball",
-   "file": "data/mlb_dk_classic_154444.json"
+   "file": "data/mlb_dk_classic_154444.json",
+   "locks": "2026-10-03T17:00:00+00:00"
   },
   {
    "sport": "mlb",
    "site": "dk",
    "kind": "classic",
    "label": "2 games \u00b7 locks 4:00pm et \u00b7 MLB $6K Extra Inning",
-   "file": "data/mlb_dk_classic_154448.json"
+   "file": "data/mlb_dk_classic_154448.json",
+   "locks": "2026-10-03T20:00:00+00:00"
   },
   {
    "sport": "mlb",
    "site": "dk",
    "kind": "classic",
    "label": "2 games \u00b7 locks 6:30pm et \u00b7 MLB $20K Relay Throw",
-   "file": "data/mlb_dk_classic_154450.json"
+   "file": "data/mlb_dk_classic_154450.json",
+   "locks": "2026-10-03T22:30:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "22 teams \u00b7 3:00pm",
+   "file": "data/nhl_dk_classic_154332.json",
+   "locks": "2026-10-03T19:00:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "3 teams \u00b7 4:00pm \u00b7 (Turbo)",
+   "file": "data/nhl_dk_classic_154337.json",
+   "locks": "2026-10-03T20:00:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "4 teams \u00b7 6:00pm \u00b7 (Late)",
+   "file": "data/nhl_dk_classic_154340.json",
+   "locks": "2026-10-03T22:00:00+00:00"
   }
  ]
 }

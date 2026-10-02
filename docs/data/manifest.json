@@ -1,21 +1,12 @@
 {
- "updated_at": "2026-10-01T22:09:40+00:00",
+ "updated_at": "2026-10-02T15:20:46+00:00",
  "slates": [
   {
    "sport": "mlb",
    "site": "dk",
    "kind": "classic",
-   "label": "2 games \u00b7 locks 8:00pm et \u00b7 MLB $50K Relay Throw",
-   "file": "data/mlb_dk_classic_154201.json",
-   "locks": "2026-10-01T00:00:00+00:00"
-  },
-  {
-   "sport": "nhl",
-   "site": "dk",
-   "kind": "classic",
-   "label": "3 teams \u00b7 6:00pm \u00b7 (Later)",
-   "file": "data/nhl_dk_classic_154320.json",
-   "locks": "2026-10-01T22:00:00+00:00"
+   "label": "2 games \u00b7 locks 6:30pm et \u00b7 MLB $20K Relay Throw",
+   "file": "data/mlb_dk_classic_154450.json"
   }
  ]
 }

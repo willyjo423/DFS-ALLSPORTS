@@ -171,6 +171,13 @@ footer{border-top:1px solid var(--line);padding-top:16px;font-size:12.5px;
         <option value="all" selected>Any goalie</option>
         <option value="confirmed">Confirmed starters only</option>
       </select></div>
+    <div class="ctl"><label for="entryorder"
+      title="What order to LIST the entries in. It does not change which lineups were chosen or how they were scored — that is always win probability, divided by expected duplicates in a tournament. Chalkiest first puts the most negative mean leverage at the top: the lineups built from players the field will own more than the model rates them.">Order entries by</label>
+      <select id="entryorder">
+        <option value="best" selected>Best first (win probability)</option>
+        <option value="chalk">Chalkiest first (most negative leverage)</option>
+        <option value="contrarian">Most contrarian first</option>
+      </select></div>
     <div class="ctl"><label for="sims">Simulations</label>
       <select id="sims">
         <option value="20000">20,000</option>
@@ -1596,6 +1603,31 @@ function render(chosen, meta) {
   const players = SLATE.players;
   const mult = SLATE.roster.captain_multiplier || 1.5;
 
+  // WHAT ORDER THE ENTRIES ARE SHOWN IN, WHICH IS NOT WHAT THEY WERE CHOSEN
+  // BY. The selection is always by win probability - divided by expected
+  // duplicates for a tournament - and nothing here changes that: this
+  // reorders the SAME lineups for reading, so Entry 1 is "first in the order
+  // you asked for" rather than "the best one" whenever the order is not the
+  // default. Sorting a list by a number you cannot see is confusing, so each
+  // card already prints its own mean leverage next to the figure being
+  // sorted on.
+  //
+  // Done inside render() rather than at selection time so that a repaint -
+  // toggling a lock, changing the doubtful filter - keeps the order you set
+  // instead of silently reverting to the default.
+  // A SEPARATE ARRAY, and `chosen` is never reassigned. `LAST.chosen` is what
+  // every repaint re-renders from, so sorting in place would overwrite the
+  // selection order with the display order - and switching back to "Best
+  // first" would then have nothing to restore, because the ranking it means
+  // to show had already been thrown away one repaint earlier.
+  const order = $("entryorder").value;
+  const shown = chosen.slice();
+  if (order === "chalk") {
+    shown.sort((a, b) => a.lev - b.lev);
+  } else if (order === "contrarian") {
+    shown.sort((a, b) => b.lev - a.lev);
+  }
+
   $("tiles").innerHTML = [
     ["Simulations", meta.sims.toLocaleString(), "correlated slate draws"],
     ["Lineups searched", meta.pool.toLocaleString(), "distinct and legal"],
@@ -1628,7 +1660,7 @@ function render(chosen, meta) {
 
   LAST = { chosen, meta };
 
-  $("lineups").innerHTML = chosen.map((c, n) => {
+  $("lineups").innerHTML = shown.map((c, n) => {
     const rows = c.pick.slice().sort((a, b) => (b.cpt - a.cpt) ||
       (players[b.i].med - players[a.i].med)).map(p => {
       const pl = players[p.i];
@@ -2215,6 +2247,12 @@ $("goaliemode").onchange = whenLoaded(() => {
 // was stale.
 $("stack").onchange = whenLoaded(drawStackBoard);
 $("bringback").onchange = whenLoaded(drawStackBoard);
+// Re-listing the entries is a DISPLAY change, so it repaints immediately and
+// deliberately does NOT mark the solve stale - nothing about the lineups or
+// the simulation has changed, only the order you are reading them in.
+$("entryorder").onchange = () => {
+  if (LAST) render(LAST.chosen, LAST.meta);
+};
 boot();
 </script>
 </body>

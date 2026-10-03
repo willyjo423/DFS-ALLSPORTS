@@ -119,6 +119,99 @@ def test_trainable_respects_the_spec():
     assert set(tr["position"]) <= set(S.SPEC.positions)
 
 
+def _dupe_frame():
+    """A history holding BOTH ways CFBD produces a duplicate player-period.
+
+    No synthetic fixture in this project had ever made one, which is why six
+    real seasons found 1,774 of them and the engine's validator stopped the
+    first live publish dead.
+    """
+    base = _history(periods=4)
+    # Real rows carry a game id. Without one the diagnostic cannot tell the
+    # two causes apart, and a fixture that differs from production in exactly
+    # the dimension under test is how three earlier bugs in this project hid.
+    base["game_id"] = (base["week"].astype(str) + "-"
+                       + base["school"].astype(str))
+
+    # (a) TWO GAMES IN ONE WEEK. A midweek or rescheduled fixture: the athlete
+    #     genuinely played twice inside one CFBD week bucket.
+    again = base[(base["week"] == 2) & (base["athlete_id"] == "p0")].copy()
+    again["game_id"] = "second-game-that-week"
+    again["rush_yards"] = 60.0
+    again["points"] = 6.0
+
+    # (b) ONE GAME, TWO SPELLINGS. The pivot's index carries the NAME, so a
+    #     player CFBD spells differently under passing and under rushing
+    #     becomes two rows that each hold half of his line.
+    split = base[(base["week"] == 3) & (base["athlete_id"] == "p1")].copy()
+    split["name"] = "P. Layer 1"
+    split["rush_yards"] = 40.0
+    split["points"] = 4.0
+
+    return pd.concat([base, again, split], ignore_index=True)
+
+
+def test_a_duplicate_player_period_is_collapsed_not_passed_through():
+    df = S.to_canonical(_dupe_frame())
+    key = ["player_id", "season", "period"]
+    assert df.duplicated(key).any(), "the fixture no longer reproduces the bug"
+
+    out = S.collapse_duplicate_periods(df)
+    assert not out.duplicated(key).any(), "duplicates survived the collapse"
+    assert len(out) == len(df) - 2, "one row removed per duplicated key"
+
+
+def test_the_collapse_sums_the_line_rather_than_dropping_half_of_it():
+    df = S.to_canonical(_dupe_frame())
+    before = df[(df["player_id"] == "p0") & (df["period"] == 2)]
+    out = S.collapse_duplicate_periods(df)
+    after = out[(out["player_id"] == "p0") & (out["period"] == 2)]
+    assert len(after) == 1
+    assert abs(float(after["rush_yards"].iloc[0])
+               - float(before["rush_yards"].sum())) < 1e-9
+    assert abs(float(after["points"].iloc[0])
+               - float(before["points"].sum())) < 1e-9
+
+
+def test_points_are_summed_not_rescored_so_a_bonus_is_never_invented():
+    """Two 60-yard games are 120 yards and NO hundred-yard bonus.
+
+    Summing the raw stats and re-running the scoring rules would hand him
+    three points he did not earn. Summing what each game actually paid is the
+    only version that is right.
+    """
+    base = _history(periods=3)
+    base["game_id"] = (base["week"].astype(str) + "-"
+                       + base["school"].astype(str))
+    row = base[(base["week"] == 2) & (base["athlete_id"] == "p0")]
+    base.loc[row.index, "rush_yards"] = 60.0
+    base.loc[row.index, "points"] = 6.0
+    twin = base.loc[row.index].copy()
+    twin["game_id"] = "twin"
+    df = S.to_canonical(pd.concat([base, twin], ignore_index=True))
+
+    out = S.collapse_duplicate_periods(df)
+    got = out[(out["player_id"] == "p0") & (out["period"] == 2)]
+    assert abs(float(got["rush_yards"].iloc[0]) - 120.0) < 1e-9
+    assert abs(float(got["points"].iloc[0]) - 12.0) < 1e-9, (
+        "points were re-scored from the summed line, which invents the "
+        "hundred-yard bonus that neither game earned")
+
+
+def test_a_clean_frame_is_returned_untouched():
+    df = S.to_canonical(_history(periods=4))
+    out = S.collapse_duplicate_periods(df)
+    assert len(out) == len(df)
+    assert abs(float(out["points"].sum()) - float(df["points"].sum())) < 1e-9
+
+
+def test_build_survives_a_frame_with_duplicate_periods():
+    """The whole point: the engine's validator must now accept it."""
+    out = S.build(_dupe_frame())
+    assert len(out) > 0
+    assert not out.duplicated(["player_id", "season", "period"]).any()
+
+
 def main() -> int:
     tests = [v for k, v in sorted(globals().items()) if k.startswith("test_")]
     failed = []

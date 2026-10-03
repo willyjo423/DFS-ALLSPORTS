@@ -305,6 +305,100 @@ def to_canonical(hist: pd.DataFrame) -> pd.DataFrame:
     return out
 
 
+def collapse_duplicate_periods(df: pd.DataFrame) -> pd.DataFrame:
+    """One row per athlete per period, which the canonical frame requires.
+
+    WHY A REAL CACHE BREAKS THIS AND THE TEST FIXTURES DO NOT
+    ---------------------------------------------------------
+    `engine.frame.validate` refuses a frame with duplicate (player_id, season,
+    period) rows, and it is right to: every rolling feature is an exponentially
+    weighted mean over a player's periods, so a period that appears twice is
+    counted twice and the model is silently reweighted toward it. Six real
+    seasons produced 1,774 such rows out of 190,774 - just under 1% - and no
+    synthetic fixture would ever have made one.
+
+    There are exactly two ways CFBD can produce them, and they want the same
+    treatment but mean different things, so this REPORTS which it found rather
+    than quietly fixing both:
+
+    * **Two games in one week.** `flatten_player_games` keys a row on the game,
+      and CFBD's week buckets are not always one game per team - a midweek
+      MACtion fixture, a rescheduled game, a week 0 game folded into week 1.
+      The athlete really did play twice in that period.
+
+    * **One game, two spellings.** The pivot's index includes the athlete's
+      NAME, so if CFBD spells him one way under passing and another under
+      rushing, his single game becomes two rows that each hold half his line.
+
+    THE COLLAPSE SUMS THE STATS AND SUMS THE POINTS ALREADY SCORED, rather
+    than summing the stats and re-scoring them. That distinction is the
+    threshold bonuses: a back with 60 rushing yards in each of two games has
+    120 yards and NO hundred-yard bonus, and re-scoring the summed line would
+    invent three points he never earned. Summing what each game actually paid
+    is exact for the two-games case. For the split-spelling case it is a
+    slight UNDERCOUNT - two halves of one line can each miss a bonus the whole
+    line earned - and undercounting a bonus is the safe direction to be wrong
+    in, where inventing one is not.
+
+    A period is the model's unit of time throughout: `margins` already sums a
+    team's points per (team, season, period) across whatever games fell in it,
+    so summing a player's the same way is the consistent choice rather than a
+    convenience.
+    """
+    key = ["player_id", "season", "period"]
+    if not all(c in df.columns for c in key) or df.empty:
+        return df
+    dup = df.duplicated(key, keep=False)
+    if not dup.any():
+        return df
+
+    # Diagnosed before it is fixed, because the two causes above have
+    # different consequences and the log is the only place that can say which
+    # one this cache has.
+    bad = df[dup]
+    groups = bad.groupby(key, sort=False)
+    two_games = one_game = 0
+    if "game_id" in bad.columns:
+        # dropna=False, because a MISSING game id is its own distinct case and
+        # the default would quietly merge it with a real one - which made this
+        # very counter report "0 keys span more than one game" about a key
+        # that plainly did.
+        per_key = groups["game_id"].nunique(dropna=False)
+        two_games = int((per_key > 1).sum())
+        one_game = int((per_key <= 1).sum())
+    sample = []
+    for k, g in list(groups)[:3]:
+        who = str(g["name"].iloc[0]) if "name" in g.columns else "?"
+        games = (sorted({str(x) for x in g["game_id"]})
+                 if "game_id" in g.columns else [])
+        sample.append(f"{who} ({k[1]} wk{k[2]}): {len(g)} rows, "
+                      f"{len(games)} game(s) {games[:3]}")
+    log.warning(
+        "%d row(s) share an athlete-season-week key, across %d key(s): %d of "
+        "those keys span MORE THAN ONE GAME (he really played twice that "
+        "week) and %d sit inside ONE game (CFBD spelled his name two ways and "
+        "the pivot split his line). They are summed into one row per period. "
+        "Examples: %s", int(dup.sum()), groups.ngroups, two_games, one_game,
+        "; ".join(sample) or "none")
+
+    import cfb_data as _D
+    sums = [c for c in list(_D.STAT_FIELDS) + ["points"] if c in df.columns]
+
+    # Built by taking the FIRST row of each key and overwriting its stat
+    # columns with the group's sums, rather than by a grouped .agg(): the
+    # frame carries a `keys` column holding python sets, and aggregating that
+    # is a different kind of fragile.
+    out = df.drop_duplicates(key, keep="first").copy()
+    if sums:
+        totals = df.groupby(key, sort=False)[sums].sum()
+        idx = pd.MultiIndex.from_frame(out[key])
+        aligned = totals.reindex(idx)
+        for c in sums:
+            out[c] = aligned[c].to_numpy()
+    log.info("collapsed %d player-period rows to %d", len(df), len(out))
+    return out.reset_index(drop=True)
+
+
 def margins(df: pd.DataFrame) -> pd.DataFrame:
     """Each team-period's scoring margin, from the player rows themselves.
 
@@ -339,6 +433,11 @@ def margins(df: pd.DataFrame) -> pd.DataFrame:
 def build(hist: pd.DataFrame, validate: bool = True) -> pd.DataFrame:
     """Canonical features, plus the college-specific ones."""
     df = to_canonical(hist)
+    # BEFORE n_in is taken, so the row-count assertion at the bottom measures
+    # what the merges did and not what this removed. A player-period that
+    # appears twice is a period counted twice by every rolling feature, and
+    # the engine's validator refuses the frame outright - correctly.
+    df = collapse_duplicate_periods(df)
     n_in = len(df)
     out = EF.build(df, SPEC, validate=validate)
 

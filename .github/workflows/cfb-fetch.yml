@@ -1,0 +1,198 @@
+name: CFB fetch history
+
+# The only workflow in this repo allowed to spend CFBD API calls on the
+# archive. It writes data/history_<season>.csv.gz and commits it.
+#
+# WHY THIS IS A SEPARATE WORKFLOW FROM PUBLISHING
+# -----------------------------------------------
+# CFBD's free tier has a monthly call quota and this project has already
+# exhausted it once. Every verification run was re-downloading three or four
+# complete seasons a week at a time - about sixteen calls per season - and the
+# quota ran out mid-2023, so 2024 and 2025 never loaded, the walk-forward had
+# nothing to walk over, and the failure arrived as "nothing was gradeable"
+# rather than as anything about quotas.
+#
+# A finished season never changes. Downloading 2021 more than once is not a
+# tradeoff - it is waste that eventually costs the ability to work at all. So
+# history is fetched once, committed, and read from disk by everything else.
+# The only season worth re-fetching is the live one, because it grows every
+# Saturday, and `refresh` exists for that and nothing else.
+
+on:
+  schedule:
+    # Monday and Thursday mornings. Monday picks up the weekend; Thursday
+    # catches a settlement that arrived late and gives the Saturday publish a
+    # cache that is at most three days behind the games.
+    #
+    # Minute 41 rather than 0 on purpose: almost everything on GitHub's
+    # scheduler fires on the hour, and a job queued at :00 is routinely
+    # delayed by several minutes.
+    - cron: "41 9 * * 1"
+    - cron: "41 9 * * 4"
+  workflow_dispatch:
+    inputs:
+      seasons:
+        description: "Seasons to make sure are cached (space separated)"
+        default: "2021 2022 2023 2024 2025 2026"
+      refresh:
+        description: "Seasons to re-fetch even if cached (blank = just the live one)"
+        default: ""
+
+permissions:
+  contents: write
+
+# Never two fetches at once: both would spend quota on the same weeks and the
+# second would lose the commit race with the first.
+concurrency:
+  group: cfb-data
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Make the engine importable
+        run: |
+          ENGINE_FILES="__init__.py spec.py frame.py features.py model.py grade.py factors.py cache.py simulate.py ownership.py optimise.py"
+          mkdir -p engine
+          for f in $ENGINE_FILES; do
+            if [ -f "$f" ]; then
+              echo "  moving $f -> engine/$f"
+              mv -f "$f" "engine/$f"
+            fi
+          done
+          missing=""
+          for f in $ENGINE_FILES; do
+            [ -f "engine/$f" ] || missing="$missing $f"
+          done
+          if [ -n "$missing" ]; then
+            echo "FATAL: these engine files are nowhere in this repo:$missing"
+            exit 1
+          fi
+          python -c "import engine; print('engine imports OK')"
+
+      - name: The key is set
+        env:
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+        run: |
+          # Length only. Never the value, and never any part of it: anything
+          # echoed here lands in a log that is readable by anyone who can see
+          # the repository.
+          if [ -z "$CFBD_API_KEY" ]; then
+            echo "CFBD_API_KEY is not set."
+            echo "Settings -> Secrets and variables -> Actions -> New"
+            echo "repository secret, named exactly CFBD_API_KEY."
+            exit 1
+          fi
+          echo "CFBD_API_KEY is set (${#CFBD_API_KEY} characters)"
+
+      - name: What is cached now
+        run: |
+          ls -la data/history_*.csv.gz 2>/dev/null || echo "(nothing cached yet)"
+
+      - name: Fetch
+        id: fetch
+        continue-on-error: true
+        env:
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+        run: |
+          # Without pipefail this step cannot fail: a pipeline reports the exit
+          # status of its LAST command and `tee` always succeeds. This repo has
+          # already shipped a workflow that reported success while the job it
+          # ran was crashing.
+          set -o pipefail
+
+          SEASONS="${{ inputs.seasons }}"
+          SEASONS="${SEASONS:-2021 2022 2023 2024 2025 2026}"
+
+          # The live season, which is the only one worth re-fetching. A
+          # football season is NAMED FOR THE YEAR IT STARTS and the postseason
+          # runs into January, so before August the live season is last year's.
+          # Getting this backwards every January would refresh a season that
+          # has not begun and report it as empty.
+          Y=$(date -u +%Y); M=$(date -u +%m)
+          if [ "$M" -ge 8 ]; then LIVE=$Y; else LIVE=$((Y - 1)); fi
+          REFRESH="${{ inputs.refresh }}"
+          REFRESH="${REFRESH:-$LIVE}"
+
+          echo "seasons    : $SEASONS"
+          echo "refreshing : $REFRESH   (live season is $LIVE)"
+          python cfb_fetch.py --seasons "$SEASONS" --refresh "$REFRESH" \
+            2>&1 | tee fetch.txt
+
+      - name: Say what happened
+        if: always()
+        run: |
+          {
+            if [ "${{ steps.fetch.outcome }}" = "success" ]; then
+              echo "### CFB history fetched"
+            else
+              echo "### FETCH FAILED - whatever was already cached is untouched"
+            fi
+            echo ''
+            echo '```'
+            tail -n 50 fetch.txt 2>/dev/null || echo "(no output captured)"
+            echo '```'
+            echo ''
+            echo 'Cache now:'
+            echo '```'
+            ls -la data/history_*.csv.gz 2>/dev/null || echo "(nothing)"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      # COMMITTED EVEN WHEN THE FETCH FAILED, and that is the point.
+      #
+      # cfb_fetch.py writes each season to disk as soon as it is complete and
+      # stops on a quota error, so a run that died on season four still leaves
+      # seasons one to three on disk. Committing only on success would throw
+      # those away and re-download them next time - which is exactly how the
+      # quota was exhausted.
+      - name: Commit whatever was fetched
+        if: always()
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          find . -path ./.git -prune -o -name '__pycache__' -print0 2>/dev/null \
+            | xargs -0 rm -rf 2>/dev/null || true
+          git add -A data engine
+          if git diff --cached --quiet; then
+            echo "nothing changed - every requested season was already cached"
+            exit 0
+          fi
+          git commit -m "CFB history: $(date -u +%Y-%m-%d)"
+          # Rebase rather than force: the publish workflow commits to docs/ on
+          # its own schedule and the two will collide sooner or later.
+          git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || true
+          git push
+
+      - name: Keep the log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cfb-fetch-log
+          path: fetch.txt
+          retention-days: 14
+          if-no-files-found: warn
+
+      - name: Fail if the fetch did not finish
+        if: always()
+        run: |
+          if [ "${{ steps.fetch.outcome }}" != "success" ]; then
+            echo "The fetch did not complete. Anything it managed to write has"
+            echo "been committed and will not be downloaded again. If the log"
+            echo "above mentions a quota, re-run this when it resets."
+            exit 1
+          fi

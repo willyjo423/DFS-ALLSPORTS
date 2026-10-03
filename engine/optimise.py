@@ -223,6 +223,59 @@ def _classic_problem(pool: pd.DataFrame, roster: dict,
             idx = [i for i in range(n) if str(pool["team"].iloc[i]) == t]
             prob += pulp.lpSum(x[i] for i in idx) <= roster["max_per_team"]
 
+    # A MINIMUM ON DISTINCT TEAMS, which is the one site rule this solver had
+    # no way to express and therefore broke every time it was free to.
+    #
+    # DraftKings requires skaters from at least three teams in a hockey
+    # lineup. That is a minimum, and the per-team MAXIMUM above cannot imply
+    # it: six and two is legal by the maximum and refused at the window. It
+    # went unnoticed for as long as it did because the hockey roster was
+    # INFEASIBLE here for an unrelated reason - UTIL was read as a required
+    # position - so the program never solved and the constraint was never
+    # reached. Fixing that exposed this immediately: the first NHL board that
+    # solved produced cash and GPP lineups drawn from two clubs, and the
+    # publisher's own `check_entry` caught them and said so.
+    #
+    # A minimum over distinct groups needs one indicator per team: y_t can
+    # only be 1 if at least one skater from t is rostered, and at least
+    # `need_teams` of the y's must be 1. Nothing in the objective pushes a y
+    # up, so the only thing that can satisfy the sum is real players.
+    need_teams = int(roster.get("min_skater_teams", 0) or 0)
+    if need_teams > 1:
+        # Which positions count toward it. Stated explicitly where a roster
+        # says so; otherwise the FLEX-eligible positions, which on a hockey
+        # roster are exactly the skaters - the UTIL slot takes any skater and
+        # never the goalie. That is a structural fact about the roster rather
+        # than a coincidence, but it is a fallback, so it says when it fires.
+        counts = set(roster.get("skater_positions")
+                     or roster.get("flex_positions") or [])
+        if not roster.get("skater_positions"):
+            log.info("min_skater_teams is %d and the roster does not say which "
+                     "positions are skaters; using the flex-eligible ones (%s)",
+                     need_teams, ", ".join(sorted(counts)) or "none")
+        if not counts:
+            log.error("min_skater_teams is %d but no position counts toward "
+                      "it, so the rule CANNOT be enforced here. Whatever "
+                      "checks entries afterwards is now the only thing "
+                      "between you and a refused lineup.", need_teams)
+        else:
+            teams = sorted({str(t) for i, t in
+                            enumerate(pool["team"].astype(str))
+                            if pos[i] in counts})
+            if len(teams) < need_teams:
+                raise Infeasible(
+                    f"only {len(teams)} team(s) on this board have a player at "
+                    f"{sorted(counts)}, and the roster needs {need_teams} "
+                    f"different ones")
+            y = [pulp.LpVariable(f"t{k}", cat="Binary")
+                 for k in range(len(teams))]
+            tcol = pool["team"].astype(str)
+            for k, t in enumerate(teams):
+                idx = [i for i in range(n)
+                       if pos[i] in counts and tcol.iloc[i] == t]
+                prob += y[k] <= pulp.lpSum(x[i] for i in idx)
+            prob += pulp.lpSum(y) >= need_teams
+
     for prev in banned:
         prob += pulp.lpSum(x[i] for i in prev) <= max_overlap
 

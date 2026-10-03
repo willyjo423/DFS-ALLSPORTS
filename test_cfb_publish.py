@@ -773,6 +773,82 @@ def test_readiness_findings():
        P.newest_week_is_partial(pd.DataFrame(), 0) is False)
 
 
+def test_the_shared_engine_honours_a_minimum_on_distinct_teams():
+    """A hockey-shaped roster, checked here because the engine is shared.
+
+    This file runs on every CFB publish, and `engine/optimise.py` is the same
+    file hockey and baseball use. The rule being guarded is hockey's, and it
+    broke the moment it became reachable: the NHL roster used to be INFEASIBLE
+    in the solver for an unrelated reason (UTIL read as a required position),
+    so the integer program never solved and nobody noticed that it had no way
+    to express "skaters from at least three teams". Fixing the first bug
+    exposed the second on the very next live run - cash and GPP lineups drawn
+    from two clubs, which DraftKings refuses outright.
+
+    The roster is written out here rather than imported from `nhl_sport`, so
+    this tests the ENGINE against a hockey-shaped roster and does not quietly
+    start passing because some other repo's file went missing.
+    """
+    head("THE SHARED ENGINE: A MINIMUM ON DISTINCT TEAMS")
+    import numpy as _np
+    from engine import optimise as _O
+
+    roster = {
+        "slots": ["C", "C", "W", "W", "W", "D", "D", "UTIL", "G"],
+        "flex_positions": ["C", "W", "D"],
+        "salary_cap": 50_000, "max_per_team": 6, "min_skater_teams": 3,
+        "min_salary_pct": 0,
+    }
+    # A board built to break it: two clubs whose skaters are both far better
+    # AND far cheaper than everyone else's, so an unconstrained solver has
+    # every reason to take eight of them.
+    rng = _np.random.default_rng(4)
+    rows = []
+    for a, b in (("TOR", "MTL"), ("EDM", "CGY"), ("VAN", "SJS")):
+        for t in (a, b):
+            for k, p in enumerate(["C", "C", "W", "W", "W", "W", "D", "D",
+                                   "G", "G"]):
+                rich = t in ("TOR", "MTL") and p != "G"
+                rows.append({
+                    "name": f"{t}{k}", "position": p, "team": t,
+                    "opponent": b if t == a else a,
+                    "game": " v ".join(sorted([a, b])),
+                    "salary": 3500 if rich else 5200,
+                    "median": float((22.0 if rich else 6.0) + rng.uniform(0, 2)),
+                    "ceiling": float((22.0 if rich else 6.0) * 2.4)})
+    pool = pd.DataFrame(rows)
+    draws = _np.abs(rng.normal(pool["median"].to_numpy()[:, None], 6,
+                               size=(len(pool), 600)))
+
+    built = _O.build(pool, dict(roster), draws, objective="gpp", entries=1)
+    skaters = built[built["position"] != "G"]
+    ok("the solver fields skaters from three different teams",
+       skaters["team"].nunique() >= 3,
+       f"got {skaters['team'].nunique()}")
+    ok("and the lineup is a legal nine", len(built) == 9, str(len(built)))
+
+    # The check that can fail: without the rule, this same board gives two.
+    loose = {k: v for k, v in roster.items() if k != "min_skater_teams"}
+    other = _O.build(pool, loose, draws, objective="gpp", entries=1)
+    ok("the rule is load-bearing, not decorative",
+       other[other["position"] != "G"]["team"].nunique() < 3,
+       f"without it the same board gives "
+       f"{other[other['position'] != 'G']['team'].nunique()} team(s)")
+
+    # And a board that cannot satisfy it says so, rather than solving anyway.
+    thin = pool[pool["team"].isin(["TOR", "MTL"])].copy()
+    try:
+        _O.build(thin, dict(roster),
+                 _np.abs(rng.normal(thin["median"].to_numpy()[:, None], 6,
+                                    size=(len(thin), 300))),
+                 objective="cash", entries=1)
+        refused = False
+    except Exception:                                          # noqa: BLE001
+        refused = True
+    ok("a board with too few teams is refused rather than solved illegally",
+       refused)
+
+
 def test_fixture_window():
     """The schedule window has to contain the week being published.
 
@@ -956,6 +1032,7 @@ def main() -> int:
         test_market_factor_does_not_double_count()
         test_regressions()
         test_readiness_findings()
+        test_the_shared_engine_honours_a_minimum_on_distinct_teams()
         test_fixture_window()
         test_end_to_end(Path(tmp) / "a")
         test_no_market_still_publishes(Path(tmp) / "b")

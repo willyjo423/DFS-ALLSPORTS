@@ -1,0 +1,236 @@
+name: Publish CFB page
+
+# Reads the committed history cache, projects Saturday's board, writes
+# docs/data/cfb_dk_classic_<draft group>.json and rebuilds the manifest that
+# the shared page reads for every sport.
+#
+# Fast because it never fetches history: cfb-fetch.yml does that on its own
+# schedule and commits data/history_<season>.csv.gz. If this job starts taking
+# twenty minutes, the cache has gone missing and something is re-downloading
+# the archive - which is what exhausted the API quota once already.
+#
+# It does make three API calls: the live week, the fixture list and the team
+# list. Those are needed for the TEAM MAP, and the team map is not optional. A
+# wrong team code does not drop a player; it hands him the wrong opponent, the
+# wrong implied total and the wrong correlation group, and produces a full page
+# of confident numbers that are wrong in every row.
+
+on:
+  schedule:
+    # College football is a Saturday sport with a Thursday/Friday prelude.
+    # Kickoff windows in the regular season are roughly noon, 3:30 and 7:30
+    # Eastern, so the main slate locks at noon Eastern - 16:00 UTC while the
+    # United States is on daylight time, 17:00 after it ends in November.
+    #
+    # Minute 43 rather than 0: almost every scheduled job on GitHub fires on
+    # the hour and a run queued at :00 is routinely delayed several minutes,
+    # which matters when the whole point of the late run is to be close to
+    # lock.
+    - cron: "43 13 * * 6"     # Saturday ~9:45am Eastern: the board is up
+    - cron: "43 15 * * 6"     # Saturday ~11:45am Eastern: nearest to lock
+    - cron: "43 21 * * 5"     # Friday evening, for the Friday slates
+    - cron: "43 21 * * 4"     # Thursday evening, same
+  workflow_dispatch:
+    inputs:
+      draft_group:
+        description: "Exact draft group (blank = the biggest live classic slate)"
+        default: ""
+      field:
+        description: "Contest size, for the duplication estimate"
+        default: "100000"
+      sims:
+        description: "Simulations for the server's own lineups"
+        default: "20000"
+      slates:
+        description: "How many boards to publish"
+        default: "4"
+      first_season:
+        description: "Earliest season of history to fit on"
+        default: "2021"
+      market:
+        description: "Let live NCAAF totals move the projections (on/off)"
+        default: "on"
+      min_salary_pct:
+        description: "Least a LINEUP may spend, % of the $50k cap (99 = at most $500 left; 0 = off)"
+        default: "99"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cfb-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Make the engine importable
+        run: |
+          ENGINE_FILES="__init__.py spec.py frame.py features.py model.py grade.py factors.py cache.py simulate.py ownership.py optimise.py"
+          mkdir -p engine
+          for f in $ENGINE_FILES; do
+            if [ -f "$f" ]; then
+              echo "  moving $f -> engine/$f"
+              mv -f "$f" "engine/$f"
+            fi
+          done
+          missing=""
+          for f in $ENGINE_FILES; do
+            [ -f "engine/$f" ] || missing="$missing $f"
+          done
+          if [ -n "$missing" ]; then
+            echo "FATAL: these engine files are nowhere in this repo:$missing"
+            exit 1
+          fi
+          python -c "import engine; print('engine imports OK')"
+
+      - name: Every import resolves
+        run: |
+          python - <<'PY'
+          import ast, importlib.util, sys
+          want = set()
+          for f in ("cfb_publish.py", "cfb_data.py", "cfb_cache.py",
+                    "cfb_sport.py", "cfb_odds.py"):
+              for node in ast.walk(ast.parse(open(f).read())):
+                  if isinstance(node, ast.Import):
+                      want |= {a.name.split(".")[0] for a in node.names}
+                  elif isinstance(node, ast.ImportFrom) and node.level == 0 and node.module:
+                      want.add(node.module.split(".")[0])
+          missing = [m for m in sorted(want) if importlib.util.find_spec(m) is None]
+          for m in sorted(want):
+              print(("  MISSING  " if m in missing else "  ok       ") + m)
+          if missing:
+              print("\nUpload these: " + ", ".join(missing))
+              sys.exit(1)
+          PY
+
+      # Run BEFORE publishing, not after, and allowed to fail the job. The
+      # roster encoding is the part of this build most able to be wrong in a
+      # way nobody notices: a lineup with three quarterbacks, or one drawn
+      # entirely from a single game, looks perfectly legal right up to the
+      # moment DraftKings refuses the entry - and there is no feedback from
+      # DraftKings that would ever tell you which rule you broke.
+      - name: The tests
+        run: |
+          set -o pipefail
+          python test_cfb_sport.py
+          python test_cfb_publish.py
+
+      - name: The history cache is present
+        run: |
+          if ! ls data/history_*.csv.gz >/dev/null 2>&1; then
+            echo "NO CFB HISTORY CACHE in data/."
+            echo "Run the 'CFB fetch history' workflow first - it commits"
+            echo "data/history_<season>.csv.gz and this job reads it."
+            exit 1
+          fi
+          ls -la data/history_*.csv.gz
+
+      - name: Build the slate file
+        id: build
+        continue-on-error: true
+        env:
+          # Needed for the live week, the fixtures and the team map. NOT for
+          # the history, which comes from data/.
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+          # The betting market, for implied team totals. Settings -> Secrets
+          # and variables -> Actions -> New repository secret, named
+          # ODDS_API_KEY. Never commit a key; a secret referenced this way is
+          # masked in the logs.
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+        run: |
+          # Without pipefail this step cannot fail: a pipeline reports the exit
+          # status of its LAST command and `tee` always succeeds.
+          set -o pipefail
+
+          ARGS=""
+          if [ -n "${{ inputs.draft_group }}" ]; then
+            ARGS="$ARGS --draft-group ${{ inputs.draft_group }}"
+          fi
+          # Quoted and defaulted one at a time, because a scheduled run passes
+          # an EMPTY string for every input and "0" is meaningful for the
+          # salary floor. Written as ${{ inputs.x || 'default' }} the empty
+          # string would be passed straight through and the flag would arrive
+          # with no argument.
+          FIELD="${{ inputs.field }}";   ARGS="$ARGS --field ${FIELD:-100000}"
+          SIMS="${{ inputs.sims }}";     ARGS="$ARGS --sims ${SIMS:-20000}"
+          SL="${{ inputs.slates }}";     ARGS="$ARGS --slates ${SL:-4}"
+          FS="${{ inputs.first_season }}"
+          ARGS="$ARGS --first-season ${FS:-2021}"
+          MK="${{ inputs.market }}";     ARGS="$ARGS --market ${MK:-on}"
+          MSP="${{ inputs.min_salary_pct }}"
+          ARGS="$ARGS --min-salary-pct ${MSP:-99}"
+          echo "EFFECTIVE ARGS: $ARGS"
+          python cfb_publish.py $ARGS 2>&1 | tee publish.txt
+
+      - name: Say what happened
+        if: always()
+        run: |
+          {
+            if [ "${{ steps.build.outcome }}" = "success" ]; then
+              echo "### CFB slate published"
+            else
+              echo "### PUBLISH FAILED - the page still has the last good data"
+            fi
+            echo ''
+            echo 'Last 80 lines:'
+            echo '```'
+            tail -n 80 publish.txt 2>/dev/null || echo "(no output captured)"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+          ls -la docs/data/ 2>/dev/null || echo "docs/data is missing entirely"
+
+      - name: Publish
+        if: always()
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          find . -path ./.git -prune -o -name '__pycache__' -print0 2>/dev/null \
+            | xargs -0 rm -rf 2>/dev/null || true
+          git add -A docs engine
+          if git diff --cached --quiet; then
+            echo "nothing changed"
+            exit 0
+          fi
+          git commit -m "CFB slate: $(date -u +%Y-%m-%d\ %H:%M)"
+          # Rebased before pushing, because the MLB, NHL and fetch workflows
+          # commit to this branch on their own schedules and a plain push
+          # loses the race sooner or later.
+          git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || true
+          git push
+
+      - name: Keep the log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cfb-publish-log
+          path: publish.txt
+          retention-days: 14
+          if-no-files-found: warn
+
+      # The build step is continue-on-error so a failure leaves the last good
+      # slate on the page rather than blanking it. That is right, and it also
+      # makes a run that published NOTHING finish green - indistinguishable in
+      # the Actions list from one that worked.
+      - name: Fail if nothing was published
+        if: always()
+        run: |
+          if [ "${{ steps.build.outcome }}" != "success" ]; then
+            echo "The slate build failed. The page is unchanged and still"
+            echo "shows whatever it had before this run."
+            exit 1
+          fi

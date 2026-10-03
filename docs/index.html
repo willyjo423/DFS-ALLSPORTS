@@ -137,8 +137,16 @@ footer{border-top:1px solid var(--line);padding-top:16px;font-size:12.5px;
     <div class="ctl"><label for="stackteam"
       title="Which team to stack. Auto tries every team and keeps whichever ranks best - which, without a game-environment signal, tends to mean whichever team has the best individual players, the same team most nights.">Stack team</label>
       <select id="stackteam"><option value="">Auto (try every team)</option></select></div>
-    <div class="ctl"><label for="stack">Stack size</label>
+    <div class="ctl"><label for="stack" id="lbl-stack"
+      title="How many team-mates to force together. On a football board this counts the QUARTERBACK'S CATCHERS, so 3 means a quarterback plus three of his receivers — four roster spots. The quarterback is not counted inside the number, because 'stack 1' would then mean a lone quarterback, which is not a stack.">Stack size</label>
       <input id="stack" type="number" min="0" max="5" value="4"></div>
+    <div class="ctl" id="ctl-bringback" hidden><label for="bringback"
+      title="How many players to take from the OTHER side of the stacked game. This is a bet on the game rather than on the team: a shootout lifts both offences at once, so an opposing receiver shares the fat joint tail without competing for any of the throws you have already bought.">Bring-back</label>
+      <select id="bringback">
+        <option value="0" selected>None</option>
+        <option value="1">1 from the other side</option>
+        <option value="2">2 from the other side</option>
+      </select></div>
     <div class="ctl"><label for="minsal"
       title="The least a lineup may spend, as a percent of the cap. Unspent salary is points you declined to buy — about 1.16 of them per $1,000 in MLB. 0 turns the floor off.">Min salary %</label>
       <input id="minsal" type="number" min="0" max="100" step="0.5" value="98"></div>
@@ -151,8 +159,8 @@ footer{border-top:1px solid var(--line);padding-top:16px;font-size:12.5px;
         <option value="-0.5">Lean against it</option>
         <option value="-1">Fade it (prefer chalk)</option>
       </select></div>
-    <div class="ctl" id="ctl-doubtful" hidden><label for="hidedoubtful"
-      title="A player who has not been in a lineup for a month is not cheap value - he is injured, scratched, or in the minors. His salary fell and his projection did not, which is exactly why an optimiser keeps picking him.">Doubtful players</label>
+    <div class="ctl" id="ctl-doubtful" hidden><label for="hidedoubtful" id="lbl-doubtful"
+      title="A player who has not been in a lineup for a month is not cheap value - he is injured, scratched, or in the minors. His salary fell and his projection did not, which is exactly why an optimiser keeps picking him. On a college board it means something adjacent: no games at all this season, so whatever is projected is last year's player.">Doubtful players</label>
       <select id="hidedoubtful">
         <option value="hide" selected>Keep out of lineups</option>
         <option value="show">Allow</option>
@@ -257,7 +265,52 @@ const isGoalie = p => p.pos === "G";
 // lineup from betting against itself has to see them as one kind.
 const isAnchor = p => p.pos === "P" || p.pos === "G";
 
-// Every name a site gives to "any eligible player". Hockey's is UTIL.
+// FOOTBALL, DETECTED BY THE SHAPE OF THE ROSTER RATHER THAN BY A SPORT NAME,
+// so a college board and a professional one behave identically and a sport
+// added later needs no new branch here.
+//
+// It earns its own branch because a football stack is a DIFFERENT OBJECT from
+// a hockey or a baseball one, and treating them alike produces lineups that
+// look stacked and are not a correlated bet at all.
+//
+// In hockey, any N skaters from one team correlate: a goal pays the scorer and
+// up to two assisters in the same instant, and the top power-play unit is on
+// the ice together for most of it. In baseball, consecutive batting slots come
+// to bat in the same innings. In FOOTBALL neither is true. Two receivers
+// without their quarterback are not a correlated bet - they are two men
+// competing for the same throws, and the factor model says exactly that: they
+// pull apart. What correlates is the PASSING CONNECTION. A touchdown pays the
+// thrower and the catcher simultaneously, which is why a football stack has to
+// be anchored on the quarterback, and why seeding "any three from Alabama" can
+// hand back three running backs and call it a stack.
+// Three signals rather than one, because a showdown roster is CPT plus five
+// FLEX and has no slot named QB at all - so a football single-game board came
+// out of `slots.includes("QB")` as NOT football, rendered the baseball honesty
+// panel, labelled the opportunity column "Bat", exported baseball columns, and
+// fell back to the jersey-count stack this whole branch exists to replace.
+// Nothing publishes a football showdown today; the detector should not be the
+// reason the day it does goes wrong.
+const FOOTBALL_SPORTS = new Set(["cfb", "nfl", "ncaaf"]);
+const isFootball = () => {
+  if (!SLATE) return false;
+  if (FOOTBALL_SPORTS.has(String(SLATE.sport || "").toLowerCase())) return true;
+  const r = SLATE.roster;
+  if (!r) return false;
+  return (r.slots || []).includes("QB")
+      || (r.flex_positions || []).includes("QB");
+};
+const isQB = p => p.pos === "QB";
+// Who a quarterback's points arrive with. A running back is deliberately NOT
+// in here: his carries are what a passing game takes snaps away from, so he is
+// the one position whose correlation with his own quarterback is weak.
+const CATCHER = new Set(["WR", "TE"]);
+
+// Every name a site gives to "any eligible player". Hockey's is UTIL; football
+// has two, and the second - SFLEX - also takes a quarterback. THIS SET MUST
+// MATCH engine/spec.py's. A flex name known to one side and not the other
+// becomes a required position nobody can fill, which is exactly how every
+// hockey board shipped with no server lineups at all and a page that looked
+// perfectly fine.
 const FLEX_SLOTS = new Set(["FLEX", "UTIL", "UTIL/FLEX", "SFLEX", "G/UTIL"]);
 
 const goalieGate = () => isNHL() && $("goaliemode").value === "confirmed";
@@ -337,7 +390,21 @@ const startedCount = () =>
 //
 // So locks, fades and roster legality all key on WHO he is rather than on
 // which row he happens to occupy.
-const who = p => `${p.name}|${p.team}|${p.pos}`;
+// ONE HUMAN BEING'S IDENTITY, AND IT MUST NOT INCLUDE HIS POSITION.
+//
+// This was `name|team|pos`, and DraftKings prices some players at two
+// positions - the same man listed once as 1B and once as 3B. Those two rows
+// got two different keys, so the duplicate guard in `tryAdd` could not see
+// them and the search rostered one person twice: 402 of 544 lineups on a board
+// carrying such a pair, every one an entry DraftKings rejects. The X and L
+// buttons had the same hole - marking one row left the other live.
+//
+// The site's own player id settles it exactly where the build ships one. Where
+// it does not, name-and-team is the right fallback: it still catches the
+// two-position case and the showdown captain row, and it does NOT merge two
+// different players who merely share a position.
+const who = p => (p.pid !== undefined && p.pid !== null && p.pid !== "")
+  ? `#${p.pid}` : `${p.name}|${p.team}`;
 const sameMan = (players, i) => {
   const k = who(players[i]);
   return [...Array(players.length).keys()].filter(j => who(players[j]) === k);
@@ -362,7 +429,6 @@ async function boot() {
   sel.innerHTML = live.map((s, i) =>
     `<option value="${i}">${esc(s.sport.toUpperCase())} · ${esc(s.site.toUpperCase())} ·
       ${esc(s.kind)} — ${esc(s.label || "")}</option>`).join("");
-  sel.dataset.files = JSON.stringify(live.map(s => s.file));
   sel.onchange = () => loadSlate(live[sel.value].file);
   $("foot").textContent =
     "Manifest updated " + (manifest.updated_at || "unknown") +
@@ -372,7 +438,23 @@ async function boot() {
 
 async function loadSlate(file) {
   $("status").textContent = "Loading " + file + "…";
-  SLATE = await (await fetch(file + "?" + Date.now())).json();
+  // A FAILED LOAD HAS TO SAY SO. Nothing here was wrapped, so a 404 or a
+  // malformed payload left the status pinned at "Loading data/..." for ever
+  // with an unhandled promise rejection in a console nobody has open - which
+  // is the exact failure the publisher's `allow_nan=False` gate exists to
+  // prevent on the other side, and it deserves the same treatment here.
+  let loaded;
+  try {
+    const res = await fetch(file + "?" + Date.now());
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    loaded = await res.json();
+  } catch (e) {
+    $("status").textContent = `Could not load ${file} (${e.message}). `
+      + `If the publish job has just run, give it a minute for the page to `
+      + `redeploy; otherwise that file is missing or is not valid JSON.`;
+    return;
+  }
+  SLATE = loaded;
   LOCK.clear(); FADE.clear(); START.clear();
   LAST = null; STALE = false; $("stale").hidden = true;
   // The board is sport-aware in exactly two places: the opportunity column,
@@ -380,7 +462,30 @@ async function loadSlate(file) {
   // gate, which has no meaning outside hockey.
   $("ctl-goalie").hidden = !isNHL();
   $("ctl-doubtful").hidden = !anyDoubtful();
-  $("th-op").textContent = isNHL() ? "TOI" : "Bat";
+  $("ctl-bringback").hidden = !isFootball();
+  // "No game in 30 days" is hockey's phrasing for the same idea, and it is
+  // wrong on a college board: there is no 30-day window in a sport that plays
+  // once a week. The thing being flagged is a projection with no current
+  // season behind it, so the control says that instead.
+  $("lbl-doubtful").textContent = isFootball()
+    ? "No games this year" : "Doubtful players";
+  // The opportunity column: the one number that says how much of his team's
+  // production a player is in line for. It is a batting slot in baseball, ice
+  // time in hockey, and in football it is the GAME - the implied team total,
+  // because a receiver's ceiling is bounded by how many points his side is
+  // expected to score.
+  $("th-op").textContent = isNHL() ? "TOI" : isFootball() ? "Team total" : "Bat";
+  $("lbl-stack").textContent = isFootball() ? "QB + n catchers" : "Stack size";
+  // A DEFAULT THAT FITS THE ROSTER IN FRONT OF IT. The markup's 4 is a
+  // baseball number: on an eight-man football roster a quarterback plus four
+  // catchers leaves three slots for two required running backs and nothing
+  // else, so it is buildable and a bring-back makes it impossible. 3 is the
+  // largest stack that still leaves room to bring one back.
+  if (isFootball()) {
+    $("stack").max = "5";
+    if (!$("stack").dataset.touched) $("stack").value = "3";
+  }
+  $("stack").onfocus = () => { $("stack").dataset.touched = "1"; };
   refreshBlock();
   // A sort key from the previous board may not exist on this one.
   if (SORT.key === "bat" || SORT.key === "toi") SORT = { key: "med", dir: -1 };
@@ -415,12 +520,30 @@ async function loadSlate(file) {
     + (blank ? ` (${blank} with no projected players)` : "") + " · " +
     "draft group " + (SLATE.draft_group || "?") +
     " · generated " + SLATE.generated_at;
-  // A stack board: what a stack of each team is actually projected to score.
-  // The point is to make the choice legible. "Toronto again" is a different
-  // thing when you can see that Toronto's top four project 3.1 points more
-  // than Colorado's - you can agree with it or override it, but you are no
-  // longer guessing at what the optimiser was thinking.
-  const n = Math.max(2, Number($("stack").value) || 4);
+  drawStackBoard();
+
+  $("games").textContent = games.length
+    ? games.join("   ·   ")
+    : "this slate carries no game labels";
+}
+
+// A stack board: what a stack of each team is actually projected to score.
+// The point is to make the choice legible. "Toronto again" is a different
+// thing when you can see that Toronto's top four project 3.1 points more than
+// Colorado's - you can agree with it or override it, but you are no longer
+// guessing at what the optimiser was thinking.
+//
+// Its own function, so changing Stack size redraws it. Inline in `loadSlate`
+// it went stale the moment the control moved, and a board describing a
+// four-man stack above a control set to two is worse than no board.
+function drawStackBoard() {
+  if (!SLATE) return;
+  // READ THE SAME WAY `build()` READS IT, or the board describes a bet the
+  // builder will not make. Written as `Number(v) || 4`, a control set to "0"
+  // became 4 and a control set to "1" became 2.
+  const asked = Math.max(0, Math.min(5, Number($("stack").value) || 0));
+  const n = Math.max(1, asked);
+  const fb = isFootball();
   const byTeam = new Map();
   SLATE.players.forEach(p => {
     if (isAnchor(p)) return;
@@ -428,25 +551,60 @@ async function loadSlate(file) {
     byTeam.get(p.team).push(p);
   });
   const board = [...byTeam.entries()].map(([t, ps]) => {
-    const top = ps.slice().sort((a, b) => b.med - a.med).slice(0, n);
+    // THE SAME ARITHMETIC ON THE WRONG PLAYERS IS A DIFFERENT ANSWER. On a
+    // football board, "the best n on this team" is routinely a quarterback
+    // and three running backs - a group whose joint tail is nothing like a
+    // stack's, because backs do not score when their quarterback throws. So
+    // the board prices the bet the solver will actually make: the best
+    // quarterback, plus his best n catchers. A team with no priced
+    // quarterback cannot be stacked and is shown as such rather than ranked
+    // on bodies it cannot use.
+    let top;
+    if (fb) {
+      const qb = ps.filter(isQB).sort((a, b) => b.med - a.med)[0];
+      if (!qb) return { team: t, pts: 0, own: 0, lev: 0, nostack: true };
+      top = [qb].concat(ps.filter(p => CATCHER.has(p.pos))
+        .sort((a, b) => b.med - a.med).slice(0, n));
+    } else {
+      top = ps.slice().sort((a, b) => b.med - a.med).slice(0, n);
+    }
+    // The implied team total, when the build shipped one. This is the number
+    // the whole stack board exists to surface: without a market signal the
+    // ranking below is "who has the best players", which is the same team
+    // every week, and seeing a 41-point team sitting fourth is how you
+    // override it.
+    const itt = top.map(p => Number(p.itt)).find(v => Number.isFinite(v));
     return {
       team: t,
       pts: top.reduce((a, p) => a + (Number(p.med) || 0), 0),
       own: top.reduce((a, p) => a + (Number(p.own) || 0), 0) / top.length,
       lev: top.reduce((a, p) => a + levOf(p), 0) / top.length,
+      itt: Number.isFinite(itt) ? itt : null,
     };
   }).sort((a, b) => b.pts - a.pts);
+  const stackLabel = fb ? `QB + ${n}` : `top-${n}`;
   $("stackteam").innerHTML = '<option value="">Auto (try every team)</option>'
-    + board.map(b => `<option value="${esc(b.team)}">${esc(b.team)} — `
-      + `${b.pts.toFixed(1)} pts</option>`).join("");
-  $("stackboard").innerHTML = "<b>Top-" + n + " stack, by projected points.</b> "
-    + board.map(b => `<span class="game">${esc(b.team)} `
-      + `<b>${b.pts.toFixed(1)}</b> · own ${(100 * b.own).toFixed(0)}%`
-      + ` · lev ${b.lev > 0 ? "+" : ""}${b.lev.toFixed(2)}</span>`).join(" ");
-
-  $("games").textContent = games.length
-    ? games.join("   ·   ")
-    : "this slate carries no game labels";
+    + board.map(b => `<option value="${esc(b.team)}"${b.nostack ? " disabled" : ""}>`
+      + `${esc(b.team)} — ${b.nostack ? "no QB priced"
+        : b.pts.toFixed(1) + " pts"}</option>`).join("");
+  const live = board.filter(b => !b.nostack);
+  // A HEADER OVER AN EMPTY LIST IS NOT AN ANSWER. On a football board where no
+  // team has a priced quarterback, this rendered "QB + 4 stack, by projected
+  // points." followed by nothing at all, and the build then reported "no legal
+  // lineup exists under these locks and fades" - with no locks set. The honest
+  // sentence names the actual problem.
+  $("stackboard").innerHTML = live.length
+    ? `<b>${stackLabel} stack, by projected points.</b> `
+      + live.map(b => `<span class="game">${esc(b.team)} `
+        + `<b>${b.pts.toFixed(1)}</b>`
+        + (b.itt !== null ? ` · ${b.itt.toFixed(1)} implied` : "")
+        + ` · own ${(100 * b.own).toFixed(0)}%`
+        + ` · lev ${b.lev > 0 ? "+" : ""}${b.lev.toFixed(2)}</span>`).join(" ")
+    : (fb
+      ? "<b>No team on this board has a priced quarterback</b>, so there is "
+        + "nothing to anchor a stack on. Set the stack size to 0 and build "
+        + "unstacked."
+      : "<b>No team on this board has enough players to stack.</b>");
 }
 
 /* ------------------------------------------------------- the factor model */
@@ -627,6 +785,26 @@ function legalLineup(players, roster, weights, rng, opts) {
   const noVsPitcher = roster.no_hitter_vs_pitcher !== false;
   const stackTeam = opts.stackTeam || null;
   const stackSize = opts.stackSize || 0;
+  // A football stack is quarterback-plus-catchers, and `bringBack` is how
+  // many players to take from the OTHER side of the same game. The reason to
+  // want any is the game factor: a shootout lifts both offences, so an
+  // opposing receiver shares the fat tail that makes the stack worth having
+  // in the first place, and he does it without competing for the same throws.
+  const football = isFootball();
+  const bringBack = Math.max(0, opts.bringBack || 0);
+  // Ceilings the engine's integer program also enforces, re-stated here
+  // because the browser search is a separate solver and an entry it builds
+  // has to be as legal as one the server builds.
+  //
+  // `max_position` is what makes two different flex slots expressible as one
+  // constraint: college football's FLEX takes a runner or a receiver and its
+  // SFLEX also takes a quarterback, so "both flexes are QB/RB/WR, and at most
+  // two quarterbacks" admits exactly the five enterable compositions and
+  // forbids the one illegal one. Without it this search will happily build
+  // three quarterbacks, because three quarterbacks is a lineup that satisfies
+  // every count it was told about.
+  const posCap = roster.max_position || {};
+  const posCount = {};
   // The least this lineup may spend. Unspent salary is not free - it is
   // points declined, about 1.16 per $1,000 in MLB - and the usual defence
   // (that leaving money makes you unique) inverts in a small player pool,
@@ -672,6 +850,114 @@ function legalLineup(players, roster, weights, rng, opts) {
   }
   if (!Number.isFinite(floorPrice)) floorPrice = 0;
 
+  // THE SAME LOOK-AHEAD, PER POSITION, BECAUSE THE GLOBAL ONE IS TOO
+  // OPTIMISTIC ABOUT THE SLOTS IT STILL HAS TO FILL.
+  //
+  // `floorPrice` is the cheapest player on the WHOLE board, and on a college
+  // football board that is a seventh-string receiver at $2,759. Reserving
+  // $2,759 for each remaining slot says a running back slot can be filled for
+  // $2,759 when the cheapest back on the board costs $3,610 - so the build
+  // spends down to a point where no legal back is affordable, fails to fill
+  // the roster, and the whole attempt is thrown away at the very last check.
+  //
+  // Measured on a real payload: with the global floor, two of eight schools
+  // produced ZERO legal lineups in two thousand attempts each - not a bad
+  // rate, a hard refusal - and the page would simply have reported that those
+  // teams could not be stacked. Per position, every school builds.
+  //
+  // It is still a LOWER bound, deliberately. It charges the same cheapest
+  // back for both back slots, which cannot actually happen, so it can never
+  // reject a pick that would really have worked.
+  // THE k CHEAPEST *DISTINCT* PLAYERS AT A POSITION, NOT k COPIES OF THE
+  // CHEAPEST ONE, AND THAT DISTINCTION IS NOT PEDANTIC.
+  //
+  // Charging `k x floorAt[pos]` is a valid lower bound, so it never refuses a
+  // feasible pick - but one player priced well below the rest of his position
+  // makes it arbitrarily loose, the randomised greedy spends down into a dead
+  // end, and EVERY attempt then fails the final roster-size check. The result
+  // is a page that says "Nothing fits" about a board full of legal lineups.
+  //
+  // Measured on a real board whose cheapest receiver was $2,697: adding ONE
+  // new receiver at $2,000 - which cannot remove any legal lineup, only add
+  // some - took a cash build from a lineup to "Nothing fits". A search whose
+  // hit rate FALLS when a cheap player is added is not a search. And the case
+  // is not hypothetical: DraftKings prices a scratched player at $400 while
+  // the rest of his position starts at $3,000.
+  //
+  // Prefix sums over each position's sorted salaries make the bound tight
+  // instead: the cheapest k distinct players really is the least k slots at
+  // that position can cost.
+  const sortedAt = {};
+  for (let i = 0; i < n; i++) if (eligible(i)) {
+    const p = players[i];
+    (sortedAt[p.pos] = sortedAt[p.pos] || []).push(p.salary);
+  }
+  const prefixAt = {};
+  for (const pos in sortedAt) {
+    sortedAt[pos].sort((a, b) => a - b);
+    const ps = [0];
+    for (const s of sortedAt[pos]) ps.push(ps[ps.length - 1] + s);
+    prefixAt[pos] = ps;
+  }
+  // The least k slots at `pos` can cost. Beyond the number of players that
+  // exist, it falls back to the global floor for the remainder - a required
+  // position with too few bodies means no legal lineup exists at all, and the
+  // final `need` check says that plainly. Making every pick fail here instead
+  // would report it as "Nothing fits", which points at the locks.
+  const least = (pos, k) => {
+    if (k <= 0) return 0;
+    const ps = prefixAt[pos];
+    if (!ps) return k * floorPrice;
+    const have = ps.length - 1;
+    return k <= have ? ps[k] : ps[have] + (k - have) * floorPrice;
+  };
+  // The least the slots still unfilled can cost, given WHICH ones they are.
+  // `extraPos` and `extraFlex` describe the slot the candidate would take, so
+  // this is evaluated for the state AFTER adding him.
+  //
+  // THE SAME MAN CANNOT FILL A REQUIRED SLOT AND A FLEX SLOT, and the version
+  // that let him was still not monotone. Charging the required slots from each
+  // position's cheapest players and the flex slots from the cheapest
+  // FLEX-ELIGIBLE players independently double-counts whoever is cheapest:
+  // adding one $400 receiver to a board whose next cheapest is $2,759 dropped
+  // the bound by about $5,000, because that one man was charged to a receiver
+  // slot AND to a flex slot. The look-ahead then let the build spend $5,000 it
+  // did not have, and every attempt dead-ended - so the hit rate FELL from 95
+  // to 0 when a cheap player was added, which cannot be right: adding a player
+  // can only create legal lineups, never destroy them.
+  //
+  // So the flex slots are costed from what is LEFT after the required ones.
+  // The loop is at most five iterations over at most a handful of positions.
+  const flexList = [...flexPos];
+  const reserve = (extraPos, extraFlex) => {
+    let r = 0;
+    const used = {};
+    for (const pos in need) {
+      const k = need[pos] - (pos === extraPos ? 1 : 0);
+      if (k <= 0) continue;
+      r += least(pos, k);
+      used[pos] = k;
+    }
+    let f = flexLeft - (extraFlex ? 1 : 0);
+    if (f <= 0) return r;
+    const ptr = {};
+    for (const pos of flexList) ptr[pos] = used[pos] || 0;
+    for (; f > 0; f--) {
+      let bestPos = null, bestVal = Infinity;
+      for (const pos of flexList) {
+        const arr = sortedAt[pos];
+        if (arr && ptr[pos] < arr.length && arr[ptr[pos]] < bestVal) {
+          bestVal = arr[ptr[pos]];
+          bestPos = pos;
+        }
+      }
+      if (bestPos === null) { r += f * floorPrice; break; }
+      r += bestVal;
+      ptr[bestPos]++;
+    }
+    return r;
+  };
+
   // The mirror of floorPrice, and it exists for the mirror reason. The cap
   // look-ahead stops a build spending itself into a dead end; this one stops
   // a build saving itself into one - picking cheap early, then finding that
@@ -696,26 +982,62 @@ function legalLineup(players, roster, weights, rng, opts) {
       ? (p.cpt || Math.round(p.salary * (roster.captain_multiplier || 1.5)))
       : p.salary;
     const stillToFill = slots.length - pick.length - 1;
-    if (spend + cost + floorPrice * stillToFill > cap) return false;
+    // Which slot he would take has to be decided BEFORE the cap look-ahead,
+    // because what the remaining slots cost depends on it. Decided without
+    // mutating anything - the mutation happens at the bottom, once every
+    // rejection has had its say.
+    const takesRequired = !showdown && (need[p.pos] || 0) > 0;
+    const takesFlex = !showdown && !takesRequired;
+    if (showdown) {
+      if (spend + cost + floorPrice * stillToFill > cap) return false;
+    } else if (spend + cost
+               + reserve(takesRequired ? p.pos : null, takesFlex) > cap) {
+      return false;
+    }
     if (minSpend > 0
         && spend + cost + ceilPrice * stillToFill < minSpend) return false;
     if ((teamCount[p.team] || 0) + 1 > maxTeam) return false;
+    // EVERY REJECTION ABOVE AND BELOW THIS LINE IS NON-MUTATING, and the
+    // order matters. The duplicate check used to sit AFTER `need[p.pos]--`,
+    // so rejecting a duplicate still consumed the slot he was rejected from:
+    // the lineup then came out one short at that position for no visible
+    // reason. It only ever fired on a board listing the same man twice - a
+    // showdown captain row, or a player DraftKings prices at two positions -
+    // which is why it survived.
+    if (pick.some(x => who(players[x.i]) === who(p))) return false;
+    if (posCap[p.pos] !== undefined
+        && (posCount[p.pos] || 0) + 1 > posCap[p.pos]) return false;
     if (!showdown) {
       if (need[p.pos] > 0) need[p.pos]--;
       else if (flexLeft > 0 && flexPos.has(p.pos)) flexLeft--;
       else return false;
     } else if (asCaptain) { captain = i; }
     else { if (flexLeft <= 0) return false; flexLeft--; }
-    if (pick.some(x => who(players[x.i]) === who(p))) return false;
     pick.push({ i, cpt: !!asCaptain, cost });
     teamCount[p.team] = (teamCount[p.team] || 0) + 1;
+    posCount[p.pos] = (posCount[p.pos] || 0) + 1;
     if (anchor) pitcherOpp.add(p.opp); else hitterTeams.add(p.team);
     spend += cost;
     return true;
   };
 
   // Locks first, always - a lock the solver could drop is not a lock.
-  for (const i of LOCK) if (eligible(i)) tryAdd(i, showdown && captain === null);
+  //
+  // AND THE RETURN VALUE IS CHECKED, which it was not. `tryAdd` can refuse a
+  // lock - the cap, a per-position ceiling, a team limit - and the result was
+  // discarded, so the lineup came back without him and nothing anywhere said
+  // so. Lock three quarterbacks on a board that allows two and 105 of 105
+  // lineups silently omitted one, with the lineup card showing the other two
+  // and no warning at all.
+  //
+  // Refusing the whole attempt is the honest answer. The page's existing
+  // "Nothing fits - the locks you have set cannot be combined into a legal
+  // lineup" is then TRUE, where before it was a sentence that never appeared
+  // because an impossible set of locks quietly became a possible subset.
+  for (const i of LOCK) {
+    if (!eligible(i)) continue;
+    if (!tryAdd(i, showdown && captain === null)) return null;
+  }
   if (showdown && captain === null) {
     for (const i of order) if (tryAdd(i, true)) break;
   }
@@ -725,7 +1047,83 @@ function legalLineup(players, roster, weights, rng, opts) {
   // stack needs are filled. Batting order decides who goes first, because
   // consecutive slots come to bat in the same innings - a 2-3-4-5 stack is a
   // materially different bet from a 1-4-7-9 one, even off the same card.
-  if (stackTeam && stackSize > 0) {
+  if (stackTeam && stackSize > 0 && football) {
+    // FOOTBALL: THE QUARTERBACK FIRST, AND THE STACK FAILS WITHOUT HIM.
+    //
+    // `stackSize` counts the catchers, so a stack of 3 is a quarterback plus
+    // three of his receivers - four roster spots. That is the only reading
+    // that makes the number mean the same thing from one build to the next:
+    // counting the quarterback inside it would make "stack 1" a lone
+    // quarterback, which is not a stack at all.
+    //
+    // Returning null when the quarterback cannot be placed is deliberate. A
+    // greedy fallback to "his three best receivers without him" is not a
+    // smaller version of this bet - it is a bet on three men competing for
+    // the same throws, which the factor model prices as pulling apart. A
+    // failed attempt costs one iteration of a four-hundred-attempt search; a
+    // quietly unanchored stack costs the whole premise.
+    const qb = [...Array(n).keys()]
+      .filter(i => eligible(i) && isQB(players[i])
+                   && players[i].team === stackTeam
+                   && !pick.some(x => x.i === i))
+      .sort((a, b) => (players[b].med || 0) - (players[a].med || 0));
+    // A lock may already have put him there, in which case nothing to do.
+    const haveQB = pick.some(x => isQB(players[x.i])
+                                  && players[x.i].team === stackTeam);
+    if (!haveQB) {
+      let placed = false;
+      for (const i of qb) if (tryAdd(i, false)) { placed = true; break; }
+      if (!placed) return null;
+    }
+
+    // Then his catchers, best projection first. Receivers and tight ends
+    // only: a running back on the same team is close to uncorrelated with
+    // his own quarterback, because the carries that feed him are the snaps
+    // the passing game did not take.
+    const catchers = [...Array(n).keys()]
+      .filter(i => eligible(i) && players[i].team === stackTeam
+                   && CATCHER.has(players[i].pos)
+                   && !pick.some(x => x.i === i))
+      .sort((a, b) => (players[b].med || 0) - (players[a].med || 0));
+    // A CATCHER WHO IS ALREADY IN THE LINEUP COUNTS TOWARD THE STACK.
+    //
+    // `taken` used to count only NEWLY added catchers while the candidate list
+    // excluded anyone already picked - so a locked receiver on the stack team
+    // was invisible to the count and the stack over-delivered by one. With one
+    // ALA receiver locked, "stack 3" behaved identically to "stack 4": 237 of
+    // 253 lineups came back as QB+5. The quarterback half was already handled
+    // this way (`haveQB` above); the two halves of one stack were counted by
+    // two different rules.
+    let taken = pick.filter(x => players[x.i].team === stackTeam
+                                 && CATCHER.has(players[x.i].pos)).length;
+    for (const i of catchers) {
+      if (taken >= stackSize) break;
+      if (tryAdd(i, false)) taken++;
+    }
+    if (taken < stackSize) return null;
+
+    // The bring-back, from the other side of the SAME GAME. This is a bet on
+    // the game factor rather than the team factor: a shootout lifts both
+    // offences at once, so an opposing receiver shares the fat joint tail
+    // without competing for any of the throws the stack is already buying.
+    if (bringBack > 0) {
+      const foe = (pick.map(x => players[x.i])
+        .find(p => p.team === stackTeam) || {}).opp;
+      if (foe) {
+        const back = [...Array(n).keys()]
+          .filter(i => eligible(i) && players[i].team === foe
+                       && (CATCHER.has(players[i].pos) || isQB(players[i]))
+                       && !pick.some(x => x.i === i))
+          .sort((a, b) => (players[b].med || 0) - (players[a].med || 0));
+        let got = 0;
+        for (const i of back) {
+          if (got >= bringBack) break;
+          if (tryAdd(i, false)) got++;
+        }
+        if (got < bringBack) return null;
+      }
+    }
+  } else if (stackTeam && stackSize > 0) {
     const mates = [...Array(n).keys()]
       .filter(i => eligible(i) && players[i].team === stackTeam
                    && !isAnchor(players[i]) && !pick.some(x => x.i === i))
@@ -793,6 +1191,25 @@ function legalLineup(players, roster, weights, rng, opts) {
     }
   }
 
+  // The same shape of rule, one level up: DraftKings requires a football
+  // lineup to use at least two GAMES. A per-team maximum cannot express it -
+  // two teams playing each other are still one game, so four and four across
+  // a single fixture passes every per-team cap ever written and is refused at
+  // the window. On an eight-man roster this is the rule a forced stack plus a
+  // bring-back can quietly break, because both halves come from one fixture.
+  const minGames = roster.min_games || 0;
+  const gamesIn = () => new Set(pick.map(x => players[x.i].game || "?"));
+  if (minGames > 1) {
+    let seen = gamesIn();
+    for (const i of order) {
+      if (seen.size >= minGames || pick.length >= slots.length) break;
+      const p = players[i];
+      if (seen.has(p.game || "?")) continue;
+      if (pick.some(x => x.i === i)) continue;
+      if (tryAdd(i, false)) seen = gamesIn();
+    }
+  }
+
   for (const i of order) {
     if (pick.length >= slots.length) break;
     if (pick.some(x => x.i === i)) continue;
@@ -809,6 +1226,39 @@ function legalLineup(players, roster, weights, rng, opts) {
   // forced stack plus the team cap can still land on two teams, and that
   // entry does not exist as far as DraftKings is concerned.
   if (minTeams > 1 && skaterTeams().size < minTeams) return null;
+  // And the same verification for games. The seeding above usually satisfies
+  // it, but a forced stack plus a bring-back is eight players from one
+  // fixture, which is a lineup DraftKings does not accept at all.
+  if (minGames > 1 && gamesIn().size < minGames) return null;
+  // The per-game CEILING, which the browser was not enforcing at all while
+  // the honesty panel claimed it was. On the shipped football roster
+  // `min_games: 2` on eight slots happens to imply it, so nothing illegal was
+  // escaping - but that is the arithmetic coincidence the server's own
+  // comments warn about, and a roster with a real ceiling (five per game, say)
+  // would have been ignored outright.
+  const maxGame = roster.max_per_game;
+  if (maxGame) {
+    const perGame = {};
+    for (const x of pick) {
+      const g = players[x.i].game || "?";
+      perGame[g] = (perGame[g] || 0) + 1;
+      if (perGame[g] > maxGame) return null;
+    }
+  }
+  // Every lock made it in. Verified rather than assumed, because the seeding
+  // passes above - the stack, the anchor, min_teams, min_games - all call
+  // `tryAdd` and any of them could in principle displace a lock.
+  for (const i of LOCK) {
+    if (eligible(i) && !pick.some(x => x.i === i)) return null;
+  }
+  // Last, the per-position ceilings, verified rather than trusted. `tryAdd`
+  // enforces them on the way in and this cannot normally fire - which is
+  // exactly why it is cheap to keep: a lineup that breaks one looks perfectly
+  // legal right up to the moment the entry is refused, and there is no
+  // feedback from DraftKings that would ever tell you which rule you broke.
+  for (const pos in posCap) {
+    if ((posCount[pos] || 0) > posCap[pos]) return null;
+  }
   return pick;
 }
 
@@ -826,6 +1276,22 @@ function scoreLineup(draws, sims, pick, mult) {
 // assumed: a stack that the salary cap quietly shrank from four to two is
 // still a lineup, just not the bet that was asked for.
 function biggestStack(players, pick) {
+  // FOOTBALL COUNTS A DIFFERENT THING, because a football stack is a
+  // different thing. Four players off one team with no quarterback among them
+  // is not a stack that was shrunk - it is not a stack at all, and reporting
+  // it as "4 x ALA" would describe a correlated bet that was never made. So
+  // only a quarterback's own team counts, and the size reported is how many
+  // of HIS CATCHERS came with him.
+  if (isFootball()) {
+    const qbs = pick.map(p => players[p.i]).filter(isQB);
+    let best = null;
+    for (const qb of qbs) {
+      const size = pick.map(p => players[p.i])
+        .filter(p => p.team === qb.team && CATCHER.has(p.pos)).length;
+      if (!best || size > best.size) best = { team: qb.team, size };
+    }
+    return best && best.size >= 1 ? best : null;
+  }
   const count = new Map();
   for (const p of pick) {
     const pl = players[p.i];
@@ -881,7 +1347,24 @@ function build() {
   const field = Math.max(2, Number($("field").value) || 100000);
   const objective = $("objective").value;
   // Zero means "do not force one". Five is DraftKings' hitters-per-team cap.
-  const STACK = Math.max(0, Math.min(5, Number($("stack").value) || 0));
+  // `let`, because the plan may have to be clamped to what the roster can
+  // actually hold once the bring-back is counted - see below.
+  let STACK = Math.max(0, Math.min(5, Number($("stack").value) || 0));
+  const FOOTBALL = isFootball();
+  // How many from the OTHER side of the stacked game. Football only: in
+  // hockey and baseball the equivalent is a bet against your own goalie or
+  // pitcher, which `noVsPitcher` forbids outright.
+  let BRING = FOOTBALL ? Math.max(0, Math.min(3,
+    Number($("bringback").value) || 0)) : 0;
+  // A bring-back without a stack is not a bring-back - it is one more player
+  // from a game nothing else in the lineup is betting on. The block that
+  // builds it sits inside the stack branch, so with the stack set to zero the
+  // control was simply inert: still visible, still accepting "2 from the other
+  // side", still doing nothing.
+  if (BRING > 0 && STACK === 0) {
+    log("the bring-back needs a stack to come back AT - set a stack size");
+    BRING = 0;
+  }
   const LEVW = levWeight();
   const minPct = Math.max(0, Math.min(100, Number($("minsal").value) || 0));
   const MINSPEND = Math.round(minPct / 100 * roster.salary_cap);
@@ -950,7 +1433,18 @@ function build() {
         byTeam.get(p.team).push(i);
       });
       for (const [t, idx] of byTeam) {
-        if (idx.filter(i => !FADE.has(i) && !BLOCK.has(i)).length >= STACK) {
+        const live = idx.filter(i => !FADE.has(i) && !BLOCK.has(i));
+        if (FOOTBALL) {
+          // A FOOTBALL TEAM IS ONLY STACKABLE IF IT HAS A QUARTERBACK ON THE
+          // BOARD WHO IS NOT FADED. Counting bodies would list every team as
+          // stackable and then hand each of them to a seeder that refuses to
+          // build without a quarterback - four hundred attempts spent on
+          // plans that cannot succeed, and the page reporting "nothing fits"
+          // when what it means is "that team's quarterback is faded".
+          const qb = live.filter(i => isQB(players[i]));
+          const catchers = live.filter(i => CATCHER.has(players[i].pos));
+          if (qb.length && catchers.length >= STACK) stackable.push(t);
+        } else if (live.length >= STACK) {
           stackable.push(t);
         }
       }
@@ -960,11 +1454,45 @@ function build() {
     // without a game-environment signal is mostly "who has the best players"
     // - and that is the same team most nights. Being able to say "stack
     // Colorado" is the difference between a model and an oracle.
+    // DOES THE PLAN EVEN FIT ON THE ROSTER?
+    //
+    // A football stack costs 1 + stackSize spots, plus the bring-back, and
+    // whatever is left has to cover every required position the stack cannot
+    // supply - two running backs, on a DraftKings college roster. Nothing
+    // checked that, and the HTML's default stack size is 4: one click on the
+    // bring-back dropdown asked for 9 players on an 8-man roster, every single
+    // attempt returned null, and the page printed "Nothing fits. The locks you
+    // have set cannot be combined into a legal lineup" with no locks and no
+    // fades set. Reproduced: stack 4 + bring 2 built 0 of 2,000.
+    //
+    // So the plan is clamped to what the roster can hold, and the clamp is
+    // reported. Being told "a stack of 3 is the most this roster can hold with
+    // a bring-back of 2" is a usable sentence; being sent to look at locks you
+    // never set is not.
+    if (FOOTBALL && STACK > 0) {
+      const supplies = p => isQB({ pos: p }) || CATCHER.has(p);
+      let elsewhere = 0;
+      for (const s of roster.slots) {
+        if (FLEX_SLOTS.has(s) || s === "CPT" || supplies(s)) continue;
+        elsewhere++;
+      }
+      const room = roster.slots.length - elsewhere;      // spots the stack may use
+      if (1 + STACK + BRING > room) {
+        const keep = Math.max(0, room - 1 - BRING);
+        log(`a QB plus ${STACK} catchers plus ${BRING} back needs `
+          + `${1 + STACK + BRING} of the ${room} spots this roster leaves for a `
+          + `stack (${elsewhere} are reserved for other positions) — `
+          + `using QB + ${keep}`);
+        STACK = keep;
+      }
+    }
+
     const WANT = $("stackteam").value;
     const plans = (WANT && stackable.includes(WANT))
-      ? [{ stackTeam: WANT, stackSize: STACK }]
+      ? [{ stackTeam: WANT, stackSize: STACK, bringBack: BRING }]
       : stackable.length
-        ? stackable.map(t => ({ stackTeam: t, stackSize: STACK }))
+        ? stackable.map(t => ({ stackTeam: t, stackSize: STACK,
+                                bringBack: BRING }))
         : [{}];
     if (WANT && !stackable.includes(WANT)) {
       log(`${WANT} cannot be stacked ${STACK} deep on this board`);
@@ -1124,7 +1652,9 @@ function render(chosen, meta) {
     }).join("");
     return `<div class="lineup">
       <h3>Entry ${n + 1}<span class="chip">${esc(meta.objective.toUpperCase())}</span>
-        ${c.stack ? `<span class="chip">${esc(c.stack.team)} x${c.stack.size}</span>` : ""}</h3>
+        ${c.stack ? `<span class="chip">${esc(c.stack.team)} ${
+          isFootball() ? "QB+" + c.stack.size : "x" + c.stack.size
+        }</span>` : ""}</h3>
       <div class="scroll"><table>
         <thead><tr>
           <th class="l">Player</th><th class="l">Pos</th><th class="l">Team</th>
@@ -1193,7 +1723,8 @@ function render(chosen, meta) {
     isDoubtful(p) && BLOCK.has(i)).length;
   if (hidden) {
     $("status").textContent += ` — ${hidden} player${hidden > 1 ? "s" : ""} `
-      + "with no game in 30 days kept out";
+      + (isFootball() ? "with no games this season kept out"
+                      : "with no game in 30 days kept out");
   }
 }
 
@@ -1207,6 +1738,7 @@ function drawBoard() {
     return (av < bv ? -1 : av > bv ? 1 : 0) * SORT.dir;
   });
   const nhl = isNHL();
+  const fb = isFootball();
   tb.innerHTML = rows.map(({ p, i }) => {
     const per = p.salary ? p.med / (p.salary / 1000) : 0;
     const cls = LOCK.has(i) ? "locked"
@@ -1222,16 +1754,34 @@ function drawBoard() {
         q = START.has(i) ? '<span class="pill ok">STARTING</span>'
                          : '<span class="pill q">NOT CONFIRMED</span>';
       }
+    } else if (fb) {
+      // Football's version of an unposted batting order. There is no college
+      // injury report and no depth chart on this feed, so what the page CAN
+      // say is how much evidence is under the number: a projection standing
+      // on fewer than four games is last year's player, and in a sport with a
+      // transfer portal that is routine rather than exceptional.
+      if (p.gp !== undefined && p.gp !== null && p.gp < 4) {
+        q = `<span class="pill q">${esc(String(p.gp))} GAME`
+          + `${p.gp === 1 ? "" : "S"} OF HISTORY`
+          + `${p.yr ? " · " + esc(String(p.yr)) : ""}</span>`;
+      }
     } else if (p.pos !== "P" && (p.bat === null || p.bat === undefined)) {
       q = '<span class="pill q">NOT CONFIRMED</span>';
     }
     // Said on the row, with the date, so a player kept out of lineups is
     // explained rather than merely missing.
     if (isDoubtful(p)) {
-      q += `<span class="pill q">NO GAME IN 30 DAYS${
-        p.last ? " · last " + esc(p.last) : ""}</span>`;
+      q += fb
+        ? '<span class="pill q">NO GAMES THIS SEASON</span>'
+        : `<span class="pill q">NO GAME IN 30 DAYS${
+            p.last ? " · last " + esc(p.last) : ""}</span>`;
     }
+    // Football's opportunity number is the implied team total. Null, not
+    // zero, when no market line was found - and an em dash on screen, because
+    // "0.0 implied" reads as a team nobody expects to score at all.
     const op = nhl ? (isGoalie(p) ? "—" : fmt(p.toi, 1))
+             : fb ? (p.itt === null || p.itt === undefined
+                     ? "—" : fmt(p.itt, 1))
                    : (p.pos === "P" ? "—" : (p.bat ? p.bat : "?"));
     const g = (nhl && isGoalie(p))
       ? `<button class="tog ${START.has(i) ? "on" : ""}" data-start="${i}"
@@ -1285,7 +1835,13 @@ function drawBoard() {
   };
 
   document.querySelectorAll("#board thead th").forEach((th, n) => {
-    const keys = ["name", "pos", "team", nhl ? "toi" : "bat",
+    // The opportunity column's sort key has to match the opportunity column.
+    // This read `nhl ? "toi" : "bat"`, so on a football board it sorted on a
+    // field no player has: Number(undefined) is NaN, every comparison is
+    // false, the sort silently did nothing - and it left SORT.key as "bat",
+    // which `boardRows` then used for the CSV, so the export quietly reverted
+    // to raw payload order too.
+    const keys = ["name", "pos", "team", nhl ? "toi" : fb ? "itt" : "bat",
                   "salary", "med", "ceil", null, "own", "lev"];
     th.onclick = () => {
       if (!keys[n]) return;
@@ -1310,6 +1866,7 @@ function showServerLineups() {
 
 function drawHonesty() {
   if (isNHL()) return drawHonestyNHL();
+  if (isFootball()) return drawHonestyFootball();
   const slots = (SLATE.roster && SLATE.roster.slots) || [];
   const pitchers = slots.filter(s => s === "P").length || 1;
   $("honesty").innerHTML = `
@@ -1407,6 +1964,73 @@ function drawHonestyNHL() {
     contest results.${extra}`;
 }
 
+function drawHonestyFootball() {
+  const extra = (SLATE.caveats || []).map(c => `<br><br>${esc(c)}`).join("");
+  const R = SLATE.roster || {};
+  const qbCap = (R.max_position || {}).QB;
+  $("honesty").innerHTML = `
+    <b>A football stack is the quarterback, or it is not a stack.</b> In hockey
+    any four skaters off one team correlate, because a goal pays the scorer and
+    two assisters at once. In baseball consecutive batting slots come to bat in
+    the same innings. Football is neither: two receivers <i>without</i> their
+    quarterback are not a correlated bet, they are two men competing for the
+    same throws, and the factor model prices them as pulling apart. So the
+    <b>QB + n catchers</b> control counts CATCHERS — set it to 3 and you get a
+    quarterback plus three of his receivers, four roster spots — and the build
+    refuses outright rather than falling back to the same team without him.
+    Running backs are not in the stack: their carries are the snaps the passing
+    game did not take.
+    <br><br>
+    <b>The bring-back is a different bet from the stack.</b> The stack buys the
+    TEAM factor; a player from the other side of the same game buys the GAME
+    factor — a shootout lifts both offences at once, so an opposing receiver
+    shares the fat joint tail without competing for a single throw you have
+    already paid for.
+    <br><br>
+    <b>The market is what stops this picking the same team every week.</b>
+    Without a game-environment signal, "which team to stack" collapses into
+    "which team has the best players", and that answer does not change. The
+    <b>Team total</b> column is the market's implied points for that side, and
+    it is applied to the projections as a DISAGREEMENT rather than a
+    multiplier: the model's own view of an offence is readable off the sum of
+    its players, so scaling by the implied total on top of that would count a
+    good offence twice and exaggerate the chalk. Only the gap between the two
+    moves anything.
+    <br><br>
+    <b>Two flex slots, one constraint.</b> The roster is
+    ${esc((R.slots || []).join(" / "))} — FLEX takes a runner or a receiver,
+    SFLEX will also take a second quarterback${qbCap
+      ? `, and at most ${esc(String(qbCap))} quarterbacks may be rostered`
+      : ""}. That
+    encoding admits exactly the lineups DraftKings accepts and no others, and
+    it is verified against the site's rules after every solve rather than
+    assumed: at least ${esc(String(R.min_games || 2))} different games, the per-position
+    ceiling, the cap. A lineup that breaks one of those looks perfectly legal
+    right up to the moment the entry is refused.
+    <br><br>
+    <b>There is no injury report and no depth chart here.</b> College football
+    publishes nothing like the NFL's practice report. DraftKings removes the
+    players it knows are out; everyone else is priced as available, including
+    the fourth-string back who will not take a snap. What partly replaces it is
+    the blowout feature — first-stringers sit in the fourth quarter of a
+    forty-point win, which is frequent and learnable — and the market, which
+    prices a game the backups will finish. Use <b>X</b> on anyone you know is
+    not playing.
+    <br><br>
+    <b>How much evidence is under each number, on the row.</b> A pill on a
+    player's name means his projection stands on fewer than four games. In a
+    sport with a transfer portal that is routine: the history is keyed on the
+    athlete, so a transfer keeps his own record and the team features follow
+    him to his new school — but nothing in the model knows his ROLE changed,
+    and early in a season that is the largest error on this page.
+    <br><br>
+    <b>The browser search is near-optimal, not provably optimal.</b> It
+    respects every hard constraint by construction — cap, slots, per-position
+    ceilings, the two-game rule — but it searches rather than proves. The exact
+    integer program runs on the server and its answer is shown above for
+    comparison.${extra}`;
+}
+
 /* ---------------------------------------------------------- taking it out */
 // Two buttons rather than one, because "export to Google Sheets" has two
 // honest answers and neither is an API call. A static page on GitHub Pages
@@ -1436,13 +2060,25 @@ function exportCols() {
     // Blank, not 9. An unposted card is an unknown, and a spreadsheet that
     // reads "9" cannot tell a confirmed nine-hole hitter from a man who may
     // not play at all.
+    : isFootball()
+    // Football's opportunity is the game, so what a sheet needs is the market
+    // and the amount of evidence behind the projection. Blank rather than 0
+    // where no line was found: a spreadsheet that reads 0 cannot tell a team
+    // nobody expects to score from a team nobody posted a line for.
+    ? [["implied_team_total", p => round2(p.itt)],
+       ["game_total",         p => round2(p.gt)],
+       ["spread",             p => round2(p.spr)],
+       ["market_factor",      p => round2(p.mkt)],
+       ["games_of_history",   p => (p.gp == null ? "" : p.gp)],
+       ["last_season",        p => (p.yr == null ? "" : p.yr)],
+       ["dk_ppg",             p => round2(p.ppg)]]
     : [["bat",       p => (p.pos === "P" ? "" : (p.bat == null ? "" : p.bat))],
        ["confirmed", p => (p.pos === "P" ? "" : (p.bat == null ? "no" : "yes"))]];
   // The chance he takes part at all, and - baseball only - the
   // plate-appearance multiplier his batting slot earns. Sorting a sheet by
   // median without the first hides why a cheap name projects well: he may
   // simply be unlikely to appear.
-  const tail = isNHL()
+  const tail = (isNHL() || isFootball())
     ? [["p_play", p => round2(p.pp)]]
     : [["p_play", p => round2(p.pp)], ["order_factor", p => round2(p.of)]];
   return [
@@ -1545,24 +2181,40 @@ $("csv").onclick = () => {
 };
 
 $("run").onclick = build;
+
+// EVERY HANDLER GUARDS ON A LOADED SLATE.
+//
+// `build()` already did; these three did not, and all three call `drawBoard`,
+// which dereferences `SLATE.players`. `boot()` can finish with SLATE still
+// null - no published slates, a manifest with an empty list, a failed fetch -
+// and leave every control live, so the first click threw
+// "Cannot read properties of null" into the console and did nothing visible.
+const whenLoaded = fn => () => { if (SLATE) fn(); };
+
 // Confirmed starters survive this deliberately. A lock is an opinion and a
 // fade is an opinion; "Kochetkov is starting" is a fact you went and looked
 // up, and clearing the board should not make you look it up again.
-$("reset").onclick = () => {
+$("reset").onclick = whenLoaded(() => {
   LOCK.clear(); FADE.clear();
   refreshBlock();
   drawBoard();
-};
-$("hidedoubtful").onchange = () => {
+});
+$("hidedoubtful").onchange = whenLoaded(() => {
   refreshBlock();
   drawBoard();
   if (LAST) { STALE = true; render(LAST.chosen, LAST.meta); }
-};
-$("goaliemode").onchange = () => {
+});
+$("goaliemode").onchange = whenLoaded(() => {
   refreshBlock();
   drawBoard();
   if (LAST) { STALE = true; render(LAST.chosen, LAST.meta); }
-};
+});
+// The stack board is computed for the stack size on screen, and it lived only
+// inside `loadSlate` - so changing Stack size left a board describing a
+// different bet than the one the next build would make, with no sign that it
+// was stale.
+$("stack").onchange = whenLoaded(drawStackBoard);
+$("bringback").onchange = whenLoaded(drawStackBoard);
 boot();
 </script>
 </body>

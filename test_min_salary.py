@@ -86,9 +86,23 @@ def the_floor_is_whole_dollars():
 
 # ------------------------------------------------- is the floor even possible
 def the_bound_is_the_priciest_legal_roster():
-    """Ten slots, so the ten most expensive salaries and nothing else."""
+    """Ten slots, so the ten most expensive salaries - CLAMPED AT THE CAP.
+
+    This asserted 60,000 against a 50,000 cap, which is the sum of the ten
+    priciest salaries and is NOT a bound on what a LEGAL lineup can spend,
+    because a lineup over the cap is not legal. The unclamped number leaked
+    into the one place this function is read aloud: when nothing could reach
+    the salary floor, the log divided the floor by it and printed "lower
+    min_salary_pct below 145% to make it bind" - advice that cannot be
+    followed, at the moment somebody most needs advice that can.
+
+    The clamp costs the diagnostic nothing, because it only binds on an
+    EXPENSIVE board, where the floor is reachable anyway. The case the
+    diagnostic actually uses is the opposite one, below.
+    """
     sal = [6000] * 10 + [3000] * 20
-    assert reachable_salary(board(sal), CLASSIC) == 60_000
+    assert reachable_salary(board(sal), CLASSIC) == 50_000
+    assert reachable_salary(board([3000] * 30), CLASSIC) == 30_000
 
 
 def a_board_that_cannot_reach_the_cap_says_so():
@@ -102,10 +116,17 @@ def a_board_that_cannot_reach_the_cap_says_so():
 
 
 def the_captain_multiplier_counts_toward_the_bound():
-    """Six slots at $10,000 is $60,000 flat, but the captain is charged 1.5x,
-    so the richest showdown lineup spends $65,000. A bound that missed this
-    would call a reachable floor unreachable."""
-    assert reachable_salary(board([10_000] * 12), SHOWDOWN) == 65_000
+    """The captain is charged 1.5x, and the bound has to know it.
+
+    Six slots at $10,000 is $60,000 flat and $65,000 once the captain is
+    marked up - both above the $50,000 cap, so the clamped answer is the cap.
+    What the multiplier must never do is go UNCOUNTED, because that would make
+    the bound too small and call a reachable floor unreachable. Checked on a
+    board cheap enough that the clamp does not hide it: six at $5,000 is
+    $30,000 flat, $32,500 with the captain marked up.
+    """
+    assert reachable_salary(board([10_000] * 12), SHOWDOWN) == 50_000
+    assert reachable_salary(board([5_000] * 12), SHOWDOWN) == 32_500
 
 
 def a_bound_is_an_upper_bound_not_a_promise():

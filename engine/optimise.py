@@ -57,12 +57,23 @@ import pulp
 
 from . import ownership as OWN
 from . import simulate as S
+from .spec import FLEX_SLOTS as SLOT_NAMES
 
 log = logging.getLogger(__name__)
 
 
 class Infeasible(RuntimeError):
     """No legal lineup exists under these constraints."""
+
+
+# Imported, not written out again here. This module's own hand-written version
+# of it matched only the literal string "FLEX", which made hockey's UTIL a
+# required position no player holds and left the integer program INFEASIBLE on
+# every NHL slate ever published - silently, because the publisher logs a
+# solver failure per objective and carries on. Every NHL payload shipped with
+# an empty `server_lineups` behind a page that rendered perfectly. Reproduced
+# against a six-team board before this changed; the same board solves after it.
+FLEX_SLOTS = SLOT_NAMES
 
 
 # ---------------------------------------------------------- the salary floor
@@ -111,14 +122,20 @@ def reachable_salary(pool: pd.DataFrame, roster: dict) -> float:
         # for more than his listed salary.
         mult = float(roster.get("captain_multiplier", 1.5))
         total += (mult - 1.0) * float(top.iloc[0])
-    return total
+    # CLAMPED TO THE CAP, because no legal lineup can spend more than the cap
+    # however expensive the board is. Unclamped, this reported a reachable
+    # ceiling ABOVE the cap on a pricey pool, and the advice built from it came
+    # out as "lower min_salary_pct below 145% to make it bind" - a sentence
+    # that cannot be acted on, printed at the moment somebody most needs a
+    # usable one.
+    return min(total, float(roster["salary_cap"]))
 
 
 # --------------------------------------------------------------- the solver
 def _classic_problem(pool: pd.DataFrame, roster: dict,
                      banned: list[list[int]], max_overlap: int,
                      objective: np.ndarray, min_salary: float = 0.0):
-    """A classic roster: fixed position counts plus one flex."""
+    """A classic roster: fixed position counts plus however many flex slots."""
     n = len(pool)
     prob = pulp.LpProblem("lineup", pulp.LpMaximize)
     x = [pulp.LpVariable(f"x{i}", cat="Binary") for i in range(n)]
@@ -128,9 +145,9 @@ def _classic_problem(pool: pd.DataFrame, roster: dict,
     flex_pos = set(roster["flex_positions"])
     fixed = {}
     for s in slots:
-        if s != "FLEX":
+        if s not in FLEX_SLOTS:
             fixed[s] = fixed.get(s, 0) + 1
-    n_flex = slots.count("FLEX")
+    n_flex = sum(1 for s in slots if s in FLEX_SLOTS)
 
     prob += pulp.lpSum(objective[i] * x[i] for i in range(n))
     prob += pulp.lpSum(x) == size
@@ -148,11 +165,58 @@ def _classic_problem(pool: pd.DataFrame, roster: dict,
         prob += pulp.lpSum(x[i] for i in idx) >= lo
         prob += pulp.lpSum(x[i] for i in idx) <= hi
 
+    # A PER-POSITION MAXIMUM, which "the required count plus every flex slot"
+    # above cannot express.
+    #
+    # College football is the case that needs it. DraftKings' CFB roster is
+    # QB / RB / RB / WR / WR / WR / FLEX / SFLEX, where FLEX takes a runner or
+    # a receiver and SFLEX will also take a second quarterback. Both are flex
+    # slots, so the arithmetic above gives quarterbacks a ceiling of three -
+    # one required plus both flexes - and DraftKings allows two.
+    #
+    # With a maximum of two on QB the encoding becomes EXACT rather than
+    # merely close: every composition it admits maps onto a legal assignment
+    # of the eight named slots, and the single composition it forbids - three
+    # quarterbacks - is the only illegal one. That is worth more than a
+    # per-slot eligibility model, which would need the solver to know which
+    # flex is which and would buy nothing.
+    pos_cap = {str(k): int(v)
+               for k, v in (roster.get("max_position") or {}).items()}
+    for p, cap_p in pos_cap.items():
+        need = int(fixed.get(p, 0))
+        if cap_p < need:
+            raise Infeasible(
+                f"max_position caps {p} at {cap_p} but the roster requires "
+                f"{need} of them, so no lineup can satisfy both")
+        idx = [i for i in range(n) if pos[i] == p]
+        prob += pulp.lpSum(x[i] for i in idx) <= cap_p
+
     # Nothing outside the eligible positions may be rostered at all.
     allowed = set(fixed) | flex_pos
     for i in range(n):
         if pos[i] not in allowed:
             prob += x[i] == 0
+
+    # At most this many players from any one GAME - which is how a site's
+    # "players from at least two games" rule becomes something a solver can
+    # hold. On an eight-man football roster, "at most seven from one game" and
+    # "at least two games" are the same sentence.
+    #
+    # A maximum per TEAM cannot say it. Two teams playing each other are still
+    # one game, so a lineup split four and four across a single fixture passes
+    # every per-team cap ever written and is refused at the window.
+    per_game = roster.get("max_per_game")
+    if per_game:
+        if "game" not in pool.columns:
+            log.error("max_per_game is %s but this pool carries no `game` "
+                      "column, so the rule CANNOT be enforced here. Whatever "
+                      "checks entries afterwards is now the only thing "
+                      "standing between you and a refused lineup.", per_game)
+        else:
+            games = pool["game"].astype(str)
+            for g in games.unique():
+                idx = [i for i in range(n) if games.iloc[i] == g]
+                prob += pulp.lpSum(x[i] for i in idx) <= int(per_game)
 
     if roster.get("max_per_team"):
         for t in pool["team"].astype(str).unique():
@@ -269,20 +333,51 @@ def candidates(pool: pd.DataFrame, roster: dict, draws: np.ndarray,
                                   min_salary=floor)
         except Infeasible:
             if k == 0 and floor > 0:
-                # Nothing at all could be built under the floor. Drop it and
-                # keep the slate: a board without the floor is worth immensely
-                # more than no board, and this is exactly the shape of failure
-                # that once threw away fourteen good slates.
+                # THE FLOOR IS ONLY BLAMED ONCE IT HAS BEEN RULED OUT.
+                #
+                # This used to attribute every first-solve failure to the
+                # salary floor, drop the floor, and print a confident sentence
+                # about it - including on boards that were infeasible for
+                # completely different reasons. One real example: the cheapest
+                # eight players cost $51,500 against a $50,000 cap, and the log
+                # said "no legal lineup reaches the $49,500 floor ... lower
+                # min_salary_pct below 145%". Nothing in that is true, and it
+                # sends you to the one setting that cannot help.
+                #
+                # So the same solve is retried WITHOUT the floor first. If it
+                # still fails, the floor was never the problem and the error
+                # says what it actually knows.
+                try:
+                    rows, cap = solve_one(pool, roster, obj, banned,
+                                          max_overlap, min_salary=0.0)
+                except Infeasible:
+                    log.error(
+                        "no legal lineup exists on this board even with the "
+                        "salary floor removed, so the floor is NOT the "
+                        "problem. The cap, the slot counts, a per-position "
+                        "ceiling or a per-game ceiling is unsatisfiable by "
+                        "this pool - cheapest %d players cost $%s against a "
+                        "$%s cap.", len(roster["slots"]),
+                        f"{int(pd.to_numeric(pool['salary'], errors='coerce').nsmallest(len(roster['slots'])).sum()):,}",
+                        f"{int(roster['salary_cap']):,}")
+                    break
+                # The floor really was what blocked it. Drop it and keep the
+                # slate: a board without the floor is worth immensely more
+                # than no board, and this is exactly the shape of failure that
+                # once threw away fourteen good slates.
                 log.error(
                     "NO legal lineup reaches the $%s salary floor, so the "
                     "floor is being IGNORED for this board. The richest "
                     "lineup the position and team rules permit spends about "
-                    "$%s. Lower min_salary_pct below %.0f%% to make it bind.",
+                    "$%s. Lower min_salary_pct to about %.0f%% to make it "
+                    "bind.",
                     f"{int(floor):,}",
                     f"{int(reachable_salary(pool, roster)):,}",
                     100 * reachable_salary(pool, roster)
                     / float(roster["salary_cap"]))
                 floor = 0.0
+                banned.append(rows)
+                out.append({"rows": rows, "captain": cap})
                 continue
             break
         banned.append(rows)

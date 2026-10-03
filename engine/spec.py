@@ -30,6 +30,24 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
+# WHAT COUNTS AS A FLEX SLOT IS A NAME, AND THE NAME IS NOT THE SAME IN EVERY
+# SPORT. Football calls it FLEX and SFLEX; hockey and baseball call it UTIL.
+#
+# It lives here, in the module with no imports, because two modules had each
+# written their own list out by hand and both lists were wrong - in different
+# ways, for different sports, silently. `optimise` matched only the literal
+# "FLEX", so hockey's UTIL became a required position no player holds, the
+# constraint read 0 >= 1, and the integer program was INFEASIBLE on every NHL
+# slate ever published. `ownership` listed FLEX and UTIL but not SFLEX, so
+# college football's superflex became a phantom position and the real flex
+# demand was understated by half.
+#
+# Neither crashed. One shipped empty server lineups behind a page that rendered
+# perfectly; the other would have shipped ownership numbers quietly wrong in
+# every row. So: one definition, imported by both, and a copy in
+# docs/index.html that has to match it.
+FLEX_SLOTS = frozenset({"FLEX", "SFLEX", "UTIL", "UTIL/FLEX", "G/UTIL"})
+
 
 @dataclass(frozen=True)
 class SportSpec:

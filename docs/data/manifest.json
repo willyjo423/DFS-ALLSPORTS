@@ -1,6 +1,38 @@
 {
- "updated_at": "2026-10-02T22:09:40+00:00",
+ "updated_at": "2026-10-03T15:34:21+00:00",
  "slates": [
+  {
+   "sport": "cfb",
+   "site": "dk",
+   "kind": "classic",
+   "label": "12 games \u00b7 24 teams \u00b7 CFB $225K Saturday Kickoff [$50K to 1st]",
+   "file": "data/cfb_dk_classic_154161.json",
+   "locks": null
+  },
+  {
+   "sport": "cfb",
+   "site": "dk",
+   "kind": "classic",
+   "label": "5 games \u00b7 10 teams \u00b7 CFB $40K Fumblerooski [$10K to 1st]  (Afternoon)",
+   "file": "data/cfb_dk_classic_154367.json",
+   "locks": null
+  },
+  {
+   "sport": "cfb",
+   "site": "dk",
+   "kind": "classic",
+   "label": "7 games \u00b7 14 teams \u00b7 CFB $100K Saturday Night Special [$25K to 1st] (Night)",
+   "file": "data/cfb_dk_classic_154369.json",
+   "locks": null
+  },
+  {
+   "sport": "cfb",
+   "site": "dk",
+   "kind": "classic",
+   "label": "4 games \u00b7 8 teams \u00b7 CFB $40K Late Night Snack [$10K to 1st]  (Late Night)",
+   "file": "data/cfb_dk_classic_154372.json",
+   "locks": null
+  },
   {
    "sport": "mlb",
    "site": "dk",

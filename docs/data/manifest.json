@@ -1,12 +1,37 @@
 {
- "updated_at": "2026-10-04T02:47:04+00:00",
+ "updated_at": "2026-10-04T02:52:20+00:00",
  "slates": [
+  {
+   "sport": "cfb",
+   "site": "dk",
+   "kind": "classic",
+   "label": "7 games \u00b7 14 teams \u00b7 CFB $100K Saturday Night Special [$25K to 1st] (Night)",
+   "file": "data/cfb_dk_classic_154369.json",
+   "locks": null
+  },
+  {
+   "sport": "cfb",
+   "site": "dk",
+   "kind": "classic",
+   "label": "4 games \u00b7 8 teams \u00b7 CFB $50K Pocket Cup Qualifier #69 (Late Night)",
+   "file": "data/cfb_dk_classic_154372.json",
+   "locks": null
+  },
   {
    "sport": "mlb",
    "site": "dk",
    "kind": "classic",
    "label": "2 games \u00b7 locks 4:00pm et \u00b7 MLB $30K Two-Way Player",
-   "file": "data/mlb_dk_classic_154538.json"
+   "file": "data/mlb_dk_classic_154538.json",
+   "locks": "2026-10-04T20:00:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "8 teams \u00b7 2:00pm",
+   "file": "data/nhl_dk_classic_154342.json",
+   "locks": "2026-10-04T18:00:00+00:00"
   }
  ]
 }

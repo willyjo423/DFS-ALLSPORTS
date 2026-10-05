@@ -1751,6 +1751,13 @@ function render(chosen, meta) {
         <span>leverage <b class="${c.lev > 0.03 ? "lev-up"
           : c.lev < -0.03 ? "lev-dn" : ""}">${c.lev > 0 ? "+" : ""}${
           fmt(c.lev, 2)}</b></span>
+        ${showGap ? `<span title="The average Gap across this lineup, over the
+          players who have one - how much less of their team's shooting they
+          took last game than they usually do. Positive means somebody else
+          took it. Uncoloured on purpose: unlike leverage, nobody has measured
+          whether this predicts anything.">gap <b>${has(c.gap)
+            ? (c.gap > 0 ? "+" : "") + (100 * c.gap).toFixed(1) + "%"
+            : "—"}</b></span>` : ""}
         ${meta.objective === "cash" ? "" :
           `<span>ranked on <b>${fmt(c.edge * 100, 3)}</b></span>`}
       </div></div>`;

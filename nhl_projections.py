@@ -421,7 +421,8 @@ def build(day: str, sims: int = 20_000, base: str = BASE,
         # rather than something to shout about. Nothing downstream computes
         # with these - they are not fed into the projection, deliberately, for
         # the reason written on the page.
-        for c in ("last_sog", "last_share", "share_norm", "mate_lift"):
+        for c in ("last_sog", "last_share", "share_norm", "mate_lift",
+                  "last_team_sog", "team_sog_norm", "squeezed"):
             out[c] = (pd.to_numeric(df[c], errors="coerce").to_numpy()
                       if c in df.columns else np.nan)
         out["last_played"] = (df["last_played"].astype(str)

@@ -419,6 +419,15 @@ def slate_players(pool: pd.DataFrame, quantiles: list[float],
             "lsh": num(r.get("last_share"), 4),
             "ush": num(r.get("share_norm"), 4),
             "mate": num(r.get("mate_lift"), 2),
+            # His team's own night against a normal one for them. A share is a
+            # ratio, so one built from a fourteen-shot team night is far
+            # noisier than one built from thirty-one - without this a gap
+            # cannot be told apart from arithmetic.
+            "pie": num(r.get("last_team_sog"), 1),
+            "pienorm": num(r.get("team_sog_norm"), 1),
+            # Built upstream from model.SQUEEZE, the same four thresholds
+            # linemate_study.py measures. One definition.
+            "sqz": bool(r.get("squeezed", False)),
             "doubtful": bool(r.get("doubtful", False)),
             "status": "clear",
         })

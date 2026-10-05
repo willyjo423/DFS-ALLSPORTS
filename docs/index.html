@@ -172,11 +172,13 @@ footer{border-top:1px solid var(--line);padding-top:16px;font-size:12.5px;
         <option value="confirmed">Confirmed starters only</option>
       </select></div>
     <div class="ctl"><label for="entryorder"
-      title="What order to LIST the entries in. It does not change which lineups were chosen or how they were scored — that is always win probability, divided by expected duplicates in a tournament. Chalkiest first puts the most negative mean leverage at the top: the lineups built from players the field will own more than the model rates them.">Order entries by</label>
+      title="What order to LIST the entries in. It does not change which lineups were chosen or how they were scored — that is always win probability, divided by expected duplicates in a tournament. Chalkiest first puts the most negative mean leverage at the top: the lineups built from players the field will own more than the model rates them. Most squeezed first ranks by the average Gap across the lineup — the men who took less of their team&apos;s shooting last game than they usually do — and appears only on a board that carries it.">Order entries by</label>
       <select id="entryorder">
         <option value="best" selected>Best first (win probability)</option>
         <option value="chalk">Chalkiest first (most negative leverage)</option>
         <option value="contrarian">Most contrarian first</option>
+        <option value="squeezed" id="opt-squeezed" hidden>Most squeezed first (biggest gap)</option>
+        <option value="hogged" id="opt-hogged" hidden>Least squeezed first</option>
       </select></div>
     <div class="ctl"><label for="sims">Simulations</label>
       <select id="sims">
@@ -468,6 +470,7 @@ async function loadSlate(file) {
   // gate, which has no meaning outside hockey.
   $("ctl-goalie").hidden = !isNHL();
   $("ctl-doubtful").hidden = !anyDoubtful();
+  fitGapOrdering();
   $("ctl-bringback").hidden = !isFootball();
   // "No game in 30 days" is hockey's phrasing for the same idea, and it is
   // wrong on a college board: there is no 30-day window in a sport that plays
@@ -1561,6 +1564,18 @@ function build() {
         // The lineup's own leverage: the mean over its players, so a nine-man
         // roster and a six-man showdown are on the same scale.
         lev: pick.reduce((a, p) => a + levOf(players[p.i]), 0) / pick.length,
+        // AVERAGED OVER THE PLAYERS WHO HAVE ONE, not over the roster.
+        // Dividing by nine when two men carry a gap would make every lineup
+        // look flat and would rank a lineup with one squeezed skater below a
+        // lineup with two mildly squeezed ones for arithmetic reasons rather
+        // than for anything about hockey. Null when nobody has it, so the
+        // sort can tell "no gap" from "a gap of zero" - which are completely
+        // different statements and sort to opposite ends.
+        gap: (() => {
+          const v = pick.map(p => players[p.i].gap)
+                        .filter(x => x !== null && x !== undefined && x === x);
+          return v.length ? v.reduce((a, b) => a + b, 0) / v.length : null;
+        })(),
         salary: pick.reduce((a, p) => a + p.cost, 0),
         own: pick.reduce((a, p) => a + players[p.i].own, 0),
         stack: biggestStack(players, pick),
@@ -1631,6 +1646,16 @@ function render(chosen, meta) {
     shown.sort((a, b) => a.lev - b.lev);
   } else if (order === "contrarian") {
     shown.sort((a, b) => b.lev - a.lev);
+  } else if (order === "squeezed" || order === "hogged") {
+    // A lineup with no gap at all sinks in BOTH directions. It is not the
+    // most squeezed and it is not the least; it is unknown, and floating it
+    // to either end would put it exactly where somebody is looking.
+    const dir = order === "squeezed" ? -1 : 1;
+    shown.sort((a, b) => {
+      const am = !has(a.gap), bm = !has(b.gap);
+      if (am || bm) return (am && bm) ? 0 : (am ? 1 : -1);
+      return (a.gap - b.gap) * dir;
+    });
   }
 
   $("tiles").innerHTML = [
@@ -1789,6 +1814,24 @@ const has = v => v !== null && v !== undefined && v === v;
 // takes, in percentage points. Positive means somebody else took it.
 // Materialised onto the row because the table sorts on the stored value, and
 // a column you cannot sort by is the one thing this column is for.
+// The two gap orderings exist only on a board that carries last night's
+// shares. Hidden AND disabled: hiding an option still leaves it selectable
+// from a keyboard in some browsers, and a selected option nobody can see is
+// exactly how a sort appears to do nothing at all. If one was in force when
+// the slate changed, the order falls back to the ranking it was chosen by
+// rather than staying on an ordering that can no longer order anything.
+function fitGapOrdering() {
+  const gappy = anyHas(p => has(p.gap));
+  for (const id of ["opt-squeezed", "opt-hogged"]) {
+    $(id).hidden = !gappy;
+    $(id).disabled = !gappy;
+  }
+  if (!gappy && ["squeezed", "hogged"].includes($("entryorder").value)) {
+    $("entryorder").value = "best";
+  }
+  return gappy;
+}
+
 function deriveShare(players) {
   for (const p of players || []) {
     p.gap = (has(p.lsh) && has(p.ush)) ? Number(p.ush) - Number(p.lsh) : null;

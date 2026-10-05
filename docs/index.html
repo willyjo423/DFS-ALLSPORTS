@@ -1665,6 +1665,11 @@ function render(chosen, meta) {
 
   LAST = { chosen, meta };
 
+  // ONE FLAG PER REPAINT, not per row - a column that appears on some cards
+  // and not others is not a column. Only a hockey board whose published file
+  // carried last night's shares has anything to put here.
+  const showGap = SLATE.players.some(p => has(p.gap));
+
   $("lineups").innerHTML = shown.map((c, n) => {
     const rows = c.pick.slice().sort((a, b) => (b.cpt - a.cpt) ||
       (players[b.i].med - players[a.i].med)).map(p => {
@@ -1682,6 +1687,9 @@ function render(chosen, meta) {
         <td>${fmt(pl.med)}</td><td>${fmt(pl.own * 100)}%</td>
         <td class="${lcls}">${Number.isFinite(lev)
           ? (lev > 0 ? "+" : "") + lev.toFixed(2) : "—"}</td>
+        ${showGap ? `<td>${has(pl.gap)
+          ? (pl.gap > 0 ? "+" : "") + (100 * pl.gap).toFixed(0) + "%"
+          : "—"}</td>` : ""}
         <td class="l">
           <button class="tog ${LOCK.has(p.i) ? "on" : ""}" data-lock="${p.i}">L</button>
           <button class="tog ${FADE.has(p.i) ? "off" : ""}" data-fade="${p.i}">X</button>
@@ -1696,6 +1704,11 @@ function render(chosen, meta) {
         <thead><tr>
           <th class="l">Player</th><th class="l">Pos</th><th class="l">Team</th>
           <th>Salary</th><th>Median</th><th>Own%</th><th>Lev</th>
+          ${showGap ? `<th title="Usual% minus Last%, in percentage points: how
+            much less of his team's shooting he took in his last game than he
+            normally does. Positive means somebody else took it. Deliberately
+            uncoloured - unlike leverage, nobody has measured whether this
+            predicts anything.">Gap</th>` : ""}
           <th class="l">Lock</th>
         </tr></thead>
         <tbody>${rows}</tbody></table></div>

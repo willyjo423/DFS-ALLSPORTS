@@ -224,11 +224,7 @@ footer{border-top:1px solid var(--line);padding-top:16px;font-size:12.5px;
     </div>
     <div class="panel scroll" style="margin-top:12px">
       <table id="board">
-        <thead><tr>
-          <th class="l">Player</th><th class="l">Pos</th><th class="l">Team</th>
-          <th id="th-op">Bat</th><th>Salary</th><th>Median</th><th>Ceiling</th>
-          <th>Per $1k</th><th>Own%</th><th>Leverage</th><th class="l">Lock</th>
-        </tr></thead>
+        <thead></thead>
         <tbody></tbody>
       </table>
     </div>
@@ -462,6 +458,9 @@ async function loadSlate(file) {
     return;
   }
   SLATE = loaded;
+  // Derived once per slate, before anything draws, so sorting on Gap sorts on
+  // a real number rather than on undefined.
+  deriveShare(SLATE.players);
   LOCK.clear(); FADE.clear(); START.clear();
   LAST = null; STALE = false; $("stale").hidden = true;
   // The board is sport-aware in exactly two places: the opportunity column,
@@ -481,7 +480,8 @@ async function loadSlate(file) {
   // time in hockey, and in football it is the GAME - the implied team total,
   // because a receiver's ceiling is bounded by how many points his side is
   // expected to score.
-  $("th-op").textContent = isNHL() ? "TOI" : isFootball() ? "Team total" : "Bat";
+  // The opportunity column's heading is now declared beside its sort key and
+  // its cell, in boardColumns(), so the three cannot drift apart.
   $("lbl-stack").textContent = isFootball() ? "QB + n catchers" : "Stack size";
   // A DEFAULT THAT FITS THE ROSTER IN FRONT OF IT. The markup's 4 is a
   // baseball number: on an eight-man football roster a quarterback plus four
@@ -495,7 +495,12 @@ async function loadSlate(file) {
   $("stack").onfocus = () => { $("stack").dataset.touched = "1"; };
   refreshBlock();
   // A sort key from the previous board may not exist on this one.
-  if (SORT.key === "bat" || SORT.key === "toi") SORT = { key: "med", dir: -1 };
+  // Every key that only exists on SOME sports. Sorting on a column the new
+  // board does not have looks like a bug whichever way it falls.
+  if (["bat", "toi", "itt", "gp30", "gp",
+       "lsog", "lsh", "ush", "gap", "mate"].includes(SORT.key)) {
+    SORT = { key: "med", dir: -1 };
+  }
   $("field").value = SLATE.field_size || 100000;
   $("overlap").value = Math.max(1, SLATE.roster.slots.length - 3);
   // Start where the server's own build started, so the exact lineup shipped
@@ -1760,74 +1765,212 @@ function render(chosen, meta) {
   }
 }
 
+/* ----------------------------------------------- the player board's columns */
+// Declared in one place so a heading can never end up over the wrong number.
+// A column with no `key` cannot be sorted on; `cell` returns MARKUP and is
+// responsible for its own escaping.
+const anyHas = f => !!(SLATE && SLATE.players.some(f));
+const has = v => v !== null && v !== undefined && v === v;
+
+// How much of his team's shooting he took last night against what he usually
+// takes, in percentage points. Positive means somebody else took it.
+// Materialised onto the row because the table sorts on the stored value, and
+// a column you cannot sort by is the one thing this column is for.
+function deriveShare(players) {
+  for (const p of players || []) {
+    p.gap = (has(p.lsh) && has(p.ush)) ? Number(p.ush) - Number(p.lsh) : null;
+  }
+}
+
+function boardColumns(nhl, fb) {
+  const pct1 = v => has(v) ? (100 * Number(v)).toFixed(0) + "%" : "—";
+  const cols = [
+    { key: "name", label: "Player", cls: "l",
+      cell: (p, i) => esc(p.name) + boardPills(p, i, nhl, fb) },
+    { key: "pos", label: "Pos", cls: "l", cell: p => esc(p.pos) },
+    { key: "team", label: "Team", cls: "l", cell: p => esc(p.team) },
+  ];
+
+  // The opportunity number, whose name and whose key change together.
+  if (nhl) {
+    cols.push({ key: "toi", label: "TOI",
+      title: "Projected ice time, which is hockey's opportunity number.",
+      cell: p => isGoalie(p) ? "—" : fmt(p.toi, 1) });
+  } else if (fb) {
+    cols.push({ key: "itt", label: "Team total",
+      title: "The market's implied points for his team. An em dash means no "
+           + "line was found - not a team expected to score nothing.",
+      cell: p => has(p.itt) ? fmt(p.itt, 1) : "—" });
+  } else {
+    cols.push({ key: "bat", label: "Bat",
+      title: "Confirmed batting order. A question mark means the card is not "
+           + "up yet, which is not the same as batting ninth.",
+      cell: p => p.pos === "P" ? "—" : (p.bat ? p.bat : "?") });
+  }
+
+  cols.push(
+    { key: "salary", label: "Salary", cell: p => money(p.salary) },
+    { key: "med", label: "Median", cell: p => fmt(p.med) },
+    { key: "ceil", label: "Ceiling", cell: p => fmt(p.ceil) },
+    { key: null, label: "Per $1k",
+      cell: p => fmt(p.salary ? p.med / (p.salary / 1000) : 0, 2) },
+    { key: "own", label: "Own%", cell: p => fmt(p.own * 100) + "%" },
+    { key: "lev", label: "Leverage", cell: p => fmt(p.lev, 2) },
+  );
+
+  // AVAILABILITY, AS A NUMBER YOU CAN SORT ON.
+  //
+  // The build already marks a man who has not dressed, and the row already
+  // says so in words - but a pill cannot be sorted, and "show me everyone who
+  // has not played" is the whole question. Shipped only where the sport
+  // actually carries it, because an empty column is worse than none.
+  //
+  // Thirty days is about twelve NHL games, twenty-six baseball ones and four
+  // of college football, so the NUMBER is not comparable across sports and is
+  // not meant to be. What is comparable, and what this is for, is the ZERO.
+  if (!fb && anyHas(p => has(p.gp30))) {
+    cols.push({ key: "gp30", label: "GP30",
+      title: "Games in the last thirty days. Sort ascending to bring everyone "
+           + "who has not been dressing to the top - the injured, the healthy "
+           + "scratch, the man sent down. Thirty days is a different number of "
+           + "games in every sport, so compare it within a slate, not across "
+           + "them.",
+      cell: p => has(p.gp30) ? String(p.gp30) : "—" });
+  }
+  if (fb && anyHas(p => has(p.gp))) {
+    cols.push({ key: "gp", label: "Games",
+      title: "How many games of history the projection is standing on. "
+           + "College football has no injury report, so this is the nearest "
+           + "honest substitute: a number built on two games is a real number "
+           + "with nothing behind it.",
+      cell: p => has(p.gp) ? String(p.gp) : "—" });
+  }
+
+  // LAST NIGHT, hockey only, and only when the published file carries it.
+  // History, not projection - nothing here is fed into a number.
+  if (nhl && anyHas(p => has(p.lsh))) {
+    cols.push(
+      { key: "lsog", label: "Last",
+        title: "Shots on goal in his most recent game.",
+        cell: p => has(p.lsog) ? String(p.lsog) : "—" },
+      { key: "lsh", label: "Last%",
+        title: "The slice of his team's shots that was.",
+        cell: p => pct1(p.lsh) },
+      { key: "ush", label: "Usual%",
+        title: "The slice he normally takes, built from the games BEFORE that "
+             + "one - so the night in question is not inside its own average.",
+        cell: p => pct1(p.ush) },
+      { key: "gap", label: "Gap",
+        title: "Usual% minus Last%, in percentage points. Positive means he "
+             + "took less of his team's shooting than he normally does. Sort "
+             + "it highest-first to find the men whose shooting was taken off "
+             + "them. It is in points rather than as a ratio, so read it "
+             + "beside Usual%.",
+        cell: p => has(p.gap)
+          ? (p.gap > 0 ? "+" : "") + (100 * p.gap).toFixed(0) + "%" : "—" },
+      { key: "mate", label: "Mate",
+        title: "The biggest night anyone else on his team had, against that "
+             + "man's own usual number - so it reads 'somebody else took "
+             + "them' rather than 'his team shot a lot'.",
+        cell: p => has(p.mate) ? Number(p.mate).toFixed(1) + "x" : "—" },
+    );
+  }
+
+  cols.push({ key: null, label: "Lock", cls: "l", cell: (p, i) =>
+    ((nhl && isGoalie(p))
+      ? `<button class="tog ${START.has(i) ? "on" : ""}" data-start="${i}"
+          title="Mark this goalie as a confirmed starter tonight">G</button> `
+      : "")
+    + `<button class="tog ${LOCK.has(i) ? "on" : ""}" data-lock="${i}">L</button>`
+    + `<button class="tog ${FADE.has(i) ? "off" : ""}" data-fade="${i}">X</button>`
+  });
+  return cols;
+}
+
+// The pills that hang off a player's name. Lifted out of the row template so
+// the template can be one line per column.
+function boardPills(p, i, nhl, fb) {
+  let q = "";
+  if (nhl) {
+    if (isGoalie(p)) {
+      q = START.has(i) ? '<span class="pill ok">STARTING</span>'
+                       : '<span class="pill q">NOT CONFIRMED</span>';
+    }
+  } else if (fb) {
+    if (has(p.gp) && p.gp < 4) {
+      q = `<span class="pill q">${esc(String(p.gp))} GAME`
+        + `${p.gp === 1 ? "" : "S"} OF HISTORY`
+        + `${p.yr ? " · " + esc(String(p.yr)) : ""}</span>`;
+    }
+  } else if (p.pos !== "P" && !has(p.bat)) {
+    q = '<span class="pill q">NOT CONFIRMED</span>';
+  }
+  if (isDoubtful(p)) {
+    q += fb
+      ? '<span class="pill q">NO GAMES THIS SEASON</span>'
+      : `<span class="pill q">NO GAME IN 30 DAYS${
+          p.last ? " · last " + esc(p.last) : ""}</span>`;
+  }
+  return q;
+}
+
 function drawBoard() {
   const tb = document.querySelector("#board tbody");
   const rows = SLATE.players.map((p, i) => ({ p, i }));
   const k = SORT.key;
+  const text = k === "name" || k === "pos" || k === "team";
+  // A MISSING VALUE IS NOT A SMALL ONE, AND NOT A LARGE ONE EITHER.
+  // `Number(undefined)` is NaN and every comparison against NaN is false, so
+  // the comparator returned 0 and left blanks exactly where they happened to
+  // be - scattered through a sort whose entire purpose is to bring one end of
+  // a column together. Sorting ascending on GP30 to find who has not played
+  // would have produced a list with the unknowns sprinkled into it.
+  // TESTED ON THE RAW VALUE, BEFORE THE CONVERSION, because `Number(null)` is
+  // 0 and `Number("")` is 0 - not NaN. Checking after converting therefore
+  // never fires, and every player with no value sorts as though he had zero:
+  // ascending on GP30 to find who has not been dressing returned the men who
+  // genuinely played none INTERLEAVED with the ones nobody knows about.
+  const missing = v => v === null || v === undefined || v === ""
+    || (!text && !Number.isFinite(Number(v)));
   rows.sort((a, b) => {
-    const av = k === "name" || k === "pos" || k === "team" ? a.p[k] : Number(a.p[k]);
-    const bv = k === "name" || k === "pos" || k === "team" ? b.p[k] : Number(b.p[k]);
+    const am = missing(a.p[k]), bm = missing(b.p[k]);
+    if (am || bm) return (am && bm) ? 0 : (am ? 1 : -1);
+    const av = text ? a.p[k] : Number(a.p[k]);
+    const bv = text ? b.p[k] : Number(b.p[k]);
     return (av < bv ? -1 : av > bv ? 1 : 0) * SORT.dir;
   });
   const nhl = isNHL();
   const fb = isFootball();
+
+  // ONE SPEC DRIVES THE HEADING, THE SORT KEY AND THE CELL.
+  //
+  // These were three parallel lists - a static <thead>, a `keys` array and a
+  // row template - and the comment that used to sit on the keys array records
+  // what that costs: the opportunity column's key said `nhl ? "toi" : "bat"`
+  // while its heading said something else, so a football board sorted on a
+  // field no player carries, silently did nothing, and exported in raw order.
+  // Adding columns to three lists by hand is how that happens again.
+  const cols = boardColumns(nhl, fb);
+
+  const head = $("board").querySelector("thead");
+  head.innerHTML = "<tr>" + cols.map(c =>
+    `<th class="${c.cls || ""}${c.key && SORT.key === c.key ? " on" : ""}"
+       ${c.title ? `title="${esc(c.title)}"` : ""}>${esc(c.label)}</th>`
+  ).join("") + "</tr>";
+  head.onclick = e => {
+    const th = e.target.closest ? e.target.closest("th") : null;
+    if (!th) return;
+    const c = cols[[...th.parentNode.children].indexOf(th)];
+    if (!c || !c.key) return;
+    SORT = { key: c.key, dir: SORT.key === c.key ? -SORT.dir : -1 };
+    drawBoard();
+  };
+
   tb.innerHTML = rows.map(({ p, i }) => {
-    const per = p.salary ? p.med / (p.salary / 1000) : 0;
     const cls = LOCK.has(i) ? "locked"
       : (FADE.has(i) || BLOCK.has(i)) ? "excluded" : "";
-    // What "not confirmed" means depends on the sport. In baseball it is a
-    // blank batting order: not a ninth-place hitter, a hitter whose card is
-    // not posted and who may not play. In hockey it is a goalie nobody has
-    // told this page about. Both are the difference between leverage and a
-    // zero, so both get said on the row.
-    let q = "";
-    if (nhl) {
-      if (isGoalie(p)) {
-        q = START.has(i) ? '<span class="pill ok">STARTING</span>'
-                         : '<span class="pill q">NOT CONFIRMED</span>';
-      }
-    } else if (fb) {
-      // Football's version of an unposted batting order. There is no college
-      // injury report and no depth chart on this feed, so what the page CAN
-      // say is how much evidence is under the number: a projection standing
-      // on fewer than four games is last year's player, and in a sport with a
-      // transfer portal that is routine rather than exceptional.
-      if (p.gp !== undefined && p.gp !== null && p.gp < 4) {
-        q = `<span class="pill q">${esc(String(p.gp))} GAME`
-          + `${p.gp === 1 ? "" : "S"} OF HISTORY`
-          + `${p.yr ? " · " + esc(String(p.yr)) : ""}</span>`;
-      }
-    } else if (p.pos !== "P" && (p.bat === null || p.bat === undefined)) {
-      q = '<span class="pill q">NOT CONFIRMED</span>';
-    }
-    // Said on the row, with the date, so a player kept out of lineups is
-    // explained rather than merely missing.
-    if (isDoubtful(p)) {
-      q += fb
-        ? '<span class="pill q">NO GAMES THIS SEASON</span>'
-        : `<span class="pill q">NO GAME IN 30 DAYS${
-            p.last ? " · last " + esc(p.last) : ""}</span>`;
-    }
-    // Football's opportunity number is the implied team total. Null, not
-    // zero, when no market line was found - and an em dash on screen, because
-    // "0.0 implied" reads as a team nobody expects to score at all.
-    const op = nhl ? (isGoalie(p) ? "—" : fmt(p.toi, 1))
-             : fb ? (p.itt === null || p.itt === undefined
-                     ? "—" : fmt(p.itt, 1))
-                   : (p.pos === "P" ? "—" : (p.bat ? p.bat : "?"));
-    const g = (nhl && isGoalie(p))
-      ? `<button class="tog ${START.has(i) ? "on" : ""}" data-start="${i}"
-          title="Mark this goalie as a confirmed starter tonight">G</button> `
-      : "";
-    return `<tr class="${cls}">
-      <td class="l">${esc(p.name)}${q}</td><td class="l">${esc(p.pos)}</td>
-      <td class="l">${esc(p.team)}</td><td>${op}</td><td>${money(p.salary)}</td>
-      <td>${fmt(p.med)}</td><td>${fmt(p.ceil)}</td><td>${fmt(per, 2)}</td>
-      <td>${fmt(p.own * 100)}%</td><td>${fmt(p.lev, 2)}</td>
-      <td class="l">${g}
-        <button class="tog ${LOCK.has(i) ? "on" : ""}" data-lock="${i}">L</button>
-        <button class="tog ${FADE.has(i) ? "off" : ""}" data-fade="${i}">X</button>
-      </td></tr>`;
+    return `<tr class="${cls}">` + cols.map(c =>
+      `<td class="${c.cls || ""}">${c.cell(p, i)}</td>`).join("") + "</tr>";
   }).join("");
 
   tb.onclick = e => {
@@ -1866,21 +2009,6 @@ function drawBoard() {
     }
   };
 
-  document.querySelectorAll("#board thead th").forEach((th, n) => {
-    // The opportunity column's sort key has to match the opportunity column.
-    // This read `nhl ? "toi" : "bat"`, so on a football board it sorted on a
-    // field no player has: Number(undefined) is NaN, every comparison is
-    // false, the sort silently did nothing - and it left SORT.key as "bat",
-    // which `boardRows` then used for the CSV, so the export quietly reverted
-    // to raw payload order too.
-    const keys = ["name", "pos", "team", nhl ? "toi" : fb ? "itt" : "bat",
-                  "salary", "med", "ceil", null, "own", "lev"];
-    th.onclick = () => {
-      if (!keys[n]) return;
-      SORT = { key: keys[n], dir: SORT.key === keys[n] ? -SORT.dir : -1 };
-      drawBoard();
-    };
-  });
 }
 
 function showServerLineups() {

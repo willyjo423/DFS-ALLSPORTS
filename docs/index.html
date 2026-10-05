@@ -1931,6 +1931,19 @@ function boardColumns(nhl, fb) {
              + "beside Usual%.",
         cell: p => has(p.gap)
           ? (p.gap > 0 ? "+" : "") + (100 * p.gap).toFixed(0) + "%" : "—" },
+      { key: "pie", label: "Pie",
+        title: "His team's own total that night against a normal one for them. "
+             + "A share is a ratio, so one built from a fourteen-shot team "
+             + "night is far noisier than one built from thirty-one - below "
+             + "about 0.8x a big Gap is arithmetic rather than a squeeze.",
+        cell: p => (has(p.pie) && has(p.pienorm) && Number(p.pienorm) > 0)
+          ? (Number(p.pie) / Number(p.pienorm)).toFixed(2) + "x" : "—" },
+      { key: "sqz", label: "Sqz",
+        title: "All four conditions at once: he normally shoots, his own night "
+             + "was thin, the pie was normal, and somebody else feasted. Built "
+             + "upstream from the same thresholds linemate_study.py measures, "
+             + "so the mark and the evidence for it are about one rule.",
+        cls: "l", cell: p => p.sqz ? "YES" : "" },
       { key: "mate", label: "Mate",
         title: "The biggest night anyone else on his team had, against that "
              + "man's own usual number - so it reads 'somebody else took "

@@ -1,19 +1,61 @@
 {
- "updated_at": "2026-10-07T20:33:13+00:00",
+ "updated_at": "2026-10-07T21:16:23+00:00",
  "slates": [
+  {
+   "sport": "cfb",
+   "site": "dk",
+   "kind": "classic",
+   "label": "7 games \u00b7 14 teams \u00b7 CFB $100K Saturday Night Special [$25K to 1st] (Night)",
+   "file": "data/cfb_dk_classic_154369.json",
+   "locks": null
+  },
+  {
+   "sport": "cfb",
+   "site": "dk",
+   "kind": "classic",
+   "label": "4 games \u00b7 8 teams \u00b7 CFB $50K Pocket Cup Qualifier #69 (Late Night)",
+   "file": "data/cfb_dk_classic_154372.json",
+   "locks": null
+  },
   {
    "sport": "mlb",
    "site": "dk",
    "kind": "classic",
    "label": "2 games \u00b7 locks 6:00pm et \u00b7 MLB $7K Extra Inning",
-   "file": "data/mlb_dk_classic_154807.json"
+   "file": "data/mlb_dk_classic_154807.json",
+   "locks": "2026-10-07T22:00:00+00:00"
   },
   {
    "sport": "mlb",
    "site": "dk",
    "kind": "classic",
    "label": "2 games \u00b7 locks 8:00pm et \u00b7 MLB $50K Relay Throw",
-   "file": "data/mlb_dk_classic_154809.json"
+   "file": "data/mlb_dk_classic_154809.json",
+   "locks": "2026-10-08T00:00:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "6 teams \u00b7 7:30pm",
+   "file": "data/nhl_dk_classic_154690.json",
+   "locks": "2026-10-07T23:30:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "2 teams \u00b7 7:30pm \u00b7 (COL @ WPG)",
+   "file": "data/nhl_dk_classic_154693.json",
+   "locks": "2026-10-07T23:30:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "2 teams \u00b7 10:00pm \u00b7 (EDM @ ANA)",
+   "file": "data/nhl_dk_classic_154694.json",
+   "locks": "2026-10-08T02:00:00+00:00"
   }
  ]
 }

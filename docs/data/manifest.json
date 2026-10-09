@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-09T20:51:22+00:00",
+ "updated_at": "2026-10-09T21:56:35+00:00",
  "slates": [
   {
    "sport": "cfb",
@@ -13,7 +13,7 @@
    "sport": "cfb",
    "site": "dk",
    "kind": "classic",
-   "label": "5 games \u00b7 10 teams \u00b7 CFB $50K Pocket Cup mini-MAX Qualifier #73 [150 Entry Max]",
+   "label": "5 games \u00b7 10 teams \u00b7 CFB $5K Run-Pass Option [$1K to 1st]",
    "file": "data/cfb_dk_classic_154672.json",
    "locks": null
   },

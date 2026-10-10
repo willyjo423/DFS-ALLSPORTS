@@ -1,69 +1,12 @@
 {
- "updated_at": "2026-10-09T21:56:35+00:00",
+ "updated_at": "2026-10-10T00:31:16+00:00",
  "slates": [
-  {
-   "sport": "cfb",
-   "site": "dk",
-   "kind": "classic",
-   "label": "12 games \u00b7 24 teams \u00b7 CFB $300K Mid-Season Main Event [$100K to 1st]",
-   "file": "data/cfb_dk_classic_154582.json",
-   "locks": null
-  },
-  {
-   "sport": "cfb",
-   "site": "dk",
-   "kind": "classic",
-   "label": "5 games \u00b7 10 teams \u00b7 CFB $5K Run-Pass Option [$1K to 1st]",
-   "file": "data/cfb_dk_classic_154672.json",
-   "locks": null
-  },
-  {
-   "sport": "cfb",
-   "site": "dk",
-   "kind": "classic",
-   "label": "6 games \u00b7 12 teams \u00b7 CFB $50K Pocket Cup Qualifier #78 (Afternoon)",
-   "file": "data/cfb_dk_classic_154795.json",
-   "locks": null
-  },
-  {
-   "sport": "cfb",
-   "site": "dk",
-   "kind": "classic",
-   "label": "7 games \u00b7 14 teams \u00b7 CFB $50K Pocket Cup mini-MAX Qualifier #81 [150 Entry Max] (Night)",
-   "file": "data/cfb_dk_classic_154797.json",
-   "locks": null
-  },
   {
    "sport": "mlb",
    "site": "dk",
    "kind": "classic",
    "label": "2 games \u00b7 locks 8:00pm et \u00b7 MLB $3K Extra Inning",
-   "file": "data/mlb_dk_classic_154908.json",
-   "locks": "2026-10-11T00:00:00+00:00"
-  },
-  {
-   "sport": "nhl",
-   "site": "dk",
-   "kind": "classic",
-   "label": "8 teams \u00b7 7:00pm",
-   "file": "data/nhl_dk_classic_154704.json",
-   "locks": "2026-10-09T23:00:00+00:00"
-  },
-  {
-   "sport": "nhl",
-   "site": "dk",
-   "kind": "classic",
-   "label": "2 teams \u00b7 7:00pm \u00b7 (NYR @ WSH)",
-   "file": "data/nhl_dk_classic_154708.json",
-   "locks": "2026-10-09T23:00:00+00:00"
-  },
-  {
-   "sport": "nhl",
-   "site": "dk",
-   "kind": "classic",
-   "label": "2 teams \u00b7 8:00pm \u00b7 (ANA @ WPG)",
-   "file": "data/nhl_dk_classic_154709.json",
-   "locks": "2026-10-10T00:00:00+00:00"
+   "file": "data/mlb_dk_classic_154908.json"
   }
  ]
 }

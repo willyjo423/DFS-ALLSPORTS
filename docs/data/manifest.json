@@ -1,20 +1,12 @@
 {
- "updated_at": "2026-10-10T01:31:40+00:00",
+ "updated_at": "2026-10-10T13:52:13+00:00",
  "slates": [
   {
    "sport": "cfb",
    "site": "dk",
    "kind": "classic",
-   "label": "12 games \u00b7 24 teams \u00b7 CFB $300K Mid-Season Main Event [$100K to 1st]",
+   "label": "12 games \u00b7 24 teams \u00b7 CFB $225K Saturday Kickoff [$50K to 1st]",
    "file": "data/cfb_dk_classic_154582.json",
-   "locks": null
-  },
-  {
-   "sport": "cfb",
-   "site": "dk",
-   "kind": "classic",
-   "label": "5 games \u00b7 10 teams \u00b7 CFB $5K Run-Pass Option [$1K to 1st]",
-   "file": "data/cfb_dk_classic_154672.json",
    "locks": null
   },
   {
@@ -31,6 +23,14 @@
    "kind": "classic",
    "label": "7 games \u00b7 14 teams \u00b7 CFB $50K Pocket Cup mini-MAX Qualifier #81 [150 Entry Max] (Night)",
    "file": "data/cfb_dk_classic_154797.json",
+   "locks": null
+  },
+  {
+   "sport": "cfb",
+   "site": "dk",
+   "kind": "classic",
+   "label": "3 games \u00b7 6 teams \u00b7 CFB $40K Late Night Snack [$10K to 1st]  (Late Night)",
+   "file": "data/cfb_dk_classic_154800.json",
    "locks": null
   },
   {

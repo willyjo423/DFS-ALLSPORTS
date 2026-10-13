@@ -1,12 +1,93 @@
 {
- "updated_at": "2026-10-13T02:27:05+00:00",
+ "updated_at": "2026-10-13T02:50:26+00:00",
  "slates": [
+  {
+   "sport": "cfb",
+   "site": "dk",
+   "kind": "classic",
+   "label": "12 games \u00b7 24 teams \u00b7 CFB $225K Saturday Kickoff [$50K to 1st]",
+   "file": "data/cfb_dk_classic_154582.json",
+   "locks": null
+  },
+  {
+   "sport": "cfb",
+   "site": "dk",
+   "kind": "classic",
+   "label": "6 games \u00b7 12 teams \u00b7 CFB $50K Pocket Cup Qualifier #78 (Afternoon)",
+   "file": "data/cfb_dk_classic_154795.json",
+   "locks": null
+  },
+  {
+   "sport": "cfb",
+   "site": "dk",
+   "kind": "classic",
+   "label": "7 games \u00b7 14 teams \u00b7 CFB $50K Pocket Cup mini-MAX Qualifier #81 [150 Entry Max] (Night)",
+   "file": "data/cfb_dk_classic_154797.json",
+   "locks": null
+  },
+  {
+   "sport": "cfb",
+   "site": "dk",
+   "kind": "classic",
+   "label": "3 games \u00b7 6 teams \u00b7 CFB $40K Late Night Snack [$10K to 1st]  (Late Night)",
+   "file": "data/cfb_dk_classic_154800.json",
+   "locks": null
+  },
   {
    "sport": "mlb",
    "site": "dk",
    "kind": "classic",
    "label": "2 games \u00b7 locks 8:00pm et \u00b7 MLB $7K Extra Inning",
-   "file": "data/mlb_dk_classic_155024.json"
+   "file": "data/mlb_dk_classic_155024.json",
+   "locks": "2026-10-14T00:00:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "8 teams \u00b7 6:00pm \u00b7 (Early)",
+   "file": "data/nhl_dk_classic_154732.json",
+   "locks": "2026-10-13T22:00:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "24 teams \u00b7 7:00pm",
+   "file": "data/nhl_dk_classic_154733.json",
+   "locks": "2026-10-13T23:00:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "2 teams \u00b7 7:15pm \u00b7 (TBL @ NYR)",
+   "file": "data/nhl_dk_classic_154737.json",
+   "locks": "2026-10-13T23:15:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "12 teams \u00b7 8:30pm \u00b7 (Late)",
+   "file": "data/nhl_dk_classic_154738.json",
+   "locks": "2026-10-14T00:30:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "6 teams \u00b7 9:45pm \u00b7 (Later)",
+   "file": "data/nhl_dk_classic_154739.json",
+   "locks": "2026-10-14T01:45:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "2 teams \u00b7 11:00pm \u00b7 (BOS @ SJS)",
+   "file": "data/nhl_dk_classic_154740.json",
+   "locks": "2026-10-14T03:00:00+00:00"
   }
  ]
 }

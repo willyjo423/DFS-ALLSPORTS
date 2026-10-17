@@ -1,14 +1,6 @@
 {
- "updated_at": "2026-10-17T00:09:15+00:00",
+ "updated_at": "2026-10-17T16:40:18+00:00",
  "slates": [
-  {
-   "sport": "cfb",
-   "site": "dk",
-   "kind": "classic",
-   "label": "12 games \u00b7 24 teams \u00b7 CFB $300K Mini Mid-Season Main Event [$100K to 1st]",
-   "file": "data/cfb_dk_classic_155010.json",
-   "locks": null
-  },
   {
    "sport": "cfb",
    "site": "dk",

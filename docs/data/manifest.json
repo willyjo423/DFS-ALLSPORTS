@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-21T20:07:06+00:00",
+ "updated_at": "2026-10-22T00:26:01+00:00",
  "slates": [
   {
    "sport": "cfb",
@@ -37,17 +37,33 @@
    "sport": "nhl",
    "site": "dk",
    "kind": "classic",
-   "label": "4 teams \u00b7 7:30pm",
-   "file": "data/nhl_dk_classic_155401.json",
-   "locks": "2026-10-21T23:30:00+00:00"
+   "label": "24 teams \u00b7 7:00pm",
+   "file": "data/nhl_dk_classic_155406.json",
+   "locks": "2026-10-22T23:00:00+00:00"
   },
   {
    "sport": "nhl",
    "site": "dk",
    "kind": "classic",
-   "label": "2 teams \u00b7 7:30pm \u00b7 (FLA @ OTT)",
-   "file": "data/nhl_dk_classic_155404.json",
-   "locks": "2026-10-21T23:30:00+00:00"
+   "label": "2 teams \u00b7 7:00pm \u00b7 (NYR @ TOR)",
+   "file": "data/nhl_dk_classic_155410.json",
+   "locks": "2026-10-22T23:00:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "8 teams \u00b7 9:00pm \u00b7 (Late)",
+   "file": "data/nhl_dk_classic_155411.json",
+   "locks": "2026-10-23T01:00:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "2 teams \u00b7 10:00pm \u00b7 (DET @ VAN)",
+   "file": "data/nhl_dk_classic_155412.json",
+   "locks": "2026-10-23T02:00:00+00:00"
   }
  ]
 }

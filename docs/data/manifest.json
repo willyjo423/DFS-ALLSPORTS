@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-25T23:49:08+00:00",
+ "updated_at": "2026-10-26T20:59:54+00:00",
  "slates": [
   {
    "sport": "cfb",
@@ -37,9 +37,25 @@
    "sport": "nhl",
    "site": "dk",
    "kind": "classic",
-   "label": "2 teams \u00b7 10:00pm \u00b7 (MIN @ VAN)",
-   "file": "data/nhl_dk_classic_155433.json",
-   "locks": "2026-10-26T02:00:00+00:00"
+   "label": "6 teams \u00b7 7:00pm",
+   "file": "data/nhl_dk_classic_155435.json",
+   "locks": "2026-10-26T23:00:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "2 teams \u00b7 7:00pm \u00b7 (LAK @ NYR)",
+   "file": "data/nhl_dk_classic_155438.json",
+   "locks": "2026-10-26T23:00:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "2 teams \u00b7 9:30pm \u00b7 (DET @ EDM)",
+   "file": "data/nhl_dk_classic_155439.json",
+   "locks": "2026-10-27T01:30:00+00:00"
   }
  ]
 }

@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-27T01:08:10+00:00",
+ "updated_at": "2026-10-27T20:40:34+00:00",
  "slates": [
   {
    "sport": "cfb",
@@ -37,9 +37,33 @@
    "sport": "nhl",
    "site": "dk",
    "kind": "classic",
-   "label": "2 teams \u00b7 9:30pm \u00b7 (DET @ EDM)",
-   "file": "data/nhl_dk_classic_155439.json",
-   "locks": "2026-10-27T01:30:00+00:00"
+   "label": "22 teams \u00b7 7:00pm",
+   "file": "data/nhl_dk_classic_155441.json",
+   "locks": "2026-10-27T23:00:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "2 teams \u00b7 7:00pm \u00b7 (CBJ @ PHI)",
+   "file": "data/nhl_dk_classic_155445.json",
+   "locks": "2026-10-27T23:00:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "8 teams \u00b7 9:00pm \u00b7 (Late)",
+   "file": "data/nhl_dk_classic_155446.json",
+   "locks": "2026-10-28T01:00:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "2 teams \u00b7 10:30pm \u00b7 (BUF @ SJS)",
+   "file": "data/nhl_dk_classic_155448.json",
+   "locks": "2026-10-28T02:30:00+00:00"
   }
  ]
 }

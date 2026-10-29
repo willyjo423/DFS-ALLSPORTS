@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-29T01:33:14+00:00",
+ "updated_at": "2026-10-29T21:05:04+00:00",
  "slates": [
   {
    "sport": "cfb",
@@ -37,9 +37,41 @@
    "sport": "nhl",
    "site": "dk",
    "kind": "classic",
-   "label": "2 teams \u00b7 10:00pm \u00b7 (TOR @ SEA)",
-   "file": "data/nhl_dk_classic_155456.json",
-   "locks": "2026-10-29T02:00:00+00:00"
+   "label": "22 teams \u00b7 7:00pm",
+   "file": "data/nhl_dk_classic_155816.json",
+   "locks": "2026-10-29T23:00:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "2 teams \u00b7 7:00pm \u00b7 (WPG @ TBL)",
+   "file": "data/nhl_dk_classic_155820.json",
+   "locks": "2026-10-29T23:00:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "8 teams \u00b7 8:00pm \u00b7 (Turbo)",
+   "file": "data/nhl_dk_classic_155821.json",
+   "locks": "2026-10-30T00:00:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "6 teams \u00b7 10:00pm \u00b7 (Late)",
+   "file": "data/nhl_dk_classic_155822.json",
+   "locks": "2026-10-30T02:00:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "2 teams \u00b7 10:00pm \u00b7 (BUF @ ANA)",
+   "file": "data/nhl_dk_classic_155823.json",
+   "locks": "2026-10-30T02:00:00+00:00"
   }
  ]
 }

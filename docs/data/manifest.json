@@ -1,28 +1,28 @@
 {
- "updated_at": "2026-10-29T21:05:04+00:00",
+ "updated_at": "2026-10-30T01:21:02+00:00",
  "slates": [
   {
    "sport": "cfb",
    "site": "dk",
    "kind": "classic",
-   "label": "6 games \u00b7 12 teams \u00b7 CFB $20K Hook and Ladder [$5K to 1st] (Afternoon)",
-   "file": "data/cfb_dk_classic_155461.json",
+   "label": "12 games \u00b7 24 teams \u00b7 CFB $200K Saturday Kickoff [$50K to 1st]",
+   "file": "data/cfb_dk_classic_155652.json",
    "locks": null
   },
   {
    "sport": "cfb",
    "site": "dk",
    "kind": "classic",
-   "label": "7 games \u00b7 14 teams \u00b7 CFB $40K Hook and Ladder [$10K to 1st] (Night)",
-   "file": "data/cfb_dk_classic_155462.json",
+   "label": "3 games \u00b7 6 teams \u00b7 CFB $60K Friday Kickoff [$20K to 1st]",
+   "file": "data/cfb_dk_classic_155694.json",
    "locks": null
   },
   {
    "sport": "cfb",
    "site": "dk",
    "kind": "classic",
-   "label": "2 games \u00b7 4 teams \u00b7 CFB $20K Late Night Snack [$5K to 1st] (Late Night)",
-   "file": "data/cfb_dk_classic_155463.json",
+   "label": "7 games \u00b7 14 teams \u00b7 CFB $70K Saturday Night Special [$20K to 1st] (Night)",
+   "file": "data/cfb_dk_classic_155788.json",
    "locks": null
   },
   {

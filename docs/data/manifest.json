@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-31T01:03:33+00:00",
+ "updated_at": "2026-10-31T01:25:34+00:00",
  "slates": [
   {
    "sport": "cfb",
@@ -37,25 +37,41 @@
    "sport": "nhl",
    "site": "dk",
    "kind": "classic",
-   "label": "6 teams \u00b7 6:00pm",
-   "file": "data/nhl_dk_classic_155825.json",
-   "locks": "2026-10-30T22:00:00+00:00"
+   "label": "12 teams \u00b7 1:00pm \u00b7 (Early)",
+   "file": "data/nhl_dk_classic_155831.json",
+   "locks": "2026-10-31T17:00:00+00:00"
   },
   {
    "sport": "nhl",
    "site": "dk",
    "kind": "classic",
-   "label": "2 teams \u00b7 6:00pm \u00b7 (NJD @ VGK)",
-   "file": "data/nhl_dk_classic_155828.json",
-   "locks": "2026-10-30T22:00:00+00:00"
+   "label": "2 teams \u00b7 1:00pm \u00b7 (CHI @ BOS)",
+   "file": "data/nhl_dk_classic_155832.json",
+   "locks": "2026-10-31T17:00:00+00:00"
   },
   {
    "sport": "nhl",
    "site": "dk",
    "kind": "classic",
-   "label": "2 teams \u00b7 8:00pm \u00b7 (SEA @ CGY)",
-   "file": "data/nhl_dk_classic_155829.json",
-   "locks": "2026-10-31T00:00:00+00:00"
+   "label": "2 teams \u00b7 4:00pm \u00b7 (BUF @ LAK)",
+   "file": "data/nhl_dk_classic_155833.json",
+   "locks": "2026-10-31T20:00:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "8 teams \u00b7 7:00pm",
+   "file": "data/nhl_dk_classic_155834.json",
+   "locks": "2026-10-31T23:00:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "2 teams \u00b7 10:00pm \u00b7 (CGY @ COL)",
+   "file": "data/nhl_dk_classic_155838.json",
+   "locks": "2026-11-01T02:00:00+00:00"
   }
  ]
 }

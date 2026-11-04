@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-04T01:53:34+00:00",
+ "updated_at": "2026-11-04T21:50:45+00:00",
  "slates": [
   {
    "sport": "cfb",
@@ -29,9 +29,33 @@
    "sport": "nhl",
    "site": "dk",
    "kind": "classic",
-   "label": "2 teams \u00b7 9:00pm \u00b7 (ANA @ VAN)",
-   "file": "data/nhl_dk_classic_155862.json",
-   "locks": "2026-11-04T02:00:00+00:00"
+   "label": "8 teams \u00b7 7:30pm",
+   "file": "data/nhl_dk_classic_155864.json",
+   "locks": "2026-11-05T00:30:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "2 teams \u00b7 7:30pm \u00b7 (OTT @ BUF)",
+   "file": "data/nhl_dk_classic_155868.json",
+   "locks": "2026-11-05T00:30:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "4 teams \u00b7 10:00pm \u00b7 (Late)",
+   "file": "data/nhl_dk_classic_155869.json",
+   "locks": "2026-11-05T03:00:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "2 teams \u00b7 10:00pm \u00b7 (SJS @ LAK)",
+   "file": "data/nhl_dk_classic_155870.json",
+   "locks": "2026-11-05T03:00:00+00:00"
   }
  ]
 }

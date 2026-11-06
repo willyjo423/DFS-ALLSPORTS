@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-06T01:47:52+00:00",
+ "updated_at": "2026-11-06T01:59:21+00:00",
  "slates": [
   {
    "sport": "cfb",
@@ -40,30 +40,6 @@
    "label": "1 games \u00b7 locks 8:00pm et \u00b7 MLB $6K Extra Inning",
    "file": "data/mlb_dk_classic_155028.json",
    "locks": "2026-10-15T00:00:00+00:00"
-  },
-  {
-   "sport": "nhl",
-   "site": "dk",
-   "kind": "classic",
-   "label": "22 teams \u00b7 7:00pm",
-   "file": "data/nhl_dk_classic_156246.json",
-   "locks": "2026-11-06T00:00:00+00:00"
-  },
-  {
-   "sport": "nhl",
-   "site": "dk",
-   "kind": "classic",
-   "label": "2 teams \u00b7 7:00pm \u00b7 (VGK @ DET)",
-   "file": "data/nhl_dk_classic_156250.json",
-   "locks": "2026-11-06T00:00:00+00:00"
-  },
-  {
-   "sport": "nhl",
-   "site": "dk",
-   "kind": "classic",
-   "label": "4 teams \u00b7 8:00pm \u00b7 (Late)",
-   "file": "data/nhl_dk_classic_156251.json",
-   "locks": "2026-11-06T01:00:00+00:00"
   },
   {
    "sport": "nhl",

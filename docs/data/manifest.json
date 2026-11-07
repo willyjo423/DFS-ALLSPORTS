@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-07T18:17:51+00:00",
+ "updated_at": "2026-11-07T19:38:29+00:00",
  "slates": [
   {
    "sport": "cfb",
@@ -13,7 +13,7 @@
    "sport": "cfb",
    "site": "dk",
    "kind": "classic",
-   "label": "7 games \u00b7 14 teams \u00b7 CFB $70K Saturday Night Special [$20K to 1st] (Night)",
+   "label": "7 games \u00b7 14 teams \u00b7 CFB $40K Hook and Ladder [$10K to 1st] (Night)",
    "file": "data/cfb_dk_classic_156227.json",
    "locks": null
   },

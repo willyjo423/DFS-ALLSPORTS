@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-07T01:13:20+00:00",
+ "updated_at": "2026-11-07T01:36:44+00:00",
  "slates": [
   {
    "sport": "cfb",
@@ -45,17 +45,49 @@
    "sport": "nhl",
    "site": "dk",
    "kind": "classic",
-   "label": "6 teams \u00b7 7:00pm",
-   "file": "data/nhl_dk_classic_156254.json",
-   "locks": "2026-11-07T00:00:00+00:00"
+   "label": "4 teams \u00b7 12:30pm \u00b7 (Early)",
+   "file": "data/nhl_dk_classic_156259.json",
+   "locks": "2026-11-07T17:30:00+00:00"
   },
   {
    "sport": "nhl",
    "site": "dk",
    "kind": "classic",
-   "label": "2 teams \u00b7 8:00pm \u00b7 (ANA @ CGY)",
-   "file": "data/nhl_dk_classic_156257.json",
-   "locks": "2026-11-07T01:00:00+00:00"
+   "label": "2 teams \u00b7 5:00pm \u00b7 (NYR @ SEA)",
+   "file": "data/nhl_dk_classic_156260.json",
+   "locks": "2026-11-07T22:00:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "18 teams \u00b7 7:00pm",
+   "file": "data/nhl_dk_classic_156261.json",
+   "locks": "2026-11-08T00:00:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "6 teams \u00b7 8:00pm \u00b7 (Turbo)",
+   "file": "data/nhl_dk_classic_156265.json",
+   "locks": "2026-11-08T01:00:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "6 teams \u00b7 9:00pm \u00b7 (Late)",
+   "file": "data/nhl_dk_classic_156266.json",
+   "locks": "2026-11-08T02:00:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "2 teams \u00b7 10:00pm \u00b7 (VAN @ EDM)",
+   "file": "data/nhl_dk_classic_156267.json",
+   "locks": "2026-11-08T03:00:00+00:00"
   }
  ]
 }

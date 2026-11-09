@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-08T20:26:48+00:00",
+ "updated_at": "2026-11-09T01:25:31+00:00",
  "slates": [
   {
    "sport": "cfb",
@@ -37,17 +37,25 @@
    "sport": "nhl",
    "site": "dk",
    "kind": "classic",
-   "label": "8 teams \u00b7 6:00pm",
-   "file": "data/nhl_dk_classic_156270.json",
-   "locks": "2026-11-08T23:00:00+00:00"
+   "label": "6 teams \u00b7 8:00pm",
+   "file": "data/nhl_dk_classic_156276.json",
+   "locks": "2026-11-10T01:00:00+00:00"
   },
   {
    "sport": "nhl",
    "site": "dk",
    "kind": "classic",
-   "label": "2 teams \u00b7 8:00pm \u00b7 (PIT @ ANA)",
-   "file": "data/nhl_dk_classic_156274.json",
-   "locks": "2026-11-09T01:00:00+00:00"
+   "label": "2 teams \u00b7 8:00pm \u00b7 (NYR @ EDM)",
+   "file": "data/nhl_dk_classic_156279.json",
+   "locks": "2026-11-10T01:00:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "2 teams \u00b7 10:00pm \u00b7 (NYI @ SJS)",
+   "file": "data/nhl_dk_classic_156280.json",
+   "locks": "2026-11-10T03:00:00+00:00"
   }
  ]
 }

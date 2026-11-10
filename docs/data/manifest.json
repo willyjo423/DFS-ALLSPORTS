@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-10T00:14:05+00:00",
+ "updated_at": "2026-11-10T03:57:34+00:00",
  "slates": [
   {
    "sport": "cfb",
@@ -37,25 +37,33 @@
    "sport": "nhl",
    "site": "dk",
    "kind": "classic",
-   "label": "6 teams \u00b7 8:00pm",
-   "file": "data/nhl_dk_classic_156276.json",
-   "locks": "2026-11-10T01:00:00+00:00"
+   "label": "14 teams \u00b7 7:00pm",
+   "file": "data/nhl_dk_classic_156282.json",
+   "locks": "2026-11-11T00:00:00+00:00"
   },
   {
    "sport": "nhl",
    "site": "dk",
    "kind": "classic",
-   "label": "2 teams \u00b7 8:00pm \u00b7 (NYR @ EDM)",
-   "file": "data/nhl_dk_classic_156279.json",
-   "locks": "2026-11-10T01:00:00+00:00"
+   "label": "2 teams \u00b7 7:00pm \u00b7 (COL @ TOR)",
+   "file": "data/nhl_dk_classic_156286.json",
+   "locks": "2026-11-11T00:00:00+00:00"
   },
   {
    "sport": "nhl",
    "site": "dk",
    "kind": "classic",
-   "label": "2 teams \u00b7 10:00pm \u00b7 (NYI @ SJS)",
-   "file": "data/nhl_dk_classic_156280.json",
-   "locks": "2026-11-10T03:00:00+00:00"
+   "label": "4 teams \u00b7 8:00pm \u00b7 (Late)",
+   "file": "data/nhl_dk_classic_156287.json",
+   "locks": "2026-11-11T01:00:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "2 teams \u00b7 10:00pm \u00b7 (NSH @ LAK)",
+   "file": "data/nhl_dk_classic_156288.json",
+   "locks": "2026-11-11T03:00:00+00:00"
   }
  ]
 }

@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-13T02:23:24+00:00",
+ "updated_at": "2026-11-13T21:57:13+00:00",
  "slates": [
   {
    "sport": "cfb",
@@ -45,9 +45,17 @@
    "sport": "nhl",
    "site": "dk",
    "kind": "classic",
-   "label": "2 teams \u00b7 10:00pm \u00b7 (NYI @ LAK)",
-   "file": "data/nhl_dk_classic_156598.json",
-   "locks": "2026-11-13T03:00:00+00:00"
+   "label": "4 teams \u00b7 9:00pm",
+   "file": "data/nhl_dk_classic_156600.json",
+   "locks": "2026-11-14T02:00:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "2 teams \u00b7 10:00pm \u00b7 (NSH @ VGK)",
+   "file": "data/nhl_dk_classic_156603.json",
+   "locks": "2026-11-14T03:00:00+00:00"
   }
  ]
 }

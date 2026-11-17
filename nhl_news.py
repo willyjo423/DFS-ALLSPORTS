@@ -201,7 +201,12 @@ def apply_lines(players: list[dict], team_lines: dict, name_keys,
     for team, tl in team_lines.items():
         upd = tl.get("updated")
         fresh = upd is not None and now - upd <= timedelta(hours=FRESH_HOURS)
+        # The page can list an injured man on the injury list AND, stale, on
+        # a power-play unit. The injury list wins.
+        hurt = {q["name"] for q in tl["players"] if q["group"] == "ir"}
         for q in tl["players"]:
+            if q["name"] in hurt and q["group"] != "ir":
+                continue
             i = _find(idx, team, q["name"], name_keys)
             if i is None:
                 continue
@@ -289,6 +294,13 @@ def apply_lines(players: list[dict], team_lines: dict, name_keys,
             continue
         f = 1 + SHRINK * (after / before - 1)
         f = min(max(f, CLIP[0]), CLIP[1])
+        # A promotion never lowers a projection and a demotion never raises
+        # one: the slot norm is a slate-wide median, and a man already
+        # playing above it is not hurt by moving up.
+        rank = lambda line, pp: (int(line[1:]) if line else 9) - (2 if pp == 1 else 0)
+        up = rank(new_line, new_pp) < rank(prev_line, prev_pp)
+        down = rank(new_line, new_pp) > rank(prev_line, prev_pp)
+        f = max(f, 1.0) if up else min(f, 1.0) if down else 1.0
         if abs(f - 1) >= 0.02:
             _scale(p, f)
             p["news"] = (f"moved up ({prev_line or '-'}"

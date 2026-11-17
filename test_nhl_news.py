@@ -53,6 +53,7 @@ def test_lines_scratch_injury_and_promotion():
         {"name": "Mid Guy", "group": "f2", "cat": "ev", "inj": "", "gtd": True},
         {"name": "Hurt Guy", "group": "ir", "cat": "oi", "inj": "ir", "gtd": False},
         {"name": "Dtd Guy", "group": "ir", "cat": "oi", "inj": "dtd", "gtd": False},
+        {"name": "Dtd Guy", "group": "pp2", "cat": "pp", "inj": "dtd", "gtd": False},
     ]}}
     n = N.apply_lines(pl, tl, name_keys, now=now)
     top, hurt, riser, scr, mid, dtd = pl
@@ -74,3 +75,15 @@ def test_stale_lines_only_carry_injuries():
         {"name": "Riser", "group": "f1", "cat": "ev", "inj": "", "gtd": False}]}}
     N.apply_lines(pl, tl, name_keys, now=now)
     assert pl[0]["line"] == "L3" and pl[1]["pp"] == 1.0
+
+
+def test_promotion_never_lowers():
+    now = datetime(2026, 11, 17, 20, tzinfo=timezone.utc)
+    pl = [P("Star", "OTT", "C", line="L3", toi=21, pptoi=3),
+          P("Norm A", "OTT", "C", line="L1", toi=15, pptoi=1),
+          P("Norm B", "OTT", "W", line="L1", toi=15, pptoi=1)]
+    tl = {"OTT": {"updated": now, "players": [
+        {"name": n, "group": "f1", "cat": "ev", "inj": "", "gtd": False}
+        for n in ("Star", "Norm A", "Norm B")]}}
+    N.apply_lines(pl, tl, name_keys, now=now)
+    assert pl[0]["mean"] >= 10.0

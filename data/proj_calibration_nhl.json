@@ -1,0 +1,52 @@
+{
+ "sport": "nhl",
+ "fitted_through": "2026-11-15",
+ "games": 10846,
+ "features": "proj = a + b * salary/1000 + c * model median",
+ "positions": {
+  "C": {
+   "a": -0.2859,
+   "b": 1.0193,
+   "c": 0.6067,
+   "n": 2445
+  },
+  "D": {
+   "a": -0.8253,
+   "b": 0.9658,
+   "c": 0.7133,
+   "n": 3693
+  },
+  "W": {
+   "a": -0.2724,
+   "b": 0.6094,
+   "c": 0.9075,
+   "n": 4708
+  }
+ },
+ "holdout": {
+  "C": {
+   "from": "2026-10-31",
+   "n": 818,
+   "rho_model": 0.408,
+   "rho_calibrated": 0.429,
+   "bias_model": 1.62,
+   "bias_calibrated": -0.02
+  },
+  "D": {
+   "from": "2026-10-31",
+   "n": 1224,
+   "rho_model": 0.369,
+   "rho_calibrated": 0.384,
+   "bias_model": 1.16,
+   "bias_calibrated": 0.23
+  },
+  "W": {
+   "from": "2026-10-31",
+   "n": 1572,
+   "rho_model": 0.402,
+   "rho_calibrated": 0.418,
+   "bias_model": 1.62,
+   "bias_calibrated": -0.01
+  }
+ }
+}

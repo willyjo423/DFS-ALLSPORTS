@@ -21,6 +21,13 @@ on:
     # GitHub delays routinely is not much, so the early run is at 16:15.
     - cron: "15 16 * * *"
     - cron: "0 22 * * *"
+    # Pre-lock: about 50 minutes before a 7pm Eastern puck drop, for late
+    # scratches and the morning skate's goalie news. Split by month because
+    # GitHub's scheduler is UTC and ignores daylight saving: 23:10 UTC is
+    # 6:10pm EST (Nov-Feb), 22:10 UTC is 6:10pm EDT (Mar, Apr, Oct). The
+    # first week of November and the second week of March land an hour off.
+    - cron: "10 23 * 11,12,1,2 *"
+    - cron: "10 22 * 3,4,10 *"
   workflow_dispatch:
     inputs:
       draft_group:

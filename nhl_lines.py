@@ -210,10 +210,14 @@ def team_groups(teams, today: dt.date | None = None) -> dict[str, dict]:
 
 
 def annotate(payload: dict) -> None:
-    """Add `line` (L1-L4 / D1-D3), `pp` (1/2) and `lg` (a group key such as
+    """Add `line` (L1-L4 / D1-D3), `ppu` (power-play unit 1/2) and `lg` (a group key such as
     'EDM-L1') to the skaters of one published NHL slate, and `g_started` to
     goalies who started their team's last game. In place; silent no-op for
-    other sports or when nothing could be read."""
+    other sports or when nothing could be read.
+
+    NOT `pp`: that key is already the published chance he plays at all, and
+    writing the unit number over it - the first version did - turned every
+    PP1 skater's p_play into 1.0 and every PP2 skater's into 2."""
     if payload.get("sport") != "nhl":
         return
     from availability import name_keys
@@ -235,7 +239,7 @@ def annotate(payload: dict) -> None:
         for unit, key in ((1, "pp1"), (2, "pp2")):
             for pid in g[key]:
                 for k in nm[pid]:
-                    lookup.setdefault((team, k), {})["pp"] = unit
+                    lookup.setdefault((team, k), {})["ppu"] = unit
         if g.get("goalie"):
             for k in nm.get(g["goalie"], set()):
                 lookup.setdefault((team, k), {})["g_started"] = True

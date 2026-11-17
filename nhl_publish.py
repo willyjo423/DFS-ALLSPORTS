@@ -55,6 +55,7 @@ from engine import model as EM
 from engine import optimise as O
 from engine import ownership as OWN
 from engine import simulate as S
+from availability import available
 
 log = logging.getLogger("nhl_publish")
 
@@ -127,12 +128,13 @@ def candidate_slates(draft_group: int | None, look: int) -> list[tuple]:
         row = listed[listed["draft_group"] == int(draft_group)]
         when = row["starts"].iloc[0] if len(row) else pd.NaT
         label = str(row["example"].iloc[0]) if len(row) else "(given)"
-        return [(int(draft_group), label, ND.board(int(draft_group)), when)]
+        b = available(ND.board(int(draft_group)), "nhl")
+        return [(int(draft_group), label, b, when)]
 
     out = []
     for r in listed.head(look).to_dict("records"):
         try:
-            b = ND.board(int(r["draft_group"]))
+            b = available(ND.board(int(r["draft_group"])), "nhl")
         except ND.DataUnavailable as exc:
             log.warning("draft group %s unreadable: %s", r["draft_group"],
                         str(exc)[:80])

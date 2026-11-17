@@ -1,0 +1,90 @@
+name: Availability (6am ET)
+
+# Who is OUT today, for every sport, from official sources only:
+# DraftKings' own injury tags, every NHL team's current roster, every MLB
+# 40-man roster. Writes data/availability_<sport>.json and commits it; the
+# publish jobs drop those players before projecting. Projections untouched.
+#
+# GitHub's scheduler runs in UTC and knows nothing about daylight saving, so
+# this is scheduled at BOTH 10:07 and 11:07 UTC and the first step lets only
+# the one that is 6am in New York through. Minute 07 rather than 00 because
+# jobs queued on the hour are routinely delayed.
+
+on:
+  schedule:
+    - cron: "7 10 * * *"
+    - cron: "7 11 * * *"
+  workflow_dispatch:
+    inputs:
+      sports:
+        description: "Sports to refresh, space separated"
+        default: "nhl mlb cfb"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: availability
+  cancel-in-progress: false
+
+jobs:
+  availability:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Is it 6am in New York?
+        id: gate
+        run: |
+          H=$(TZ=America/New_York date +%H)
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] || [ "$H" = "06" ]; then
+            echo "go=1" >> "$GITHUB_OUTPUT"
+          else
+            echo "It is ${H}:xx in New York - the other schedule covers today."
+            echo "go=0" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v4
+        if: steps.gate.outputs.go == '1'
+
+      - uses: actions/setup-python@v5
+        if: steps.gate.outputs.go == '1'
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        if: steps.gate.outputs.go == '1'
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Fetch availability
+        id: fetch
+        if: steps.gate.outputs.go == '1'
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          SPORTS="${{ inputs.sports }}"
+          python availability.py --sports ${SPORTS:-nhl mlb cfb} 2>&1 | tee availability.txt
+
+      - name: Commit
+        if: steps.gate.outputs.go == '1'
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -f data/availability_*.json 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "nothing changed"; exit 0
+          fi
+          git commit -m "Availability: $(TZ=America/New_York date +%Y-%m-%d)"
+          git push || (git pull --rebase origin "${GITHUB_REF_NAME}" && git push)
+
+      - name: Summary
+        if: always() && steps.gate.outputs.go == '1'
+        run: |
+          {
+            echo "### Availability $(TZ=America/New_York date +%Y-%m-%d)"
+            echo '```'
+            tail -n 40 availability.txt 2>/dev/null || echo "(no output)"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+          [ "${{ steps.fetch.outcome }}" = "success" ] || exit 1

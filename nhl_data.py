@@ -55,6 +55,8 @@ import unicodedata
 import pandas as pd
 import requests
 
+from availability import dk_status  # noqa: E402
+
 log = logging.getLogger("nhl_data")
 
 # DraftKings' lobby reports lock times in Eastern. See `_lock_time`.
@@ -571,6 +573,9 @@ def board(draft_group: int) -> pd.DataFrame:
             "team": team, "opponent": opp,
             "dk_ppg": pd.to_numeric(df.get(k["dk_ppg"]), errors="coerce"),
             "disabled": df.get(k["disabled"], False).astype(bool),
+            # DraftKings' own injury tag (O, IR, Q ...), read by
+            # availability.available() before anything is projected.
+            "dk_status": [dk_status(r) for r in rows],
         })
     else:
         k = API
@@ -585,6 +590,7 @@ def board(draft_group: int) -> pd.DataFrame:
             "opponent": "",
             "dk_ppg": float("nan"),
             "disabled": df.get(k["disabled"], False).astype(bool),
+            "dk_status": [dk_status(r) for r in rows],
         })
 
     # DraftKings repeats a player once per roster slot he is eligible for. Two

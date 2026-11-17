@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-17T00:13:04+00:00",
+ "updated_at": "2026-11-17T04:19:31+00:00",
  "slates": [
   {
    "sport": "cfb",
@@ -37,17 +37,41 @@
    "sport": "nhl",
    "site": "dk",
    "kind": "classic",
-   "label": "4 teams \u00b7 7:30pm",
-   "file": "data/nhl_dk_classic_156621.json",
-   "locks": "2026-11-17T00:30:00+00:00"
+   "label": "22 teams \u00b7 7:00pm",
+   "file": "data/nhl_dk_classic_156626.json",
+   "locks": "2026-11-18T00:00:00+00:00"
   },
   {
    "sport": "nhl",
    "site": "dk",
    "kind": "classic",
-   "label": "2 teams \u00b7 9:30pm \u00b7 (VAN @ UTA)",
-   "file": "data/nhl_dk_classic_156624.json",
-   "locks": "2026-11-17T02:30:00+00:00"
+   "label": "2 teams \u00b7 7:30pm \u00b7 (WSH @ TBL)",
+   "file": "data/nhl_dk_classic_156630.json",
+   "locks": "2026-11-18T00:30:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "4 teams \u00b7 8:00pm \u00b7 (Turbo)",
+   "file": "data/nhl_dk_classic_156631.json",
+   "locks": "2026-11-18T01:00:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "4 teams \u00b7 10:00pm \u00b7 (Late)",
+   "file": "data/nhl_dk_classic_156632.json",
+   "locks": "2026-11-18T03:00:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "2 teams \u00b7 10:00pm \u00b7 (DAL @ VGK)",
+   "file": "data/nhl_dk_classic_156633.json",
+   "locks": "2026-11-18T03:00:00+00:00"
   }
  ]
 }

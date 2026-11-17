@@ -271,13 +271,12 @@ def join_board(board: pd.DataFrame, proj: pd.DataFrame) -> pd.DataFrame:
         raise RuntimeError(f"the projection join fanned out {before} rows "
                            f"to {len(out)}")
 
-    # A second pass for the names the plain key missed, keyed on the
-    # transliterated spelling: DraftKings writes "Tim Stuetzle", the NHL and
-    # MoneyPuck "Tim Stützle", and accent-stripping turns that into
-    # "stutzle". He went unprojected - and so off every lineup - for that.
+    # A second pass for the names the plain key missed, keyed on a folded
+    # spelling: DraftKings writes "Tim Stuetzle", the NHL "Tim Stützle" and
+    # the stat model "Tim Stutzle". He went unprojected - and so off every
+    # lineup - for that.
     if "median" in out.columns and out["median"].isna().any():
-        from availability import _TRANSLIT
-        key = lambda n: ND.normalise(str(n).translate(_TRANSLIT))
+        from availability import fold as key
         right2 = right.assign(_k=right["name"].map(key)).drop_duplicates("_k")
         right2 = right2.set_index("_k")
         miss = out["median"].isna()

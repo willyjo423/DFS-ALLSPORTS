@@ -171,6 +171,17 @@ _TRANSLIT = str.maketrans({"ü": "ue", "ö": "oe", "ä": "ae", "Ü": "Ue",
                            "æ": "ae", "å": "aa"})
 
 
+def fold(name: str) -> str:
+    """One spelling for every way an umlaut gets written: Stützle, Stuetzle
+    and Stutzle all fold to 'stutzle'. DraftKings, the NHL and the stat
+    model each use a different one of the three for the same player."""
+    from nhl_data import normalise
+    k = normalise(str(name).translate(_TRANSLIT))
+    for a, b in (("ue", "u"), ("oe", "o"), ("ae", "a")):
+        k = k.replace(a, b)
+    return k
+
+
 def name_keys(name: str) -> set[str]:
     """Every spelling a player's name is likely to arrive in. DraftKings
     writes 'Tim Stuetzle', the NHL 'Tim Stützle': stripping the accent gives
@@ -178,7 +189,8 @@ def name_keys(name: str) -> set[str]:
     'not on an NHL roster'. So a name is matched on any of: accents stripped,
     German/Nordic transliteration, and first initial + surname."""
     from nhl_data import normalise
-    keys = {normalise(name), normalise(str(name).translate(_TRANSLIT))}
+    keys = {normalise(name), normalise(str(name).translate(_TRANSLIT)),
+            fold(name)}
     for k in list(keys):
         parts = k.split()
         if len(parts) >= 2:

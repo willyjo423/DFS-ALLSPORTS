@@ -42,6 +42,9 @@ FLEX = {"UTIL", "FLEX", "SFLEX"}
 LAMBDAS = (0.0, 0.5, 1.0, 1.5, 2.5)
 PER_OBJECTIVE = 12          # lineups per objective; 2 x 5 x 12 = 120 max
 MIN_UNIQUE = 2              # players each new lineup must not share
+STACKED_PER_OBJECTIVE = 6   # hockey: 3 shapes x 3 lam x 6 = 54
+TEAM_STACKS = 10            # hockey: a 4-stack of each of the top 10 teams
+PER_TEAM_STACK = 3
 GOALIES = {"G"}
 PITCHERS = {"P", "SP", "RP"}
 
@@ -148,7 +151,8 @@ def _shortlist(players, keep, roster):
 
 def build(players: list[dict], roster: dict, field_size: int = 100_000,
           lambdas=LAMBDAS, per_objective: int = PER_OBJECTIVE,
-          time_limit: float = 1.0) -> list[dict]:
+          time_limit: float = 1.0, stacks: bool | None = None
+          ) -> list[dict]:
     """The pool. Each lineup: player indices into `players`, and totals."""
     if not players or "CPT" in roster.get("slots", []):
         return []
@@ -198,6 +202,23 @@ def build(players: list[dict], roster: dict, field_size: int = 100_000,
         lo.append(minimum)
         hi.append(np.inf)
 
+    # Stack binaries: for every team, p_t (primary stack) and q_t (secondary).
+    # Always present; only constrained when a stacked family asks for it.
+    skater = np.array([x not in GOALIES | PITCHERS for x in pos])
+    teams = sorted({str(p.get("team") or "") for p in pl} - {""})
+    tmask = {t: np.array([str(p.get("team")) == t for p in pl]) & skater
+             for t in teams}
+    m_base = m
+    m = m_base + 2 * len(teams)
+    A = [np.concatenate([r, np.zeros(m - len(r))]) for r in A]
+    for k_, t in enumerate(teams):
+        r = np.zeros(m)
+        r[m_base + k_] = 1
+        r[m_base + len(teams) + k_] = 1
+        A.append(r)              # a team is at most one of primary/secondary
+        lo.append(0)
+        hi.append(1)
+
     floor = float(roster.get("min_salary_pct") or 0) * cap
     med = np.array([p["med"] for p in pl], float)
     ceil = np.array([p.get("ceil") or p["med"] for p in pl], float)
@@ -206,8 +227,32 @@ def build(players: list[dict], roster: dict, field_size: int = 100_000,
     pool, seen = [], []
     size = len(roster["slots"])
 
-    def solve(obj, use_floor=True):
+    def solve(obj, use_floor=True, stack=None):
         AA, LL, HH = list(A), list(lo), list(hi)
+        if stack and stack[0] == "team":
+            _, t, k = stack
+            r = np.zeros(m)
+            r[:n] = tmask[t]
+            AA.append(r)
+            LL.append(k)
+            HH.append(np.inf)
+        elif stack:
+            k1, k2 = stack
+            for off, k in ((0, k1), (len(teams), k2)):
+                if not k:
+                    continue
+                for k_, t in enumerate(teams):
+                    r = np.zeros(m)          # skaters of t >= k * flag_t
+                    r[:n] = tmask[t]
+                    r[m_base + off + k_] = -k
+                    AA.append(r)
+                    LL.append(0)
+                    HH.append(np.inf)
+                r = np.zeros(m)
+                r[m_base + off: m_base + off + len(teams)] = 1
+                AA.append(r)
+                LL.append(1)
+                HH.append(np.inf)
         if use_floor and floor > 0:
             r = np.zeros(m)
             r[:n] = sal
@@ -229,17 +274,39 @@ def build(players: list[dict], roster: dict, field_size: int = 100_000,
             return None
         return [i for i in range(n) if res.x[i] > 0.5]
 
-    floor_ok = True
+    families = []
     for base_name, base in (("median", med), ("ceiling", ceil)):
         for lam in lambdas:
+            families.append((f"{base_name} lam={lam}", base, lam, None,
+                             per_objective))
+    if stacks is None:
+        stacks = "G" in roster.get("slots", [])     # hockey stacks by default
+    if stacks and len(teams) >= 3:
+        # Generic team stacks across the ownership range: 4-3, 4-2, 3-3.
+        for shape in ((4, 3), (4, 2), (3, 3)):
+            for lam in (0.0, 1.0, 2.0):
+                families.append((f"stack {shape[0]}-{shape[1]} lam={lam}",
+                                 ceil, lam, shape, STACKED_PER_OBJECTIVE))
+        # A 4-man stack of each of the likeliest teams, so a page filter for
+        # one team always has something to show. Teams ranked by the
+        # ceiling of their best four skaters.
+        def strength(t):
+            return float(np.sort(ceil[tmask[t]])[-4:].sum())
+        for t in sorted(teams, key=strength, reverse=True)[:TEAM_STACKS]:
+            if tmask[t].sum() >= 4:
+                families.append((f"team {t} lam=0.0", ceil, 0.0,
+                                 ("team", t, 4), PER_TEAM_STACK))
+
+    floor_ok = True
+    for name, base, lam, stack, count in families:
             obj = base * (1.0 - lam * own)
-            for _ in range(per_objective):
-                pick = solve(obj, floor_ok)
+            for _ in range(count):
+                pick = solve(obj, floor_ok, stack)
                 if pick is None and floor_ok:
                     floor_ok = False
                     log.info("lineup pool: salary floor $%d unreachable "
                              "with diversity rules - dropped", floor)
-                    pick = solve(obj, False)
+                    pick = solve(obj, False, stack)
                 if pick is None:
                     break
                 seen.append(pick)
@@ -255,7 +322,7 @@ def build(players: list[dict], roster: dict, field_size: int = 100_000,
                     # magnitude, and it ranks lineups correctly.
                     "dup": round(float(field_size * math.prod(
                         max(x, 1e-4) for x in o)), 4),
-                    "src": f"{base_name} lam={lam}",
+                    "src": name,
                 })
     log.info("lineup pool: %d lineups, ownership %.0f%%-%.0f%%, projection "
              "%.1f-%.1f", len(pool),

@@ -1,0 +1,659 @@
+{
+ "sport": "cfb",
+ "date": "2026-11-17",
+ "fetched_at": "2026-11-17T16:01:07+00:00",
+ "sources": [
+  "draftkings (4 boards, 1051 players)"
+ ],
+ "out": [
+  {
+   "dk_player_id": "1400530",
+   "name": "Alex Perry",
+   "team": "IL",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1410838",
+   "name": "Brady Simmons",
+   "team": "MIAOH",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1508408",
+   "name": "Ca'Lil Valentine",
+   "team": "IL",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1389581",
+   "name": "Coy Eakin",
+   "team": "TTU",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1582317",
+   "name": "Daune Morris",
+   "team": "TENN",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1582771",
+   "name": "David McComb",
+   "team": "MIAOH",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1513534",
+   "name": "Donte Lee Jr.",
+   "team": "TTU",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1582478",
+   "name": "Eric Karner",
+   "team": "MIAOH",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1443013",
+   "name": "Ethan Davis",
+   "team": "TENN",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1583389",
+   "name": "Grant Smith",
+   "team": "IL",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1443308",
+   "name": "Hollywood Smothers",
+   "team": "TEX",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1410525",
+   "name": "Hudson Clement",
+   "team": "IL",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1592502",
+   "name": "JJ Buchanan",
+   "team": "MICH",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1456696",
+   "name": "Ja'Kobi Jackson",
+   "team": "OSU",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1286440",
+   "name": "Jaden Bray",
+   "team": "WVU",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1647653",
+   "name": "Javari Barnett",
+   "team": "IL",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1596612",
+   "name": "Joakim Dodson",
+   "team": "TENN",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1653736",
+   "name": "John Hebert",
+   "team": "UH",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1515986",
+   "name": "Jordan Washington",
+   "team": "UW",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1508833",
+   "name": "Julian Sayin",
+   "team": "OSU",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1593015",
+   "name": "Justin Thurman",
+   "team": "KU",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1655448",
+   "name": "Kaden Page",
+   "team": "OHIO",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1452867",
+   "name": "Kamari Moulton",
+   "team": "IOWA",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1441170",
+   "name": "Keith Reynolds",
+   "team": "MIAOH",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1647394",
+   "name": "Kory Amachree",
+   "team": "KU",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1646027",
+   "name": "Madden Williams",
+   "team": "TA&M",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1451010",
+   "name": "Maddox Lassiter",
+   "team": "ARK",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1464392",
+   "name": "Malachi Hosley",
+   "team": "GT",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1524363",
+   "name": "Micah Ka'apana",
+   "team": "MICH",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1506449",
+   "name": "Mike Matthews",
+   "team": "TENN",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1442977",
+   "name": "Mikey Matthews",
+   "team": "UCLA",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1598907",
+   "name": "Muizz Tounkara",
+   "team": "UH",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1597674",
+   "name": "Nick Townsend",
+   "team": "TEX",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1442954",
+   "name": "Nico Iamaleava",
+   "team": "UCLA",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1581916",
+   "name": "Phillip Wright III",
+   "team": "LSU",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1583957",
+   "name": "Quaid Carr",
+   "team": "UW",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1590805",
+   "name": "Rashad Perry",
+   "team": "OHIO",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1656620",
+   "name": "Ryan Estrada",
+   "team": "MINN",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1508404",
+   "name": "Tanner Hollinger",
+   "team": "IL",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1524064",
+   "name": "Terry Bussey",
+   "team": "TA&M",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1511759",
+   "name": "Thomas Gotkowski",
+   "team": "MIAOH",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1582492",
+   "name": "Tiger Riden Jr.",
+   "team": "TA&M",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1395210",
+   "name": "Trell Harris",
+   "team": "OU",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1582257",
+   "name": "Trynae Washington",
+   "team": "OU",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1391243",
+   "name": "Vincent Genatone",
+   "team": "NEB",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1508300",
+   "name": "Yasin Willis",
+   "team": "KU",
+   "reason": "DK O"
+  }
+ ],
+ "questionable": [
+  {
+   "name": "Thomas Castellanos",
+   "team": "TTU",
+   "status": "Q"
+  },
+  {
+   "name": "Aidan Chiles",
+   "team": "NW",
+   "status": "Q"
+  },
+  {
+   "name": "Katin Houser",
+   "team": "IL",
+   "status": "Q"
+  },
+  {
+   "name": "Michael Clayton II",
+   "team": "IL",
+   "status": "Q"
+  },
+  {
+   "name": "Dylan Edwards",
+   "team": "KU",
+   "status": "Q"
+  },
+  {
+   "name": "LJ Martin",
+   "team": "BYU",
+   "status": "Q"
+  },
+  {
+   "name": "Turbo Richard",
+   "team": "IU",
+   "status": "Q"
+  },
+  {
+   "name": "Cam Coleman",
+   "team": "TEX",
+   "status": "P"
+  },
+  {
+   "name": "Quinten Joyner",
+   "team": "TTU",
+   "status": "Q"
+  },
+  {
+   "name": "George MacIntyre",
+   "team": "TENN",
+   "status": "P"
+  },
+  {
+   "name": "Quinn Murphy",
+   "team": "BAY",
+   "status": "Q"
+  },
+  {
+   "name": "Sione Moa",
+   "team": "BYU",
+   "status": "Q"
+  },
+  {
+   "name": "DJ Butler",
+   "team": "UH",
+   "status": "Q"
+  },
+  {
+   "name": "Trey Cooley",
+   "team": "UW",
+   "status": "Q"
+  },
+  {
+   "name": "Jalen Dupree",
+   "team": "KU",
+   "status": "Q"
+  },
+  {
+   "name": "Andre Devine",
+   "team": "WVU",
+   "status": "Q"
+  },
+  {
+   "name": "Chad Alexander",
+   "team": "GT",
+   "status": "Q"
+  },
+  {
+   "name": "Shane Marshall",
+   "team": "GT",
+   "status": "Q"
+  },
+  {
+   "name": "Kevin Roche Jr.",
+   "team": "GT",
+   "status": "Q"
+  },
+  {
+   "name": "Christian Moss",
+   "team": "UW",
+   "status": "Q"
+  },
+  {
+   "name": "Daniel Anderson",
+   "team": "NW",
+   "status": "Q"
+  },
+  {
+   "name": "Brian Rowe Jr.",
+   "team": "UCLA",
+   "status": "Q"
+  },
+  {
+   "name": "TK Norman",
+   "team": "TA&M",
+   "status": "Q"
+  },
+  {
+   "name": "Jayshon Platt",
+   "team": "IL",
+   "status": "Q"
+  },
+  {
+   "name": "Roger Saleapaga II",
+   "team": "BYU",
+   "status": "Q"
+  },
+  {
+   "name": "Ashton Bethel-Roman",
+   "team": "TA&M",
+   "status": "Q"
+  },
+  {
+   "name": "Jalen Jones",
+   "team": "TTU",
+   "status": "Q"
+  },
+  {
+   "name": "Channing Goodwin",
+   "team": "MICH",
+   "status": "Q"
+  },
+  {
+   "name": "Kelshaun Johnson",
+   "team": "TA&M",
+   "status": "Q"
+  },
+  {
+   "name": "Ashton Jones",
+   "team": "BAY",
+   "status": "Q"
+  },
+  {
+   "name": "Leyton Stone",
+   "team": "TTU",
+   "status": "Q"
+  },
+  {
+   "name": "Jack Utz",
+   "team": "KU",
+   "status": "Q"
+  },
+  {
+   "name": "Will Zundel",
+   "team": "BYU",
+   "status": "Q"
+  },
+  {
+   "name": "Kila Keone",
+   "team": "BYU",
+   "status": "Q"
+  },
+  {
+   "name": "Cam Ball",
+   "team": "WVU",
+   "status": "Q"
+  },
+  {
+   "name": "Darnell Collins",
+   "team": "GT",
+   "status": "Q"
+  },
+  {
+   "name": "Kentrell Davis",
+   "team": "GT",
+   "status": "Q"
+  },
+  {
+   "name": "Landon Morris",
+   "team": "WAKE",
+   "status": "Q"
+  },
+  {
+   "name": "Elijah Otieno",
+   "team": "WAKE",
+   "status": "Q"
+  },
+  {
+   "name": "BJ Thurman",
+   "team": "IL",
+   "status": "Q"
+  },
+  {
+   "name": "Brody Schaffer",
+   "team": "IOWA",
+   "status": "Q"
+  },
+  {
+   "name": "Kendrick Bell",
+   "team": "MICH",
+   "status": "Q"
+  },
+  {
+   "name": "Braydon Alford",
+   "team": "MICH",
+   "status": "Q"
+  },
+  {
+   "name": "Jalen Saint Paul",
+   "team": "UCLA",
+   "status": "Q"
+  },
+  {
+   "name": "Jonah Smith",
+   "team": "UCLA",
+   "status": "Q"
+  },
+  {
+   "name": "Shane Rosenthal",
+   "team": "UCLA",
+   "status": "Q"
+  },
+  {
+   "name": "Hayden Moore",
+   "team": "MINN",
+   "status": "Q"
+  },
+  {
+   "name": "Chris Petrucci",
+   "team": "NW",
+   "status": "Q"
+  },
+  {
+   "name": "Larry Miles",
+   "team": "NEB",
+   "status": "Q"
+  },
+  {
+   "name": "Maxence LeBlanc",
+   "team": "OSU",
+   "status": "Q"
+  },
+  {
+   "name": "Phillip Bell",
+   "team": "OSU",
+   "status": "Q"
+  },
+  {
+   "name": "Brock Boyd",
+   "team": "OSU",
+   "status": "Q"
+  },
+  {
+   "name": "Brennen Schramm",
+   "team": "OSU",
+   "status": "Q"
+  },
+  {
+   "name": "Broc Lowry",
+   "team": "WMU",
+   "status": "Q"
+  },
+  {
+   "name": "Trey Petty",
+   "team": "WMU",
+   "status": "Q"
+  },
+  {
+   "name": "Jalen Bonds",
+   "team": "BALL",
+   "status": "Q"
+  },
+  {
+   "name": "Noah Kim",
+   "team": "EMU",
+   "status": "Q"
+  },
+  {
+   "name": "Victor Rosa",
+   "team": "OHIO",
+   "status": "Q"
+  },
+  {
+   "name": "Lolo Mataele",
+   "team": "WMU",
+   "status": "Q"
+  },
+  {
+   "name": "Cade Yacamelli",
+   "team": "MIAOH",
+   "status": "Q"
+  },
+  {
+   "name": "Khamani Debrow",
+   "team": "OHIO",
+   "status": "Q"
+  },
+  {
+   "name": "Cole Coonrod",
+   "team": "BALL",
+   "status": "Q"
+  },
+  {
+   "name": "Sean Ward",
+   "team": "BALL",
+   "status": "Q"
+  },
+  {
+   "name": "Mason Riggins",
+   "team": "BALL",
+   "status": "Q"
+  },
+  {
+   "name": "Derion Talbert",
+   "team": "BALL",
+   "status": "Q"
+  },
+  {
+   "name": "Zach Hackleman",
+   "team": "OHIO",
+   "status": "Q"
+  },
+  {
+   "name": "Ian Ver Steeg",
+   "team": "OHIO",
+   "status": "Q"
+  },
+  {
+   "name": "Jackson Holt",
+   "team": "EMU",
+   "status": "Q"
+  },
+  {
+   "name": "Brady Shelton",
+   "team": "EMU",
+   "status": "Q"
+  },
+  {
+   "name": "Payton Kokaly",
+   "team": "EMU",
+   "status": "Q"
+  },
+  {
+   "name": "Harper Hughes",
+   "team": "WMU",
+   "status": "Q"
+  },
+  {
+   "name": "Jared Kelley",
+   "team": "KENT",
+   "status": "Q"
+  },
+  {
+   "name": "Trey Zvonar",
+   "team": "MIAOH",
+   "status": "Q"
+  },
+  {
+   "name": "Brayden Boeing",
+   "team": "MIAOH",
+   "status": "Q"
+  }
+ ],
+ "notes": []
+}

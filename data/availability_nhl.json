@@ -1,0 +1,457 @@
+{
+ "sport": "nhl",
+ "date": "2026-11-17",
+ "fetched_at": "2026-11-17T16:00:59+00:00",
+ "sources": [
+  "draftkings (9 boards, 622 players)"
+ ],
+ "out": [
+  {
+   "dk_player_id": "878158",
+   "name": "A.J. Greer",
+   "team": "ANA",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "1517793",
+   "name": "Adam Jecho",
+   "team": "STL",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "1121522",
+   "name": "Alec Regula",
+   "team": "EDM",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "741405",
+   "name": "Aleksander Barkov",
+   "team": "FLA",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "1121494",
+   "name": "Alexander Romanov",
+   "team": "NYI",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "741463",
+   "name": "Andre Burakovsky",
+   "team": "OTT",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "870153",
+   "name": "Artemi Panarin",
+   "team": "LAK",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1172186",
+   "name": "Bowen Byram",
+   "team": "CHI",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "414433",
+   "name": "Brad Marchand",
+   "team": "FLA",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "831385",
+   "name": "Brayden Point",
+   "team": "TBL",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "1172297",
+   "name": "Cade Webber",
+   "team": "TOR",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "1453028",
+   "name": "Calum Ritchie",
+   "team": "NYI",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "660799",
+   "name": "Colton Sissons",
+   "team": "TOR",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "1248091",
+   "name": "Connor Zary",
+   "team": "CGY",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "878278",
+   "name": "Conor Garland",
+   "team": "CBJ",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "920364",
+   "name": "Dillon Dube",
+   "team": "STL",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "612980",
+   "name": "Dylan DeMelo",
+   "team": "WPG",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "1394986",
+   "name": "Elias Salomonsson",
+   "team": "WPG",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "831382",
+   "name": "Elvis Merzlikins",
+   "team": "TOR",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "920363",
+   "name": "Filip Gustavsson",
+   "team": "MIN",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "556379",
+   "name": "Frederik Andersen",
+   "team": "EDM",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "849422",
+   "name": "Hayden Hodgson",
+   "team": "OTT",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1428062",
+   "name": "Igor Chernyshov",
+   "team": "SJS",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "1121465",
+   "name": "Isac Lundestrom",
+   "team": "CBJ",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "1321468",
+   "name": "Isak Rosen",
+   "team": "WPG",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "1453119",
+   "name": "Jakub Dvorak",
+   "team": "LAK",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "1562329",
+   "name": "James Hagens",
+   "team": "BOS",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "1057163",
+   "name": "Jonah Gadjovich",
+   "team": "FLA",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "600077",
+   "name": "Jonathan Huberdeau",
+   "team": "CGY",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "978597",
+   "name": "Justin Danforth",
+   "team": "BUF",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "1121510",
+   "name": "Kevin Bahl",
+   "team": "CGY",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "1105812",
+   "name": "Kirill Marchenko",
+   "team": "TOR",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "1498355",
+   "name": "Konsta Helenius",
+   "team": "BUF",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "878184",
+   "name": "Kyle Capobianco",
+   "team": "DAL",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "1078236",
+   "name": "Kyle Keyser",
+   "team": "SJS",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "1364167",
+   "name": "Lian Bichsel",
+   "team": "DAL",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "392950",
+   "name": "Logan Couture",
+   "team": "SJS",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "1418757",
+   "name": "Marshall Rifai",
+   "team": "TOR",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "504249",
+   "name": "Matt Duchene",
+   "team": "DAL",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "680847",
+   "name": "Matt Grzelcyk",
+   "team": "BUF",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "1394907",
+   "name": "Matt Savoie",
+   "team": "EDM",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "743257",
+   "name": "Mattias Janmark",
+   "team": "EDM",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "741442",
+   "name": "Max Domi",
+   "team": "TOR",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "744806",
+   "name": "Miles Wood",
+   "team": "TOR",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "550769",
+   "name": "Nick Bjugstad",
+   "team": "WPG",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "1382727",
+   "name": "Nick Blankenburg",
+   "team": "TOR",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "607960",
+   "name": "Nick Cousins",
+   "team": "OTT",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "1361392",
+   "name": "Nikita Grebenkin",
+   "team": "PHI",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "878036",
+   "name": "Noah Hanifin",
+   "team": "VGK",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "659868",
+   "name": "Olli Maatta",
+   "team": "MIN",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "1121531",
+   "name": "Oskar Back",
+   "team": "DAL",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "1453027",
+   "name": "Quentin Musty",
+   "team": "SJS",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "1121477",
+   "name": "Rasmus Sandin",
+   "team": "WSH",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "1057134",
+   "name": "Ryan Poehling",
+   "team": "ANA",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "741409",
+   "name": "Sean Monahan",
+   "team": "CBJ",
+   "reason": "DK O"
+  },
+  {
+   "dk_player_id": "652695",
+   "name": "Torey Krug",
+   "team": "STL",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "1121672",
+   "name": "Tyler Tucker",
+   "team": "STL",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "920578",
+   "name": "Vincent Desharnais",
+   "team": "WSH",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "600129",
+   "name": "Vladislav Namestnikov",
+   "team": "WPG",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "831372",
+   "name": "Warren Foegele",
+   "team": "OTT",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "1321459",
+   "name": "William Eklund",
+   "team": "OTT",
+   "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "1321784",
+   "name": "William Trudeau",
+   "team": "NSH",
+   "reason": "DK IR"
+  }
+ ],
+ "questionable": [
+  {
+   "name": "Anthony Cirelli",
+   "team": "TBL",
+   "status": "DTD"
+  },
+  {
+   "name": "Miro Heiskanen",
+   "team": "DAL",
+   "status": "DTD"
+  },
+  {
+   "name": "Ryan Nugent-Hopkins",
+   "team": "EDM",
+   "status": "DTD"
+  },
+  {
+   "name": "Morgan Rielly",
+   "team": "TOR",
+   "status": "DTD"
+  },
+  {
+   "name": "Jonathan Marchessault",
+   "team": "NSH",
+   "status": "DTD"
+  },
+  {
+   "name": "Erik Gustafsson",
+   "team": "LAK",
+   "status": "DTD"
+  },
+  {
+   "name": "Jean-Gabriel Pageau",
+   "team": "NYI",
+   "status": "DTD"
+  },
+  {
+   "name": "Logan Stanley",
+   "team": "NYI",
+   "status": "DTD"
+  },
+  {
+   "name": "Kiefer Sherwood",
+   "team": "SJS",
+   "status": "DTD"
+  },
+  {
+   "name": "Erik Cernak",
+   "team": "TBL",
+   "status": "DTD"
+  },
+  {
+   "name": "Alexander Wennberg",
+   "team": "SJS",
+   "status": "DTD"
+  },
+  {
+   "name": "Aleksanteri Kaskimaki",
+   "team": "STL",
+   "status": "DTD"
+  },
+  {
+   "name": "Ross Johnston",
+   "team": "STL",
+   "status": "DTD"
+  },
+  {
+   "name": "Tyler Myers",
+   "team": "DAL",
+   "status": "DTD"
+  }
+ ],
+ "notes": [
+  "only 24 NHL rosters read - roster check skipped, nobody dropped by it"
+ ]
+}

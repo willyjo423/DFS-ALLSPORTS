@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-17T18:31:32+00:00",
+ "generated_at": "2026-11-17T18:54:01+00:00",
  "sport": "nhl",
  "site": "dk",
  "kind": "classic",
@@ -512,8 +512,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
-   "line": "D3",
-   "lg": "TBL-D3",
+   "line": "D1",
+   "lg": "TBL-D1",
    "proj": 13.46
   },
   {
@@ -707,8 +707,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
-   "line": "D3",
-   "lg": "TBL-D3",
+   "line": "D1",
+   "lg": "TBL-D1",
    "proj": 10.6
   },
   {
@@ -941,8 +941,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
-   "line": "D1",
-   "lg": "TBL-D1",
+   "line": "D2",
+   "lg": "TBL-D2",
    "proj": 8.05
   },
   {
@@ -1134,8 +1134,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
-   "line": "D1",
-   "lg": "TBL-D1",
+   "line": "D2",
+   "lg": "TBL-D2",
    "proj": 6.68
   },
   {
@@ -1251,8 +1251,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
-   "line": "D2",
-   "lg": "TBL-D2",
+   "line": "D3",
+   "lg": "TBL-D3",
    "proj": 5.66
   },
   {
@@ -1368,8 +1368,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
-   "line": "D2",
-   "lg": "TBL-D2",
+   "line": "D3",
+   "lg": "TBL-D3",
    "proj": 4.5
   },
   {

@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-17T18:31:32+00:00",
+ "generated_at": "2026-11-17T18:54:01+00:00",
  "sport": "nhl",
  "site": "dk",
  "kind": "classic",
@@ -93,8 +93,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
-   "line": "L2",
-   "lg": "VGK-L2",
+   "line": "L1",
+   "lg": "VGK-L1",
    "proj": 18.49
   },
   {
@@ -321,8 +321,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
-   "line": "L3",
-   "lg": "VGK-L3",
+   "line": "L1",
+   "lg": "VGK-L1",
    "proj": 14.59
   },
   {
@@ -360,8 +360,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
-   "line": "L1",
-   "lg": "VGK-L1",
+   "line": "L3",
+   "lg": "VGK-L3",
    "proj": 14.96
   },
   {
@@ -631,8 +631,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
-   "line": "L3",
-   "lg": "VGK-L3",
+   "line": "L2",
+   "lg": "VGK-L2",
    "proj": 9.85
   },
   {
@@ -709,8 +709,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
-   "line": "L3",
-   "lg": "VGK-L3",
+   "line": "L2",
+   "lg": "VGK-L2",
    "proj": 9.71
   },
   {
@@ -748,8 +748,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
-   "line": "L1",
-   "lg": "VGK-L1",
+   "line": "L3",
+   "lg": "VGK-L3",
    "proj": 9.99
   },
   {
@@ -787,8 +787,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
-   "line": "D2",
-   "lg": "VGK-D2",
+   "line": "D1",
+   "lg": "VGK-D1",
    "proj": 9.53
   },
   {
@@ -826,8 +826,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
-   "line": "L2",
-   "lg": "VGK-L2",
+   "line": "L1",
+   "lg": "VGK-L1",
    "proj": 9.05
   },
   {
@@ -904,8 +904,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
-   "line": "D2",
-   "lg": "VGK-D2",
+   "line": "D1",
+   "lg": "VGK-D1",
    "proj": 8.83
   },
   {
@@ -1177,8 +1177,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
-   "line": "L1",
-   "lg": "VGK-L1",
+   "line": "L3",
+   "lg": "VGK-L3",
    "proj": 5.74
   },
   {
@@ -1524,8 +1524,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
-   "line": "D1",
-   "lg": "VGK-D1",
+   "line": "D2",
+   "lg": "VGK-D2",
    "proj": 4.05
   },
   {
@@ -1719,8 +1719,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
-   "line": "D1",
-   "lg": "VGK-D1",
+   "line": "D2",
+   "lg": "VGK-D2",
    "proj": 4.07
   }
  ],

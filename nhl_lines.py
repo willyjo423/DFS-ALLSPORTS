@@ -158,8 +158,14 @@ def game_groups(game_id: int) -> dict[str, dict]:
         dmen = [p for p in mine if role[p][1] == "D"]
 
         def groups(ids, size):
-            es_time = {p: int((on[p] & es).sum()) for p in ids}
-            free = sorted(ids, key=lambda p: -es_time[p])
+            # Seeded by TOTAL ice time, so the star seeds first and his
+            # linemates are found before a checking line can claim them;
+            # partners chosen by shared 5v5 time. Then numbered by the group's
+            # total ice time - a coach's L1 is the line he plays most, which
+            # 5v5 time alone gets wrong for a top line that lives on the PP
+            # (McDavid's line came out "L3" by 5v5 minutes).
+            tot = {p: int(on[p].sum()) for p in ids}
+            free = sorted(ids, key=lambda p: -tot[p])
             res = []
             while len(free) >= size:
                 seed = free.pop(0)
@@ -167,7 +173,7 @@ def game_groups(game_id: int) -> dict[str, dict]:
                 for q in mates:
                     free.remove(q)
                 res.append([seed] + mates)
-            return res
+            return sorted(res, key=lambda g: -sum(tot[p] for p in g))
 
         sk = [p for p in mine if role[p][1] != "G"]
         pp_time = {p: int((on[p] & pp[abbrev]).sum()) for p in sk}

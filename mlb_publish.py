@@ -56,6 +56,7 @@ from engine import model as M
 from engine import optimise as O
 from engine import ownership as OWN
 from engine import simulate as S
+from availability import available
 
 log = logging.getLogger("mlb_publish")
 
@@ -577,7 +578,8 @@ def candidate_slates(draft_group: int | None, look: int,
         row = listed[listed["draft_group"] == draft_group]
         label = str(row["example"].iloc[0]) if len(row) else "(given)"
         when = row["starts"].iloc[0] if len(row) else pd.NaT
-        return [(int(draft_group), label, MD.board(int(draft_group)), when)]
+        b = available(MD.board(int(draft_group)), "mlb")
+        return [(int(draft_group), label, b, when)]
 
     classic = listed[~listed["game_type"].astype(str)
                      .str.contains("showdown", case=False, na=False)]
@@ -613,7 +615,7 @@ def candidate_slates(draft_group: int | None, look: int,
             ["starts", "contests"], ascending=[True, False]
     ).head(look).itertuples(index=False):
         try:
-            board = MD.board(int(r.draft_group))
+            board = available(MD.board(int(r.draft_group)), "mlb")
         except Exception as exc:                               # noqa: BLE001
             log.info("draft group %s did not load (%s)", r.draft_group,
                      str(exc)[:70])

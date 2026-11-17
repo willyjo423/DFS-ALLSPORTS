@@ -70,6 +70,7 @@ from engine import optimise as O
 from engine import ownership as OWN
 from engine import simulate as SIM
 from engine.spec import FLEX_SLOTS
+from availability import available
 
 log = logging.getLogger("cfb_publish")
 
@@ -305,7 +306,7 @@ def candidate_slates(draft_group: int | None, look: int) -> list[tuple]:
         label = str(row["example"].iloc[0]) if len(row) else "(given)"
         starts = str(row["starts_text"].iloc[0]) if len(row) else ""
         kind = str(row["game_type"].iloc[0]) if len(row) else ""
-        b = D.board(int(draft_group))
+        b = available(D.board(int(draft_group)), "cfb")
         why = usable(draft_group, b, kind)
         if why:
             log.error("draft group %s was named explicitly, but %s. It is "
@@ -323,7 +324,7 @@ def candidate_slates(draft_group: int | None, look: int) -> list[tuple]:
             log.info("draft group %s is %s - skipped", r["draft_group"], kind)
             continue
         try:
-            b = D.board(int(r["draft_group"]))
+            b = available(D.board(int(r["draft_group"])), "cfb")
         except D.Unavailable as exc:
             log.warning("draft group %s unreadable: %s", r["draft_group"],
                         str(exc)[:90])

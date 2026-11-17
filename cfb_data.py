@@ -44,6 +44,8 @@ import numpy as np
 import pandas as pd
 import requests
 
+from availability import dk_status  # noqa: E402
+
 log = logging.getLogger(__name__)
 
 UA = {"User-Agent": "Mozilla/5.0 (dfs research)"}
@@ -274,6 +276,7 @@ def board(draft_group: int, captain_multiplier: float | None = None
             "salary": pd.to_numeric(p.get("s"), errors="coerce"),
             "dk_points_per_game": pd.to_numeric(p.get("ppg"), errors="coerce"),
             "disabled": bool(p.get("IsDisabledFromDrafting")),
+            "dk_status": dk_status(p),
             "roster_slot": p.get("rosposid"),
             "game": f"{away} @ {home}" if home and away else None,
         })

@@ -57,6 +57,7 @@ from engine import ownership as OWN
 from engine import lineup_pool as LP
 import projection_calibration as PC
 import nhl_lines as LN
+import nhl_news as NEWS
 from engine import simulate as S
 from availability import available
 
@@ -557,8 +558,24 @@ def write(payloads: list[dict]) -> None:
         except Exception as exc:                               # noqa: BLE001
             log.warning("lines unavailable for draft group %s (%s)",
                         p.get("draft_group"), str(exc)[:80])
+        # Tonight's news on top of last game's lines: starting goalies,
+        # projected lines, scratches, promotions. Never allowed to cost the
+        # slate either - without it the board is exactly what it was.
+        news = False
+        try:
+            NEWS.apply(p)
+            news = True
+        except Exception as exc:                               # noqa: BLE001
+            log.warning("late news unavailable for draft group %s (%s)",
+                        p.get("draft_group"), str(exc)[:80])
         # Calibrated expected points first: the lineup pool optimises them.
         PC.apply(p)
+        if news:
+            try:
+                NEWS.reown(p)
+            except Exception as exc:                           # noqa: BLE001
+                log.warning("ownership not refreshed after news (%s)",
+                            str(exc)[:80])
         if "lineups" not in p:
             p["lineups"] = LP.safe_build(p)
         name = f"{SPORT}_dk_{p['kind']}_{p['draft_group']}.json"

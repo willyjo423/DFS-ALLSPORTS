@@ -278,7 +278,7 @@ function drawPlayers() {
     return `<tr class="${cls}">
       <td class="l"><button class="tog ${LOCK.has(p.i) ? "lk" : ""}" data-lock="${p.i}">✓</button>
         <button class="tog ${EXCL.has(p.i) ? "ex" : ""}" data-ex="${p.i}">✕</button></td>
-      <td class="l nm">${esc(p.name)}${flag}<div class="muted">${esc(p.pos)} · ${esc(p.team)}${p.opp ? " v " + esc(p.opp) : ""}${p.line ? " · " + esc(p.line) : ""}${p.ppu ? " · PP" + p.ppu : ""}${p.g_started ? " · started last game" : ""}</div></td>
+      <td class="l nm">${esc(p.name)}${flag}<div class="muted">${esc(p.pos)} · ${esc(p.team)}${p.opp ? " v " + esc(p.opp) : ""}${p.line ? " · " + esc(p.line) : ""}${p.ppu ? " · PP" + p.ppu : ""}${p.gst && p.gst !== "backup" ? " · " + esc(p.gst) + " starter" : (p.g_started && !p.gst ? " · started last game" : "")}${p.news ? ' · <span class="tag">' + esc(p.news) + "</span>" : ""}</div></td>
       <td>$${((p.salary || 0) / 1000).toFixed(1)}k</td><td><b>${num(p.proj)}</b></td>
       <td><b>${num(100 * (p.own || 0))}</b></td><td>${num(p.val, 2)}</td><td>${num(p.ceil)}</td><td>${num(p.lev, 2)}</td></tr>`;
   }).join("");

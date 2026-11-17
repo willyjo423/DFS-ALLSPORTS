@@ -21,6 +21,9 @@ on:
     # GitHub delays routinely is not much, so the early run is at 16:15.
     - cron: "15 16 * * *"
     - cron: "0 22 * * *"
+    # After the morning skates, when most starting goalies are confirmed and
+    # tonight's lines are posted (3:30pm EST / 4:30pm EDT).
+    - cron: "30 20 * * *"
     # Pre-lock: about 50 minutes before a 7pm Eastern puck drop, for late
     # scratches and the morning skate's goalie news. Split by month because
     # GitHub's scheduler is UTC and ignores daylight saving: 23:10 UTC is

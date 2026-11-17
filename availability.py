@@ -177,15 +177,32 @@ def _nhl_roster_names() -> tuple[set, int]:
     except Exception as exc:                                   # noqa: BLE001
         log.warning("NHL team list unavailable (%s)", exc)
         return set(), 0
+    import time
     names, read = set(), 0
     for c in codes:
-        try:
-            r = requests.get(f"https://api-web.nhle.com/v1/roster/{c}/current",
-                             timeout=30)
-            r.raise_for_status()
-            js = r.json()
-        except Exception as exc:                               # noqa: BLE001
-            log.warning("NHL roster %s unavailable (%s)", c, str(exc)[:60])
+        # The NHL's API answers 429 to 32 requests in a burst - the first run
+        # read 24 teams and lost the rest. A short pause between teams, and a
+        # wait-and-retry on 429, keeps all 32 for about 20 seconds total.
+        js = None
+        for attempt in range(4):
+            try:
+                r = requests.get(
+                    f"https://api-web.nhle.com/v1/roster/{c}/current",
+                    timeout=30)
+                if r.status_code == 429:
+                    wait = float(r.headers.get("Retry-After") or 5 * (attempt + 1))
+                    time.sleep(min(wait, 30))
+                    continue
+                r.raise_for_status()
+                js = r.json()
+                break
+            except Exception as exc:                           # noqa: BLE001
+                log.warning("NHL roster %s unavailable (%s)", c,
+                            str(exc)[:60])
+                break
+        time.sleep(0.6)
+        if js is None:
+            log.warning("NHL roster %s not read", c)
             continue
         read += 1
         for grp in ("forwards", "defensemen", "goalies"):

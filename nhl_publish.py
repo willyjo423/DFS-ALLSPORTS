@@ -271,6 +271,25 @@ def join_board(board: pd.DataFrame, proj: pd.DataFrame) -> pd.DataFrame:
         raise RuntimeError(f"the projection join fanned out {before} rows "
                            f"to {len(out)}")
 
+    # A second pass for the names the plain key missed, keyed on the
+    # transliterated spelling: DraftKings writes "Tim Stuetzle", the NHL and
+    # MoneyPuck "Tim Stützle", and accent-stripping turns that into
+    # "stutzle". He went unprojected - and so off every lineup - for that.
+    if "median" in out.columns and out["median"].isna().any():
+        from availability import _TRANSLIT
+        key = lambda n: ND.normalise(str(n).translate(_TRANSLIT))
+        right2 = right.assign(_k=right["name"].map(key)).drop_duplicates("_k")
+        right2 = right2.set_index("_k")
+        miss = out["median"].isna()
+        k2 = out.loc[miss, "name"].map(key)
+        found = k2.isin(right2.index)
+        if found.any():
+            cols = [c for c in right2.columns if c not in overlap and c != "norm"]
+            idx = k2[found].index
+            out.loc[idx, cols] = right2.loc[k2[found], cols].to_numpy()
+            log.info("matched %d more by transliterated name: %s",
+                     int(found.sum()), ", ".join(out.loc[idx, "name"]))
+
     have = out["median"].notna() if "median" in out.columns else pd.Series(
         False, index=out.index)
     salary = pd.to_numeric(out["salary"], errors="coerce").fillna(0)

@@ -66,6 +66,8 @@ with tempfile.TemporaryDirectory() as d:
 print("names")
 check(bool(A.name_keys("Tim Stuetzle") & A.name_keys("Tim Stützle")),
       "Stuetzle (DraftKings) matches Stützle (NHL)")
+check(A.fold("Tim Stuetzle") == A.fold("Tim Stützle") == A.fold("Tim Stutzle"),
+      "all three spellings fold to one")
 check(not (A.name_keys("Connor McDavid") & A.name_keys("Connor Bedard")),
       "different surnames never match")
 

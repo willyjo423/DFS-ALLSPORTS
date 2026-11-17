@@ -24,17 +24,16 @@ jobs:
                           print(f"{pad}{kk} = {str(v)[:80]!r}")
               elif isinstance(o, list) and o:
                   shape(o[0], d+1)
-          for u in ["https://www.dailyfaceoff.com/starting-goalies",
-                    "https://www.dailyfaceoff.com/teams/ottawa-senators/line-combinations"]:
-              print("=====", u)
-              try:
-                  h = get(u)
-              except Exception as e:
-                  print("FETCH FAIL", e); continue
-              print("len", len(h))
-              m = re.search(r'<script id="__NEXT_DATA__"[^>]*>(.*?)</script>', h, re.S)
-              if not m:
-                  print("no NEXT_DATA"); print(h[:500]); continue
-              d = json.loads(m.group(1))
-              shape(d["props"]["pageProps"])
+          import collections
+          c=collections.Counter(); inj=collections.Counter(); upd=[]
+          for slug in ["ottawa-senators","boston-bruins","edmonton-oilers","tampa-bay-lightning","toronto-maple-leafs"]:
+              h=get(f"https://www.dailyfaceoff.com/teams/{slug}/line-combinations")
+              m=re.search(r'<script id="__NEXT_DATA__"[^>]*>(.*?)</script>', h, re.S)
+              cb=json.loads(m.group(1))["props"]["pageProps"]["combinations"]
+              upd.append((slug, cb.get("updatedAt")))
+              for p in cb["players"]:
+                  c[(p.get("groupIdentifier"),p.get("categoryIdentifier"))]+=1
+                  inj[(p.get("injuryStatus"),p.get("gameTimeDecision"))]+=1
+                  if p.get("injuryStatus"): print("INJ", slug, p["name"], p.get("groupIdentifier"), p.get("injuryStatus"))
+          print(upd); print(sorted(c.items(), key=str)); print(inj)
           PY

@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-17T16:59:43+00:00",
+ "generated_at": "2026-11-17T17:45:18+00:00",
  "sport": "nhl",
  "site": "dk",
  "kind": "classic",
@@ -75,6 +75,7 @@
     31.92
    ],
    "med": 12.73,
+   "mean": 13.95,
    "ceil": 31.92,
    "own": 0.42276,
    "lev": -0.022,
@@ -91,7 +92,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 17.98
   },
   {
    "name": "Andrei Vasilevskiy",
@@ -110,6 +112,7 @@
     24.509
    ],
    "med": 14.21,
+   "mean": 10.93,
    "ceil": 24.51,
    "own": 0.26948,
    "lev": 0.178,
@@ -126,7 +129,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 10.93
   },
   {
    "name": "Dennis Hildeby",
@@ -145,6 +149,7 @@
     24.986
    ],
    "med": 14.96,
+   "mean": 12.78,
    "ceil": 24.99,
    "own": 0.38622,
    "lev": 0.044,
@@ -161,7 +166,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 12.78
   },
   {
    "name": "Brandon Hagel",
@@ -180,6 +186,7 @@
     33.53
    ],
    "med": 12.11,
+   "mean": 13.35,
    "ceil": 33.53,
    "own": 0.43198,
    "lev": -0.067,
@@ -196,7 +203,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 16.81
   },
   {
    "name": "Jake Guentzel",
@@ -215,6 +223,7 @@
     31.718
    ],
    "med": 11.34,
+   "mean": 12.99,
    "ceil": 31.72,
    "own": 0.65,
    "lev": -0.111,
@@ -231,7 +240,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 16.38
   },
   {
    "name": "Logan Thompson",
@@ -250,6 +260,7 @@
     25.903
    ],
    "med": 11.18,
+   "mean": 9.94,
    "ceil": 25.9,
    "own": 0.25642,
    "lev": 0.133,
@@ -266,7 +277,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 9.94
   },
   {
    "name": "Charlie Lindgren",
@@ -285,6 +297,7 @@
     25.526
    ],
    "med": 15.1,
+   "mean": 6.57,
    "ceil": 25.53,
    "own": 0.08787,
    "lev": 0.867,
@@ -301,7 +314,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 6.57
   },
   {
    "name": "Jakob Chychrun",
@@ -320,6 +334,7 @@
     26.437
    ],
    "med": 9.69,
+   "mean": 11.12,
    "ceil": 26.44,
    "own": 0.29236,
    "lev": 0.044,
@@ -336,7 +351,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 14.59
   },
   {
    "name": "Alex Tuch",
@@ -355,6 +371,7 @@
     24.863
    ],
    "med": 7.72,
+   "mean": 9.44,
    "ceil": 24.86,
    "own": 0.16648,
    "lev": 0.267,
@@ -371,7 +388,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 11.85
   },
   {
    "name": "Anthony Cirelli",
@@ -390,6 +408,7 @@
     24.759
    ],
    "med": 5.83,
+   "mean": 7.45,
    "ceil": 24.76,
    "own": 0.21245,
    "lev": 0.0,
@@ -406,7 +425,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 11.61
   },
   {
    "name": "John Carlson",
@@ -425,6 +445,7 @@
     24.321
    ],
    "med": 9.19,
+   "mean": 9.96,
    "ceil": 24.32,
    "own": 0.23117,
    "lev": 0.133,
@@ -441,7 +462,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 13.46
   },
   {
    "name": "Dylan Strome",
@@ -460,6 +482,7 @@
     24.381
    ],
    "med": 6.98,
+   "mean": 8.11,
    "ceil": 24.38,
    "own": 0.25713,
    "lev": 0.0,
@@ -476,7 +499,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 11.9
   },
   {
    "name": "Cole Hutson",
@@ -495,6 +519,7 @@
     24.245
    ],
    "med": 6.57,
+   "mean": 7.9,
    "ceil": 24.24,
    "own": 0.14192,
    "lev": 0.244,
@@ -511,7 +536,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 11.2
   },
   {
    "name": "Tom Wilson",
@@ -530,6 +556,7 @@
     23.439
    ],
    "med": 6.53,
+   "mean": 7.96,
    "ceil": 23.44,
    "own": 0.12407,
    "lev": 0.356,
@@ -546,7 +573,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 10.16
   },
   {
    "name": "Jordan Kyrou",
@@ -565,6 +593,7 @@
     23.505
    ],
    "med": 5.8,
+   "mean": 6.97,
    "ceil": 23.5,
    "own": 0.09615,
    "lev": 0.467,
@@ -581,7 +610,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 9.38
   },
   {
    "name": "Charle-Edouard D'Astous",
@@ -600,6 +630,7 @@
     20.654
    ],
    "med": 6.54,
+   "mean": 7.28,
    "ceil": 20.65,
    "own": 0.11954,
    "lev": 0.422,
@@ -616,7 +647,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 10.6
   },
   {
    "name": "Ryan Leonard",
@@ -635,6 +667,7 @@
     23.313
    ],
    "med": 7.02,
+   "mean": 7.9,
    "ceil": 23.31,
    "own": 0.13322,
    "lev": 0.356,
@@ -651,7 +684,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 10.24
   },
   {
    "name": "Pierre-Luc Dubois",
@@ -670,6 +704,7 @@
     22.736
    ],
    "med": 6.24,
+   "mean": 7.3,
    "ceil": 22.74,
    "own": 0.23249,
    "lev": -0.044,
@@ -686,7 +721,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 10.23
   },
   {
    "name": "Alex Ovechkin",
@@ -705,6 +741,7 @@
     22.161
    ],
    "med": 5.18,
+   "mean": 7.24,
    "ceil": 22.16,
    "own": 0.11539,
    "lev": 0.267,
@@ -721,7 +758,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 8.33
   },
   {
    "name": "Aliaksei Protas",
@@ -740,6 +778,7 @@
     20.388
    ],
    "med": 5.76,
+   "mean": 6.71,
    "ceil": 20.39,
    "own": 0.09723,
    "lev": 0.422,
@@ -756,7 +795,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 8.73
   },
   {
    "name": "Boone Jenner",
@@ -775,6 +815,7 @@
     19.586
    ],
    "med": 5.44,
+   "mean": 6.29,
    "ceil": 19.59,
    "own": 0.17482,
    "lev": 0.022,
@@ -791,7 +832,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 9.13
   },
   {
    "name": "Victor Hedman",
@@ -810,6 +852,7 @@
     18.081
    ],
    "med": 4.59,
+   "mean": 5.65,
    "ceil": 18.08,
    "own": 0.08359,
    "lev": 0.378,
@@ -826,7 +869,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 8.05
   },
   {
    "name": "Erik Cernak",
@@ -845,6 +889,7 @@
     16.135
    ],
    "med": 5.41,
+   "mean": 5.79,
    "ceil": 16.13,
    "own": 0.08621,
    "lev": 0.467,
@@ -861,7 +906,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 8.44
   },
   {
    "name": "Sam O'Reilly",
@@ -880,6 +926,7 @@
     18.451
    ],
    "med": 3.63,
+   "mean": 4.77,
    "ceil": 18.45,
    "own": 0.11964,
    "lev": -0.133,
@@ -896,7 +943,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 7.22
   },
   {
    "name": "Pontus Holmberg",
@@ -915,6 +963,7 @@
     19.123
    ],
    "med": 4.79,
+   "mean": 6.36,
    "ceil": 19.12,
    "own": 0.10592,
    "lev": 0.267,
@@ -931,7 +980,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 7.12
   },
   {
    "name": "Matt Roy",
@@ -950,6 +1000,7 @@
     17.167
    ],
    "med": 4.31,
+   "mean": 5.71,
    "ceil": 17.17,
    "own": 0.10277,
    "lev": 0.178,
@@ -966,7 +1017,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 6.88
   },
   {
    "name": "J.J. Moser",
@@ -985,6 +1037,7 @@
     15.025
    ],
    "med": 4.3,
+   "mean": 5.1,
    "ceil": 15.03,
    "own": 0.08173,
    "lev": 0.333,
@@ -1001,7 +1054,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 6.68
   },
   {
    "name": "Justin Sourdif",
@@ -1020,6 +1074,7 @@
     19.028
    ],
    "med": 4.62,
+   "mean": 5.39,
    "ceil": 19.03,
    "own": 0.08701,
    "lev": 0.378,
@@ -1036,7 +1091,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 6.6
   },
   {
    "name": "Ilya Protas",
@@ -1055,6 +1111,7 @@
     18.951
    ],
    "med": 3.21,
+   "mean": 4.26,
    "ceil": 18.95,
    "own": 0.12965,
    "lev": -0.289,
@@ -1071,7 +1128,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 5.74
   },
   {
    "name": "Max Crozier",
@@ -1090,6 +1148,7 @@
     16.854
    ],
    "med": 4.22,
+   "mean": 5.35,
    "ceil": 16.85,
    "own": 0.12735,
    "lev": -0.044,
@@ -1106,7 +1165,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 5.66
   },
   {
    "name": "Ilya Mikheyev",
@@ -1125,6 +1185,7 @@
     19.452
    ],
    "med": 4.14,
+   "mean": 5.44,
    "ceil": 19.45,
    "own": 0.14111,
    "lev": -0.2,
@@ -1141,7 +1202,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 5.43
   },
   {
    "name": "Zemgus Girgensons",
@@ -1160,6 +1222,7 @@
     17.797
    ],
    "med": 4.15,
+   "mean": 5.25,
    "ceil": 17.8,
    "own": 0.3234,
    "lev": -0.6,
@@ -1176,7 +1239,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 5.09
   },
   {
    "name": "Ryan McDonagh",
@@ -1195,6 +1259,7 @@
     14.365
    ],
    "med": 4.22,
+   "mean": 4.55,
    "ceil": 14.37,
    "own": 0.15375,
    "lev": -0.178,
@@ -1211,7 +1276,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 4.5
   },
   {
    "name": "Jack St. Ivany",
@@ -1230,6 +1296,7 @@
     14.819
    ],
    "med": 4.13,
+   "mean": 4.99,
    "ceil": 14.82,
    "own": 0.30058,
    "lev": -0.6,
@@ -1246,7 +1313,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 4.05
   },
   {
    "name": "Yanni Gourde",
@@ -1265,6 +1333,7 @@
     18.767
    ],
    "med": 4.26,
+   "mean": 5.38,
    "ceil": 18.77,
    "own": 0.35368,
    "lev": -0.556,
@@ -1281,7 +1350,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 4.81
   },
   {
    "name": "Gage Goncalves",
@@ -1300,6 +1370,7 @@
     18.05
    ],
    "med": 4.34,
+   "mean": 5.18,
    "ceil": 18.05,
    "own": 0.30577,
    "lev": -0.422,
@@ -1316,7 +1387,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 4.88
   },
   {
    "name": "Conor Geekie",
@@ -1335,6 +1407,7 @@
     19.799
    ],
    "med": 3.55,
+   "mean": 4.43,
    "ceil": 19.8,
    "own": 0.20253,
    "lev": -0.467,
@@ -1351,7 +1424,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 4.17
   },
   {
    "name": "Scott Sabourin",
@@ -1370,6 +1444,7 @@
     13.934
    ],
    "med": 2.78,
+   "mean": 3.21,
    "ceil": 13.93,
    "own": 0.08102,
    "lev": 0.0,
@@ -1386,7 +1461,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 3.47
   },
   {
    "name": "Ivan Miroshnichenko",
@@ -1405,6 +1481,7 @@
     14.759
    ],
    "med": 2.84,
+   "mean": 3.52,
    "ceil": 14.76,
    "own": 0.10156,
    "lev": -0.111,
@@ -1421,7 +1498,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 3.52
   },
   {
    "name": "Ethen Frank",
@@ -1440,6 +1518,7 @@
     17.02
    ],
    "med": 2.84,
+   "mean": 3.81,
    "ceil": 17.02,
    "own": 0.1274,
    "lev": -0.311,
@@ -1456,7 +1535,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 3.52
   },
   {
    "name": "Jeffrey Viel",
@@ -1475,6 +1555,7 @@
     13.695
    ],
    "med": 2.81,
+   "mean": 3.41,
    "ceil": 13.69,
    "own": 0.18613,
    "lev": -0.533,
@@ -1491,7 +1572,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 3.46
   },
   {
    "name": "Anthony Beauvillier",
@@ -1510,6 +1592,7 @@
     16.939
    ],
    "med": 3.88,
+   "mean": 4.51,
    "ceil": 16.94,
    "own": 0.19343,
    "lev": -0.4,
@@ -1526,7 +1609,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 4.47
   },
   {
    "name": "Emil Lilleberg",
@@ -1545,6 +1629,7 @@
     14.178
    ],
    "med": 3.36,
+   "mean": 4.07,
    "ceil": 14.18,
    "own": 0.14188,
    "lev": -0.333,
@@ -1561,7 +1646,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 4.0
   },
   {
    "name": "Justin Holl",
@@ -1580,6 +1666,7 @@
     13.538
    ],
    "med": 4.15,
+   "mean": 4.53,
    "ceil": 13.54,
    "own": 0.21684,
    "lev": -0.378,
@@ -1596,7 +1683,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 4.07
   },
   {
    "name": "Timothy Liljegren",
@@ -1615,6 +1703,7 @@
     14.565
    ],
    "med": 4.6,
+   "mean": 5.22,
    "ceil": 14.57,
    "own": 0.34791,
    "lev": -0.422,
@@ -1631,7 +1720,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 4.39
   }
  ],
  "games": [

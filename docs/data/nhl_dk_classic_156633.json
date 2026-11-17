@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-17T16:59:43+00:00",
+ "generated_at": "2026-11-17T17:45:18+00:00",
  "sport": "nhl",
  "site": "dk",
  "kind": "classic",
@@ -75,6 +75,7 @@
     30.917
    ],
    "med": 12.46,
+   "mean": 13.07,
    "ceil": 30.92,
    "own": 0.51848,
    "lev": -0.07,
@@ -91,7 +92,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 18.49
   },
   {
    "name": "Carter Hart",
@@ -110,6 +112,7 @@
     23.473
    ],
    "med": 10.77,
+   "mean": 6.73,
    "ceil": 23.47,
    "own": 0.08127,
    "lev": 0.814,
@@ -126,7 +129,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 6.73
   },
   {
    "name": "Adin Hill",
@@ -145,6 +149,7 @@
     22.479
    ],
    "med": 16.65,
+   "mean": 11.26,
    "ceil": 22.48,
    "own": 0.25479,
    "lev": 0.233,
@@ -161,7 +166,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 11.26
   },
   {
    "name": "Jason Robertson",
@@ -180,6 +186,7 @@
     32.043
    ],
    "med": 11.58,
+   "mean": 12.67,
    "ceil": 32.04,
    "own": 0.38374,
    "lev": 0.0,
@@ -196,7 +203,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 16.21
   },
   {
    "name": "Jake Oettinger",
@@ -215,6 +223,7 @@
     25.466
    ],
    "med": 13.51,
+   "mean": 9.63,
    "ceil": 25.47,
    "own": 0.18947,
    "lev": 0.419,
@@ -231,7 +240,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 9.63
   },
   {
    "name": "Casey DeSmith",
@@ -250,6 +260,7 @@
     20.654
    ],
    "med": 16.97,
+   "mean": 13.56,
    "ceil": 20.65,
    "own": 0.47446,
    "lev": 0.023,
@@ -266,7 +277,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 13.56
   },
   {
    "name": "Mark Stone",
@@ -285,6 +297,7 @@
     28.315
    ],
    "med": 10.2,
+   "mean": 10.64,
    "ceil": 28.31,
    "own": 0.23388,
    "lev": 0.116,
@@ -301,7 +314,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 14.59
   },
   {
    "name": "Mitch Marner",
@@ -320,6 +334,7 @@
     28.762
    ],
    "med": 10.74,
+   "mean": 11.76,
    "ceil": 28.76,
    "own": 0.3185,
    "lev": 0.047,
@@ -336,7 +351,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 14.96
   },
   {
    "name": "Mikko Rantanen",
@@ -355,6 +371,7 @@
     26.606
    ],
    "med": 8.88,
+   "mean": 9.41,
    "ceil": 26.61,
    "own": 0.17145,
    "lev": 0.279,
@@ -371,7 +388,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 13.15
   },
   {
    "name": "Wyatt Johnston",
@@ -390,6 +408,7 @@
     27.829
    ],
    "med": 10.31,
+   "mean": 11.13,
    "ceil": 27.83,
    "own": 0.40918,
    "lev": -0.093,
@@ -406,7 +425,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 14.74
   },
   {
    "name": "Thomas Harley",
@@ -425,6 +445,7 @@
     24.976
    ],
    "med": 9.38,
+   "mean": 9.9,
    "ceil": 24.98,
    "own": 0.19304,
    "lev": 0.209,
@@ -441,7 +462,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 13.79
   },
   {
    "name": "Tomas Hertl",
@@ -460,6 +482,7 @@
     23.182
    ],
    "med": 7.53,
+   "mean": 8.72,
    "ceil": 23.18,
    "own": 0.21453,
    "lev": 0.047,
@@ -476,7 +499,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 12.44
   },
   {
    "name": "Miro Heiskanen",
@@ -495,6 +519,7 @@
     25.791
    ],
    "med": 8.77,
+   "mean": 9.87,
    "ceil": 25.79,
    "own": 0.21437,
    "lev": 0.093,
@@ -511,7 +536,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 12.77
   },
   {
    "name": "Roope Hintz",
@@ -530,6 +556,7 @@
     23.577
    ],
    "med": 6.32,
+   "mean": 7.81,
    "ceil": 23.58,
    "own": 0.19209,
    "lev": -0.023,
@@ -546,7 +573,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 10.89
   },
   {
    "name": "Victor Olofsson",
@@ -565,6 +593,7 @@
     26.159
    ],
    "med": 6.45,
+   "mean": 8.07,
    "ceil": 26.16,
    "own": 0.15599,
    "lev": 0.14,
@@ -581,7 +610,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 9.85
   },
   {
    "name": "Rasmus Andersson",
@@ -600,6 +630,7 @@
     20.662
    ],
    "med": 7.1,
+   "mean": 7.71,
    "ceil": 20.66,
    "own": 0.12535,
    "lev": 0.395,
@@ -616,7 +647,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 10.61
   },
   {
    "name": "Trevor Connelly",
@@ -635,6 +667,7 @@
     21.779
    ],
    "med": 6.7,
+   "mean": 7.74,
    "ceil": 21.78,
    "own": 0.14046,
    "lev": 0.233,
@@ -651,7 +684,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 9.71
   },
   {
    "name": "William Karlsson",
@@ -670,6 +704,7 @@
     22.538
    ],
    "med": 6.52,
+   "mean": 7.55,
    "ceil": 22.54,
    "own": 0.21024,
    "lev": 0.0,
@@ -686,7 +721,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 9.99
   },
   {
    "name": "Shea Theodore",
@@ -705,6 +741,7 @@
     20.967
    ],
    "med": 6.4,
+   "mean": 7.46,
    "ceil": 20.97,
    "own": 0.13203,
    "lev": 0.209,
@@ -721,7 +758,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 9.53
   },
   {
    "name": "Ivan Barbashev",
@@ -740,6 +778,7 @@
     23.764
    ],
    "med": 6.38,
+   "mean": 6.81,
    "ceil": 23.76,
    "own": 0.12058,
    "lev": 0.279,
@@ -756,7 +795,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 9.05
   },
   {
    "name": "Esa Lindell",
@@ -775,6 +815,7 @@
     18.197
    ],
    "med": 6.74,
+   "mean": 7.28,
    "ceil": 18.2,
    "own": 0.12536,
    "lev": 0.349,
@@ -791,7 +832,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 9.39
   },
   {
    "name": "Brayden McNabb",
@@ -810,6 +852,7 @@
     18.401
    ],
    "med": 6.22,
+   "mean": 6.73,
    "ceil": 18.4,
    "own": 0.11186,
    "lev": 0.302,
@@ -826,7 +869,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 8.83
   },
   {
    "name": "Tyler Seguin",
@@ -845,6 +889,7 @@
     21.434
    ],
    "med": 5.07,
+   "mean": 6.28,
    "ceil": 21.43,
    "own": 0.11499,
    "lev": 0.233,
@@ -861,7 +906,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 7.5
   },
   {
    "name": "Arttu Hyry",
@@ -880,6 +926,7 @@
     19.362
    ],
    "med": 4.37,
+   "mean": 5.83,
    "ceil": 19.36,
    "own": 0.10245,
    "lev": 0.256,
@@ -896,7 +943,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 6.62
   },
   {
    "name": "Brett Howden",
@@ -915,6 +963,7 @@
     21.112
    ],
    "med": 5.17,
+   "mean": 6.47,
    "ceil": 21.11,
    "own": 0.15053,
    "lev": 0.047,
@@ -931,7 +980,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 7.1
   },
   {
    "name": "Jamie Benn",
@@ -950,6 +1000,7 @@
     20.552
    ],
    "med": 4.15,
+   "mean": 5.34,
    "ceil": 20.55,
    "own": 0.10917,
    "lev": 0.14,
@@ -966,7 +1017,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 5.93
   },
   {
    "name": "Nils Lundkvist",
@@ -985,6 +1037,7 @@
     15.051
    ],
    "med": 3.88,
+   "mean": 4.48,
    "ceil": 15.05,
    "own": 0.07379,
    "lev": 0.186,
@@ -1001,7 +1054,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 5.42
   },
   {
    "name": "Jeremy Lauzon",
@@ -1020,6 +1074,7 @@
     15.648
    ],
    "med": 4.31,
+   "mean": 5.46,
    "ceil": 15.65,
    "own": 0.14027,
    "lev": 0.0,
@@ -1036,7 +1091,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 5.34
   },
   {
    "name": "Braeden Bowman",
@@ -1055,6 +1111,7 @@
     19.707
    ],
    "med": 4.75,
+   "mean": 5.85,
    "ceil": 19.71,
    "own": 0.24821,
    "lev": -0.279,
@@ -1071,7 +1128,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 5.74
   },
   {
    "name": "Justin Hryckowian",
@@ -1090,6 +1148,7 @@
     18.034
    ],
    "med": 4.12,
+   "mean": 5.27,
    "ceil": 18.03,
    "own": 0.36082,
    "lev": -0.581,
@@ -1106,7 +1165,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 4.66
   },
   {
    "name": "Marc Gatcomb",
@@ -1125,6 +1185,7 @@
     13.811
    ],
    "med": 2.82,
+   "mean": 3.25,
    "ceil": 13.81,
    "own": 0.09323,
    "lev": -0.07,
@@ -1141,7 +1202,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 3.51
   },
   {
    "name": "Colin Blackwell",
@@ -1160,6 +1222,7 @@
     14.482
    ],
    "med": 2.79,
+   "mean": 3.24,
    "ceil": 14.48,
    "own": 0.09312,
    "lev": -0.07,
@@ -1176,7 +1239,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 3.48
   },
   {
    "name": "Tyler Myers",
@@ -1195,6 +1259,7 @@
     13.473
    ],
    "med": 4.21,
+   "mean": 4.97,
    "ceil": 13.47,
    "own": 0.26984,
    "lev": -0.395,
@@ -1211,7 +1276,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 4.11
   },
   {
    "name": "Raphael Lavoie",
@@ -1230,6 +1296,7 @@
     14.851
    ],
    "med": 3.55,
+   "mean": 3.73,
    "ceil": 14.85,
    "own": 0.13046,
    "lev": -0.163,
@@ -1246,7 +1313,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 4.17
   },
   {
    "name": "Radek Faksa",
@@ -1265,6 +1333,7 @@
     14.63
    ],
    "med": 2.41,
+   "mean": 3.59,
    "ceil": 14.63,
    "own": 0.17506,
    "lev": -0.488,
@@ -1281,7 +1350,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 3.21
   },
   {
    "name": "Joel Kiviranta",
@@ -1300,6 +1370,7 @@
     14.809
    ],
    "med": 3.1,
+   "mean": 3.58,
    "ceil": 14.81,
    "own": 0.11718,
    "lev": -0.093,
@@ -1316,7 +1387,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 3.76
   },
   {
    "name": "Sam Steel",
@@ -1335,6 +1407,7 @@
     16.615
    ],
    "med": 3.7,
+   "mean": 4.83,
    "ceil": 16.61,
    "own": 0.27644,
    "lev": -0.581,
@@ -1351,7 +1424,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 4.3
   },
   {
    "name": "Dylan Coghlan",
@@ -1370,6 +1444,7 @@
     16.187
    ],
    "med": 4.13,
+   "mean": 5.34,
    "ceil": 16.19,
    "own": 0.36865,
    "lev": -0.581,
@@ -1386,7 +1461,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 4.05
   },
   {
    "name": "Kyle Burroughs",
@@ -1405,6 +1481,7 @@
     13.382
    ],
    "med": 2.85,
+   "mean": 2.97,
    "ceil": 13.38,
    "own": 0.07092,
    "lev": 0.07,
@@ -1421,7 +1498,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 3.14
   },
   {
    "name": "David Perron",
@@ -1440,6 +1518,7 @@
     20.418
    ],
    "med": 4.19,
+   "mean": 5.5,
    "ceil": 20.42,
    "own": 0.4682,
    "lev": -0.605,
@@ -1456,7 +1535,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 4.75
   },
   {
    "name": "Trey Taylor",
@@ -1475,6 +1555,7 @@
     13.451
    ],
    "med": 2.93,
+   "mean": 3.17,
    "ceil": 13.45,
    "own": 0.08207,
    "lev": 0.023,
@@ -1491,7 +1572,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 3.2
   },
   {
    "name": "Nic Dowd",
@@ -1510,6 +1592,7 @@
     16.446
    ],
    "med": 3.08,
+   "mean": 3.78,
    "ceil": 16.45,
    "own": 0.2053,
    "lev": -0.465,
@@ -1526,7 +1609,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 3.62
   },
   {
    "name": "Parker Wotherspoon",
@@ -1545,6 +1629,7 @@
     16.17
    ],
    "med": 4.15,
+   "mean": 5.38,
    "ceil": 16.17,
    "own": 0.37815,
    "lev": -0.581,
@@ -1561,7 +1646,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 4.07
   }
  ],
  "games": [

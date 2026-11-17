@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-17T16:59:43+00:00",
+ "generated_at": "2026-11-17T17:45:18+00:00",
  "sport": "nhl",
  "site": "dk",
  "kind": "classic",
@@ -75,6 +75,7 @@
     36.902
    ],
    "med": 13.78,
+   "mean": 16.06,
    "ceil": 36.9,
    "own": 0.55479,
    "lev": -0.035,
@@ -91,7 +92,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 16.94
   },
   {
    "name": "Jack Eichel",
@@ -110,6 +112,7 @@
     30.917
    ],
    "med": 12.46,
+   "mean": 13.07,
    "ceil": 30.92,
    "own": 0.2149,
    "lev": 0.012,
@@ -126,7 +129,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 15.53
   },
   {
    "name": "Adin Hill",
@@ -145,6 +149,7 @@
     22.479
    ],
    "med": 16.65,
+   "mean": 11.26,
    "ceil": 22.48,
    "own": 0.12001,
    "lev": 0.259,
@@ -161,7 +166,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 11.26
   },
   {
    "name": "Carter Hart",
@@ -180,6 +186,7 @@
     23.473
    ],
    "med": 10.77,
+   "mean": 6.73,
    "ceil": 23.47,
    "own": 0.02313,
    "lev": 0.824,
@@ -196,7 +203,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 6.73
   },
   {
    "name": "Alex Nedeljkovic",
@@ -215,6 +223,7 @@
     24.351
    ],
    "med": 14.38,
+   "mean": 12.46,
    "ceil": 24.35,
    "own": 0.21746,
    "lev": 0.047,
@@ -231,7 +240,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 12.46
   },
   {
    "name": "Yaroslav Askarov",
@@ -250,6 +260,7 @@
     25.066
    ],
    "med": 10.09,
+   "mean": 8.57,
    "ceil": 25.07,
    "own": 0.0576,
    "lev": 0.588,
@@ -266,7 +277,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 8.57
   },
   {
    "name": "Dustin Wolf",
@@ -285,6 +297,7 @@
     23.689
    ],
    "med": 13.49,
+   "mean": 8.49,
    "ceil": 23.69,
    "own": 0.04929,
    "lev": 0.718,
@@ -301,7 +314,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 8.49
   },
   {
    "name": "Devin Cooley",
@@ -320,6 +334,7 @@
     24.683
    ],
    "med": 10.4,
+   "mean": 10.39,
    "ceil": 24.68,
    "own": 0.1196,
    "lev": 0.165,
@@ -336,7 +351,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 10.39
   },
   {
    "name": "Casey DeSmith",
@@ -355,6 +371,7 @@
     20.654
    ],
    "med": 16.97,
+   "mean": 13.56,
    "ceil": 20.65,
    "own": 0.33056,
    "lev": 0.024,
@@ -371,7 +388,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 13.56
   },
   {
    "name": "Jake Oettinger",
@@ -390,6 +408,7 @@
     25.466
    ],
    "med": 13.51,
+   "mean": 9.63,
    "ceil": 25.47,
    "own": 0.08235,
    "lev": 0.518,
@@ -406,7 +425,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 9.63
   },
   {
    "name": "Jason Robertson",
@@ -425,6 +445,7 @@
     32.043
    ],
    "med": 11.58,
+   "mean": 12.67,
    "ceil": 32.04,
    "own": 0.2535,
    "lev": -0.047,
@@ -441,7 +462,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 14.62
   },
   {
    "name": "Mark Stone",
@@ -460,6 +482,7 @@
     28.315
    ],
    "med": 10.2,
+   "mean": 10.64,
    "ceil": 28.31,
    "own": 0.1367,
    "lev": 0.035,
@@ -476,7 +499,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 13.01
   },
   {
    "name": "Mitch Marner",
@@ -495,6 +519,7 @@
     28.762
    ],
    "med": 10.74,
+   "mean": 11.76,
    "ceil": 28.76,
    "own": 0.22242,
    "lev": -0.047,
@@ -511,7 +536,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 13.44
   },
   {
    "name": "Mikko Rantanen",
@@ -530,6 +556,7 @@
     26.606
    ],
    "med": 8.88,
+   "mean": 9.41,
    "ceil": 26.61,
    "own": 0.09266,
    "lev": 0.259,
@@ -546,7 +573,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 11.56
   },
   {
    "name": "Wyatt Johnston",
@@ -565,6 +593,7 @@
     27.829
    ],
    "med": 10.31,
+   "mean": 11.13,
    "ceil": 27.83,
    "own": 0.20142,
    "lev": -0.035,
@@ -581,7 +610,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 12.29
   },
   {
    "name": "Thomas Harley",
@@ -600,6 +630,7 @@
     24.976
    ],
    "med": 9.38,
+   "mean": 9.9,
    "ceil": 24.98,
    "own": 0.11949,
    "lev": 0.129,
@@ -616,7 +647,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 11.56
   },
   {
    "name": "Will Smith",
@@ -635,6 +667,7 @@
     27.883
    ],
    "med": 8.59,
+   "mean": 10.05,
    "ceil": 27.88,
    "own": 0.1573,
    "lev": -0.059,
@@ -651,7 +684,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 11.0
   },
   {
    "name": "Tomas Hertl",
@@ -670,6 +704,7 @@
     23.182
    ],
    "med": 7.53,
+   "mean": 8.72,
    "ceil": 23.18,
    "own": 0.08583,
    "lev": 0.271,
@@ -686,7 +721,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 9.99
   },
   {
    "name": "Joel Farabee",
@@ -705,6 +741,7 @@
     26.313
    ],
    "med": 7.86,
+   "mean": 9.61,
    "ceil": 26.31,
    "own": 0.14884,
    "lev": -0.047,
@@ -721,7 +758,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 10.15
   },
   {
    "name": "Roope Hintz",
@@ -740,6 +778,7 @@
     23.577
    ],
    "med": 6.32,
+   "mean": 7.81,
    "ceil": 23.58,
    "own": 0.07019,
    "lev": 0.235,
@@ -756,7 +795,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 8.85
   },
   {
    "name": "Miro Heiskanen",
@@ -775,6 +815,7 @@
     25.791
    ],
    "med": 8.77,
+   "mean": 9.87,
    "ceil": 25.79,
    "own": 0.17348,
    "lev": -0.071,
@@ -791,7 +832,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 10.45
   },
   {
    "name": "Victor Olofsson",
@@ -810,6 +852,7 @@
     26.159
    ],
    "med": 6.45,
+   "mean": 8.07,
    "ceil": 26.16,
    "own": 0.08522,
    "lev": 0.129,
@@ -826,7 +869,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 8.69
   },
   {
    "name": "Matt Coronato",
@@ -845,6 +889,7 @@
     26.12
    ],
    "med": 7.26,
+   "mean": 8.75,
    "ceil": 26.12,
    "own": 0.12398,
    "lev": 0.0,
@@ -861,7 +906,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 9.36
   },
   {
    "name": "Matvei Gridin",
@@ -880,6 +926,7 @@
     24.773
    ],
    "med": 6.99,
+   "mean": 8.36,
    "ceil": 24.77,
    "own": 0.10532,
    "lev": 0.071,
@@ -896,7 +943,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 9.06
   },
   {
    "name": "Rasmus Andersson",
@@ -915,6 +963,7 @@
     20.662
    ],
    "med": 7.1,
+   "mean": 7.71,
    "ceil": 20.66,
    "own": 0.07431,
    "lev": 0.341,
@@ -931,7 +980,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 8.78
   },
   {
    "name": "William Karlsson",
@@ -950,6 +1000,7 @@
     22.538
    ],
    "med": 6.52,
+   "mean": 7.55,
    "ceil": 22.54,
    "own": 0.0842,
    "lev": 0.176,
@@ -966,7 +1017,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 8.36
   },
   {
    "name": "Trevor Connelly",
@@ -985,6 +1037,7 @@
     21.779
    ],
    "med": 6.7,
+   "mean": 7.74,
    "ceil": 21.78,
    "own": 0.08473,
    "lev": 0.188,
@@ -1001,7 +1054,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 8.61
   },
   {
    "name": "Shea Theodore",
@@ -1020,6 +1074,7 @@
     20.967
    ],
    "med": 6.4,
+   "mean": 7.46,
    "ceil": 20.97,
    "own": 0.08454,
    "lev": 0.141,
@@ -1036,7 +1091,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 7.89
   },
   {
    "name": "Mikael Backlund",
@@ -1055,6 +1111,7 @@
     20.505
    ],
    "med": 6.95,
+   "mean": 7.61,
    "ceil": 20.51,
    "own": 0.10469,
    "lev": 0.082,
@@ -1071,7 +1128,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 8.21
   },
   {
    "name": "Ivan Barbashev",
@@ -1090,6 +1148,7 @@
     23.764
    ],
    "med": 6.38,
+   "mean": 6.81,
    "ceil": 23.76,
    "own": 0.07221,
    "lev": 0.224,
@@ -1106,7 +1165,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 8.02
   },
   {
    "name": "Tyler Toffoli",
@@ -1125,6 +1185,7 @@
     22.677
    ],
    "med": 5.99,
+   "mean": 6.93,
    "ceil": 22.68,
    "own": 0.08233,
    "lev": 0.106,
@@ -1141,7 +1202,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 7.6
   },
   {
    "name": "Jacob Trouba",
@@ -1160,6 +1222,7 @@
     19.64
    ],
    "med": 6.6,
+   "mean": 7.1,
    "ceil": 19.64,
    "own": 0.08218,
    "lev": 0.224,
@@ -1176,7 +1239,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 7.75
   },
   {
    "name": "Morgan Frost",
@@ -1195,6 +1259,7 @@
     23.401
    ],
    "med": 6.63,
+   "mean": 7.6,
    "ceil": 23.4,
    "own": 0.12835,
    "lev": -0.129,
@@ -1211,7 +1276,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 7.81
   },
   {
    "name": "Zayne Parekh",
@@ -1230,6 +1296,7 @@
     21.907
    ],
    "med": 7.16,
+   "mean": 7.92,
    "ceil": 21.91,
    "own": 0.13385,
    "lev": -0.059,
@@ -1246,7 +1313,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 8.15
   },
   {
    "name": "Ivar Stenberg",
@@ -1265,6 +1333,7 @@
     22.848
    ],
    "med": 7.19,
+   "mean": 7.93,
    "ceil": 22.85,
    "own": 0.15847,
    "lev": -0.118,
@@ -1281,7 +1350,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 8.63
   },
   {
    "name": "Esa Lindell",
@@ -1300,6 +1370,7 @@
     18.197
    ],
    "med": 6.74,
+   "mean": 7.28,
    "ceil": 18.2,
    "own": 0.11015,
    "lev": 0.012,
@@ -1316,7 +1387,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 7.56
   },
   {
    "name": "Simon Nemec",
@@ -1335,6 +1407,7 @@
     21.157
    ],
    "med": 5.82,
+   "mean": 7.06,
    "ceil": 21.16,
    "own": 0.10642,
    "lev": -0.141,
@@ -1351,7 +1424,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 6.9
   },
   {
    "name": "Michael Misa",
@@ -1370,6 +1444,7 @@
     21.362
    ],
    "med": 4.77,
+   "mean": 6.0,
    "ceil": 21.36,
    "own": 0.06113,
    "lev": 0.176,
@@ -1386,7 +1461,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 6.38
   },
   {
    "name": "Brayden McNabb",
@@ -1405,6 +1481,7 @@
     18.401
    ],
    "med": 6.22,
+   "mean": 6.73,
    "ceil": 18.4,
    "own": 0.08813,
    "lev": 0.024,
@@ -1421,7 +1498,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 7.09
   },
   {
    "name": "Darnell Nurse",
@@ -1440,6 +1518,7 @@
     15.993
    ],
    "med": 5.51,
+   "mean": 5.95,
    "ceil": 15.99,
    "own": 0.05157,
    "lev": 0.247,
@@ -1456,7 +1535,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 6.58
   },
   {
    "name": "Mason Marchment",
@@ -1475,6 +1555,7 @@
     25.756
    ],
    "med": 7.09,
+   "mean": 8.01,
    "ceil": 25.76,
    "own": 0.23676,
    "lev": -0.235,
@@ -1491,7 +1572,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 8.36
   },
   {
    "name": "Tyler Seguin",
@@ -1510,6 +1592,7 @@
     21.434
    ],
    "med": 5.07,
+   "mean": 6.28,
    "ceil": 21.43,
    "own": 0.08998,
    "lev": -0.082,
@@ -1526,7 +1609,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 6.4
   },
   {
    "name": "Yegor Sharangovich",
@@ -1545,6 +1629,7 @@
     22.16
    ],
    "med": 4.67,
+   "mean": 6.38,
    "ceil": 22.16,
    "own": 0.10455,
    "lev": -0.165,
@@ -1561,7 +1646,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 5.98
   },
   {
    "name": "Arttu Hyry",
@@ -1580,6 +1666,7 @@
     19.362
    ],
    "med": 4.37,
+   "mean": 5.83,
    "ceil": 19.36,
    "own": 0.07575,
    "lev": 0.0,
@@ -1596,7 +1683,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 5.64
   },
   {
    "name": "Kiefer Sherwood",
@@ -1615,6 +1703,7 @@
     20.974
    ],
    "med": 4.59,
+   "mean": 6.37,
    "ceil": 20.97,
    "own": 0.11334,
    "lev": -0.271,
@@ -1631,7 +1720,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 5.84
   },
   {
    "name": "Michael Kesselring",
@@ -1650,6 +1740,7 @@
     16.048
    ],
    "med": 4.01,
+   "mean": 4.94,
    "ceil": 16.05,
    "own": 0.03711,
    "lev": 0.059,
@@ -1666,7 +1757,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 5.13
   },
   {
    "name": "Brett Howden",
@@ -1685,6 +1777,7 @@
     21.112
    ],
    "med": 5.17,
+   "mean": 6.47,
    "ceil": 21.11,
    "own": 0.13366,
    "lev": -0.306,
@@ -1701,7 +1794,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 6.31
   },
   {
    "name": "Alexander Wennberg",
@@ -1720,6 +1814,7 @@
     25.398
    ],
    "med": 6.7,
+   "mean": 8.04,
    "ceil": 25.4,
    "own": 0.46218,
    "lev": -0.318,
@@ -1736,7 +1831,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 6.94
   },
   {
    "name": "Aydar Suniev",
@@ -1755,6 +1851,7 @@
     18.116
    ],
    "med": 4.17,
+   "mean": 5.55,
    "ceil": 18.12,
    "own": 0.06725,
    "lev": -0.012,
@@ -1771,7 +1868,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 5.4
   },
   {
    "name": "Jamie Benn",
@@ -1790,6 +1888,7 @@
     20.552
    ],
    "med": 4.15,
+   "mean": 5.34,
    "ceil": 20.55,
    "own": 0.06661,
    "lev": -0.024,
@@ -1806,7 +1905,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 5.32
   },
   {
    "name": "Jake Middleton",
@@ -1825,6 +1925,7 @@
     15.429
    ],
    "med": 4.17,
+   "mean": 5.13,
    "ceil": 15.43,
    "own": 0.04903,
    "lev": 0.106,
@@ -1841,7 +1942,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 5.05
   },
   {
    "name": "Eric Pohlkamp",
@@ -1860,6 +1962,7 @@
     19.802
    ],
    "med": 5.84,
+   "mean": 6.32,
    "ceil": 19.8,
    "own": 0.12234,
    "lev": -0.235,
@@ -1876,7 +1979,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 6.24
   },
   {
    "name": "Dmitry Orlov",
@@ -1895,6 +1999,7 @@
     20.742
    ],
    "med": 6.26,
+   "mean": 6.78,
    "ceil": 20.74,
    "own": 0.19868,
    "lev": -0.329,
@@ -1911,7 +2016,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 6.44
   },
   {
    "name": "Ryan Strome",
@@ -1930,6 +2036,7 @@
     20.317
    ],
    "med": 4.62,
+   "mean": 5.98,
    "ceil": 20.32,
    "own": 0.11739,
    "lev": -0.271,
@@ -1946,7 +2053,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 5.69
   },
   {
    "name": "Zach Whitecloud",
@@ -1965,6 +2073,7 @@
     15.407
    ],
    "med": 6.08,
+   "mean": 6.26,
    "ceil": 15.41,
    "own": 0.12052,
    "lev": -0.2,
@@ -1981,7 +2090,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 6.31
   },
   {
    "name": "Adam Klapka",
@@ -2000,6 +2110,7 @@
     18.809
    ],
    "med": 4.18,
+   "mean": 5.48,
    "ceil": 18.81,
    "own": 0.08582,
    "lev": -0.165,
@@ -2016,7 +2127,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 5.23
   },
   {
    "name": "Joel Hanley",
@@ -2035,6 +2147,7 @@
     16.493
    ],
    "med": 4.05,
+   "mean": 5.16,
    "ceil": 16.49,
    "own": 0.0697,
    "lev": -0.094,
@@ -2051,7 +2164,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 4.67
   },
   {
    "name": "Martin Pospisil",
@@ -2070,6 +2184,7 @@
     17.545
    ],
    "med": 4.18,
+   "mean": 4.77,
    "ceil": 17.55,
    "own": 0.05895,
    "lev": 0.071,
@@ -2086,7 +2201,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 5.0
   },
   {
    "name": "Collin Graf",
@@ -2105,6 +2221,7 @@
     17.41
    ],
    "med": 4.16,
+   "mean": 5.36,
    "ceil": 17.41,
    "own": 0.08696,
    "lev": -0.224,
@@ -2121,7 +2238,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 5.15
   },
   {
    "name": "Jeremy Lauzon",
@@ -2140,6 +2258,7 @@
     15.648
    ],
    "med": 4.31,
+   "mean": 5.46,
    "ceil": 15.65,
    "own": 0.10002,
    "lev": -0.2,
@@ -2156,7 +2275,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 4.76
   },
   {
    "name": "Nils Lundkvist",
@@ -2175,6 +2295,7 @@
     15.051
    ],
    "med": 3.88,
+   "mean": 4.48,
    "ceil": 15.05,
    "own": 0.04485,
    "lev": -0.012,
@@ -2191,7 +2312,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 4.45
   },
   {
    "name": "Braeden Bowman",
@@ -2210,6 +2332,7 @@
     19.707
    ],
    "med": 4.75,
+   "mean": 5.85,
    "ceil": 19.71,
    "own": 0.15268,
    "lev": -0.4,
@@ -2226,7 +2349,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 5.62
   },
   {
    "name": "Justin Hryckowian",
@@ -2245,6 +2369,7 @@
     18.034
    ],
    "med": 4.12,
+   "mean": 5.27,
    "ceil": 18.03,
    "own": 0.09848,
    "lev": -0.329,
@@ -2261,7 +2386,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 4.86
   },
   {
    "name": "Sam Dickinson",
@@ -2280,6 +2406,7 @@
     14.724
    ],
    "med": 4.04,
+   "mean": 4.65,
    "ceil": 14.72,
    "own": 0.05057,
    "lev": -0.012,
@@ -2296,7 +2423,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 4.57
   },
   {
    "name": "David Perron",
@@ -2315,6 +2443,7 @@
     20.418
    ],
    "med": 4.19,
+   "mean": 5.5,
    "ceil": 20.42,
    "own": 0.13565,
    "lev": -0.459,
@@ -2331,7 +2460,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 5.05
   },
   {
    "name": "Tyler Myers",
@@ -2350,6 +2480,7 @@
     13.473
    ],
    "med": 4.21,
+   "mean": 4.97,
    "ceil": 13.47,
    "own": 0.07225,
    "lev": -0.012,
@@ -2366,7 +2497,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 4.59
   },
   {
    "name": "Colin Blackwell",
@@ -2385,6 +2517,7 @@
     14.482
    ],
    "med": 2.79,
+   "mean": 3.24,
    "ceil": 14.48,
    "own": 0.01882,
    "lev": 0.0,
@@ -2401,7 +2534,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 3.78
   },
   {
    "name": "Radek Faksa",
@@ -2420,6 +2554,7 @@
     14.63
    ],
    "med": 2.41,
+   "mean": 3.59,
    "ceil": 14.63,
    "own": 0.02681,
    "lev": -0.106,
@@ -2436,7 +2571,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 3.72
   },
   {
    "name": "Kyle Burroughs",
@@ -2455,6 +2591,7 @@
     13.382
    ],
    "med": 2.85,
+   "mean": 2.97,
    "ceil": 13.38,
    "own": 0.01387,
    "lev": 0.071,
@@ -2471,7 +2608,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 3.62
   },
   {
    "name": "Nic Dowd",
@@ -2490,6 +2628,7 @@
     16.446
    ],
    "med": 3.08,
+   "mean": 3.78,
    "ceil": 16.45,
    "own": 0.03245,
    "lev": -0.035,
@@ -2506,7 +2645,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 4.13
   },
   {
    "name": "Parker Wotherspoon",
@@ -2525,6 +2665,7 @@
     16.17
    ],
    "med": 4.15,
+   "mean": 5.38,
    "ceil": 16.17,
    "own": 0.10826,
    "lev": -0.388,
@@ -2541,7 +2682,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 4.55
   },
   {
    "name": "Sam Steel",
@@ -2560,6 +2702,7 @@
     16.615
    ],
    "med": 3.7,
+   "mean": 4.83,
    "ceil": 16.61,
    "own": 0.07181,
    "lev": -0.176,
@@ -2576,7 +2719,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 4.61
   },
   {
    "name": "Dylan Coghlan",
@@ -2595,6 +2739,7 @@
     16.187
    ],
    "med": 4.13,
+   "mean": 5.34,
    "ceil": 16.19,
    "own": 0.10494,
    "lev": -0.365,
@@ -2611,7 +2756,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 4.54
   },
   {
    "name": "Joel Kiviranta",
@@ -2630,6 +2776,7 @@
     14.809
    ],
    "med": 3.1,
+   "mean": 3.58,
    "ceil": 14.81,
    "own": 0.02498,
    "lev": 0.012,
@@ -2646,7 +2793,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 4.06
   },
   {
    "name": "Raphael Lavoie",
@@ -2665,6 +2813,7 @@
     14.851
    ],
    "med": 3.55,
+   "mean": 3.73,
    "ceil": 14.85,
    "own": 0.0285,
    "lev": 0.024,
@@ -2681,7 +2830,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 4.47
   },
   {
    "name": "Marc Gatcomb",
@@ -2700,6 +2850,7 @@
     13.811
    ],
    "med": 2.82,
+   "mean": 3.25,
    "ceil": 13.81,
    "own": 0.01888,
    "lev": 0.0,
@@ -2716,7 +2867,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 3.81
   },
   {
    "name": "Trey Taylor",
@@ -2735,6 +2887,7 @@
     13.451
    ],
    "med": 2.93,
+   "mean": 3.17,
    "ceil": 13.45,
    "own": 0.01658,
    "lev": 0.059,
@@ -2751,7 +2904,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 3.68
   },
   {
    "name": "Barclay Goodrow",
@@ -2770,6 +2924,7 @@
     12.831
    ],
    "med": 2.64,
+   "mean": 3.01,
    "ceil": 12.83,
    "own": 0.01522,
    "lev": 0.0,
@@ -2786,7 +2941,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 3.65
   },
   {
    "name": "Adam Gaudette",
@@ -2805,6 +2961,7 @@
     16.824
    ],
    "med": 3.44,
+   "mean": 4.13,
    "ceil": 16.82,
    "own": 0.04142,
    "lev": -0.047,
@@ -2821,7 +2978,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 4.37
   },
   {
    "name": "Ty Dellandrea",
@@ -2840,6 +2998,7 @@
     15.591
    ],
    "med": 3.56,
+   "mean": 4.05,
    "ceil": 15.59,
    "own": 0.03961,
    "lev": -0.012,
@@ -2856,7 +3015,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 4.42
   },
   {
    "name": "Yan Kuznetsov",
@@ -2875,6 +3035,7 @@
     15.091
    ],
    "med": 4.24,
+   "mean": 5.18,
    "ceil": 15.09,
    "own": 0.08855,
    "lev": -0.165,
@@ -2891,7 +3052,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 4.61
   },
   {
    "name": "Brennan Othmann",
@@ -2910,6 +3072,7 @@
     14.233
    ],
    "med": 2.82,
+   "mean": 3.23,
    "ceil": 14.23,
    "own": 0.01885,
    "lev": 0.0,
@@ -2926,7 +3089,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 3.81
   },
   {
    "name": "Nolan Allan",
@@ -2945,6 +3109,7 @@
     15.965
    ],
    "med": 3.93,
+   "mean": 4.76,
    "ceil": 15.97,
    "own": 0.06435,
    "lev": -0.094,
@@ -2961,7 +3126,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 4.39
   },
   {
    "name": "Zack Ostapchuk",
@@ -2980,6 +3146,7 @@
     15.586
    ],
    "med": 2.7,
+   "mean": 3.42,
    "ceil": 15.59,
    "own": 0.02365,
    "lev": -0.059,
@@ -2996,7 +3163,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 3.9
   },
   {
    "name": "Jonathan Castagna",
@@ -3015,6 +3183,7 @@
     15.467
    ],
    "med": 3.38,
+   "mean": 4.0,
    "ceil": 15.47,
    "own": 0.0381,
    "lev": -0.035,
@@ -3031,7 +3200,8 @@
    "pienorm": null,
    "sqz": false,
    "doubtful": false,
-   "status": "clear"
+   "status": "clear",
+   "proj": 4.31
   }
  ],
  "games": [
@@ -3104,49 +3274,11 @@
     40,
     47
    ],
-   "proj": 90.16,
+   "proj": 101.05,
    "ceil": 238.32,
    "sal": 50000,
    "own": 245.1,
    "dup": 0.2597,
-   "src": "median lam=0.0"
-  },
-  {
-   "p": [
-    0,
-    8,
-    10,
-    14,
-    16,
-    20,
-    40,
-    47,
-    54
-   ],
-   "proj": 89.87,
-   "ceil": 237.66,
-   "sal": 50000,
-   "own": 249.1,
-   "dup": 0.337,
-   "src": "median lam=0.0"
-  },
-  {
-   "p": [
-    0,
-    8,
-    10,
-    14,
-    20,
-    33,
-    34,
-    35,
-    40
-   ],
-   "proj": 89.59,
-   "ceil": 231.93,
-   "sal": 49900,
-   "own": 215.3,
-   "dup": 0.0899,
    "src": "median lam=0.0"
   },
   {
@@ -3161,7 +3293,7 @@
     40,
     52
    ],
-   "proj": 89.51,
+   "proj": 100.61,
    "ceil": 232.26,
    "sal": 50000,
    "own": 215.8,
@@ -3174,17 +3306,112 @@
     8,
     10,
     14,
-    18,
     20,
+    33,
     34,
+    35,
+    40
+   ],
+   "proj": 100.56,
+   "ceil": 231.93,
+   "sal": 49900,
+   "own": 215.3,
+   "dup": 0.0899,
+   "src": "median lam=0.0"
+  },
+  {
+   "p": [
+    0,
+    8,
+    10,
+    14,
+    16,
+    20,
+    40,
     47,
+    54
+   ],
+   "proj": 100.47,
+   "ceil": 237.66,
+   "sal": 50000,
+   "own": 249.1,
+   "dup": 0.337,
+   "src": "median lam=0.0"
+  },
+  {
+   "p": [
+    0,
+    8,
+    10,
+    15,
+    20,
+    22,
+    34,
+    40,
+    47
+   ],
+   "proj": 100.42,
+   "ceil": 240.49,
+   "sal": 50000,
+   "own": 241.3,
+   "dup": 0.2072,
+   "src": "median lam=0.0"
+  },
+  {
+   "p": [
+    0,
+    8,
+    10,
+    14,
+    20,
+    23,
+    34,
+    40,
     52
    ],
-   "proj": 89.42,
-   "ceil": 238.51,
+   "proj": 100.35,
+   "ceil": 237.33,
    "sal": 50000,
-   "own": 248.2,
-   "dup": 0.3518,
+   "own": 221.3,
+   "dup": 0.1275,
+   "src": "median lam=0.0"
+  },
+  {
+   "p": [
+    0,
+    8,
+    10,
+    15,
+    20,
+    32,
+    33,
+    34,
+    40
+   ],
+   "proj": 100.08,
+   "ceil": 234.28,
+   "sal": 49900,
+   "own": 208.9,
+   "dup": 0.0621,
+   "src": "median lam=0.0"
+  },
+  {
+   "p": [
+    0,
+    8,
+    10,
+    14,
+    15,
+    32,
+    34,
+    40,
+    54
+   ],
+   "proj": 100.08,
+   "ceil": 229.82,
+   "sal": 49800,
+   "own": 210.4,
+   "dup": 0.0649,
    "src": "median lam=0.0"
   },
   {
@@ -3199,7 +3426,7 @@
     47,
     52
    ],
-   "proj": 89.33,
+   "proj": 100.07,
    "ceil": 240.42,
    "sal": 50000,
    "own": 248.1,
@@ -3212,17 +3439,17 @@
     8,
     10,
     14,
-    15,
+    18,
+    20,
     34,
-    35,
-    40,
-    54
+    47,
+    52
    ],
-   "proj": 89.12,
-   "ceil": 224.62,
-   "sal": 49500,
-   "own": 208.6,
-   "dup": 0.0557,
+   "proj": 100.02,
+   "ceil": 238.51,
+   "sal": 50000,
+   "own": 248.2,
+   "dup": 0.3518,
    "src": "median lam=0.0"
   },
   {
@@ -3237,7 +3464,7 @@
     47,
     54
    ],
-   "proj": 89.04,
+   "proj": 100.01,
    "ceil": 231.9,
    "sal": 50000,
    "own": 233.0,
@@ -3253,48 +3480,10 @@
     16,
     33,
     34,
-    35,
-    47
-   ],
-   "proj": 89.02,
-   "ceil": 233.66,
-   "sal": 49900,
-   "own": 236.2,
-   "dup": 0.1591,
-   "src": "median lam=0.0"
-  },
-  {
-   "p": [
-    0,
-    8,
-    10,
-    14,
-    20,
-    23,
-    34,
     40,
     52
    ],
-   "proj": 88.94,
-   "ceil": 237.33,
-   "sal": 50000,
-   "own": 221.3,
-   "dup": 0.1275,
-   "src": "median lam=0.0"
-  },
-  {
-   "p": [
-    0,
-    8,
-    10,
-    14,
-    16,
-    33,
-    34,
-    40,
-    52
-   ],
-   "proj": 88.93,
+   "proj": 99.99,
    "ceil": 236.56,
    "sal": 49600,
    "own": 222.5,
@@ -3303,748 +3492,501 @@
   },
   {
    "p": [
-    0,
     8,
     10,
+    13,
     14,
+    15,
     20,
-    23,
-    35,
-    40,
-    47
-   ],
-   "proj": 88.93,
-   "ceil": 237.34,
-   "sal": 50000,
-   "own": 242.8,
-   "dup": 0.2062,
-   "src": "median lam=0.0"
-  },
-  {
-   "p": [
-    1,
-    2,
-    11,
-    12,
-    16,
     28,
-    33,
     34,
-    54
+    40
    ],
-   "proj": 86.02,
-   "ceil": 219.03,
-   "sal": 49900,
-   "own": 136.9,
-   "dup": 0.0033,
+   "proj": 99.24,
+   "ceil": 227.02,
+   "sal": 49800,
+   "own": 167.1,
+   "dup": 0.0127,
    "src": "median lam=0.5"
   },
   {
    "p": [
-    1,
-    2,
-    11,
-    12,
-    16,
-    28,
-    31,
-    33,
-    52
-   ],
-   "proj": 85.61,
-   "ceil": 221.15,
-   "sal": 50000,
-   "own": 137.1,
-   "dup": 0.0028,
-   "src": "median lam=0.5"
-  },
-  {
-   "p": [
-    1,
-    2,
-    11,
-    12,
-    16,
+    8,
+    10,
+    13,
+    14,
+    15,
+    20,
     32,
-    33,
-    34,
-    52
-   ],
-   "proj": 85.88,
-   "ceil": 227.25,
-   "sal": 49700,
-   "own": 147.1,
-   "dup": 0.0067,
-   "src": "median lam=0.5"
-  },
-  {
-   "p": [
-    1,
-    2,
-    11,
-    12,
-    24,
-    28,
-    31,
     33,
     34
    ],
-   "proj": 85.05,
-   "ceil": 216.04,
+   "proj": 98.63,
+   "ceil": 226.06,
    "sal": 50000,
-   "own": 124.8,
-   "dup": 0.0011,
+   "own": 159.2,
+   "dup": 0.0088,
    "src": "median lam=0.5"
   },
   {
    "p": [
     1,
-    2,
+    4,
     11,
     12,
-    16,
-    28,
-    31,
+    14,
     34,
-    51
+    35,
+    38,
+    40
    ],
-   "proj": 85.22,
-   "ceil": 221.15,
+   "proj": 98.37,
+   "ceil": 225.38,
    "sal": 50000,
-   "own": 131.9,
-   "dup": 0.0021,
+   "own": 158.6,
+   "dup": 0.0104,
    "src": "median lam=0.5"
   },
   {
    "p": [
     1,
-    2,
+    4,
     11,
-    12,
-    16,
-    28,
-    33,
-    40,
-    51
-   ],
-   "proj": 85.68,
-   "ceil": 226.33,
-   "sal": 49700,
-   "own": 144.9,
-   "dup": 0.005,
-   "src": "median lam=0.5"
-  },
-  {
-   "p": [
-    1,
-    2,
-    11,
-    12,
-    16,
-    31,
-    32,
-    33,
-    54
-   ],
-   "proj": 85.11,
-   "ceil": 218.71,
-   "sal": 49800,
-   "own": 131.6,
-   "dup": 0.0021,
-   "src": "median lam=0.5"
-  },
-  {
-   "p": [
-    1,
-    2,
-    11,
-    12,
-    16,
-    25,
-    33,
-    40,
-    54
-   ],
-   "proj": 85.49,
-   "ceil": 223.97,
-   "sal": 50000,
-   "own": 142.7,
-   "dup": 0.004,
-   "src": "median lam=0.5"
-  },
-  {
-   "p": [
-    1,
-    2,
-    11,
-    12,
-    18,
-    28,
-    33,
+    14,
+    15,
+    29,
     34,
+    35,
+    40
+   ],
+   "proj": 97.42,
+   "ceil": 226.96,
+   "sal": 49900,
+   "own": 146.8,
+   "dup": 0.0046,
+   "src": "median lam=0.5"
+  },
+  {
+   "p": [
+    8,
+    10,
+    13,
+    14,
+    16,
+    20,
+    28,
+    33,
+    34
+   ],
+   "proj": 98.47,
+   "ceil": 226.07,
+   "sal": 50000,
+   "own": 160.6,
+   "dup": 0.0095,
+   "src": "median lam=0.5"
+  },
+  {
+   "p": [
+    1,
+    4,
+    10,
+    11,
+    14,
+    34,
+    35,
+    40,
     52
    ],
-   "proj": 85.47,
-   "ceil": 222.79,
-   "sal": 49600,
-   "own": 143.9,
+   "proj": 98.9,
+   "ceil": 231.0,
+   "sal": 50000,
+   "own": 172.8,
+   "dup": 0.0268,
+   "src": "median lam=0.5"
+  },
+  {
+   "p": [
+    8,
+    10,
+    13,
+    14,
+    15,
+    22,
+    28,
+    33,
+    34
+   ],
+   "proj": 97.94,
+   "ceil": 223.5,
+   "sal": 50000,
+   "own": 151.9,
    "dup": 0.0051,
    "src": "median lam=0.5"
   },
   {
    "p": [
-    1,
-    2,
+    4,
     11,
     12,
-    16,
-    28,
-    31,
-    40,
-    54
-   ],
-   "proj": 85.36,
-   "ceil": 219.67,
-   "sal": 49600,
-   "own": 139.5,
-   "dup": 0.003,
-   "src": "median lam=0.5"
-  },
-  {
-   "p": [
-    1,
-    2,
-    11,
-    12,
-    18,
-    28,
-    33,
-    38,
+    14,
+    15,
+    17,
+    34,
+    35,
     40
    ],
-   "proj": 85.33,
-   "ceil": 223.36,
-   "sal": 50000,
-   "own": 140.6,
-   "dup": 0.0034,
-   "src": "median lam=0.5"
-  },
-  {
-   "p": [
-    1,
-    2,
-    11,
-    12,
-    16,
-    17,
-    40,
-    52,
-    54
-   ],
-   "proj": 85.6,
-   "ceil": 223.44,
-   "sal": 49900,
-   "own": 149.3,
-   "dup": 0.006,
-   "src": "median lam=0.5"
-  },
-  {
-   "p": [
-    1,
-    2,
-    11,
-    12,
-    17,
-    28,
-    31,
-    34,
-    54
-   ],
-   "proj": 84.4,
-   "ceil": 212.06,
+   "proj": 97.3,
+   "ceil": 224.22,
    "sal": 49800,
-   "own": 124.6,
-   "dup": 0.0011,
-   "src": "median lam=1.0"
+   "own": 148.9,
+   "dup": 0.0056,
+   "src": "median lam=0.5"
   },
   {
    "p": [
     1,
-    2,
+    4,
     11,
     12,
-    22,
-    24,
-    28,
-    31,
-    54
+    15,
+    25,
+    34,
+    40,
+    51
    ],
-   "proj": 84.04,
-   "ceil": 212.81,
+   "proj": 97.59,
+   "ceil": 228.27,
    "sal": 50000,
-   "own": 120.0,
+   "own": 151.3,
+   "dup": 0.0066,
+   "src": "median lam=0.5"
+  },
+  {
+   "p": [
+    1,
+    4,
+    11,
+    14,
+    15,
+    20,
+    34,
+    40,
+    61
+   ],
+   "proj": 97.91,
+   "ceil": 230.5,
+   "sal": 49900,
+   "own": 161.1,
+   "dup": 0.0153,
+   "src": "median lam=0.5"
+  },
+  {
+   "p": [
+    1,
+    4,
+    10,
+    12,
+    14,
+    34,
+    35,
+    40,
+    51
+   ],
+   "proj": 99.13,
+   "ceil": 230.51,
+   "sal": 50000,
+   "own": 173.7,
+   "dup": 0.0268,
+   "src": "median lam=0.5"
+  },
+  {
+   "p": [
+    1,
+    4,
+    11,
+    12,
+    20,
+    25,
+    34,
+    35,
+    40
+   ],
+   "proj": 97.8,
+   "ceil": 227.48,
+   "sal": 50000,
+   "own": 155.5,
+   "dup": 0.0086,
+   "src": "median lam=0.5"
+  },
+  {
+   "p": [
+    4,
+    11,
+    13,
+    14,
+    15,
+    17,
+    29,
+    34,
+    35
+   ],
+   "proj": 95.08,
+   "ceil": 220.07,
+   "sal": 50000,
+   "own": 119.4,
    "dup": 0.0007,
    "src": "median lam=1.0"
   },
   {
    "p": [
-    1,
-    2,
+    4,
     11,
-    12,
-    24,
-    29,
-    31,
-    32,
-    33
-   ],
-   "proj": 83.92,
-   "ceil": 219.84,
-   "sal": 50000,
-   "own": 118.5,
-   "dup": 0.0006,
-   "src": "median lam=1.0"
-  },
-  {
-   "p": [
-    1,
-    2,
-    11,
-    12,
-    17,
-    24,
-    34,
-    38,
-    54
-   ],
-   "proj": 84.17,
-   "ceil": 210.97,
-   "sal": 49900,
-   "own": 122.1,
-   "dup": 0.0008,
-   "src": "median lam=1.0"
-  },
-  {
-   "p": [
-    1,
-    2,
-    11,
-    12,
-    18,
-    28,
-    31,
-    33,
-    54
-   ],
-   "proj": 84.7,
-   "ceil": 214.25,
-   "sal": 49700,
-   "own": 128.4,
-   "dup": 0.0016,
-   "src": "median lam=1.0"
-  },
-  {
-   "p": [
-    1,
-    2,
-    11,
-    12,
-    22,
-    28,
-    31,
-    33,
-    38
-   ],
-   "proj": 84.24,
-   "ceil": 217.05,
-   "sal": 50000,
-   "own": 122.7,
-   "dup": 0.001,
-   "src": "median lam=1.0"
-  },
-  {
-   "p": [
-    6,
-    11,
-    12,
     13,
     14,
     15,
-    28,
-    35,
-    54
+    24,
+    25,
+    29,
+    34
    ],
-   "proj": 82.77,
-   "ceil": 214.3,
-   "sal": 49800,
+   "proj": 94.67,
+   "ceil": 221.89,
+   "sal": 50000,
    "own": 115.7,
    "dup": 0.0005,
    "src": "median lam=1.0"
   },
   {
    "p": [
-    1,
-    2,
+    4,
     11,
-    12,
-    16,
-    24,
-    28,
-    51,
-    54
-   ],
-   "proj": 84.61,
-   "ceil": 214.73,
-   "sal": 49700,
-   "own": 127.3,
-   "dup": 0.0014,
-   "src": "median lam=1.0"
-  },
-  {
-   "p": [
-    1,
-    2,
-    11,
-    12,
+    13,
+    15,
     17,
-    28,
-    33,
-    34,
-    51
+    19,
+    24,
+    29,
+    34
    ],
-   "proj": 84.72,
-   "ceil": 218.72,
-   "sal": 49900,
-   "own": 129.9,
-   "dup": 0.0018,
+   "proj": 92.86,
+   "ceil": 218.28,
+   "sal": 50000,
+   "own": 102.7,
+   "dup": 0.0002,
    "src": "median lam=1.0"
   },
   {
    "p": [
-    1,
-    2,
+    4,
     11,
-    12,
+    13,
+    15,
+    17,
+    20,
+    25,
+    29,
+    34
+   ],
+   "proj": 94.04,
+   "ceil": 222.37,
+   "sal": 49900,
+   "own": 114.0,
+   "dup": 0.0005,
+   "src": "median lam=1.0"
+  },
+  {
+   "p": [
+    4,
+    11,
+    13,
+    15,
+    17,
     24,
     25,
-    33,
+    26,
+    34
+   ],
+   "proj": 92.96,
+   "ceil": 215.26,
+   "sal": 49900,
+   "own": 105.4,
+   "dup": 0.0002,
+   "src": "median lam=1.0"
+  },
+  {
+   "p": [
+    4,
+    11,
+    13,
+    15,
+    16,
+    17,
+    25,
     34,
+    35
+   ],
+   "proj": 94.13,
+   "ceil": 218.9,
+   "sal": 50000,
+   "own": 116.2,
+   "dup": 0.0007,
+   "src": "median lam=1.0"
+  },
+  {
+   "p": [
+    4,
+    11,
+    13,
+    14,
+    15,
+    17,
+    29,
+    31,
     38
    ],
-   "proj": 84.24,
-   "ceil": 216.83,
+   "proj": 93.73,
+   "ceil": 217.06,
    "sal": 50000,
-   "own": 123.3,
+   "own": 109.6,
+   "dup": 0.0003,
+   "src": "median lam=1.0"
+  },
+  {
+   "p": [
+    4,
+    11,
+    14,
+    15,
+    17,
+    20,
+    24,
+    29,
+    34
+   ],
+   "proj": 95.19,
+   "ceil": 221.71,
+   "sal": 50000,
+   "own": 123.9,
    "dup": 0.0009,
    "src": "median lam=1.0"
   },
   {
    "p": [
-    1,
-    2,
+    4,
     11,
-    12,
-    23,
-    24,
-    28,
-    34,
-    54
-   ],
-   "proj": 84.36,
-   "ceil": 214.67,
-   "sal": 49800,
-   "own": 125.7,
-   "dup": 0.0012,
-   "src": "median lam=1.0"
-  },
-  {
-   "p": [
-    1,
-    2,
-    11,
-    12,
-    24,
-    28,
+    13,
+    14,
+    15,
+    25,
+    26,
     29,
-    31,
-    38
+    31
    ],
-   "proj": 83.3,
-   "ceil": 213.44,
-   "sal": 49800,
-   "own": 111.6,
+   "proj": 93.62,
+   "ceil": 219.8,
+   "sal": 50000,
+   "own": 109.1,
    "dup": 0.0003,
    "src": "median lam=1.0"
   },
   {
    "p": [
-    1,
-    6,
+    4,
     11,
     13,
+    14,
     15,
-    28,
+    19,
     29,
-    35,
-    38
+    31,
+    34
    ],
-   "proj": 80.7,
-   "ceil": 215.38,
-   "sal": 50000,
-   "own": 98.8,
-   "dup": 0.0001,
-   "src": "median lam=1.5"
+   "proj": 94.13,
+   "ceil": 221.91,
+   "sal": 49900,
+   "own": 115.1,
+   "dup": 0.0004,
+   "src": "median lam=1.0"
   },
   {
    "p": [
-    6,
+    7,
+    11,
+    13,
+    15,
+    17,
+    20,
+    26,
+    28,
+    29
+   ],
+   "proj": 91.8,
+   "ceil": 219.6,
+   "sal": 50000,
+   "own": 98.9,
+   "dup": 0.0002,
+   "src": "median lam=1.0"
+  },
+  {
+   "p": [
+    4,
     11,
     13,
     14,
     15,
     20,
-    28,
-    29,
-    33
-   ],
-   "proj": 81.52,
-   "ceil": 223.39,
-   "sal": 50000,
-   "own": 108.4,
-   "dup": 0.0003,
-   "src": "median lam=1.5"
-  },
-  {
-   "p": [
-    6,
-    11,
-    13,
-    14,
-    15,
-    24,
-    26,
-    28,
-    33
-   ],
-   "proj": 80.17,
-   "ceil": 216.28,
-   "sal": 50000,
-   "own": 99.7,
-   "dup": 0.0001,
-   "src": "median lam=1.5"
-  },
-  {
-   "p": [
-    6,
-    11,
-    13,
-    14,
-    15,
-    23,
-    24,
-    28,
-    35
-   ],
-   "proj": 80.04,
-   "ceil": 215.56,
-   "sal": 50000,
-   "own": 99.4,
-   "dup": 0.0001,
-   "src": "median lam=1.5"
-  },
-  {
-   "p": [
-    6,
-    11,
-    13,
-    14,
-    15,
-    17,
-    29,
-    33,
-    35
-   ],
-   "proj": 80.07,
-   "ceil": 218.47,
-   "sal": 49900,
-   "own": 100.2,
-   "dup": 0.0001,
-   "src": "median lam=1.5"
-  },
-  {
-   "p": [
-    1,
-    6,
-    11,
-    13,
-    15,
-    26,
-    28,
-    35,
-    54
-   ],
-   "proj": 80.88,
-   "ceil": 210.41,
-   "sal": 49800,
-   "own": 103.3,
-   "dup": 0.0002,
-   "src": "median lam=1.5"
-  },
-  {
-   "p": [
-    6,
-    11,
-    13,
-    14,
-    15,
-    17,
-    24,
-    29,
-    54
-   ],
-   "proj": 79.35,
-   "ceil": 214.43,
-   "sal": 49800,
-   "own": 95.2,
-   "dup": 0.0001,
-   "src": "median lam=1.5"
-  },
-  {
-   "p": [
-    6,
-    11,
-    13,
-    14,
-    15,
-    17,
-    28,
-    29,
+    25,
+    34,
     38
    ],
-   "proj": 79.34,
-   "ceil": 217.27,
+   "proj": 95.41,
+   "ceil": 221.66,
    "sal": 50000,
-   "own": 95.0,
-   "dup": 0.0001,
-   "src": "median lam=1.5"
+   "own": 127.2,
+   "dup": 0.0014,
+   "src": "median lam=1.0"
   },
   {
    "p": [
-    1,
-    6,
+    7,
     11,
     13,
     15,
-    28,
-    29,
-    33,
-    54
-   ],
-   "proj": 80.98,
-   "ceil": 216.1,
-   "sal": 49600,
-   "own": 104.4,
-   "dup": 0.0002,
-   "src": "median lam=1.5"
-  },
-  {
-   "p": [
-    6,
-    11,
-    13,
-    14,
-    15,
-    22,
-    24,
-    28,
-    38
-   ],
-   "proj": 79.79,
-   "ceil": 217.11,
-   "sal": 50000,
-   "own": 99.1,
-   "dup": 0.0001,
-   "src": "median lam=1.5"
-  },
-  {
-   "p": [
-    6,
-    11,
-    12,
-    13,
-    15,
+    17,
     24,
     25,
-    28,
-    35
-   ],
-   "proj": 80.0,
-   "ceil": 214.26,
-   "sal": 50000,
-   "own": 99.4,
-   "dup": 0.0001,
-   "src": "median lam=1.5"
-  },
-  {
-   "p": [
-    6,
-    11,
-    13,
-    14,
-    15,
-    24,
-    27,
-    28,
-    29
-   ],
-   "proj": 79.09,
-   "ceil": 217.32,
-   "sal": 49800,
-   "own": 93.5,
-   "dup": 0.0001,
-   "src": "median lam=1.5"
-  },
-  {
-   "p": [
-    6,
-    11,
-    13,
-    15,
-    17,
-    24,
     26,
-    28,
-    29
+    28
    ],
-   "proj": 76.61,
-   "ceil": 213.48,
-   "sal": 49500,
-   "own": 82.0,
-   "dup": 0.0,
-   "src": "median lam=2.5"
+   "proj": 90.47,
+   "ceil": 213.25,
+   "sal": 50000,
+   "own": 90.2,
+   "dup": 0.0001,
+   "src": "median lam=1.5"
   },
   {
    "p": [
-    6,
+    7,
     11,
     13,
     15,
     17,
     23,
     24,
-    27,
-    28
+    28,
+    29
    ],
-   "proj": 76.92,
-   "ceil": 213.68,
-   "sal": 50000,
-   "own": 85.3,
-   "dup": 0.0,
-   "src": "median lam=2.5"
+   "proj": 90.58,
+   "ceil": 217.46,
+   "sal": 49800,
+   "own": 91.1,
+   "dup": 0.0001,
+   "src": "median lam=1.5"
   },
   {
    "p": [
-    6,
+    7,
     11,
     13,
     15,
@@ -4054,35 +3996,92 @@
     29,
     33
    ],
-   "proj": 76.44,
-   "ceil": 216.68,
+   "proj": 90.31,
+   "ceil": 217.67,
    "sal": 49900,
-   "own": 83.5,
-   "dup": 0.0,
-   "src": "median lam=2.5"
+   "own": 90.5,
+   "dup": 0.0001,
+   "src": "median lam=1.5"
   },
   {
    "p": [
-    6,
+    4,
     11,
     13,
     15,
     17,
-    24,
-    25,
+    19,
     26,
-    33
+    29,
+    31
    ],
-   "proj": 76.96,
-   "ceil": 213.66,
-   "sal": 49800,
-   "own": 86.1,
-   "dup": 0.0,
-   "src": "median lam=2.5"
+   "proj": 91.81,
+   "ceil": 216.19,
+   "sal": 50000,
+   "own": 96.1,
+   "dup": 0.0001,
+   "src": "median lam=1.5"
   },
   {
    "p": [
-    6,
+    7,
+    11,
+    13,
+    15,
+    19,
+    23,
+    24,
+    25,
+    29
+   ],
+   "proj": 89.59,
+   "ceil": 219.89,
+   "sal": 49800,
+   "own": 87.5,
+   "dup": 0.0001,
+   "src": "median lam=1.5"
+  },
+  {
+   "p": [
+    7,
+    11,
+    13,
+    15,
+    19,
+    23,
+    24,
+    26,
+    28
+   ],
+   "proj": 90.03,
+   "ceil": 215.88,
+   "sal": 49900,
+   "own": 90.8,
+   "dup": 0.0001,
+   "src": "median lam=1.5"
+  },
+  {
+   "p": [
+    4,
+    11,
+    13,
+    15,
+    17,
+    19,
+    24,
+    30,
+    31
+   ],
+   "proj": 91.56,
+   "ceil": 213.99,
+   "sal": 50000,
+   "own": 96.1,
+   "dup": 0.0001,
+   "src": "median lam=1.5"
+  },
+  {
+   "p": [
+    7,
     11,
     13,
     15,
@@ -4092,10 +4091,105 @@
     25,
     35
    ],
-   "proj": 76.83,
-   "ceil": 212.94,
+   "proj": 90.27,
+   "ceil": 213.93,
    "sal": 49800,
-   "own": 85.8,
+   "own": 92.8,
+   "dup": 0.0001,
+   "src": "median lam=1.5"
+  },
+  {
+   "p": [
+    7,
+    11,
+    13,
+    15,
+    17,
+    19,
+    23,
+    29,
+    35
+   ],
+   "proj": 90.0,
+   "ceil": 218.07,
+   "sal": 49800,
+   "own": 91.2,
+   "dup": 0.0001,
+   "src": "median lam=1.5"
+  },
+  {
+   "p": [
+    7,
+    11,
+    13,
+    15,
+    17,
+    20,
+    24,
+    29,
+    32
+   ],
+   "proj": 91.57,
+   "ceil": 221.37,
+   "sal": 49900,
+   "own": 100.3,
+   "dup": 0.0002,
+   "src": "median lam=1.5"
+  },
+  {
+   "p": [
+    7,
+    11,
+    13,
+    15,
+    17,
+    23,
+    25,
+    27,
+    29
+   ],
+   "proj": 89.84,
+   "ceil": 219.8,
+   "sal": 49800,
+   "own": 90.1,
+   "dup": 0.0001,
+   "src": "median lam=1.5"
+  },
+  {
+   "p": [
+    7,
+    11,
+    13,
+    15,
+    18,
+    19,
+    24,
+    28,
+    29
+   ],
+   "proj": 90.53,
+   "ceil": 219.4,
+   "sal": 49900,
+   "own": 93.9,
+   "dup": 0.0001,
+   "src": "median lam=1.5"
+  },
+  {
+   "p": [
+    5,
+    11,
+    13,
+    15,
+    17,
+    19,
+    24,
+    29,
+    39
+   ],
+   "proj": 86.92,
+   "ceil": 212.14,
+   "sal": 49700,
+   "own": 76.1,
    "dup": 0.0,
    "src": "median lam=2.5"
   },
@@ -4109,31 +4203,50 @@
     21,
     24,
     28,
-    35
+    29
    ],
-   "proj": 76.72,
-   "ceil": 212.3,
-   "sal": 49600,
-   "own": 85.8,
+   "proj": 88.31,
+   "ceil": 217.86,
+   "sal": 50000,
+   "own": 82.0,
    "dup": 0.0,
    "src": "median lam=2.5"
   },
   {
    "p": [
-    6,
+    5,
     11,
     13,
     15,
     17,
-    22,
     24,
     25,
-    38
+    26,
+    31
    ],
-   "proj": 76.58,
-   "ceil": 214.49,
-   "sal": 49800,
-   "own": 85.5,
+   "proj": 88.19,
+   "ceil": 212.77,
+   "sal": 50000,
+   "own": 81.8,
+   "dup": 0.0,
+   "src": "median lam=2.5"
+  },
+  {
+   "p": [
+    5,
+    11,
+    13,
+    15,
+    17,
+    19,
+    25,
+    29,
+    31
+   ],
+   "proj": 87.67,
+   "ceil": 217.67,
+   "sal": 50000,
+   "own": 80.1,
    "dup": 0.0,
    "src": "median lam=2.5"
   },
@@ -4144,53 +4257,34 @@
     13,
     15,
     17,
-    18,
-    24,
-    28,
-    38
-   ],
-   "proj": 77.61,
-   "ceil": 212.65,
-   "sal": 49800,
-   "own": 90.0,
-   "dup": 0.0001,
-   "src": "median lam=2.5"
-  },
-  {
-   "p": [
-    6,
-    11,
-    13,
-    15,
-    17,
-    22,
-    24,
-    28,
-    33
-   ],
-   "proj": 77.95,
-   "ceil": 215.97,
-   "sal": 49800,
-   "own": 92.1,
-   "dup": 0.0001,
-   "src": "median lam=2.5"
-  },
-  {
-   "p": [
-    6,
-    11,
-    13,
-    15,
-    17,
-    23,
+    19,
     24,
     29,
     32
    ],
-   "proj": 76.58,
-   "ceil": 219.36,
-   "sal": 49600,
-   "own": 86.4,
+   "proj": 88.07,
+   "ceil": 218.17,
+   "sal": 49900,
+   "own": 82.9,
+   "dup": 0.0,
+   "src": "median lam=2.5"
+  },
+  {
+   "p": [
+    5,
+    11,
+    13,
+    15,
+    17,
+    24,
+    25,
+    29,
+    30
+   ],
+   "proj": 87.45,
+   "ceil": 217.79,
+   "sal": 49500,
+   "own": 80.5,
    "dup": 0.0,
    "src": "median lam=2.5"
   },
@@ -4201,15 +4295,72 @@
     13,
     15,
     19,
-    23,
+    22,
+    24,
+    25,
+    29
+   ],
+   "proj": 87.99,
+   "ceil": 220.25,
+   "sal": 49900,
+   "own": 82.3,
+   "dup": 0.0,
+   "src": "median lam=2.5"
+  },
+  {
+   "p": [
+    6,
+    11,
+    13,
+    15,
+    17,
     24,
     26,
+    27,
     28
    ],
-   "proj": 76.01,
-   "ceil": 214.89,
+   "proj": 88.1,
+   "ceil": 210.69,
+   "sal": 49700,
+   "own": 83.2,
+   "dup": 0.0,
+   "src": "median lam=2.5"
+  },
+  {
+   "p": [
+    6,
+    13,
+    15,
+    17,
+    19,
+    21,
+    23,
+    24,
+    26
+   ],
+   "proj": 85.59,
+   "ceil": 215.41,
+   "sal": 49800,
+   "own": 76.7,
+   "dup": 0.0,
+   "src": "median lam=2.5"
+  },
+  {
+   "p": [
+    5,
+    11,
+    13,
+    15,
+    17,
+    19,
+    26,
+    30,
+    31
+   ],
+   "proj": 87.5,
+   "ceil": 215.83,
    "sal": 49900,
-   "own": 83.7,
+   "own": 81.2,
    "dup": 0.0,
    "src": "median lam=2.5"
   },
@@ -4225,10 +4376,29 @@
     28,
     29
    ],
-   "proj": 75.53,
+   "proj": 87.58,
    "ceil": 215.59,
    "sal": 49700,
    "own": 81.6,
+   "dup": 0.0,
+   "src": "median lam=2.5"
+  },
+  {
+   "p": [
+    6,
+    11,
+    13,
+    15,
+    19,
+    23,
+    24,
+    25,
+    27
+   ],
+   "proj": 87.56,
+   "ceil": 216.11,
+   "sal": 50000,
+   "own": 81.7,
    "dup": 0.0,
    "src": "median lam=2.5"
   },
@@ -4244,7 +4414,7 @@
     40,
     47
    ],
-   "proj": 84.44,
+   "proj": 95.45,
    "ceil": 247.27,
    "sal": 49900,
    "own": 217.8,
@@ -4263,7 +4433,7 @@
     40,
     47
    ],
-   "proj": 83.7,
+   "proj": 94.99,
    "ceil": 246.71,
    "sal": 50000,
    "own": 217.6,
@@ -4282,7 +4452,7 @@
     47,
     52
    ],
-   "proj": 85.86,
+   "proj": 95.82,
    "ceil": 246.24,
    "sal": 49700,
    "own": 231.2,
@@ -4301,7 +4471,7 @@
     47,
     52
    ],
-   "proj": 81.03,
+   "proj": 93.3,
    "ceil": 245.69,
    "sal": 49800,
    "own": 222.4,
@@ -4320,30 +4490,11 @@
     47,
     52
    ],
-   "proj": 84.75,
+   "proj": 95.64,
    "ceil": 245.48,
    "sal": 49900,
    "own": 221.4,
    "dup": 0.0704,
-   "src": "ceiling lam=0.0"
-  },
-  {
-   "p": [
-    0,
-    9,
-    10,
-    15,
-    20,
-    22,
-    34,
-    40,
-    47
-   ],
-   "proj": 85.26,
-   "ceil": 245.31,
-   "sal": 50000,
-   "own": 216.5,
-   "dup": 0.0516,
    "src": "ceiling lam=0.0"
   },
   {
@@ -4358,7 +4509,7 @@
     40,
     47
    ],
-   "proj": 84.55,
+   "proj": 95.19,
    "ceil": 245.12,
    "sal": 50000,
    "own": 217.6,
@@ -4377,7 +4528,7 @@
     47,
     52
    ],
-   "proj": 79.92,
+   "proj": 93.12,
    "ceil": 244.93,
    "sal": 50000,
    "own": 212.6,
@@ -4396,7 +4547,7 @@
     42,
     47
    ],
-   "proj": 83.34,
+   "proj": 94.63,
    "ceil": 244.81,
    "sal": 49800,
    "own": 213.6,
@@ -4415,7 +4566,7 @@
     40,
     47
    ],
-   "proj": 82.94,
+   "proj": 94.39,
    "ceil": 244.61,
    "sal": 50000,
    "own": 205.9,
@@ -4434,7 +4585,7 @@
     47,
     53
    ],
-   "proj": 84.02,
+   "proj": 95.19,
    "ceil": 244.54,
    "sal": 49700,
    "own": 215.7,
@@ -4453,11 +4604,30 @@
     40,
     47
    ],
-   "proj": 84.43,
+   "proj": 95.37,
    "ceil": 244.51,
    "sal": 50000,
    "own": 211.6,
    "dup": 0.0355,
+   "src": "ceiling lam=0.0"
+  },
+  {
+   "p": [
+    0,
+    9,
+    10,
+    15,
+    16,
+    22,
+    40,
+    47,
+    51
+   ],
+   "proj": 94.65,
+   "ceil": 244.35,
+   "sal": 49600,
+   "own": 211.3,
+   "dup": 0.0361,
    "src": "ceiling lam=0.0"
   },
   {
@@ -4472,7 +4642,7 @@
     37,
     40
    ],
-   "proj": 81.26,
+   "proj": 93.65,
    "ceil": 237.23,
    "sal": 49900,
    "own": 140.9,
@@ -4491,7 +4661,7 @@
     32,
     40
    ],
-   "proj": 82.39,
+   "proj": 94.23,
    "ceil": 237.7,
    "sal": 49900,
    "own": 146.8,
@@ -4510,7 +4680,7 @@
     32,
     42
    ],
-   "proj": 80.7,
+   "proj": 92.7,
    "ceil": 235.67,
    "sal": 49900,
    "own": 134.4,
@@ -4529,7 +4699,7 @@
     32,
     36
    ],
-   "proj": 80.33,
+   "proj": 92.21,
    "ceil": 236.0,
    "sal": 49800,
    "own": 137.6,
@@ -4548,7 +4718,7 @@
     40,
     47
    ],
-   "proj": 78.96,
+   "proj": 92.48,
    "ceil": 240.91,
    "sal": 49800,
    "own": 174.7,
@@ -4567,7 +4737,7 @@
     32,
     52
    ],
-   "proj": 81.79,
+   "proj": 93.16,
    "ceil": 235.88,
    "sal": 49800,
    "own": 141.2,
@@ -4586,7 +4756,7 @@
     33,
     40
    ],
-   "proj": 82.52,
+   "proj": 93.87,
    "ceil": 236.69,
    "sal": 49500,
    "own": 146.0,
@@ -4605,7 +4775,7 @@
     33,
     40
    ],
-   "proj": 80.59,
+   "proj": 92.71,
    "ceil": 236.38,
    "sal": 49500,
    "own": 143.3,
@@ -4624,7 +4794,7 @@
     32,
     33
    ],
-   "proj": 80.8,
+   "proj": 92.37,
    "ceil": 235.21,
    "sal": 49600,
    "own": 136.0,
@@ -4643,7 +4813,7 @@
     37,
     40
    ],
-   "proj": 75.65,
+   "proj": 90.31,
    "ceil": 233.14,
    "sal": 49800,
    "own": 122.9,
@@ -4662,7 +4832,7 @@
     32,
     40
    ],
-   "proj": 79.73,
+   "proj": 92.43,
    "ceil": 235.21,
    "sal": 49600,
    "own": 137.0,
@@ -4681,7 +4851,7 @@
     40,
     47
    ],
-   "proj": 83.79,
+   "proj": 95.0,
    "ceil": 241.46,
    "sal": 49700,
    "own": 183.5,
@@ -4700,7 +4870,7 @@
     29,
     37
    ],
-   "proj": 71.24,
+   "proj": 87.09,
    "ceil": 225.62,
    "sal": 49800,
    "own": 86.9,
@@ -4719,7 +4889,7 @@
     25,
     29
    ],
-   "proj": 71.38,
+   "proj": 87.06,
    "ceil": 226.37,
    "sal": 49800,
    "own": 91.2,
@@ -4738,7 +4908,7 @@
     29,
     37
    ],
-   "proj": 73.62,
+   "proj": 88.52,
    "ceil": 229.44,
    "sal": 49900,
    "own": 102.1,
@@ -4757,7 +4927,7 @@
     29,
     32
    ],
-   "proj": 76.5,
+   "proj": 88.44,
    "ceil": 226.28,
    "sal": 49900,
    "own": 92.8,
@@ -4776,7 +4946,7 @@
     29,
     37
    ],
-   "proj": 72.33,
+   "proj": 88.14,
    "ceil": 230.62,
    "sal": 49900,
    "own": 105.0,
@@ -4795,7 +4965,7 @@
     27,
     37
    ],
-   "proj": 70.47,
+   "proj": 86.4,
    "ceil": 225.73,
    "sal": 49800,
    "own": 91.9,
@@ -4814,7 +4984,7 @@
     29,
     37
    ],
-   "proj": 72.16,
+   "proj": 87.67,
    "ceil": 226.49,
    "sal": 49700,
    "own": 94.9,
@@ -4833,7 +5003,7 @@
     29,
     30
    ],
-   "proj": 72.57,
+   "proj": 87.59,
    "ceil": 226.46,
    "sal": 49700,
    "own": 95.5,
@@ -4852,7 +5022,7 @@
     22,
     29
    ],
-   "proj": 74.46,
+   "proj": 86.97,
    "ceil": 223.87,
    "sal": 49900,
    "own": 87.2,
@@ -4871,7 +5041,7 @@
     22,
     32
    ],
-   "proj": 77.2,
+   "proj": 90.37,
    "ceil": 230.14,
    "sal": 50000,
    "own": 109.7,
@@ -4890,7 +5060,7 @@
     27,
     29
    ],
-   "proj": 72.19,
+   "proj": 87.32,
    "ceil": 227.65,
    "sal": 49800,
    "own": 99.5,
@@ -4909,7 +5079,7 @@
     22,
     32
    ],
-   "proj": 76.36,
+   "proj": 88.37,
    "ceil": 228.34,
    "sal": 50000,
    "own": 103.6,
@@ -4928,7 +5098,7 @@
     27,
     29
    ],
-   "proj": 70.02,
+   "proj": 86.13,
    "ceil": 222.19,
    "sal": 49900,
    "own": 82.5,
@@ -4947,29 +5117,10 @@
     29,
     36
    ],
-   "proj": 74.45,
+   "proj": 87.07,
    "ceil": 221.43,
    "sal": 50000,
    "own": 81.8,
-   "dup": 0.0,
-   "src": "ceiling lam=1.5"
-  },
-  {
-   "p": [
-    5,
-    11,
-    13,
-    15,
-    19,
-    21,
-    25,
-    29,
-    31
-   ],
-   "proj": 70.82,
-   "ceil": 220.65,
-   "sal": 49500,
-   "own": 80.0,
    "dup": 0.0,
    "src": "ceiling lam=1.5"
   },
@@ -4985,7 +5136,7 @@
     29,
     37
    ],
-   "proj": 70.78,
+   "proj": 86.56,
    "ceil": 220.09,
    "sal": 49700,
    "own": 78.5,
@@ -5004,7 +5155,7 @@
     27,
     30
    ],
-   "proj": 70.23,
+   "proj": 86.09,
    "ceil": 220.9,
    "sal": 49700,
    "own": 81.3,
@@ -5023,7 +5174,7 @@
     25,
     36
    ],
-   "proj": 74.32,
+   "proj": 86.78,
    "ceil": 223.15,
    "sal": 49900,
    "own": 86.8,
@@ -5042,7 +5193,7 @@
     25,
     29
    ],
-   "proj": 71.03,
+   "proj": 86.84,
    "ceil": 222.94,
    "sal": 49700,
    "own": 85.7,
@@ -5061,7 +5212,7 @@
     27,
     37
    ],
-   "proj": 71.28,
+   "proj": 87.02,
    "ceil": 223.88,
    "sal": 49900,
    "own": 87.9,
@@ -5080,7 +5231,7 @@
     29,
     51
    ],
-   "proj": 71.07,
+   "proj": 86.49,
    "ceil": 221.45,
    "sal": 49500,
    "own": 84.2,
@@ -5099,7 +5250,7 @@
     27,
     32
    ],
-   "proj": 75.01,
+   "proj": 87.22,
    "ceil": 223.82,
    "sal": 49900,
    "own": 89.0,
@@ -5118,7 +5269,7 @@
     25,
     37
    ],
-   "proj": 69.71,
+   "proj": 85.76,
    "ceil": 219.27,
    "sal": 49800,
    "own": 78.1,
@@ -5137,10 +5288,29 @@
     29,
     37
    ],
-   "proj": 71.71,
+   "proj": 87.73,
    "ceil": 222.21,
    "sal": 49900,
    "own": 84.2,
+   "dup": 0.0,
+   "src": "ceiling lam=1.5"
+  },
+  {
+   "p": [
+    5,
+    11,
+    15,
+    17,
+    19,
+    20,
+    21,
+    29,
+    30
+   ],
+   "proj": 86.74,
+   "ceil": 223.51,
+   "sal": 49500,
+   "own": 88.3,
    "dup": 0.0,
    "src": "ceiling lam=1.5"
   },
@@ -5156,29 +5326,10 @@
     27,
     30
    ],
-   "proj": 68.96,
+   "proj": 84.94,
    "ceil": 217.22,
    "sal": 49500,
    "own": 76.9,
-   "dup": 0.0,
-   "src": "ceiling lam=2.5"
-  },
-  {
-   "p": [
-    6,
-    13,
-    15,
-    17,
-    19,
-    21,
-    23,
-    24,
-    25
-   ],
-   "proj": 72.66,
-   "ceil": 216.17,
-   "sal": 49800,
-   "own": 76.7,
    "dup": 0.0,
    "src": "ceiling lam=2.5"
   },
@@ -5194,7 +5345,7 @@
     24,
     29
    ],
-   "proj": 73.39,
+   "proj": 86.09,
    "ceil": 218.93,
    "sal": 49800,
    "own": 79.8,
@@ -5213,7 +5364,7 @@
     23,
     27
    ],
-   "proj": 72.7,
+   "proj": 85.45,
    "ceil": 220.06,
    "sal": 49800,
    "own": 81.7,
@@ -5232,7 +5383,7 @@
     29,
     30
    ],
-   "proj": 71.17,
+   "proj": 87.05,
    "ceil": 219.14,
    "sal": 49700,
    "own": 80.2,
@@ -5251,10 +5402,29 @@
     24,
     29
    ],
-   "proj": 73.84,
+   "proj": 86.45,
    "ceil": 219.09,
    "sal": 49700,
    "own": 79.9,
+   "dup": 0.0,
+   "src": "ceiling lam=2.5"
+  },
+  {
+   "p": [
+    6,
+    13,
+    15,
+    17,
+    19,
+    21,
+    22,
+    24,
+    25
+   ],
+   "proj": 85.64,
+   "ceil": 217.52,
+   "sal": 49900,
+   "own": 78.5,
    "dup": 0.0,
    "src": "ceiling lam=2.5"
   },
@@ -5270,7 +5440,7 @@
     24,
     37
    ],
-   "proj": 69.11,
+   "proj": 85.38,
    "ceil": 219.48,
    "sal": 49900,
    "own": 80.4,
@@ -5289,29 +5459,10 @@
     25,
     29
    ],
-   "proj": 70.92,
+   "proj": 86.53,
    "ceil": 220.84,
    "sal": 49700,
    "own": 82.9,
-   "dup": 0.0,
-   "src": "ceiling lam=2.5"
-  },
-  {
-   "p": [
-    6,
-    11,
-    13,
-    15,
-    19,
-    23,
-    24,
-    25,
-    29
-   ],
-   "proj": 75.26,
-   "ceil": 218.9,
-   "sal": 49800,
-   "own": 80.4,
    "dup": 0.0,
    "src": "ceiling lam=2.5"
   },
@@ -5327,29 +5478,10 @@
     25,
     31
    ],
-   "proj": 69.69,
+   "proj": 85.56,
    "ceil": 215.75,
    "sal": 49800,
    "own": 76.9,
-   "dup": 0.0,
-   "src": "ceiling lam=2.5"
-  },
-  {
-   "p": [
-    6,
-    13,
-    15,
-    17,
-    19,
-    21,
-    22,
-    24,
-    26
-   ],
-   "proj": 73.11,
-   "ceil": 216.76,
-   "sal": 49900,
-   "own": 78.6,
    "dup": 0.0,
    "src": "ceiling lam=2.5"
   },
@@ -5365,10 +5497,48 @@
     30,
     45
    ],
-   "proj": 68.85,
+   "proj": 84.96,
    "ceil": 216.62,
    "sal": 49600,
    "own": 76.7,
+   "dup": 0.0,
+   "src": "ceiling lam=2.5"
+  },
+  {
+   "p": [
+    5,
+    11,
+    13,
+    15,
+    17,
+    19,
+    21,
+    37,
+    38
+   ],
+   "proj": 85.7,
+   "ceil": 217.65,
+   "sal": 49700,
+   "own": 79.7,
+   "dup": 0.0,
+   "src": "ceiling lam=2.5"
+  },
+  {
+   "p": [
+    6,
+    11,
+    13,
+    17,
+    19,
+    21,
+    23,
+    24,
+    36
+   ],
+   "proj": 85.33,
+   "ceil": 218.12,
+   "sal": 49600,
+   "own": 80.6,
    "dup": 0.0,
    "src": "ceiling lam=2.5"
   },
@@ -5384,7 +5554,7 @@
     47,
     52
    ],
-   "proj": 84.17,
+   "proj": 94.29,
    "ceil": 244.21,
    "sal": 49700,
    "own": 218.8,
@@ -5403,7 +5573,7 @@
     47,
     51
    ],
-   "proj": 84.01,
+   "proj": 94.89,
    "ceil": 244.08,
    "sal": 49800,
    "own": 212.7,
@@ -5422,7 +5592,7 @@
     47,
     52
    ],
-   "proj": 81.8,
+   "proj": 94.25,
    "ceil": 244.05,
    "sal": 50000,
    "own": 224.2,
@@ -5441,7 +5611,7 @@
     47,
     51
    ],
-   "proj": 84.9,
+   "proj": 96.99,
    "ceil": 244.03,
    "sal": 49900,
    "own": 230.7,
@@ -5460,7 +5630,7 @@
     47,
     52
    ],
-   "proj": 84.44,
+   "proj": 95.41,
    "ceil": 244.02,
    "sal": 50000,
    "own": 212.4,
@@ -5479,7 +5649,7 @@
     47,
     52
    ],
-   "proj": 85.6,
+   "proj": 95.84,
    "ceil": 243.89,
    "sal": 49900,
    "own": 221.4,
@@ -5498,7 +5668,7 @@
     25,
     29
    ],
-   "proj": 77.44,
+   "proj": 88.78,
    "ceil": 227.48,
    "sal": 49900,
    "own": 100.2,
@@ -5517,7 +5687,7 @@
     29,
     37
    ],
-   "proj": 72.82,
+   "proj": 88.21,
    "ceil": 228.31,
    "sal": 49800,
    "own": 99.9,
@@ -5536,7 +5706,7 @@
     29,
     37
    ],
-   "proj": 72.86,
+   "proj": 87.97,
    "ceil": 225.05,
    "sal": 49900,
    "own": 91.1,
@@ -5555,7 +5725,7 @@
     29,
     36
    ],
-   "proj": 76.62,
+   "proj": 88.26,
    "ceil": 226.89,
    "sal": 49900,
    "own": 98.8,
@@ -5574,7 +5744,7 @@
     27,
     29
    ],
-   "proj": 73.0,
+   "proj": 87.94,
    "ceil": 225.8,
    "sal": 49900,
    "own": 95.5,
@@ -5583,21 +5753,21 @@
   },
   {
    "p": [
+    1,
     5,
-    11,
-    15,
-    17,
+    13,
     19,
     20,
     21,
+    27,
     29,
     30
    ],
-   "proj": 71.11,
-   "ceil": 223.51,
-   "sal": 49500,
-   "own": 88.3,
-   "dup": 0.0,
+   "proj": 87.16,
+   "ceil": 225.54,
+   "sal": 50000,
+   "own": 93.3,
+   "dup": 0.0001,
    "src": "stack 4-3 lam=1.0"
   },
   {
@@ -5612,29 +5782,10 @@
     29,
     31
    ],
-   "proj": 71.22,
+   "proj": 86.89,
    "ceil": 222.1,
    "sal": 49800,
    "own": 85.6,
-   "dup": 0.0,
-   "src": "stack 4-3 lam=2.0"
-  },
-  {
-   "p": [
-    6,
-    11,
-    13,
-    15,
-    19,
-    22,
-    25,
-    27,
-    29
-   ],
-   "proj": 74.83,
-   "ceil": 220.56,
-   "sal": 49500,
-   "own": 83.3,
    "dup": 0.0,
    "src": "stack 4-3 lam=2.0"
   },
@@ -5650,7 +5801,7 @@
     24,
     29
    ],
-   "proj": 70.11,
+   "proj": 85.91,
    "ceil": 222.69,
    "sal": 49600,
    "own": 86.9,
@@ -5669,7 +5820,7 @@
     27,
     42
    ],
-   "proj": 73.32,
+   "proj": 86.02,
    "ceil": 219.64,
    "sal": 49800,
    "own": 82.8,
@@ -5678,20 +5829,20 @@
   },
   {
    "p": [
-    6,
+    5,
     11,
     13,
     15,
     19,
     21,
-    24,
-    28,
-    29
+    25,
+    26,
+    31
    ],
-   "proj": 75.15,
-   "ceil": 218.26,
-   "sal": 49600,
-   "own": 80.5,
+   "proj": 86.96,
+   "ceil": 218.67,
+   "sal": 50000,
+   "own": 81.3,
    "dup": 0.0,
    "src": "stack 4-3 lam=2.0"
   },
@@ -5707,7 +5858,7 @@
     31,
     41
    ],
-   "proj": 70.52,
+   "proj": 86.38,
    "ceil": 218.96,
    "sal": 49800,
    "own": 82.0,
@@ -5716,22 +5867,22 @@
   },
   {
    "p": [
-    0,
-    9,
-    10,
+    5,
+    13,
     15,
-    16,
-    22,
-    40,
-    47,
-    51
+    17,
+    19,
+    20,
+    21,
+    25,
+    30
    ],
-   "proj": 83.73,
-   "ceil": 244.35,
+   "proj": 85.63,
+   "ceil": 220.59,
    "sal": 49600,
-   "own": 211.3,
-   "dup": 0.0361,
-   "src": "stack 4-2 lam=0.0"
+   "own": 85.1,
+   "dup": 0.0,
+   "src": "stack 4-3 lam=2.0"
   },
   {
    "p": [
@@ -5745,7 +5896,7 @@
     40,
     47
    ],
-   "proj": 84.54,
+   "proj": 94.83,
    "ceil": 244.35,
    "sal": 49600,
    "own": 218.9,
@@ -5764,7 +5915,7 @@
     47,
     52
    ],
-   "proj": 82.33,
+   "proj": 94.43,
    "ceil": 244.13,
    "sal": 49700,
    "own": 226.5,
@@ -5783,7 +5934,7 @@
     40,
     52
    ],
-   "proj": 83.47,
+   "proj": 94.61,
    "ceil": 244.1,
    "sal": 49700,
    "own": 190.9,
@@ -5802,11 +5953,30 @@
     47,
     52
    ],
-   "proj": 83.68,
+   "proj": 93.98,
    "ceil": 243.93,
    "sal": 49600,
    "own": 215.9,
    "dup": 0.0554,
+   "src": "stack 4-2 lam=0.0"
+  },
+  {
+   "p": [
+    0,
+    9,
+    10,
+    15,
+    20,
+    22,
+    40,
+    41,
+    47
+   ],
+   "proj": 94.26,
+   "ceil": 243.89,
+   "sal": 49500,
+   "own": 209.7,
+   "dup": 0.0293,
    "src": "stack 4-2 lam=0.0"
   },
   {
@@ -5821,7 +5991,7 @@
     47,
     52
    ],
-   "proj": 83.89,
+   "proj": 96.46,
    "ceil": 243.75,
    "sal": 49800,
    "own": 227.5,
@@ -5840,7 +6010,7 @@
     23,
     25
    ],
-   "proj": 74.06,
+   "proj": 86.38,
    "ceil": 224.24,
    "sal": 49700,
    "own": 90.4,
@@ -5851,18 +6021,18 @@
    "p": [
     1,
     5,
-    13,
-    19,
-    20,
+    11,
+    15,
+    16,
     21,
-    27,
     29,
-    30
+    37,
+    51
    ],
-   "proj": 71.74,
-   "ceil": 225.54,
+   "proj": 89.0,
+   "ceil": 228.24,
    "sal": 50000,
-   "own": 93.3,
+   "own": 102.7,
    "dup": 0.0001,
    "src": "stack 4-2 lam=1.0"
   },
@@ -5878,30 +6048,11 @@
     22,
     29
    ],
-   "proj": 76.22,
+   "proj": 87.86,
    "ceil": 228.22,
    "sal": 49700,
    "own": 104.4,
    "dup": 0.0002,
-   "src": "stack 4-2 lam=1.0"
-  },
-  {
-   "p": [
-    1,
-    5,
-    11,
-    15,
-    16,
-    21,
-    29,
-    37,
-    51
-   ],
-   "proj": 74.16,
-   "ceil": 228.24,
-   "sal": 50000,
-   "own": 102.7,
-   "dup": 0.0001,
    "src": "stack 4-2 lam=1.0"
   },
   {
@@ -5916,7 +6067,7 @@
     25,
     29
    ],
-   "proj": 75.37,
+   "proj": 87.58,
    "ceil": 225.12,
    "sal": 49700,
    "own": 94.0,
@@ -5935,10 +6086,29 @@
     37,
     51
    ],
-   "proj": 73.84,
+   "proj": 88.45,
    "ceil": 227.78,
    "sal": 49800,
    "own": 101.6,
+   "dup": 0.0001,
+   "src": "stack 4-2 lam=1.0"
+  },
+  {
+   "p": [
+    1,
+    5,
+    11,
+    15,
+    20,
+    21,
+    29,
+    37,
+    41
+   ],
+   "proj": 88.61,
+   "ceil": 227.78,
+   "sal": 49900,
+   "own": 101.1,
    "dup": 0.0001,
    "src": "stack 4-2 lam=1.0"
   },
@@ -5954,29 +6124,10 @@
     29,
     31
    ],
-   "proj": 71.54,
+   "proj": 87.44,
    "ceil": 222.56,
    "sal": 50000,
    "own": 86.7,
-   "dup": 0.0,
-   "src": "stack 4-2 lam=2.0"
-  },
-  {
-   "p": [
-    6,
-    11,
-    13,
-    17,
-    19,
-    21,
-    22,
-    24,
-    36
-   ],
-   "proj": 73.05,
-   "ceil": 219.47,
-   "sal": 49700,
-   "own": 82.5,
    "dup": 0.0,
    "src": "stack 4-2 lam=2.0"
   },
@@ -5992,7 +6143,7 @@
     29,
     33
    ],
-   "proj": 75.99,
+   "proj": 87.83,
    "ceil": 221.14,
    "sal": 49700,
    "own": 85.9,
@@ -6011,29 +6162,10 @@
     27,
     37
    ],
-   "proj": 70.4,
+   "proj": 86.26,
    "ceil": 218.42,
    "sal": 49800,
    "own": 80.8,
-   "dup": 0.0,
-   "src": "stack 4-2 lam=2.0"
-  },
-  {
-   "p": [
-    5,
-    13,
-    15,
-    17,
-    19,
-    20,
-    21,
-    25,
-    30
-   ],
-   "proj": 69.93,
-   "ceil": 220.59,
-   "sal": 49600,
-   "own": 85.1,
    "dup": 0.0,
    "src": "stack 4-2 lam=2.0"
   },
@@ -6049,11 +6181,49 @@
     29,
     30
    ],
-   "proj": 72.53,
+   "proj": 87.98,
    "ceil": 223.32,
    "sal": 49600,
    "own": 88.9,
    "dup": 0.0001,
+   "src": "stack 4-2 lam=2.0"
+  },
+  {
+   "p": [
+    5,
+    11,
+    13,
+    15,
+    17,
+    21,
+    25,
+    30,
+    31
+   ],
+   "proj": 87.09,
+   "ceil": 219.17,
+   "sal": 49800,
+   "own": 82.6,
+   "dup": 0.0,
+   "src": "stack 4-2 lam=2.0"
+  },
+  {
+   "p": [
+    6,
+    11,
+    15,
+    19,
+    21,
+    22,
+    23,
+    24,
+    25
+   ],
+   "proj": 86.16,
+   "ceil": 220.81,
+   "sal": 49600,
+   "own": 84.9,
+   "dup": 0.0,
    "src": "stack 4-2 lam=2.0"
   },
   {
@@ -6068,7 +6238,7 @@
     40,
     47
    ],
-   "proj": 83.44,
+   "proj": 94.3,
    "ceil": 244.35,
    "sal": 49500,
    "own": 215.1,
@@ -6087,7 +6257,7 @@
     36,
     47
    ],
-   "proj": 82.64,
+   "proj": 93.65,
    "ceil": 244.16,
    "sal": 50000,
    "own": 204.2,
@@ -6106,7 +6276,7 @@
     40,
     47
    ],
-   "proj": 82.98,
+   "proj": 94.46,
    "ceil": 244.14,
    "sal": 50000,
    "own": 208.8,
@@ -6125,7 +6295,7 @@
     42,
     47
    ],
-   "proj": 82.62,
+   "proj": 93.86,
    "ceil": 243.86,
    "sal": 50000,
    "own": 207.1,
@@ -6144,7 +6314,7 @@
     47,
     64
    ],
-   "proj": 84.59,
+   "proj": 95.07,
    "ceil": 243.64,
    "sal": 50000,
    "own": 215.5,
@@ -6163,7 +6333,7 @@
     47,
     56
    ],
-   "proj": 84.38,
+   "proj": 94.9,
    "ceil": 243.56,
    "sal": 49800,
    "own": 219.1,
@@ -6182,7 +6352,7 @@
     29,
     37
    ],
-   "proj": 73.58,
+   "proj": 88.91,
    "ceil": 226.3,
    "sal": 49800,
    "own": 95.5,
@@ -6201,7 +6371,7 @@
     29,
     32
    ],
-   "proj": 78.87,
+   "proj": 89.68,
    "ceil": 230.04,
    "sal": 49700,
    "own": 109.0,
@@ -6220,7 +6390,7 @@
     30,
     37
    ],
-   "proj": 72.88,
+   "proj": 87.8,
    "ceil": 228.6,
    "sal": 49600,
    "own": 102.4,
@@ -6239,7 +6409,7 @@
     29,
     32
    ],
-   "proj": 77.81,
+   "proj": 88.97,
    "ceil": 229.59,
    "sal": 49900,
    "own": 107.2,
@@ -6258,7 +6428,7 @@
     25,
     37
    ],
-   "proj": 71.09,
+   "proj": 86.87,
    "ceil": 225.67,
    "sal": 49800,
    "own": 94.5,
@@ -6267,41 +6437,22 @@
   },
   {
    "p": [
-    1,
-    5,
-    11,
+    6,
+    10,
     15,
+    19,
     20,
     21,
-    29,
-    37,
-    41
+    22,
+    25,
+    29
    ],
-   "proj": 73.57,
-   "ceil": 227.78,
+   "proj": 88.4,
+   "ceil": 228.66,
    "sal": 49900,
-   "own": 101.1,
+   "own": 103.2,
    "dup": 0.0001,
    "src": "stack 3-3 lam=1.0"
-  },
-  {
-   "p": [
-    5,
-    11,
-    13,
-    15,
-    17,
-    19,
-    21,
-    37,
-    38
-   ],
-   "proj": 69.84,
-   "ceil": 217.65,
-   "sal": 49700,
-   "own": 79.7,
-   "dup": 0.0,
-   "src": "stack 3-3 lam=2.0"
   },
   {
    "p": [
@@ -6315,7 +6466,7 @@
     30,
     31
    ],
-   "proj": 69.83,
+   "proj": 85.57,
    "ceil": 219.78,
    "sal": 49500,
    "own": 83.3,
@@ -6330,14 +6481,14 @@
     18,
     19,
     21,
-    22,
+    23,
     24,
     25
    ],
-   "proj": 73.26,
-   "ceil": 220.65,
-   "sal": 49700,
-   "own": 84.8,
+   "proj": 85.5,
+   "ceil": 219.3,
+   "sal": 49600,
+   "own": 83.0,
    "dup": 0.0,
    "src": "stack 3-3 lam=2.0"
   },
@@ -6353,7 +6504,7 @@
     25,
     26
    ],
-   "proj": 70.03,
+   "proj": 85.98,
    "ceil": 219.26,
    "sal": 49800,
    "own": 82.6,
@@ -6372,7 +6523,7 @@
     25,
     32
    ],
-   "proj": 74.97,
+   "proj": 87.11,
    "ceil": 219.93,
    "sal": 49900,
    "own": 84.0,
@@ -6391,7 +6542,7 @@
     27,
     44
    ],
-   "proj": 69.84,
+   "proj": 85.96,
    "ceil": 219.83,
    "sal": 49900,
    "own": 84.6,
@@ -6400,22 +6551,22 @@
   },
   {
    "p": [
-    0,
-    9,
-    10,
+    5,
+    11,
+    13,
     15,
-    16,
-    32,
-    33,
-    40,
-    47
+    17,
+    19,
+    24,
+    30,
+    37
    ],
-   "proj": 84.42,
-   "ceil": 243.74,
-   "sal": 49600,
-   "own": 212.9,
-   "dup": 0.0409,
-   "src": "team SJS lam=0.0"
+   "proj": 86.3,
+   "ceil": 216.43,
+   "sal": 49700,
+   "own": 78.0,
+   "dup": 0.0,
+   "src": "stack 3-3 lam=2.0"
   },
   {
    "p": [
@@ -6429,11 +6580,30 @@
     47,
     52
    ],
-   "proj": 78.6,
+   "proj": 91.67,
    "ceil": 243.74,
    "sal": 49800,
    "own": 201.5,
    "dup": 0.0125,
+   "src": "team SJS lam=0.0"
+  },
+  {
+   "p": [
+    0,
+    9,
+    10,
+    15,
+    16,
+    32,
+    33,
+    40,
+    47
+   ],
+   "proj": 95.01,
+   "ceil": 243.74,
+   "sal": 49600,
+   "own": 212.9,
+   "dup": 0.0409,
    "src": "team SJS lam=0.0"
   },
   {
@@ -6448,7 +6618,7 @@
     40,
     47
    ],
-   "proj": 83.61,
+   "proj": 94.75,
    "ceil": 243.65,
    "sal": 49800,
    "own": 210.8,
@@ -6467,7 +6637,7 @@
     47,
     52
    ],
-   "proj": 79.37,
+   "proj": 92.5,
    "ceil": 240.89,
    "sal": 50000,
    "own": 196.3,
@@ -6486,7 +6656,7 @@
     40,
     47
    ],
-   "proj": 78.12,
+   "proj": 91.39,
    "ceil": 240.73,
    "sal": 50000,
    "own": 194.2,
@@ -6505,7 +6675,7 @@
     40,
     47
    ],
-   "proj": 80.15,
+   "proj": 93.62,
    "ceil": 240.72,
    "sal": 49900,
    "own": 200.1,
@@ -6524,7 +6694,7 @@
     41,
     47
    ],
-   "proj": 78.91,
+   "proj": 92.53,
    "ceil": 243.53,
    "sal": 50000,
    "own": 203.3,
@@ -6543,7 +6713,7 @@
     47,
     64
    ],
-   "proj": 83.13,
+   "proj": 94.0,
    "ceil": 242.28,
    "sal": 49700,
    "own": 206.7,
@@ -6562,7 +6732,7 @@
     40,
     64
    ],
-   "proj": 83.65,
+   "proj": 94.85,
    "ceil": 242.24,
    "sal": 49800,
    "own": 189.6,
@@ -6581,7 +6751,7 @@
     33,
     47
    ],
-   "proj": 83.25,
+   "proj": 94.05,
    "ceil": 243.34,
    "sal": 50000,
    "own": 206.1,
@@ -6600,7 +6770,7 @@
     33,
     40
    ],
-   "proj": 82.77,
+   "proj": 94.38,
    "ceil": 242.16,
    "sal": 50000,
    "own": 179.2,
@@ -6619,7 +6789,7 @@
     36,
     47
    ],
-   "proj": 81.39,
+   "proj": 92.6,
    "ceil": 241.65,
    "sal": 49700,
    "own": 198.0,

@@ -68,11 +68,15 @@ import cfb_sport as S
 from engine import model as EM
 from engine import optimise as O
 from engine import ownership as OWN
+from engine import lineup_pool as LP
 from engine import simulate as SIM
 from engine.spec import FLEX_SLOTS
 from availability import available
 
 log = logging.getLogger("cfb_publish")
+
+# A sport-specific ownership refit, if fit_ownership.py has written one.
+OWN.use_fit("cfb")
 
 SPORT = "cfb"
 EASTERN = ZoneInfo("America/New_York")
@@ -858,6 +862,10 @@ def write(payloads: list[dict]) -> None:
 
     keep, slates = set(), []
     for p in payloads:
+        # The lineup pool the page filters by ownership. Built here, at the
+        # last step, so it sees the final board and ownership.
+        if "lineups" not in p:
+            p["lineups"] = LP.safe_build(p)
         name = f"{SPORT}_dk_{p['kind']}_{p['draft_group']}.json"
         # allow_nan=False, and that is the whole point of writing it out here.
         #

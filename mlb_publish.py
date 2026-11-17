@@ -55,10 +55,14 @@ from engine import cache as C
 from engine import model as M
 from engine import optimise as O
 from engine import ownership as OWN
+from engine import lineup_pool as LP
 from engine import simulate as S
 from availability import available
 
 log = logging.getLogger("mlb_publish")
+
+# A sport-specific ownership refit, if fit_ownership.py has written one.
+OWN.use_fit("mlb")
 
 SPORT = "mlb"
 DOCS = Path("docs")
@@ -310,6 +314,9 @@ def slate_players(merged: pd.DataFrame, spec_quantiles: list[float],
             "pos": str(r["position"]),
             "team": str(r["team"]),
             "game": str(r.get("game") or ""),
+            # DraftKings id, so the page can export an upload file.
+            "pid": (None if pd.isna(r.get("dk_player_id"))
+                    else str(r.get("dk_player_id")).replace(".0", "")),
             # Who he is facing. Without this the solver cannot know that a
             # hitter and the pitcher he is batting against are the same bet
             # twice, in opposite directions.
@@ -957,6 +964,10 @@ def write(payloads: list[dict]) -> None:
     fresh = set()
     slates = []
     for payload in payloads:
+        # The lineup pool the page filters by ownership. Built here, at the
+        # last step, so it sees the final board and ownership.
+        if "lineups" not in payload:
+            payload["lineups"] = LP.safe_build(payload)
         name = (f"{payload['sport']}_{payload['site']}_{payload['kind']}_"
                 f"{payload['draft_group']}.json")
         path = DATA / name

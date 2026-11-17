@@ -141,6 +141,33 @@ CEILING_BLEND = 0.20
 PUNT_PROJECTION_GATE = 0.60
 PUNT_SALARY_PCT = 0.15
 
+# CLASSIC SLATES ARE A DIFFERENT FIELD, AND MEASURABLY SO.
+#
+# Everything above was fitted on one SHOWDOWN board, where the field buys the
+# famous, expensive players and value points the wrong way. Classic is the
+# opposite game: eight or nine slots under one cap means everybody is hunting
+# the cheap player whose projection outruns his price, and the top of a
+# classic board is value plays, not stars.
+#
+# Measured on a real DK NBA classic main slate (2026-11-16, 7 games, 81-player
+# pool, a $12K GPP's %Drafted for every player down to 4.7%):
+#
+#     Spearman rho with actual ownership     shape (top 8 share)
+#       showdown weights (pts + .8 salary)   0.25      0.54-0.74
+#       classic weights  (pts + 1.0 value)   0.47      0.47      actual 0.49
+#     KL(actual||model)                      1.50 -> 0.51
+#
+# Salary dropped out of the fit entirely (best weight 0.0) and the field is
+# FLATTER than the showdown temperature implies - the best concentration was
+# at the bottom of the grid, so 0.5 is a ceiling on steepness, not a precise
+# value. One slate, one sport: treat these as the starting point that
+# fit_ownership.py replaces as soon as a classic contest export from the
+# sport itself is dropped in.
+CLASSIC_POINTS_WEIGHT = 1.00
+CLASSIC_SALARY_WEIGHT = 0.00
+CLASSIC_VALUE_WEIGHT = 1.00
+CLASSIC_CONCENTRATION = 0.50
+
 
 def slot_demand(roster: dict) -> dict[str, float]:
     """How many of each position a single entry must field.
@@ -324,7 +351,7 @@ def slot_demand(roster: dict) -> dict[str, float]:
     return demand
 
 
-def appeal(pool: pd.DataFrame) -> pd.Series:
+def appeal(pool: pd.DataFrame, classic: bool = False) -> pd.Series:
     """How attractive each player looks to somebody building a lineup fast.
 
     Built from what the field demonstrably responds to - projected points and
@@ -366,6 +393,16 @@ def appeal(pool: pd.DataFrame) -> pd.Series:
     def z(s: pd.Series) -> pd.Series:
         sd = float(s.std(ddof=0))
         return (s - float(s.mean())) / sd if sd > 1e-9 else s * 0.0
+
+    if classic:
+        # Value as the field computes it: median points per $1,000.
+        value = (median / (salary / 1000.0)).replace([np.inf, -np.inf], np.nan)
+        score = (CLASSIC_POINTS_WEIGHT * z(points)
+                 + CLASSIC_SALARY_WEIGHT * z(salary.fillna(0.0))
+                 + CLASSIC_VALUE_WEIGHT * z(value.fillna(0.0)))
+        if "playing" in pool.columns:
+            score = score.mask(pool["playing"].isin(("out", "doubtful")), -1e9)
+        return score
 
     score = POINTS_WEIGHT * z(points) + SALARY_WEIGHT * z(salary.fillna(0.0))
 
@@ -444,14 +481,17 @@ def _allocate(scores: np.ndarray, want: float,
 
 
 def project(pool: pd.DataFrame, roster: dict,
-            concentration: float = CONCENTRATION) -> pd.Series:
+            concentration: float | None = None) -> pd.Series:
     """Projected ownership per player, as a fraction of the field.
 
     Softmax of appeal within each position, scaled so the position sums to
     what a lineup actually demands. The softmax supplies the shape; the roster
     supplies the scale.
     """
-    score = appeal(pool)
+    showdown = "CPT" in roster["slots"]
+    score = appeal(pool, classic=not showdown)
+    if concentration is None:
+        concentration = CONCENTRATION if showdown else CLASSIC_CONCENTRATION
     out = pd.Series(0.0, index=pool.index, dtype=float)
 
     if "CPT" in roster["slots"]:
@@ -617,3 +657,39 @@ if __name__ == "__main__":  # pragma: no cover
     print("missing from the published board entirely:")
     for who, own in MISSING_FROM_BOARD.items():
         print(f"   {who:<16}{100*own:5.1f}% owned")
+
+
+# ------------------------------------------------- per-sport refits on disk
+FIT_DIR = "data"
+
+
+def use_fit(sport: str) -> dict | None:
+    """Swap in the classic coefficients fitted for this sport, if any.
+
+    fit_ownership.py writes data/ownership_fit_<sport>.json from a real
+    contest export; a publish calls this once at start. No file means the
+    defaults above, which were fitted on NBA and say so.
+    """
+    import json
+    import os
+    global CLASSIC_POINTS_WEIGHT, CLASSIC_SALARY_WEIGHT
+    global CLASSIC_VALUE_WEIGHT, CLASSIC_CONCENTRATION
+    path = os.path.join(os.path.dirname(os.path.dirname(
+        os.path.abspath(__file__))), FIT_DIR, f"ownership_fit_{sport}.json")
+    if not os.path.exists(path):
+        log.info("ownership: no %s fit on disk, using the default classic "
+                 "weights", sport)
+        return None
+    try:
+        fit = json.load(open(path))
+        CLASSIC_POINTS_WEIGHT = float(fit["points"])
+        CLASSIC_SALARY_WEIGHT = float(fit["salary"])
+        CLASSIC_VALUE_WEIGHT = float(fit["value"])
+        CLASSIC_CONCENTRATION = float(fit["concentration"])
+    except (OSError, ValueError, KeyError) as exc:
+        log.warning("ownership fit %s unreadable (%s) - defaults kept",
+                    path, exc)
+        return None
+    log.info("ownership: %s fit loaded (%s slates, rho %.2f)", sport,
+             fit.get("slates"), fit.get("rho", float("nan")))
+    return fit

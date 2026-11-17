@@ -54,10 +54,14 @@ import nhl_sport as NS
 from engine import model as EM
 from engine import optimise as O
 from engine import ownership as OWN
+from engine import lineup_pool as LP
 from engine import simulate as S
 from availability import available
 
 log = logging.getLogger("nhl_publish")
+
+# A sport-specific ownership refit, if fit_ownership.py has written one.
+OWN.use_fit("nhl")
 
 SPORT = "nhl"
 EASTERN = ZoneInfo("America/New_York")
@@ -379,6 +383,9 @@ def slate_players(pool: pd.DataFrame, quantiles: list[float],
             "pos": str(r["position"]),
             "team": str(r["team"]),
             "opp": str(r.get("opponent") or ""),
+            # DraftKings id, so the page can export an upload file.
+            "pid": (None if pd.isna(r.get("dk_player_id"))
+                    else str(r.get("dk_player_id")).replace(".0", "")),
             # CANONICAL, so one game produces ONE label. Built as
             # "{opponent} v {team}" this was directional: a Vancouver player
             # gave "EDM v VAN" and an Edmonton player "VAN v EDM", so the
@@ -518,6 +525,10 @@ def write(payloads: list[dict]) -> None:
     keep = set()
     slates = []
     for p in payloads:
+        # The lineup pool the page filters by ownership. Built here, at the
+        # last step, so it sees the final board and ownership.
+        if "lineups" not in p:
+            p["lineups"] = LP.safe_build(p)
         name = f"{SPORT}_dk_{p['kind']}_{p['draft_group']}.json"
         # allow_nan=False, and that is the whole point of writing it out.
         #

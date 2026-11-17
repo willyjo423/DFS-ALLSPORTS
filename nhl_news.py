@@ -59,11 +59,37 @@ CLIP = (0.85, 1.20)
 OUT_TAGS = {"out", "ir", "ltir", "inj", "injured", "suspended", "sus", "o"}
 
 
+_CACHE: dict = {}
+HEADERS = {"User-Agent": UA,
+           "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+           "Accept-Language": "en-US,en;q=0.9"}
+
+
+def _fetch(url: str) -> str:
+    """One page, fetched once per run. Retries with back-off: the site's bot
+    screen refuses some requests from cloud machines and lets the next
+    through."""
+    if url in _CACHE:
+        return _CACHE[url]
+    last = None
+    for wait in (0, 3, 8, 20):
+        if wait:
+            time.sleep(wait)
+        try:
+            r = requests.get(url, timeout=TIMEOUT, headers=HEADERS)
+            if r.status_code == 200:
+                _CACHE[url] = r.text
+                return r.text
+            last = f"HTTP {r.status_code}"
+        except requests.RequestException as exc:
+            last = str(exc)[:80]
+    raise RuntimeError(f"{last} for {url}")
+
+
 def _next_data(url: str) -> dict:
-    r = requests.get(url, timeout=TIMEOUT, headers={"User-Agent": UA})
-    r.raise_for_status()
+    text = _fetch(url)
     m = re.search(r'<script id="__NEXT_DATA__"[^>]*>(.*?)</script>',
-                  r.text, re.S)
+                  text, re.S)
     if not m:
         raise ValueError("no page data")
     return json.loads(m.group(1))["props"]["pageProps"]

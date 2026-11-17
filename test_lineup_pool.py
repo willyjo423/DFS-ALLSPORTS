@@ -60,6 +60,23 @@ for f in files:
               for i, a in enumerate(pool) for b in pool[:i]),
           f"lineups differ by at least {LP.MIN_UNIQUE} players")
 
+print("hockey stacks")
+d = json.load(open(sorted(glob.glob("docs/data/nhl_dk_classic_*.json"))[0]))
+P = d["players"]
+pool = LP.build(P, d["roster"], lambdas=(0.0,), per_objective=1)
+def shape(L):
+    c = collections.Counter(P[i]["team"] for i in L["p"] if P[i]["pos"] != "G")
+    return sorted(c.values(), reverse=True)
+for want in ("4-3", "4-2", "3-3"):
+    a, b = map(int, want.split("-"))
+    got = [L for L in pool if L["src"].startswith(f"stack {want}")]
+    check(got and all(shape(L)[0] >= a and shape(L)[1] >= b for L in got),
+          f"{len(got)} '{want}' lineups all carry a {want} stack")
+team = [L for L in pool if L["src"].startswith("team ")]
+check(team and all(sum(P[i]["team"] == L["src"].split()[1] and P[i]["pos"] != "G"
+                       for i in L["p"]) >= 4 for L in team),
+      f"{len(team)} team-stack lineups all hold 4+ skaters of their team")
+
 print()
 if FAILS:
     print(f"{len(FAILS)} FAILED")

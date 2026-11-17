@@ -48,6 +48,7 @@ select#slate{flex:1 1 280px;min-width:0}
 .lu .top{display:flex;flex-wrap:wrap;gap:4px 12px;font-variant-numeric:tabular-nums;font-size:12px;color:var(--mute);margin-bottom:4px}
 .lu .top b{color:var(--ink);font-size:14px}
 .lu .ps{font-size:13px;line-height:1.6}
+.stk{background:var(--acc2);color:var(--acc);font-weight:700;padding:0 6px;border-radius:4px}
 .lu .ps span{white-space:nowrap}
 .lu .ps span:not(:last-child)::after{content:" · ";color:var(--mute)}
 .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
@@ -97,6 +98,16 @@ a{color:var(--acc)}
         <div class="f"><label>Min total own %</label><input id="ownmin" type="number" min="0" step="5" placeholder="none"></div>
         <div class="f"><label>Max total own %</label><input id="ownmax" type="number" min="0" step="5" placeholder="none"></div>
         <div class="f"><label>Max exposure %</label><input id="expo" type="number" min="1" max="100" step="5" value="60"></div>
+        <div class="f stackf"><label>Stack</label>
+          <select id="stk" style="width:100%">
+            <option value="0">Any</option><option value="2">2+ one team</option>
+            <option value="3">3+ one team</option><option value="4">4+ one team</option>
+            <option value="5">5+ one team</option></select></div>
+        <div class="f stackf"><label>Second stack</label>
+          <select id="stk2" style="width:100%">
+            <option value="0">Any</option><option value="2">2+</option><option value="3">3+</option></select></div>
+        <div class="f stackf"><label>Stack team</label>
+          <select id="stkteam" style="width:100%"><option value="">Any</option></select></div>
         <div class="f"><label>Sort by</label>
           <select id="sort" style="width:100%">
             <option value="proj">Projection</option>
@@ -135,8 +146,9 @@ a{color:var(--acc)}
   <div class="note" id="foot">
     Projections are your model's. Ownership = softmax by position of
     z(projection) + z(value), fitted on a real DraftKings classic contest and refit per sport with
-    <code>fit_ownership.py</code> as contest exports come in. Lineups come from a pool of up to 120
-    solved per slate, spread from pure projection to heavily ownership-penalised.
+    <code>fit_ownership.py</code> as contest exports come in. Lineups come from a pool solved per slate,
+    spread from pure projection to heavily ownership-penalised; hockey adds 4-3, 4-2 and 3-3 team
+    stacks and a 4-stack of each of the ten strongest teams.
   </div>
   <div class="note" id="status"></div>
 </div>
@@ -199,6 +211,20 @@ async function loadSlate(file) {
   const order = [...new Set(SLATE.roster.slots)].filter(p => positions.includes(p));
   positions.forEach(p => { if (!order.includes(p)) order.push(p); });
   $("posf").innerHTML = ["All", ...order].map(p => `<button data-p="${p}" class="${p === "All" ? "on" : ""}">${p}</button>`).join("");
+  // Stacks: skaters (or hitters) per team in each pool lineup. Goalies and
+  // pitchers are not part of a stack.
+  const single = new Set(["G", "P"]);
+  (SLATE.lineups || []).forEach(L => {
+    const c = {};
+    L.p.forEach(i => { const q = SLATE.players[i]; if (!single.has(q.pos)) c[q.team] = (c[q.team] || 0) + 1; });
+    L.teams = c;
+    L.stk = Object.entries(c).sort((a, b) => b[1] - a[1]);
+  });
+  const canStack = SLATE.roster.slots.includes("G");
+  document.querySelectorAll(".stackf").forEach(e => e.classList.toggle("hide", !canStack));
+  const teams = [...new Set(SLATE.players.filter(q => !single.has(q.pos)).map(q => q.team))].sort();
+  $("stkteam").innerHTML = '<option value="">Any</option>' + teams.map(t => `<option>${esc(t)}</option>`).join("");
+  $("stk").value = "0"; $("stk2").value = "0";
   drawPlayers(); drawLineups();
 }
 
@@ -254,7 +280,7 @@ document.querySelector(".tabs").onclick = e => {
   $("tab-players").classList.toggle("hide", t !== "players");
   $("tab-lineups").classList.toggle("hide", t !== "lineups");
 };
-["n", "ownmin", "ownmax", "expo", "sort"].forEach(id => $(id).oninput = drawLineups);
+["n", "ownmin", "ownmax", "expo", "sort", "stk", "stk2", "stkteam"].forEach(id => $(id).oninput = drawLineups);
 // Lineups already update as settings change; the button re-runs and jumps to them.
 $("build").onclick = () => { drawLineups(); $("lulist").scrollIntoView({behavior: "smooth"}); };
 
@@ -270,8 +296,12 @@ function drawLineups() {
   const lo = +$("ownmin").value || 0, hi = +$("ownmax").value || 1e9;
   const N = Math.max(1, +$("n").value || 1), cap = Math.max(1, +$("expo").value || 100) / 100;
   const k = $("sort").value;
+  const s1 = +$("stk").value, s2 = +$("stk2").value, st = $("stkteam").value;
   let ok = pool.filter(L =>
     L.own >= lo && L.own <= hi &&
+    (!s1 || (L.stk[0] || [, 0])[1] >= s1) &&
+    (!s2 || (L.stk[1] || [, 0])[1] >= s2) &&
+    (!st || (L.teams[st] || 0) >= Math.max(s1, 2)) &&
     [...LOCK].every(i => L.p.includes(i)) &&
     !L.p.some(i => EXCL.has(i)));
   ok.sort((a, b) => k === "ownhi" ? b.own - a.own
@@ -298,7 +328,7 @@ function drawLineups() {
       `<span><span class="muted">${s}</span> ${esc(P[i].name)}</span>`).join(" ");
     return `<div class="lu"><div class="top"><b>#${n + 1}</b><span><b>${L.proj.toFixed(1)}</b> proj</span>
       <span>${L.ceil.toFixed(0)} ceil</span><span><b>${L.own.toFixed(0)}%</b> own</span>
-      <span>$${L.sal.toLocaleString()}</span>${L.dup >= 0.5 ? `<span>~${L.dup.toFixed(1)} dupes</span>` : ""}</div>
+      <span>$${L.sal.toLocaleString()}</span>${stackTag(L)}${L.dup >= 0.5 ? `<span>~${L.dup.toFixed(1)} dupes</span>` : ""}</div>
       <div class="ps">${ps}</div></div>`;
   }).join("") || `<div class="pad note">No lineups match. Widen the ownership range or remove a lock.</div>`;
   const xs = [...count.entries()].sort((a, b) => b[1] - a[1]);
@@ -307,6 +337,12 @@ function drawLineups() {
     return `<tr><td class="l">${esc(P[i].name)}</td><td>${esc(P[i].pos)}</td><td><b>${mine.toFixed(0)}%</b></td>
       <td>${field.toFixed(0)}%</td><td class="l"><div class="bar"><i style="width:${Math.min(100, mine)}%"></i></div></td></tr>`;
   }).join("");
+}
+
+function stackTag(L) {
+  const big = (L.stk || []).filter(([, n]) => n >= 2);
+  return big.length && SLATE.roster.slots.includes("G")
+    ? `<span class="stk">${big.map(([t, n]) => esc(t) + " " + n).join(" · ")}</span>` : "";
 }
 
 // DraftKings upload order: each named slot filled by position, then the

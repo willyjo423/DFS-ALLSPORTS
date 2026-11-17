@@ -56,6 +56,7 @@ from engine import model as M
 from engine import optimise as O
 from engine import ownership as OWN
 from engine import lineup_pool as LP
+import projection_calibration as PC
 from engine import simulate as S
 from availability import available
 
@@ -966,6 +967,8 @@ def write(payloads: list[dict]) -> None:
     for payload in payloads:
         # The lineup pool the page filters by ownership. Built here, at the
         # last step, so it sees the final board and ownership.
+        # Calibrated expected points first: the lineup pool optimises them.
+        PC.apply(payload)
         if "lineups" not in payload:
             payload["lineups"] = LP.safe_build(payload)
         name = (f"{payload['sport']}_{payload['site']}_{payload['kind']}_"

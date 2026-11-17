@@ -138,11 +138,11 @@ def _shortlist(players, keep, roster):
                                   + (n_flex if pos_ in flex_pos else 0))
         if k == 0:
             continue
-        med = lambda i: players[i]["med"]
+        med = lambda i: players[i].get("proj", players[i]["med"])
         keys = (med,
                 lambda i: players[i].get("ceil") or players[i]["med"],
-                lambda i: players[i]["med"] / players[i]["salary"],
-                lambda i: players[i]["med"] * (1 - min(players[i].get("own")
+                lambda i: med(i) / players[i]["salary"],
+                lambda i: med(i) * (1 - min(players[i].get("own")
                                                        or 0, 1)))
         for key in keys:
             out.update(sorted(idx, key=key, reverse=True)[:k])
@@ -220,7 +220,9 @@ def build(players: list[dict], roster: dict, field_size: int = 100_000,
         hi.append(1)
 
     floor = float(roster.get("min_salary_pct") or 0) * cap
-    med = np.array([p["med"] for p in pl], float)
+    # The calibrated expectation where the publisher added one (see
+    # projection_calibration.py); the model median otherwise.
+    med = np.array([p.get("proj", p["med"]) for p in pl], float)
     ceil = np.array([p.get("ceil") or p["med"] for p in pl], float)
     own = np.clip(np.array([p.get("own") or 0 for p in pl], float), 0, 1)
 

@@ -55,6 +55,7 @@ from engine import model as EM
 from engine import optimise as O
 from engine import ownership as OWN
 from engine import lineup_pool as LP
+import projection_calibration as PC
 from engine import simulate as S
 from availability import available
 
@@ -399,6 +400,9 @@ def slate_players(pool: pd.DataFrame, quantiles: list[float],
             # than to null.
             "q": [num(r[c], 3, num(r["median"], 3, 0.0)) for c in qcols],
             "med": num(r["median"], 2, 0.0),
+            # The model's expectation, for positions the calibration does not
+            # cover (goalies). See projection_calibration.py.
+            "mean": num(r.get("mean"), 2),
             "ceil": num(r["ceiling"], 2, 0.0),
             "own": num(own.iloc[i], 5, 0.0),
             "lev": num(lev.iloc[i], 3, 0.0),
@@ -527,6 +531,8 @@ def write(payloads: list[dict]) -> None:
     for p in payloads:
         # The lineup pool the page filters by ownership. Built here, at the
         # last step, so it sees the final board and ownership.
+        # Calibrated expected points first: the lineup pool optimises them.
+        PC.apply(p)
         if "lineups" not in p:
             p["lineups"] = LP.safe_build(p)
         name = f"{SPORT}_dk_{p['kind']}_{p['draft_group']}.json"

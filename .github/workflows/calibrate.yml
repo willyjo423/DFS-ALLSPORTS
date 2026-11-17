@@ -1,0 +1,47 @@
+name: Calibrate projections (weekly)
+
+# Refits the salary + model blend that turns the published NHL median into
+# expected DraftKings points (projection_calibration.py), against every
+# archived board and the real box scores. Monday morning, before the first
+# publish of the week.
+
+on:
+  schedule:
+    - cron: "23 12 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: calibrate
+  cancel-in-progress: false
+
+jobs:
+  fit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Fit
+        run: |
+          set -o pipefail
+          python projection_calibration.py --fit nhl 2>&1 | tee fit.txt
+      - name: Commit
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -f data/proj_calibration_*.json
+          if git diff --cached --quiet; then echo "unchanged"; exit 0; fi
+          git commit -m "Projection calibration: $(date -u +%Y-%m-%d)"
+          git push || (git pull --rebase origin "${GITHUB_REF_NAME}" && git push)
+      - name: Summary
+        if: always()
+        run: |
+          { echo '### Projection calibration'; echo '```'; tail -n 60 fit.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"

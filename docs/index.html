@@ -144,7 +144,8 @@ a{color:var(--acc)}
   </section>
 
   <div class="note" id="foot">
-    Projections are your model's. Ownership = softmax by position of
+    Proj is expected DraftKings points: your model blended with salary, refit weekly against real
+    box scores (projection_calibration.py); Ceil is your model's 97th-percentile outcome. Ownership = softmax by position of
     z(projection) + z(value), fitted on a real DraftKings classic contest and refit per sport with
     <code>fit_ownership.py</code> as contest exports come in. Lineups come from a pool solved per slate,
     spread from pure projection to heavily ownership-penalised; hockey adds 4-3, 4-2 and 3-3 team
@@ -157,10 +158,10 @@ a{color:var(--acc)}
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 let SLATES = [], SLATE = null, LOCK = new Set(), EXCL = new Set();
-let SORT = {k: "med", d: -1}, POS = "All", SPORT = null, PICKED = [];
+let SORT = {k: "proj", d: -1}, POS = "All", SPORT = null, PICKED = [];
 
 const COLS = [
-  ["", ""], ["name", "Player"], ["salary", "Sal"], ["med", "Proj"],
+  ["", ""], ["name", "Player"], ["salary", "Sal"], ["proj", "Proj"],
   ["own", "Own%"], ["val", "Value"], ["ceil", "Ceil"], ["lev", "Lev"],
 ];
 
@@ -203,7 +204,10 @@ async function loadSlate(file) {
   LOCK.clear(); EXCL.clear(); POS = "All";
   SLATE.players.forEach((p, i) => {
     p.i = i;
-    p.val = p.salary ? p.med / (p.salary / 1000) : 0;
+    // Calibrated expected points where the slate has them (see
+    // projection_calibration.py); the model median on older files.
+    p.proj = p.proj ?? p.med;
+    p.val = p.salary ? p.proj / (p.salary / 1000) : 0;
   });
   const lk = SLATE.locks ? new Date(SLATE.locks) : null;
   $("lock").textContent = lk && !isNaN(lk) ? "Locks " + lk.toLocaleString([], {weekday:"short", hour:"numeric", minute:"2-digit"}) : "";
@@ -256,7 +260,7 @@ function drawPlayers() {
       <td class="l"><button class="tog ${LOCK.has(p.i) ? "lk" : ""}" data-lock="${p.i}">✓</button>
         <button class="tog ${EXCL.has(p.i) ? "ex" : ""}" data-ex="${p.i}">✕</button></td>
       <td class="l nm">${esc(p.name)}${flag}<div class="muted">${esc(p.pos)} · ${esc(p.team)}${p.opp ? " v " + esc(p.opp) : ""}</div></td>
-      <td>$${((p.salary || 0) / 1000).toFixed(1)}k</td><td><b>${num(p.med)}</b></td>
+      <td>$${((p.salary || 0) / 1000).toFixed(1)}k</td><td><b>${num(p.proj)}</b></td>
       <td><b>${num(100 * (p.own || 0))}</b></td><td>${num(p.val, 2)}</td><td>${num(p.ceil)}</td><td>${num(p.lev, 2)}</td></tr>`;
   }).join("");
 }

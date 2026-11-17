@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-17T18:13:33+00:00",
+ "generated_at": "2026-11-17T18:31:32+00:00",
  "sport": "nhl",
  "site": "dk",
  "kind": "classic",
@@ -79,7 +79,7 @@
    "ceil": 30.92,
    "own": 0.51848,
    "lev": -0.07,
-   "pp": 0.9852,
+   "pp": 1,
    "toi": null,
    "pptoi": null,
    "gp30": null,
@@ -93,6 +93,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L2",
+   "lg": "VGK-L2",
    "proj": 18.49
   },
   {
@@ -130,6 +132,7 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "g_started": true,
    "proj": 6.73
   },
   {
@@ -190,7 +193,7 @@
    "ceil": 32.04,
    "own": 0.38374,
    "lev": 0.0,
-   "pp": 0.9761,
+   "pp": 1,
    "toi": null,
    "pptoi": null,
    "gp30": null,
@@ -204,6 +207,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L1",
+   "lg": "DAL-L1",
    "proj": 16.21
   },
   {
@@ -278,6 +283,7 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "g_started": true,
    "proj": 13.56
   },
   {
@@ -301,7 +307,7 @@
    "ceil": 28.31,
    "own": 0.23388,
    "lev": 0.116,
-   "pp": 0.9684,
+   "pp": 1,
    "toi": null,
    "pptoi": null,
    "gp30": null,
@@ -315,6 +321,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L3",
+   "lg": "VGK-L3",
    "proj": 14.59
   },
   {
@@ -338,7 +346,7 @@
    "ceil": 28.76,
    "own": 0.3185,
    "lev": 0.047,
-   "pp": 0.9821,
+   "pp": 1,
    "toi": null,
    "pptoi": null,
    "gp30": null,
@@ -352,6 +360,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L1",
+   "lg": "VGK-L1",
    "proj": 14.96
   },
   {
@@ -375,7 +385,7 @@
    "ceil": 26.61,
    "own": 0.17145,
    "lev": 0.279,
-   "pp": 0.9363,
+   "pp": 1,
    "toi": null,
    "pptoi": null,
    "gp30": null,
@@ -389,6 +399,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L1",
+   "lg": "DAL-L1",
    "proj": 13.15
   },
   {
@@ -412,7 +424,7 @@
    "ceil": 27.83,
    "own": 0.40918,
    "lev": -0.093,
-   "pp": 0.9575,
+   "pp": 1,
    "toi": null,
    "pptoi": null,
    "gp30": null,
@@ -426,6 +438,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L1",
+   "lg": "DAL-L1",
    "proj": 14.74
   },
   {
@@ -449,7 +463,7 @@
    "ceil": 24.98,
    "own": 0.19304,
    "lev": 0.209,
-   "pp": 0.9856,
+   "pp": 1,
    "toi": null,
    "pptoi": null,
    "gp30": null,
@@ -463,6 +477,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "D1",
+   "lg": "DAL-D1",
    "proj": 13.79
   },
   {
@@ -486,7 +502,7 @@
    "ceil": 23.18,
    "own": 0.21453,
    "lev": 0.047,
-   "pp": 0.9334,
+   "pp": 1,
    "toi": null,
    "pptoi": null,
    "gp30": null,
@@ -500,6 +516,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L2",
+   "lg": "VGK-L2",
    "proj": 12.44
   },
   {
@@ -560,7 +578,7 @@
    "ceil": 23.58,
    "own": 0.19209,
    "lev": -0.023,
-   "pp": 0.9226,
+   "pp": 1,
    "toi": null,
    "pptoi": null,
    "gp30": null,
@@ -574,6 +592,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L3",
+   "lg": "DAL-L3",
    "proj": 10.89
   },
   {
@@ -597,7 +617,7 @@
    "ceil": 26.16,
    "own": 0.15599,
    "lev": 0.14,
-   "pp": 0.9293,
+   "pp": 1,
    "toi": null,
    "pptoi": null,
    "gp30": null,
@@ -611,6 +631,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L3",
+   "lg": "VGK-L3",
    "proj": 9.85
   },
   {
@@ -648,6 +670,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "D3",
+   "lg": "VGK-D3",
    "proj": 10.61
   },
   {
@@ -671,7 +695,7 @@
    "ceil": 21.78,
    "own": 0.14046,
    "lev": 0.233,
-   "pp": 0.9249,
+   "pp": 2,
    "toi": null,
    "pptoi": null,
    "gp30": null,
@@ -685,6 +709,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L3",
+   "lg": "VGK-L3",
    "proj": 9.71
   },
   {
@@ -708,7 +734,7 @@
    "ceil": 22.54,
    "own": 0.21024,
    "lev": 0.0,
-   "pp": 0.9438,
+   "pp": 2,
    "toi": null,
    "pptoi": null,
    "gp30": null,
@@ -722,6 +748,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L1",
+   "lg": "VGK-L1",
    "proj": 9.99
   },
   {
@@ -745,7 +773,7 @@
    "ceil": 20.97,
    "own": 0.13203,
    "lev": 0.209,
-   "pp": 0.9756,
+   "pp": 2,
    "toi": null,
    "pptoi": null,
    "gp30": null,
@@ -759,6 +787,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "D2",
+   "lg": "VGK-D2",
    "proj": 9.53
   },
   {
@@ -796,6 +826,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L2",
+   "lg": "VGK-L2",
    "proj": 9.05
   },
   {
@@ -833,6 +865,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "D2",
+   "lg": "DAL-D2",
    "proj": 9.39
   },
   {
@@ -870,6 +904,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "D2",
+   "lg": "VGK-D2",
    "proj": 8.83
   },
   {
@@ -907,6 +943,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L2",
+   "lg": "DAL-L2",
    "proj": 7.5
   },
   {
@@ -944,6 +982,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L3",
+   "lg": "DAL-L3",
    "proj": 6.62
   },
   {
@@ -981,6 +1021,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L4",
+   "lg": "VGK-L4",
    "proj": 7.1
   },
   {
@@ -1018,6 +1060,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L3",
+   "lg": "DAL-L3",
    "proj": 5.93
   },
   {
@@ -1055,6 +1099,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "D1",
+   "lg": "DAL-D1",
    "proj": 5.42
   },
   {
@@ -1092,6 +1138,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "D3",
+   "lg": "VGK-D3",
    "proj": 5.34
   },
   {
@@ -1115,7 +1163,7 @@
    "ceil": 19.71,
    "own": 0.24821,
    "lev": -0.279,
-   "pp": 0.861,
+   "pp": 2,
    "toi": null,
    "pptoi": null,
    "gp30": null,
@@ -1129,6 +1177,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L1",
+   "lg": "VGK-L1",
    "proj": 5.74
   },
   {
@@ -1166,6 +1216,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L2",
+   "lg": "DAL-L2",
    "proj": 4.66
   },
   {
@@ -1240,6 +1292,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L4",
+   "lg": "DAL-L4",
    "proj": 3.48
   },
   {
@@ -1277,6 +1331,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "D2",
+   "lg": "DAL-D2",
    "proj": 4.11
   },
   {
@@ -1314,6 +1370,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L4",
+   "lg": "VGK-L4",
    "proj": 4.17
   },
   {
@@ -1351,6 +1409,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L4",
+   "lg": "DAL-L4",
    "proj": 3.21
   },
   {
@@ -1425,6 +1485,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L2",
+   "lg": "DAL-L2",
    "proj": 4.3
   },
   {
@@ -1462,6 +1524,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "D1",
+   "lg": "VGK-D1",
    "proj": 4.05
   },
   {
@@ -1499,6 +1563,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "D3",
+   "lg": "DAL-D3",
    "proj": 3.14
   },
   {
@@ -1536,6 +1602,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L4",
+   "lg": "DAL-L4",
    "proj": 4.75
   },
   {
@@ -1573,6 +1641,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "D3",
+   "lg": "DAL-D3",
    "proj": 3.2
   },
   {
@@ -1610,6 +1680,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L4",
+   "lg": "VGK-L4",
    "proj": 3.62
   },
   {
@@ -1647,6 +1719,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "D1",
+   "lg": "VGK-D1",
    "proj": 4.07
   }
  ],
@@ -1666,5 +1740,9 @@
   "The starting goalie is not confirmed here. A backup who does not dress scores zero in a slot with no alternative.",
   "Ownership is modelled and has never been graded against a real hockey field."
  ],
+ "lines_from": {
+  "DAL": 2026020327,
+  "VGK": 2026020329
+ },
  "lineups": []
 }

@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-17T18:13:33+00:00",
+ "generated_at": "2026-11-17T18:31:32+00:00",
  "sport": "nhl",
  "site": "dk",
  "kind": "classic",
@@ -79,7 +79,7 @@
    "ceil": 36.9,
    "own": 0.55479,
    "lev": -0.035,
-   "pp": 0.9914,
+   "pp": 1,
    "toi": null,
    "pptoi": null,
    "gp30": null,
@@ -93,6 +93,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L2",
+   "lg": "SJS-L2",
    "proj": 16.94
   },
   {
@@ -116,7 +118,7 @@
    "ceil": 30.92,
    "own": 0.2149,
    "lev": 0.012,
-   "pp": 0.9852,
+   "pp": 1,
    "toi": null,
    "pptoi": null,
    "gp30": null,
@@ -130,6 +132,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L2",
+   "lg": "VGK-L2",
    "proj": 15.53
   },
   {
@@ -204,6 +208,7 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "g_started": true,
    "proj": 6.73
   },
   {
@@ -241,6 +246,7 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "g_started": true,
    "proj": 12.46
   },
   {
@@ -352,6 +358,7 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "g_started": true,
    "proj": 10.39
   },
   {
@@ -389,6 +396,7 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "g_started": true,
    "proj": 13.56
   },
   {
@@ -449,7 +457,7 @@
    "ceil": 32.04,
    "own": 0.2535,
    "lev": -0.047,
-   "pp": 0.9761,
+   "pp": 1,
    "toi": null,
    "pptoi": null,
    "gp30": null,
@@ -463,6 +471,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L1",
+   "lg": "DAL-L1",
    "proj": 14.62
   },
   {
@@ -486,7 +496,7 @@
    "ceil": 28.31,
    "own": 0.1367,
    "lev": 0.035,
-   "pp": 0.9684,
+   "pp": 1,
    "toi": null,
    "pptoi": null,
    "gp30": null,
@@ -500,6 +510,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L3",
+   "lg": "VGK-L3",
    "proj": 13.01
   },
   {
@@ -523,7 +535,7 @@
    "ceil": 28.76,
    "own": 0.22242,
    "lev": -0.047,
-   "pp": 0.9821,
+   "pp": 1,
    "toi": null,
    "pptoi": null,
    "gp30": null,
@@ -537,6 +549,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L1",
+   "lg": "VGK-L1",
    "proj": 13.44
   },
   {
@@ -560,7 +574,7 @@
    "ceil": 26.61,
    "own": 0.09266,
    "lev": 0.259,
-   "pp": 0.9363,
+   "pp": 1,
    "toi": null,
    "pptoi": null,
    "gp30": null,
@@ -574,6 +588,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L1",
+   "lg": "DAL-L1",
    "proj": 11.56
   },
   {
@@ -597,7 +613,7 @@
    "ceil": 27.83,
    "own": 0.20142,
    "lev": -0.035,
-   "pp": 0.9575,
+   "pp": 1,
    "toi": null,
    "pptoi": null,
    "gp30": null,
@@ -611,6 +627,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L1",
+   "lg": "DAL-L1",
    "proj": 12.29
   },
   {
@@ -634,7 +652,7 @@
    "ceil": 24.98,
    "own": 0.11949,
    "lev": 0.129,
-   "pp": 0.9856,
+   "pp": 1,
    "toi": null,
    "pptoi": null,
    "gp30": null,
@@ -648,6 +666,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "D1",
+   "lg": "DAL-D1",
    "proj": 11.56
   },
   {
@@ -671,7 +691,7 @@
    "ceil": 27.88,
    "own": 0.1573,
    "lev": -0.059,
-   "pp": 0.9464,
+   "pp": 1,
    "toi": null,
    "pptoi": null,
    "gp30": null,
@@ -685,6 +705,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L2",
+   "lg": "SJS-L2",
    "proj": 11.0
   },
   {
@@ -708,7 +730,7 @@
    "ceil": 23.18,
    "own": 0.08583,
    "lev": 0.271,
-   "pp": 0.9334,
+   "pp": 1,
    "toi": null,
    "pptoi": null,
    "gp30": null,
@@ -722,6 +744,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L2",
+   "lg": "VGK-L2",
    "proj": 9.99
   },
   {
@@ -745,7 +769,7 @@
    "ceil": 26.31,
    "own": 0.14884,
    "lev": -0.047,
-   "pp": 0.971,
+   "pp": 1,
    "toi": null,
    "pptoi": null,
    "gp30": null,
@@ -759,6 +783,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L2",
+   "lg": "CGY-L2",
    "proj": 10.15
   },
   {
@@ -782,7 +808,7 @@
    "ceil": 23.58,
    "own": 0.07019,
    "lev": 0.235,
-   "pp": 0.9226,
+   "pp": 1,
    "toi": null,
    "pptoi": null,
    "gp30": null,
@@ -796,6 +822,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L3",
+   "lg": "DAL-L3",
    "proj": 8.85
   },
   {
@@ -856,7 +884,7 @@
    "ceil": 26.16,
    "own": 0.08522,
    "lev": 0.129,
-   "pp": 0.9293,
+   "pp": 1,
    "toi": null,
    "pptoi": null,
    "gp30": null,
@@ -870,6 +898,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L3",
+   "lg": "VGK-L3",
    "proj": 8.69
   },
   {
@@ -893,7 +923,7 @@
    "ceil": 26.12,
    "own": 0.12398,
    "lev": 0.0,
-   "pp": 0.9485,
+   "pp": 1,
    "toi": null,
    "pptoi": null,
    "gp30": null,
@@ -907,6 +937,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L2",
+   "lg": "CGY-L2",
    "proj": 9.36
   },
   {
@@ -930,7 +962,7 @@
    "ceil": 24.77,
    "own": 0.10532,
    "lev": 0.071,
-   "pp": 0.9473,
+   "pp": 1,
    "toi": null,
    "pptoi": null,
    "gp30": null,
@@ -944,6 +976,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L1",
+   "lg": "CGY-L1",
    "proj": 9.06
   },
   {
@@ -981,6 +1015,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "D3",
+   "lg": "VGK-D3",
    "proj": 8.78
   },
   {
@@ -1004,7 +1040,7 @@
    "ceil": 22.54,
    "own": 0.0842,
    "lev": 0.176,
-   "pp": 0.9438,
+   "pp": 2,
    "toi": null,
    "pptoi": null,
    "gp30": null,
@@ -1018,6 +1054,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L1",
+   "lg": "VGK-L1",
    "proj": 8.36
   },
   {
@@ -1041,7 +1079,7 @@
    "ceil": 21.78,
    "own": 0.08473,
    "lev": 0.188,
-   "pp": 0.9249,
+   "pp": 2,
    "toi": null,
    "pptoi": null,
    "gp30": null,
@@ -1055,6 +1093,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L3",
+   "lg": "VGK-L3",
    "proj": 8.61
   },
   {
@@ -1078,7 +1118,7 @@
    "ceil": 20.97,
    "own": 0.08454,
    "lev": 0.141,
-   "pp": 0.9756,
+   "pp": 2,
    "toi": null,
    "pptoi": null,
    "gp30": null,
@@ -1092,6 +1132,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "D2",
+   "lg": "VGK-D2",
    "proj": 7.89
   },
   {
@@ -1129,6 +1171,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L2",
+   "lg": "CGY-L2",
    "proj": 8.21
   },
   {
@@ -1166,6 +1210,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L2",
+   "lg": "VGK-L2",
    "proj": 8.02
   },
   {
@@ -1203,6 +1249,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L3",
+   "lg": "SJS-L3",
    "proj": 7.6
   },
   {
@@ -1226,7 +1274,7 @@
    "ceil": 19.64,
    "own": 0.08218,
    "lev": 0.224,
-   "pp": 0.9642,
+   "pp": 2,
    "toi": null,
    "pptoi": null,
    "gp30": null,
@@ -1240,6 +1288,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "D2",
+   "lg": "SJS-D2",
    "proj": 7.75
   },
   {
@@ -1263,7 +1313,7 @@
    "ceil": 23.4,
    "own": 0.12835,
    "lev": -0.129,
-   "pp": 0.9,
+   "pp": 1,
    "toi": null,
    "pptoi": null,
    "gp30": null,
@@ -1277,6 +1327,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L3",
+   "lg": "CGY-L3",
    "proj": 7.81
   },
   {
@@ -1300,7 +1352,7 @@
    "ceil": 21.91,
    "own": 0.13385,
    "lev": -0.059,
-   "pp": 0.9335,
+   "pp": 1,
    "toi": null,
    "pptoi": null,
    "gp30": null,
@@ -1314,6 +1366,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "D3",
+   "lg": "CGY-D3",
    "proj": 8.15
   },
   {
@@ -1337,7 +1391,7 @@
    "ceil": 22.85,
    "own": 0.15847,
    "lev": -0.118,
-   "pp": 0.9209,
+   "pp": 1,
    "toi": null,
    "pptoi": null,
    "gp30": null,
@@ -1351,6 +1405,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L2",
+   "lg": "SJS-L2",
    "proj": 8.63
   },
   {
@@ -1388,6 +1444,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "D2",
+   "lg": "DAL-D2",
    "proj": 7.56
   },
   {
@@ -1425,6 +1483,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "D2",
+   "lg": "CGY-D2",
    "proj": 6.9
   },
   {
@@ -1448,7 +1508,7 @@
    "ceil": 21.36,
    "own": 0.06113,
    "lev": 0.176,
-   "pp": 0.8564,
+   "pp": 2,
    "toi": null,
    "pptoi": null,
    "gp30": null,
@@ -1462,6 +1522,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L1",
+   "lg": "SJS-L1",
    "proj": 6.38
   },
   {
@@ -1499,6 +1561,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "D2",
+   "lg": "VGK-D2",
    "proj": 7.09
   },
   {
@@ -1536,6 +1600,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "D1",
+   "lg": "SJS-D1",
    "proj": 6.58
   },
   {
@@ -1559,7 +1625,7 @@
    "ceil": 25.76,
    "own": 0.23676,
    "lev": -0.235,
-   "pp": 0.9118,
+   "pp": 1,
    "toi": null,
    "pptoi": null,
    "gp30": null,
@@ -1573,6 +1639,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L1",
+   "lg": "SJS-L1",
    "proj": 8.36
   },
   {
@@ -1610,6 +1678,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L2",
+   "lg": "DAL-L2",
    "proj": 6.4
   },
   {
@@ -1647,6 +1717,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L3",
+   "lg": "CGY-L3",
    "proj": 5.98
   },
   {
@@ -1684,6 +1756,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L3",
+   "lg": "DAL-L3",
    "proj": 5.64
   },
   {
@@ -1721,6 +1795,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L3",
+   "lg": "SJS-L3",
    "proj": 5.84
   },
   {
@@ -1758,6 +1834,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "D1",
+   "lg": "SJS-D1",
    "proj": 5.13
   },
   {
@@ -1795,6 +1873,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L4",
+   "lg": "VGK-L4",
    "proj": 6.31
   },
   {
@@ -1869,6 +1949,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L4",
+   "lg": "CGY-L4",
    "proj": 5.4
   },
   {
@@ -1906,6 +1988,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L3",
+   "lg": "DAL-L3",
    "proj": 5.32
   },
   {
@@ -1943,6 +2027,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "D1",
+   "lg": "CGY-D1",
    "proj": 5.05
   },
   {
@@ -1980,6 +2066,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "D3",
+   "lg": "SJS-D3",
    "proj": 6.24
   },
   {
@@ -2003,7 +2091,7 @@
    "ceil": 20.74,
    "own": 0.19868,
    "lev": -0.329,
-   "pp": 0.9157,
+   "pp": 2,
    "toi": null,
    "pptoi": null,
    "gp30": null,
@@ -2017,6 +2105,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "D3",
+   "lg": "SJS-D3",
    "proj": 6.44
   },
   {
@@ -2054,6 +2144,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L1",
+   "lg": "CGY-L1",
    "proj": 5.69
   },
   {
@@ -2091,6 +2183,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "D1",
+   "lg": "CGY-D1",
    "proj": 6.31
   },
   {
@@ -2128,6 +2222,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L3",
+   "lg": "CGY-L3",
    "proj": 5.23
   },
   {
@@ -2165,6 +2261,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "D2",
+   "lg": "CGY-D2",
    "proj": 4.67
   },
   {
@@ -2202,6 +2300,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L1",
+   "lg": "CGY-L1",
    "proj": 5.0
   },
   {
@@ -2239,6 +2339,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L1",
+   "lg": "SJS-L1",
    "proj": 5.15
   },
   {
@@ -2276,6 +2378,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "D3",
+   "lg": "VGK-D3",
    "proj": 4.76
   },
   {
@@ -2313,6 +2417,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "D1",
+   "lg": "DAL-D1",
    "proj": 4.45
   },
   {
@@ -2336,7 +2442,7 @@
    "ceil": 19.71,
    "own": 0.15268,
    "lev": -0.4,
-   "pp": 0.861,
+   "pp": 2,
    "toi": null,
    "pptoi": null,
    "gp30": null,
@@ -2350,6 +2456,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L1",
+   "lg": "VGK-L1",
    "proj": 5.62
   },
   {
@@ -2387,6 +2495,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L2",
+   "lg": "DAL-L2",
    "proj": 4.86
   },
   {
@@ -2410,7 +2520,7 @@
    "ceil": 14.72,
    "own": 0.05057,
    "lev": -0.012,
-   "pp": 0.8516,
+   "pp": 1,
    "toi": null,
    "pptoi": null,
    "gp30": null,
@@ -2424,6 +2534,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "D2",
+   "lg": "SJS-D2",
    "proj": 4.57
   },
   {
@@ -2461,6 +2573,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L4",
+   "lg": "DAL-L4",
    "proj": 5.05
   },
   {
@@ -2498,6 +2612,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "D2",
+   "lg": "DAL-D2",
    "proj": 4.59
   },
   {
@@ -2535,6 +2651,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L4",
+   "lg": "DAL-L4",
    "proj": 3.78
   },
   {
@@ -2572,6 +2690,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L4",
+   "lg": "DAL-L4",
    "proj": 3.72
   },
   {
@@ -2609,6 +2729,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "D3",
+   "lg": "DAL-D3",
    "proj": 3.62
   },
   {
@@ -2646,6 +2768,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L4",
+   "lg": "VGK-L4",
    "proj": 4.13
   },
   {
@@ -2683,6 +2807,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "D1",
+   "lg": "VGK-D1",
    "proj": 4.55
   },
   {
@@ -2720,6 +2846,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L2",
+   "lg": "DAL-L2",
    "proj": 4.61
   },
   {
@@ -2757,6 +2885,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "D1",
+   "lg": "VGK-D1",
    "proj": 4.54
   },
   {
@@ -2831,6 +2961,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L4",
+   "lg": "VGK-L4",
    "proj": 4.47
   },
   {
@@ -2905,6 +3037,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "D3",
+   "lg": "DAL-D3",
    "proj": 3.68
   },
   {
@@ -2942,6 +3076,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L4",
+   "lg": "SJS-L4",
    "proj": 3.65
   },
   {
@@ -2979,6 +3115,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L4",
+   "lg": "SJS-L4",
    "proj": 4.37
   },
   {
@@ -3016,6 +3154,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L3",
+   "lg": "SJS-L3",
    "proj": 4.42
   },
   {
@@ -3053,6 +3193,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "D3",
+   "lg": "CGY-D3",
    "proj": 4.61
   },
   {
@@ -3164,6 +3306,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L4",
+   "lg": "SJS-L4",
    "proj": 3.9
   },
   {
@@ -3201,6 +3345,8 @@
    "sqz": false,
    "doubtful": false,
    "status": "clear",
+   "line": "L4",
+   "lg": "CGY-L4",
    "proj": 4.31
   }
  ],
@@ -3261,6 +3407,12 @@
   "The starting goalie is not confirmed here. A backup who does not dress scores zero in a slot with no alternative.",
   "Ownership is modelled and has never been graded against a real hockey field."
  ],
+ "lines_from": {
+  "CGY": 2026020328,
+  "DAL": 2026020327,
+  "SJS": 2026020330,
+  "VGK": 2026020329
+ },
  "lineups": [
   {
    "p": [
@@ -4616,18 +4768,18 @@
     0,
     9,
     10,
-    18,
-    20,
-    23,
-    33,
+    15,
+    16,
+    22,
     40,
-    47
+    47,
+    51
    ],
-   "proj": 94.3,
+   "proj": 94.65,
    "ceil": 244.35,
-   "sal": 49500,
-   "own": 215.1,
-   "dup": 0.0461,
+   "sal": 49600,
+   "own": 211.3,
+   "dup": 0.0361,
    "src": "ceiling lam=0.0"
   },
   {
@@ -5906,25 +6058,6 @@
   {
    "p": [
     0,
-    9,
-    10,
-    15,
-    16,
-    22,
-    40,
-    47,
-    51
-   ],
-   "proj": 94.65,
-   "ceil": 244.35,
-   "sal": 49600,
-   "own": 211.3,
-   "dup": 0.0361,
-   "src": "stack 4-2 lam=0.0"
-  },
-  {
-   "p": [
-    0,
     5,
     12,
     14,
@@ -6000,6 +6133,25 @@
   },
   {
    "p": [
+    0,
+    4,
+    10,
+    13,
+    20,
+    21,
+    40,
+    47,
+    52
+   ],
+   "proj": 96.46,
+   "ceil": 243.75,
+   "sal": 49800,
+   "own": 227.5,
+   "dup": 0.0911,
+   "src": "stack 4-2 lam=0.0"
+  },
+  {
+   "p": [
     6,
     13,
     15,
@@ -6014,6 +6166,25 @@
    "ceil": 224.24,
    "sal": 49700,
    "own": 90.4,
+   "dup": 0.0001,
+   "src": "stack 4-2 lam=1.0"
+  },
+  {
+   "p": [
+    1,
+    5,
+    11,
+    15,
+    16,
+    21,
+    29,
+    37,
+    51
+   ],
+   "proj": 89.0,
+   "ceil": 228.24,
+   "sal": 50000,
+   "own": 102.7,
    "dup": 0.0001,
    "src": "stack 4-2 lam=1.0"
   },
@@ -6034,25 +6205,6 @@
    "sal": 49700,
    "own": 104.4,
    "dup": 0.0002,
-   "src": "stack 4-2 lam=1.0"
-  },
-  {
-   "p": [
-    1,
-    5,
-    11,
-    15,
-    16,
-    21,
-    29,
-    37,
-    51
-   ],
-   "proj": 89.0,
-   "ceil": 228.24,
-   "sal": 50000,
-   "own": 102.7,
-   "dup": 0.0001,
    "src": "stack 4-2 lam=1.0"
   },
   {
@@ -6231,6 +6383,25 @@
     0,
     9,
     10,
+    18,
+    20,
+    23,
+    33,
+    40,
+    47
+   ],
+   "proj": 94.3,
+   "ceil": 244.35,
+   "sal": 49500,
+   "own": 215.1,
+   "dup": 0.0461,
+   "src": "stack 3-3 lam=0.0"
+  },
+  {
+   "p": [
+    0,
+    9,
+    10,
     16,
     20,
     22,
@@ -6281,25 +6452,6 @@
    "sal": 50000,
    "own": 207.1,
    "dup": 0.0304,
-   "src": "stack 3-3 lam=0.0"
-  },
-  {
-   "p": [
-    0,
-    4,
-    10,
-    13,
-    20,
-    21,
-    40,
-    47,
-    52
-   ],
-   "proj": 96.46,
-   "ceil": 243.75,
-   "sal": 49800,
-   "own": 227.5,
-   "dup": 0.0911,
    "src": "stack 3-3 lam=0.0"
   },
   {
@@ -6551,21 +6703,21 @@
   },
   {
    "p": [
-    6,
+    5,
     11,
     13,
+    15,
+    17,
     19,
-    20,
-    21,
-    22,
-    25,
-    27
+    24,
+    30,
+    37
    ],
-   "proj": 86.66,
-   "ceil": 223.77,
-   "sal": 49800,
-   "own": 90.0,
-   "dup": 0.0001,
+   "proj": 86.3,
+   "ceil": 216.43,
+   "sal": 49700,
+   "own": 78.0,
+   "dup": 0.0,
    "src": "stack 3-3 lam=2.0"
   },
   {
@@ -6795,6 +6947,1032 @@
    "own": 198.0,
    "dup": 0.0157,
    "src": "team CGY lam=0.0"
+  },
+  {
+   "p": [
+    0,
+    5,
+    10,
+    16,
+    20,
+    27,
+    34,
+    40,
+    47
+   ],
+   "proj": 93.4,
+   "ceil": 242.66,
+   "sal": 49500,
+   "own": 213.9,
+   "dup": 0.0324,
+   "src": "line 3 lam=0.0"
+  },
+  {
+   "p": [
+    0,
+    9,
+    10,
+    16,
+    18,
+    20,
+    34,
+    47,
+    51
+   ],
+   "proj": 94.6,
+   "ceil": 242.44,
+   "sal": 49600,
+   "own": 211.3,
+   "dup": 0.0421,
+   "src": "line 3 lam=0.0"
+  },
+  {
+   "p": [
+    0,
+    9,
+    10,
+    15,
+    16,
+    22,
+    34,
+    47,
+    52
+   ],
+   "proj": 95.12,
+   "ceil": 242.38,
+   "sal": 49800,
+   "own": 211.1,
+   "dup": 0.0393,
+   "src": "line 3 lam=0.0"
+  },
+  {
+   "p": [
+    0,
+    9,
+    10,
+    16,
+    20,
+    23,
+    34,
+    36,
+    47
+   ],
+   "proj": 94.17,
+   "ceil": 242.26,
+   "sal": 49800,
+   "own": 205.4,
+   "dup": 0.0259,
+   "src": "line 3 lam=0.0"
+  },
+  {
+   "p": [
+    0,
+    4,
+    10,
+    16,
+    20,
+    21,
+    34,
+    47,
+    52
+   ],
+   "proj": 96.17,
+   "ceil": 242.11,
+   "sal": 49600,
+   "own": 226.1,
+   "dup": 0.1035,
+   "src": "line 3 lam=0.0"
+  },
+  {
+   "p": [
+    0,
+    9,
+    10,
+    16,
+    20,
+    32,
+    33,
+    34,
+    40
+   ],
+   "proj": 95.59,
+   "ceil": 242.0,
+   "sal": 49700,
+   "own": 187.9,
+   "dup": 0.0204,
+   "src": "line 3 lam=0.0"
+  },
+  {
+   "p": [
+    0,
+    9,
+    10,
+    14,
+    16,
+    33,
+    34,
+    40,
+    51
+   ],
+   "proj": 95.86,
+   "ceil": 240.44,
+   "sal": 49700,
+   "own": 190.1,
+   "dup": 0.0225,
+   "src": "line 3+2 lam=0.0"
+  },
+  {
+   "p": [
+    0,
+    9,
+    10,
+    13,
+    16,
+    33,
+    34,
+    36,
+    47
+   ],
+   "proj": 94.37,
+   "ceil": 240.22,
+   "sal": 49900,
+   "own": 200.2,
+   "dup": 0.0176,
+   "src": "line 3+2 lam=0.0"
+  },
+  {
+   "p": [
+    0,
+    9,
+    10,
+    13,
+    14,
+    33,
+    34,
+    47,
+    52
+   ],
+   "proj": 95.2,
+   "ceil": 239.75,
+   "sal": 49600,
+   "own": 213.8,
+   "dup": 0.0421,
+   "src": "line 3+2 lam=0.0"
+  },
+  {
+   "p": [
+    0,
+    5,
+    10,
+    14,
+    16,
+    27,
+    34,
+    47,
+    52
+   ],
+   "proj": 93.32,
+   "ceil": 239.68,
+   "sal": 49800,
+   "own": 212.8,
+   "dup": 0.0316,
+   "src": "line 3+2 lam=0.0"
+  },
+  {
+   "p": [
+    0,
+    1,
+    5,
+    16,
+    20,
+    29,
+    34,
+    40,
+    52
+   ],
+   "proj": 93.94,
+   "ceil": 239.67,
+   "sal": 50000,
+   "own": 182.4,
+   "dup": 0.0101,
+   "src": "line 3+2 lam=0.0"
+  },
+  {
+   "p": [
+    0,
+    9,
+    10,
+    14,
+    16,
+    22,
+    34,
+    51,
+    52
+   ],
+   "proj": 95.15,
+   "ceil": 239.63,
+   "sal": 50000,
+   "own": 185.3,
+   "dup": 0.0175,
+   "src": "line 3+2 lam=0.0"
+  },
+  {
+   "p": [
+    5,
+    10,
+    13,
+    14,
+    19,
+    20,
+    21,
+    29,
+    51
+   ],
+   "proj": 89.29,
+   "ceil": 230.64,
+   "sal": 50000,
+   "own": 112.9,
+   "dup": 0.0002,
+   "src": "line 3 lam=1.0"
+  },
+  {
+   "p": [
+    5,
+    10,
+    13,
+    14,
+    20,
+    21,
+    27,
+    29,
+    37
+   ],
+   "proj": 88.47,
+   "ceil": 229.59,
+   "sal": 49800,
+   "own": 108.2,
+   "dup": 0.0002,
+   "src": "line 3 lam=1.0"
+  },
+  {
+   "p": [
+    6,
+    10,
+    13,
+    14,
+    15,
+    21,
+    29,
+    32,
+    36
+   ],
+   "proj": 89.94,
+   "ceil": 229.63,
+   "sal": 50000,
+   "own": 110.9,
+   "dup": 0.0002,
+   "src": "line 3 lam=1.0"
+  },
+  {
+   "p": [
+    1,
+    6,
+    15,
+    17,
+    20,
+    21,
+    22,
+    29,
+    42
+   ],
+   "proj": 88.07,
+   "ceil": 226.76,
+   "sal": 49900,
+   "own": 102.9,
+   "dup": 0.0002,
+   "src": "line 3 lam=1.0"
+  },
+  {
+   "p": [
+    1,
+    6,
+    15,
+    17,
+    21,
+    22,
+    23,
+    29,
+    36
+   ],
+   "proj": 87.6,
+   "ceil": 224.74,
+   "sal": 50000,
+   "own": 96.3,
+   "dup": 0.0001,
+   "src": "line 3 lam=1.0"
+  },
+  {
+   "p": [
+    1,
+    5,
+    16,
+    17,
+    20,
+    21,
+    27,
+    29,
+    30
+   ],
+   "proj": 87.74,
+   "ceil": 226.41,
+   "sal": 49900,
+   "own": 101.3,
+   "dup": 0.0001,
+   "src": "line 3 lam=1.0"
+  },
+  {
+   "p": [
+    1,
+    6,
+    17,
+    18,
+    20,
+    21,
+    22,
+    29,
+    36
+   ],
+   "proj": 87.58,
+   "ceil": 227.09,
+   "sal": 49800,
+   "own": 106.0,
+   "dup": 0.0002,
+   "src": "line 3+2 lam=1.0"
+  },
+  {
+   "p": [
+    9,
+    10,
+    13,
+    14,
+    18,
+    20,
+    22,
+    36,
+    37
+   ],
+   "proj": 91.34,
+   "ceil": 232.69,
+   "sal": 50000,
+   "own": 124.4,
+   "dup": 0.0008,
+   "src": "line 3+2 lam=1.0"
+  },
+  {
+   "p": [
+    5,
+    10,
+    13,
+    14,
+    15,
+    20,
+    29,
+    37,
+    40
+   ],
+   "proj": 91.81,
+   "ceil": 233.2,
+   "sal": 49900,
+   "own": 126.8,
+   "dup": 0.0006,
+   "src": "line 3+2 lam=1.0"
+  },
+  {
+   "p": [
+    9,
+    10,
+    13,
+    14,
+    15,
+    18,
+    22,
+    37,
+    51
+   ],
+   "proj": 91.79,
+   "ceil": 230.52,
+   "sal": 50000,
+   "own": 120.6,
+   "dup": 0.0006,
+   "src": "line 3+2 lam=1.0"
+  },
+  {
+   "p": [
+    5,
+    10,
+    13,
+    14,
+    15,
+    21,
+    27,
+    37,
+    40
+   ],
+   "proj": 89.92,
+   "ceil": 230.78,
+   "sal": 50000,
+   "own": 119.2,
+   "dup": 0.0003,
+   "src": "line 3+2 lam=1.0"
+  },
+  {
+   "p": [
+    5,
+    10,
+    13,
+    14,
+    20,
+    21,
+    24,
+    37,
+    40
+   ],
+   "proj": 89.7,
+   "ceil": 231.28,
+   "sal": 49700,
+   "own": 123.6,
+   "dup": 0.0004,
+   "src": "line 3+2 lam=1.0"
+  },
+  {
+   "p": [
+    1,
+    5,
+    13,
+    17,
+    21,
+    24,
+    27,
+    29,
+    30
+   ],
+   "proj": 86.63,
+   "ceil": 220.01,
+   "sal": 49900,
+   "own": 85.0,
+   "dup": 0.0,
+   "src": "line 3 lam=2.0"
+  },
+  {
+   "p": [
+    1,
+    6,
+    13,
+    17,
+    19,
+    21,
+    27,
+    29,
+    36
+   ],
+   "proj": 85.92,
+   "ceil": 220.03,
+   "sal": 49900,
+   "own": 86.1,
+   "dup": 0.0,
+   "src": "line 3 lam=2.0"
+  },
+  {
+   "p": [
+    1,
+    5,
+    13,
+    15,
+    17,
+    21,
+    29,
+    31,
+    49
+   ],
+   "proj": 86.99,
+   "ceil": 220.87,
+   "sal": 49800,
+   "own": 87.7,
+   "dup": 0.0,
+   "src": "line 3 lam=2.0"
+  },
+  {
+   "p": [
+    1,
+    6,
+    13,
+    17,
+    21,
+    23,
+    24,
+    29,
+    36
+   ],
+   "proj": 87.02,
+   "ceil": 220.91,
+   "sal": 50000,
+   "own": 88.6,
+   "dup": 0.0,
+   "src": "line 3 lam=2.0"
+  },
+  {
+   "p": [
+    1,
+    5,
+    15,
+    17,
+    19,
+    21,
+    29,
+    30,
+    31
+   ],
+   "proj": 86.56,
+   "ceil": 219.97,
+   "sal": 49800,
+   "own": 87.0,
+   "dup": 0.0,
+   "src": "line 3 lam=2.0"
+  },
+  {
+   "p": [
+    1,
+    5,
+    13,
+    15,
+    17,
+    21,
+    29,
+    30,
+    51
+   ],
+   "proj": 87.76,
+   "ceil": 223.16,
+   "sal": 49800,
+   "own": 93.3,
+   "dup": 0.0001,
+   "src": "line 3 lam=2.0"
+  },
+  {
+   "p": [
+    1,
+    3,
+    17,
+    18,
+    21,
+    22,
+    24,
+    29,
+    31
+   ],
+   "proj": 85.0,
+   "ceil": 220.22,
+   "sal": 50000,
+   "own": 91.1,
+   "dup": 0.0,
+   "src": "line 3+2 lam=2.0"
+  },
+  {
+   "p": [
+    1,
+    6,
+    15,
+    17,
+    21,
+    22,
+    27,
+    28,
+    29
+   ],
+   "proj": 87.74,
+   "ceil": 220.29,
+   "sal": 49900,
+   "own": 94.0,
+   "dup": 0.0001,
+   "src": "line 3+2 lam=2.0"
+  },
+  {
+   "p": [
+    1,
+    6,
+    13,
+    17,
+    18,
+    22,
+    27,
+    29,
+    36
+   ],
+   "proj": 87.89,
+   "ceil": 222.72,
+   "sal": 50000,
+   "own": 97.9,
+   "dup": 0.0001,
+   "src": "line 3+2 lam=2.0"
+  },
+  {
+   "p": [
+    6,
+    13,
+    14,
+    15,
+    18,
+    21,
+    22,
+    27,
+    28
+   ],
+   "proj": 88.2,
+   "ceil": 223.18,
+   "sal": 49900,
+   "own": 101.0,
+   "dup": 0.0002,
+   "src": "line 3+2 lam=2.0"
+  },
+  {
+   "p": [
+    1,
+    6,
+    17,
+    18,
+    19,
+    22,
+    24,
+    27,
+    29
+   ],
+   "proj": 87.06,
+   "ceil": 219.19,
+   "sal": 50000,
+   "own": 92.4,
+   "dup": 0.0001,
+   "src": "line 3+2 lam=2.0"
+  },
+  {
+   "p": [
+    1,
+    6,
+    13,
+    15,
+    17,
+    23,
+    24,
+    29,
+    53
+   ],
+   "proj": 88.68,
+   "ceil": 218.89,
+   "sal": 50000,
+   "own": 93.1,
+   "dup": 0.0001,
+   "src": "line 3+2 lam=2.0"
+  },
+  {
+   "p": [
+    0,
+    9,
+    10,
+    18,
+    20,
+    22,
+    23,
+    47,
+    52
+   ],
+   "proj": 93.59,
+   "ceil": 243.54,
+   "sal": 49800,
+   "own": 210.3,
+   "dup": 0.0359,
+   "src": "pp1 3 lam=0.0"
+  },
+  {
+   "p": [
+    0,
+    5,
+    10,
+    15,
+    16,
+    20,
+    40,
+    47,
+    61
+   ],
+   "proj": 94.06,
+   "ceil": 243.53,
+   "sal": 49800,
+   "own": 216.8,
+   "dup": 0.0441,
+   "src": "pp1 3 lam=0.0"
+  },
+  {
+   "p": [
+    0,
+    5,
+    10,
+    12,
+    16,
+    27,
+    40,
+    47,
+    52
+   ],
+   "proj": 94.2,
+   "ceil": 243.52,
+   "sal": 49800,
+   "own": 222.8,
+   "dup": 0.0521,
+   "src": "pp1 3 lam=0.0"
+  },
+  {
+   "p": [
+    0,
+    9,
+    10,
+    15,
+    22,
+    23,
+    33,
+    40,
+    47
+   ],
+   "proj": 94.62,
+   "ceil": 243.35,
+   "sal": 49800,
+   "own": 207.2,
+   "dup": 0.0265,
+   "src": "pp1 3 lam=0.0"
+  },
+  {
+   "p": [
+    0,
+    4,
+    11,
+    14,
+    16,
+    20,
+    40,
+    47,
+    52
+   ],
+   "proj": 97.89,
+   "ceil": 242.96,
+   "sal": 49800,
+   "own": 233.9,
+   "dup": 0.1971,
+   "src": "pp1 3 lam=0.0"
+  },
+  {
+   "p": [
+    0,
+    5,
+    10,
+    14,
+    16,
+    20,
+    40,
+    47,
+    72
+   ],
+   "proj": 93.71,
+   "ceil": 242.86,
+   "sal": 50000,
+   "own": 220.2,
+   "dup": 0.0511,
+   "src": "pp1 3 lam=0.0"
+  },
+  {
+   "p": [
+    1,
+    6,
+    13,
+    15,
+    21,
+    22,
+    29,
+    32,
+    33
+   ],
+   "proj": 89.17,
+   "ceil": 227.55,
+   "sal": 50000,
+   "own": 102.0,
+   "dup": 0.0002,
+   "src": "pp1 3 lam=1.0"
+  },
+  {
+   "p": [
+    5,
+    11,
+    16,
+    17,
+    19,
+    20,
+    21,
+    27,
+    29
+   ],
+   "proj": 86.47,
+   "ceil": 224.7,
+   "sal": 49600,
+   "own": 92.3,
+   "dup": 0.0001,
+   "src": "pp1 3 lam=1.0"
+  },
+  {
+   "p": [
+    5,
+    11,
+    14,
+    15,
+    19,
+    20,
+    21,
+    29,
+    40
+   ],
+   "proj": 89.8,
+   "ceil": 231.24,
+   "sal": 49700,
+   "own": 115.3,
+   "dup": 0.0003,
+   "src": "pp1 3 lam=1.0"
+  },
+  {
+   "p": [
+    6,
+    11,
+    14,
+    15,
+    19,
+    21,
+    22,
+    27,
+    29
+   ],
+   "proj": 88.16,
+   "ceil": 225.4,
+   "sal": 50000,
+   "own": 94.3,
+   "dup": 0.0001,
+   "src": "pp1 3 lam=1.0"
+  },
+  {
+   "p": [
+    5,
+    10,
+    11,
+    15,
+    19,
+    21,
+    27,
+    29,
+    37
+   ],
+   "proj": 87.59,
+   "ceil": 226.23,
+   "sal": 49900,
+   "own": 94.1,
+   "dup": 0.0001,
+   "src": "pp1 3 lam=1.0"
+  },
+  {
+   "p": [
+    5,
+    11,
+    14,
+    15,
+    16,
+    19,
+    21,
+    29,
+    51
+   ],
+   "proj": 88.23,
+   "ceil": 227.37,
+   "sal": 49600,
+   "own": 102.2,
+   "dup": 0.0002,
+   "src": "pp1 3 lam=1.0"
+  },
+  {
+   "p": [
+    6,
+    11,
+    15,
+    17,
+    18,
+    19,
+    21,
+    27,
+    29
+   ],
+   "proj": 86.65,
+   "ceil": 220.94,
+   "sal": 49800,
+   "own": 85.2,
+   "dup": 0.0,
+   "src": "pp1 3 lam=2.0"
+  },
+  {
+   "p": [
+    5,
+    11,
+    15,
+    16,
+    17,
+    21,
+    25,
+    27,
+    29
+   ],
+   "proj": 87.09,
+   "ceil": 222.85,
+   "sal": 49700,
+   "own": 88.3,
+   "dup": 0.0001,
+   "src": "pp1 3 lam=2.0"
+  },
+  {
+   "p": [
+    5,
+    11,
+    15,
+    16,
+    17,
+    19,
+    21,
+    27,
+    37
+   ],
+   "proj": 85.94,
+   "ceil": 221.49,
+   "sal": 49900,
+   "own": 85.8,
+   "dup": 0.0,
+   "src": "pp1 3 lam=2.0"
+  },
+  {
+   "p": [
+    5,
+    11,
+    15,
+    17,
+    19,
+    21,
+    24,
+    25,
+    30
+   ],
+   "proj": 85.41,
+   "ceil": 217.16,
+   "sal": 49500,
+   "own": 79.6,
+   "dup": 0.0,
+   "src": "pp1 3 lam=2.0"
+  },
+  {
+   "p": [
+    5,
+    11,
+    13,
+    16,
+    17,
+    21,
+    24,
+    27,
+    37
+   ],
+   "proj": 85.87,
+   "ceil": 220.2,
+   "sal": 49700,
+   "own": 83.5,
+   "dup": 0.0,
+   "src": "pp1 3 lam=2.0"
+  },
+  {
+   "p": [
+    6,
+    13,
+    14,
+    15,
+    19,
+    21,
+    22,
+    24,
+    29
+   ],
+   "proj": 87.6,
+   "ceil": 223.39,
+   "sal": 50000,
+   "own": 88.9,
+   "dup": 0.0,
+   "src": "pp1 3 lam=2.0"
   }
  ]
 }

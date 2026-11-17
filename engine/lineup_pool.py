@@ -349,7 +349,7 @@ def build(players: list[dict], roster: dict, field_size: int = 100_000,
             lg = str(p.get("lg") or "")
             if lg and "-L" in lg and lg.split("-L")[-1] in ("1", "2"):
                 lines.setdefault(lg, np.zeros(n, bool))[i] = True
-            if p.get("pp") == 1:
+            if p.get("ppu") == 1:
                 units.setdefault(f"{p.get('team')}-PP1", np.zeros(n, bool))[i] = True
         lines = {k: v for k, v in lines.items() if v.sum() >= 3}
         units = {k: v for k, v in units.items() if v.sum() >= 3}

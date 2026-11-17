@@ -63,6 +63,12 @@ with tempfile.TemporaryDirectory() as d:
     b = A.available(pd.DataFrame({"dk_player_id": ["1"], "name": ["X"]}), "cfb")
     check(len(b) == 1, "a board with no dk_status column passes through")
 
+print("names")
+check(bool(A.name_keys("Tim Stuetzle") & A.name_keys("Tim Stützle")),
+      "Stuetzle (DraftKings) matches Stützle (NHL)")
+check(not (A.name_keys("Connor McDavid") & A.name_keys("Connor Bedard")),
+      "different surnames never match")
+
 print("fetch(): the NHL morning file, offline")
 import nhl_data as ND  # noqa: E402
 with tempfile.TemporaryDirectory() as d:

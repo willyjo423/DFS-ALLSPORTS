@@ -238,7 +238,7 @@ def build(players: list[dict], roster: dict, field_size: int = 100_000,
             AA.append(r)
             LL.append(k)
             HH.append(np.inf)
-        elif stack:
+        elif stack and stack[0] != "groups":
             k1, k2 = stack
             for off, k in ((0, k1), (len(teams), k2)):
                 if not k:
@@ -255,22 +255,62 @@ def build(players: list[dict], roster: dict, field_size: int = 100_000,
                 AA.append(r)
                 LL.append(1)
                 HH.append(np.inf)
+        if stack and stack[0] == "groups":
+            # Group stacks with their own binaries, appended for this solve
+            # only: each requirement is (groups, k) = "at least k players from
+            # ONE of these groups"; two requirements over the same groups
+            # must be met by DIFFERENT groups (e.g. two different lines).
+            reqs = stack[1]
+            extra = sum(len(g) for g, _ in reqs)
+            AA = [np.concatenate([r, np.zeros(extra)]) for r in AA]
+            mm = m + extra
+            col = m
+            cols_by = {}
+            for gi, (groups, k) in enumerate(reqs):
+                idx = []
+                for name, mask in groups.items():
+                    r = np.zeros(mm)
+                    r[:n] = mask
+                    r[col] = -k
+                    AA.append(r)
+                    LL.append(0)
+                    HH.append(np.inf)
+                    idx.append(col)
+                    cols_by.setdefault(id(groups), {}).setdefault(name, []).append(col)
+                    col += 1
+                r = np.zeros(mm)
+                r[idx] = 1
+                AA.append(r)
+                LL.append(1)
+                HH.append(np.inf)
+            for per_name in cols_by.values():
+                for cs in per_name.values():
+                    if len(cs) > 1:
+                        r = np.zeros(mm)
+                        r[cs] = 1
+                        AA.append(r)
+                        LL.append(0)
+                        HH.append(1)
+        else:
+            mm = m
+        AA = [r if len(r) == mm else np.concatenate([r, np.zeros(mm - len(r))])
+              for r in AA]
         if use_floor and floor > 0:
-            r = np.zeros(m)
+            r = np.zeros(mm)
             r[:n] = sal
             AA.append(r)
             LL.append(floor)
             HH.append(np.inf)
         for chosen in seen:
-            r = np.zeros(m)
+            r = np.zeros(mm)
             r[chosen] = 1
             AA.append(r)
             LL.append(0)
             HH.append(size - MIN_UNIQUE)
-        c = np.zeros(m)
+        c = np.zeros(mm)
         c[:n] = -obj
         res = milp(c, constraints=LinearConstraint(np.array(AA), LL, HH),
-                   integrality=np.ones(m), bounds=Bounds(0, 1),
+                   integrality=np.ones(mm), bounds=Bounds(0, 1),
                    options={"time_limit": time_limit, "disp": False})
         if res.x is None:
             return None
@@ -298,6 +338,32 @@ def build(players: list[dict], roster: dict, field_size: int = 100_000,
             if tmask[t].sum() >= 4:
                 families.append((f"team {t} lam=0.0", ceil, 0.0,
                                  ("team", t, 4), PER_TEAM_STACK))
+
+        # Line and power-play stacks, where the slate carries them (see
+        # nhl_lines.py). Linemates score together - a goal is a goal and up
+        # to two assists on the same line - which a team stack only
+        # approximates.
+        lines = {}
+        units = {}
+        for i, p in enumerate(pl):
+            lg = str(p.get("lg") or "")
+            if lg and "-L" in lg and lg.split("-L")[-1] in ("1", "2"):
+                lines.setdefault(lg, np.zeros(n, bool))[i] = True
+            if p.get("pp") == 1:
+                units.setdefault(f"{p.get('team')}-PP1", np.zeros(n, bool))[i] = True
+        lines = {k: v for k, v in lines.items() if v.sum() >= 3}
+        units = {k: v for k, v in units.items() if v.sum() >= 3}
+        if lines:
+            for lam in (0.0, 1.0, 2.0):
+                families.append((f"line 3 lam={lam}", ceil, lam,
+                                 ("groups", [(lines, 3)]), STACKED_PER_OBJECTIVE))
+                families.append((f"line 3+2 lam={lam}", ceil, lam,
+                                 ("groups", [(lines, 3), (lines, 2)]),
+                                 STACKED_PER_OBJECTIVE))
+        if units:
+            for lam in (0.0, 1.0, 2.0):
+                families.append((f"pp1 3 lam={lam}", ceil, lam,
+                                 ("groups", [(units, 3)]), STACKED_PER_OBJECTIVE))
 
     floor_ok = True
     for name, base, lam, stack, count in families:

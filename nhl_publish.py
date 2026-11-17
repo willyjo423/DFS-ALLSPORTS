@@ -56,6 +56,7 @@ from engine import optimise as O
 from engine import ownership as OWN
 from engine import lineup_pool as LP
 import projection_calibration as PC
+import nhl_lines as LN
 from engine import simulate as S
 from availability import available
 
@@ -531,6 +532,13 @@ def write(payloads: list[dict]) -> None:
     for p in payloads:
         # The lineup pool the page filters by ownership. Built here, at the
         # last step, so it sees the final board and ownership.
+        # Lines, pairs and power-play units from each team's last game, so
+        # the pool can stack linemates. Never allowed to cost the slate.
+        try:
+            LN.annotate(p)
+        except Exception as exc:                               # noqa: BLE001
+            log.warning("lines unavailable for draft group %s (%s)",
+                        p.get("draft_group"), str(exc)[:80])
         # Calibrated expected points first: the lineup pool optimises them.
         PC.apply(p)
         if "lineups" not in p:

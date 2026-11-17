@@ -98,6 +98,10 @@ a{color:var(--acc)}
         <div class="f"><label>Min total own %</label><input id="ownmin" type="number" min="0" step="5" placeholder="none"></div>
         <div class="f"><label>Max total own %</label><input id="ownmax" type="number" min="0" step="5" placeholder="none"></div>
         <div class="f"><label>Max exposure %</label><input id="expo" type="number" min="1" max="100" step="5" value="60"></div>
+        <div class="f stackf"><label>Stack by</label>
+          <select id="stkby" style="width:100%">
+            <option value="team">Team</option><option value="line">Same line</option>
+            <option value="pp">Same PP1 unit</option></select></div>
         <div class="f stackf"><label>Stack</label>
           <select id="stk" style="width:100%">
             <option value="0">Any</option><option value="2">2+ one team</option>
@@ -149,7 +153,9 @@ a{color:var(--acc)}
     z(projection) + z(value), fitted on a real DraftKings classic contest and refit per sport with
     <code>fit_ownership.py</code> as contest exports come in. Lineups come from a pool solved per slate,
     spread from pure projection to heavily ownership-penalised; hockey adds 4-3, 4-2 and 3-3 team
-    stacks and a 4-stack of each of the ten strongest teams.
+    stacks and a 4-stack of each of the ten strongest teams, plus same-line (L1/L2) and PP1 stacks.
+    Lines and PP units are each team's deployment in its LAST game (NHL shift charts), not tonight's
+    confirmed lines.
   </div>
   <div class="note" id="status"></div>
 </div>
@@ -223,7 +229,20 @@ async function loadSlate(file) {
     L.p.forEach(i => { const q = SLATE.players[i]; if (!single.has(q.pos)) c[q.team] = (c[q.team] || 0) + 1; });
     L.teams = c;
     L.stk = Object.entries(c).sort((a, b) => b[1] - a[1]);
+    // Line and power-play groupings, where the slate carries them.
+    const ln = {}, pp = {};
+    L.p.forEach(i => {
+      const q = SLATE.players[i];
+      if (q.lg && /-L\d$/.test(q.lg)) ln[q.lg] = (ln[q.lg] || 0) + 1;
+      if (q.pp === 1) { const k = q.team + "-PP1"; pp[k] = (pp[k] || 0) + 1; }
+    });
+    L.grp = {team: L.stk,
+             line: Object.entries(ln).sort((a, b) => b[1] - a[1]),
+             pp: Object.entries(pp).sort((a, b) => b[1] - a[1])};
   });
+  const hasLines = SLATE.players.some(q => q.lg);
+  $("stkby").querySelectorAll("option").forEach(o => o.disabled = o.value !== "team" && !hasLines);
+  $("stkby").value = "team";
   const canStack = SLATE.roster.slots.includes("G");
   document.querySelectorAll(".stackf").forEach(e => e.classList.toggle("hide", !canStack));
   const teams = [...new Set(SLATE.players.filter(q => !single.has(q.pos)).map(q => q.team))].sort();
@@ -259,7 +278,7 @@ function drawPlayers() {
     return `<tr class="${cls}">
       <td class="l"><button class="tog ${LOCK.has(p.i) ? "lk" : ""}" data-lock="${p.i}">✓</button>
         <button class="tog ${EXCL.has(p.i) ? "ex" : ""}" data-ex="${p.i}">✕</button></td>
-      <td class="l nm">${esc(p.name)}${flag}<div class="muted">${esc(p.pos)} · ${esc(p.team)}${p.opp ? " v " + esc(p.opp) : ""}</div></td>
+      <td class="l nm">${esc(p.name)}${flag}<div class="muted">${esc(p.pos)} · ${esc(p.team)}${p.opp ? " v " + esc(p.opp) : ""}${p.line ? " · " + esc(p.line) : ""}${p.pp ? " · PP" + p.pp : ""}${p.g_started ? " · started last game" : ""}</div></td>
       <td>$${((p.salary || 0) / 1000).toFixed(1)}k</td><td><b>${num(p.proj)}</b></td>
       <td><b>${num(100 * (p.own || 0))}</b></td><td>${num(p.val, 2)}</td><td>${num(p.ceil)}</td><td>${num(p.lev, 2)}</td></tr>`;
   }).join("");
@@ -284,7 +303,7 @@ document.querySelector(".tabs").onclick = e => {
   $("tab-players").classList.toggle("hide", t !== "players");
   $("tab-lineups").classList.toggle("hide", t !== "lineups");
 };
-["n", "ownmin", "ownmax", "expo", "sort", "stk", "stk2", "stkteam"].forEach(id => $(id).oninput = drawLineups);
+["n", "ownmin", "ownmax", "expo", "sort", "stkby", "stk", "stk2", "stkteam"].forEach(id => $(id).oninput = drawLineups);
 // Lineups already update as settings change; the button re-runs and jumps to them.
 $("build").onclick = () => { drawLineups(); $("lulist").scrollIntoView({behavior: "smooth"}); };
 
@@ -301,11 +320,13 @@ function drawLineups() {
   const N = Math.max(1, +$("n").value || 1), cap = Math.max(1, +$("expo").value || 100) / 100;
   const k = $("sort").value;
   const s1 = +$("stk").value, s2 = +$("stk2").value, st = $("stkteam").value;
+  const by = $("stkby").value;
+  const G = L => (L.grp || {team: L.stk})[by] || [];
   let ok = pool.filter(L =>
     L.own >= lo && L.own <= hi &&
-    (!s1 || (L.stk[0] || [, 0])[1] >= s1) &&
-    (!s2 || (L.stk[1] || [, 0])[1] >= s2) &&
-    (!st || (L.teams[st] || 0) >= Math.max(s1, 2)) &&
+    (!s1 || (G(L)[0] || [, 0])[1] >= s1) &&
+    (!s2 || (G(L)[1] || [, 0])[1] >= s2) &&
+    (!st || G(L).some(([k, c]) => (k === st || k.startsWith(st + "-")) && c >= Math.max(s1, 2))) &&
     [...LOCK].every(i => L.p.includes(i)) &&
     !L.p.some(i => EXCL.has(i)));
   ok.sort((a, b) => k === "ownhi" ? b.own - a.own
@@ -344,9 +365,12 @@ function drawLineups() {
 }
 
 function stackTag(L) {
-  const big = (L.stk || []).filter(([, n]) => n >= 2);
-  return big.length && SLATE.roster.slots.includes("G")
-    ? `<span class="stk">${big.map(([t, n]) => esc(t) + " " + n).join(" · ")}</span>` : "";
+  if (!SLATE.roster.slots.includes("G")) return "";
+  const g = L.grp || {team: L.stk || []};
+  const bits = (g.team || []).filter(([, n]) => n >= 2).map(([t, n]) => esc(t) + " " + n)
+    .concat((g.line || []).filter(([, n]) => n >= 2).map(([k, n]) => esc(k.replace("-", " ")) + "×" + n))
+    .concat((g.pp || []).filter(([, n]) => n >= 2).map(([k, n]) => esc(k.replace("-", " ")) + "×" + n));
+  return bits.length ? `<span class="stk">${bits.join(" · ")}</span>` : "";
 }
 
 // DraftKings upload order: each named slot filled by position, then the

@@ -1,9 +1,10 @@
 {
  "sport": "nhl",
  "date": "2026-11-17",
- "fetched_at": "2026-11-17T16:00:59+00:00",
+ "fetched_at": "2026-11-17T16:02:35+00:00",
  "sources": [
-  "draftkings (9 boards, 622 players)"
+  "draftkings (9 boards, 622 players)",
+  "nhl rosters (32 teams)"
  ],
  "out": [
   {
@@ -19,6 +20,12 @@
    "reason": "DK IR"
   },
   {
+   "dk_player_id": "1498364",
+   "name": "Adam Jiricek",
+   "team": "STL",
+   "reason": "not on an NHL roster"
+  },
+  {
    "dk_player_id": "1121522",
    "name": "Alec Regula",
    "team": "EDM",
@@ -29,6 +36,24 @@
    "name": "Aleksander Barkov",
    "team": "FLA",
    "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "1395097",
+   "name": "Alex Bump",
+   "team": "PHI",
+   "reason": "not on an NHL roster"
+  },
+  {
+   "dk_player_id": "1655133",
+   "name": "Alexander Command",
+   "team": "WPG",
+   "reason": "not on an NHL roster"
+  },
+  {
+   "dk_player_id": "1207286",
+   "name": "Alexander Holtz",
+   "team": "VGK",
+   "reason": "not on an NHL roster"
   },
   {
    "dk_player_id": "1121494",
@@ -43,16 +68,46 @@
    "reason": "DK IR"
   },
   {
+   "dk_player_id": "1321927",
+   "name": "Arsenii Sergeev",
+   "team": "CGY",
+   "reason": "not on an NHL roster"
+  },
+  {
    "dk_player_id": "870153",
    "name": "Artemi Panarin",
    "team": "LAK",
    "reason": "DK O"
   },
   {
+   "dk_player_id": "1285231",
+   "name": "Arvid Soderblom",
+   "team": "CHI",
+   "reason": "not on an NHL roster"
+  },
+  {
+   "dk_player_id": "1057917",
+   "name": "Ben Jones",
+   "team": "CGY",
+   "reason": "not on an NHL roster"
+  },
+  {
+   "dk_player_id": "878379",
+   "name": "Boko Imama",
+   "team": "FLA",
+   "reason": "not on an NHL roster"
+  },
+  {
    "dk_player_id": "1172186",
    "name": "Bowen Byram",
    "team": "CHI",
    "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "1262409",
+   "name": "Brad Lambert",
+   "team": "WPG",
+   "reason": "not on an NHL roster"
   },
   {
    "dk_player_id": "414433",
@@ -67,6 +122,12 @@
    "reason": "DK IR"
   },
   {
+   "dk_player_id": "1681423",
+   "name": "Brett Epp",
+   "team": "EDM",
+   "reason": "not on an NHL roster"
+  },
+  {
    "dk_player_id": "1172297",
    "name": "Cade Webber",
    "team": "TOR",
@@ -77,6 +138,18 @@
    "name": "Calum Ritchie",
    "team": "NYI",
    "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "920365",
+   "name": "Carl Grundstrom",
+   "team": "PHI",
+   "reason": "not on an NHL roster"
+  },
+  {
+   "dk_player_id": "744948",
+   "name": "Carson Soucy",
+   "team": "CBJ",
+   "reason": "not on an NHL roster"
   },
   {
    "dk_player_id": "660799",
@@ -97,16 +170,64 @@
    "reason": "DK IR"
   },
   {
+   "dk_player_id": "1507282",
+   "name": "Cooper Black",
+   "team": "FLA",
+   "reason": "not on an NHL roster"
+  },
+  {
+   "dk_player_id": "831469",
+   "name": "Danton Heinen",
+   "team": "CBJ",
+   "reason": "not on an NHL roster"
+  },
+  {
+   "dk_player_id": "878212",
+   "name": "Dennis Gilbert",
+   "team": "BUF",
+   "reason": "not on an NHL roster"
+  },
+  {
    "dk_player_id": "920364",
    "name": "Dillon Dube",
    "team": "STL",
    "reason": "DK IR"
   },
   {
+   "dk_player_id": "1363785",
+   "name": "Dominic James",
+   "team": "TBL",
+   "reason": "not on an NHL roster"
+  },
+  {
+   "dk_player_id": "681443",
+   "name": "Dominic Toninato",
+   "team": "CHI",
+   "reason": "not on an NHL roster"
+  },
+  {
    "dk_player_id": "612980",
    "name": "Dylan DeMelo",
    "team": "WPG",
    "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "1644078",
+   "name": "Dylan Hryckowian",
+   "team": "DAL",
+   "reason": "not on an NHL roster"
+  },
+  {
+   "dk_player_id": "550760",
+   "name": "Dylan McIlrath",
+   "team": "WSH",
+   "reason": "not on an NHL roster"
+  },
+  {
+   "dk_player_id": "1248508",
+   "name": "Dylan Peterson",
+   "team": "STL",
+   "reason": "not on an NHL roster"
   },
   {
    "dk_player_id": "1394986",
@@ -119,6 +240,18 @@
    "name": "Elvis Merzlikins",
    "team": "TOR",
    "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "1248171",
+   "name": "Emil Andrae",
+   "team": "CBJ",
+   "reason": "not on an NHL roster"
+  },
+  {
+   "dk_player_id": "1394925",
+   "name": "Filip Bystedt",
+   "team": "SJS",
+   "reason": "not on an NHL roster"
   },
   {
    "dk_player_id": "920363",
@@ -139,10 +272,28 @@
    "reason": "DK O"
   },
   {
+   "dk_player_id": "1453186",
+   "name": "Hoyt Stanley",
+   "team": "OTT",
+   "reason": "not on an NHL roster"
+  },
+  {
+   "dk_player_id": "1395252",
+   "name": "Hunter McDonald",
+   "team": "PHI",
+   "reason": "not on an NHL roster"
+  },
+  {
    "dk_player_id": "1428062",
    "name": "Igor Chernyshov",
    "team": "SJS",
    "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "1394927",
+   "name": "Isaac Howard",
+   "team": "EDM",
+   "reason": "not on an NHL roster"
   },
   {
    "dk_player_id": "1121465",
@@ -157,6 +308,30 @@
    "reason": "DK IR"
   },
   {
+   "dk_player_id": "1214439",
+   "name": "Jack Ahcan",
+   "team": "NSH",
+   "reason": "not on an NHL roster"
+  },
+  {
+   "dk_player_id": "1395325",
+   "name": "Jack Devine",
+   "team": "FLA",
+   "reason": "not on an NHL roster"
+  },
+  {
+   "dk_player_id": "1057161",
+   "name": "Jack Studnicka",
+   "team": "PHI",
+   "reason": "not on an NHL roster"
+  },
+  {
+   "dk_player_id": "1418201",
+   "name": "Jacob Gaucher",
+   "team": "PHI",
+   "reason": "not on an NHL roster"
+  },
+  {
    "dk_player_id": "1453119",
    "name": "Jakub Dvorak",
    "team": "LAK",
@@ -169,10 +344,46 @@
    "reason": "DK IR"
   },
   {
+   "dk_player_id": "1121520",
+   "name": "Jan Jenik",
+   "team": "LAK",
+   "reason": "not on an NHL roster"
+  },
+  {
+   "dk_player_id": "878168",
+   "name": "Jansen Harkins",
+   "team": "TBL",
+   "reason": "not on an NHL roster"
+  },
+  {
+   "dk_player_id": "1395257",
+   "name": "Jared Wright",
+   "team": "LAK",
+   "reason": "not on an NHL roster"
+  },
+  {
+   "dk_player_id": "920588",
+   "name": "Jeremy Davies",
+   "team": "MIN",
+   "reason": "not on an NHL roster"
+  },
+  {
    "dk_player_id": "1057163",
    "name": "Jonah Gadjovich",
    "team": "FLA",
    "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "831364",
+   "name": "Jonas Johansson",
+   "team": "OTT",
+   "reason": "not on an NHL roster"
+  },
+  {
+   "dk_player_id": "1057173",
+   "name": "Jonas Rondbjerg",
+   "team": "VGK",
+   "reason": "not on an NHL roster"
   },
   {
    "dk_player_id": "600077",
@@ -181,10 +392,40 @@
    "reason": "DK IR"
   },
   {
+   "dk_player_id": "744965",
+   "name": "Jonny Brodzinski",
+   "team": "WSH",
+   "reason": "not on an NHL roster"
+  },
+  {
+   "dk_player_id": "1395099",
+   "name": "Jorian Donovan",
+   "team": "OTT",
+   "reason": "not on an NHL roster"
+  },
+  {
+   "dk_player_id": "1262730",
+   "name": "Josh Samanski",
+   "team": "EDM",
+   "reason": "not on an NHL roster"
+  },
+  {
    "dk_player_id": "978597",
    "name": "Justin Danforth",
    "team": "BUF",
    "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "1545550",
+   "name": "Kai Uchacz",
+   "team": "VGK",
+   "reason": "not on an NHL roster"
+  },
+  {
+   "dk_player_id": "1395061",
+   "name": "Kenny Connors",
+   "team": "LAK",
+   "reason": "not on an NHL roster"
   },
   {
    "dk_player_id": "1121510",
@@ -205,6 +446,12 @@
    "reason": "DK IR"
   },
   {
+   "dk_player_id": "707827",
+   "name": "Kurtis MacDermid",
+   "team": "OTT",
+   "reason": "not on an NHL roster"
+  },
+  {
    "dk_player_id": "878184",
    "name": "Kyle Capobianco",
    "team": "DAL",
@@ -215,6 +462,12 @@
    "name": "Kyle Keyser",
    "team": "SJS",
    "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "1139989",
+   "name": "Kyle MacLean",
+   "team": "NYI",
+   "reason": "not on an NHL roster"
   },
   {
    "dk_player_id": "1364167",
@@ -229,10 +482,28 @@
    "reason": "DK IR"
   },
   {
+   "dk_player_id": "1453198",
+   "name": "Luca Cagnoni",
+   "team": "SJS",
+   "reason": "not on an NHL roster"
+  },
+  {
+   "dk_player_id": "1072913",
+   "name": "Maksim Tsyplakov",
+   "team": "CGY",
+   "reason": "not on an NHL roster"
+  },
+  {
    "dk_player_id": "1418757",
    "name": "Marshall Rifai",
    "team": "TOR",
    "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "1207566",
+   "name": "Martin Chromiak",
+   "team": "LAK",
+   "reason": "not on an NHL roster"
   },
   {
    "dk_player_id": "504249",
@@ -247,10 +518,28 @@
    "reason": "DK IR"
   },
   {
+   "dk_player_id": "1418392",
+   "name": "Matt Murray",
+   "team": "NSH",
+   "reason": "not on an NHL roster"
+  },
+  {
    "dk_player_id": "1394907",
    "name": "Matt Savoie",
    "team": "EDM",
    "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "682116",
+   "name": "Matt Tomkins",
+   "team": "EDM",
+   "reason": "not on an NHL roster"
+  },
+  {
+   "dk_player_id": "1395272",
+   "name": "Matthew Seminoff",
+   "team": "DAL",
+   "reason": "not on an NHL roster"
   },
   {
    "dk_player_id": "743257",
@@ -263,6 +552,12 @@
    "name": "Max Domi",
    "team": "TOR",
    "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "1349311",
+   "name": "Max Shabanov",
+   "team": "MIN",
+   "reason": "not on an NHL roster"
   },
   {
    "dk_player_id": "744806",
@@ -289,10 +584,34 @@
    "reason": "DK O"
   },
   {
+   "dk_player_id": "733469",
+   "name": "Nick Jensen",
+   "team": "ANA",
+   "reason": "not on an NHL roster"
+  },
+  {
+   "dk_player_id": "1453133",
+   "name": "Nick Lardis",
+   "team": "CHI",
+   "reason": "not on an NHL roster"
+  },
+  {
+   "dk_player_id": "1453093",
+   "name": "Nico Myatovic",
+   "team": "ANA",
+   "reason": "not on an NHL roster"
+  },
+  {
    "dk_player_id": "1361392",
    "name": "Nikita Grebenkin",
    "team": "PHI",
    "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "1655136",
+   "name": "Nikita Klepov",
+   "team": "ANA",
+   "reason": "not on an NHL roster"
   },
   {
    "dk_player_id": "878036",
@@ -313,6 +632,24 @@
    "reason": "DK IR"
   },
   {
+   "dk_player_id": "1395112",
+   "name": "Otto Salin",
+   "team": "LAK",
+   "reason": "not on an NHL roster"
+  },
+  {
+   "dk_player_id": "1453026",
+   "name": "Otto Stenberg",
+   "team": "STL",
+   "reason": "not on an NHL roster"
+  },
+  {
+   "dk_player_id": "1172206",
+   "name": "Philip Tomasino",
+   "team": "OTT",
+   "reason": "not on an NHL roster"
+  },
+  {
    "dk_player_id": "1453027",
    "name": "Quentin Musty",
    "team": "SJS",
@@ -325,10 +662,40 @@
    "reason": "DK IR"
   },
   {
+   "dk_player_id": "1394987",
+   "name": "Rieger Lorenz",
+   "team": "MIN",
+   "reason": "not on an NHL roster"
+  },
+  {
    "dk_player_id": "1057134",
    "name": "Ryan Poehling",
    "team": "ANA",
    "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "1321788",
+   "name": "Ryan Ufko",
+   "team": "NSH",
+   "reason": "not on an NHL roster"
+  },
+  {
+   "dk_player_id": "831466",
+   "name": "Sam Lafferty",
+   "team": "FLA",
+   "reason": "not on an NHL roster"
+  },
+  {
+   "dk_player_id": "831543",
+   "name": "Sammy Blais",
+   "team": "OTT",
+   "reason": "not on an NHL roster"
+  },
+  {
+   "dk_player_id": "1403661",
+   "name": "Samuel Honzek",
+   "team": "CGY",
+   "reason": "not on an NHL roster"
   },
   {
    "dk_player_id": "741409",
@@ -337,10 +704,40 @@
    "reason": "DK O"
   },
   {
+   "dk_player_id": "1380068",
+   "name": "Taylor Ward",
+   "team": "LAK",
+   "reason": "not on an NHL roster"
+  },
+  {
+   "dk_player_id": "1453030",
+   "name": "Theo Lindstein",
+   "team": "STL",
+   "reason": "not on an NHL roster"
+  },
+  {
+   "dk_player_id": "1207614",
+   "name": "Tim Stuetzle",
+   "team": "OTT",
+   "reason": "not on an NHL roster"
+  },
+  {
    "dk_player_id": "652695",
    "name": "Torey Krug",
    "team": "STL",
    "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "1321463",
+   "name": "Tyler Boucher",
+   "team": "OTT",
+   "reason": "not on an NHL roster"
+  },
+  {
+   "dk_player_id": "554475",
+   "name": "Tyler Pitlick",
+   "team": "MIN",
+   "reason": "not on an NHL roster"
   },
   {
    "dk_player_id": "1121672",
@@ -349,10 +746,22 @@
    "reason": "DK IR"
   },
   {
+   "dk_player_id": "1172202",
+   "name": "Ville Heinola",
+   "team": "VGK",
+   "reason": "not on an NHL roster"
+  },
+  {
    "dk_player_id": "920578",
    "name": "Vincent Desharnais",
    "team": "WSH",
    "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "976670",
+   "name": "Vinni Lettieri",
+   "team": "TOR",
+   "reason": "not on an NHL roster"
   },
   {
    "dk_player_id": "600129",
@@ -373,10 +782,28 @@
    "reason": "DK IR"
   },
   {
+   "dk_player_id": "1321652",
+   "name": "William Stromgren",
+   "team": "CGY",
+   "reason": "not on an NHL roster"
+  },
+  {
    "dk_player_id": "1321784",
    "name": "William Trudeau",
    "team": "NSH",
    "reason": "DK IR"
+  },
+  {
+   "dk_player_id": "1321476",
+   "name": "Xavier Bourgault",
+   "team": "OTT",
+   "reason": "not on an NHL roster"
+  },
+  {
+   "dk_player_id": "1321491",
+   "name": "Zach Dean",
+   "team": "STL",
+   "reason": "not on an NHL roster"
   }
  ],
  "questionable": [
@@ -451,7 +878,5 @@
    "status": "DTD"
   }
  ],
- "notes": [
-  "only 24 NHL rosters read - roster check skipped, nobody dropped by it"
- ]
+ "notes": []
 }

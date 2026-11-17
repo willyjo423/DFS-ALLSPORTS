@@ -210,28 +210,33 @@ def annotate(payload: dict) -> None:
     other sports or when nothing could be read."""
     if payload.get("sport") != "nhl":
         return
-    from nhl_data import normalise
+    from availability import name_keys
     players = payload.get("players") or []
     groups = team_groups({p["team"] for p in players})
     if not groups:
         return
     lookup = {}
     for team, g in groups.items():
-        nm = {pid: normalise(n) for pid, n in g["names"].items()}
+        nm = {pid: name_keys(n) for pid, n in g["names"].items()}
         for i, line in enumerate(g["lines"], 1):
             for pid in line:
-                lookup[(team, nm[pid])] = {"line": f"L{i}", "lg": f"{team}-L{i}"}
+                for k in nm[pid]:
+                    lookup[(team, k)] = {"line": f"L{i}", "lg": f"{team}-L{i}"}
         for i, pair in enumerate(g["pairs"], 1):
             for pid in pair:
-                lookup[(team, nm[pid])] = {"line": f"D{i}", "lg": f"{team}-D{i}"}
+                for k in nm[pid]:
+                    lookup[(team, k)] = {"line": f"D{i}", "lg": f"{team}-D{i}"}
         for unit, key in ((1, "pp1"), (2, "pp2")):
             for pid in g[key]:
-                lookup.setdefault((team, nm[pid]), {})["pp"] = unit
+                for k in nm[pid]:
+                    lookup.setdefault((team, k), {})["pp"] = unit
         if g.get("goalie"):
-            lookup.setdefault((team, nm.get(g["goalie"], "")), {})["g_started"] = True
+            for k in nm.get(g["goalie"], set()):
+                lookup.setdefault((team, k), {})["g_started"] = True
     hit = 0
     for p in players:
-        info = lookup.get((p["team"], normalise(p["name"])))
+        info = next((lookup[(p["team"], k)] for k in name_keys(p["name"])
+                     if (p["team"], k) in lookup), None)
         if info:
             p.update(info)
             hit += 1

@@ -166,6 +166,26 @@ def _boards(D, sport: str, look: int = 12) -> list[pd.DataFrame]:
     return out
 
 
+_TRANSLIT = str.maketrans({"ü": "ue", "ö": "oe", "ä": "ae", "Ü": "Ue",
+                           "Ö": "Oe", "Ä": "Ae", "ß": "ss", "ø": "o", "Ø": "O",
+                           "æ": "ae", "å": "aa"})
+
+
+def name_keys(name: str) -> set[str]:
+    """Every spelling a player's name is likely to arrive in. DraftKings
+    writes 'Tim Stuetzle', the NHL 'Tim Stützle': stripping the accent gives
+    'stutzle' and the two never meet, which dropped a first-line centre as
+    'not on an NHL roster'. So a name is matched on any of: accents stripped,
+    German/Nordic transliteration, and first initial + surname."""
+    from nhl_data import normalise
+    keys = {normalise(name), normalise(str(name).translate(_TRANSLIT))}
+    for k in list(keys):
+        parts = k.split()
+        if len(parts) >= 2:
+            keys.add(parts[0][0] + " " + " ".join(parts[1:]))
+    return {k for k in keys if k}
+
+
 def _nhl_roster_names() -> tuple[set, int]:
     import requests
     import nhl_data as ND
@@ -209,7 +229,7 @@ def _nhl_roster_names() -> tuple[set, int]:
             for p in js.get(grp) or []:
                 full = (f"{(p.get('firstName') or {}).get('default', '')} "
                         f"{(p.get('lastName') or {}).get('default', '')}")
-                names.add(ND.normalise(full))
+                names |= name_keys(full)
     log.info("NHL rosters: %d of %d teams read, %d players", read,
              len(codes), len(names))
     return names, read
@@ -278,7 +298,7 @@ def fetch(sport: str) -> dict:
         names, read = _nhl_roster_names()
         if read >= MIN_TEAMS_READ["nhl"]:
             doc["sources"].append(f"nhl rosters ({read} teams)")
-            gone = ~pool["name"].map(ND.normalise).isin(names)
+            gone = ~pool["name"].map(lambda nm: bool(name_keys(nm) & names))
             for r in pool[gone].itertuples(index=False):
                 out.setdefault(str(r.dk_player_id),
                                (r.name, r.team, "not on an NHL roster"))

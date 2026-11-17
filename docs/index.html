@@ -101,6 +101,7 @@ a{color:var(--acc)}
           <select id="sort" style="width:100%">
             <option value="proj">Projection</option>
             <option value="ceil">Ceiling</option>
+            <option value="ownhi">Highest ownership</option>
             <option value="own">Lowest ownership</option>
             <option value="dup">Fewest duplicates</option>
           </select></div>
@@ -108,8 +109,9 @@ a{color:var(--acc)}
       <div class="row" style="margin-top:10px;justify-content:space-between">
         <span class="note" id="poolinfo"></span>
         <span class="row">
+          <button class="btn" id="build">Build lineups</button>
           <button class="btn ghost" id="copy">Copy</button>
-          <button class="btn" id="csv">Download DK CSV</button>
+          <button class="btn ghost" id="csv">Download DK CSV</button>
         </span>
       </div>
     </div>
@@ -253,6 +255,8 @@ document.querySelector(".tabs").onclick = e => {
   $("tab-lineups").classList.toggle("hide", t !== "lineups");
 };
 ["n", "ownmin", "ownmax", "expo", "sort"].forEach(id => $(id).oninput = drawLineups);
+// Lineups already update as settings change; the button re-runs and jumps to them.
+$("build").onclick = () => { drawLineups(); $("lulist").scrollIntoView({behavior: "smooth"}); };
 
 function drawLineups() {
   if (!SLATE) return;
@@ -270,7 +274,8 @@ function drawLineups() {
     L.own >= lo && L.own <= hi &&
     [...LOCK].every(i => L.p.includes(i)) &&
     !L.p.some(i => EXCL.has(i)));
-  ok.sort((a, b) => (k === "own" || k === "dup") ? a[k] - b[k] : b[k] - a[k]);
+  ok.sort((a, b) => k === "ownhi" ? b.own - a.own
+    : (k === "own" || k === "dup") ? a[k] - b[k] : b[k] - a[k]);
   // Greedy portfolio: best first, skipping any lineup that would push a
   // player past the exposure cap. Locked players are exempt - you asked
   // for them in every lineup.

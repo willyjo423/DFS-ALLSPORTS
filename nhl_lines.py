@@ -52,6 +52,16 @@ MIN_PP_SECONDS = 60         # less than a minute of PP is not a unit
 _CACHE: dict = {}
 
 
+
+def _unmangle(name: str) -> str:
+    """The shift-chart feed double-encodes UTF-8 ("StÃ¼tzle"). Undo it when
+    that is what happened; leave correct names alone."""
+    try:
+        fixed = name.encode("latin-1").decode("utf-8")
+    except (UnicodeEncodeError, UnicodeDecodeError):
+        return name
+    return fixed
+
 def _get(url: str) -> dict:
     if url in _CACHE:
         return _CACHE[url]
@@ -144,7 +154,8 @@ def game_groups(game_id: int) -> dict[str, dict]:
         if s.get("typeCode") != 517 or not s.get("startTime"):
             continue
         pid = s["playerId"]
-        names[pid] = f"{s.get('firstName', '')} {s.get('lastName', '')}".strip()
+        names[pid] = _unmangle(
+            f"{s.get('firstName', '')} {s.get('lastName', '')}".strip())
         a = _t(s["period"], s["startTime"])
         b = _t(s["period"], s["endTime"])
         if pid not in on:

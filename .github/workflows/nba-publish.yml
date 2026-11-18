@@ -18,6 +18,11 @@ on:
     - cron: "41 22 * 10,11,12,1,2,3,4 *"   # 5:41pm
     - cron: "12 23 * 10,11,12,1,2,3,4 *"   # 6:12pm
     - cron: "38 23 * 10,11,12,1,2,3,4 *"   # 6:38pm
+    # Lock runs: only the slate locking next, after the NBA's lineups
+    # confirm (~30 min before tip). Fast so it lands before lock.
+    - cron: "49 23 * 10,11,12,1,2,3,4 *"   # 6:49pm, for 7pm
+    - cron: "19 0 * 10,11,12,1,2,3,4 *"    # 7:19pm, for 7:30pm
+    - cron: "49 0 * 10,11,12,1,2,3,4 *"    # 7:49pm, for 8pm
     - cron: "13 1 * 10,11,12,1,2,3,4 *"    # 8:13pm, late slates
     - cron: "43 1 * 10,11,12,1,2,3,4 *"    # 8:43pm
 
@@ -47,6 +52,10 @@ jobs:
           set -o pipefail
           ARGS=""
           [ -n "${{ inputs.draft_group }}" ] && ARGS="--draft-group ${{ inputs.draft_group }}"
+          case "${{ github.event.schedule }}" in
+            "49 23 "*|"19 0 "*|"49 0 "*) ARGS="--soon 25" ;;
+          esac
+          echo "ARGS: $ARGS"
           python nba_publish.py $ARGS 2>&1 | tee publish.txt
       - name: Say what happened
         if: always()

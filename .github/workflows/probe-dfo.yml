@@ -10,21 +10,21 @@ jobs:
           python3 - <<'PY'
           import json, urllib.request
           UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36"
-          def get(u):
-              r = urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": UA, "Accept": "application/json"}), timeout=30)
-              return json.loads(r.read())
-          b = get("https://www.bovada.lv/services/sports/event/coupon/events/A/description/basketball/nba?marketFilterId=def&preMatchOnly=true&lang=en")
-          evs = b[0]["events"]
-          print("EVENTS", len(evs), [(e["description"], e["link"]) for e in evs[:3]])
-          link = evs[0]["link"]
-          full = get("https://www.bovada.lv/services/sports/event/v2/events/A/description" + link + "?lang=en")
-          ev = full[0]["events"][0]
-          groups = ev["displayGroups"]
-          print("GROUPS", [g["description"] for g in groups])
-          for g in groups:
-              if "Player" in g["description"] or "Prop" in g["description"]:
-                  ms = g["markets"]
-                  print("GROUP", g["description"], len(ms))
-                  for m in ms[:6]:
-                      print("  MKT", m["description"], [(o["description"], (o.get("price") or {}).get("american"), (o.get("price") or {}).get("handicap")) for o in m["outcomes"]][:3])
+          def get(u, h=None):
+              try:
+                  hd = {"User-Agent": UA, "Accept": "application/json, text/html", "Referer": "https://www.nba.com/"}; hd.update(h or {})
+                  r = urllib.request.urlopen(urllib.request.Request(u, headers=hd), timeout=30)
+                  return r.status, r.read()
+              except Exception as e:
+                  return str(e)[:100], b""
+          for day in ("20261117", "20261118"):
+              s, b = get(f"https://stats.nba.com/js/data/leaders/00_daily_lineups_{day}.json")
+              print("NBA DAILY", day, s, len(b))
+              if b:
+                  d = json.loads(b); g = d.get("games", [])
+                  print("  games", len(g), json.dumps(g[0])[:700] if g else "")
+          s, b = get("https://www.rotowire.com/basketball/nba-lineups.php")
+          print("ROTOWIRE", s, len(b), b"is-confirmed" in b, b"lineup__player" in b)
+          s, b = get("https://www.lineups.com/nba/lineups")
+          print("LINEUPSCOM", s, len(b))
           PY

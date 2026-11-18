@@ -264,3 +264,25 @@ if __name__ == "__main__":
         fn()
     print("\n" + (f"{len(FAIL)} FAILURES" if FAIL else "all checks passed"))
     sys.exit(1 if FAIL else 0)
+
+
+def test_odds_cache_saves_credits_and_survives_refusal(tmp_path=None):
+    import datetime as dt, tempfile
+    d = tempfile.mkdtemp()
+    O.CACHE_DIR = d
+    calls = []
+    real = O.fetch
+    O.fetch = lambda key=None, markets=None: calls.append(1) or [{"id": "g"}]
+    try:
+        t0 = dt.datetime(2026, 11, 17, 18, tzinfo=dt.timezone.utc)
+        assert O.cached_fetch("2026-11-17", now=t0) == [{"id": "g"}]
+        O.cached_fetch("2026-11-17", now=t0 + dt.timedelta(hours=2))
+        assert len(calls) == 1                      # cached, no credit spent
+
+        def refuse(key=None, markets=None):
+            raise O.OddsUnavailable("HTTP 401: quota")
+        O.fetch = refuse
+        got = O.cached_fetch("2026-11-17", now=t0 + dt.timedelta(hours=5))
+        assert got == [{"id": "g"}]                 # stale line beats none
+    finally:
+        O.fetch = real

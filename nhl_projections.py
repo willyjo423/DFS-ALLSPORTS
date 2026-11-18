@@ -324,6 +324,10 @@ def apply_market(df: pd.DataFrame, totals: pd.DataFrame) -> pd.DataFrame:
     return out
 
 
+# Goals per team per game, regulation and OT, recent NHL seasons.
+LEAGUE_GOALS = 3.05
+
+
 def build(day: str, sims: int = 20_000, base: str = BASE,
           seed: int = 20260930, market: bool = True) -> tuple[pd.DataFrame, dict]:
     """The projection frame the DFS publisher expects, from published stats."""
@@ -368,11 +372,23 @@ def build(day: str, sims: int = 20_000, base: str = BASE,
     if totals is not None:
         market_goals = dict(zip(totals["team"], totals["implied_goals"]))
         missing = sorted(set(team_goals) - set(market_goals))
-        team_goals = {t: market_goals.get(t, team_goals[t]) for t in team_goals}
+        raw = float(np.mean(list(team_goals.values()))) or 1.0
+        team_goals = {t: market_goals.get(t, team_goals[t] * LEAGUE_GOALS / raw)
+                      for t in team_goals}
         if missing:
             log.warning("no market goals for %s; the goalie model falls back "
                         "to the summed skater projection for them",
                         ", ".join(missing))
+    elif team_goals:
+        # No market. The summed skater projection counts the whole roster,
+        # not the eighteen who dress, so its level is wrong (~4.9 a team)
+        # while its ORDER is still the model's view. Keep the order, put the
+        # level where NHL scoring actually is.
+        raw = float(np.mean(list(team_goals.values())))
+        if raw > 0:
+            team_goals = {t: v * LEAGUE_GOALS / raw for t, v in team_goals.items()}
+            log.warning("no market: team goals rescaled from %.2f to %.2f a "
+                        "team for the goalie model", raw, LEAGUE_GOALS)
     if team_goals:
         avg = float(np.mean(list(team_goals.values())))
         if not 1.8 <= avg <= 4.5:

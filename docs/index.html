@@ -101,7 +101,8 @@ a{color:var(--acc)}
         <div class="f stackf"><label>Stack by</label>
           <select id="stkby" style="width:100%">
             <option value="team">Team</option><option value="line">Same line</option>
-            <option value="pp">Same PP1 unit</option></select></div>
+            <option value="pp">Same PP1 unit</option>
+            <option value="lined">Full line + D</option></select></div>
         <div class="f stackf"><label>Stack</label>
           <select id="stk" style="width:100%">
             <option value="0">Any</option><option value="2">2+ one team</option>
@@ -153,7 +154,7 @@ a{color:var(--acc)}
     z(projection) + z(value), fitted on a real DraftKings classic contest and refit per sport with
     <code>fit_ownership.py</code> as contest exports come in. Lineups come from a pool solved per slate,
     spread from pure projection to heavily ownership-penalised; hockey adds 4-3, 4-2 and 3-3 team
-    stacks and a 4-stack of each of the ten strongest teams, plus same-line (L1/L2) and PP1 stacks.
+    stacks and a 4-stack of each of the ten strongest teams, plus same-line (L1/L2), full line + defenceman, and PP1 stacks.
     Lines and PP units are each team's deployment in its LAST game (NHL shift charts), not tonight's
     confirmed lines.
   </div>
@@ -236,7 +237,13 @@ async function loadSlate(file) {
       if (q.lg && /-L\d$/.test(q.lg)) ln[q.lg] = (ln[q.lg] || 0) + 1;
       if (q.ppu === 1) { const k = q.team + "-PP1"; pp[k] = (pp[k] || 0) + 1; }
     });
+    // Full line + D: a line's forwards, plus one if a defenceman from that
+    // team is in the lineup - so "4" means the whole line and a D.
+    const dt = {};
+    L.p.forEach(i => { const q = SLATE.players[i]; if (q.pos === "D") dt[q.team] = 1; });
+    const ld = Object.entries(ln).map(([k, c]) => [k + "+D", c + (dt[k.split("-")[0]] || 0)]);
     L.grp = {team: L.stk,
+             lined: ld.sort((a, b) => b[1] - a[1]),
              line: Object.entries(ln).sort((a, b) => b[1] - a[1]),
              pp: Object.entries(pp).sort((a, b) => b[1] - a[1])};
   });

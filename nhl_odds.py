@@ -347,8 +347,56 @@ def team_totals(games: list, day=None) -> pd.DataFrame:
     return out
 
 
+# One fetch serves every run for a few hours. The free plan is 500 credits a
+# month and each call costs one per market; with five scheduled NHL runs a
+# day, manual re-runs and the other sports on the same key, uncached calls
+# ran the quota dry in mid-November and the goalie model went blind.
+CACHE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                         "docs", "data", "odds")
+CACHE_HOURS = 3.0
+
+
+def _cache_path(day) -> str:
+    tag = str(day or dt.date.today().isoformat())[:10]
+    return os.path.join(CACHE_DIR, f"nhl_{tag}.json")
+
+
+def cached_fetch(day=None, key: str | None = None, now=None) -> list:
+    """The API payload, from a cache younger than CACHE_HOURS when there is
+    one; from the API otherwise; from an older same-day cache if the API
+    refuses. Lines move a little through the day, a stale line beats none."""
+    import json
+    now = now or dt.datetime.now(dt.timezone.utc)
+    path = _cache_path(day)
+    old = None
+    if os.path.exists(path):
+        try:
+            with open(path) as fh:
+                old = json.load(fh)
+            age = (now - dt.datetime.fromisoformat(old["fetched_at"])
+                   ).total_seconds() / 3600
+            if age < CACHE_HOURS:
+                log.info("odds: cached %.1fh ago, not spending a credit", age)
+                return old["games"]
+        except Exception:                                      # noqa: BLE001
+            old = None
+    try:
+        games = fetch(key)
+    except OddsUnavailable:
+        if old:
+            log.warning("odds: API refused; using the line cached at %s",
+                        old.get("fetched_at"))
+            return old["games"]
+        raise
+    os.makedirs(CACHE_DIR, exist_ok=True)
+    with open(path, "w") as fh:
+        json.dump({"fetched_at": now.isoformat(timespec="seconds"),
+                   "games": games}, fh)
+    return games
+
+
 def load(day=None, key: str | None = None) -> pd.DataFrame:
-    return team_totals(fetch(key), day=day)
+    return team_totals(cached_fetch(day, key), day=day)
 
 
 # --------------------------------------------------------------------- probe

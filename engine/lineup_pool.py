@@ -269,12 +269,17 @@ def build(players: list[dict], roster: dict, field_size: int = 100_000,
             for gi, (groups, k) in enumerate(reqs):
                 idx = []
                 for name, mask in groups.items():
-                    r = np.zeros(mm)
-                    r[:n] = mask
-                    r[col] = -k
-                    AA.append(r)
-                    LL.append(0)
-                    HH.append(np.inf)
+                    # A group is one mask ("k of these") or a list of
+                    # (mask, k) parts that must ALL hold together, e.g. a
+                    # full line AND a defenceman from the same team.
+                    parts = mask if isinstance(mask, list) else [(mask, k)]
+                    for sub, kk in parts:
+                        r = np.zeros(mm)
+                        r[:n] = sub
+                        r[col] = -kk
+                        AA.append(r)
+                        LL.append(0)
+                        HH.append(np.inf)
                     idx.append(col)
                     cols_by.setdefault(id(groups), {}).setdefault(name, []).append(col)
                     col += 1
@@ -364,6 +369,27 @@ def build(players: list[dict], roster: dict, field_size: int = 100_000,
             for lam in (0.0, 1.0, 2.0):
                 families.append((f"pp1 3 lam={lam}", ceil, lam,
                                  ("groups", [(units, 3)]), STACKED_PER_OBJECTIVE))
+        # The full-line stack: all three forwards of a line AND a defenceman
+        # from the same team, usually the pair that shares their ice. The
+        # shape that won the 2026-11-17 slate (MIN L1 + Faber), and the one
+        # a "same line" filter could only approximate.
+        dmask = {}
+        for i, p in enumerate(pl):
+            if str(p.get("pos")) == "D":
+                dmask.setdefault(str(p.get("team")), np.zeros(n, bool))[i] = True
+        lined = {}
+        for lg, m3 in lines.items():
+            t = lg.split("-L")[0]
+            if m3.sum() >= 3 and t in dmask:
+                lined[lg + "+D"] = [(m3, 3), (dmask[t], 1)]
+        if lined:
+            for lam in (0.0, 1.0, 2.0):
+                families.append((f"line+D lam={lam}", ceil, lam,
+                                 ("groups", [(lined, 4)]), STACKED_PER_OBJECTIVE))
+                if units:
+                    families.append((f"line+D pp1 3 lam={lam}", ceil, lam,
+                                     ("groups", [(lined, 4), (units, 3)]),
+                                     STACKED_PER_OBJECTIVE))
 
     floor_ok = True
     for name, base, lam, stack, count in families:

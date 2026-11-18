@@ -30,6 +30,9 @@ on:
     # 6:10pm EST (Nov-Feb), 22:10 UTC is 6:10pm EDT (Mar, Apr, Oct). The
     # first week of November and the second week of March land an hour off.
     - cron: "10 23 * 11,12,1,2 *"
+    # Lock run (EST months): 6:44pm ET, only the 7pm slate, with the
+    # goalies and lines confirmed by then.
+    - cron: "44 23 * 11,12,1,2 *"
     - cron: "10 22 * 3,4,10 *"
   workflow_dispatch:
     inputs:
@@ -151,6 +154,9 @@ jobs:
           # Quoted and defaulted separately, because "0" is meaningful here and
           # a scheduled run passes an EMPTY string, which must fall back to the
           # default rather than passing the flag with no argument.
+          case "${{ github.event.schedule }}" in
+            "44 23 "*) ARGS="$ARGS --soon 25" ;;
+          esac
           MSP="${{ inputs.min_salary_pct }}"
           ARGS="$ARGS --min-salary-pct ${MSP:-99}"
           echo "EFFECTIVE ARGS: $ARGS"
@@ -191,7 +197,13 @@ jobs:
             exit 0
           fi
           git commit -m "NHL slate: $(date -u +%Y-%m-%d\ %H:%M)"
-          git push || (git fetch origin main && git rebase origin/main && git push)
+          # Several publishers push to main; a lost race used to fail this
+          # step ("cannot rebase: unstaged changes"). Autostash and retry.
+          for i in 1 2 3 4 5; do
+            git pull --rebase --autostash -X ours origin main && git push && exit 0
+            sleep $((i * 8))
+          done
+          exit 1
 
       - name: Keep the log
         if: always()

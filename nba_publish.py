@@ -21,6 +21,7 @@ import pandas as pd
 import nba_data as D
 import nba_fetch as F
 import nba_model as M
+import nba_props as PR
 from availability import name_keys
 from engine import nba_pool as POOL
 from engine import nba_sim as SIM
@@ -81,8 +82,15 @@ def team_avg(hist: pd.DataFrame) -> dict:
 
 def build_slate(dg: int, starts, label: str, hist: pd.DataFrame, p: dict,
                 inj: dict, lines: dict, day: str, feats: pd.DataFrame,
-                lineups: dict | None = None) -> dict | None:
+                lineups: dict | None = None, props: dict | None = None,
+                rates: pd.DataFrame | None = None) -> dict | None:
     lineups = lineups or {}
+    props = props or {}
+    prop_keys: dict = {}
+    for key, stats in props.items():
+        nm, tm = key.rsplit("|", 1)
+        for k in name_keys(nm):
+            prop_keys.setdefault(k, []).append((tm, stats))
     posted = lineups.get("_teams", set())
     b = D.board(dg)
     if b.empty:
@@ -167,8 +175,19 @@ def build_slate(dg: int, starts, label: str, hist: pd.DataFrame, p: dict,
             cond, mins, sd, vac = float(r.dk_ppg), None, p["sd_a"] + p["sd_b"] * float(r.dk_ppg), 0.0
         else:
             cond, mins, sd, vac = 0.0, 0.0, 0.0, 0.0
+        model_cond, w_mkt, mkt_val = cond, 0.0, None
+        cands = [c for k in name_keys(r.name) for c in prop_keys.get(k, [])]
+        if cands and cond > 0:
+            st_ = next((c[1] for c in cands if c[0] == r.team), cands[0][1])
+            rr = rates.loc[r.pid_h] if (rates is not None and r.pid_h in rates.index) else None
+            mk = PR.market_dk(st_, rr, mins)
+            if mk:
+                mkt_val = mk[0]
+                cond, w_mkt = PR.blend(cond, mk)
         mean = cond * r.pp
         note = "; ".join(x for x in (r.role_note, r.note) if x)
+        if mkt_val is not None and abs(mkt_val - model_cond) >= max(4.0, 0.15 * model_cond):
+            note = (note + "; " if note else "") + f"props {mkt_val:.1f} vs model {model_cond:.1f}"
         bump = p["usage_k"] * max(0.0, vac - p["usage_floor"])
         if bump >= 0.02 and cond > 0:
             note = (note + "; " if note else "") + f"+{bump * 100:.0f}%/min with teammates out"
@@ -189,6 +208,8 @@ def build_slate(dg: int, starts, label: str, hist: pd.DataFrame, p: dict,
                         if ln.get("total") is not None and ln.get("spread") is not None else None),
             "spread": ln.get("spread"),
             "dkppg": (round(float(r.dk_ppg), 1) if pd.notna(r.dk_ppg) else None),
+            "model": round(model_cond, 2) if model_cond else None,
+            "props": round(mkt_val, 2) if mkt_val is not None else None,
         })
     pl = pd.DataFrame(players)
     pool = pd.DataFrame({"position": "ALL", "salary": pl["salary"],
@@ -213,6 +234,8 @@ def build_slate(dg: int, starts, label: str, hist: pd.DataFrame, p: dict,
                    "teams": sum(1 for t in teams if (lines.get(t) or {}).get("total"))}
                   if any((lines.get(t) or {}).get("total") for t in teams) else None,
         "model": {k: p[k] for k in ("fill_gamma", "usage_k", "vegas_a", "blowout_b")},
+        "props": {"source": "Bovada player props", "players": sum(1 for x in players if x.get("props") is not None),
+                  "weight": PR.W_MARKET} if any(x.get("props") is not None for x in players) else None,
     }
     payload["lineups"] = POOL.safe_build(payload)
     try:
@@ -223,6 +246,11 @@ def build_slate(dg: int, starts, label: str, hist: pd.DataFrame, p: dict,
         SIM.rank_pool(payload)
     except Exception as exc:                                   # noqa: BLE001
         log.warning("contest sim failed (%s); lineups published unranked", exc)
+    pr = [(x["props"], x["model"]) for x in players if x.get("props") is not None and x.get("model")]
+    if pr:
+        d = np.array([a - b for a, b in pr])
+        log.info("draft group %s: props matched %d players, props - model mean %+.1f, mean |gap| %.1f",
+                 dg, len(pr), d.mean(), np.abs(d).mean())
     log.info("draft group %s: %d players, %d out, %d lineups", dg, len(players),
              sum(1 for x in players if x["status"] == "out"), len(payload["lineups"]))
     return payload
@@ -303,13 +331,15 @@ def main(argv=None) -> int:
         log.warning("NBA lineups not posted/readable yet (%s)", str(exc)[:60])
         lineups = {}
     feats = current_features(hist, p, day)
+    props = PR.load(day)
+    rates = PR.per_minute_rates(hist) if props else None
     payloads = []
     for r in sl.itertuples():
         when = pd.Timestamp(r.starts).tz_convert(EASTERN).strftime("%-I:%M%p").lower()
         label = f"{when}{' ' + r.suffix if r.suffix else ''} · {r.contests} contests"
         try:
             pay = build_slate(int(r.draft_group), r.starts, label, hist, p, inj,
-                              lines, day, feats, lineups)
+                              lines, day, feats, lineups, props, rates)
         except Exception as exc:                               # noqa: BLE001
             log.exception("draft group %s failed: %s", r.draft_group, exc)
             continue

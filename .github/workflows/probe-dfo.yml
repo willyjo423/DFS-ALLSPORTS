@@ -10,21 +10,19 @@ jobs:
           UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36"
           def get(u):
               return json.loads(urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": UA, "Accept": "application/json"}), timeout=30).read())
-          b = get("https://www.bovada.lv/services/sports/event/coupon/events/A/description/basketball/nba?marketFilterId=def&preMatchOnly=true&lang=en")
-          evs = b[0]["events"]; print("EVENTS", len(evs))
-          e = evs[0]
-          print("EVKEYS", list(e.keys()), e["description"], e.get("startTime"), [c.get("name") for c in e.get("competitors",[])])
-          full = get("https://www.bovada.lv/services/sports/event/v2/events/A/description" + e["link"] + "?lang=en")
-          ev = full[0]["events"][0]
-          kinds = collections.Counter()
-          for g in ev["displayGroups"]:
-              if "Player" not in g["description"]: continue
-              for m in g["markets"]:
-                  d = m["description"]
-                  kinds[(g["description"], d.split(" - ")[0])] += 1
-                  if kinds[(g["description"], d.split(" - ")[0])] <= 2:
-                      print("MKT", g["description"], "|", d, "| keys", list(m.keys()), "| period", (m.get("period") or {}).get("description"))
-                      for o in m["outcomes"][:6]:
-                          print("   O", o.get("description"), o.get("type"), o.get("price"))
-          for k, v in kinds.most_common(60): print("KIND", k, v)
+          b = get("https://www.bovada.lv/services/sports/event/coupon/events/A/description/hockey/nhl?marketFilterId=def&preMatchOnly=true&lang=en")
+          evs = [e for blk in b for e in blk["events"]]; print("EVENTS", len(evs))
+          kinds = collections.Counter(); per = []
+          for e in evs:
+              full = get("https://www.bovada.lv/services/sports/event/v2/events/A/description" + e["link"] + "?lang=en")
+              ev = full[0]["events"][0]; n = 0
+              for g in ev["displayGroups"]:
+                  for m in g["markets"]:
+                      if "Player" in g["description"] or " - " in m["description"]:
+                          k = (g["description"], m["description"].split(" - ")[0]); kinds[k] += 1; n += 1
+                          if kinds[k] == 1:
+                              print("MKT", g["description"], "|", m["description"], [(o.get("description"), (o.get("price") or {}).get("handicap"), (o.get("price") or {}).get("american")) for o in m["outcomes"][:4]])
+              per.append((e["description"], n))
+          print("PER", per)
+          for k, v in kinds.most_common(40): print("KIND", k, v)
           PY

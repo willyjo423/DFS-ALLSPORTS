@@ -1,19 +1,30 @@
 name: probe dfo
-on:
-  push:
-    branches: [probe-dfo]
+on: {push: {branches: [probe-dfo]}, workflow_dispatch: {}}
 jobs:
-  probe:
+  p:
     runs-on: ubuntu-latest
     steps:
       - run: |
           python3 - <<'PY'
-          import json, urllib.request
-          get=lambda u: json.loads(urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent":"Mozilla/5.0"}), timeout=30).read())
-          d = get("https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261117")
-          for ev in d["events"]:
-              s = get("https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/summary?event=" + ev["id"])
-              pc = (s.get("pickcenter") or [{}])[0]
-              side = {x["homeAway"]: x["team"]["abbreviation"] for x in ev["competitions"][0]["competitors"]}
-              print("LINE|%s|%s|%s|%s|%s" % (side.get("home"), side.get("away"), pc.get("overUnder"), (pc.get("homeTeamOdds") or {}).get("moneyLine"), (pc.get("awayTeamOdds") or {}).get("moneyLine")))
+          import json, urllib.request, collections
+          UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36"
+          def get(u):
+              return json.loads(urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": UA, "Accept": "application/json"}), timeout=30).read())
+          b = get("https://www.bovada.lv/services/sports/event/coupon/events/A/description/basketball/nba?marketFilterId=def&preMatchOnly=true&lang=en")
+          evs = b[0]["events"]; print("EVENTS", len(evs))
+          e = evs[0]
+          print("EVKEYS", list(e.keys()), e["description"], e.get("startTime"), [c.get("name") for c in e.get("competitors",[])])
+          full = get("https://www.bovada.lv/services/sports/event/v2/events/A/description" + e["link"] + "?lang=en")
+          ev = full[0]["events"][0]
+          kinds = collections.Counter()
+          for g in ev["displayGroups"]:
+              if "Player" not in g["description"]: continue
+              for m in g["markets"]:
+                  d = m["description"]
+                  kinds[(g["description"], d.split(" - ")[0])] += 1
+                  if kinds[(g["description"], d.split(" - ")[0])] <= 2:
+                      print("MKT", g["description"], "|", d, "| keys", list(m.keys()), "| period", (m.get("period") or {}).get("description"))
+                      for o in m["outcomes"][:6]:
+                          print("   O", o.get("description"), o.get("type"), o.get("price"))
+          for k, v in kinds.most_common(60): print("KIND", k, v)
           PY

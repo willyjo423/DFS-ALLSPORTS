@@ -188,12 +188,15 @@ def build_slate(dg: int, starts, label: str, hist: pd.DataFrame, p: dict,
             "implied": (round(ln["total"] / 2 - ln["spread"] / 2, 1)
                         if ln.get("total") is not None and ln.get("spread") is not None else None),
             "spread": ln.get("spread"),
+            "dkppg": (round(float(r.dk_ppg), 1) if pd.notna(r.dk_ppg) else None),
         })
     pl = pd.DataFrame(players)
     pool = pd.DataFrame({"position": "ALL", "salary": pl["salary"],
                          "mean": pl["mean"], "median": pl["med"],
                          "ceiling": pl["ceil"], "p_play": pl["pp"],
-                         "playing": np.where(pl["status"] == "out", "out", "yes")})
+                         "playing": np.where(pl["status"] == "out", "out", "yes"),
+                         "dkppg": pd.to_numeric(pl["dkppg"], errors="coerce"),
+                         "implied": pd.to_numeric(pl["implied"], errors="coerce")})
     score = OWN.appeal(pool, classic=True).to_numpy(float)
     own = OWN._allocate(score, 8.0, OWN.CLASSIC_CONCENTRATION)
     lev = (pl["med"].rank(pct=True) - pd.Series(own).rank(pct=True)).round(3)

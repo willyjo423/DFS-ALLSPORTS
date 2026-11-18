@@ -238,10 +238,16 @@ def load(day: str) -> dict:
         return _CACHE[day]
     path = os.path.join(CACHE_DIR, f"{day}.json")
     props = {}
-    try:
-        props = fetch()
-    except Exception as exc:                                   # noqa: BLE001
-        log.warning("bovada unreachable (%s)", str(exc)[:80])
+    for attempt in range(3):            # Bovada now and then answers empty
+        try:
+            props = fetch()
+        except Exception as exc:                               # noqa: BLE001
+            log.warning("bovada unreachable (%s)", str(exc)[:80])
+        if props:
+            break
+        time.sleep(5 * (attempt + 1))
+    if not props:
+        log.warning("bovada: no NHL props returned")
     old = {}
     if os.path.exists(path):
         with open(path) as f:
@@ -276,6 +282,7 @@ def apply(payload: dict) -> int:
     day = day or datetime.now(timezone(timedelta(hours=-5))).date().isoformat()
     props = load(day)
     if not props:
+        log.info("props: none available, projections unchanged")
         return 0
     idx: dict = {}
     for key, st in props.items():
@@ -312,6 +319,7 @@ def apply(payload: dict) -> int:
             note = f"props {mk['dk']:.1f} vs model {model:.1f}"
             p["news"] = (p["news"] + "; " + note) if p.get("news") else note
         n += 1
+    log.info("props: %d skaters matched with shots and points markets", n)
     if n:
         payload["props"] = {"source": "Bovada player props", "players": n, "weight": W_MARKET}
         log.info("props: blended %d skaters, props - model mean %+.2f, mean |gap| %.2f",

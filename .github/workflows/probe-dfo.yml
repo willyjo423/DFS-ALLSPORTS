@@ -8,17 +8,24 @@ jobs:
     steps:
       - run: |
           python3 - <<'PY'
-          import json, urllib.request, time
+          import json, urllib.request
+          UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36"
           def get(u):
-              return json.loads(urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent":"Mozilla/5.0"}), timeout=30).read())
-          sc = get("https://api-web.nhle.com/v1/score/2026-11-17")
-          print("GAMES", len(sc["games"]))
-          for g in sc["games"]:
-              b = get(f"https://api-web.nhle.com/v1/gamecenter/{g['id']}/boxscore")
-              for side in ("awayTeam", "homeTeam"):
-                  t = b[side]["abbrev"]; st = b["playerByGameStats"][side]
-                  for grp in ("forwards", "defense"):
-                      for p in st.get(grp, []):
-                          print("ROW|%s|%s|%d|%d|%d|%d|%d" % ((p.get("name") or {}).get("default"), t, p.get("goals",0), p.get("assists",0), p.get("sog",0), p.get("blockedShots",0), p.get("shorthandedGoals",0) if "shorthandedGoals" in p else 0))
-              time.sleep(0.4)
+              return json.loads(urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": UA, "Accept": "application/json"}), timeout=30).read())
+          b = get("https://www.bovada.lv/services/sports/event/coupon/events/A/description/basketball/nba?marketFilterId=def&preMatchOnly=true&lang=en")
+          evs = b[0]["events"]; print("EVENTS", len(evs))
+          tot = 0
+          for e in evs[:11]:
+              full = get("https://www.bovada.lv/services/sports/event/v2/events/A/description" + e["link"] + "?lang=en")
+              ev = full[0]["events"][0]
+              groups = [g["description"] for g in ev["displayGroups"]]
+              pg = [g for g in ev["displayGroups"] if "Player" in g["description"]]
+              n = sum(len(g["markets"]) for g in pg)
+              tot += n
+              print("EV", e["description"], "| groups", groups, "| player markets", n)
+              if pg and tot == n:
+                  for g in pg[:3]:
+                      for m in g["markets"][:4]:
+                          print("  MKT", g["description"], "|", m["description"], [(o["description"], (o.get("price") or {}).get("american"), (o.get("price") or {}).get("handicap")) for o in m["outcomes"]][:2])
+          print("TOTAL player markets", tot)
           PY

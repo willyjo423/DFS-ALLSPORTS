@@ -1,0 +1,56 @@
+name: NBA fetch history
+
+# ESPN box scores -> data/nba_games.csv.gz, committed. Incremental: games
+# already cached are never fetched again, so the daily run is a minute.
+
+on:
+  workflow_dispatch:
+    inputs:
+      since:
+        description: "Backfill from this date (YYYY-MM-DD). Blank = from the last cached day."
+        required: false
+      limit:
+        description: "Games to fetch (blank = all) - a small number is a smoke test"
+        required: false
+  schedule:
+    # 10:20 UTC: every West Coast game is final.
+    - cron: "20 10 * 10,11,12,1,2,3,4,5,6 *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nba-fetch
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas requests
+      - name: Fetch
+        run: |
+          args=""
+          [ -n "${{ inputs.since }}" ] && args="$args --since ${{ inputs.since }}"
+          [ -n "${{ inputs.limit }}" ] && args="$args --limit ${{ inputs.limit }}"
+          python nba_fetch.py $args
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898699+github-actions[bot]@users.noreply.github.com"
+          git add data/nba_games.csv.gz
+          if git diff --cached --quiet; then echo "nothing new"; exit 0; fi
+          git commit -m "NBA history: $(date -u +%Y-%m-%d)"
+          for i in 1 2 3 4; do
+            git pull --rebase -X theirs origin "${GITHUB_REF_NAME}" && git push && exit 0
+            sleep $((i * 10))
+          done
+          exit 1

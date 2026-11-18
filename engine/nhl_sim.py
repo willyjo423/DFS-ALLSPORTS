@@ -27,8 +27,14 @@ import numpy as np
 
 log = logging.getLogger("nhl_sim")
 
-W_TEAM, W_LINE, W_PP = 0.20, 0.20, 0.10      # share of variance per shock
-W_GOALIE_OPP = 0.30
+# Fitted on 2025-26/2026-27 MoneyPuck games (relative DK residuals):
+#   teammates +0.048, power-play unitmates +0.079, opponents -0.009,
+#   goalie vs own skaters +0.075, goalie vs opposing skaters -0.182.
+# Latent weights are set a little above those because a zero-heavy score
+# shows a weaker correlation than the factor that drives it. Linemates are
+# not identifiable in the history; +0.06 on top of team is an assumption.
+W_TEAM, W_LINE, W_PP = 0.07, 0.06, 0.03
+W_GOALIE_OWN, W_GOALIE_OPP = 0.15, 0.69
 FIELD_MIX = ((0.92, 3.0, True), (0.80, 0.0, False))   # (floor, value chase, stack)
 _ND = NormalDist()
 
@@ -64,7 +70,7 @@ def simulate_scores(payload: dict, sims: int, rng) -> np.ndarray:
             own_t = zt[:, t_idx[p["team"]]]
             opp = t_idx.get(p.get("opp"))
             opp_t = zt[:, opp] if opp is not None else 0.0
-            w_own, w_opp = 0.10, W_GOALIE_OPP
+            w_own, w_opp = W_GOALIE_OWN, W_GOALIE_OPP
             z = (np.sqrt(w_own) * own_t - np.sqrt(w_opp) * opp_t
                  + np.sqrt(1 - w_own - w_opp) * e)
         else:

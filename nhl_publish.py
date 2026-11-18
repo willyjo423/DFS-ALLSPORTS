@@ -58,6 +58,7 @@ from engine import lineup_pool as LP
 import projection_calibration as PC
 import nhl_lines as LN
 import nhl_news as NEWS
+import nhl_props as NP_PROPS
 from engine import nhl_sim as SIM
 from engine import simulate as S
 from availability import available
@@ -580,6 +581,13 @@ def write(payloads: list[dict], partial: bool = False) -> None:
                 pass
         # Calibrated expected points first: the lineup pool optimises them.
         PC.apply(p)
+        # Bovada player props, blended over the calibrated projection.
+        try:
+            if NP_PROPS.apply(p):
+                news = True          # projections moved: ownership is redone
+        except Exception as exc:                               # noqa: BLE001
+            log.warning("props unavailable for draft group %s (%s)",
+                        p.get("draft_group"), str(exc)[:80])
         if news:
             try:
                 NEWS.reown(p)

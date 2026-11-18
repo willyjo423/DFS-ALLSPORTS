@@ -8,11 +8,23 @@ jobs:
     steps:
       - run: |
           python3 - <<'PY'
-          import json, urllib.request
+          import re, urllib.request, json
           UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36"
-          for dg in (156626, 156831):
-              d = json.loads(urllib.request.urlopen(urllib.request.Request(f"https://www.draftkings.com/lineup/getavailableplayers?draftGroupId={dg}", headers={"User-Agent": UA}), timeout=30).read())
-              pl = sorted(d["playerList"], key=lambda p: -p.get("s", 0))[:8]
-              for p in pl:
-                  print("P", dg, p["fn"], p["ln"], {k: p.get(k) for k in ("s", "ppg", "or", "swp", "ipc", "pp", "i", "dgst", "slo")})
+          for u in ["https://fantasyteamadvice.com/nhl/dfs-ownership/history",
+                    "https://fantasyteamadvice.com/nba/dfs-ownership/history",
+                    "https://fantasyteamadvice.com/nhl/dfs-ownership/history?date=2026-11-17"]:
+              try:
+                  h = urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": UA}), timeout=30).read().decode("utf-8", "ignore")
+              except Exception as e:
+                  print("FAIL", u, str(e)[:80]); continue
+              print("OK", u, len(h))
+              m = re.search(r'<script id="__NEXT_DATA__"[^>]*>(.*?)</script>', h, re.S)
+              print("  next_data", bool(m))
+              rows = re.findall(r'(?:%|ownership)[^<]{0,80}', h)[:0]
+              # crude: find 'xx.x%' near player names
+              pcts = re.findall(r'>([A-Z][a-zA-Z\.\'\- ]{3,30})<[^%]{0,400}?(\d{1,2}\.\d)%', h)
+              print("  pairs", len(pcts), pcts[:12])
+              for kw in ("Saros", "locked", "Unlock", "slate"):
+                  print("  has", kw, kw in h)
+              i = h.find("Saros"); print("  ctx", re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", h[max(0,i-300):i+500]))[:600])
           PY

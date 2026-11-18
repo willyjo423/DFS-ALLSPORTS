@@ -47,7 +47,8 @@ def build(players: list[dict], field_size: int = 100_000,
              if s in (p.get("elig") or [])]
     m = len(pairs)
     proj = np.array([p["proj"] for p in pl], float)
-    ceil = np.array([p.get("ceil") or p["proj"] for p in pl], float)
+    ceil = np.array([(p.get("ceil") or p["proj"]) * min(float(p.get("pp") or 1.0), 1.0)
+                     for p in pl], float)
     own = np.array([p.get("own") or 0 for p in pl], float)
     sal = np.array([p["salary"] for p in pl], float)
     games = sorted({str(p.get("game") or p.get("team")) for p in pl})

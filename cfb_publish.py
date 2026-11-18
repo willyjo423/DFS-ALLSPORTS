@@ -1260,6 +1260,11 @@ def main(argv=None) -> int:
             pool = apply_market(pool, lines, quantiles)
             pool = thin_evidence(pool, season)
 
+            # What the field sees: DraftKings' season average and the team total.
+            if "dk_points_per_game" in pool:
+                pool["dkppg"] = pd.to_numeric(pool["dk_points_per_game"], errors="coerce")
+            if "implied_total" in pool:
+                pool["implied"] = pd.to_numeric(pool["implied_total"], errors="coerce")
             own = OWN.project(pool, ROSTER)
             lev = OWN.leverage(pool, own)
             draws = SIM.simulate(pool, quantiles, args.sims, spec=S.SPEC)

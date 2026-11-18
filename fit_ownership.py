@@ -58,59 +58,140 @@ def score(model: np.ndarray, actual: np.ndarray) -> tuple[float, float]:
     return kl, rho
 
 
+CONTESTS = Path(__file__).resolve().parent / "data" / "contests"
+DOCS = Path(__file__).resolve().parent / "docs" / "data"
+
+
+def all_boards(sport: str) -> list[Path]:
+    return sorted(DOCS.glob(f"{sport}_dk_classic_*.json")) + sorted(
+        DOCS.glob(f"archive/*/{sport}_dk_classic_*.json"))
+
+
+def best_board(own: dict, sport: str):
+    """The published board this contest was played on: the one holding the
+    largest share of the contest's drafted players (latest copy wins ties)."""
+    from availability import name_keys
+    want = {k for n in own for k in name_keys(n)}
+    best = None
+    for f in all_boards(sport):
+        try:
+            d = json.loads(f.read_text())
+        except Exception:                                      # noqa: BLE001
+            continue
+        have = {k for p in d.get("players", []) for k in name_keys(p["name"])}
+        share = len(want & have) / max(len(want), 1)
+        if best is None or share >= best[0]:
+            best = (share, f, d)
+    return best
+
+
+def board_pool(d: dict, sport: str) -> pd.DataFrame:
+    pool = pd.DataFrame(d["players"]).rename(
+        columns={"pos": "position", "med": "median", "ceil": "ceiling", "pp": "p_play"})
+    if "ppg" in pool and "dkppg" not in pool:
+        pool["dkppg"] = pool["ppg"]
+    if "itt" in pool and "implied" not in pool:
+        pool["implied"] = pool["itt"]
+    pool["playing"] = np.where(pool.get("status", "clear") == "out", "out", "yes")
+    return pool
+
+
+def model_own(pool: pd.DataFrame, roster: dict, sport: str, conc: float) -> np.ndarray:
+    if sport == "nba":                      # multi-position: one pool, eight slots
+        sc = OWN.appeal(pool.assign(position="ALL"), classic=True).to_numpy(float)
+        return OWN._allocate(sc, float(len(roster["slots"])), conc)
+    return OWN.project(pool, roster, concentration=conc).to_numpy(float)
+
+
+WEIGHTS = ("salary", "value", "dkppg", "implied")
+GRID = {"salary": [0.0, 0.25, 0.5, 0.75, 1.0],
+        "value": [0.0, 0.25, 0.5, 0.75, 1.0, 1.5, 2.0],
+        "dkppg": [0.0, 0.25, 0.5, 0.75, 1.0, 1.5],
+        "implied": [0.0, 0.25, 0.5, 0.75, 1.0],
+        "concentration": [round(x, 2) for x in np.arange(0.3, 1.61, 0.1)]}
+
+
+def evaluate(w: dict, slates, sport) -> tuple[float, float, float]:
+    OWN.CLASSIC_POINTS_WEIGHT = 1.0
+    OWN.CLASSIC_SALARY_WEIGHT, OWN.CLASSIC_VALUE_WEIGHT = w["salary"], w["value"]
+    OWN.CLASSIC_DKPPG_WEIGHT, OWN.CLASSIC_IMPLIED_WEIGHT = w["dkppg"], w["implied"]
+    kls, rhos, maes = [], [], []
+    for pool, roster, actual in slates:
+        m = model_own(pool, roster, sport, w["concentration"])
+        kl, rho = score(m, actual)
+        kls.append(kl); rhos.append(rho)
+        maes.append(float(np.abs(m - actual).mean() * 100))
+    return float(np.mean(kls)), float(np.mean(rhos)), float(np.mean(maes))
+
+
+def fit(sport: str, files: list[Path]) -> dict | None:
+    slates, used = [], []
+    for csv_path in files:
+        own = contest_ownership(str(csv_path))
+        hit = best_board(own, sport)
+        if not hit or hit[0] < 0.6:
+            print(f"{csv_path.name}: no published {sport} board holds 60% of its "
+                  f"players (best {0 if not hit else hit[0]:.0%}) - skipped")
+            continue
+        share, path, d = hit
+        if "CPT" in d["roster"]["slots"]:
+            print(f"{csv_path.name}: showdown board - skipped")
+            continue
+        from availability import name_keys
+        lookup = {k: v for n, v in own.items() for k in name_keys(n)}
+        pool = board_pool(d, sport)
+        actual = np.array([next((lookup[k] for k in name_keys(n) if k in lookup), 0.0)
+                           for n in pool["name"]])
+        print(f"{csv_path.name}: matched {path.name} ({share:.0%} of drafted players)")
+        slates.append((pool, d["roster"], actual))
+        used.append(csv_path.name)
+    if not slates:
+        return None
+    w = {"salary": OWN.CLASSIC_SALARY_WEIGHT, "value": OWN.CLASSIC_VALUE_WEIGHT,
+         "dkppg": 0.0, "implied": 0.0, "concentration": OWN.CLASSIC_CONCENTRATION}
+    before = evaluate(w, slates, sport)
+    best = before
+    for _round in range(3):
+        for k, vals in GRID.items():
+            for v in vals:
+                q = dict(w, **{k: v})
+                r = evaluate(q, slates, sport)
+                if r[0] < best[0] - 1e-5:
+                    w, best = q, r
+    return {"points": 1.0, **{k: round(float(v), 2) for k, v in w.items()},
+            "kl": round(best[0], 4), "rho": round(best[1], 3),
+            "mae_pct": round(best[2], 2),
+            "before": {"rho": round(before[1], 3), "mae_pct": round(before[2], 2)},
+            "slates": len(slates), "contests": used}
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    ap.add_argument("--sport", required=True, choices=["nhl", "mlb", "cfb"])
-    ap.add_argument("--pair", nargs=2, action="append", required=True,
-                    metavar=("STANDINGS_CSV", "SLATE_JSON"))
+    ap.add_argument("--sport", choices=["nhl", "mlb", "cfb", "nba"])
+    ap.add_argument("--auto", action="store_true",
+                    help="fit every sport from data/contests/<sport>/*.csv")
     args = ap.parse_args(argv)
-
-    slates = []
-    for csv_path, json_path in args.pair:
-        own = contest_ownership(csv_path)
-        pool, roster = slate_pool(json_path)
-        if "CPT" in roster["slots"]:
-            sys.exit(f"{json_path} is a showdown board; this fits classic")
-        actual = pool["name"].map(own).fillna(0.0).to_numpy(float)
-        matched = int(pool["name"].isin(own).sum())
-        missing = sorted(set(own) - set(pool["name"]))
-        print(f"{Path(json_path).name}: {matched} of {len(own)} drafted "
-              f"players matched to the board"
-              + (f"; NOT on the board: {', '.join(missing[:8])}" if missing
-                 else ""))
-        if matched < 0.6 * len(own):
-            sys.exit("under 60% of drafted players matched - is this the "
-                     "right slate file for that contest?")
-        slates.append((pool, roster, actual))
-
-    grid = itertools.product(np.arange(0.0, 1.01, 0.25),      # salary
-                             np.arange(0.0, 2.01, 0.25),      # value
-                             np.arange(0.3, 1.51, 0.1))       # concentration
-    best = None
-    for sal, val, conc in grid:
-        OWN.CLASSIC_POINTS_WEIGHT, OWN.CLASSIC_SALARY_WEIGHT = 1.0, sal
-        OWN.CLASSIC_VALUE_WEIGHT = val
-        kls, rhos = [], []
-        for pool, roster, actual in slates:
-            m = OWN.project(pool, roster, concentration=conc).to_numpy(float)
-            kl, rho = score(m, actual)
-            kls.append(kl)
-            rhos.append(rho)
-        k = float(np.mean(kls))
-        if best is None or k < best[0]:
-            best = (k, sal, val, conc, float(np.mean(rhos)))
-
-    kl, sal, val, conc, rho = best
-    fit = {"points": 1.0, "salary": round(sal, 2), "value": round(val, 2),
-           "concentration": round(conc, 2), "kl": round(kl, 4),
-           "rho": round(rho, 3), "slates": len(slates),
-           "contests": [p[0] for p in args.pair]}
-    out = Path(__file__).resolve().parent / "data" / f"ownership_fit_{args.sport}.json"
-    out.parent.mkdir(exist_ok=True)
-    out.write_text(json.dumps(fit, indent=1) + "\n")
-    print(f"\nbest fit over {len(slates)} slate(s): salary {sal:.2f}, value "
-          f"{val:.2f}, concentration {conc:.2f}  ->  KL {kl:.3f}, rank "
-          f"correlation {rho:.2f}\nwritten to {out}")
+    sports = [args.sport] if args.sport else ["nba", "nhl", "cfb", "mlb"]
+    wrote = 0
+    for sp in sports:
+        files = sorted((CONTESTS / sp).glob("*.csv"))
+        if not files:
+            continue
+        OWN.use_fit(sp)
+        res = fit(sp, files)
+        if not res:
+            continue
+        out = Path(__file__).resolve().parent / "data" / f"ownership_fit_{sp}.json"
+        out.write_text(json.dumps(res, indent=1) + "\n")
+        wrote += 1
+        print(f"\n{sp.upper()}: {res['slates']} slate(s). rank corr "
+              f"{res['before']['rho']:.2f} -> {res['rho']:.2f}, average miss "
+              f"{res['before']['mae_pct']:.2f} -> {res['mae_pct']:.2f} pts of ownership. "
+              f"Weights: salary {res['salary']}, value {res['value']}, DK avg "
+              f"{res['dkppg']}, team total {res['implied']}, concentration "
+              f"{res['concentration']}")
+    if not wrote:
+        print("no contest exports found under data/contests/<sport>/")
     return 0
 
 

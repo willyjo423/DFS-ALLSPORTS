@@ -167,6 +167,8 @@ CLASSIC_POINTS_WEIGHT = 1.00
 CLASSIC_SALARY_WEIGHT = 0.00
 CLASSIC_VALUE_WEIGHT = 1.00
 CLASSIC_CONCENTRATION = 0.50
+CLASSIC_DKPPG_WEIGHT = 0.0
+CLASSIC_IMPLIED_WEIGHT = 0.0
 
 
 def slot_demand(roster: dict) -> dict[str, float]:
@@ -400,6 +402,16 @@ def appeal(pool: pd.DataFrame, classic: bool = False) -> pd.Series:
         score = (CLASSIC_POINTS_WEIGHT * z(points)
                  + CLASSIC_SALARY_WEIGHT * z(salary.fillna(0.0))
                  + CLASSIC_VALUE_WEIGHT * z(value.fillna(0.0)))
+        # What the field SEES rather than what we project: DraftKings' own
+        # season average beside the salary in the lobby, and the Vegas team
+        # total every content site leads with. Zero until fitted on real
+        # contests, so an unfitted sport behaves exactly as before.
+        if CLASSIC_DKPPG_WEIGHT and "dkppg" in pool.columns:
+            dkv = (column("dkppg") / (salary / 1000.0)).replace([np.inf, -np.inf], np.nan)
+            score = score + CLASSIC_DKPPG_WEIGHT * z(dkv.fillna(dkv.median()))
+        if CLASSIC_IMPLIED_WEIGHT and "implied" in pool.columns:
+            imp = column("implied")
+            score = score + CLASSIC_IMPLIED_WEIGHT * z(imp.fillna(imp.median()))
         if "playing" in pool.columns:
             score = score.mask(pool["playing"].isin(("out", "doubtful")), -1e9)
         return score
@@ -674,6 +686,7 @@ def use_fit(sport: str) -> dict | None:
     import os
     global CLASSIC_POINTS_WEIGHT, CLASSIC_SALARY_WEIGHT
     global CLASSIC_VALUE_WEIGHT, CLASSIC_CONCENTRATION
+    global CLASSIC_DKPPG_WEIGHT, CLASSIC_IMPLIED_WEIGHT
     path = os.path.join(os.path.dirname(os.path.dirname(
         os.path.abspath(__file__))), FIT_DIR, f"ownership_fit_{sport}.json")
     if not os.path.exists(path):
@@ -686,6 +699,8 @@ def use_fit(sport: str) -> dict | None:
         CLASSIC_SALARY_WEIGHT = float(fit["salary"])
         CLASSIC_VALUE_WEIGHT = float(fit["value"])
         CLASSIC_CONCENTRATION = float(fit["concentration"])
+        CLASSIC_DKPPG_WEIGHT = float(fit.get("dkppg", 0.0))
+        CLASSIC_IMPLIED_WEIGHT = float(fit.get("implied", 0.0))
     except (OSError, ValueError, KeyError) as exc:
         log.warning("ownership fit %s unreadable (%s) - defaults kept",
                     path, exc)

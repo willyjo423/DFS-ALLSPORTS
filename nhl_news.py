@@ -353,6 +353,7 @@ def reown(payload: dict) -> None:
         "ceiling": [p.get("ceil") for p in pl],
         "p_play": [0.0 if p.get("status") == "out" else p.get("pp", 1.0)
                    for p in pl],
+        "dkppg": [p.get("dkppg") for p in pl],
     })
     own = OWN.project(pool, payload["roster"])
     lev = OWN.leverage(pool, own)

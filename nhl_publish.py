@@ -428,6 +428,7 @@ def slate_players(pool: pd.DataFrame, quantiles: list[float],
             "own": num(own.iloc[i], 5, 0.0),
             "lev": num(lev.iloc[i], 3, 0.0),
             "pp": num(r.get("p_play", 1.0), 4, 1.0),
+            "dkppg": num(r.get("dk_ppg"), 1),
             # Ice time is hockey's opportunity number, the way a batting slot
             # is baseball's. Shipped so the board can be sorted by it. A
             # goalie has none, and null is what the page can render.
@@ -839,6 +840,8 @@ def main(argv=None) -> int:
                 continue
 
             quantiles = list(NS.SKATERS.quantiles)
+            if "dk_ppg" in pool:
+                pool["dkppg"] = pd.to_numeric(pool["dk_ppg"], errors="coerce")
             own = OWN.project(pool, ROSTER)
             lev = OWN.leverage(pool, own)
             draws = S.simulate(pool, quantiles, args.sims, spec=board_spec())

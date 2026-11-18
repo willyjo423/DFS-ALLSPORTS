@@ -42,11 +42,17 @@ jobs:
           [ -n "${{ inputs.since }}" ] && args="$args --since ${{ inputs.since }}"
           [ -n "${{ inputs.limit }}" ] && args="$args --limit ${{ inputs.limit }}"
           python nba_fetch.py $args
+      - name: Fit the projection model (walk-forward)
+        if: ${{ inputs.limit == '' }}
+        run: |
+          pip install numpy
+          python nba_model.py 2>&1 | tee fit.txt
+          { echo '### NBA model fit'; echo '```'; tail -n 5 fit.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
       - name: Commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898699+github-actions[bot]@users.noreply.github.com"
-          git add data/nba_games.csv.gz
+          git add data/nba_games.csv.gz data/nba_model.json 2>/dev/null || git add data/nba_games.csv.gz
           if git diff --cached --quiet; then echo "nothing new"; exit 0; fi
           git commit -m "NBA history: $(date -u +%Y-%m-%d)"
           for i in 1 2 3 4; do

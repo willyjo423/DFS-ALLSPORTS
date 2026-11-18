@@ -21,8 +21,9 @@ def test_parse_and_dk_points():
     assert w["played"] == 1 and w["min"] == 38 and w.tpm == 0 and w.fga == 21
     assert df.iloc[1].played == 0 and df.iloc[1].reason == "INJURY"
     pts = F.dk_points(df)
-    # 21 + 0 + 13.75 + 15 + 0 + 2 - 2 = 49.75, double-double +1.5
-    assert abs(pts.iloc[0] - 51.25) < 1e-9
+    # 21 + 0 + 13.75 + 15 + 0 + 2 - 2 = 49.75; triple-double earns both
+    # bonuses on DraftKings (+1.5 and +3)
+    assert abs(pts.iloc[0] - 54.25) < 1e-9
 
 
 def test_canon():

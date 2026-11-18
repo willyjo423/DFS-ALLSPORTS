@@ -568,6 +568,13 @@ def write(payloads: list[dict]) -> None:
         except Exception as exc:                               # noqa: BLE001
             log.warning("late news unavailable for draft group %s (%s)",
                         p.get("draft_group"), str(exc)[:80])
+            # Even with no news, a team gets one start, not one per goalie.
+            try:
+                from availability import name_keys
+                NEWS.apply_goalies(p.get("players") or [], {}, name_keys)
+                news = True
+            except Exception:                                  # noqa: BLE001
+                pass
         # Calibrated expected points first: the lineup pool optimises them.
         PC.apply(p)
         if news:

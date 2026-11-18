@@ -23,6 +23,7 @@ import nba_fetch as F
 import nba_model as M
 from availability import name_keys
 from engine import nba_pool as POOL
+from engine import nba_sim as SIM
 from engine import ownership as OWN
 
 log = logging.getLogger("nba_publish")
@@ -72,23 +73,6 @@ def current_features(hist: pd.DataFrame, p: dict, day: str) -> pd.DataFrame:
     return cur.set_index("player_id")
 
 
-def seen_out(hist: pd.DataFrame, pid: str, out_ids: list[str], n: int = 8) -> float:
-    """How much of this player's recent sample was ALREADY played without the
-    men out tonight - so their usage is not handed to him twice."""
-    if not out_ids:
-        return 0.0
-    h = hist[hist["player_id"] == pid].sort_values("date").tail(n)
-    if not len(h):
-        return 0.0
-    games = h[h["played"] == 1]["game_id"]
-    if not len(games):
-        return 0.0
-    sub = hist[hist["game_id"].isin(games) & hist["player_id"].isin(out_ids)]
-    played_with = sub.groupby("player_id")["played"].sum()
-    frac_absent = [1 - played_with.get(o, 0) / len(games) for o in out_ids]
-    return float(np.mean(frac_absent))
-
-
 def team_avg(hist: pd.DataFrame) -> dict:
     g = (hist.drop_duplicates(["game_id", "team"]).sort_values("date"))
     return {t: float(s["team_pts"].ewm(halflife=10).mean().iloc[-1])
@@ -96,7 +80,10 @@ def team_avg(hist: pd.DataFrame) -> dict:
 
 
 def build_slate(dg: int, starts, label: str, hist: pd.DataFrame, p: dict,
-                inj: dict, lines: dict, day: str, feats: pd.DataFrame) -> dict | None:
+                inj: dict, lines: dict, day: str, feats: pd.DataFrame,
+                lineups: dict | None = None) -> dict | None:
+    lineups = lineups or {}
+    posted = lineups.get("_teams", set())
     b = D.board(dg)
     if b.empty:
         return None
@@ -117,6 +104,25 @@ def build_slate(dg: int, starts, label: str, hist: pd.DataFrame, p: dict,
     st = [_status(r, inj) for r in b.to_dict("records")]
     b["pp"] = [s[0] for s in st]
     b["note"] = [s[1] for s in st]
+    # The NBA's lineups: role tonight, and its own inactive list.
+    role, rnote = [], []
+    for r in b.itertuples():
+        lu = next((lineups[k] for k in name_keys(r.name) if k in lineups
+                   and lineups[k]["team"] == r.team), None)
+        if lu and not lu["active"]:
+            b.loc[r.Index, "pp"] = 0.0
+            b.loc[r.Index, "note"] = "inactive (NBA)"
+        if lu and lu["starter"]:
+            role.append(1)
+            rnote.append(f"starting ({lu['status'].lower()})")
+        elif r.team in posted:
+            role.append(0)
+            rnote.append("")
+        else:
+            role.append(np.nan)
+            rnote.append("")
+    b["starts"] = role
+    b["role_note"] = rnote
 
     # Rows for the projection: every board player, plus injured men DraftKings
     # has already removed, so their minutes and usage are redistributed.
@@ -124,7 +130,7 @@ def build_slate(dg: int, starts, label: str, hist: pd.DataFrame, p: dict,
     teams = set(b["team"])
     for r in b.itertuples():
         rows.append({"player_id": r.pid_h, "team": r.team, "avail": int(r.pp > 0.3),
-                     "board": True, "name": r.name})
+                     "board": True, "name": r.name, "starts": r.starts})
     on_board = set(b["pid_h"].dropna())
     for info in {v["name"]: v for v in inj.values()}.values():
         if info["status"] not in ("Out", "Doubtful") or info["team"] not in teams:
@@ -132,20 +138,16 @@ def build_slate(dg: int, starts, label: str, hist: pd.DataFrame, p: dict,
         pid_ = hid(info["name"], info["team"])
         if pid_ and pid_ not in on_board:
             rows.append({"player_id": pid_, "team": info["team"], "avail": 0,
-                         "board": False, "name": info["name"]})
+                         "board": False, "name": info["name"], "starts": np.nan})
     df = pd.DataFrame(rows)
-    df = df.join(feats[["base_min", "rate", "rate_long", "use_rate", "gp_prior"]],
-                 on="player_id")
+    df = df.join(feats[["base_min", "rate", "rate_long", "use_rate", "gp_prior",
+                        "absent_prev", "start_min", "bench_min", "n_start",
+                        "n_bench"]], on="player_id")
     tavg = team_avg(hist)
     df["game_id"] = "tonight"
     df["spread"] = df["team"].map(lambda t: (lines.get(t) or {}).get("spread"))
     df["total"] = df["team"].map(lambda t: (lines.get(t) or {}).get("total"))
     df["team_avg"] = df["team"].map(tavg)
-    out_by_team = df[df["avail"] == 0].groupby("team")["player_id"].apply(
-        lambda s: [x for x in s if x])
-    df["seen_out"] = [seen_out(hist, pid_, out_by_team.get(t, []))
-                      if pid_ and a else 0.0
-                      for pid_, t, a in zip(df["player_id"], df["team"], df["avail"])]
     proj = M.project_rows(df, p)
     proj = proj[proj["board"]]
     by_name = proj.set_index("name")
@@ -166,7 +168,7 @@ def build_slate(dg: int, starts, label: str, hist: pd.DataFrame, p: dict,
         else:
             cond, mins, sd, vac = 0.0, 0.0, 0.0, 0.0
         mean = cond * r.pp
-        note = r.note
+        note = "; ".join(x for x in (r.role_note, r.note) if x)
         bump = p["usage_k"] * max(0.0, vac - p["usage_floor"])
         if bump >= 0.02 and cond > 0:
             note = (note + "; " if note else "") + f"+{bump * 100:.0f}%/min with teammates out"
@@ -210,12 +212,16 @@ def build_slate(dg: int, starts, label: str, hist: pd.DataFrame, p: dict,
         "model": {k: p[k] for k in ("fill_gamma", "usage_k", "vegas_a", "blowout_b")},
     }
     payload["lineups"] = POOL.safe_build(payload)
+    try:
+        SIM.rank_pool(payload)
+    except Exception as exc:                                   # noqa: BLE001
+        log.warning("contest sim failed (%s); lineups published unranked", exc)
     log.info("draft group %s: %d players, %d out, %d lineups", dg, len(players),
              sum(1 for x in players if x["status"] == "out"), len(payload["lineups"]))
     return payload
 
 
-def write(payloads: list[dict]) -> None:
+def write(payloads: list[dict], partial: bool = False) -> None:
     from pathlib import Path
     data = Path(__file__).resolve().parent / "docs" / "data"
     data.mkdir(parents=True, exist_ok=True)
@@ -225,7 +231,9 @@ def write(payloads: list[dict]) -> None:
         (data / name).write_text(json.dumps(p, indent=1, allow_nan=False))
         keep.add(name)
     for old in data.glob(f"{SPORT}_dk_*.json"):
-        if old.name in keep:
+        # A partial (pre-lock) run only rewrites the slate about to lock;
+        # every other board stays exactly as the last full run left it.
+        if old.name in keep or partial:
             continue
         when = json.loads(old.read_text()).get("generated_at", "")[:10] or "undated"
         dest = data / "archive" / when
@@ -249,6 +257,7 @@ def main(argv=None) -> int:
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(name)s: %(message)s")
     ap = argparse.ArgumentParser()
     ap.add_argument("--draft-group", type=int)
+    ap.add_argument("--soon", type=int, help="only slates locking within N minutes")
     a = ap.parse_args(argv)
     OWN.use_fit("nba")
     p = M.params()
@@ -260,6 +269,12 @@ def main(argv=None) -> int:
     if a.draft_group:
         sl = D.slates()
         sl = sl[sl["draft_group"] == a.draft_group]
+    if a.soon:
+        horizon = pd.Timestamp.now(tz="UTC") + pd.Timedelta(minutes=a.soon)
+        sl = sl[sl["starts"] <= horizon].head(1)
+        if sl.empty:
+            log.info("no slate locks within %d minutes; nothing to do", a.soon)
+            return 0
     if sl.empty:
         log.error("no unlocked NBA classic slates")
         return 1
@@ -275,6 +290,11 @@ def main(argv=None) -> int:
     except Exception as exc:                                   # noqa: BLE001
         log.error("no lines (%s) - projections without Vegas", exc)
         lines = {}
+    try:
+        lineups = D.starters(day)
+    except Exception as exc:                                   # noqa: BLE001
+        log.warning("NBA lineups not posted/readable yet (%s)", str(exc)[:60])
+        lineups = {}
     feats = current_features(hist, p, day)
     payloads = []
     for r in sl.itertuples():
@@ -282,7 +302,7 @@ def main(argv=None) -> int:
         label = f"{when}{' ' + r.suffix if r.suffix else ''} · {r.contests} contests"
         try:
             pay = build_slate(int(r.draft_group), r.starts, label, hist, p, inj,
-                              lines, day, feats)
+                              lines, day, feats, lineups)
         except Exception as exc:                               # noqa: BLE001
             log.exception("draft group %s failed: %s", r.draft_group, exc)
             continue
@@ -290,7 +310,7 @@ def main(argv=None) -> int:
             payloads.append(pay)
     if not payloads:
         return 1
-    write(payloads)
+    write(payloads, partial=bool(a.soon or a.draft_group))
     return 0
 
 

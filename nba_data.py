@@ -135,3 +135,37 @@ def lines(day: str) -> dict:
             log.warning("lines: ESPN failed (%s); using the cached read", str(exc)[:60])
             return json.load(open(path))["lines"]
         raise
+
+
+# ---------------------------------------------------------- starting lineups
+NBA_LINEUPS = "https://stats.nba.com/js/data/leaders/00_daily_lineups_{day}.json"
+
+
+def starters(day: str) -> dict:
+    """The NBA's own daily lineups file (what nba.com's lineups page reads):
+    {name_key: {"team", "status": "Confirmed"|"Expected", "active": bool}}
+    plus the set of teams that have a lineup posted, under key "_teams".
+    Posted through the afternoon; confirmed about half an hour before tip."""
+    from availability import name_keys
+    r = requests.get(NBA_LINEUPS.format(day=day.replace("-", "")), timeout=30,
+                     headers={**UA, "Referer": "https://www.nba.com/",
+                              "Accept": "application/json"})
+    if r.status_code != 200:
+        raise RuntimeError(f"NBA lineups HTTP {r.status_code}")
+    out, teams = {}, set()
+    for g in r.json().get("games") or []:
+        for side in ("homeTeam", "awayTeam"):
+            t = g.get(side) or {}
+            team = F.canon(t.get("teamAbbreviation"))
+            for pl in t.get("players") or []:
+                status = pl.get("lineupStatus") or ""
+                active = str(pl.get("rosterStatus") or "Active") != "Inactive"
+                if status:
+                    teams.add(team)
+                for k in name_keys(pl.get("playerName") or ""):
+                    out[k] = {"team": team, "status": status, "active": active,
+                              "starter": bool(status) and bool(pl.get("position"))}
+    out["_teams"] = teams
+    log.info("NBA lineups: %d teams posted, %d confirmed players", len(teams),
+             sum(1 for k, v in out.items() if k != "_teams" and v["status"] == "Confirmed"))
+    return out

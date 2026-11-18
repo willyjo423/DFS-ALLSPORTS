@@ -51,6 +51,9 @@ DEFAULTS = {
     "vegas_a": 0.8,           # exponent on implied / recent team points
     "blowout_b": 0.010,       # minutes lost per point of spread beyond 6, regulars
     "max_minutes": 42.0,
+    "role_w": 0.0,            # weight on start/bench-specific minutes
+    "pair_on": 0,             # teammate-specific on/off adjustments
+    "pair_kmin": 4.0, "pair_krate": 8.0,
     "sd_a": 2.5, "sd_b": 0.30,  # residual sd = a + b * mean
 }
 
@@ -106,6 +109,13 @@ def player_history_features(h: pd.DataFrame, p: dict) -> pd.DataFrame:
         rate_long = long_num / long_den
         use_rate = ((usem * w).ewm(halflife=p["rate_halflife"], ignore_na=True).mean()
                     / den).shift(1)
+        st = g["starter"].fillna(0) if "starter" in g else pd.Series(0, index=g.index)
+        start_min = g["min"].where((played == 1) & (st == 1)).ewm(
+            halflife=p["min_halflife"], ignore_na=True).mean().shift(1).ffill()
+        bench_min = g["min"].where((played == 1) & (st == 0)).ewm(
+            halflife=p["min_halflife"], ignore_na=True).mean().shift(1).ffill()
+        n_start = ((played == 1) & (st == 1)).cumsum().shift(1).fillna(0)
+        n_bench = ((played == 1) & (st == 0)).cumsum().shift(1).fillna(0)
         gp = played.cumsum().shift(1).fillna(0)
         # How much of his team's recent stretch he had ALREADY missed. An
         # absence that is weeks old is in every teammate's recent numbers
@@ -114,7 +124,9 @@ def player_history_features(h: pd.DataFrame, p: dict) -> pd.DataFrame:
         out.append(pd.DataFrame({
             "base_min": base_min.values, "rate": rate.values,
             "rate_long": rate_long.values, "use_rate": use_rate.values,
-            "gp_prior": gp.values, "absent_prev": absent_prev.values},
+            "gp_prior": gp.values, "absent_prev": absent_prev.values,
+            "start_min": start_min.values, "bench_min": bench_min.values,
+            "n_start": n_start.values, "n_bench": n_bench.values},
             index=g.index))
     f = pd.concat(out).sort_index()
     return h.join(f)
@@ -139,6 +151,21 @@ def project_rows(df: pd.DataFrame, p: dict) -> pd.DataFrame:
             + (1 - shrink_w) * df["rate_long"].fillna(df["rate"]))
     df["rate_s"] = rate.fillna(0.8)
     df["base_min"] = df["base_min"].fillna(0.0)
+    # Tonight's role, where known (1 starts, 0 comes off the bench): his own
+    # minutes in that role, blended in. Unknown -> the role-blind baseline.
+    if "starts" in df and p.get("role_w", 0) > 0:
+        rs = df["starts"]
+        role = np.where((rs == 1) & (df.get("n_start", 0) >= 2), df.get("start_min"),
+                        np.where((rs == 0) & (df.get("n_bench", 0) >= 2), df.get("bench_min"),
+                                 np.nan))
+        role = pd.Series(role, index=df.index, dtype=float)
+        df["base_min"] = np.where(role.notna(),
+                                  (1 - p["role_w"]) * df["base_min"] + p["role_w"] * role,
+                                  df["base_min"])
+    # This player's own history without tonight's missing teammates.
+    if "pair_dmin" in df and p.get("pair_on", 0):
+        df["base_min"] = (df["base_min"] + df["pair_dmin"].fillna(0)).clip(lower=0)
+        df["rate_s"] = df["rate_s"] * (1 + df["pair_drate"].fillna(0))
     keys = ["game_id", "team"]
 
     # usage share of each player within his team's available + out players
@@ -180,6 +207,9 @@ def build_frame(hist: pd.DataFrame, p: dict) -> pd.DataFrame:
     h = player_history_features(h, p)
     h = h.merge(team_scoring_prior(h), on=["game_id", "team"], how="left")
     h["avail"] = h["played"]
+    # Who started is announced before tip, so the backtest may use it; the
+    # live board uses the NBA's official expected/confirmed lineups.
+    h["starts"] = h["starter"]
     return h
 
 
@@ -223,6 +253,7 @@ def fit(hist: pd.DataFrame, start: str, grid: dict | None = None) -> tuple[dict,
         "vegas_a": [0.0, 0.4, 0.8, 1.2, 1.6],
         "blowout_b": [0.0, 0.005, 0.01, 0.015, 0.02, 0.03],
         "rate_prior_games": [4.0, 10.0, 16.0, 25.0, 40.0, 60.0],
+        "role_w": [0.0, 0.3, 0.6, 0.8, 1.0],
     }
     # The usage pair is searched jointly: the effect only exists above the
     # floor, so either number alone looks like noise.
@@ -268,3 +299,67 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# ------------------------------------------------- teammate on/off + roles
+def pair_table(h: pd.DataFrame, min_base: float = 15.0) -> pd.DataFrame:
+    """For every (teammate, absent player) pair on the same team: how the
+    teammate's minutes and points-per-minute changed in games that player
+    missed, against games he played. Built only from the games in `h`.
+
+    Absent games count only when the absent man was a rotation player
+    (base_min >= min_base going in) - a two-way player sitting tells
+    nobody anything."""
+    p = h[["game_id", "team", "player_id", "played", "min", "fp", "base_min"]].copy()
+    rot = p[(p["base_min"] >= min_base)]
+    absent = rot[rot["played"] == 0][["game_id", "team", "player_id"]].rename(
+        columns={"player_id": "x"})
+    present = rot[rot["played"] == 1][["game_id", "team", "player_id"]].rename(
+        columns={"player_id": "x"})
+    me = p[(p["played"] == 1) & (p["min"] > 0)][["game_id", "team", "player_id", "min", "fp"]]
+    wo = me.merge(absent, on=["game_id", "team"])
+    wo = wo[wo["player_id"] != wo["x"]]
+    wi = me.merge(present, on=["game_id", "team"])
+    wi = wi[wi["player_id"] != wi["x"]]
+    def agg(d, tag):
+        g = d.groupby(["player_id", "x"]).agg(n=("min", "size"), m=("min", "mean"),
+                                              fp=("fp", "sum"), mins=("min", "sum"))
+        g["r"] = g["fp"] / g["mins"]
+        return g[["n", "m", "r"]].add_suffix("_" + tag)
+    t = agg(wo, "wo").join(agg(wi, "wi"), how="inner")
+    t = t[t["n_wi"] >= 3]
+    return t
+
+
+def pair_effects(t: pd.DataFrame, k_min: float, k_rate: float) -> pd.DataFrame:
+    w_m = t["n_wo"] / (t["n_wo"] + k_min)
+    w_r = t["n_wo"] / (t["n_wo"] + k_rate)
+    out = pd.DataFrame(index=t.index)
+    out["dmin"] = (t["m_wo"] - t["m_wi"]) * w_m
+    out["drate"] = ((t["r_wo"] / t["r_wi"]) - 1).clip(-0.5, 0.8) * w_r
+    return out
+
+
+def add_pair_columns(frame: pd.DataFrame, start, p: dict, freq: str = "MS") -> pd.DataFrame:
+    """Walk-forward: each month's rows get pair effects fitted only on games
+    before that month."""
+    f = frame.copy()
+    f["pair_dmin"] = 0.0
+    f["pair_drate"] = 0.0
+    start = pd.Timestamp(start)
+    edges = list(pd.date_range(start, f["date"].max() + pd.Timedelta(days=31), freq=freq))
+    edges = [start] + [e for e in edges if e > start]
+    for lo, hi in zip(edges[:-1], edges[1:]):
+        eff = pair_effects(pair_table(f[f["date"] < lo]), p["pair_kmin"], p["pair_krate"])
+        blk = f[(f["date"] >= lo) & (f["date"] < hi)]
+        outs = blk[(blk["played"] == 0) & (blk["base_min"] >= 15)
+                   & (blk["absent_prev"] < 0.5)][["game_id", "team", "player_id"]]
+        outs = outs.rename(columns={"player_id": "x"})
+        me = blk[["game_id", "team", "player_id"]].reset_index()
+        m = me.merge(outs, on=["game_id", "team"])
+        m = m[m["player_id"] != m["x"]].join(eff, on=["player_id", "x"]).fillna(
+            {"dmin": 0.0, "drate": 0.0})
+        agg = m.groupby("index")[["dmin", "drate"]].sum()
+        f.loc[agg.index, "pair_dmin"] = agg["dmin"].values
+        f.loc[agg.index, "pair_drate"] = agg["drate"].values
+    return f

@@ -1,0 +1,27 @@
+{
+ "fitted_from": "2026-02-07",
+ "through": "2026-11-17",
+ "metrics": {
+  "n": 16158,
+  "mae": 7.508220247140774,
+  "bias": 0.05597098149227028,
+  "rmse": 9.64273333527326,
+  "rho": 0.7609045812683178,
+  "naive_mae": 7.883631214617548,
+  "min_mae": 4.90022995534929
+ },
+ "params": {
+  "min_halflife": 3.0,
+  "rate_halflife": 12.0,
+  "rate_prior_games": 25.0,
+  "team_minutes": 240.0,
+  "fill_gamma": 1.0,
+  "usage_k": 1.2,
+  "usage_floor": 0.2,
+  "vegas_a": 0.8,
+  "blowout_b": 0.0,
+  "max_minutes": 42.0,
+  "sd_a": 6.278844815796792,
+  "sd_b": 0.14424349322899357
+ }
+}

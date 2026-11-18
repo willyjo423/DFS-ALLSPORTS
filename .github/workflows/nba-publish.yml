@@ -1,0 +1,68 @@
+name: NBA publish
+
+# NBA news breaks right up to tip, so this runs often in the afternoon and
+# evening (Eastern): morning, early afternoon, then every ~30-45 minutes from
+# 4:30pm to the 7pm lock, plus late-slate runs. Times are UTC (EST = UTC-5).
+
+on:
+  workflow_dispatch:
+    inputs:
+      draft_group:
+        description: "One draft group (blank = every unlocked classic slate)"
+        required: false
+  schedule:
+    - cron: "37 15 * 10,11,12,1,2,3,4 *"   # 10:37am ET
+    - cron: "37 18 * 10,11,12,1,2,3,4 *"   # 1:37pm
+    - cron: "33 21 * 10,11,12,1,2,3,4 *"   # 4:33pm
+    - cron: "8 22 * 10,11,12,1,2,3,4 *"    # 5:08pm
+    - cron: "41 22 * 10,11,12,1,2,3,4 *"   # 5:41pm
+    - cron: "12 23 * 10,11,12,1,2,3,4 *"   # 6:12pm
+    - cron: "38 23 * 10,11,12,1,2,3,4 *"   # 6:38pm
+    - cron: "13 1 * 10,11,12,1,2,3,4 *"    # 8:13pm, late slates
+    - cron: "43 1 * 10,11,12,1,2,3,4 *"    # 8:43pm
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nba-publish
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Build
+        id: build
+        run: |
+          set -o pipefail
+          ARGS=""
+          [ -n "${{ inputs.draft_group }}" ] && ARGS="--draft-group ${{ inputs.draft_group }}"
+          python nba_publish.py $ARGS 2>&1 | tee publish.txt
+      - name: Say what happened
+        if: always()
+        run: |
+          { echo "### NBA publish: ${{ steps.build.outcome }}"; echo '```'; tail -n 60 publish.txt 2>/dev/null; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+      - name: Publish
+        if: steps.build.outcome == 'success'
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          find . -path ./.git -prune -o -name '__pycache__' -print0 | xargs -0 rm -rf || true
+          git add -A docs
+          git diff --cached --quiet && { echo "nothing changed"; exit 0; }
+          git commit -m "NBA slate: $(date -u +%Y-%m-%d\ %H:%M)"
+          for i in 1 2 3 4 5; do
+            git pull --rebase -X ours origin main && git push && exit 0
+            sleep $((i * 8))
+          done
+          exit 1

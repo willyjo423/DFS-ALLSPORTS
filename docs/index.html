@@ -221,7 +221,8 @@ async function loadSlate(file) {
   });
   const lk = SLATE.locks ? new Date(SLATE.locks) : null;
   $("lock").textContent = lk && !isNaN(lk) ? "Locks " + lk.toLocaleString([], {weekday:"short", hour:"numeric", minute:"2-digit"}) : "";
-  const positions = [...new Set(SLATE.players.map(p => p.pos))];
+  // Multi-position sports (NBA "PG/SG") filter by every slot a player fills.
+  const positions = [...new Set(SLATE.players.flatMap(p => (p.elig || [p.pos]).filter(x => x !== "UTIL")))];
   const order = [...new Set(SLATE.roster.slots)].filter(p => positions.includes(p));
   positions.forEach(p => { if (!order.includes(p)) order.push(p); });
   $("posf").innerHTML = ["All", ...order].map(p => `<button data-p="${p}" class="${p === "All" ? "on" : ""}">${p}</button>`).join("");
@@ -275,7 +276,7 @@ function drawPlayers() {
     `<th data-k="${k}" class="${["name",""].includes(k) ? "l" : ""}">${h}${SORT.k === k ? (SORT.d < 0 ? " ▾" : " ▴") : ""}</th>`).join("");
   $("ptbl").tHead.innerHTML = "<tr>" + head + "</tr>";
   let rows = SLATE.players.filter(p =>
-    (POS === "All" || p.pos === POS) &&
+    (POS === "All" || (p.elig || [p.pos]).includes(POS)) &&
     (!q || p.name.toLowerCase().includes(q) || String(p.team).toLowerCase().includes(q)));
   const k = SORT.k;
   rows.sort((a, b) => {
@@ -288,7 +289,7 @@ function drawPlayers() {
     return `<tr class="${cls}">
       <td class="l"><button class="tog ${LOCK.has(p.i) ? "lk" : ""}" data-lock="${p.i}">✓</button>
         <button class="tog ${EXCL.has(p.i) ? "ex" : ""}" data-ex="${p.i}">✕</button></td>
-      <td class="l nm">${esc(p.name)}${flag}<div class="muted">${esc(p.pos)} · ${esc(p.team)}${p.opp ? " v " + esc(p.opp) : ""}${p.line ? " · " + esc(p.line) : ""}${p.ppu ? " · PP" + p.ppu : ""}${p.gst && p.gst !== "backup" ? " · " + esc(p.gst) + " starter" : (p.g_started && !p.gst ? " · started last game" : "")}${p.news ? ' · <span class="tag">' + esc(p.news) + "</span>" : ""}</div></td>
+      <td class="l nm">${esc(p.name)}${flag}<div class="muted">${esc(p.pos)} · ${esc(p.team)}${p.opp ? " v " + esc(p.opp) : ""}${p.line ? " · " + esc(p.line) : ""}${p.ppu ? " · PP" + p.ppu : ""}${p.min ? " · " + Math.round(p.min) + " min" : ""}${p.implied ? " · team " + p.implied : ""}${p.gst && p.gst !== "backup" ? " · " + esc(p.gst) + " starter" : (p.g_started && !p.gst ? " · started last game" : "")}${p.news ? ' · <span class="tag">' + esc(p.news) + "</span>" : ""}</div></td>
       <td>$${((p.salary || 0) / 1000).toFixed(1)}k</td><td><b>${num(p.proj)}</b></td>
       <td><b>${num(100 * (p.own || 0))}</b></td><td>${num(p.val, 2)}</td><td>${num(p.ceil)}</td><td>${num(p.lev, 2)}</td></tr>`;
   }).join("");
@@ -387,6 +388,9 @@ function stackTag(L) {
 // flex slots from what is left, in the order the roster lists them.
 function slotOrder(idx) {
   const P = SLATE.players, slots = SLATE.roster.slots, flex = new Set(["UTIL", "FLEX", "SFLEX"]);
+  // Builders that assign slots themselves (NBA) say so; trust them.
+  const L = (SLATE.lineups || []).find(x => x.p === idx);
+  if (L && L.s) return L.s.map((s, k) => [s, L.p[k]]);
   const left = [...idx], out = [];
   slots.forEach(s => {
     if (flex.has(s)) { out.push([s, null]); return; }

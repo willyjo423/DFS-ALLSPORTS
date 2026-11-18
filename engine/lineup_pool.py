@@ -223,7 +223,11 @@ def build(players: list[dict], roster: dict, field_size: int = 100_000,
     # The calibrated expectation where the publisher added one (see
     # projection_calibration.py); the model median otherwise.
     med = np.array([p.get("proj", p["med"]) for p in pl], float)
-    ceil = np.array([p.get("ceil") or p["med"] for p in pl], float)
+    # A ceiling is "if he plays". A goalie who is 40% to start has 40% of his
+    # upside, not all of it - without this, ceiling and stack lineups kept
+    # picking an unconfirmed $6,900 backup (NSH, 2026-11-17).
+    ceil = np.array([(p.get("ceil") or p["med"]) * min(float(p.get("pp") or 1.0), 1.0)
+                     for p in pl], float)
     own = np.clip(np.array([p.get("own") or 0 for p in pl], float), 0, 1)
 
     pool, seen = [], []

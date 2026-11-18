@@ -43,7 +43,7 @@ def slates() -> pd.DataFrame:
     return df.sort_values("contests", ascending=False).reset_index(drop=True)
 
 
-def classic_slates(now=None, top: int = 4) -> pd.DataFrame:
+def classic_slates(now=None, top: int = 3) -> pd.DataFrame:
     """Unlocked classic boards worth publishing: the main slate and the
     early/late/turbo splits DraftKings runs, busiest first."""
     now = now or pd.Timestamp.now(tz="UTC")

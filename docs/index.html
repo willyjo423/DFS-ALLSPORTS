@@ -254,7 +254,8 @@ async function loadSlate(file) {
   const hasLines = SLATE.players.some(q => q.lg);
   $("stkby").querySelectorAll("option").forEach(o => o.disabled = o.value !== "team" && !hasLines);
   $("stkby").value = "team";
-  const canStack = SLATE.roster.slots.includes("G");
+  // Hockey only: NBA also has a "G" slot, but it is a guard, not a goalie.
+  const canStack = SLATE.sport === "nhl";
   document.querySelectorAll(".stackf").forEach(e => e.classList.toggle("hide", !canStack));
   const teams = [...new Set(SLATE.players.filter(q => !single.has(q.pos)).map(q => q.team))].sort();
   $("stkteam").innerHTML = '<option value="">Any</option>' + teams.map(t => `<option>${esc(t)}</option>`).join("");
@@ -376,7 +377,7 @@ function drawLineups() {
 }
 
 function stackTag(L) {
-  if (!SLATE.roster.slots.includes("G")) return "";
+  if (SLATE.sport !== "nhl") return "";
   const g = L.grp || {team: L.stk || []};
   const bits = (g.team || []).filter(([, n]) => n >= 2).map(([t, n]) => esc(t) + " " + n)
     .concat((g.line || []).filter(([, n]) => n >= 2).map(([k, n]) => esc(k.replace("-", " ")) + "×" + n))

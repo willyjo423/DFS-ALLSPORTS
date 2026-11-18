@@ -286,3 +286,41 @@ def test_odds_cache_saves_credits_and_survives_refusal(tmp_path=None):
         assert got == [{"id": "g"}]                 # stale line beats none
     finally:
         O.fetch = real
+
+
+def test_espn_shape_feeds_team_totals():
+    class R:
+        status_code = 200
+        def json(self):
+            return {"events": [{"date": "2026-11-18T01:00Z", "competitions": [{
+                "date": "2026-11-18T01:00Z",
+                "competitors": [
+                    {"homeAway": "home", "team": {"displayName": "Minnesota Wild"}},
+                    {"homeAway": "away", "team": {"displayName": "Nashville Predators"}}],
+                "odds": [{"overUnder": 6.0, "moneyline": {
+                    "home": {"close": {"odds": "-210"}},
+                    "away": {"close": {"odds": "+175"}}}}]}]}]}
+    real = O.requests.get
+    O.requests.get = lambda *a, **k: R()
+    try:
+        games = O.espn_fetch("2026-11-17")
+    finally:
+        O.requests.get = real
+    t = O.team_totals(games, day="2026-11-17").set_index("team")
+    assert t.loc["MIN", "implied_goals"] > t.loc["NSH", "implied_goals"]
+    assert t.loc["MIN", "win_prob"] > 0.6
+
+
+def test_falls_to_espn_when_quota_is_gone():
+    import tempfile
+    O.CACHE_DIR = tempfile.mkdtemp()
+    real_f, real_e = O.fetch, O.espn_fetch
+    def refuse(key=None, markets=None):
+        raise O.OddsUnavailable("HTTP 401: OUT_OF_USAGE_CREDITS")
+    O.fetch = refuse
+    O.espn_fetch = lambda day=None: [{"id": "espn"}]
+    try:
+        assert O.cached_fetch("2026-11-18") == [{"id": "espn"}]
+        assert O.LAST_SOURCE.startswith("ESPN")
+    finally:
+        O.fetch, O.espn_fetch = real_f, real_e

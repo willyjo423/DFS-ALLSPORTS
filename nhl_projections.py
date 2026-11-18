@@ -342,6 +342,7 @@ def build(day: str, sims: int = 20_000, base: str = BASE,
             totals = NO.load(day)
             sk = apply_market(sk, totals)
             meta["market"] = {
+                "source": NO.LAST_SOURCE,
                 "teams": int(len(totals)),
                 "best": totals.sort_values("implied_goals", ascending=False)
                               .head(3)[["team", "implied_goals"]]

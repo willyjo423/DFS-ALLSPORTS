@@ -208,6 +208,9 @@ async function loadSlate(file) {
     SLATE = await r.json();
   } catch (e) { $("status").textContent = "Could not load " + file + " (" + e.message + ")"; return; }
   $("status").textContent = "";
+  if (SLATE.sport === "nhl" && "market" in SLATE && !SLATE.market)
+    $("status").innerHTML = '<b style="color:#c0392b">No betting odds on this board.</b> ' +
+      "Goalie win chances and team totals are model-only - check moneylines before picking a goalie or stack.";
   LOCK.clear(); EXCL.clear(); POS = "All";
   SLATE.players.forEach((p, i) => {
     p.i = i;

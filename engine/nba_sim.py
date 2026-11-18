@@ -26,8 +26,12 @@ import numpy as np
 log = logging.getLogger("nba_sim")
 
 SLOTS_ORDER = ["C", "PF", "SF", "SG", "PG", "F", "G", "UTIL"]   # scarcest first
-GAME_SD = 0.08
-TEAM_SD = 0.05
+# Measured on ~100,000 player pairs (2026-01 to 2026-11), relative to the
+# model's Vegas-adjusted projections: teammates -0.016, opponents -0.004.
+# Once the projection has the game total in it, NBA players do not boom
+# together - so no shared shocks. (Game stacks that won a night were luck.)
+GAME_SD = 0.0
+TEAM_SD = 0.0
 
 
 def simulate_scores(players: list[dict], sims: int, rng) -> np.ndarray:

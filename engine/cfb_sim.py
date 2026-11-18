@@ -24,7 +24,16 @@ from engine.nhl_sim import _inverse_cdf
 
 log = logging.getLogger("cfb_sim")
 
-W_GAME, W_TEAM, W_PASS = 0.08, 0.12, 0.25
+# Fitted on 2024-2026 CFBD games (relative DK residuals vs 8-game form):
+#   QB-receiver +0.157, QB-RB +0.052, receiver-receiver +0.011,
+#   RB-receiver +0.008, opponents +0.020.
+# A one-factor "passing game" per team: the quarterback loads on it almost
+# fully, each receiver lightly (so QB-WR is strong but WR-WR stays near
+# zero), running backs barely.
+W_GAME = 0.015
+QB_PASS = 0.95       # quarterback's loading^2 on his team's passing factor
+REC_PASS = 0.025     # receiver/TE loading^2 -> QB-WR ~0.15, WR-WR ~0.04
+RB_PASS = 0.0025
 FIELD_MIX = ((0.92, 3.0, True), (0.80, 0.0, False))
 
 
@@ -42,12 +51,11 @@ def simulate_scores(payload: dict, sims: int, rng) -> np.ndarray:
     for i, p in enumerate(players):
         if p.get("status") == "out":
             continue
-        passing = p["pos"] in ("QB", "WR", "TE")
-        wp = W_PASS if passing else 0.0
-        z = (np.sqrt(W_GAME) * zg[:, gi[str(p.get("game"))]]
-             + np.sqrt(W_TEAM) * zt[:, ti[p["team"]]]
+        wp = {"QB": QB_PASS, "WR": REC_PASS, "TE": REC_PASS}.get(p["pos"], RB_PASS)
+        wg = min(W_GAME, 1 - wp)
+        z = (np.sqrt(wg) * zg[:, gi[str(p.get("game"))]]
              + np.sqrt(wp) * zp[:, ti[p["team"]]]
-             + np.sqrt(1 - W_GAME - W_TEAM - wp) * rng.normal(size=sims))
+             + np.sqrt(max(1 - wg - wp, 0.0)) * rng.normal(size=sims))
         u = np.clip(ndtr(z), 1e-4, 1 - 1e-4)
         q = p.get("q") or [p.get("med") or 0.0] * len(qs)
         x = _inverse_cdf(qs, q, u)

@@ -329,7 +329,7 @@ def build(players: list[dict], roster: dict, field_size: int = 100_000,
     # Football: a quarterback with his own pass catchers is the correlation
     # that wins tournaments, and the most common bring-back is one skill
     # player from the other side of the same game.
-    if "QB" in roster.get("slots", []):
+    if "QB" in roster.get("slots", []) and stacks is not False:
         qb = {}
         for i, p in enumerate(pl):
             t = str(p.get("team"))
@@ -463,3 +463,11 @@ def safe_build(payload: dict) -> list[dict]:
         log.warning("lineup pool for draft group %s failed (%s) - slate "
                     "published without one", payload.get("draft_group"), exc)
         return []
+
+
+def optimal_lineup(players: list[dict], roster: dict) -> list[int] | None:
+    """The single best-projected legal lineup (no stacks, no ownership
+    penalty) - what the chalk check re-solves on jiggled projections."""
+    pool = build(players, roster, lambdas=(0.0,), per_objective=1, stacks=False)
+    best = next((L for L in pool if L["src"].startswith("median")), None)
+    return best["p"] if best else None

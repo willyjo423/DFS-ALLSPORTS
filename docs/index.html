@@ -291,7 +291,8 @@ function drawPlayers() {
   });
   $("ptbl").tBodies[0].innerHTML = rows.map(p => {
     const cls = LOCK.has(p.i) ? "locked" : EXCL.has(p.i) ? "excl" : "";
-    const flag = p.doubtful ? '<span class="tag">Q</span>' : "";
+    const flag = (p.doubtful ? '<span class="tag">Q</span>' : "")
+      + (p.chalk ? `<span class="tag" style="background:#c0392b;color:#fff" title="in the optimal lineup ${Math.round((p.opt || 0) * 100)}% of the time">CHALK</span>` : "");
     return `<tr class="${cls}">
       <td class="l"><button class="tog ${LOCK.has(p.i) ? "lk" : ""}" data-lock="${p.i}">✓</button>
         <button class="tog ${EXCL.has(p.i) ? "ex" : ""}" data-ex="${p.i}">✕</button></td>

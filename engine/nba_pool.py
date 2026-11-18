@@ -30,7 +30,8 @@ SHORTLIST = 90
 
 
 def build(players: list[dict], field_size: int = 100_000,
-          per_objective: int = PER_OBJECTIVE, time_limit: float = 1.0) -> list[dict]:
+          per_objective: int = PER_OBJECTIVE, time_limit: float = 1.0,
+          lambdas=LAMBDAS, bases=("median", "ceiling")) -> list[dict]:
     keep = [i for i, p in enumerate(players)
             if (p.get("proj") or 0) > 0 and p.get("salary")
             and str(p.get("status") or "clear") != "out"]
@@ -71,7 +72,9 @@ def build(players: list[dict], field_size: int = 100_000,
 
     pool, seen = [], []
     for name, value in (("median", proj), ("ceiling", ceil)):
-        for lam in LAMBDAS:
+        if name not in bases:
+            continue
+        for lam in lambdas:
             obj_p = value * (1.0 - lam * own)
             c = -(obj_p @ U)
             for _ in range(per_objective):
@@ -113,3 +116,8 @@ def safe_build(payload: dict) -> list[dict]:
     except Exception as exc:                                   # noqa: BLE001
         log.warning("nba lineup pool failed (%s)", exc)
         return []
+
+
+def optimal_lineup(players: list[dict]) -> list[int] | None:
+    pool = build(players, per_objective=1, lambdas=(0.0,), bases=("median",))
+    return pool[0]["p"] if pool else None

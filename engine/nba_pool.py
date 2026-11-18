@@ -24,13 +24,13 @@ log = logging.getLogger("nba_pool")
 SLOTS = ["PG", "SG", "SF", "PF", "C", "G", "F", "UTIL"]
 CAP = 50_000
 LAMBDAS = (0.0, 0.5, 1.0, 1.5, 2.5)
-PER_OBJECTIVE = 15
+PER_OBJECTIVE = 12
 MIN_UNIQUE = 2
 SHORTLIST = 90
 
 
 def build(players: list[dict], field_size: int = 100_000,
-          per_objective: int = PER_OBJECTIVE, time_limit: float = 2.0) -> list[dict]:
+          per_objective: int = PER_OBJECTIVE, time_limit: float = 1.0) -> list[dict]:
     keep = [i for i, p in enumerate(players)
             if (p.get("proj") or 0) > 0 and p.get("salary")
             and str(p.get("status") or "clear") != "out"]

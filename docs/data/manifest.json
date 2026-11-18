@@ -45,7 +45,7 @@
    "sport": "nba",
    "site": "dk",
    "kind": "classic",
-   "label": "7:00pm \u00b7 646 contests",
+   "label": "7:00pm \u00b7 626 contests",
    "file": "data/nba_dk_classic_156831.json",
    "locks": "2026-11-19T00:00:00+00:00"
   },
@@ -53,7 +53,7 @@
    "sport": "nba",
    "site": "dk",
    "kind": "classic",
-   "label": "9:30pm (Night) \u00b7 276 contests",
+   "label": "9:30pm (Night) \u00b7 277 contests",
    "file": "data/nba_dk_classic_157004.json",
    "locks": "2026-11-19T02:30:00+00:00"
   },
@@ -61,7 +61,7 @@
    "sport": "nba",
    "site": "dk",
    "kind": "classic",
-   "label": "8:00pm \u00b7 368 contests",
+   "label": "8:00pm \u00b7 395 contests",
    "file": "data/nba_dk_classic_157035.json",
    "locks": "2026-11-20T01:00:00+00:00"
   },

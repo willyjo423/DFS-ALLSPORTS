@@ -1065,5 +1065,5 @@ def test_out_of_rotation_uses_this_seasons_box_scores():
     rows.append({"season": 2026, "week": 2, "school": "WVU", "athlete_id": 2, "name": "Old backup"})
     rows.append({"season": 2026, "week": 8, "school": "WVU", "athlete_id": 3, "name": "New starter"})
     rows.append({"season": 2025, "week": 5, "school": "WVU", "athlete_id": 4, "name": "Last year only"})
-    pool = pd.DataFrame({"athlete_id": [1.0, 2.0, 3.0, 4.0]})
+    pool = pd.DataFrame({"athlete_id": [1.0, 2.0, "3", 4]})
     assert CP.out_of_rotation(pool, pd.DataFrame(rows), 2026).tolist() == [False, True, False, True]

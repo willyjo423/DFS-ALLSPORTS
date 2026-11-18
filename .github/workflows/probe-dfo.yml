@@ -9,11 +9,11 @@ jobs:
       - run: |
           python3 - <<'PY'
           import json, urllib.request
-          d = json.loads(urllib.request.urlopen(urllib.request.Request("https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261117", headers={"User-Agent":"Mozilla/5.0"}), timeout=30).read())
+          get=lambda u: json.loads(urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent":"Mozilla/5.0"}), timeout=30).read())
+          d = get("https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261117")
           for ev in d["events"]:
-              c = ev["competitions"][0]; o = (c.get("odds") or [{}])[0]
-              side = {x["homeAway"]: x["team"]["displayName"] for x in c["competitors"]}
-              ml = o.get("moneyline") or {}
-              h = ((ml.get("home") or {}).get("close") or {}).get("odds"); a = ((ml.get("away") or {}).get("close") or {}).get("odds")
-              print("LINE|%s|%s|%s|%s|%s" % (side.get("home"), side.get("away"), o.get("overUnder"), h, a))
+              s = get("https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/summary?event=" + ev["id"])
+              pc = (s.get("pickcenter") or [{}])[0]
+              side = {x["homeAway"]: x["team"]["abbreviation"] for x in ev["competitions"][0]["competitors"]}
+              print("LINE|%s|%s|%s|%s|%s" % (side.get("home"), side.get("away"), pc.get("overUnder"), (pc.get("homeTeamOdds") or {}).get("moneyLine"), (pc.get("awayTeamOdds") or {}).get("moneyLine")))
           PY

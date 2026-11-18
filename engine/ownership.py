@@ -169,6 +169,10 @@ CLASSIC_VALUE_WEIGHT = 1.00
 CLASSIC_CONCENTRATION = 0.50
 CLASSIC_DKPPG_WEIGHT = 0.0
 CLASSIC_IMPLIED_WEIGHT = 0.0
+# Some positions are chosen more decisively than others: the field crowds
+# onto a handful of goalies far harder than onto skaters. Per-position
+# overrides of the concentration, from real contests where we have them.
+CLASSIC_POSITION_CONCENTRATION: dict = {}
 
 
 def slot_demand(roster: dict) -> dict[str, float]:
@@ -520,7 +524,9 @@ def project(pool: pd.DataFrame, roster: dict,
             idx = list(idx)
             out.loc[idx] = _allocate(score.loc[idx].to_numpy(dtype=float),
                                      float(demand.get(position, 0.0)),
-                                     concentration)
+                                     CLASSIC_POSITION_CONCENTRATION.get(
+                                         str(position), concentration)
+                                     if not showdown else concentration)
 
     log.info("ownership: %d players, total %.0f%% against %d roster slots",
              len(out), 100 * out.sum(), len(roster["slots"]))
@@ -686,7 +692,7 @@ def use_fit(sport: str) -> dict | None:
     import os
     global CLASSIC_POINTS_WEIGHT, CLASSIC_SALARY_WEIGHT
     global CLASSIC_VALUE_WEIGHT, CLASSIC_CONCENTRATION
-    global CLASSIC_DKPPG_WEIGHT, CLASSIC_IMPLIED_WEIGHT
+    global CLASSIC_DKPPG_WEIGHT, CLASSIC_IMPLIED_WEIGHT, CLASSIC_POSITION_CONCENTRATION
     path = os.path.join(os.path.dirname(os.path.dirname(
         os.path.abspath(__file__))), FIT_DIR, f"ownership_fit_{sport}.json")
     if not os.path.exists(path):
@@ -701,6 +707,8 @@ def use_fit(sport: str) -> dict | None:
         CLASSIC_CONCENTRATION = float(fit["concentration"])
         CLASSIC_DKPPG_WEIGHT = float(fit.get("dkppg", 0.0))
         CLASSIC_IMPLIED_WEIGHT = float(fit.get("implied", 0.0))
+        CLASSIC_POSITION_CONCENTRATION = {str(k): float(v) for k, v in
+                                          (fit.get("position_concentration") or {}).items()}
     except (OSError, ValueError, KeyError) as exc:
         log.warning("ownership fit %s unreadable (%s) - defaults kept",
                     path, exc)
@@ -708,3 +716,83 @@ def use_fit(sport: str) -> dict | None:
     log.info("ownership: %s fit loaded (%s slates, rho %.2f)", sport,
              fit.get("slates"), fit.get("rho", float("nan")))
     return fit
+
+
+# ---------------------------------------------------------------------------
+# Mega-chalk catcher
+# ---------------------------------------------------------------------------
+# The softmax spreads ownership too evenly at the top: a cheap player handed a
+# starting role by late news lands in nearly every optimal lineup on the
+# slate, the field (which runs the same optimizers) piles in at 40-60%, and
+# the formula still says 25%. So: count how often each player appears in the
+# best-projected lineups of our own pool, and never let his ownership sit
+# below what that frequency implies. Everyone else is scaled down so each
+# position still sums to what a lineup demands.
+CHALK_DRAWS = 40        # re-solves with jiggled projections
+CHALK_NOISE = 0.15
+CHALK_START = 0.5       # optimal frequency where the floor begins
+CHALK_SLOPE = 0.6       # 100% optimal -> 60% owned; 75% -> 45%
+CHALK_FLAG = 0.30
+
+
+def optimal_frequency(players: list[dict], solve_one, draws: int = CHALK_DRAWS,
+                      noise: float = CHALK_NOISE, seed: int = 3) -> np.ndarray:
+    """How often each player is in THE optimal lineup when every projection
+    is jiggled by ~15% - the 'optimal %' the industry tools publish, and what
+    a field running optimizers converges on."""
+    rng = np.random.default_rng(seed)
+    freq = np.zeros(len(players))
+    done = 0
+    for _ in range(draws):
+        shock = np.exp(rng.normal(0, noise, len(players)))
+        noisy = [dict(p, proj=(p.get("proj") or 0.0) * f, med=(p.get("med") or 0.0) * f)
+                 for p, f in zip(players, shock)]
+        try:
+            pick = solve_one(noisy)
+        except Exception:                                      # noqa: BLE001
+            pick = None
+        if pick:
+            freq[list(pick)] += 1
+            done += 1
+    return freq / max(done, 1)
+
+
+def chalk_adjust(payload: dict, solve_one=None) -> list[str]:
+    """In place on a published payload; returns the names it raised."""
+    players = payload.get("players") or []
+    pool = payload.get("lineups") or []
+    if not players or solve_one is None:
+        for p in players:
+            p["chalk"] = bool((p.get("own") or 0) >= CHALK_FLAG)
+        return []
+    freq = optimal_frequency(players, solve_one)
+    own = np.array([float(p.get("own") or 0) for p in players])
+    floor = np.where(freq >= CHALK_START, CHALK_SLOPE * freq, 0.0)
+    raised = floor > own
+    if raised.any():
+        total = own.sum()
+        new = np.where(raised, floor, own)
+        # Hand the excess back from everyone not raised, in proportion, so the
+        # board still sums to the roster's demand.
+        rest = ~raised
+        excess = new.sum() - total
+        if rest.any() and own[rest].sum() > 0:
+            new[rest] = np.maximum(own[rest] - excess * own[rest] / own[rest].sum(), 0.0)
+        own = new
+    names = []
+    for i, p in enumerate(players):
+        p["opt"] = round(float(freq[i]), 3)
+        if raised[i]:
+            names.append(f"{p['name']} {100 * own[i]:.0f}% (optimal in {100 * freq[i]:.0f}% of re-solves)")
+        p["own"] = round(float(own[i]), 5)
+        p["chalk"] = bool(own[i] >= CHALK_FLAG)
+    # Lineup ownership and duplication follow the new numbers.
+    import math
+    fs = float(payload.get("field_size") or 100_000)
+    for L in pool:
+        o = [players[i]["own"] for i in L["p"]]
+        L["own"] = round(100 * sum(o), 1)
+        L["dup"] = round(fs * math.prod(max(x, 1e-4) for x in o), 4)
+    if names:
+        log.info("chalk: raised %d player(s): %s", len(names), "; ".join(names[:6]))
+    return names

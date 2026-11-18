@@ -587,6 +587,10 @@ def write(payloads: list[dict], partial: bool = False) -> None:
                             str(exc)[:80])
         if "lineups" not in p:
             p["lineups"] = LP.safe_build(p)
+        try:
+            OWN.chalk_adjust(p, lambda pl: LP.optimal_lineup(pl, p["roster"]))
+        except Exception as exc:                               # noqa: BLE001
+            log.warning("chalk check failed (%s)", str(exc)[:80])
         # Rank the pool by how often each lineup beats the field (contest
         # simulation with line, power-play and goalie correlation).
         try:

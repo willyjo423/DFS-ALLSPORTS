@@ -216,6 +216,10 @@ def build_slate(dg: int, starts, label: str, hist: pd.DataFrame, p: dict,
     }
     payload["lineups"] = POOL.safe_build(payload)
     try:
+        OWN.chalk_adjust(payload, POOL.optimal_lineup)
+    except Exception as exc:                                   # noqa: BLE001
+        log.warning("chalk check failed (%s)", str(exc)[:80])
+    try:
         SIM.rank_pool(payload)
     except Exception as exc:                                   # noqa: BLE001
         log.warning("contest sim failed (%s); lineups published unranked", exc)

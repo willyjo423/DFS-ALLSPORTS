@@ -10,24 +10,9 @@ jobs:
           python3 - <<'PY'
           import json, urllib.request
           UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36"
-          def get(u):
-              try:
-                  r = urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": UA, "Accept": "application/json"}), timeout=30)
-                  return r.status, json.loads(r.read())
-              except Exception as e:
-                  return str(e)[:120], None
-          # a locked NHL draft group from last night and a live one
-          for dg in (156626, 156635):
-              s, d = get(f"https://api.draftkings.com/draftgroups/v1/draftgroups/{dg}/draftables?format=json")
-              print("DRAFTABLES", dg, s)
-              if d:
-                  r = d["draftables"][0]
-                  print("  keys", list(r))
-                  print("  stats", json.dumps(r.get("draftStatAttributes"))[:400])
-              s, d = get(f"https://www.draftkings.com/lineup/getavailableplayers?draftGroupId={dg}")
-              print("LOBBY", dg, s, (list(d)[:10] if d else None))
-              if d and d.get("playerList"):
-                  print("  player keys", list(d["playerList"][0]))
-          s, d = get("https://api.draftkings.com/contests/v1/contests/185000000?format=json")
-          print("CONTEST", s)
+          for dg in (156626, 156831):
+              d = json.loads(urllib.request.urlopen(urllib.request.Request(f"https://www.draftkings.com/lineup/getavailableplayers?draftGroupId={dg}", headers={"User-Agent": UA}), timeout=30).read())
+              pl = sorted(d["playerList"], key=lambda p: -p.get("s", 0))[:8]
+              for p in pl:
+                  print("P", dg, p["fn"], p["ln"], {k: p.get(k) for k in ("s", "ppg", "or", "swp", "ipc", "pp", "i", "dgst", "slo")})
           PY

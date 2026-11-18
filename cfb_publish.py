@@ -754,6 +754,48 @@ def slate_players(pool: pd.DataFrame, quantiles: list[float],
     return rows
 
 
+def out_of_rotation(pool: pd.DataFrame, hist: pd.DataFrame, season: int) -> pd.Series:
+    """True for a player who is not in his team's rotation this season.
+
+    The model projects every priced athlete off his last feature row, so a
+    backup quarterback who started last year (Scotty Fox Jr., $9,100,
+    projected 19.6 behind Michael Hawkins Jr., who has started every game)
+    or a third-stringer with one garbage-time snap carries a position-level
+    projection. The box scores say who is actually playing: a player is out
+    of the rotation once his team has played four games and he has
+      - no appearance this season, or
+      - not appeared in his team's last three games, or
+      - two appearances or fewer in six-plus team games and was not in the
+        team's most recent one (a fill-in starter who just took over is kept).
+    """
+    h = hist[hist["season"].astype(int) == season]
+    if "key" in h.columns:
+        h = h[h["key"] != "team"]
+    if not len(h):
+        return pd.Series(False, index=pool.index)
+
+    def ids(x):
+        return pd.to_numeric(x, errors="coerce").astype("Int64").astype(str)
+    h = h.assign(athlete_id=ids(h["athlete_id"]))
+    team_weeks = {t: sorted(g.unique()) for t, g in h.groupby("school")["week"]}
+    mine = h.sort_values("week").groupby("athlete_id").agg(
+        apps=("week", "nunique"), last=("week", "max"), school=("school", "last"))
+    most = max((len(v) for v in team_weeks.values()), default=0)
+    out = []
+    for aid in ids(pool["athlete_id"]):
+        if aid not in mine.index:
+            out.append(most >= 4)
+            continue
+        r = mine.loc[aid]
+        weeks = team_weeks.get(r["school"], [])
+        if len(weeks) < 4:
+            out.append(False)
+            continue
+        missed = sum(1 for w in weeks if w > r["last"])
+        out.append(bool(missed >= 3 or (r["apps"] <= 2 and len(weeks) >= 6 and missed >= 1)))
+    return pd.Series(out, index=pool.index)
+
+
 def thin_evidence(pool: pd.DataFrame, season: int) -> pd.DataFrame:
     """Mark the projections that are standing on last season's player.
 
@@ -1193,6 +1235,15 @@ def main(argv=None) -> int:
 
             merged = join_board(board, proj, hist, mapping)
             pool = merged[merged["median"].notna()].copy()
+            gone = out_of_rotation(pool, hist, season)
+            if gone.any():
+                log.info("draft group %s: %d priced player(s) not in their team's "
+                         "rotation this season, dropped: %s", dg, int(gone.sum()),
+                         ", ".join(f"{n} ({t}, ${int(float(sl)):,})" for n, t, sl in
+                                   pool.loc[gone, ["name", "team", "salary"]]
+                                   .sort_values("salary", ascending=False).head(12)
+                                   .itertuples(index=False)))
+                pool = pool[~gone].copy()
             pool = pool[pd.to_numeric(pool["salary"],
                                       errors="coerce").notna()]
             pool["salary"] = pd.to_numeric(pool["salary"]).astype(int)

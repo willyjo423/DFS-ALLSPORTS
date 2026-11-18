@@ -1054,3 +1054,16 @@ if __name__ == "__main__":
     logging.basicConfig(level=logging.WARNING,
                         format="%(levelname)s %(name)s: %(message)s")
     sys.exit(main())
+
+
+def test_out_of_rotation_uses_this_seasons_box_scores():
+    import pandas as pd
+    import cfb_publish as CP
+    rows = []
+    for w in range(1, 9):
+        rows.append({"season": 2026, "week": w, "school": "WVU", "athlete_id": 1, "name": "Starter"})
+    rows.append({"season": 2026, "week": 2, "school": "WVU", "athlete_id": 2, "name": "Old backup"})
+    rows.append({"season": 2026, "week": 8, "school": "WVU", "athlete_id": 3, "name": "New starter"})
+    rows.append({"season": 2025, "week": 5, "school": "WVU", "athlete_id": 4, "name": "Last year only"})
+    pool = pd.DataFrame({"athlete_id": [1.0, 2.0, 3.0, 4.0]})
+    assert CP.out_of_rotation(pool, pd.DataFrame(rows), 2026).tolist() == [False, True, False, True]

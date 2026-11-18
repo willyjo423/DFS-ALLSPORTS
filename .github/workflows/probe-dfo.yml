@@ -10,21 +10,24 @@ jobs:
           python3 - <<'PY'
           import json, urllib.request
           UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36"
-          def get(u, h=None):
+          def get(u):
               try:
-                  hd = {"User-Agent": UA, "Accept": "application/json, text/html", "Referer": "https://www.nba.com/"}; hd.update(h or {})
-                  r = urllib.request.urlopen(urllib.request.Request(u, headers=hd), timeout=30)
-                  return r.status, r.read()
+                  r = urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": UA, "Accept": "application/json"}), timeout=30)
+                  return r.status, json.loads(r.read())
               except Exception as e:
-                  return str(e)[:100], b""
-          for day in ("20261117", "20261118"):
-              s, b = get(f"https://stats.nba.com/js/data/leaders/00_daily_lineups_{day}.json")
-              print("NBA DAILY", day, s, len(b))
-              if b:
-                  d = json.loads(b); g = d.get("games", [])
-                  print("  games", len(g), json.dumps(g[0])[:700] if g else "")
-          s, b = get("https://www.rotowire.com/basketball/nba-lineups.php")
-          print("ROTOWIRE", s, len(b), b"is-confirmed" in b, b"lineup__player" in b)
-          s, b = get("https://www.lineups.com/nba/lineups")
-          print("LINEUPSCOM", s, len(b))
+                  return str(e)[:120], None
+          # a locked NHL draft group from last night and a live one
+          for dg in (156626, 156635):
+              s, d = get(f"https://api.draftkings.com/draftgroups/v1/draftgroups/{dg}/draftables?format=json")
+              print("DRAFTABLES", dg, s)
+              if d:
+                  r = d["draftables"][0]
+                  print("  keys", list(r))
+                  print("  stats", json.dumps(r.get("draftStatAttributes"))[:400])
+              s, d = get(f"https://www.draftkings.com/lineup/getavailableplayers?draftGroupId={dg}")
+              print("LOBBY", dg, s, (list(d)[:10] if d else None))
+              if d and d.get("playerList"):
+                  print("  player keys", list(d["playerList"][0]))
+          s, d = get("https://api.draftkings.com/contests/v1/contests/185000000?format=json")
+          print("CONTEST", s)
           PY

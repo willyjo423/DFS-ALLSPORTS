@@ -10,28 +10,21 @@ jobs:
           python3 - <<'PY'
           import json, urllib.request
           UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36"
-          def get(u, h=None):
-              try:
-                  hd = {"User-Agent": UA, "Accept": "application/json"}; hd.update(h or {})
-                  r = urllib.request.urlopen(urllib.request.Request(u, headers=hd), timeout=30)
-                  return r.status, json.loads(r.read())
-              except Exception as e:
-                  return str(e)[:100], None
-          s, d = get("https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261118")
-          eid = d["events"][0]["id"]
-          s, o = get(f"https://sports.core.api.espn.com/v2/sports/basketball/leagues/nba/events/{eid}/competitions/{eid}/odds")
-          print("ESPN ODDS LIST", s, [ (i.get("provider") or {}).get("id") for i in (o or {}).get("items", [])][:10])
-          for prov in (100, 58, 59, 1002, 2000, 40):
-              s2, p = get(f"https://sports.core.api.espn.com/v2/sports/basketball/leagues/nba/events/{eid}/competitions/{eid}/odds/{prov}/propBets?limit=500")
-              print("ESPN PROPS", prov, s2, (p or {}).get("count"))
-              if p and p.get("items"):
-                  print("ITEM", json.dumps(p["items"][0])[:700]); break
-          for v in ("v6", "v5", "v4"):
-              s4, u = get(f"https://api.underdogfantasy.com/beta/{v}/over_under_lines")
-              print("UNDERDOG", v, s4, (len(u.get("over_under_lines", [])) if isinstance(u, dict) else None))
-              if u: print("UD KEYS", list(u)[:10]); break
-          s5, b = get("https://www.bovada.lv/services/sports/event/coupon/events/A/description/basketball/nba?marketFilterId=def&preMatchOnly=true&lang=en")
-          print("BOVADA", s5, type(b).__name__)
-          s6, f = get("https://sportsbook.fanduel.com/cache/psmg/UK/63747.3.json")
-          print("FANDUEL", s6)
+          def get(u):
+              r = urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": UA, "Accept": "application/json"}), timeout=30)
+              return json.loads(r.read())
+          b = get("https://www.bovada.lv/services/sports/event/coupon/events/A/description/basketball/nba?marketFilterId=def&preMatchOnly=true&lang=en")
+          evs = b[0]["events"]
+          print("EVENTS", len(evs), [(e["description"], e["link"]) for e in evs[:3]])
+          link = evs[0]["link"]
+          full = get("https://www.bovada.lv/services/sports/event/v2/events/A/description" + link + "?lang=en")
+          ev = full[0]["events"][0]
+          groups = ev["displayGroups"]
+          print("GROUPS", [g["description"] for g in groups])
+          for g in groups:
+              if "Player" in g["description"] or "Prop" in g["description"]:
+                  ms = g["markets"]
+                  print("GROUP", g["description"], len(ms))
+                  for m in ms[:6]:
+                      print("  MKT", m["description"], [(o["description"], (o.get("price") or {}).get("american"), (o.get("price") or {}).get("handicap")) for o in m["outcomes"]][:3])
           PY

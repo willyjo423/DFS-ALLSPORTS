@@ -154,29 +154,54 @@ def _scale(p: dict, f: float) -> None:
         p["q"] = [round(float(v) * f, 3) for v in p["q"]]
 
 
+UNCONFIRMED = 0.60          # the goalie the site expects, before anyone says so
+
+
 def apply_goalies(players: list[dict], starters: dict, name_keys) -> int:
+    """One start per team, shared out by how sure the news is.
+
+    Every team's goalies used to arrive at p_play 1.0 each. Left alone for an
+    Unconfirmed team, that put BOTH Nashville goalies on the 2026-11-17 board
+    as full starters at $6,900 - and in 210 of 258 built lineups. Now every
+    team's goalies sum to one start: Confirmed 1/0, Likely 0.85/0.15,
+    Unconfirmed 0.60/0.40, and with no news at all the man who started last
+    game gets the Unconfirmed share."""
     idx = _lookup(players, name_keys)
     changed = 0
-    for team, info in starters.items():
-        status = info["status"]
-        if status not in ("Confirmed", "Likely"):
-            continue
-        s = _find(idx, team, info["name"], name_keys)
+    by_team = {}
+    for i, p in enumerate(players):
+        if p["pos"] == "G":
+            by_team.setdefault(p["team"], []).append(i)
+    for team, mates in by_team.items():
+        info = starters.get(team) or {}
+        status = info.get("status") or "none"
+        s = _find(idx, team, info["name"], name_keys) if info.get("name") else None
         if s is None:
-            continue
-        mates = [i for i, p in enumerate(players)
-                 if p["team"] == team and p["pos"] == "G"]
-        others = [i for i in mates if i != s]
-        p_start = 1.0 if status == "Confirmed" else LIKELY
-        p_other = 0.0 if status == "Confirmed" else (1 - LIKELY) / max(1, len(others))
-        for i, pp in [(s, p_start)] + [(i, p_other) for i in others]:
+            last = [i for i in mates if players[i].get("g_started")]
+            s = last[0] if last else None
+            status = "none"
+        if s is None:
+            if len(mates) < 2:
+                continue
+            # Nothing to go on: an even split, still one start in total.
+            share = {i: 1.0 / len(mates) for i in mates}
+        else:
+            p_start = {"Confirmed": 1.0, "Likely": LIKELY}.get(status, UNCONFIRMED)
+            others = [i for i in mates if i != s]
+            share = {s: p_start if others else 1.0}
+            for i in others:
+                share[i] = (1 - p_start) / len(others)
+        for i, pp in share.items():
             g = players[i]
             old = float(g.get("pp") or 1.0)
             cond = float(g.get("mean") or 0.0) / old if old > 0 else float(
                 g.get("med") or 0.0)
             g["pp"] = round(pp, 4)
             g["mean"] = round(cond * pp, 2)
-            g["gst"] = status if i == s else "backup"
+            if s is not None:
+                g["gst"] = (status if status in ("Confirmed", "Likely")
+                            else "Unconfirmed" if status != "none"
+                            else "expected") if i == s else "backup"
             if pp == 0.0:
                 g["status"] = "out"
             changed += 1

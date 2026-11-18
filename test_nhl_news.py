@@ -30,11 +30,11 @@ def test_likely_goalie_splits_the_chance():
     assert pl[1]["status"] == "clear"
 
 
-def test_unconfirmed_changes_nothing():
+def test_unconfirmed_splits_one_start():
     pl = [P("A Starter", "TBL", "G"), P("B Backup", "TBL", "G")]
     N.apply_goalies(pl, {"TBL": {"name": "A Starter",
                                  "status": "Unconfirmed"}}, name_keys)
-    assert pl[0]["pp"] == pl[1]["pp"] == 1.0
+    assert pl[0]["pp"] == 0.6 and abs(pl[1]["pp"] - 0.4) < 1e-9
 
 
 def test_lines_scratch_injury_and_promotion():

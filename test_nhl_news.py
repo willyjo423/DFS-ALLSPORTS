@@ -87,3 +87,22 @@ def test_promotion_never_lowers():
         for n in ("Star", "Norm A", "Norm B")]}}
     N.apply_lines(pl, tl, name_keys, now=now)
     assert pl[0]["mean"] >= 10.0
+
+
+def test_cache_round_trip_and_fallback():
+    import tempfile
+    N.CACHE_DIR = tempfile.mkdtemp()
+    now = datetime(2026, 11, 17, 20, tzinfo=timezone.utc)
+    st = {"BOS": {"name": "Michael DiPietro", "status": "Confirmed"}}
+    tl = {"BOS": {"updated": now, "players": [
+        {"name": "X", "group": "f1", "cat": "ev", "inj": "", "gtd": False}]}}
+    N._save("2026-11-17", st, {"BOS": "boston-bruins"}, tl)
+    real = N.goalies
+    def refuse(day=None):
+        raise RuntimeError("HTTP 403")
+    N.goalies = refuse
+    try:
+        s2, slugs, tl2 = N._pull("2026-11-17", {"BOS"})
+    finally:
+        N.goalies = real
+    assert s2 == st and tl2["BOS"]["updated"] == now

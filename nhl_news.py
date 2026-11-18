@@ -336,6 +336,67 @@ def reown(payload: dict) -> None:
         p["lev"] = round(float(l), 3)
 
 
+# ------------------------------------------------------------------- cache
+import os
+
+CACHE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                         "docs", "data", "news")
+
+
+def _cache_file(day) -> str:
+    return os.path.join(CACHE_DIR, f"nhl_{day or 'today'}.json")
+
+
+def _save(day, starters, slugs, team_lines) -> None:
+    os.makedirs(CACHE_DIR, exist_ok=True)
+    body = {"saved_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+            "starters": starters, "slugs": slugs,
+            "lines": {t: {"updated": tl["updated"].isoformat() if tl.get("updated") else None,
+                          "players": tl["players"]} for t, tl in team_lines.items()}}
+    with open(_cache_file(day), "w") as fh:
+        json.dump(body, fh)
+
+
+def _load(day):
+    with open(_cache_file(day)) as fh:
+        d = json.load(fh)
+    tl = {t: {"updated": datetime.fromisoformat(v["updated"]) if v.get("updated") else None,
+              "players": v["players"]} for t, v in d["lines"].items()}
+    return d["starters"], d["slugs"], tl, d.get("saved_at")
+
+
+def _pull(day, teams):
+    """Fresh from the site when it answers, merged over the day's last good
+    pull; the last good pull alone when the site's bot screen refuses."""
+    try:
+        old = _load(day)
+    except Exception:                                          # noqa: BLE001
+        old = None
+    try:
+        starters, slugs = goalies(day)
+    except Exception as exc:                                   # noqa: BLE001
+        if old:
+            log.warning("news: site refused (%s); using the pull saved at %s",
+                        str(exc)[:60], old[3])
+            return old[0], old[1], old[2]
+        raise
+    team_lines = dict(old[2]) if old else {}
+    for t in sorted(teams):
+        if not slugs.get(t):
+            continue
+        try:
+            team_lines[t] = lines(slugs[t])
+        except Exception as exc:                               # noqa: BLE001
+            log.warning("lines %s: %s%s", t, str(exc)[:80],
+                        " (keeping the earlier pull)" if t in team_lines else "")
+        time.sleep(PAUSE)
+    try:
+        _save(day, starters, slugs, team_lines)
+    except Exception as exc:                                   # noqa: BLE001
+        log.warning("news cache not written (%s)", str(exc)[:60])
+    return starters, slugs, team_lines
+
+
 # ---------------------------------------------------------------- top level
 def apply(payload: dict) -> None:
     """Goalies, lines, scratches and promotions onto one NHL payload."""
@@ -351,17 +412,8 @@ def apply(payload: dict) -> None:
                    .astimezone(timezone(timedelta(hours=-5))).date().isoformat())
         except ValueError:
             day = None
-    starters, slugs = goalies(day)
+    starters, slugs, team_lines = _pull(day, teams)
     g = apply_goalies(players, starters, name_keys)
-    team_lines = {}
-    for t in sorted(teams):
-        if not slugs.get(t):
-            continue
-        try:
-            team_lines[t] = lines(slugs[t])
-        except Exception as exc:                               # noqa: BLE001
-            log.warning("lines %s: %s", t, str(exc)[:80])
-        time.sleep(PAUSE)
     n = apply_lines(players, team_lines, name_keys)
     conf = sum(1 for t in teams if starters.get(t, {}).get("status") == "Confirmed")
     payload["news"] = {

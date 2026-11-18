@@ -775,7 +775,7 @@ def out_of_rotation(pool: pd.DataFrame, hist: pd.DataFrame, season: int) -> pd.S
         return pd.Series(False, index=pool.index)
 
     def ids(x):
-        return pd.to_numeric(x, errors="coerce").astype("Int64").astype(str)
+        return x.astype(str).str.replace(r"\.0$", "", regex=True)
     h = h.assign(athlete_id=ids(h["athlete_id"]))
     team_weeks = {t: sorted(g.unique()) for t, g in h.groupby("school")["week"]}
     mine = h.sort_values("week").groupby("athlete_id").agg(

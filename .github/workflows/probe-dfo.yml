@@ -10,6 +10,13 @@ jobs:
           python3 - <<'PY'
           import logging; logging.basicConfig(level=logging.INFO)
           import nhl_props as P, json
+          import collections
+          lst = P._get(P.LIST_URL); evs=[e for b in lst for e in b.get("events",[])]
+          print("EVS", [e["description"] for e in evs][:5])
+          e=[e for e in evs if "@" in e["description"] and "Goals" not in e["description"]][0]
+          full=P._get(P.EVENT_URL.format(e["link"])); ev=full[0]["events"][0]
+          c=collections.Counter((g["description"], (m.get("period") or {}).get("description")) for g in ev["displayGroups"] for m in g["markets"])
+          print("PER", c.most_common(20)); print("PARSE", len(P.parse_event(ev)))
           d = P.fetch()
           print("N", len(d))
           for k in list(d)[:6]: print("K", k, d[k])

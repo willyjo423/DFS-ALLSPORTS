@@ -226,7 +226,57 @@ def _redact(text: str, key: str) -> str:
     return out
 
 
+ESPN_SB = "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard"
+
+
+def espn_fetch() -> list:
+    """This week's FBS lines from ESPN's public scoreboard (DraftKings book):
+    free, keyless, no quota. Shaped like the odds API's payload - spread
+    quoted for each side, total as over/under - so week_lines() reads it
+    unchanged. One book rather than a median of several."""
+    r = requests.get(ESPN_SB, timeout=TIMEOUT, params={"groups": 80, "limit": 400},
+                     headers={"User-Agent": "Mozilla/5.0"})
+    if r.status_code != 200:
+        raise OddsUnavailable(f"ESPN HTTP {r.status_code}")
+    games = []
+    for ev in r.json().get("events") or []:
+        comp = (ev.get("competitions") or [{}])[0]
+        side = {c.get("homeAway"): (c.get("team") or {}).get("displayName")
+                for c in comp.get("competitors") or []}
+        o = (comp.get("odds") or [None])[0] or {}
+        home, away = side.get("home"), side.get("away")
+        if not (home and away) or o.get("overUnder") is None or o.get("spread") is None:
+            continue
+        sp = abs(float(o["spread"]))
+        fav_home = bool((o.get("homeTeamOdds") or {}).get("favorite"))
+        home_pt = -sp if fav_home else sp
+        games.append({
+            "home_team": home, "away_team": away,
+            "commence_time": comp.get("date") or ev.get("date"),
+            "bookmakers": [{"key": "draftkings-espn", "markets": [
+                {"key": "totals", "outcomes": [
+                    {"name": "Over", "point": float(o["overUnder"])},
+                    {"name": "Under", "point": float(o["overUnder"])}]},
+                {"key": "spreads", "outcomes": [
+                    {"name": home, "point": home_pt},
+                    {"name": away, "point": -home_pt}]}]}]})
+    if not games:
+        raise OddsUnavailable("ESPN returned no college lines")
+    log.info("odds: %d FBS games from ESPN (DraftKings lines)", len(games))
+    return games
+
+
 def fetch(key: str | None = None, markets: str = MARKETS) -> list:
+    """The odds API, falling back to ESPN when it refuses (quota, outage,
+    no key) - the 2026-11-14 board went out with no market at all."""
+    try:
+        return _fetch_api(key, markets)
+    except OddsUnavailable as exc:
+        log.warning("odds api unavailable (%s); trying ESPN", str(exc)[:80])
+        return espn_fetch()
+
+
+def _fetch_api(key: str | None = None, markets: str = MARKETS) -> list:
     key = key or os.environ.get("ODDS_API_KEY", "")
     if not key:
         raise OddsUnavailable(

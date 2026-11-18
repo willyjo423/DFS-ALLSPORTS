@@ -33,6 +33,7 @@ jobs:
         run: |
           set -o pipefail
           python projection_calibration.py --fit nhl 2>&1 | tee fit.txt
+          python projection_calibration.py --fit cfb 2>&1 | tee -a fit.txt || echo "cfb fit skipped"
       - name: Commit
         run: |
           git config user.name  "github-actions[bot]"

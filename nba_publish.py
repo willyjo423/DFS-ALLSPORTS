@@ -246,6 +246,11 @@ def build_slate(dg: int, starts, label: str, hist: pd.DataFrame, p: dict,
         SIM.rank_pool(payload)
     except Exception as exc:                                   # noqa: BLE001
         log.warning("contest sim failed (%s); lineups published unranked", exc)
+    pr = [(x["props"], x["model"]) for x in players if x.get("props") is not None and x.get("model")]
+    if pr:
+        d = np.array([a - b for a, b in pr])
+        log.info("draft group %s: props matched %d players, props - model mean %+.1f, mean |gap| %.1f",
+                 dg, len(pr), d.mean(), np.abs(d).mean())
     log.info("draft group %s: %d players, %d out, %d lineups", dg, len(players),
              sum(1 for x in players if x["status"] == "out"), len(payload["lineups"]))
     return payload

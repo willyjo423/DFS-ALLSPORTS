@@ -49,14 +49,21 @@ def simulate_scores(players: list[dict], sims: int, rng) -> np.ndarray:
 
 
 FIELD_STRENGTH = 0.90   # field lineups project at least this share of the best
-FIELD_MIX = (0.93, 0.82)  # sharp half, casual half
+# (projection floor as a share of the best, value chase): sharp half, casual half.
+# Without the value chase a 300-player board almost never yields a sharp
+# lineup by chance - the first live run built 8 of 1,250.
+FIELD_MIX = ((0.93, 4.0), (0.82, 0.0))
 
 
 def build_field(players: list[dict], size: int, rng, cap: int = 50_000,
                 min_spend: int = 47_000, tries: int = 40,
-                best_proj: float | None = None) -> np.ndarray:
+                best_proj: float | None = None, value_power: float = 0.0) -> np.ndarray:
     own = np.array([max(p.get("own") or 0.0, 0.0) for p in players])
     sal = np.array([p.get("salary") or 0 for p in players])
+    if value_power:
+        # Optimizer users chase points per dollar as well as the chalk.
+        pr = np.array([p.get("proj") or 0.0 for p in players])
+        own = own * (pr / np.maximum(sal, 1) * 200) ** value_power
     elig = [set(p.get("elig") or []) for p in players]
     ok = np.array([p.get("status") != "out" and (p.get("own") or 0) > 0.002 for p in players])
     by_slot = {s: np.array([i for i in range(len(players)) if ok[i] and s in elig[i]])
@@ -99,11 +106,11 @@ def rank_pool(payload: dict, sims: int = 1500, field: int = 2500, seed: int = 7)
     # and casual entries well below it. Half each.
     best = max(L["proj"] for L in pool)
     parts = []
-    for strength in FIELD_MIX:
+    for strength, vp in FIELD_MIX:
         global FIELD_STRENGTH
         FIELD_STRENGTH = strength
         parts.append(build_field(players, field // len(FIELD_MIX), rng,
-                                 best_proj=best, tries=200))
+                                 best_proj=best, tries=200, value_power=vp))
     parts = [x for x in parts if len(x)]
     Fd = np.vstack(parts) if parts else np.zeros((0, 8), int)
     if len(Fd) < 200:

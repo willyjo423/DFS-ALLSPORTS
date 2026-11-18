@@ -361,10 +361,70 @@ def _cache_path(day) -> str:
     return os.path.join(CACHE_DIR, f"nhl_{tag}.json")
 
 
+ESPN = "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard"
+
+
+def _american(v):
+    s = str(v or "").strip().upper()
+    if s in ("EVEN", "EV", "PK"):
+        return 100
+    try:
+        return int(float(s.replace("+", "")))
+    except ValueError:
+        return None
+
+
+def espn_fetch(day=None) -> list:
+    """Tonight's DraftKings moneylines and totals from ESPN's public
+    scoreboard - free, no key, no quota - shaped like the odds API's payload
+    so everything downstream reads it unchanged. One book instead of a
+    median, which is a little noisier and far better than no market."""
+    d = dt.date.fromisoformat(str(day)[:10]) if day else dt.date.today()
+    r = requests.get(ESPN, timeout=TIMEOUT,
+                     params={"dates": d.strftime("%Y%m%d")},
+                     headers={"User-Agent": "Mozilla/5.0"})
+    if r.status_code != 200:
+        raise OddsUnavailable(f"ESPN HTTP {r.status_code}")
+    games = []
+    for ev in r.json().get("events") or []:
+        comp = (ev.get("competitions") or [{}])[0]
+        teams = {c.get("homeAway"): (c.get("team") or {}).get("displayName")
+                 for c in comp.get("competitors") or []}
+        home, away = teams.get("home"), teams.get("away")
+        odds = (comp.get("odds") or [None])[0]
+        if not (home and away and odds):
+            continue
+        ml = odds.get("moneyline") or {}
+        pick = lambda side: _american(((ml.get(side) or {}).get("close") or {}).get("odds")
+                                      or ((ml.get(side) or {}).get("open") or {}).get("odds"))
+        markets = []
+        h, a = pick("home"), pick("away")
+        if h is not None and a is not None:
+            markets.append({"key": "h2h", "outcomes": [
+                {"name": home, "price": h}, {"name": away, "price": a}]})
+        if odds.get("overUnder") is not None:
+            ou = float(odds["overUnder"])
+            markets.append({"key": "totals", "outcomes": [
+                {"name": "Over", "point": ou}, {"name": "Under", "point": ou}]})
+        if markets:
+            games.append({"home_team": home, "away_team": away,
+                          "commence_time": comp.get("date") or ev.get("date"),
+                          "bookmakers": [{"key": "draftkings-espn",
+                                          "markets": markets}]})
+    if not games:
+        raise OddsUnavailable("ESPN returned no lines")
+    log.info("odds: %d games from ESPN (DraftKings lines)", len(games))
+    return games
+
+
+LAST_SOURCE = None
+
+
 def cached_fetch(day=None, key: str | None = None, now=None) -> list:
     """The API payload, from a cache younger than CACHE_HOURS when there is
     one; from the API otherwise; from an older same-day cache if the API
     refuses. Lines move a little through the day, a stale line beats none."""
+    global LAST_SOURCE
     import json
     now = now or dt.datetime.now(dt.timezone.utc)
     path = _cache_path(day)
@@ -377,17 +437,25 @@ def cached_fetch(day=None, key: str | None = None, now=None) -> list:
                    ).total_seconds() / 3600
             if age < CACHE_HOURS:
                 log.info("odds: cached %.1fh ago, not spending a credit", age)
+                LAST_SOURCE = "cached " + old["fetched_at"]
                 return old["games"]
         except Exception:                                      # noqa: BLE001
             old = None
     try:
         games = fetch(key)
-    except OddsUnavailable:
-        if old:
-            log.warning("odds: API refused; using the line cached at %s",
-                        old.get("fetched_at"))
-            return old["games"]
-        raise
+        LAST_SOURCE = "the-odds-api"
+    except OddsUnavailable as exc:
+        log.warning("odds api unavailable (%s); trying ESPN", str(exc)[:80])
+        try:
+            games = espn_fetch(day)
+            LAST_SOURCE = "ESPN (DraftKings)"
+        except Exception as exc2:                              # noqa: BLE001
+            if old:
+                log.warning("odds: ESPN failed too (%s); using the line "
+                            "cached at %s", str(exc2)[:60], old.get("fetched_at"))
+                LAST_SOURCE = "cached " + str(old.get("fetched_at"))
+                return old["games"]
+            raise OddsUnavailable(f"no source answered: {exc}; {exc2}") from exc2
     os.makedirs(CACHE_DIR, exist_ok=True)
     with open(path, "w") as fh:
         json.dump({"fetched_at": now.isoformat(timespec="seconds"),

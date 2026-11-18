@@ -845,6 +845,10 @@ def main(argv=None) -> int:
                 # tonight's lines should say so where somebody will read it,
                 # not in a log nobody opens.
                 "caveats": caveats_for(pmeta),
+                # Which betting market the board was built on, or None. The
+                # page warns loudly when it is None: without it goalie wins
+                # and team totals are blind (2026-11-17, Nashville).
+                "market": (pmeta or {}).get("market") if pmeta else None,
             })
         except Exception as exc:                               # noqa: BLE001
             # One bad board must not take the others down. The baseball build

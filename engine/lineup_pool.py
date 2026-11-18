@@ -326,6 +326,32 @@ def build(players: list[dict], roster: dict, field_size: int = 100_000,
         for lam in lambdas:
             families.append((f"{base_name} lam={lam}", base, lam, None,
                              per_objective))
+    # Football: a quarterback with his own pass catchers is the correlation
+    # that wins tournaments, and the most common bring-back is one skill
+    # player from the other side of the same game.
+    if "QB" in roster.get("slots", []):
+        qb = {}
+        for i, p in enumerate(pl):
+            t = str(p.get("team"))
+            qb.setdefault(t, {"qb": np.zeros(n, bool), "rec": np.zeros(n, bool),
+                              "opp": str(p.get("opp") or "")})
+            if str(p["pos"]) == "QB":
+                qb[t]["qb"][i] = True
+            elif str(p["pos"]) in ("WR", "TE", "RB"):
+                qb[t]["rec"][i] = True
+        skill = {t: v["rec"] for t, v in qb.items()}
+        stack2 = {f"{t} QB+2": [(v["qb"], 1), (v["rec"], 2)]
+                  for t, v in qb.items() if v["qb"].any() and v["rec"].sum() >= 2}
+        bring = {f"{t} QB+2+1": [(v["qb"], 1), (v["rec"], 2), (skill[v["opp"]], 1)]
+                 for t, v in qb.items()
+                 if v["qb"].any() and v["rec"].sum() >= 2 and v["opp"] in skill}
+        if stack2:
+            for lam in (0.0, 1.0, 2.0):
+                families.append((f"qb stack lam={lam}", med, lam,
+                                 ("groups", [(stack2, 3)]), STACKED_PER_OBJECTIVE))
+                if bring:
+                    families.append((f"qb stack+bringback lam={lam}", med, lam,
+                                     ("groups", [(bring, 4)]), STACKED_PER_OBJECTIVE))
     if stacks is None:
         stacks = "G" in roster.get("slots", [])     # hockey stacks by default
     if stacks and len(teams) >= 3:

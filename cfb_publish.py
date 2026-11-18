@@ -869,6 +869,13 @@ def write(payloads: list[dict]) -> None:
         PC.apply(p)
         if "lineups" not in p:
             p["lineups"] = LP.safe_build(p)
+        # Rank the pool by how often each lineup beats a simulated field
+        # (game, team and QB-to-receiver correlation).
+        try:
+            from engine import cfb_sim as CSIM
+            CSIM.rank_pool(p)
+        except Exception as exc:                               # noqa: BLE001
+            log.warning("contest sim failed (%s); lineups unranked", str(exc)[:80])
         name = f"{SPORT}_dk_{p['kind']}_{p['draft_group']}.json"
         # allow_nan=False, and that is the whole point of writing it out here.
         #

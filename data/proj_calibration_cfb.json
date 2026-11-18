@@ -1,0 +1,49 @@
+{
+ "sport": "cfb",
+ "fitted_through": "week 11",
+ "games": 3027,
+ "features": "proj = a + b * salary/1000 + c * model median",
+ "positions": {
+  "QB": {
+   "a": -2.8303,
+   "b": 0.946,
+   "c": 0.7409,
+   "n": 402
+  },
+  "RB": {
+   "a": -10.6476,
+   "b": 3.3558,
+   "c": 0.1907,
+   "n": 907
+  },
+  "WR": {
+   "a": -4.0791,
+   "b": 2.2496,
+   "c": 0.4165,
+   "n": 1718
+  }
+ },
+ "holdout": {
+  "QB": {
+   "from_week": 10,
+   "n": 85,
+   "rho_model": 0.418,
+   "rho_salary": 0.347,
+   "rho_calibrated": 0.423
+  },
+  "RB": {
+   "from_week": 10,
+   "n": 212,
+   "rho_model": 0.459,
+   "rho_salary": 0.563,
+   "rho_calibrated": 0.549
+  },
+  "WR": {
+   "from_week": 10,
+   "n": 383,
+   "rho_model": 0.445,
+   "rho_salary": 0.497,
+   "rho_calibrated": 0.508
+  }
+ }
+}

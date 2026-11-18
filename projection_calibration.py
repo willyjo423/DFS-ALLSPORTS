@@ -50,6 +50,8 @@ ROOT = Path(__file__).resolve().parent
 NHL_HISTORY = ("https://raw.githubusercontent.com/willyjo423/nhlprojections/"
                "main/data/skaters_{season}.csv.gz")
 MIN_GAMES = 300            # per position, before a fit is trusted
+import datetime as _dt
+CFB_WEEK1 = _dt.date(2026, 9, 5)
 
 
 def path_for(sport: str) -> Path:
@@ -162,12 +164,66 @@ def fit_nhl() -> dict:
     return out
 
 
+def _cfb_matched() -> pd.DataFrame:
+    """Archived CFB boards joined to what each player actually scored.
+
+    CFBD numbers weeks from the first full Saturday (2026-09-05 is week 1;
+    the week-0 games are folded into it), so a board's date gives its week.
+    Matched by name within the week; anyone whose name maps to two players
+    that week is dropped rather than guessed."""
+    import datetime as dt
+    import cfb_data as D
+    frames = [pd.read_csv(f) for f in sorted((ROOT / "data").glob("history_20*.csv.gz"))]
+    h = pd.concat(frames, ignore_index=True)
+    h = h[h["season"] == h["season"].max()]
+    h["k"] = h["name"].map(D.primary_key)
+    hw = h.groupby(["k", "week"]).agg(dk=("points", "sum"), n=("points", "size")).reset_index()
+    hw = hw[hw["n"] == 1]
+    rows = []
+    for f in sorted((ROOT / "docs" / "data" / "archive").glob("*/cfb_dk_classic_*.json")):
+        d = json.loads(f.read_text())
+        day = f.parent.name
+        wk = (dt.date.fromisoformat(day) - CFB_WEEK1).days // 7 + 1
+        for p in d.get("players", []):
+            if p.get("salary") and p.get("med") is not None and (p.get("pp") or 1) >= 0.5:
+                rows.append({"day": day, "week": wk, "name": p["name"], "pos": p["pos"],
+                             "team": p.get("team"), "sal": p["salary"], "med": p["med"]})
+    b = pd.DataFrame(rows).drop_duplicates(["week", "name", "team"])
+    b["k"] = b["name"].map(D.primary_key)
+    return b.merge(hw, on=["k", "week"])
+
+
+def fit_cfb() -> dict:
+    from scipy.stats import spearmanr
+    m = _cfb_matched()
+    weeks = sorted(m["week"].unique())
+    cut = weeks[-2] if len(weeks) > 3 else weeks[-1]
+    out = {"sport": "cfb", "fitted_through": f"week {weeks[-1]}", "games": int(len(m)),
+           "features": "proj = a + b * salary/1000 + c * model median",
+           "positions": {}, "holdout": {}}
+    for pos, g in m.groupby("pos"):
+        if len(g) < 150:
+            continue
+        X = lambda d: np.column_stack([np.ones(len(d)), d["sal"] / 1000.0, d["med"]])
+        a, b, c = np.linalg.lstsq(X(g), g["dk"], rcond=None)[0]
+        out["positions"][pos] = {"a": round(float(a), 4), "b": round(float(b), 4),
+                                 "c": round(float(c), 4), "n": int(len(g))}
+        tr, te = g[g["week"] < cut], g[g["week"] >= cut]
+        k = np.linalg.lstsq(X(tr), tr["dk"], rcond=None)[0]
+        out["holdout"][pos] = {
+            "from_week": int(cut), "n": int(len(te)),
+            "rho_model": round(float(spearmanr(te["med"], te["dk"])[0]), 3),
+            "rho_salary": round(float(spearmanr(te["sal"], te["dk"])[0]), 3),
+            "rho_calibrated": round(float(spearmanr(X(te) @ k, te["dk"])[0]), 3)}
+    return out
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    ap.add_argument("--fit", choices=["nhl"], required=True)
+    ap.add_argument("--fit", choices=["nhl", "cfb"], required=True)
     args = ap.parse_args(argv)
     logging.basicConfig(level=logging.INFO, format="%(message)s")
-    fit = fit_nhl()
+    fit = fit_nhl() if args.fit == "nhl" else fit_cfb()
     if not fit["positions"]:
         print("not enough graded games to fit anything - nothing written")
         return 1

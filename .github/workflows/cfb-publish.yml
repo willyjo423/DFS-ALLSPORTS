@@ -30,6 +30,12 @@ on:
     - cron: "43 15 * * 6"     # Saturday ~11:45am Eastern: nearest to lock
     - cron: "43 21 * * 5"     # Friday evening, for the Friday slates
     - cron: "43 21 * * 4"     # Thursday evening, same
+    # Standard time (November onward) - Eastern = UTC-5 - with runs before
+    # the afternoon and night kickoff windows too, not just the noon lock.
+    - cron: "43 14 * 11,12,1 6"   # 9:43am ET
+    - cron: "38 16 * 11,12,1 6"   # 11:38am ET, noon lock
+    - cron: "48 19 * 11,12,1 6"   # 2:48pm ET, 3:30 window
+    - cron: "43 23 * 11,12,1 6"   # 6:43pm ET, 7:30 window
   workflow_dispatch:
     inputs:
       draft_group:
@@ -210,8 +216,11 @@ jobs:
           # Rebased before pushing, because the MLB, NHL and fetch workflows
           # commit to this branch on their own schedules and a plain push
           # loses the race sooner or later.
-          git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || true
-          git push
+          for i in 1 2 3 4 5; do
+            git pull --rebase --autostash -X ours origin "${GITHUB_REF_NAME}" && git push && exit 0
+            sleep $((i * 8))
+          done
+          exit 1
 
       - name: Keep the log
         if: always()

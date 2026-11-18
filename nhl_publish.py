@@ -574,6 +574,7 @@ def write(payloads: list[dict], partial: bool = False) -> None:
             try:
                 from availability import name_keys
                 NEWS.apply_goalies(p.get("players") or [], {}, name_keys)
+                NEWS.apply_lines(p.get("players") or [], {}, name_keys)
                 news = True
             except Exception:                                  # noqa: BLE001
                 pass

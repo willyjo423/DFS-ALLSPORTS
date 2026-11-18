@@ -106,3 +106,14 @@ def test_cache_round_trip_and_fallback():
     finally:
         N.goalies = real
     assert s2 == st and tl2["BOS"]["updated"] == now
+
+
+def test_no_lines_backup_flags_long_absent_skaters():
+    pl = [{"name": "A Regular", "team": "COL", "pos": "C", "pp": 1.0, "mean": 8.0, "last": "2026-11-14"},
+          {"name": "B Farmhand", "team": "COL", "pos": "W", "pp": 1.0, "mean": 5.0, "last": "2026-10-25"},
+          {"name": "C Nobody", "team": "COL", "pos": "D", "pp": 1.0, "mean": 4.0, "last": None},
+          {"name": "G Goalie", "team": "COL", "pos": "G", "pp": 1.0, "mean": 9.0, "last": "2026-10-01"}]
+    n = N.apply_lines(pl, {}, name_keys)
+    assert pl[0]["pp"] == 1.0 and pl[3]["pp"] == 1.0
+    assert pl[1]["pp"] == N.STALE_PP and "20 days" in pl[1]["news"] and pl[1]["mean"] == 0.5
+    assert pl[2]["pp"] == N.STALE_PP and n["stale"] == 2

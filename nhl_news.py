@@ -50,6 +50,8 @@ UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/124 Safari/537.36")
 TIMEOUT = 30
 PAUSE = 0.5
+STALE_DAYS = 10            # team played this long without him -> likely not dressing
+STALE_PP = 0.10
 FRESH_HOURS = 36            # lines older than this are last game's, not tonight's
 LIKELY = 0.85
 SCRATCH_PP = 0.25
@@ -277,6 +279,30 @@ def apply_lines(players: list[dict], team_lines: dict, name_keys,
             by_pp.setdefault(t.get("ppu"), []).append(float(p.get("pptoi") or 0))
     ev_norm = {k: med(v) for k, v in by_slot.items() if k}
     pp_norm = {k: med(v) for k, v in by_pp.items()}
+
+    # Backup for teams with no fresh lines: a skater whose team has played
+    # for STALE_DAYS since his last game (AHL, long scratch, injury nobody
+    # listed) is treated like a man missing from the lines.
+    from datetime import date as _date
+    team_last = {}
+    for p in players:
+        if p.get("last"):
+            team_last[p["team"]] = max(team_last.get(p["team"], ""), p["last"])
+    for p in players:
+        if p["team"] in fresh_teams or p["pos"] == "G" or p.get("status") == "out":
+            continue
+        tl = team_last.get(p["team"])
+        if not tl:
+            continue
+        gap = (_date.fromisoformat(tl) - _date.fromisoformat(p["last"])).days if p.get("last") else 999
+        if gap >= STALE_DAYS:
+            old = float(p.get("pp") or 1.0)
+            if old > STALE_PP:
+                if p.get("mean") is not None:
+                    p["mean"] = round(float(p["mean"]) * STALE_PP / old, 2)
+                p["pp"] = STALE_PP
+            p["news"] = (f"no game in {gap} days" if gap < 999 else "no NHL game this season")
+            n["stale"] = n.get("stale", 0) + 1
 
     for i, p in enumerate(players):
         if p["team"] not in fresh_teams or p["pos"] == "G":

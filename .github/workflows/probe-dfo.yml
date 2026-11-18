@@ -9,28 +9,30 @@ jobs:
       - run: |
           python3 - <<'PY'
           import json, urllib.request
+          UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36"
           def get(u):
-              return json.loads(urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent":"Mozilla/5.0"}), timeout=30).read())
-          s = get("https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event=401909994")
-          print("SUMMARY KEYS", list(s))
-          bp = s["boxscore"]["players"][0]
-          print("TEAM", bp["team"]["abbreviation"])
-          st = bp["statistics"][0]
-          print("STATKEYS", list(st)); print("LABELS", st.get("labels")); print("NAMES", st.get("names"))
-          a = st["athletes"][0]; print("ATH", json.dumps({k: a[k] for k in a if k != "athlete"})[:400]); print("ATHL", json.dumps(a["athlete"])[:300])
-          dnp = [x for x in st["athletes"] if x.get("didNotPlay")][:2]; print("DNP", json.dumps(dnp)[:500])
-          print("PICK", json.dumps(s.get("pickcenter"))[:700])
-          print("ODDS", json.dumps(s.get("odds"))[:300])
-          inj = get("https://site.api.espn.com/apis/site/v2/sports/basketball/nba/injuries")
-          t = inj["injuries"][0]; print("INJ TEAM", t.get("displayName"), json.dumps(t["injuries"][0])[:600])
-          sb = get("https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20251201")
-          print("OLD SEASON GAMES", len(sb["events"]), sb["events"][0]["id"])
-          c = get("https://www.draftkings.com/lobby/getcontests?sport=NBA")
-          dgs = c.get("DraftGroups") or []
-          print("DK NBA DGS", len(dgs), [(g.get("DraftGroupId"), g.get("GameTypeId"), g.get("StartDateEst"), g.get("ContestStartTimeSuffix")) for g in dgs[:8]])
-          if dgs:
-              dg = dgs[0]["DraftGroupId"]
-              d = get(f"https://api.draftkings.com/draftgroups/v1/draftgroups/{dg}/draftables")
-              r = d["draftables"][0]
-              print("DRAFTABLE", json.dumps({k: r[k] for k in r if k not in ("draftStatAttributes","playerAttributes","teamLeagueSeasonAttributes","playerGameAttributes")})[:700])
+              try:
+                  r = urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": UA, "Accept": "application/json"}), timeout=30)
+                  return r.status, json.loads(r.read())
+              except Exception as e:
+                  return str(e)[:120], None
+          s, d = get("https://sportsbook-nash.draftkings.com/api/sportscontent/dkusnj/v1/leagues/42648")
+          print("DK LEAGUE", s, (list(d) if isinstance(d, dict) else None))
+          if isinstance(d, dict):
+              cats = d.get("categories") or []
+              print("DK CATS", [(c.get("id"), c.get("name")) for c in cats][:40])
+              sub = d.get("subcategories") or []
+              print("DK SUBCATS", [(c.get("id"), c.get("name"), c.get("categoryId")) for c in sub][:60])
+          s, d = get("https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261118")
+          eid = d["events"][0]["id"] if d else None
+          s2, p = get(f"https://sports.core.api.espn.com/v2/sports/basketball/leagues/nba/events/{eid}/competitions/{eid}/odds/100/propBets?limit=1000")
+          print("ESPN PROPS", s2, (p.get("count") if isinstance(p, dict) else None))
+          if isinstance(p, dict) and p.get("items"):
+              print("ESPN PROP ITEM", json.dumps(p["items"][0])[:600])
+          s3, q = get("https://api.prizepicks.com/projections?league_id=7&per_page=250&single_stat=true")
+          print("PRIZEPICKS", s3, (len(q.get("data", [])) if isinstance(q, dict) else None))
+          if isinstance(q, dict) and q.get("data"):
+              print("PP ITEM", json.dumps(q["data"][0]["attributes"])[:400])
+          s4, u = get("https://api.underdogfantasy.com/beta/v5/over_under_lines")
+          print("UNDERDOG", s4, (len(u.get("over_under_lines", [])) if isinstance(u, dict) else None))
           PY

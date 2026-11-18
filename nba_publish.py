@@ -33,6 +33,7 @@ EASTERN = "America/New_York"
 ROSTER = {"slots": POOL.SLOTS, "salary_cap": 50_000}
 OUT_DK = {"O", "OUT", "IR", "SUSP", "NA"}
 Q_DK = {"Q", "GTD", "QUESTIONABLE"}
+STALE_GAMES = 5    # team games missed with no props/start -> not projected
 P_PLAY = {"Out": 0.0, "Doubtful": 0.15, "Questionable": 0.6, "Day-To-Day": 0.75}
 
 
@@ -132,6 +133,25 @@ def build_slate(dg: int, starts, label: str, hist: pd.DataFrame, p: dict,
     b["starts"] = role
     b["role_note"] = rnote
 
+    # Out of the rotation: a player whose team has played STALE_GAMES or more
+    # games since his last appearance (G League assignment, healthy scratch,
+    # long absence) is not projected off his old minutes. Cormac Ryan was
+    # projected for 20 minutes off last April's tank games while in the
+    # G League. He comes back in only if the NBA lists him starting or the
+    # books post props on him (a returning regular gets props).
+    played = hist[hist["played"] == 1]
+    last_play = played.groupby("player_id")["date"].max()
+    last_team = played.sort_values("date").groupby("player_id")["team"].last()
+    tg = hist.drop_duplicates(["game_id", "team"])[["team", "date"]]
+    tdates = {t: sorted(g["date"]) for t, g in tg.groupby("team")}
+    import bisect
+    def missed(pid):
+        if pid is None or pid not in last_play.index:
+            return None
+        ds = tdates.get(last_team[pid], [])
+        return len(ds) - bisect.bisect_right(ds, last_play[pid])
+    b["missed"] = [missed(x) for x in b["pid_h"]]
+
     # Rows for the projection: every board player, plus injured men DraftKings
     # has already removed, so their minutes and usage are redistributed.
     rows = []
@@ -177,6 +197,11 @@ def build_slate(dg: int, starts, label: str, hist: pd.DataFrame, p: dict,
             cond, mins, sd, vac = 0.0, 0.0, 0.0, 0.0
         model_cond, w_mkt, mkt_val = cond, 0.0, None
         cands = [c for k in name_keys(r.name) for c in prop_keys.get(k, [])]
+        stale = (r.missed is not None and r.missed >= STALE_GAMES and not cands
+                 and r.starts != 1 and cond > 0)
+        if stale:
+            cond, mins = 0.0, 0.0
+            model_cond = 0.0
         if cands and cond > 0:
             st_ = next((c[1] for c in cands if c[0] == r.team), cands[0][1])
             rr = rates.loc[r.pid_h] if (rates is not None and r.pid_h in rates.index) else None
@@ -186,6 +211,9 @@ def build_slate(dg: int, starts, label: str, hist: pd.DataFrame, p: dict,
                 cond, w_mkt = PR.blend(cond, mk)
         mean = cond * r.pp
         note = "; ".join(x for x in (r.role_note, r.note) if x)
+        if stale:
+            note = (note + "; " if note else "") + f"no NBA game in his team's last {int(r.missed)} - not projected"
+
         if mkt_val is not None and abs(mkt_val - model_cond) >= max(4.0, 0.15 * model_cond):
             note = (note + "; " if note else "") + f"props {mkt_val:.1f} vs model {model_cond:.1f}"
         bump = p["usage_k"] * max(0.0, vac - p["usage_floor"])
@@ -201,7 +229,7 @@ def build_slate(dg: int, starts, label: str, hist: pd.DataFrame, p: dict,
             "ceil": round(cond + 1.28 * sd, 2) if cond else 0.0,
             "min": round(mins, 1) if mins else None,
             "pp": round(float(r.pp), 2),
-            "status": "out" if r.pp == 0 else "clear",
+            "status": "out" if (r.pp == 0 or stale) else "clear",
             "doubtful": bool(0 < r.pp < 0.7),
             "news": note or None,
             "implied": (round(ln["total"] / 2 - ln["spread"] / 2, 1)

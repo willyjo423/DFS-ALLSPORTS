@@ -58,6 +58,7 @@ from engine import lineup_pool as LP
 import projection_calibration as PC
 import nhl_lines as LN
 import nhl_news as NEWS
+from engine import nhl_sim as SIM
 from engine import simulate as S
 from availability import available
 
@@ -542,7 +543,7 @@ def slate_label(pool: pd.DataFrame, starts, raw: str) -> str:
 
 
 # ------------------------------------------------------------------- output
-def write(payloads: list[dict]) -> None:
+def write(payloads: list[dict], partial: bool = False) -> None:
     DATA.mkdir(parents=True, exist_ok=True)
     archive = DATA / "archive"
 
@@ -585,6 +586,12 @@ def write(payloads: list[dict]) -> None:
                             str(exc)[:80])
         if "lineups" not in p:
             p["lineups"] = LP.safe_build(p)
+        # Rank the pool by how often each lineup beats the field (contest
+        # simulation with line, power-play and goalie correlation).
+        try:
+            SIM.rank_pool(p)
+        except Exception as exc:                               # noqa: BLE001
+            log.warning("contest sim failed (%s); lineups unranked", str(exc)[:80])
         name = f"{SPORT}_dk_{p['kind']}_{p['draft_group']}.json"
         # allow_nan=False, and that is the whole point of writing it out.
         #
@@ -613,7 +620,9 @@ def write(payloads: list[dict]) -> None:
     # finished contest, and grading published boards against real results is
     # the only feedback loop this project has.
     for old in DATA.glob(f"{SPORT}_dk_*.json"):
-        if old.name in keep:
+        # A lock-time run rewrites only the slate about to lock; the other
+        # boards stay as the last full run left them.
+        if old.name in keep or partial:
             continue
         try:
             when = json.loads(old.read_text()).get("generated_at", "")[:10]
@@ -663,6 +672,8 @@ def main(argv=None) -> int:
                         format="%(levelname)s %(name)s: %(message)s")
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--draft-group", type=int, default=None)
+    p.add_argument("--soon", type=int, default=None,
+                   help="lock-time run: only the slate locking within N minutes")
     p.add_argument("--first-season", type=int, default=2025)
     p.add_argument("--field", type=int, default=100_000)
     p.add_argument("--sims", type=int, default=20_000)
@@ -763,6 +774,13 @@ def main(argv=None) -> int:
                           seasons)
 
     boards = candidate_slates(args.draft_group, args.look)
+    if args.soon:
+        horizon = pd.Timestamp.now(tz="UTC") + pd.Timedelta(minutes=args.soon)
+        boards = [b for b in boards if b[3] is not None and pd.notna(b[3])
+                  and pd.Timestamp.now(tz="UTC") < b[3] <= horizon][:1]
+        if not boards:
+            log.info("no NHL slate locks within %d minutes; nothing to do", args.soon)
+            return 0
     if not boards:
         sys.exit("no readable NHL draft group is on sale right now, so "
                  "nothing is published and the page keeps what it had.")
@@ -861,7 +879,7 @@ def main(argv=None) -> int:
     if not payloads:
         sys.exit("no board could be built, so nothing is published and the "
                  "page keeps what it had.")
-    write(payloads)
+    write(payloads, partial=bool(args.soon))
     return 0
 
 

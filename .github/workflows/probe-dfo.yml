@@ -4,22 +4,21 @@ jobs:
   p:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        with: {ref: feat/nhl-props}
       - run: |
           python3 - <<'PY'
-          import logging; logging.basicConfig(level=logging.INFO)
-          import nhl_props as P, json
-          import collections
-          lst = P._get(P.LIST_URL); evs=[e for b in lst for e in b.get("events",[])]
-          print("EVS", [e["description"] for e in evs][:5])
-          e=[e for e in evs if "@" in e["description"] and "Goals" not in e["description"]][0]
-          full=P._get(P.EVENT_URL.format(e["link"])); ev=full[0]["events"][0]
-          c=collections.Counter((g["description"], (m.get("period") or {}).get("description")) for g in ev["displayGroups"] for m in g["markets"])
-          print("PER", c.most_common(20)); print("PARSE", len(P.parse_event(ev)))
-          d = P.fetch()
-          print("N", len(d))
-          for k in list(d)[:6]: print("K", k, d[k])
-          full = sum(1 for v in d.values() if P.market_dk(v, "W"))
-          print("FULL", full)
+          import json, urllib.request, time
+          def get(u):
+              return json.loads(urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent":"Mozilla/5.0"}), timeout=30).read())
+          sc = get("https://api-web.nhle.com/v1/score/2026-11-18")
+          for g in sc["games"]:
+              print("GAME", g["awayTeam"]["abbrev"], g["awayTeam"].get("score"), "@", g["homeTeam"]["abbrev"], g["homeTeam"].get("score"), g.get("gameState"), g.get("periodDescriptor",{}).get("periodType"))
+              b = get(f"https://api-web.nhle.com/v1/gamecenter/{g['id']}/boxscore")
+              for side in ("awayTeam", "homeTeam"):
+                  t = b[side]["abbrev"]; st = b["playerByGameStats"][side]
+                  for grp in ("forwards", "defense"):
+                      for p in st.get(grp, []):
+                          print("S|%s|%s|%d|%d|%d|%d|%d|%s" % ((p.get("name") or {}).get("default"), t, p.get("goals",0), p.get("assists",0), p.get("sog",0), p.get("blockedShots",0), p.get("shPoints",0) if "shPoints" in p else 0, p.get("powerPlayGoals",0)))
+                  for p in st.get("goalies", []):
+                      print("G|%s|%s|%s|%s|%s|%s" % ((p.get("name") or {}).get("default"), t, p.get("saves"), p.get("goalsAgainst"), p.get("decision"), p.get("toi")))
+              time.sleep(0.3)
           PY

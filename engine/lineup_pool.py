@@ -458,7 +458,8 @@ def build(players: list[dict], roster: dict, field_size: int = 100_000,
                         max(x, 1e-4) for x in o)), 4),
                     "src": name,
                 })
-    if "G" in roster.get("slots", []) and pool:
+    if "G" in roster.get("slots", []) and pool and stacks:
+        # (Not for the single optimal re-solves the chalk check runs 40 times.)
         # A likely starter the families never picked (his opponent's skaters
         # fill the optimal lineups) gets a few lineups solved around him.
         used = {i for L in pool for i in L["p"]}

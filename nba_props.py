@@ -57,8 +57,9 @@ N = NormalDist()
 # than on any public model; ours is a minutes x rate model with no news feed
 # beyond injuries and starters, so the market gets the majority. Regrade this
 # against docs/data/props/nba history once there are ~30 nights of it.
-W_MARKET = 0.85
-W_GAP_MAX = 0.95          # market weight once model and props are 25%+ apart
+import props_weight as _PW
+W_MARKET = _PW.weight("nba", 0.85)   # learned from nightly grades once 10+ nights
+W_GAP_MAX = min(0.97, max(W_MARKET + 0.10, 0.95))          # market weight once model and props are 25%+ apart
 DK_W = {"P": 1.0, "R": 1.25, "A": 1.5}
 
 

@@ -3,26 +3,24 @@ on: {push: {branches: [probe-dfo]}, workflow_dispatch: {}}
 jobs:
   p:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        ref: [feat/nhl-props2]
     steps:
       - uses: actions/checkout@v4
-        with: {ref: "${{ matrix.ref }}"}
+        with: {ref: feat/nhl-props2}
       - uses: actions/setup-python@v5
         with: {python-version: "3.12"}
       - run: pip install -q -r requirements.txt
       - run: |
-          start=$(date +%s)
-          python nhl_publish.py 2>&1 | grep -E "props|bovada|wrote|ERROR|Traceback" | grep -v "salary floor" | tail -20
-          echo "ELAPSED $(( $(date +%s) - start ))s ${{ matrix.ref }}"
           python3 - <<'PY'
-          import json,glob,collections
-          for f in glob.glob("docs/data/nhl_dk_classic_*.json"):
-              d=json.load(open(f)); P=d["players"]; L=d.get("lineups",[])
-              g=collections.Counter(P[i]["name"] for l in L for i in l["p"] if P[i]["pos"]=="G")
-              print("SLATE", f, len(L), dict(g.most_common(8)))
-              for p in P:
-                  if p.get("pos")=="G" and p.get("sv_mkt"): print("GOALIE", p["name"], p.get("sv_exp"), p.get("sv_mkt"), p.get("model"), p.get("proj"))
-              sk=[p for p in P if p.get("props") and p.get("pos")!="G"]; print("SKATERS", len(sk), "of", sum(1 for p in P if p.get("pos")!="G" and p.get("status")!="out"))
+          import logging; logging.basicConfig(level=logging.INFO)
+          import nhl_props as P, collections
+          d = {}
+          for i in range(3):
+              try:
+                  d = P.fetch()
+              except Exception as e: print("ERR", e)
+              print("TRY", i, len(d))
+              if d: break
+          c = collections.Counter(s for v in d.values() for s in v)
+          print("STATS", c)
+          print("SV", [(k, v["SV"]) for k, v in d.items() if "SV" in v][:10])
           PY

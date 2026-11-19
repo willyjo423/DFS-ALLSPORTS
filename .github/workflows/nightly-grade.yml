@@ -1,0 +1,51 @@
+name: Nightly grade
+
+# Scores last night's NBA and NHL lock-time boards against the box scores and
+# keeps a running record in docs/data/grades/. The props weight learns from it
+# (props_weight.py). Dispatched each morning by the slate clock.
+
+on:
+  workflow_dispatch:
+    inputs:
+      dates:
+        description: "Dates to grade, space separated (blank = yesterday ET)"
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nightly-grade
+  cancel-in-progress: false
+
+jobs:
+  grade:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q -r requirements.txt
+      - name: Grade
+        run: |
+          set -o pipefail
+          if [ -n "${{ inputs.dates }}" ]; then
+            for d in ${{ inputs.dates }}; do python grade_nightly.py --date "$d" | tee -a grade.md; done
+          else
+            python grade_nightly.py | tee grade.md
+          fi
+          cat grade.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Commit
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A docs/data/grades
+          git diff --cached --quiet && { echo "nothing new"; exit 0; }
+          git commit -m "Grades: $(date -u +%Y-%m-%d)"
+          for i in 1 2 3 4 5; do
+            git pull --rebase -X ours origin main && git push && exit 0
+            sleep $((i * 8))
+          done
+          exit 1

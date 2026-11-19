@@ -42,8 +42,9 @@ EVENT_URL = "https://www.bovada.lv/services/sports/event/v2/events/A/description
 # Same logic as NBA: the books carry most of the weight, more when they
 # disagree with us. NBA graded 0.98 on props over 114 players (2026-11-18);
 # NHL is set to match and is regraded nightly from docs/data/props/nhl.
-W_MARKET = 0.85
-W_GAP_MAX = 0.95         # once model and props are 25%+ apart
+import props_weight as _PW
+W_MARKET = _PW.weight("nhl", 0.85)   # learned from nightly grades once 10+ nights
+W_GAP_MAX = min(0.97, max(W_MARKET + 0.10, 0.95))         # once model and props are 25%+ apart
 ONE_SIDED_POW = 1.12     # a milestone posts only the "yes" price: p_true = p^1.12
                          # (power de-vig; shades long shots more, as books do)
 SHOOTING_PCT = 0.105     # league goals per shot on goal

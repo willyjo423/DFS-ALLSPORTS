@@ -1,0 +1,103 @@
+{
+ "sport": "nhl",
+ "date": "2026-11-18",
+ "slate": "6 teams \u00b7 7:30pm",
+ "draft_group": 156635,
+ "players": 135,
+ "graded": 113,
+ "mae_final": 4.232,
+ "props": {
+  "n": 28,
+  "mae_model": 4.848,
+  "mae_props": 5.051,
+  "mae_final": 4.696,
+  "sxy": 60.84340000000004,
+  "sxx": 149.57879999999997,
+  "weight": 0.407
+ },
+ "pool": {
+  "n": 282,
+  "avg": 74.7,
+  "best": 133.8,
+  "top5_cash": [
+   79.4,
+   75.0,
+   63.0,
+   63.0,
+   67.6
+  ],
+  "top5_top1": [
+   69.7,
+   73.2,
+   55.4,
+   77.8,
+   39.6
+  ],
+  "hindsight": 181.4
+ },
+ "hindsight_lineup": [
+  "David Pastrnak",
+  "Sebastian Cossa",
+  "Nick Suzuki",
+  "Lane Hutson",
+  "Timo Meier",
+  "Vincent Trocheck",
+  "MacKenzie Weegar",
+  "Casey Mittelstadt",
+  "Kevin Stenlund"
+ ],
+ "biggest_unders": [
+  [
+   "Jack Hughes",
+   16.2,
+   6.0
+  ],
+  [
+   "Cole Caufield",
+   10.7,
+   1.5
+  ],
+  [
+   "Luke Hughes",
+   10.1,
+   1.5
+  ],
+  [
+   "Moritz Seider",
+   11.0,
+   2.6
+  ],
+  [
+   "Clayton Keller",
+   13.2,
+   5.0
+  ]
+ ],
+ "biggest_overs": [
+  [
+   "Lane Hutson",
+   10.5,
+   24.9
+  ],
+  [
+   "Sebastian Cossa",
+   9.7,
+   23.5
+  ],
+  [
+   "David Pastrnak",
+   13.2,
+   26.8
+  ],
+  [
+   "Casey Mittelstadt",
+   4.3,
+   17.6
+  ],
+  [
+   "Kevin Stenlund",
+   4.2,
+   16.5
+  ]
+ ]
+}

@@ -1,0 +1,80 @@
+{
+ "sport": "nhl",
+ "date": "2026-11-17",
+ "slate": "22 teams \u00b7 7:00pm",
+ "draft_group": 156626,
+ "players": 483,
+ "graded": 412,
+ "mae_final": 5.146,
+ "pool": {
+  "n": 258,
+  "avg": 98.5,
+  "best": 171.8,
+  "hindsight": 315.2
+ },
+ "hindsight_lineup": [
+  "Cutter Gauthier",
+  "Matthew Schaefer",
+  "Darcy Kuemper",
+  "Mikko Rantanen",
+  "Joel Eriksson Ek",
+  "Vasily Podkolzin",
+  "Tyler Bertuzzi",
+  "Logan Mailloux",
+  "Martin Pospisil"
+ ],
+ "biggest_unders": [
+  [
+   "Justus Annunen",
+   13.5,
+   -11.200000000000001
+  ],
+  [
+   "Ville Husso",
+   11.6,
+   -12.600000000000001
+  ],
+  [
+   "Sergei Bobrovsky",
+   11.8,
+   -7.700000000000001
+  ],
+  [
+   "Jacob Markstrom",
+   13.1,
+   -4.9
+  ],
+  [
+   "Logan Thompson",
+   12.8,
+   0.0
+  ]
+ ],
+ "biggest_overs": [
+  [
+   "Cutter Gauthier",
+   14.6,
+   51.5
+  ],
+  [
+   "Matthew Schaefer",
+   13.8,
+   49.3
+  ],
+  [
+   "Mikko Rantanen",
+   9.2,
+   37.0
+  ],
+  [
+   "Tyler Bertuzzi",
+   1.9,
+   29.5
+  ],
+  [
+   "Joel Eriksson Ek",
+   10.7,
+   37.0
+  ]
+ ]
+}

@@ -1,0 +1,113 @@
+{
+ "sport": "nba",
+ "date": "2026-11-18",
+ "slate": "7:00pm \u00b7 482 contests",
+ "draft_group": 156831,
+ "players": 316,
+ "graded": 198,
+ "mae_final": 6.888,
+ "props": {
+  "n": 114,
+  "mae_model": 8.334,
+  "mae_props": 7.777,
+  "mae_final": 7.682,
+  "sxy": 2272.0049000000004,
+  "sxx": 2315.3246000000004,
+  "weight": 0.981
+ },
+ "minutes": {
+  "n": 196,
+  "mae": 4.63,
+  "bias": 1.0
+ },
+ "late_scratches": [
+  "Cade Cunningham",
+  "Rayan Rupert",
+  "Bub Carrington",
+  "Nikola Vucevic"
+ ],
+ "pool": {
+  "n": 120,
+  "avg": 244.1,
+  "best": 301.5,
+  "top5_cash": [
+   275.8,
+   237.5,
+   238.5,
+   297.5,
+   249.5
+  ],
+  "top5_top1": [
+   250.2,
+   209.5,
+   233.2,
+   227.2,
+   258.2
+  ],
+  "hindsight": 371.5
+ },
+ "hindsight_lineup": [
+  "Kasparas Jakucionis",
+  "VJ Edgecombe",
+  "Ja'Kobe Walter",
+  "Javonte Green",
+  "Joel Embiid",
+  "Josh Giddey",
+  "Matas Buzelis",
+  "Franz Wagner"
+ ],
+ "biggest_unders": [
+  [
+   "Michael Porter Jr.",
+   40.1,
+   12.25
+  ],
+  [
+   "Collin Murray-Boyles",
+   32.6,
+   5.0
+  ],
+  [
+   "Alperen Sengun",
+   43.2,
+   16.25
+  ],
+  [
+   "Brandin Podziemski",
+   37.7,
+   19.75
+  ],
+  [
+   "Tyler Herro",
+   35.5,
+   18.5
+  ]
+ ],
+ "biggest_overs": [
+  [
+   "Kasparas Jakucionis",
+   15.3,
+   36.75
+  ],
+  [
+   "Egor Demin",
+   18.8,
+   39.5
+  ],
+  [
+   "Franz Wagner",
+   43.2,
+   63.0
+  ],
+  [
+   "Reed Sheppard",
+   15.6,
+   35.0
+  ],
+  [
+   "Braden Smith",
+   5.4,
+   23.75
+  ]
+ ]
+}

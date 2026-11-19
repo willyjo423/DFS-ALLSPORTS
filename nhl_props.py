@@ -10,8 +10,8 @@ de-vigged probabilities, then build DraftKings points from the rates:
     + 3 P(SOG >= 5) + 3 P(BLK >= 3) + 3 P(points >= 3)
 
 Goals are points minus assists; with no assists market they are the usual
-share of points by position. A skater needs a shots market and a points
-market to be blended; blocks fall back to the position average.
+share of points by position. A skater needs a points market and either a shots
+market or a goal-scorer price to be blended; blocks fall back to the position average.
 
 Goalies: the saves line replaces the model's expected saves (shots against
 x save percentage); goals against and the win stay with the model.
@@ -46,6 +46,7 @@ W_MARKET = 0.85
 W_GAP_MAX = 0.95         # once model and props are 25%+ apart
 ONE_SIDED_POW = 1.12     # a milestone posts only the "yes" price: p_true = p^1.12
                          # (power de-vig; shades long shots more, as books do)
+SHOOTING_PCT = 0.105     # league goals per shot on goal
 GOAL_SHARE = {"D": 0.27, "C": 0.42, "W": 0.42, "F": 0.42}
 BLOCKS_AVG = {"D": 1.45, "C": 0.55, "W": 0.50, "F": 0.52}
 
@@ -190,10 +191,17 @@ def expected(points: list[tuple[int, float]]) -> float | None:
 def market_dk(stats: dict, pos: str) -> dict | None:
     """Expected DraftKings points for a skater from his props, or None."""
     sog, pts = expected(stats.get("SOG", [])), expected(stats.get("PTS", []))
-    if sog is None or pts is None:
-        return None
     ast = expected(stats.get("AST", []))
     g_only = expected(stats.get("G", []))
+    if pts is None:
+        return None
+    sog_src = "market"
+    if sog is None:
+        # Bovada posts shots for about a third of skaters but a goal-scorer
+        # price for nearly all. Shots from goals at the league shooting rate.
+        if g_only is None:
+            return None
+        sog, sog_src = g_only / SHOOTING_PCT, "goals"
     if ast is not None:
         ast = min(ast, pts)
         goals = pts - ast
@@ -209,7 +217,7 @@ def market_dk(stats: dict, pos: str) -> dict | None:
         blk = BLOCKS_AVG.get(pos, 0.6)
     dk = (8.5 * goals + 5 * ast + 1.5 * sog + 1.3 * blk
           + 3 * poisson_tail(sog, 5) + 3 * poisson_tail(blk, 3) + 3 * poisson_tail(pts, 3))
-    return {"dk": round(dk, 2), "sog": round(sog, 2), "pts": round(pts, 2),
+    return {"dk": round(dk, 2), "sog_src": sog_src, "sog": round(sog, 2), "pts": round(pts, 2),
             "g": round(goals, 2), "a": round(ast, 2), "blk": round(blk, 2), "blk_src": blk_src}
 
 
@@ -372,7 +380,7 @@ def apply(payload: dict) -> int:
             note = f"props {mk['dk']:.1f} vs model {model:.1f}"
             p["news"] = (p["news"] + "; " + note) if p.get("news") else note
         n += 1
-    log.info("props: %d skaters matched with shots and points markets, %d goalies with saves", n, ng)
+    log.info("props: %d skaters matched with props, %d goalies with saves", n, ng)
     if n:
         payload["props"] = {"source": "Bovada player props", "players": n, "weight": W_MARKET}
         log.info("props: blended %d skaters, props - model mean %+.2f, mean |gap| %.2f",

@@ -42,6 +42,8 @@ def test_parse_and_dk():
     assert 3.0 < mk["sog"] < 4.0 and 0.75 < mk["pts"] < 1.1 and 0 < mk["g"] < mk["pts"]
     assert 9 < mk["dk"] < 16
     assert P.market_dk({"SOG": d["SOG"]}, "W") is None
+    alt = P.market_dk({"PTS": d["PTS"], "G": [(1, 0.35)]}, "W")
+    assert alt and alt["sog_src"] == "goals" and 3 < alt["sog"] < 5
 
 
 def test_poisson_fit_recovers_rate():

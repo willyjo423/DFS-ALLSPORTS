@@ -45,9 +45,9 @@ MIN_UNIQUE = 2              # players each new lineup must not share
 STACKED_PER_OBJECTIVE = 6   # hockey: 3 shapes x 3 lam x 6 = 54
 TEAM_STACKS = 10            # hockey: a 4-stack of each of the top 10 teams
 PER_TEAM_STACK = 3
-GOALIE_ANCHORED = 2         # hockey: lineups forced around each likely starter
-ANCHOR_GOALIES = 6          # ... the six best-projected of them
-SPREAD_CAP = 3              # hockey: skaters per team in the spread builds
+SWAP_GOALIES = 6            # hockey: likely starters swapped into the pool
+SWAP_PER_GOALIE = 6
+FORCED_PER_GOALIE = 4
 GOALIES = {"G"}
 PITCHERS = {"P", "SP", "RP"}
 
@@ -238,23 +238,12 @@ def build(players: list[dict], roster: dict, field_size: int = 100_000,
 
     def solve(obj, use_floor=True, stack=None):
         AA, LL, HH = list(A), list(lo), list(hi)
-        if stack and stack[0] in ("force", "spread"):
-            # ("force", i, cap): player i in the lineup; ("spread", None, cap):
-            # nothing forced. Either way at most `cap` skaters from one team.
-            _, i_force, tcap = stack
-            if i_force is not None:
-                r = np.zeros(m)
-                r[i_force] = 1
-                AA.append(r)
-                LL.append(1)
-                HH.append(1)
-            if tcap:
-                for t in teams:
-                    r = np.zeros(m)
-                    r[:n] = tmask[t]
-                    AA.append(r)
-                    LL.append(0)
-                    HH.append(tcap)
+        if stack and stack[0] == "force":
+            r = np.zeros(m)
+            r[stack[1]] = 1
+            AA.append(r)
+            LL.append(1)
+            HH.append(1)
             stack = None
         if stack and stack[0] == "team":
             _, t, k = stack
@@ -442,26 +431,6 @@ def build(players: list[dict], roster: dict, field_size: int = 100_000,
                                      ("groups", [(lined, 4), (units, 3)]),
                                      STACKED_PER_OBJECTIVE))
 
-    if "G" in roster.get("slots", []):
-        # Every likely starting goalie gets lineups built around him.
-        # 2026-11-18: Jacob Fowler was the top-projected goalie but faced the
-        # Devils, whose skaters filled every optimal lineup, so not one of 282
-        # pool lineups had him - he scored 17.2, the goalies we did use 7-8.
-        # Goalie-first lineups exist whatever the best skater stack is.
-        gs = sorted((i for i, p in enumerate(pl) if pos[i] in GOALIES
-                     and float(p.get("pp") or 1.0) >= 0.5),
-                    key=lambda i: -med[i])[:ANCHOR_GOALIES]
-        for i in gs:
-            families.append((f"goalie {pl[i]['name']} lam=0.0", med, 0.0,
-                             ("force", i, None), GOALIE_ANCHORED))
-            families.append((f"goalie {pl[i]['name']} spread", med, 0.0,
-                             ("force", i, SPREAD_CAP), GOALIE_ANCHORED))
-        # Spread builds (no more than 3 skaters from a team): the low-variance
-        # shape for cash games. On 2026-11-18 pool lineups capped at 3 per
-        # team averaged 84 points, 5-6 man stacks 65-67.
-        families.append(("spread lam=0.0", med, 0.0,
-                         ("spread", None, SPREAD_CAP), STACKED_PER_OBJECTIVE))
-
     floor_ok = True
     for name, base, lam, stack, count in families:
             obj = base * (1.0 - lam * own)
@@ -489,6 +458,31 @@ def build(players: list[dict], roster: dict, field_size: int = 100_000,
                         max(x, 1e-4) for x in o)), 4),
                     "src": name,
                 })
+    if "G" in roster.get("slots", []) and pool:
+        # A likely starter the families never picked (his opponent's skaters
+        # fill the optimal lineups) gets a few lineups solved around him.
+        used = {i for L in pool for i in L["p"]}
+        top_g = sorted((j for j, p in enumerate(pl) if str(p["pos"]) in GOALIES
+                        and float(p.get("pp") or 1.0) >= 0.5),
+                       key=lambda j: -med[j])[:SWAP_GOALIES]
+        for j in top_g:
+            if keep[j] in used:
+                continue
+            for _ in range(FORCED_PER_GOALIE):
+                pick = solve(med, floor_ok, ("force", j))
+                if pick is None:
+                    break
+                seen.append(pick)
+                o = own[pick]
+                pool.append({
+                    "p": [keep[i] for i in pick],
+                    "proj": round(float(med[pick].sum()), 2),
+                    "ceil": round(float(ceil[pick].sum()), 2),
+                    "sal": int(sal[pick].sum()),
+                    "own": round(float(100 * o.sum()), 1),
+                    "dup": round(float(field_size * math.prod(max(x, 1e-4) for x in o)), 4),
+                    "src": f"goalie {pl[j]['name']}"})
+        _goalie_swaps(pool, players, keep, pl, med, ceil, own, cap, field_size)
     log.info("lineup pool: %d lineups, ownership %.0f%%-%.0f%%, projection "
              "%.1f-%.1f", len(pool),
              min((x["own"] for x in pool), default=0),
@@ -496,6 +490,49 @@ def build(players: list[dict], roster: dict, field_size: int = 100_000,
              min((x["proj"] for x in pool), default=0),
              max((x["proj"] for x in pool), default=0))
     return pool
+
+
+def _goalie_swaps(pool, players, keep, pl, med, ceil, own, cap, field_size):
+    """Put each of the best-projected likely starters into the best pool
+    lineups he fits (no skater from the team he faces, salary under the cap).
+
+    2026-11-18: Jacob Fowler was the top-projected goalie, but he faced the
+    Devils, whose skaters filled every optimal lineup, so not one of 282 pool
+    lineups had him. He scored 17.2; the goalies the pool did use scored 7-8.
+    Swapping goalies into existing lineups is nearly free, where solving new
+    goalie-anchored lineups doubled the build time."""
+    at = {k: j for j, k in enumerate(keep)}
+    goalies = sorted((j for j, p in enumerate(pl) if str(p["pos"]) in GOALIES
+                      and float(p.get("pp") or 1.0) >= 0.5),
+                     key=lambda j: -med[j])[:SWAP_GOALIES]
+    base = sorted(pool, key=lambda L: -L["proj"])[:60]
+    have = {tuple(sorted(L["p"])) for L in pool}
+    for gj in goalies:
+        g = keep[gj]
+        opp = str(pl[gj].get("opp") or "~")
+        added = 0
+        for L in base:
+            cur = [i for i in L["p"] if str(players[i]["pos"]) in GOALIES]
+            if not cur or cur[0] == g:
+                continue
+            new = [i for i in L["p"] if i != cur[0]] + [g]
+            if any(str(players[i].get("team")) == opp for i in new if i != g):
+                continue
+            idx = [at[i] for i in new]
+            salary = int(sum(int(players[i]["salary"]) for i in new))
+            if salary > cap or tuple(sorted(new)) in have:
+                continue
+            have.add(tuple(sorted(new)))
+            o = own[idx]
+            pool.append({
+                "p": new, "proj": round(float(med[idx].sum()), 2),
+                "ceil": round(float(ceil[idx].sum()), 2), "sal": salary,
+                "own": round(float(100 * o.sum()), 1),
+                "dup": round(float(field_size * math.prod(max(x, 1e-4) for x in o)), 4),
+                "src": f"goalie swap {pl[gj]['name']}"})
+            added += 1
+            if added >= SWAP_PER_GOALIE:
+                break
 
 
 def safe_build(payload: dict) -> list[dict]:

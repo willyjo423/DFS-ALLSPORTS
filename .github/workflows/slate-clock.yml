@@ -43,6 +43,8 @@ jobs:
           PLAN += [(t, "nhl-publish.yml") for t in
                    ("11:15", "15:00", "17:10", "18:05", "!18:40", "!19:08", "!19:38", "21:30")]
           PLAN += [("09:10", "nba-fetch.yml")]
+          PLAN += [(t, "props-fetch.yml") for t in
+                   ("10:20", "12:50", "15:50", "16:58", "17:58", "18:24", "18:55", "19:25")]
           PLAN += [(t, "cfb-publish.yml") for t in ("09:43", "11:38", "14:48", "18:43")]
           def season(wf, d):
               if wf == "cfb-publish.yml":

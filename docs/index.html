@@ -113,6 +113,10 @@ a{color:var(--acc)}
             <option value="0">Any</option><option value="2">2+</option><option value="3">3+</option></select></div>
         <div class="f stackf"><label>Stack team</label>
           <select id="stkteam" style="width:100%"><option value="">Any</option></select></div>
+        <div class="f stackf"><label>Max per team</label>
+          <select id="mpt" style="width:100%">
+            <option value="0">Any</option><option value="3">3 (cash)</option>
+            <option value="4">4</option></select></div>
         <div class="f"><label>Sort by</label>
           <select id="sort" style="width:100%">
             <option value="cash">Cash rate (sim) — single entry</option>
@@ -321,7 +325,7 @@ document.querySelector(".tabs").onclick = e => {
   $("tab-players").classList.toggle("hide", t !== "players");
   $("tab-lineups").classList.toggle("hide", t !== "lineups");
 };
-["n", "ownmin", "ownmax", "expo", "sort", "stkby", "stk", "stk2", "stkteam"].forEach(id => $(id).oninput = drawLineups);
+["n", "ownmin", "ownmax", "expo", "sort", "stkby", "stk", "stk2", "stkteam", "mpt"].forEach(id => $(id).oninput = drawLineups);
 // Lineups already update as settings change; the button re-runs and jumps to them.
 $("build").onclick = () => { drawLineups(); $("lulist").scrollIntoView({behavior: "smooth"}); };
 
@@ -339,9 +343,11 @@ function drawLineups() {
   const k = $("sort").value;
   const s1 = +$("stk").value, s2 = +$("stk2").value, st = $("stkteam").value;
   const by = $("stkby").value;
+  const mpt = SPORT === "nhl" ? +$("mpt").value : 0;
   const G = L => (L.grp || {team: L.stk})[by] || [];
   let ok = pool.filter(L =>
     L.own >= lo && L.own <= hi &&
+    (!mpt || ((L.stk || [])[0] || [, 0])[1] <= mpt) &&
     (!s1 || (G(L)[0] || [, 0])[1] >= s1) &&
     (!s2 || (G(L)[1] || [, 0])[1] >= s2) &&
     (!st || G(L).some(([k, c]) => (k === st || k.startsWith(st + "-")) && c >= Math.max(s1, 2))) &&

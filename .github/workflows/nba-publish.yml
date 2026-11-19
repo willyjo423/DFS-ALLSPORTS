@@ -10,6 +10,9 @@ on:
       draft_group:
         description: "One draft group (blank = every unlocked classic slate)"
         required: false
+      soon:
+        description: "Only the slate locking within N minutes (lock-time runs)"
+        required: false
   schedule:
     - cron: "37 15 * 10,11,12,1,2,3,4 *"   # 10:37am ET
     - cron: "37 18 * 10,11,12,1,2,3,4 *"   # 1:37pm
@@ -55,6 +58,7 @@ jobs:
           case "${{ github.event.schedule }}" in
             "49 23 "*|"19 0 "*|"49 0 "*) ARGS="--soon 25" ;;
           esac
+          [ -n "${{ inputs.soon }}" ] && ARGS="--soon ${{ inputs.soon }}"
           echo "ARGS: $ARGS"
           python nba_publish.py $ARGS 2>&1 | tee publish.txt
       - name: Say what happened

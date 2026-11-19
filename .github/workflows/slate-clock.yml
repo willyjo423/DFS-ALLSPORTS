@@ -35,37 +35,41 @@ jobs:
           from zoneinfo import ZoneInfo
           ET = ZoneInfo("America/New_York")
           # (HH:MM Eastern, workflow file)
+          # A "!" marks a lock-time run: only the slate locking next, so it
+          # finishes in a couple of minutes instead of rebuilding every slate.
           PLAN = [(t, "nba-publish.yml") for t in
-                  ("10:37", "13:37", "16:33", "17:08", "17:41", "18:12", "18:36",
-                   "18:47", "19:17", "19:47", "20:13", "20:43", "21:40")]
+                  ("10:37", "13:37", "16:33", "17:08", "17:41", "18:12", "18:30",
+                   "!18:47", "!19:17", "!19:47", "20:13", "!21:40")]
           PLAN += [(t, "nhl-publish.yml") for t in
-                   ("11:15", "15:00", "17:10", "18:20", "18:42", "19:08", "19:38", "21:30")]
+                   ("11:15", "15:00", "17:10", "18:05", "!18:40", "!19:08", "!19:38", "21:30")]
           PLAN += [("09:10", "nba-fetch.yml")]
           PLAN += [(t, "cfb-publish.yml") for t in ("09:43", "11:38", "14:48", "18:43")]
           def season(wf, d):
               if wf == "cfb-publish.yml":
                   return d.weekday() == 5 and d.month in (8, 9, 10, 11, 12, 1)
               return d.month in (10, 11, 12, 1, 2, 3, 4, 5, 6)
-          def fire(wf):
+          def fire(wf, soon=False):
+              extra = ["-f", "inputs[soon]=28"] if soon else []
               r = subprocess.run(["gh", "api", "-X", "POST",
                                   f"repos/{os.environ['REPO']}/actions/workflows/{wf}/dispatches",
-                                  "-f", "ref=main"], capture_output=True, text=True)
+                                  "-f", "ref=main"] + extra, capture_output=True, text=True)
               print(datetime.now(ET).strftime("%H:%M"), "dispatch", wf, "ok" if r.returncode == 0 else r.stderr[:200], flush=True)
           start = time.time()
           now = datetime.now(ET)
           todo = []
           for day in (now.date(), now.date() + timedelta(days=1)):
               for hm, wf in PLAN:
-                  h, m = map(int, hm.split(":"))
+                  lock = hm.startswith("!")
+                  h, m = map(int, hm.lstrip("!").split(":"))
                   if season(wf, day):
-                      todo.append((datetime(day.year, day.month, day.day, h, m, tzinfo=ET), wf))
+                      todo.append((datetime(day.year, day.month, day.day, h, m, tzinfo=ET), wf, lock))
           todo.sort()
           # Catch up once: the most recent missed run of each workflow.
-          for wf in {w for _, w in todo}:
-              past = [a for a, w in todo if w == wf and a <= now]
+          for wf in {w for _, w, _ in todo}:
+              past = [a for a, w, lk in todo if w == wf and a <= now and not lk]
               if past and now - past[-1] < timedelta(hours=3):
                   fire(wf)
-          todo = [(a, w) for a, w in todo if a > now]
+          todo = [t for t in todo if t[0] > now]
           # Runs back to back for good: before the 6-hour job limit it starts
           # its successor, overnight included, so it never waits on GitHub's
           # cron to start the day (which did not fire at all on 2026-11-19).
@@ -81,6 +85,6 @@ jobs:
                   break
               if wait > 0:
                   time.sleep(wait)
-              at, wf = todo.pop(0)
-              fire(wf)
+              at, wf, lock = todo.pop(0)
+              fire(wf, lock)
           PY

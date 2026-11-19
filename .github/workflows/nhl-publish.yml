@@ -45,6 +45,9 @@ on:
       sims:
         description: "Simulations for the server's own lineups"
         default: "20000"
+      soon:
+        description: "Only the slate locking within N minutes (lock-time runs)"
+        required: false
       date:
         description: "Slate date YYYY-MM-DD (blank = derived from the draft group, or the next unlocked slate)"
         required: false
@@ -159,6 +162,7 @@ jobs:
           esac
           MSP="${{ inputs.min_salary_pct }}"
           ARGS="$ARGS --min-salary-pct ${MSP:-99}"
+          [ -n "${{ inputs.soon }}" ] && ARGS="$ARGS --soon ${{ inputs.soon }}"
           echo "EFFECTIVE ARGS: $ARGS"
           # pipefail, because a pipeline reports the status of its LAST
           # command: without it `python x.py | tee log` can never fail, and

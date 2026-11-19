@@ -56,13 +56,18 @@ FIELD_STRENGTH = 0.90   # field lineups project at least this share of the best
 # (projection floor as a share of the best, value chase): sharp half, casual half.
 # Without the value chase a 300-player board almost never yields a sharp
 # lineup by chance - the first live run built 8 of 1,250.
-FIELD_MIX = ((0.93, 4.0), (0.82, 0.0))
+FIELD_MIX = ((0.80, 1.0), (0.65, 0.0))   # floors loosened 2026-11-19 so the
+# field can match the ownership estimates (it could not at 0.93 / value^4)
+FIELD_CALIBRATION_ROUNDS = 4
 
 
 def build_field(players: list[dict], size: int, rng, cap: int = 50_000,
                 min_spend: int = 47_000, tries: int = 40,
-                best_proj: float | None = None, value_power: float = 0.0) -> np.ndarray:
+                best_proj: float | None = None, value_power: float = 0.0,
+                adjust: np.ndarray | None = None) -> np.ndarray:
     own = np.array([max(p.get("own") or 0.0, 0.0) for p in players])
+    if adjust is not None:
+        own = own * adjust
     sal = np.array([p.get("salary") or 0 for p in players])
     if value_power:
         # Optimizer users chase points per dollar as well as the chalk.
@@ -109,14 +114,37 @@ def rank_pool(payload: dict, sims: int = 1500, field: int = 2500, seed: int = 7)
     # A real field is a mix: optimizer users close to the best projection,
     # and casual entries well below it. Half each.
     best = max(L["proj"] for L in pool)
-    parts = []
-    for strength, vp in FIELD_MIX:
+    global FIELD_STRENGTH
+
+    def make(size, adjust):
         global FIELD_STRENGTH
-        FIELD_STRENGTH = strength
-        parts.append(build_field(players, field // len(FIELD_MIX), rng,
-                                 best_proj=best, tries=200, value_power=vp))
-    parts = [x for x in parts if len(x)]
-    Fd = np.vstack(parts) if parts else np.zeros((0, 8), int)
+        parts = []
+        for strength, vp in FIELD_MIX:
+            FIELD_STRENGTH = strength
+            parts.append(build_field(players, size // len(FIELD_MIX), rng, best_proj=best,
+                                     tries=60, value_power=vp, adjust=adjust))
+        parts = [x for x in parts if len(x)]
+        return np.vstack(parts) if parts else np.zeros((0, 8), int)
+
+    # The field has to roster players about as often as our ownership says
+    # it will. Built raw - value chase plus a projection floor - it did not:
+    # on 2026-11-18 it played Quickley in 79% of lineups against a 42%
+    # estimate, LeBron 61% vs 30%, which made every fade look far better than
+    # it was. The sampling weights are corrected until the two agree.
+    target = np.array([max(p.get("own") or 0.0, 0.0) for p in players])
+    adjust = np.ones(len(players))
+    for _ in range(FIELD_CALIBRATION_ROUNDS):
+        Fd = make(1000, adjust)
+        if len(Fd) < 200:
+            break
+        freq = np.bincount(Fd.ravel(), minlength=len(players)) / len(Fd)
+        adjust *= np.clip((target + 0.003) / (freq + 0.003), 0.25, 4.0) ** 0.8
+    Fd = make(field, adjust)
+    if len(Fd):
+        freq = np.bincount(Fd.ravel(), minlength=len(players)) / len(Fd)
+        top = np.argsort(-target)[:10]
+        log.info("sim field ownership vs estimate (top 10): mean |gap| %.1f pts",
+                 float(np.abs(freq[top] - target[top]).mean() * 100))
     if len(Fd) < 200:
         log.warning("sim: only %d field lineups could be built; skipped", len(Fd))
         return

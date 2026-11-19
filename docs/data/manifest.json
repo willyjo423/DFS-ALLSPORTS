@@ -61,14 +61,6 @@
    "sport": "nhl",
    "site": "dk",
    "kind": "classic",
-   "label": "2 teams \u00b7 7:00pm \u00b7 (NYI @ WPG)",
-   "file": "data/nhl_dk_classic_156939.json",
-   "locks": "2026-11-20T00:00:00+00:00"
-  },
-  {
-   "sport": "nhl",
-   "site": "dk",
-   "kind": "classic",
    "label": "4 teams \u00b7 8:00pm \u00b7 (Turbo)",
    "file": "data/nhl_dk_classic_156940.json",
    "locks": "2026-11-20T01:00:00+00:00"
@@ -85,9 +77,17 @@
    "sport": "nhl",
    "site": "dk",
    "kind": "classic",
-   "label": "2 teams \u00b7 10:00pm \u00b7 (DAL @ VGK)",
-   "file": "data/nhl_dk_classic_156942.json",
-   "locks": "2026-11-20T03:00:00+00:00"
+   "label": "4 teams \u00b7 1:00pm \u00b7 (Early)",
+   "file": "data/nhl_dk_classic_156944.json",
+   "locks": "2026-11-21T18:00:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "4 teams \u00b7 10:00pm \u00b7 (Late)",
+   "file": "data/nhl_dk_classic_156953.json",
+   "locks": "2026-11-22T03:00:00+00:00"
   }
  ]
 }

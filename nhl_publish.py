@@ -434,6 +434,7 @@ def slate_players(pool: pd.DataFrame, quantiles: list[float],
             # is baseball's. Shipped so the board can be sorted by it. A
             # goalie has none, and null is what the page can render.
             "toi": num(r.get("ewm_time_on_ice"), 2),
+            "sv_exp": num(r.get("sv_exp"), 2),
             "pptoi": num(r.get("ewm_pp_time_on_ice"), 2),
             # Games in the last thirty days, and whether that is few enough
             # that he should not be in a lineup at all. DraftKings drops the

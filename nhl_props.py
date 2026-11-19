@@ -13,8 +13,8 @@ Goals are points minus assists; with no assists market they are the usual
 share of points by position. A skater needs a shots market and a points
 market to be blended; blocks fall back to the position average.
 
-Goalies are not blended yet: the saves line is there, but our goalie
-projection has no separate saves term to swap it against.
+Goalies: the saves line replaces the model's expected saves (shots against
+x save percentage); goals against and the win stay with the model.
 
 Each day's props are saved under docs/data/props/nhl/<date>.json, both as a
 fallback and as a record to grade the blend weight against.
@@ -39,7 +39,11 @@ LIST_URL = ("https://www.bovada.lv/services/sports/event/coupon/events/A/descrip
             "hockey/nhl?marketFilterId=def&preMatchOnly=true&lang=en")
 EVENT_URL = "https://www.bovada.lv/services/sports/event/v2/events/A/description{}?lang=en"
 
-W_MARKET = 0.5           # regrade against docs/data/props/nhl once ~30 nights exist
+# Same logic as NBA: the books carry most of the weight, more when they
+# disagree with us. NBA graded 0.98 on props over 114 players (2026-11-18);
+# NHL is set to match and is regraded nightly from docs/data/props/nhl.
+W_MARKET = 0.85
+W_GAP_MAX = 0.95         # once model and props are 25%+ apart
 ONE_SIDED_POW = 1.12     # a milestone posts only the "yes" price: p_true = p^1.12
                          # (power de-vig; shades long shots more, as books do)
 GOAL_SHARE = {"D": 0.27, "C": 0.42, "W": 0.42, "F": 0.42}
@@ -266,6 +270,50 @@ def load(day: str) -> dict:
 
 
 # ------------------------------------------------------------------ blending
+def weight(model: float, market: float) -> float:
+    if model <= 0:
+        return W_MARKET
+    gap = abs(market - model) / model
+    if gap <= 0.10:
+        return W_MARKET
+    return W_MARKET + (W_GAP_MAX - W_MARKET) * min(1.0, (gap - 0.10) / 0.15)
+
+
+def _apply_goalie(p: dict, st: dict) -> int:
+    """Saves line against the model's expected saves. Only the saves part of
+    a goalie's score moves (0.7 a save, and the 3-point bonus at 35); goals
+    against and the win stay with the model, which builds them from the
+    Vegas team totals already."""
+    sv_mkt = expected(st.get("SV", []))
+    sv_mod = p.get("sv_exp")
+    if sv_mkt is None or not sv_mod:
+        return 0
+    sv_mod = float(sv_mod)
+    model = float(p.get("proj") or 0)
+    if model <= 0:
+        return 0
+    pp = min(float(p.get("pp") or 1.0), 1.0)
+    delta = (0.7 * (sv_mkt - sv_mod)
+             + 3 * (poisson_tail(sv_mkt, 35) - poisson_tail(sv_mod, 35)))
+    w = weight(model, model + delta * pp)
+    target = max(0.5, model + w * delta * pp)
+    f = target / model
+    p["proj"] = round(target, 2)
+    for key in ("mean", "med", "ceil"):
+        if p.get(key) is not None:
+            p[key] = round(float(p[key]) * f, 2)
+    if p.get("q"):
+        p["q"] = [round(float(v) * f, 3) for v in p["q"]]
+    p["props"] = round(model + delta * pp, 2)
+    p["model"] = round(model, 2)
+    p["sv_mkt"] = round(sv_mkt, 1)
+    if abs(sv_mkt - sv_mod) >= 2:
+        note = f"saves line {sv_mkt:.1f} vs model {sv_mod:.1f}"
+        p["news"] = (p["news"] + "; " + note) if p.get("news") else note
+    return 1
+
+
+
 def apply(payload: dict) -> int:
     """Blend props into skater projections, after calibration. Returns the
     number of skaters blended."""
@@ -290,13 +338,17 @@ def apply(payload: dict) -> int:
         for k in name_keys(nm):
             idx.setdefault(k, []).append((tm, st))
     n, gaps = 0, []
+    ng = 0
     for p in payload.get("players", []):
-        if p.get("pos") == "G" or p.get("status") == "out":
+        if p.get("status") == "out":
             continue
         cands = [c for k in name_keys(p["name"]) for c in idx.get(k, [])]
         if not cands:
             continue
         st = next((c[1] for c in cands if c[0] == p["team"]), cands[0][1])
+        if p.get("pos") == "G":
+            ng += _apply_goalie(p, st)
+            continue
         mk = market_dk(st, p.get("pos", "F"))
         if not mk:
             continue
@@ -304,7 +356,8 @@ def apply(payload: dict) -> int:
         if model <= 0:
             continue
         pp = min(float(p.get("pp") or 1.0), 1.0)
-        target = (1 - W_MARKET) * model + W_MARKET * mk["dk"] * pp
+        w = weight(model, mk["dk"] * pp)
+        target = (1 - w) * model + w * mk["dk"] * pp
         f = target / model
         p["proj"] = round(target, 2)
         for key in ("mean", "med", "ceil"):
@@ -319,7 +372,7 @@ def apply(payload: dict) -> int:
             note = f"props {mk['dk']:.1f} vs model {model:.1f}"
             p["news"] = (p["news"] + "; " + note) if p.get("news") else note
         n += 1
-    log.info("props: %d skaters matched with shots and points markets", n)
+    log.info("props: %d skaters matched with shots and points markets, %d goalies with saves", n, ng)
     if n:
         payload["props"] = {"source": "Bovada player props", "players": n, "weight": W_MARKET}
         log.info("props: blended %d skaters, props - model mean %+.2f, mean |gap| %.2f",

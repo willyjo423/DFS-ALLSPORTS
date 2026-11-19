@@ -425,6 +425,10 @@ def build(day: str, sims: int = 20_000, base: str = BASE,
         out["spread"] = (out[NS.SKATERS.qcol(quantiles[-1])]
                          - out[NS.SKATERS.qcol(quantiles[0])])
         out["p_play"], out["doubtful"] = availability(df)
+        if side == "goalies":
+            # Expected saves, so a sportsbook saves line can be set against it.
+            out["sv_exp"] = (_col(df, "shots_against", default=29.0)
+                             * np.clip(_col(df, "save_pct", default=0.905), 0.80, 0.97))
         # Carried through so the page can say WHY a player is hidden. A row
         # that vanishes with no reason given is indistinguishable from a bug.
         out["gp_30d"] = _col(df, "gp_30d").astype(int)

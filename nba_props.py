@@ -53,6 +53,7 @@ N = NormalDist()
 # beyond injuries and starters, so the market gets the majority. Regrade this
 # against docs/data/props/nba history once there are ~30 nights of it.
 W_MARKET = 0.6
+W_GAP_MAX = 0.85          # market weight once model and props are 25%+ apart
 DK_W = {"P": 1.0, "R": 1.25, "A": 1.5}
 
 
@@ -229,5 +230,13 @@ def blend(model_cond: float, mkt: tuple[float, float] | None) -> tuple[float, fl
     if not mkt or model_cond <= 0:
         return model_cond, 0.0
     total, share = mkt
-    w = W_MARKET * min(1.0, share / 0.85)
+    w = W_MARKET
+    # When the model and the books disagree by a lot, it is nearly always our
+    # usage bump for absent teammates running hot - 11/18: LeBron model 55.6
+    # vs props 40.3 (actual 34.75), Quickley 50.5 vs 42.4 (38.75). The books
+    # price absences well; trust them more the further apart we are.
+    gap = abs(total - model_cond) / model_cond
+    if gap > 0.10:
+        w = W_MARKET + (W_GAP_MAX - W_MARKET) * min(1.0, (gap - 0.10) / 0.15)
+    w *= min(1.0, share / 0.85)
     return (1 - w) * model_cond + w * total, w

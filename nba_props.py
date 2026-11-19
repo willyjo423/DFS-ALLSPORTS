@@ -48,12 +48,17 @@ STATS = {
 }
 N = NormalDist()
 
+# Graded 2026-11-18 (114 players with props who played): props MAE 7.74 vs
+# model 8.31; regressing (actual - model) on (props - model) gave a weight of
+# 0.98 on props, and the gap predicted the miss in BOTH directions (props 2-5
+# below model -> actual 6.3 below; 5+ above -> 5.5 above). One night, so 0.85,
+# not 1.0; regrade as nights accumulate.
 # Weight on the market at full coverage. Sharp NBA shops lean on props more
 # than on any public model; ours is a minutes x rate model with no news feed
 # beyond injuries and starters, so the market gets the majority. Regrade this
 # against docs/data/props/nba history once there are ~30 nights of it.
-W_MARKET = 0.6
-W_GAP_MAX = 0.85          # market weight once model and props are 25%+ apart
+W_MARKET = 0.85
+W_GAP_MAX = 0.95          # market weight once model and props are 25%+ apart
 DK_W = {"P": 1.0, "R": 1.25, "A": 1.5}
 
 

@@ -53,13 +53,12 @@ jobs:
               print(datetime.now(ET).strftime("%H:%M"), "dispatch", wf, "ok" if r.returncode == 0 else r.stderr[:200], flush=True)
           start = time.time()
           now = datetime.now(ET)
-          today = now.date()
           todo = []
-          for hm, wf in PLAN:
-              h, m = map(int, hm.split(":"))
-              at = datetime(today.year, today.month, today.day, h, m, tzinfo=ET)
-              if season(wf, today):
-                  todo.append((at, wf))
+          for day in (now.date(), now.date() + timedelta(days=1)):
+              for hm, wf in PLAN:
+                  h, m = map(int, hm.split(":"))
+                  if season(wf, day):
+                      todo.append((datetime(day.year, day.month, day.day, h, m, tzinfo=ET), wf))
           todo.sort()
           # Catch up once: the most recent missed run of each workflow.
           for wf in {w for _, w in todo}:
@@ -67,15 +66,21 @@ jobs:
               if past and now - past[-1] < timedelta(hours=3):
                   fire(wf)
           todo = [(a, w) for a, w in todo if a > now]
-          while todo:
-              at, wf = todo[0]
-              wait = (at - datetime.now(ET)).total_seconds()
-              if time.time() - start + max(wait, 0) > 340 * 60:
+          # Runs back to back for good: before the 6-hour job limit it starts
+          # its successor, overnight included, so it never waits on GitHub's
+          # cron to start the day (which did not fire at all on 2026-11-19).
+          while True:
+              nxt = todo[0][0] if todo else now + timedelta(hours=12)
+              wait = (nxt - datetime.now(ET)).total_seconds()
+              if time.time() - start + max(wait, 0) > 340 * 60 or not todo:
+                  left = 340 * 60 - (time.time() - start)
+                  if left > 0 and todo:
+                      time.sleep(left)
                   print("handing over to a fresh clock run", flush=True)
                   fire("slate-clock.yml")
                   break
               if wait > 0:
                   time.sleep(wait)
+              at, wf = todo.pop(0)
               fire(wf)
-              todo.pop(0)
           PY

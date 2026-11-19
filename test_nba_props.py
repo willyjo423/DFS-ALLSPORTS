@@ -45,3 +45,10 @@ def test_market_dk_and_blend():
     tot2, share2 = PR.market_dk({"P": 21.0}, rates, 34.0)
     assert share2 < 0.6 and PR.blend(40.0, (tot2, share2))[1] < PR.W_MARKET
     assert PR.market_dk({"R": 9.0}, rates, 34.0) is None
+
+
+def test_big_gap_leans_on_market():
+    v, w = PR.blend(55.6, (40.3, 0.95))
+    assert w > 0.8 and v < 43.5          # LeBron 11/18: actual 34.75
+    v2, w2 = PR.blend(40.0, (41.0, 0.95))
+    assert abs(w2 - PR.W_MARKET) < 1e-9

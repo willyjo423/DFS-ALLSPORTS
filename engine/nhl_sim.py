@@ -187,7 +187,7 @@ def build_field(payload: dict, size: int, rng, floor: float, value_power: float,
     return np.array(out, dtype=int)
 
 
-def rank_pool(payload: dict, sims: int = 1500, field: int = 2500, seed: int = 11) -> None:
+def rank_pool(payload: dict, sims: int = 30000, field: int = 5000, seed: int = 11) -> None:
     pool = payload.get("lineups") or []
     if not pool or not payload.get("players"):
         return

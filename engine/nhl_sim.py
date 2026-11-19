@@ -101,8 +101,24 @@ def simulate_scores(payload: dict, sims: int, rng) -> np.ndarray:
     return out
 
 
+def rake_field(F: np.ndarray, target: np.ndarray, rng, iters: int = 40) -> np.ndarray:
+    """Redraw the field so each player appears about as often as his
+    ownership estimate: lineup weights are raked (multiplied by the geometric
+    mean of their players' target/actual ratios) until the weighted
+    frequencies agree, then the field is resampled from those weights."""
+    n = len(target)
+    w = np.ones(len(F))
+    for _ in range(iters):
+        freq = np.bincount(F.ravel(), weights=np.repeat(w, F.shape[1]), minlength=n) / w.sum()
+        r = np.log(np.clip((target + 0.003) / (freq + 0.003), 0.2, 5.0))
+        w *= np.exp(r[F].mean(axis=1))
+        w = np.clip(w / w.mean(), 0.02, 50.0)
+    return F[rng.choice(len(F), size=len(F), p=w / w.sum())]
+
+
 def build_field(payload: dict, size: int, rng, floor: float, value_power: float,
-                stack: bool, best: float, tries: int = 60) -> np.ndarray:
+                stack: bool, best: float, tries: int = 60,
+                adjust: np.ndarray | None = None) -> np.ndarray:
     players = payload["players"]
     roster = payload["roster"]
     cap = roster.get("salary_cap", 50_000)
@@ -113,6 +129,8 @@ def build_field(payload: dict, size: int, rng, floor: float, value_power: float,
     pos = [p["pos"] for p in players]
     ok = np.array([p.get("status") != "out" and (p.get("own") or 0) > 0.001 for p in players])
     w = own * ((proj / np.maximum(sal, 1) * 1000 / 2.0) ** value_power if value_power else 1)
+    if adjust is not None:
+        w = w * adjust
     by_pos = {s: np.array([i for i in range(n) if ok[i] and pos[i] == s]) for s in ("C", "W", "D", "G")}
     lines = {}
     for i, p in enumerate(players):
@@ -179,6 +197,22 @@ def rank_pool(payload: dict, sims: int = 1500, field: int = 2500, seed: int = 11
     parts = [build_field(payload, field // len(FIELD_MIX), rng, fl, vp, st, best)
              for fl, vp, st in FIELD_MIX]
     parts = [x for x in parts if len(x)]
+    if parts:
+        # Match the field's rostering to the ownership estimates. Built raw,
+        # the 2026-11-18 field had Jack Hughes in 78% of lineups against a 42%
+        # estimate. Rebuilding with corrected weights starved the salary
+        # rules, so instead the lineups are reweighted (raking on players)
+        # and the field redrawn from those weights.
+        F0 = np.vstack(parts)
+        target = np.array([max(p.get("own") or 0.0, 0.0) for p in payload["players"]])
+        F1 = rake_field(F0, target, rng)
+        freq0 = np.bincount(F0.ravel(), minlength=len(target)) / len(F0)
+        freq1 = np.bincount(F1.ravel(), minlength=len(target)) / len(F1)
+        top = np.argsort(-target)[:10]
+        log.info("nhl sim field ownership vs estimate (top 10): mean |gap| %.1f -> %.1f pts",
+                 float(np.abs(freq0[top] - target[top]).mean() * 100),
+                 float(np.abs(freq1[top] - target[top]).mean() * 100))
+        parts = [F1]
     if not parts or sum(len(x) for x in parts) < 300:
         log.warning("nhl sim: field too small (%d); lineups left unranked",
                     sum(len(x) for x in parts))

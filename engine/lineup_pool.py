@@ -45,7 +45,8 @@ MIN_UNIQUE = 2              # players each new lineup must not share
 STACKED_PER_OBJECTIVE = 6   # hockey: 3 shapes x 3 lam x 6 = 54
 TEAM_STACKS = 10            # hockey: a 4-stack of each of the top 10 teams
 PER_TEAM_STACK = 3
-GOALIE_ANCHORED = 3         # hockey: lineups forced around each likely starter
+GOALIE_ANCHORED = 2         # hockey: lineups forced around each likely starter
+ANCHOR_GOALIES = 6          # ... the six best-projected of them
 SPREAD_CAP = 3              # hockey: skaters per team in the spread builds
 GOALIES = {"G"}
 PITCHERS = {"P", "SP", "RP"}
@@ -447,8 +448,9 @@ def build(players: list[dict], roster: dict, field_size: int = 100_000,
         # Devils, whose skaters filled every optimal lineup, so not one of 282
         # pool lineups had him - he scored 17.2, the goalies we did use 7-8.
         # Goalie-first lineups exist whatever the best skater stack is.
-        gs = [i for i, p in enumerate(pl) if pos[i] in GOALIES
-              and float(p.get("pp") or 1.0) >= 0.5]
+        gs = sorted((i for i, p in enumerate(pl) if pos[i] in GOALIES
+                     and float(p.get("pp") or 1.0) >= 0.5),
+                    key=lambda i: -med[i])[:ANCHOR_GOALIES]
         for i in gs:
             families.append((f"goalie {pl[i]['name']} lam=0.0", med, 0.0,
                              ("force", i, None), GOALIE_ANCHORED))
@@ -457,9 +459,8 @@ def build(players: list[dict], roster: dict, field_size: int = 100_000,
         # Spread builds (no more than 3 skaters from a team): the low-variance
         # shape for cash games. On 2026-11-18 pool lineups capped at 3 per
         # team averaged 84 points, 5-6 man stacks 65-67.
-        for lam in (0.0, 0.5):
-            families.append((f"spread lam={lam}", med, lam,
-                             ("spread", None, SPREAD_CAP), STACKED_PER_OBJECTIVE))
+        families.append(("spread lam=0.0", med, 0.0,
+                         ("spread", None, SPREAD_CAP), STACKED_PER_OBJECTIVE))
 
     floor_ok = True
     for name, base, lam, stack, count in families:

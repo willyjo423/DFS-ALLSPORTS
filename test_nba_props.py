@@ -39,8 +39,8 @@ def test_market_dk_and_blend():
     tot, share = PR.market_dk(s, rates, 34.0)
     assert abs(tot - (21 + 1.25 * 9.6 + 1.5 * 5 + 0.12 * 34)) < 1e-6
     assert share > 0.85
-    v, w = PR.blend(40.0, (tot, share))
-    assert abs(w - PR.W_MARKET) < 1e-9 and 40 < v < tot
+    v, w = PR.blend(43.0, (tot, share))
+    assert abs(w - PR.W_MARKET) < 1e-9 and 43 < v < tot
     # points only: rebounds/assists filled from his rates, lower weight
     tot2, share2 = PR.market_dk({"P": 21.0}, rates, 34.0)
     assert share2 < 0.6 and PR.blend(40.0, (tot2, share2))[1] < PR.W_MARKET

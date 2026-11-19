@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ref: [main, feat/nhl-cash-fixes]
+        ref: [feat/nhl-props2]
     steps:
       - uses: actions/checkout@v4
         with: {ref: "${{ matrix.ref }}"}
@@ -14,7 +14,7 @@ jobs:
       - run: pip install -q -r requirements.txt
       - run: |
           start=$(date +%s)
-          python nhl_publish.py 2>&1 | grep -E "lineup pool: [0-9]{3}|wrote|nhl sim|ERROR" | grep -v "salary floor" | tail -20
+          python nhl_publish.py 2>&1 | grep -E "props|bovada|wrote|ERROR|Traceback" | grep -v "salary floor" | tail -20
           echo "ELAPSED $(( $(date +%s) - start ))s ${{ matrix.ref }}"
           python3 - <<'PY'
           import json,glob,collections
@@ -22,4 +22,7 @@ jobs:
               d=json.load(open(f)); P=d["players"]; L=d.get("lineups",[])
               g=collections.Counter(P[i]["name"] for l in L for i in l["p"] if P[i]["pos"]=="G")
               print("SLATE", f, len(L), dict(g.most_common(8)))
+              for p in P:
+                  if p.get("pos")=="G" and p.get("sv_mkt"): print("GOALIE", p["name"], p.get("sv_exp"), p.get("sv_mkt"), p.get("model"), p.get("proj"))
+              sk=[p for p in P if p.get("props") and p.get("pos")!="G"]; print("SKATERS", len(sk), "of", sum(1 for p in P if p.get("pos")!="G" and p.get("status")!="out"))
           PY

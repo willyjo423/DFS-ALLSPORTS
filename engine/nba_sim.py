@@ -102,7 +102,7 @@ def build_field(players: list[dict], size: int, rng, cap: int = 50_000,
     return np.array(out, dtype=int)
 
 
-def rank_pool(payload: dict, sims: int = 1500, field: int = 2500, seed: int = 7) -> None:
+def rank_pool(payload: dict, sims: int = 25000, field: int = 5000, seed: int = 7) -> None:
     """Adds top1 / top10 / cash (percent of simulated nights) to every pool
     lineup, in place."""
     pool = payload.get("lineups") or []

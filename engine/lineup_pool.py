@@ -45,6 +45,8 @@ MIN_UNIQUE = 2              # players each new lineup must not share
 STACKED_PER_OBJECTIVE = 6   # hockey: 3 shapes x 3 lam x 6 = 54
 TEAM_STACKS = 10            # hockey: a 4-stack of each of the top 10 teams
 PER_TEAM_STACK = 3
+GOALIE_ANCHORED = 3         # hockey: lineups forced around each likely starter
+SPREAD_CAP = 3              # hockey: skaters per team in the spread builds
 GOALIES = {"G"}
 PITCHERS = {"P", "SP", "RP"}
 
@@ -235,6 +237,24 @@ def build(players: list[dict], roster: dict, field_size: int = 100_000,
 
     def solve(obj, use_floor=True, stack=None):
         AA, LL, HH = list(A), list(lo), list(hi)
+        if stack and stack[0] in ("force", "spread"):
+            # ("force", i, cap): player i in the lineup; ("spread", None, cap):
+            # nothing forced. Either way at most `cap` skaters from one team.
+            _, i_force, tcap = stack
+            if i_force is not None:
+                r = np.zeros(m)
+                r[i_force] = 1
+                AA.append(r)
+                LL.append(1)
+                HH.append(1)
+            if tcap:
+                for t in teams:
+                    r = np.zeros(m)
+                    r[:n] = tmask[t]
+                    AA.append(r)
+                    LL.append(0)
+                    HH.append(tcap)
+            stack = None
         if stack and stack[0] == "team":
             _, t, k = stack
             r = np.zeros(m)
@@ -420,6 +440,26 @@ def build(players: list[dict], roster: dict, field_size: int = 100_000,
                     families.append((f"line+D pp1 3 lam={lam}", ceil, lam,
                                      ("groups", [(lined, 4), (units, 3)]),
                                      STACKED_PER_OBJECTIVE))
+
+    if "G" in roster.get("slots", []):
+        # Every likely starting goalie gets lineups built around him.
+        # 2026-11-18: Jacob Fowler was the top-projected goalie but faced the
+        # Devils, whose skaters filled every optimal lineup, so not one of 282
+        # pool lineups had him - he scored 17.2, the goalies we did use 7-8.
+        # Goalie-first lineups exist whatever the best skater stack is.
+        gs = [i for i, p in enumerate(pl) if pos[i] in GOALIES
+              and float(p.get("pp") or 1.0) >= 0.5]
+        for i in gs:
+            families.append((f"goalie {pl[i]['name']} lam=0.0", med, 0.0,
+                             ("force", i, None), GOALIE_ANCHORED))
+            families.append((f"goalie {pl[i]['name']} spread", med, 0.0,
+                             ("force", i, SPREAD_CAP), GOALIE_ANCHORED))
+        # Spread builds (no more than 3 skaters from a team): the low-variance
+        # shape for cash games. On 2026-11-18 pool lineups capped at 3 per
+        # team averaged 84 points, 5-6 man stacks 65-67.
+        for lam in (0.0, 0.5):
+            families.append((f"spread lam={lam}", med, lam,
+                             ("spread", None, SPREAD_CAP), STACKED_PER_OBJECTIVE))
 
     floor_ok = True
     for name, base, lam, stack, count in families:

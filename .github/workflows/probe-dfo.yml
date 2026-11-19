@@ -4,21 +4,19 @@ jobs:
   p:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+        with: {ref: main}
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install -q pandas numpy requests
       - run: |
           python3 - <<'PY'
-          import json, urllib.request, time
-          def get(u):
-              return json.loads(urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent":"Mozilla/5.0"}), timeout=30).read())
-          sc = get("https://api-web.nhle.com/v1/score/2026-11-18")
-          for g in sc["games"]:
-              print("GAME", g["awayTeam"]["abbrev"], g["awayTeam"].get("score"), "@", g["homeTeam"]["abbrev"], g["homeTeam"].get("score"), g.get("gameState"), g.get("periodDescriptor",{}).get("periodType"))
-              b = get(f"https://api-web.nhle.com/v1/gamecenter/{g['id']}/boxscore")
-              for side in ("awayTeam", "homeTeam"):
-                  t = b[side]["abbrev"]; st = b["playerByGameStats"][side]
-                  for grp in ("forwards", "defense"):
-                      for p in st.get(grp, []):
-                          print("S|%s|%s|%d|%d|%d|%d|%d|%s" % ((p.get("name") or {}).get("default"), t, p.get("goals",0), p.get("assists",0), p.get("sog",0), p.get("blockedShots",0), p.get("shPoints",0) if "shPoints" in p else 0, p.get("powerPlayGoals",0)))
-                  for p in st.get("goalies", []):
-                      print("G|%s|%s|%s|%s|%s|%s" % ((p.get("name") or {}).get("default"), t, p.get("saves"), p.get("goalsAgainst"), p.get("decision"), p.get("toi")))
-              time.sleep(0.3)
+          import datetime as dt, pandas as pd, nba_fetch as F, time
+          rows=[]
+          for g in F.games_on(dt.date(2026,11,18)):
+              rows += F.parse(F._get(F.SUMMARY, event=g["id"]), g["id"], g["date"]); time.sleep(0.5)
+          df=pd.DataFrame(rows); df["dk"]=F.dk_points(df)
+          print("ROWS", len(df), df["game_id"].nunique())
+          for r in df.itertuples():
+              print("P|%s|%s|%s|%s|%s|%.2f" % (r.name, r.team, r.played, r.starter, r.min, r.dk))
           PY

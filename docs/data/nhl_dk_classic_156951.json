@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-20T16:15:33+00:00",
+ "generated_at": "2026-11-20T19:06:35+00:00",
  "sport": "nhl",
  "site": "dk",
  "kind": "classic",
@@ -1733,7 +1733,6 @@
    "status": "clear",
    "line": "L4",
    "lg": "ANA-L4",
-   "ppu": 2,
    "proj": 3.98,
    "opt": 0.0,
    "chalk": false
@@ -1862,6 +1861,7 @@
    "status": "clear",
    "line": "L4",
    "lg": "ANA-L4",
+   "ppu": 2,
    "proj": 3.65,
    "opt": 0.0,
    "chalk": false
@@ -2228,7 +2228,7 @@
  },
  "news": {
   "source": "Daily Faceoff",
-  "at": "2026-11-20T16:42+00:00",
+  "at": "2026-11-20T19:25+00:00",
   "goalies_confirmed": 0,
   "teams": 2,
   "lines": 35,

@@ -31,6 +31,7 @@ SLOTS_ORDER = ["C", "PF", "SF", "SG", "PG", "F", "G", "UTIL"]   # scarcest first
 # Once the projection has the game total in it, NBA players do not boom
 # together - so no shared shocks. (Game stacks that won a night were luck.)
 GAME_SD = 0.0
+MODEL_SCENARIO = 0.15   # per team per night; ~1 - the props weight
 TEAM_SD = 0.0
 
 
@@ -47,7 +48,21 @@ def simulate_scores(players: list[dict], sims: int, rng) -> np.ndarray:
     gs = rng.normal(0, GAME_SD, (sims, len(games)))
     ts = rng.normal(0, TEAM_SD, (sims, len(teams)))
     z = rng.normal(0, 1, (sims, n))
-    score = med * (1 + gs[:, gi] + ts[:, ti]) + sd * z
+    # The books or our model: projections lean on the props, but when the two
+    # disagree about a team they are often wrong together (2026-11-19: props
+    # had Portland's Holiday/Camara/Cissoko at 30/27/19 vs our 41/34/28;
+    # actual 42/42.5/30, and that stack won). In a share of simulated nights,
+    # per team, the model's numbers are the truth for that whole team.
+    alt = np.array([float(p["model"]) if p.get("model") else (p.get("med") or 0.0)
+                    for p in players])
+    if MODEL_SCENARIO > 0 and np.any(np.abs(alt - med) > 0.5):
+        flip = rng.random((sims, len(teams))) < MODEL_SCENARIO
+        f = flip[:, ti]
+        base = np.where(f, alt, med)
+        sd_s = np.where(f, sd * np.where(med > 0, alt / np.maximum(med, 1e-6), 1.0), sd)
+    else:
+        base, sd_s = med, sd
+    score = base * (1 + gs[:, gi] + ts[:, ti]) + sd_s * z
     plays = rng.random((sims, n)) < pp
     return np.where(plays, np.maximum(score, 0), 0.0)
 

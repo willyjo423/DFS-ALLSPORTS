@@ -10,8 +10,19 @@ jobs:
           UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36"
           def get(u):
               return json.loads(urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": UA, "Accept": "application/json"}), timeout=30).read())
-          b = get("https://www.bovada.lv/services/sports/event/coupon/events/A/description/football/nfl?marketFilterId=def&preMatchOnly=true&lang=en")
-          evs = [e for blk in b for e in blk["events"]]; print("EVENTS", len(evs), [e["description"] for e in evs][:20])
+          import time
+          evs=[]
+          for url in ["https://www.bovada.lv/services/sports/event/coupon/events/A/description/football/nfl?marketFilterId=def&preMatchOnly=true&lang=en",
+                      "https://www.bovada.lv/services/sports/event/coupon/events/A/description/football/nfl?marketFilterId=def&lang=en",
+                      "https://www.bovada.lv/services/sports/event/v2/events/A/description/football/nfl?lang=en"]:
+              for t in range(3):
+                  try:
+                      b = get(url); evs = [e for blk in b for e in blk.get("events",[])]
+                  except Exception as ex: print("ERR", url, ex)
+                  print("TRY", url[-60:], t, len(evs))
+                  if evs: break
+                  time.sleep(15)
+              if evs: break; print("EVENTS", len(evs), [e["description"] for e in evs][:20])
           kinds = collections.Counter(); per=[]
           for e in evs[:16]:
               full = get("https://www.bovada.lv/services/sports/event/v2/events/A/description" + e["link"] + "?lang=en")

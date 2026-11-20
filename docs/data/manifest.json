@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-20T00:50:25+00:00",
+ "updated_at": "2026-11-20T00:54:28+00:00",
  "slates": [
   {
    "sport": "cfb",
@@ -45,7 +45,7 @@
    "sport": "nba",
    "site": "dk",
    "kind": "classic",
-   "label": "8:00pm \u00b7 406 contests",
+   "label": "8:00pm \u00b7 378 contests",
    "file": "data/nba_dk_classic_157035.json",
    "locks": "2026-11-20T01:00:00+00:00"
   },

@@ -33,7 +33,10 @@ permissions:
   contents: write
 
 concurrency:
-  group: nba-publish
+  # Lock-time runs (soon=N) get their own lane: on 2026-11-19 the 6:40pm
+  # lock run sat queued 9 minutes behind a full rebuild and finished three
+  # minutes before puck drop.
+  group: nba-publish-${{ inputs.soon && 'lock' || 'full' }}
   cancel-in-progress: true
 
 jobs:

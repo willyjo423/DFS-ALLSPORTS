@@ -5,22 +5,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with: {ref: feat/nhl-props2}
+        with: {ref: main}
       - uses: actions/setup-python@v5
         with: {python-version: "3.12"}
-      - run: pip install -q -r requirements.txt
+      - run: pip install -q pandas numpy requests
       - run: |
           python3 - <<'PY'
-          import logging; logging.basicConfig(level=logging.INFO)
-          import nhl_props as P, collections
-          d = {}
-          for i in range(3):
-              try:
-                  d = P.fetch()
-              except Exception as e: print("ERR", e)
-              print("TRY", i, len(d))
-              if d: break
-          c = collections.Counter(s for v in d.values() for s in v)
-          print("STATS", c)
-          print("SV", [(k, v["SV"]) for k, v in d.items() if "SV" in v][:10])
+          import datetime as dt, pandas as pd, nba_fetch as F, time
+          rows=[]
+          for g in F.games_on(dt.date(2026,11,19)):
+              rows += F.parse(F._get(F.SUMMARY, event=g["id"]), g["id"], g["date"]); time.sleep(0.5)
+          df=pd.DataFrame(rows); df["dk"]=F.dk_points(df)
+          print("ROWS", len(df), df["game_id"].nunique())
+          for r in df.itertuples():
+              print("P|%s|%s|%s|%s|%s|%.2f" % (r.name, r.team, r.played, r.starter, r.min, r.dk))
           PY

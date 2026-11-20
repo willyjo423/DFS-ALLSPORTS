@@ -1,0 +1,103 @@
+{
+ "sport": "nhl",
+ "date": "2026-11-19",
+ "slate": "24 teams \u00b7 7:00pm",
+ "draft_group": 156935,
+ "players": 588,
+ "graded": 338,
+ "mae_final": 4.621,
+ "props": {
+  "n": 235,
+  "mae_model": 5.345,
+  "mae_props": 5.312,
+  "mae_final": 5.313,
+  "sxy": 326.97319999999996,
+  "sxx": 291.12219999999996,
+  "weight": 1.123
+ },
+ "pool": {
+  "n": 348,
+  "avg": 114.2,
+  "best": 180.1,
+  "top5_cash": [
+   94.5,
+   106.5,
+   119.3,
+   85.0,
+   119.7
+  ],
+  "top5_top1": [
+   130.3,
+   140.5,
+   131.2,
+   133.0,
+   123.0
+  ],
+  "hindsight": 239.5
+ },
+ "hindsight_lineup": [
+  "Auston Matthews",
+  "Matt Boldy",
+  "Jakub Dobes",
+  "Rickard Rakell",
+  "Adam Fantilli",
+  "Jack Quinn",
+  "Travis Konecny",
+  "Jamie Drysdale",
+  "Cam York"
+ ],
+ "biggest_unders": [
+  [
+   "Logan Thompson",
+   11.5,
+   -9.1
+  ],
+  [
+   "Samuel Ersson",
+   10.3,
+   -9.9
+  ],
+  [
+   "Connor McDavid",
+   16.4,
+   4.3
+  ],
+  [
+   "Bo Horvat",
+   11.8,
+   0.0
+  ],
+  [
+   "Sebastian Aho",
+   12.9,
+   1.5
+  ]
+ ],
+ "biggest_overs": [
+  [
+   "Cam York",
+   5.2,
+   28.4
+  ],
+  [
+   "Travis Konecny",
+   7.3,
+   29.5
+  ],
+  [
+   "Rickard Rakell",
+   10.8,
+   30.5
+  ],
+  [
+   "Tyson Foerster",
+   6.3,
+   25.8
+  ],
+  [
+   "Jack Quinn",
+   10.4,
+   29.5
+  ]
+ ]
+}

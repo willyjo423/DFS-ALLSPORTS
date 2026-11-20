@@ -1,0 +1,111 @@
+{
+ "sport": "nba",
+ "date": "2026-11-19",
+ "slate": "8:00pm \u00b7 378 contests",
+ "draft_group": 157035,
+ "players": 141,
+ "graded": 87,
+ "mae_final": 6.677,
+ "props": {
+  "n": 53,
+  "mae_model": 7.842,
+  "mae_props": 7.381,
+  "mae_final": 7.546,
+  "sxy": 1176.9609999999996,
+  "sxx": 1513.1660000000002,
+  "weight": 0.778
+ },
+ "minutes": {
+  "n": 86,
+  "mae": 4.28,
+  "bias": 1.07
+ },
+ "late_scratches": [
+  "Micah Potter",
+  "Tarris Reed Jr."
+ ],
+ "pool": {
+  "n": 120,
+  "avg": 266.8,
+  "best": 318.0,
+  "top5_cash": [
+   245.5,
+   249.0,
+   275.5,
+   261.2,
+   279.8
+  ],
+  "top5_top1": [
+   277.5,
+   250.8,
+   293.2,
+   294.5,
+   245.5
+  ],
+  "hindsight": 348.2
+ },
+ "hindsight_lineup": [
+  "Ryan Rollins",
+  "Damian Lillard",
+  "Jrue Holiday",
+  "Karl-Anthony Towns",
+  "Charles Bassey",
+  "Scoot Henderson",
+  "Toumani Camara",
+  "Stephon Castle"
+ ],
+ "biggest_unders": [
+  [
+   "Jerami Grant",
+   19.5,
+   3.0
+  ],
+  [
+   "Branden Carlson",
+   16.0,
+   0.75
+  ],
+  [
+   "De'Aaron Fox",
+   34.1,
+   20.0
+  ],
+  [
+   "Ayo Dosunmu",
+   32.1,
+   18.5
+  ],
+  [
+   "Donovan Clingan",
+   41.1,
+   29.25
+  ]
+ ],
+ "biggest_overs": [
+  [
+   "Scoot Henderson",
+   21.6,
+   45.25
+  ],
+  [
+   "Jonathan Kuminga",
+   15.3,
+   35.75
+  ],
+  [
+   "Charles Bassey",
+   23.6,
+   40.25
+  ],
+  [
+   "Nate Ament",
+   15.1,
+   30.25
+  ],
+  [
+   "Toumani Camara",
+   27.9,
+   42.5
+  ]
+ ]
+}

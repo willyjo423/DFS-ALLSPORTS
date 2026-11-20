@@ -5,7 +5,7 @@
    "sport": "cfb",
    "site": "dk",
    "kind": "classic",
-   "label": "12 games \u00b7 24 teams \u00b7 CFB $150K Hook and Ladder [$50K to 1st]",
+   "label": "12 games \u00b7 24 teams \u00b7 CFB $175K Saturday Kickoff [$50K to 1st]",
    "file": "data/cfb_dk_classic_156829.json",
    "locks": null
   },
@@ -13,7 +13,7 @@
    "sport": "cfb",
    "site": "dk",
    "kind": "classic",
-   "label": "5 games \u00b7 10 teams \u00b7 CFB $33.4K Hook and Ladder [$10K to 1st]",
+   "label": "5 games \u00b7 10 teams \u00b7 CFB $60K Friday Kickoff [$20K to 1st]",
    "file": "data/cfb_dk_classic_156982.json",
    "locks": null
   },

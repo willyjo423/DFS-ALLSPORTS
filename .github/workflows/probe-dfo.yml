@@ -6,19 +6,24 @@ jobs:
     steps:
       - run: |
           python3 - <<'PY'
-          import json, urllib.request, time
+          import json, urllib.request, collections
+          UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36"
           def get(u):
-              return json.loads(urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent":"Mozilla/5.0"}), timeout=30).read())
-          sc = get("https://api-web.nhle.com/v1/score/2026-11-19")
-          for g in sc["games"]:
-              print("GAME", g["awayTeam"]["abbrev"], g["awayTeam"].get("score"), "@", g["homeTeam"]["abbrev"], g["homeTeam"].get("score"), g.get("gameState"), g.get("periodDescriptor",{}).get("periodType"))
-              b = get(f"https://api-web.nhle.com/v1/gamecenter/{g['id']}/boxscore")
-              for side in ("awayTeam", "homeTeam"):
-                  t = b[side]["abbrev"]; st = b["playerByGameStats"][side]
-                  for grp in ("forwards", "defense"):
-                      for p in st.get(grp, []):
-                          print("S|%s|%s|%d|%d|%d|%d|%d|%s" % ((p.get("name") or {}).get("default"), t, p.get("goals",0), p.get("assists",0), p.get("sog",0), p.get("blockedShots",0), p.get("shPoints",0) if "shPoints" in p else 0, p.get("powerPlayGoals",0)))
-                  for p in st.get("goalies", []):
-                      print("G|%s|%s|%s|%s|%s|%s" % ((p.get("name") or {}).get("default"), t, p.get("saves"), p.get("goalsAgainst"), p.get("decision"), p.get("toi")))
-              time.sleep(0.3)
+              return json.loads(urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": UA, "Accept": "application/json"}), timeout=30).read())
+          b = get("https://www.bovada.lv/services/sports/event/coupon/events/A/description/football/nfl?marketFilterId=def&preMatchOnly=true&lang=en")
+          evs = [e for blk in b for e in blk["events"]]; print("EVENTS", len(evs), [e["description"] for e in evs][:20])
+          kinds = collections.Counter(); per=[]
+          for e in evs[:16]:
+              full = get("https://www.bovada.lv/services/sports/event/v2/events/A/description" + e["link"] + "?lang=en")
+              ev = full[0]["events"][0]; n=0
+              for g in ev["displayGroups"]:
+                  for m in g["markets"]:
+                      d = m["description"]; pd_ = (m.get("period") or {}).get("description")
+                      if " - " in d or "Touchdown" in d or "Player" in g["description"]:
+                          k = (g["description"], d.split(" - ")[0], pd_); kinds[k] += 1; n+=1
+                          if kinds[k] == 1:
+                              print("MKT", k, "|", d, [(o.get("description"), (o.get("price") or {}).get("handicap"), (o.get("price") or {}).get("american")) for o in m["outcomes"][:4]])
+              per.append((e["description"], n))
+          print("PER", per)
+          for k, v in kinds.most_common(70): print("KIND", k, v)
           PY

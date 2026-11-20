@@ -4,37 +4,19 @@ jobs:
   p:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+        with: {repository: willyjo423/NFL-DFS, ref: feat/sync-allsports}
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: pip install -q -r requirements.txt
       - run: |
           python3 - <<'PY'
-          import json, urllib.request, collections
-          UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36"
-          def get(u):
-              return json.loads(urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": UA, "Accept": "application/json"}), timeout=30).read())
-          import time
-          evs=[]
-          for url in ["https://www.bovada.lv/services/sports/event/coupon/events/A/description/football/nfl?marketFilterId=def&preMatchOnly=true&lang=en",
-                      "https://www.bovada.lv/services/sports/event/coupon/events/A/description/football/nfl?marketFilterId=def&lang=en",
-                      "https://www.bovada.lv/services/sports/event/v2/events/A/description/football/nfl?lang=en"]:
-              for t in range(3):
-                  try:
-                      b = get(url); evs = [e for blk in b for e in blk.get("events",[])]
-                  except Exception as ex: print("ERR", url, ex)
-                  print("TRY", url[-60:], t, len(evs))
-                  if evs: break
-                  time.sleep(15)
-              if evs: break; print("EVENTS", len(evs), [e["description"] for e in evs][:20])
-          kinds = collections.Counter(); per=[]
-          for e in evs[:16]:
-              full = get("https://www.bovada.lv/services/sports/event/v2/events/A/description" + e["link"] + "?lang=en")
-              ev = full[0]["events"][0]; n=0
-              for g in ev["displayGroups"]:
-                  for m in g["markets"]:
-                      d = m["description"]; pd_ = (m.get("period") or {}).get("description")
-                      if " - " in d or "Touchdown" in d or "Player" in g["description"]:
-                          k = (g["description"], d.split(" - ")[0], pd_); kinds[k] += 1; n+=1
-                          if kinds[k] == 1:
-                              print("MKT", k, "|", d, [(o.get("description"), (o.get("price") or {}).get("handicap"), (o.get("price") or {}).get("american")) for o in m["outcomes"][:4]])
-              per.append((e["description"], n))
-          print("PER", per)
-          for k, v in kinds.most_common(70): print("KIND", k, v)
+          import data
+          w = data.player_weeks([2026])
+          print("COLS", [c for c in w.columns if c in ("team","season","week","player_id","name","position")])
+          print("MAXWEEK", w["week"].max(), sorted(w["week"].unique()))
+          for n in ["Jalen Hurts","De'Von Achane","DeVonta Smith","James Conner","Mike Evans","Christian McCaffrey","Joe Burrow"]:
+              r = w[w["name"]==n]
+              print("P", n, r[["player_id","team","week"]].values.tolist()[-12:])
+          print("PHI weeks", sorted(w[w["team"]=="PHI"]["week"].unique()))
           PY

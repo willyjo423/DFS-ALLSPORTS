@@ -46,11 +46,16 @@ jobs:
           PLAN += [(t, "props-fetch.yml") for t in
                    ("10:20", "12:50", "15:50", "16:58", "17:58", "18:24", "18:55", "19:25")]
           PLAN += [(t, "cfb-publish.yml") for t in ("09:43", "11:38", "14:48", "18:43")]
+          # Friday (and Thursday) night college slates: afternoon and pre-lock.
+          PLAN += [(t, "cfb-weeknight") for t in ("13:43", "18:20")]
           def season(wf, d):
+              if wf == "cfb-weeknight":
+                  return d.weekday() in (3, 4) and d.month in (8, 9, 10, 11, 12)
               if wf == "cfb-publish.yml":
                   return d.weekday() == 5 and d.month in (8, 9, 10, 11, 12, 1)
               return d.month in (10, 11, 12, 1, 2, 3, 4, 5, 6)
           def fire(wf, soon=False):
+              wf = "cfb-publish.yml" if wf == "cfb-weeknight" else wf
               extra = ["-f", "inputs[soon]=28"] if soon else []
               r = subprocess.run(["gh", "api", "-X", "POST",
                                   f"repos/{os.environ['REPO']}/actions/workflows/{wf}/dispatches",

@@ -94,6 +94,8 @@ def build(players: list[dict], field_size: int = 100_000,
                 x = res.x > 0.5
                 pick = [pairs[k] for k in range(m) if x[k]]
                 js = {j for j, _ in pick}
+                if len(pick) != 8 or len(js) != 8 or len({s for _, s in pick}) != 8:
+                    break       # time-limited solve returned a non-lineup
                 seen.append(js)
                 order = sorted(pick, key=lambda t: SLOTS.index(t[1]))
                 o = own[[j for j, _ in order]]

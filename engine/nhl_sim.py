@@ -36,6 +36,7 @@ log = logging.getLogger("nhl_sim")
 W_TEAM, W_LINE, W_PP = 0.07, 0.06, 0.03
 W_GOALIE_OWN, W_GOALIE_OPP = 0.15, 0.69
 FIELD_MIX = ((0.92, 3.0, True), (0.80, 0.0, False))   # (floor, value chase, stack)
+MODEL_SCENARIO = 0.15   # per team per night; ~1 - the props weight
 _ND = NormalDist()
 
 
@@ -62,6 +63,10 @@ def simulate_scores(payload: dict, sims: int, rng) -> np.ndarray:
     zl = rng.normal(size=(sims, max(len(lines), 1)))
     zu = rng.normal(size=(sims, max(len(units), 1)))
     out = np.zeros((sims, n))
+    # The books or our model, per team (see nba_sim): in MODEL_SCENARIO of
+    # simulated nights the model's number, not the props blend, is the truth
+    # for a whole team.
+    flip = rng.random((sims, len(teams))) < MODEL_SCENARIO
     for i, p in enumerate(players):
         if p.get("status") == "out":
             continue
@@ -96,6 +101,10 @@ def simulate_scores(payload: dict, sims: int, rng) -> np.ndarray:
         target = (p.get("proj") or 0.0) / (pp if pp < 0.5 and pp > 0 else 1.0)
         m = float(np.mean(x))
         x = x * (target / m) if m > 0 else x * 0
+        if p.get("model") and p.get("proj"):
+            ratio = float(p["model"]) / float(p["proj"])
+            if abs(ratio - 1) > 0.02:
+                x = np.where(flip[:, t_idx[p["team"]]], x * ratio, x)
         plays = rng.random(sims) < pp
         out[:, i] = np.where(plays, x, 0.0)
     return out
@@ -224,6 +233,11 @@ def rank_pool(payload: dict, sims: int = 30000, field: int = 5000, seed: int = 1
         q99[a:a + 250] = np.quantile(fs, 0.99, axis=1)
         q90[a:a + 250] = np.quantile(fs, 0.90, axis=1)
         q55[a:a + 250] = np.quantile(fs, 0.55, axis=1)
+    size = len(payload.get("roster", {}).get("slots", [])) or max(len(L["p"]) for L in pool)
+    bad = [L for L in pool if len(L["p"]) != size]
+    if bad:
+        log.warning("nhl sim: dropping %d malformed lineup(s)", len(bad))
+        pool[:] = [L for L in pool if len(L["p"]) == size]
     P = np.array([L["p"] for L in pool])
     ls = S[:, P].sum(axis=2)
     for k, L in enumerate(pool):

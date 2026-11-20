@@ -333,7 +333,10 @@ def build(players: list[dict], roster: dict, field_size: int = 100_000,
                    options={"time_limit": time_limit, "disp": False})
         if res.x is None:
             return None
-        return [i for i in range(n) if res.x[i] > 0.5]
+        pick = [i for i in range(n) if res.x[i] > 0.5]
+        # A solve stopped at its time limit can hand back a point that is not
+        # a whole lineup (one 8-man NHL lineup reached the board, 2026-11-19).
+        return pick if len(pick) == size else None
 
     families = []
     for base_name, base in (("median", med), ("ceiling", ceil)):

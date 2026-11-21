@@ -317,7 +317,8 @@ function applyAuto() {
   $("sort").value = sort;
   const label = {port: "best set", top1: "top-1% rate", cash: "cash rate", proj: "projection", ceil: "ceiling"};
   why.push(!hasSim ? "no simulated lineups on this slate → sorted by projection" :
-    `${N} ${N === 1 ? "entry" : "entries"} → ${label[sort] || sort}` + (rule ? ` (backtest: ${rule.evidence})` : ""));
+    `${N} ${N === 1 ? "entry" : "entries"} → ${label[sort] || sort}` + (rule ? ` (backtest: ${rule.evidence})`
+      : " (standard default — not enough backtested slates for this sport yet)"));
   // exposure
   const expo = rule ? Math.round(rule.expo * 100) : N <= 4 ? 100 : N <= 10 ? 60 : N <= 20 ? 50 : 40;
   $("expo").value = expo;

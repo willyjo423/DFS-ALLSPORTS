@@ -153,11 +153,23 @@ def main() -> int:
             best = max(mean, key=mean.get)
             p = bootstrap_better(res[best][:, 0], res[dflt][:, 0]) if best != dflt else 0.5
             gain = mean[best] - mean[dflt]
-            adopt = best != dflt and p >= 0.9 and gain >= 0.05 and len(nights) >= 10
+            # Out-of-sample guard. Taking the best of ~100 rules on the same
+            # nights it is judged on overfits: on 27 CFB slates the in-sample
+            # winners lost to the default on the later half they were not
+            # picked from. A rule must also beat the default in the earlier
+            # AND the later half of the nights separately.
+            half = len(nights) // 2
+            halves = []
+            for part in (slice(0, half), slice(half, None)):
+                a, b = res[best][part, 0], res[dflt][part, 0]
+                halves.append(bootstrap_better(a, b) if len(a) >= 5 else 0.0)
+            holds = min(halves) >= 0.75
+            adopt = best != dflt and p >= 0.9 and gain >= 0.05 and len(nights) >= 10 and holds
             chosen = best if adopt else dflt
             top = sorted(mean.items(), key=lambda kv: -kv[1])[:5]
             print(f"  {n:>2} entries: current {dflt} ROI {mean[dflt]:+.2f} | best {best} "
-                  f"ROI {mean[best]:+.2f} (P better {p:.2f}) -> {'ADOPT' if adopt else 'keep'}")
+                  f"ROI {mean[best]:+.2f} (P better {p:.2f}; early/late halves {halves[0]:.2f}/{halves[1]:.2f}) "
+                  f"-> {'ADOPT' if adopt else 'keep'}")
             for r, m in top:
                 v = res[r]
                 print(f"        {str(r):38} ROI {m:+.2f}  top1 {np.nanmean(v[:, 1]):.0%}  "
@@ -166,6 +178,7 @@ def main() -> int:
                 "current": {"rule": dflt, "roi": round(mean[dflt], 3),
                             "top1_rate": round(float(np.nanmean(res[dflt][:, 1])), 3)},
                 "best": {"rule": best, "roi": round(mean[best], 3), "p_better": round(p, 3),
+                         "p_halves": [round(h, 3) for h in halves],
                          "top1_rate": round(float(np.nanmean(res[best][:, 1])), 3)},
                 "adopted": adopt}
             rules_out[sport][str(n)] = {"sort": chosen[0], "own": chosen[1],

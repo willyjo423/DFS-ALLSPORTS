@@ -21,7 +21,7 @@ concurrency:
 jobs:
   grade:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -37,11 +37,14 @@ jobs:
             python grade_nightly.py | tee grade.md
           fi
           cat grade.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Relearn Auto lineup settings
+        continue-on-error: true
+        run: python auto_settings.py | tail -40
       - name: Commit
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A docs/data/grades
+          git add -A docs/data/grades docs/data/auto_settings.json data/actuals
           git diff --cached --quiet && { echo "nothing new"; exit 0; }
           git commit -m "Grades: $(date -u +%Y-%m-%d)"
           for i in 1 2 3 4 5; do

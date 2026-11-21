@@ -1,0 +1,48 @@
+name: Replay a night
+
+# Would today's site have done better? Rebuilds a night's archived boards
+# with today's code, picks lineups the way Auto would now, and scores them
+# against the box scores (replay_night.py).
+
+on:
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "Night to replay (YYYY-MM-DD)"
+        required: true
+      nba:
+        description: "NBA entries (0 = skip)"
+        default: "0"
+      cfb:
+        description: "CFB entries (0 = skip)"
+        default: "0"
+
+permissions:
+  contents: write
+
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q -r requirements.txt
+      - name: Replay
+        env:
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+        run: |
+          set -o pipefail
+          python replay_night.py --date "${{ inputs.date }}" --nba "${{ inputs.nba }}" --cfb "${{ inputs.cfb }}" 2>&1 | grep -v "^INFO" | tee out.txt
+          { echo '```'; cat out.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+      - name: Commit
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A docs/data/replay data/actuals
+          git diff --cached --quiet && exit 0
+          git commit -m "Replay: ${{ inputs.date }}"
+          for i in 1 2 3 4 5; do git pull --rebase -X ours origin main && git push && exit 0; sleep $((i * 8)); done
+          exit 1

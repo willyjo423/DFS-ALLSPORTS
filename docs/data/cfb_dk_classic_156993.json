@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-21T18:57:18+00:00",
+ "generated_at": "2026-11-21T19:52:39+00:00",
  "sport": "cfb",
  "site": "dk",
  "kind": "classic",
@@ -4740,7 +4740,8 @@
    "src": "median lam=0.0",
    "top1": 2.24,
    "top10": 19.8,
-   "cash": 69.6
+   "cash": 69.6,
+   "port": 16
   },
   {
    "p": [
@@ -4908,7 +4909,8 @@
    "src": "median lam=0.5",
    "top1": 4.07,
    "top10": 21.6,
-   "cash": 59.8
+   "cash": 59.8,
+   "port": 1
   },
   {
    "p": [
@@ -4929,7 +4931,8 @@
    "src": "median lam=0.5",
    "top1": 2.71,
    "top10": 18.1,
-   "cash": 58.1
+   "cash": 58.1,
+   "port": 11
   },
   {
    "p": [
@@ -4950,7 +4953,8 @@
    "src": "median lam=0.5",
    "top1": 3.53,
    "top10": 19.7,
-   "cash": 58.4
+   "cash": 58.4,
+   "port": 5
   },
   {
    "p": [
@@ -4971,7 +4975,8 @@
    "src": "median lam=0.5",
    "top1": 3.89,
    "top10": 20.7,
-   "cash": 59.6
+   "cash": 59.6,
+   "port": 2
   },
   {
    "p": [
@@ -4992,7 +4997,8 @@
    "src": "median lam=0.5",
    "top1": 2.84,
    "top10": 19.9,
-   "cash": 61.7
+   "cash": 61.7,
+   "port": 15
   },
   {
    "p": [
@@ -5013,7 +5019,8 @@
    "src": "median lam=0.5",
    "top1": 3.46,
    "top10": 20.7,
-   "cash": 63.2
+   "cash": 63.2,
+   "port": 12
   },
   {
    "p": [
@@ -5244,7 +5251,8 @@
    "src": "median lam=1.0",
    "top1": 2.58,
    "top10": 12.1,
-   "cash": 38.0
+   "cash": 38.0,
+   "port": 17
   },
   {
    "p": [
@@ -5475,7 +5483,8 @@
    "src": "median lam=1.5",
    "top1": 2.65,
    "top10": 11.9,
-   "cash": 36.7
+   "cash": 36.7,
+   "port": 4
   },
   {
    "p": [
@@ -5622,7 +5631,8 @@
    "src": "median lam=2.5",
    "top1": 2.24,
    "top10": 9.7,
-   "cash": 31.2
+   "cash": 31.2,
+   "port": 8
   },
   {
    "p": [
@@ -6105,7 +6115,8 @@
    "src": "ceiling lam=0.0",
    "top1": 1.82,
    "top10": 15.4,
-   "cash": 59.0
+   "cash": 59.0,
+   "port": 14
   },
   {
    "p": [
@@ -6882,7 +6893,8 @@
    "src": "ceiling lam=2.5",
    "top1": 1.79,
    "top10": 8.0,
-   "cash": 26.4
+   "cash": 26.4,
+   "port": 20
   },
   {
    "p": [
@@ -7176,7 +7188,8 @@
    "src": "qb stack lam=0.0",
    "top1": 2.74,
    "top10": 20.1,
-   "cash": 63.8
+   "cash": 63.8,
+   "port": 6
   },
   {
    "p": [
@@ -7260,7 +7273,8 @@
    "src": "qb stack+bringback lam=0.0",
    "top1": 2.75,
    "top10": 19.2,
-   "cash": 65.0
+   "cash": 65.0,
+   "port": 9
   },
   {
    "p": [
@@ -7302,7 +7316,8 @@
    "src": "qb stack+bringback lam=0.0",
    "top1": 2.94,
    "top10": 19.9,
-   "cash": 64.1
+   "cash": 64.1,
+   "port": 7
   },
   {
    "p": [
@@ -7344,7 +7359,8 @@
    "src": "qb stack+bringback lam=0.0",
    "top1": 2.29,
    "top10": 20.0,
-   "cash": 63.6
+   "cash": 63.6,
+   "port": 19
   },
   {
    "p": [
@@ -7449,7 +7465,8 @@
    "src": "qb stack lam=1.0",
    "top1": 2.47,
    "top10": 13.2,
-   "cash": 42.0
+   "cash": 42.0,
+   "port": 18
   },
   {
    "p": [
@@ -7512,7 +7529,8 @@
    "src": "qb stack+bringback lam=1.0",
    "top1": 2.38,
    "top10": 11.7,
-   "cash": 36.1
+   "cash": 36.1,
+   "port": 10
   },
   {
    "p": [
@@ -7554,7 +7572,8 @@
    "src": "qb stack+bringback lam=1.0",
    "top1": 2.65,
    "top10": 12.4,
-   "cash": 37.6
+   "cash": 37.6,
+   "port": 3
   },
   {
    "p": [
@@ -7680,7 +7699,8 @@
    "src": "qb stack lam=2.0",
    "top1": 2.34,
    "top10": 9.7,
-   "cash": 30.6
+   "cash": 30.6,
+   "port": 13
   },
   {
    "p": [

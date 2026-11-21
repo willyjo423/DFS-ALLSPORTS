@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-21T18:57:18+00:00",
+ "generated_at": "2026-11-21T19:52:39+00:00",
  "sport": "cfb",
  "site": "dk",
  "kind": "classic",
@@ -6634,7 +6634,8 @@
    "src": "median lam=0.0",
    "top1": 2.6,
    "top10": 20.8,
-   "cash": 69.2
+   "cash": 69.2,
+   "port": 12
   },
   {
    "p": [
@@ -6655,7 +6656,8 @@
    "src": "median lam=0.0",
    "top1": 2.11,
    "top10": 19.2,
-   "cash": 70.5
+   "cash": 70.5,
+   "port": 16
   },
   {
    "p": [
@@ -6739,7 +6741,8 @@
    "src": "median lam=0.5",
    "top1": 3.6,
    "top10": 20.9,
-   "cash": 62.2
+   "cash": 62.2,
+   "port": 2
   },
   {
    "p": [
@@ -6781,7 +6784,8 @@
    "src": "median lam=0.5",
    "top1": 2.99,
    "top10": 20.6,
-   "cash": 63.1
+   "cash": 63.1,
+   "port": 8
   },
   {
    "p": [
@@ -6802,7 +6806,8 @@
    "src": "median lam=0.5",
    "top1": 3.51,
    "top10": 22.0,
-   "cash": 62.1
+   "cash": 62.1,
+   "port": 7
   },
   {
    "p": [
@@ -6907,7 +6912,8 @@
    "src": "median lam=0.5",
    "top1": 2.64,
    "top10": 20.1,
-   "cash": 62.3
+   "cash": 62.3,
+   "port": 18
   },
   {
    "p": [
@@ -6928,7 +6934,8 @@
    "src": "median lam=0.5",
    "top1": 3.21,
    "top10": 21.4,
-   "cash": 61.7
+   "cash": 61.7,
+   "port": 4
   },
   {
    "p": [
@@ -7243,7 +7250,8 @@
    "src": "median lam=1.5",
    "top1": 2.95,
    "top10": 13.7,
-   "cash": 43.4
+   "cash": 43.4,
+   "port": 17
   },
   {
    "p": [
@@ -7348,7 +7356,8 @@
    "src": "median lam=1.5",
    "top1": 2.48,
    "top10": 12.8,
-   "cash": 42.4
+   "cash": 42.4,
+   "port": 11
   },
   {
    "p": [
@@ -7453,7 +7462,8 @@
    "src": "median lam=1.5",
    "top1": 2.85,
    "top10": 14.4,
-   "cash": 44.2
+   "cash": 44.2,
+   "port": 5
   },
   {
    "p": [
@@ -7600,7 +7610,8 @@
    "src": "median lam=2.5",
    "top1": 2.51,
    "top10": 11.8,
-   "cash": 37.6
+   "cash": 37.6,
+   "port": 6
   },
   {
    "p": [
@@ -7705,7 +7716,8 @@
    "src": "median lam=2.5",
    "top1": 2.5,
    "top10": 11.6,
-   "cash": 38.6
+   "cash": 38.6,
+   "port": 15
   },
   {
    "p": [
@@ -7852,7 +7864,8 @@
    "src": "ceiling lam=0.0",
    "top1": 1.89,
    "top10": 16.0,
-   "cash": 61.2
+   "cash": 61.2,
+   "port": 14
   },
   {
    "p": [
@@ -8251,7 +8264,8 @@
    "src": "ceiling lam=1.0",
    "top1": 1.77,
    "top10": 12.0,
-   "cash": 43.8
+   "cash": 43.8,
+   "port": 20
   },
   {
    "p": [
@@ -8881,7 +8895,8 @@
    "src": "ceiling lam=2.5",
    "top1": 1.65,
    "top10": 9.7,
-   "cash": 36.6
+   "cash": 36.6,
+   "port": 10
   },
   {
    "p": [
@@ -9217,7 +9232,8 @@
    "src": "qb stack+bringback lam=0.0",
    "top1": 2.0,
    "top10": 18.3,
-   "cash": 63.6
+   "cash": 63.6,
+   "port": 19
   },
   {
    "p": [
@@ -9343,7 +9359,8 @@
    "src": "qb stack lam=1.0",
    "top1": 2.72,
    "top10": 14.6,
-   "cash": 46.5
+   "cash": 46.5,
+   "port": 9
   },
   {
    "p": [
@@ -9385,7 +9402,8 @@
    "src": "qb stack+bringback lam=1.0",
    "top1": 2.63,
    "top10": 14.2,
-   "cash": 45.6
+   "cash": 45.6,
+   "port": 13
   },
   {
    "p": [
@@ -9448,7 +9466,8 @@
    "src": "qb stack+bringback lam=1.0",
    "top1": 3.63,
    "top10": 15.7,
-   "cash": 44.2
+   "cash": 44.2,
+   "port": 1
   },
   {
    "p": [
@@ -9511,7 +9530,8 @@
    "src": "qb stack lam=2.0",
    "top1": 2.66,
    "top10": 12.4,
-   "cash": 39.9
+   "cash": 39.9,
+   "port": 3
   },
   {
    "p": [

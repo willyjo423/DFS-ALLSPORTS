@@ -1,0 +1,123 @@
+{
+ "nba": {
+  "slates": 3,
+  "buckets": [],
+  "all": {
+   "slates": 3,
+   "own_lo": 64,
+   "own_hi": 114,
+   "own_median": 94
+  }
+ },
+ "nhl": {
+  "slates": 52,
+  "buckets": [
+   {
+    "games": [
+     2,
+     3
+    ],
+    "slates": 15,
+    "own_lo": 144,
+    "own_hi": 235,
+    "own_median": 194,
+    "stack": 3,
+    "stack2": 2,
+    "line": 0,
+    "stack_shares": {
+     "first>=2": 1.0,
+     "first>=3": 0.93,
+     "first>=4": 0.44,
+     "first>=5": 0.03,
+     "second>=2": 1.0,
+     "line>=2": 0.05,
+     "line>=3": 0.0
+    }
+   },
+   {
+    "games": [
+     4,
+     6
+    ],
+    "slates": 15,
+    "own_lo": 70,
+    "own_hi": 160,
+    "own_median": 114,
+    "stack": 3,
+    "stack2": 2,
+    "line": 0,
+    "stack_shares": {
+     "first>=2": 1.0,
+     "first>=3": 0.74,
+     "first>=4": 0.22,
+     "first>=5": 0.04,
+     "second>=2": 0.89,
+     "line>=2": 0.0,
+     "line>=3": 0.0
+    }
+   },
+   {
+    "games": [
+     7,
+     9
+    ],
+    "slates": 5,
+    "own_lo": 46,
+    "own_hi": 95,
+    "own_median": 77,
+    "stack": 2,
+    "stack2": 2,
+    "line": 0,
+    "stack_shares": {
+     "first>=2": 0.95,
+     "first>=3": 0.18,
+     "first>=4": 0.0,
+     "first>=5": 0.0,
+     "second>=2": 0.57,
+     "line>=2": 0.0,
+     "line>=3": 0.0
+    }
+   },
+   {
+    "games": [
+     10,
+     99
+    ],
+    "slates": 17,
+    "own_lo": 27,
+    "own_hi": 72,
+    "own_median": 51,
+    "stack": 2,
+    "stack2": 0,
+    "line": 0,
+    "stack_shares": {
+     "first>=2": 0.92,
+     "first>=3": 0.13,
+     "first>=4": 0.02,
+     "first>=5": 0.0,
+     "second>=2": 0.45,
+     "line>=2": 0.02,
+     "line>=3": 0.0
+    }
+   }
+  ],
+  "all": {
+   "slates": 52,
+   "own_lo": 44,
+   "own_hi": 193,
+   "own_median": 92,
+   "stack": 3,
+   "stack2": 2,
+   "line": 0,
+   "stack_shares": {
+    "first>=2": 0.97,
+    "first>=3": 0.54,
+    "first>=4": 0.2,
+    "first>=5": 0.02,
+    "second>=2": 0.75,
+    "line>=2": 0.02,
+    "line>=3": 0.0
+   }
+  }
+ }
+}

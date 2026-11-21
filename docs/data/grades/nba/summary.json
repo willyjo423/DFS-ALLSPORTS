@@ -3,10 +3,10 @@
  "nights": 3,
  "props_nights": 3,
  "props_players": 237,
- "props_weight": 0.977,
- "mae_model": 8.19,
- "mae_props": 7.529,
- "mae_final": 7.7,
+ "props_weight": 0.975,
+ "mae_model": 8.169,
+ "mae_props": 7.508,
+ "mae_final": 7.679,
  "pool_avg": 255.567,
- "updated": "2026-11-21T14:25+00:00"
+ "updated": "2026-11-21T20:16+00:00"
 }

@@ -9,7 +9,7 @@ on:
       script:
         description: "Script to run"
         type: choice
-        options: [cfb_blowout_fit.py]
+        options: [cfb_blowout_fit.py, salary_probe.py]
 
 permissions:
   contents: write

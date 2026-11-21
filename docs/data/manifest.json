@@ -1,19 +1,11 @@
 {
- "updated_at": "2026-11-21T20:19:14+00:00",
+ "updated_at": "2026-11-21T20:43:50+00:00",
  "slates": [
   {
    "sport": "cfb",
    "site": "dk",
    "kind": "classic",
-   "label": "6 games \u00b7 12 teams \u00b7 CFB $30K Fumblerooski [$10K to 1st] (Afternoon)",
-   "file": "data/cfb_dk_classic_156989.json",
-   "locks": null
-  },
-  {
-   "sport": "cfb",
-   "site": "dk",
-   "kind": "classic",
-   "label": "7 games \u00b7 14 teams \u00b7 CFB $25K End Around [$5K to 1st] (Night)",
+   "label": "7 games \u00b7 14 teams \u00b7 CFB $70K Saturday Night Special [$20K to 1st] (Night)",
    "file": "data/cfb_dk_classic_156991.json",
    "locks": null
   },

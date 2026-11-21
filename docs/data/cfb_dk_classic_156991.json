@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-11-21T20:19:14+00:00",
+ "generated_at": "2026-11-21T20:43:50+00:00",
  "sport": "cfb",
  "site": "dk",
  "kind": "classic",
  "draft_group": 156991,
- "label": "7 games \u00b7 14 teams \u00b7 CFB $25K End Around [$5K to 1st] (Night)",
+ "label": "7 games \u00b7 14 teams \u00b7 CFB $70K Saturday Night Special [$20K to 1st] (Night)",
  "locks": null,
  "field_size": 100000,
  "quantiles": [
@@ -7447,27 +7447,6 @@
    "p": [
     2,
     15,
-    21,
-    32,
-    33,
-    35,
-    47,
-    158
-   ],
-   "proj": 121.0,
-   "ceil": 269.58,
-   "sal": 50000,
-   "own": 51.1,
-   "dup": 0.0,
-   "src": "median lam=1.5",
-   "top1": 2.42,
-   "top10": 12.7,
-   "cash": 43.8
-  },
-  {
-   "p": [
-    2,
-    15,
     32,
     33,
     35,
@@ -7485,6 +7464,27 @@
    "top10": 14.4,
    "cash": 44.2,
    "port": 5
+  },
+  {
+   "p": [
+    2,
+    15,
+    21,
+    32,
+    33,
+    35,
+    47,
+    158
+   ],
+   "proj": 121.0,
+   "ceil": 269.58,
+   "sal": 50000,
+   "own": 51.1,
+   "dup": 0.0,
+   "src": "median lam=1.5",
+   "top1": 2.42,
+   "top10": 12.7,
+   "cash": 43.8
   },
   {
    "p": [

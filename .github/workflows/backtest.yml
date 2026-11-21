@@ -39,7 +39,7 @@ jobs:
         if: contains(inputs.sports || 'nhl nba cfb', matrix.sport)
         with:
           python-version: "3.12"
-      - if: contains(inputs.sports, matrix.sport)
+      - if: contains(inputs.sports || 'nhl nba cfb', matrix.sport)
         run: pip install -q -r requirements.txt
       - name: Replay
         if: contains(inputs.sports || 'nhl nba cfb', matrix.sport)
@@ -54,7 +54,7 @@ jobs:
           python backtest.py $ARGS | tee out.txt
           sed -n '/^### /,$p' out.txt >> "$GITHUB_STEP_SUMMARY"
       - name: Commit
-        if: always() && contains(inputs.sports, matrix.sport)
+        if: always() && contains(inputs.sports || 'nhl nba cfb', matrix.sport)
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"

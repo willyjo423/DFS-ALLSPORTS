@@ -2,7 +2,7 @@
  "sport": "nba",
  "variant": "bigpool",
  "sims": 8000,
- "generated_at": "2026-11-21T14:10:29-05:00",
+ "generated_at": "2026-11-21T16:13:51-05:00",
  "summary": {
   "proj": {
    "1": {
@@ -47,7 +47,7 @@
     "won": 33.3,
     "top1": 66.7,
     "top10": 66.7,
-    "cash_rate": 92.3
+    "cash_rate": 94.9
    }
   },
   "top1": {
@@ -66,10 +66,10 @@
     "cash_rate": 93.3
    },
    "13": {
-    "best_pct": 98.5,
+    "best_pct": 96.4,
     "won": 33.3,
     "top1": 66.7,
-    "top10": 100.0,
+    "top10": 66.7,
     "cash_rate": 97.4
    }
   },
@@ -89,14 +89,14 @@
     "cash_rate": 93.3
    },
    "13": {
-    "best_pct": 98.9,
+    "best_pct": 99.3,
     "won": 33.3,
     "top1": 66.7,
     "top10": 100.0,
-    "cash_rate": 89.7
+    "cash_rate": 82.1
    }
   },
-  "pool_best_pct": 99.5
+  "pool_best_pct": 99.4
  },
  "nights": {
   "2026-11-18": {
@@ -194,14 +194,15 @@
       "cash_rate": 0.8
      },
      "13": {
-      "best_pct": 99.8,
+      "best_pct": 99.7,
       "won": false,
       "top1": true,
       "top10": true,
-      "cash_rate": 0.7692307692307693
+      "cash_rate": 0.6153846153846154
      }
     }
-   }
+   },
+   "games": 9
   },
   "2026-11-19": {
    "lines": {
@@ -298,14 +299,15 @@
       "cash_rate": 1.0
      },
      "13": {
-      "best_pct": 100.0,
+      "best_pct": 99.94,
       "won": true,
       "top1": true,
       "top10": true,
       "cash_rate": 1.0
      }
     }
-   }
+   },
+   "games": 4
   },
   "2026-11-20": {
    "lines": {
@@ -314,8 +316,8 @@
     "top10": 265.5250000000001,
     "cash": 229.86250000000007
    },
-   "pool_best_pct": 98.56,
-   "pool_best": 296.75,
+   "pool_best_pct": 98.38,
+   "pool_best": 294.5,
    "methods": {
     "proj": {
      "1": {
@@ -360,7 +362,7 @@
       "won": false,
       "top1": false,
       "top10": false,
-      "cash_rate": 0.7692307692307693
+      "cash_rate": 0.8461538461538461
      }
     },
     "top1": {
@@ -379,10 +381,10 @@
       "cash_rate": 0.8
      },
      "13": {
-      "best_pct": 95.74000000000001,
+      "best_pct": 89.44,
       "won": false,
       "top1": false,
-      "top10": true,
+      "top10": false,
       "cash_rate": 0.9230769230769231
      }
     },
@@ -402,14 +404,15 @@
       "cash_rate": 1.0
      },
      "13": {
-      "best_pct": 96.86,
+      "best_pct": 98.34,
       "won": false,
       "top1": false,
       "top10": true,
-      "cash_rate": 0.9230769230769231
+      "cash_rate": 0.8461538461538461
      }
     }
-   }
+   },
+   "games": 6
   }
  }
 }

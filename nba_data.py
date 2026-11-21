@@ -30,6 +30,8 @@ ODDS_CACHE = os.path.join(HERE, "docs", "data", "odds")
 
 def slates() -> pd.DataFrame:
     payload = ND._get(DK_CONTESTS, as_json=True)
+    from engine import contest_roi as CR
+    CR.remember(payload.get("Contests"))
     rows = [{"draft_group": g.get("DraftGroupId"),
              "game_type": g.get("GameTypeId"),
              "starts": ND._lock_time(g.get("StartDateEst")),

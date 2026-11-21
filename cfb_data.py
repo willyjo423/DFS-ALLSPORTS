@@ -222,6 +222,8 @@ def slates() -> pd.DataFrame:
     """Every college football draft group DraftKings is currently selling."""
     payload = _get_json(DK_CONTESTS)
     contests = payload.get("Contests") or []
+    from engine import contest_roi as CR
+    CR.remember(contests)
     if not contests:
         raise Unavailable("the college football lobby listed no contests")
     rows = {}

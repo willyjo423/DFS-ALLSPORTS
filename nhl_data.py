@@ -474,6 +474,8 @@ def slates(refresh: bool = False) -> pd.DataFrame:
         return _SLATES
 
     payload = _get(DK_CONTESTS, as_json=True)
+    from engine import contest_roi as CR
+    CR.remember(payload.get("Contests"))
     rows = [{
         "draft_group": g.get("DraftGroupId"),
         "game_type": g.get("GameTypeId"),

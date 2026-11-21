@@ -987,7 +987,9 @@ def write(payloads: list[dict]) -> None:
         # (game, team and QB-to-receiver correlation).
         try:
             from engine import cfb_sim as CSIM
-            CSIM.rank_pool(p)
+            inner = CSIM.rank_pool(p)
+            from engine import contest_roi as CR
+            CR.attach(p, inner)
         except Exception as exc:                               # noqa: BLE001
             log.warning("contest sim failed (%s); lineups unranked", str(exc)[:80])
         SANITY.attach(p, datetime.now(EASTERN).date().isoformat(), log)

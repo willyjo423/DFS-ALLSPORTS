@@ -204,6 +204,12 @@ def finish(sport, day, n, conf, old, new, inner, act, fixed):
            "pool_best_then": round(float(max(pts_old[L["p"]].sum() for L in old["lineups"])), 2)}
     for k in ("now", "then_cash", "then_top1"):
         res[k]["summary"] = summary(res[k]["lineups"], lines)
+    res["chalk_actual"] = sorted(
+        [{"name": pl["name"], "team": pl["team"], "own": round(100 * (pl.get("own") or 0)),
+          "proj_then": pl.get("proj"), "proj_now": new["players"][i].get("proj"),
+          "actual": round(float(pts_old[i]), 1)}
+         for i, pl in enumerate(old["players"]) if (pl.get("own") or 0) >= 0.15],
+        key=lambda r: -r["own"])
     return res
 
 
@@ -236,6 +242,9 @@ def main(argv=None) -> int:
             for L in r[k]["lineups"]:
                 print(f"     {L['actual']:6.1f}  proj {L['proj']}  own {L['own']}  " + ", ".join(L["players"]))
         print("best lineup in pool: then", r["pool_best_then"], "now", r["pool_best_now"])
+        print("chalk (15%+ owned): name team own proj_then proj_now actual")
+        for c in r["chalk_actual"]:
+            print(f"     {c['name']:24} {c['team']:5} {c['own']:3}%  {c['proj_then']}  {c['proj_now']}  {c['actual']}")
     return 0
 
 

@@ -341,20 +341,16 @@ def apply(payload: dict) -> int:
     if not props:
         log.info("props: none available, projections unchanged")
         return 0
-    idx: dict = {}
-    for key, st in props.items():
-        nm, tm = key.rsplit("|", 1)
-        for k in name_keys(nm):
-            idx.setdefault(k, []).append((tm, st))
+    import props_match as PM
+    index = PM.build(props)
     n, gaps = 0, []
     ng = 0
     for p in payload.get("players", []):
         if p.get("status") == "out":
             continue
-        cands = [c for k in name_keys(p["name"]) for c in idx.get(k, [])]
-        if not cands:
+        st = PM.match(index, p["name"], p["team"])
+        if not st:
             continue
-        st = next((c[1] for c in cands if c[0] == p["team"]), cands[0][1])
         if p.get("pos") == "G":
             ng += _apply_goalie(p, st)
             continue

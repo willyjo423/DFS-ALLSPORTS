@@ -1,0 +1,62 @@
+name: Backtest
+
+# Replays every archived lock-time board with today's code and scores each
+# way of picking lineups against the real box scores (backtest.py).
+
+on:
+  workflow_dispatch:
+    inputs:
+      sports:
+        description: "Sports, space separated"
+        default: "nhl nba"
+      variant:
+        description: "Code variant to test (see backtest.py VARIANTS)"
+        default: "base"
+      sims:
+        description: "Simulated nights per board"
+        default: "10000"
+      rebuild:
+        description: "Rebuild every pool with today's code (yes/no)"
+        default: "no"
+
+permissions:
+  contents: write
+
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    strategy:
+      fail-fast: false
+      matrix:
+        sport: [nhl, nba]
+    steps:
+      - uses: actions/checkout@v4
+        if: contains(inputs.sports, matrix.sport)
+      - uses: actions/setup-python@v5
+        if: contains(inputs.sports, matrix.sport)
+        with:
+          python-version: "3.12"
+      - if: contains(inputs.sports, matrix.sport)
+        run: pip install -q -r requirements.txt
+      - name: Replay
+        if: contains(inputs.sports, matrix.sport)
+        run: |
+          set -o pipefail
+          ARGS="--sport ${{ matrix.sport }} --sims ${{ inputs.sims }} --variant ${{ inputs.variant }}"
+          [ "${{ inputs.rebuild }}" = "yes" ] && ARGS="$ARGS --rebuild-pools"
+          python backtest.py $ARGS | tee out.txt
+          sed -n '/^### /,$p' out.txt >> "$GITHUB_STEP_SUMMARY"
+      - name: Commit
+        if: contains(inputs.sports, matrix.sport)
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A docs/data/backtest data/actuals
+          git diff --cached --quiet && exit 0
+          git commit -m "Backtest: ${{ matrix.sport }} ${{ inputs.variant }}"
+          for i in 1 2 3 4 5 6; do
+            git pull --rebase -X ours origin main && git push && exit 0
+            sleep $((i * 10))
+          done
+          exit 1

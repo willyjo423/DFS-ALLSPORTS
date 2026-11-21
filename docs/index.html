@@ -120,6 +120,7 @@ a{color:var(--acc)}
         <div class="f"><label>Sort by</label>
           <select id="sort" style="width:100%">
             <option value="cash">Cash rate (sim) — single entry</option>
+            <option value="port">Best set (sim) — multi-entry tournaments</option>
             <option value="top1">Top 1% rate (sim) — big tournaments</option>
             <option value="proj">Projection</option>
             <option value="ceil">Ceiling</option>
@@ -365,7 +366,8 @@ function drawLineups() {
     (!st || G(L).some(([k, c]) => (k === st || k.startsWith(st + "-")) && c >= Math.max(s1, 2))) &&
     [...LOCK].every(i => L.p.includes(i)) &&
     !L.p.some(i => EXCL.has(i)));
-  ok.sort((a, b) => k === "ownhi" ? b.own - a.own
+  ok.sort((a, b) => k === "port" ? ((a.port ?? 1e3 - (a.top1 || 0)) - (b.port ?? 1e3 - (b.top1 || 0)))
+    : k === "ownhi" ? b.own - a.own
     : (k === "own" || k === "dup") ? a[k] - b[k] : b[k] - a[k]);
   // Greedy portfolio: best first, skipping any lineup that would push a
   // player past the exposure cap. Locked players are exempt - you asked

@@ -1,0 +1,43 @@
+name: Analysis
+
+# One-off research scripts that need the API keys (CFBD) and commit their
+# results under data/.
+
+on:
+  workflow_dispatch:
+    inputs:
+      script:
+        description: "Script to run"
+        type: choice
+        options: [cfb_blowout_fit.py]
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q -r requirements.txt
+      - name: Run
+        env:
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+        run: |
+          set -o pipefail
+          python "${{ inputs.script }}" 2>&1 | tee out.txt
+          { echo '```'; tail -150 out.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+      - name: Commit
+        run: |
+          rm -f out.txt
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A data
+          git diff --cached --quiet && exit 0
+          git commit -m "Analysis: ${{ inputs.script }}"
+          for i in 1 2 3 4 5; do git pull --rebase -X ours origin main && git push && exit 0; sleep $((i * 8)); done
+          exit 1

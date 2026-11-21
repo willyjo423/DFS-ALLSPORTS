@@ -352,6 +352,12 @@ function applyAuto() {
     $("stk").value = String(st); $("stk2").value = String(st2);
     if (st) why.push(`${st}+ from one team${st2 ? " and a second 2+ stack" : ""} (how those slates' best lineups were built)`);
   }
+  if (SLATE.sport === "cfb") {
+    $("stkby").value = "team"; $("stk2").value = "0";
+    const st = rule && rule.stack ? rule.stack : 0;
+    $("stk").value = String(st);
+    if (st) why.push(`${st}+ from one team (QB stack; from the backtest)`);
+  }
   $("autoinfo").textContent = "Auto: " + why.join(" · ");
 }
 $("auto").onchange = () => {
@@ -445,7 +451,10 @@ function drawLineups() {
   const s1 = +$("stk").value, s2 = +$("stk2").value, st = $("stkteam").value;
   const by = $("stkby").value;
   const mpt = SPORT === "nhl" ? +$("mpt").value : 0;
-  const G = L => (L.grp || {team: L.stk})[by] || [];
+  // Lineups without stored stacks (college): count teams on the fly, once.
+  const teamCounts = L => L._tc || (L._tc = Object.entries(L.p.reduce((m, i) => {
+    const t = SLATE.players[i].team; m[t] = (m[t] || 0) + 1; return m; }, {})).sort((a, b) => b[1] - a[1]));
+  const G = L => (L.grp || {team: L.stk || teamCounts(L)})[by] || [];
   let ok = pool.filter(L =>
     L.own >= lo && L.own <= hi &&
     (!mpt || ((L.stk || [])[0] || [, 0])[1] <= mpt) &&

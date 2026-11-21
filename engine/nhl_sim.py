@@ -228,9 +228,11 @@ def rank_pool(payload: dict, sims: int = 30000, field: int = 5000, seed: int = 1
         return
     Fd = np.vstack(parts)
     q99 = np.empty(sims); q90 = np.empty(sims); q55 = np.empty(sims)
+    q999 = np.empty(sims)
     for a in range(0, sims, 250):
         fs = S[a:a + 250][:, Fd].sum(axis=2)
         q99[a:a + 250] = np.quantile(fs, 0.99, axis=1)
+        q999[a:a + 250] = np.quantile(fs, 0.999, axis=1)
         q90[a:a + 250] = np.quantile(fs, 0.90, axis=1)
         q55[a:a + 250] = np.quantile(fs, 0.55, axis=1)
     size = len(payload.get("roster", {}).get("slots", [])) or max(len(L["p"]) for L in pool)
@@ -245,6 +247,9 @@ def rank_pool(payload: dict, sims: int = 30000, field: int = 5000, seed: int = 1
         L["top10"] = round(float((ls[:, k] > q90).mean() * 100), 1)
         L["cash"] = round(float((ls[:, k] > q55).mean() * 100), 1)
     payload["sim"] = {"sims": sims, "field": int(len(Fd))}
+    from engine import portfolio as PF
+    PF.assign(pool, ls, q999, q99)
     top = max(pool, key=lambda L: L["top1"])
     log.info("nhl sim: %d nights x %d field lineups; best top-1%% %.2f%% (%s)",
              sims, len(Fd), top["top1"], top["src"])
+    return {"S": S, "Fd": Fd, "ls": ls}

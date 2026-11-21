@@ -506,7 +506,7 @@ function drawLineups() {
     const ps = slotOrder(L.p).map(([s, i]) =>
       `<span><span class="muted">${s}</span> ${esc(P[i].name)}</span>`).join(" ");
     return `<div class="lu"><div class="top"><b>#${n + 1}</b><span><b>${L.proj.toFixed(1)}</b> proj</span>
-      <span>${L.ceil.toFixed(0)} ceil</span>${L.top1 != null ? `<span title="share of simulated nights this lineup beats 99% of the field"><b>${L.top1.toFixed(1)}%</b> top-1%</span><span>${L.cash.toFixed(0)}% cash</span>` : ""}${L.roi != null ? `<span title="simulated return per entry in ${esc((SLATE.contest || {}).name || "the featured tournament")}"><b>${L.roi > 0 ? "+" : ""}${L.roi.toFixed(0)}%</b> ROI</span>` : ""}<span><b>${L.own.toFixed(0)}%</b> own</span>
+      <span>${L.ceil.toFixed(0)} ceil</span>${L.top1 != null ? `<span title="share of simulated nights this lineup beats 99% of the field"><b>${L.top1.toFixed(1)}%</b> top-1%</span><span>${L.cash.toFixed(0)}% cash</span>` : ""}${L.roi != null ? `<span title="estimated return per entry in ${esc((SLATE.contest || {}).name || "the featured tournament")} - use it to compare lineups; the field model is softer than a real contest, so the level runs high"><b>${L.roi > 0 ? "+" : ""}${L.roi.toFixed(0)}%</b> ROI</span>` : ""}<span><b>${L.own.toFixed(0)}%</b> own</span>
       <span>$${L.sal.toLocaleString()}</span>${stackTag(L)}${L.dup >= 0.5 ? `<span>~${L.dup.toFixed(1)} dupes</span>` : ""}</div>
       <div class="ps">${ps}</div></div>`;
   }).join("") || `<div class="pad note">No lineups match. Widen the ownership range or remove a lock.</div>`;

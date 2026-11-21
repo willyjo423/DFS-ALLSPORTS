@@ -10,8 +10,8 @@ scores each lineup the way the money does:
   does that rank pay, divided by 1 + its expected duplicates;
   ROI = average payout / entry fee - 1.
 
-The contest is the slate's featured tournament from DraftKings' lobby (biggest
-prize pool). The lobby gives the pool, the fee, the field size and usually the
+The contest is the slate's featured tournament from DraftKings' lobby (the
+biggest field). The lobby gives the pool, the fee, the field size and usually the
 first prize in the name ("[$20K to 1st]"), but not the whole payout table, so
 the table is rebuilt in DraftKings' usual shape: ~22% of entries paid, first
 prize as listed, the rest falling off as a power curve to a min-cash of about
@@ -60,7 +60,9 @@ def featured(draft_group: int, contests: list[dict] | None = None) -> dict | Non
         pool, m = float(c.get("po") or 0), int(c.get("m") or 0)
         if m < 200 or pool <= 0:
             continue
-        if best is None or pool > best["pool"]:
+        # The BIGGEST FIELD, not the biggest pool: the biggest pool is often a
+        # 200-entry high-roller room, which is not the tournament played here.
+        if best is None or (m, pool) > (best["entries"], best["pool"]):
             fee = float(c.get("a") or 0) or pool / (m * 0.88)
             first = None
             fm = re.search(r"\[\s*(\$[\d.,]+\s*[KkMm]?)\s*to\s*1st", name)

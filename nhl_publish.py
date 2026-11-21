@@ -44,6 +44,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
+import sanity as SANITY
 import numpy as np
 import pandas as pd
 
@@ -607,6 +608,7 @@ def write(payloads: list[dict], partial: bool = False) -> None:
             SIM.rank_pool(p)
         except Exception as exc:                               # noqa: BLE001
             log.warning("contest sim failed (%s); lineups unranked", str(exc)[:80])
+        SANITY.attach(p, datetime.now(EASTERN).date().isoformat(), log)
         name = f"{SPORT}_dk_{p['kind']}_{p['draft_group']}.json"
         # allow_nan=False, and that is the whole point of writing it out.
         #

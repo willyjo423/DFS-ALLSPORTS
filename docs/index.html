@@ -145,6 +145,8 @@ a{color:var(--acc)}
       <div class="card pad"><div class="muted">Avg ceiling (sum)</div><div class="stat" id="s-ceil">–</div></div>
     </div>
 
+    <div class="card pad" id="checks" style="display:none;border-left:4px solid var(--warn)"></div>
+
     <div class="card" id="lulist"></div>
 
     <div class="card">
@@ -296,7 +298,8 @@ function drawPlayers() {
   $("ptbl").tBodies[0].innerHTML = rows.map(p => {
     const cls = LOCK.has(p.i) ? "locked" : EXCL.has(p.i) ? "excl" : "";
     const flag = (p.doubtful ? '<span class="tag">Q</span>' : "")
-      + (p.chalk ? `<span class="tag" style="background:#c0392b;color:#fff" title="in the optimal lineup ${Math.round((p.opt || 0) * 100)}% of the time">CHALK</span>` : "");
+      + (p.chalk ? `<span class="tag" style="background:#c0392b;color:#fff" title="in the optimal lineup ${Math.round((p.opt || 0) * 100)}% of the time">CHALK</span>` : "")
+      + (p.chk ? `<span class="tag" style="background:var(--warn)" title="${esc(p.chk)}">CHECK</span>` : "");
     return `<tr class="${cls}">
       <td class="l"><button class="tog ${LOCK.has(p.i) ? "lk" : ""}" data-lock="${p.i}">✓</button>
         <button class="tog ${EXCL.has(p.i) ? "ex" : ""}" data-ex="${p.i}">✕</button></td>
@@ -329,8 +332,17 @@ document.querySelector(".tabs").onclick = e => {
 // Lineups already update as settings change; the button re-runs and jumps to them.
 $("build").onclick = () => { drawLineups(); $("lulist").scrollIntoView({behavior: "smooth"}); };
 
+function drawChecks() {
+  const box = $("checks"), c = (SLATE && SLATE.checks) || [];
+  if (!c.length) { box.style.display = "none"; box.innerHTML = ""; return; }
+  box.style.display = "";
+  box.innerHTML = `<b>Check before lock</b> <span class="muted">(${c.length})</span>`
+    + c.map(x => `<div style="margin-top:4px"><b>${esc(x.name)}</b>${x.top ? ` <span class="muted">· in ${x.top} of top 13</span>` : ""} — ${esc(x.msg)}</div>`).join("");
+}
+
 function drawLineups() {
   if (!SLATE) return;
+  drawChecks();
   const pool = SLATE.lineups || [];
   if (!pool.length) {
     $("poolinfo").textContent = "This slate has no lineup pool yet — it appears on the next publish.";

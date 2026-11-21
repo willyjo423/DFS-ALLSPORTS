@@ -58,6 +58,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
+import sanity as SANITY
 import numpy as np
 import pandas as pd
 
@@ -261,6 +262,64 @@ def apply_market(pool: pd.DataFrame, lines: pd.DataFrame,
                           ("opponent_implied", "opponent_implied")):
             if src in by_team.columns:
                 out[dest] = out["team"].astype(str).map(by_team[src])
+    return out
+
+
+# ------------------------------------------------------------- blowouts
+# 2026-11-20: Air Force were 22.5-point favourites over UTEP, won 52-3, and
+# their starters sat for the fourth quarter. Medders (63% owned) and Hodges
+# were in most of our lineups and neither came near his projection. The model
+# projects a full game for every starter; a heavy favourite's starters do not
+# play one when the game is decided early.
+#
+# Final margins sit roughly normal around the spread with an SD of about 16
+# points. Once a lead passes BLOWOUT_START the starters begin to come out, and
+# by BLOWOUT_FULL they have lost about a quarter of their usual workload. The
+# expected loss is that curve averaged over the margin distribution. The
+# ceiling is hit harder than the median: a 40-point day needs the full game,
+# which is exactly what a blowout takes away. Underdogs in a rout get half the
+# effect: their starters usually keep playing longer, chasing.
+MARGIN_SD = 16.0
+BLOWOUT_START, BLOWOUT_FULL, BLOWOUT_LOSS = 17.0, 35.0, 0.25
+UNDERDOG_SHARE = 0.5
+
+
+def blowout_loss(spread: float) -> float:
+    """Expected share of a starter's production lost to sitting out a blowout,
+    for a team favoured by `spread` points (negative = underdog)."""
+    if spread is None or not np.isfinite(spread):
+        return 0.0
+    m = np.linspace(-80, 80, 641)
+    ramp = lambda x: BLOWOUT_LOSS * np.clip((x - BLOWOUT_START)
+                                            / (BLOWOUT_FULL - BLOWOUT_START), 0, 1)
+    def at(c):
+        w = np.exp(-0.5 * ((m - c) / MARGIN_SD) ** 2)
+        w /= w.sum()
+        return float((w * (ramp(m) + UNDERDOG_SHARE * ramp(-m))).sum())
+    # The model was fitted on history that already contains ordinary
+    # blowout rates, so only the excess over an even game is new.
+    return max(0.0, at(spread) - at(0.0))
+
+
+def apply_blowout(pool: pd.DataFrame, quantiles: list[float]) -> pd.DataFrame:
+    if "team_spread" not in pool.columns:
+        return pool
+    out = pool.copy()
+    spr = pd.to_numeric(out["team_spread"], errors="coerce")
+    loss = spr.map(lambda v: blowout_loss(float(v)) if pd.notna(v) else 0.0)
+    out["blowout_loss"] = loss
+    for q in quantiles:                 # upper tail loses more than the middle
+        c = f"q{int(round(q * 100))}"
+        if c in out.columns:
+            out[c] = pd.to_numeric(out[c], errors="coerce") * (1 - loss * (0.5 + q))
+    for c, k in (("median", 1.0), ("mean", 1.0), ("cond_mean", 1.0),
+                 ("ceiling", 1.4), ("spread", 1.4)):
+        if c in out.columns:
+            out[c] = pd.to_numeric(out[c], errors="coerce") * (1 - loss * k)
+    hit = out[loss > 0.02].groupby("team")["blowout_loss"].first()
+    if len(hit):
+        log.info("blowout discount: %s", ", ".join(
+            f"{t} -{100 * v:.0f}%" for t, v in hit.sort_values(ascending=False).items()))
     return out
 
 
@@ -741,6 +800,7 @@ def slate_players(pool: pd.DataFrame, quantiles: list[float],
             "gt": num(r.get("game_total"), 1),
             "spr": num(r.get("team_spread"), 1),
             "mkt": num(r.get("market_factor"), 3),
+            "blow": num(r.get("blowout_loss"), 3),
             # How much evidence is under the projection, and how old it is.
             # A number built on two games from last season is a real number
             # with nothing behind it, and in a sport with a transfer portal
@@ -922,6 +982,7 @@ def write(payloads: list[dict]) -> None:
             CSIM.rank_pool(p)
         except Exception as exc:                               # noqa: BLE001
             log.warning("contest sim failed (%s); lineups unranked", str(exc)[:80])
+        SANITY.attach(p, datetime.now(EASTERN).date().isoformat(), log)
         name = f"{SPORT}_dk_{p['kind']}_{p['draft_group']}.json"
         # allow_nan=False, and that is the whole point of writing it out here.
         #
@@ -1313,6 +1374,7 @@ def main(argv=None) -> int:
                               "page that it is projection-only.",
                               dg, type(exc).__name__, str(exc)[:140])
             pool = apply_market(pool, lines, quantiles)
+            pool = apply_blowout(pool, quantiles)
             pool = thin_evidence(pool, season)
 
             # What the field sees: DraftKings' season average and the team total.

@@ -1,0 +1,352 @@
+{
+ "cfb": {
+  "sport": "cfb",
+  "date": "2026-11-20",
+  "entries": 4,
+  "label": "5 games \u00b7 10 teams \u00b7 CFB $60K Friday Kickoff [$20K to 1st]",
+  "fixes_applied": [
+   "AF -8%",
+   "DUKE -3%",
+   "ORE -5%",
+   "TOL -5%",
+   "UNM -2%",
+   "UTEP -3%"
+  ],
+  "lines": {
+   "top1": 166.7,
+   "top10": 147.8,
+   "cash": 125.3
+  },
+  "now": {
+   "how": "Auto: best set, max exposure 100%",
+   "lineups": [
+    {
+     "players": [
+      "Dylan Raiola",
+      "Scottre Humphrey",
+      "Connor Walendzak",
+      "Jeremiah McClellan",
+      "Evan Stewart",
+      "Bryant Wesco Jr.",
+      "Chrishon McCray",
+      "Jamari Johnson"
+     ],
+     "actual": 128.14,
+     "proj": 107.98,
+     "own": 89.6,
+     "pct": 61.0
+    },
+    {
+     "players": [
+      "John Alan Richter",
+      "Scottre Humphrey",
+      "Connor Walendzak",
+      "Gideon Davidson",
+      "Toa Fa'avae",
+      "Bryson Hammer",
+      "Bryant Wesco Jr.",
+      "Jamari Johnson"
+     ],
+     "actual": 81.98,
+     "proj": 109.32,
+     "own": 98.9,
+     "pct": 2.2
+    },
+    {
+     "players": [
+      "CJ Miller",
+      "John Alan Richter",
+      "Connor Walendzak",
+      "Evan Stewart",
+      "Bryson Hammer",
+      "Bryant Wesco Jr.",
+      "Brennan Ridley",
+      "Cade Keith"
+     ],
+     "actual": 84.48,
+     "proj": 110.82,
+     "own": 103.2,
+     "pct": 2.6
+    },
+    {
+     "players": [
+      "Dylan Raiola",
+      "Scottre Humphrey",
+      "Jeremiah McClellan",
+      "Gideon Davidson",
+      "Evan Stewart",
+      "Bryson Hammer",
+      "Bryant Wesco Jr.",
+      "Jonah Burton"
+     ],
+     "actual": 91.04,
+     "proj": 106.94,
+     "own": 81.3,
+     "pct": 4.2
+    }
+   ],
+   "summary": {
+    "best": 128.14,
+    "avg": 96.4,
+    "cashed": 1,
+    "top10": 0,
+    "top1": 0,
+    "best_pct": 61.0
+   }
+  },
+  "then_cash": {
+   "how": "sorted by cash, 60% cap",
+   "lineups": [
+    {
+     "players": [
+      "Nate Sheppard",
+      "CJ Miller",
+      "Evan Medders",
+      "Adjatay Dabbs",
+      "Bryant Wesco Jr.",
+      "Cade Keith",
+      "Jared Richardson",
+      "Javen Nicholas"
+     ],
+     "actual": 132.74,
+     "proj": 125.36,
+     "own": 242.4,
+     "pct": 69.4
+    },
+    {
+     "players": [
+      "Nate Sheppard",
+      "CJ Miller",
+      "Evan Medders",
+      "Adjatay Dabbs",
+      "Bryant Wesco Jr.",
+      "Jamari Johnson",
+      "Jaivon Solomon",
+      "Javen Nicholas"
+     ],
+     "actual": 127.34,
+     "proj": 125.1,
+     "own": 235.8,
+     "pct": 59.1
+    },
+    {
+     "players": [
+      "John Alan Richter",
+      "Scottre Humphrey",
+      "Connor Walendzak",
+      "Jeremiah McClellan",
+      "Evan Stewart",
+      "Bryson Hammer",
+      "Jeremiah Hasley",
+      "Cade Keith"
+     ],
+     "actual": 119.38,
+     "proj": 112.6,
+     "own": 88.2,
+     "pct": 41.3
+    },
+    {
+     "players": [
+      "Dylan Raiola",
+      "Scottre Humphrey",
+      "Connor Walendzak",
+      "Jeremiah McClellan",
+      "Evan Stewart",
+      "Bryson Hammer",
+      "Jamari Johnson",
+      "Jeremiah Hasley"
+     ],
+     "actual": 132.74,
+     "proj": 111.58,
+     "own": 86.4,
+     "pct": 69.4
+    }
+   ],
+   "summary": {
+    "best": 132.74,
+    "avg": 128.1,
+    "cashed": 3,
+    "top10": 0,
+    "top1": 0,
+    "best_pct": 69.4
+   }
+  },
+  "then_top1": {
+   "how": "sorted by top-1%, 60% cap",
+   "lineups": [
+    {
+     "players": [
+      "Dylan Raiola",
+      "Scottre Humphrey",
+      "Connor Walendzak",
+      "Jeremiah McClellan",
+      "Evan Stewart",
+      "Bryant Wesco Jr.",
+      "Chrishon McCray",
+      "Jamari Johnson"
+     ],
+     "actual": 128.14,
+     "proj": 112.22,
+     "own": 89.6,
+     "pct": 61.0
+    },
+    {
+     "players": [
+      "John Alan Richter",
+      "Scottre Humphrey",
+      "Connor Walendzak",
+      "Jeremiah McClellan",
+      "Evan Stewart",
+      "Bryson Hammer",
+      "Bryant Wesco Jr.",
+      "Jared Richardson"
+     ],
+     "actual": 97.68,
+     "proj": 114.22,
+     "own": 101.0,
+     "pct": 7.1
+    },
+    {
+     "players": [
+      "Nate Sheppard",
+      "Kemper Hodges",
+      "Evan Medders",
+      "Dakorien Moore",
+      "Owen Allen",
+      "Bailen George",
+      "Jared Richardson",
+      "Javen Nicholas"
+     ],
+     "actual": 152.24,
+     "proj": 118.23,
+     "own": 239.8,
+     "pct": 92.9
+    },
+    {
+     "players": [
+      "Nate Sheppard",
+      "CJ Miller",
+      "Dakorien Moore",
+      "Adjatay Dabbs",
+      "Toa Fa'avae",
+      "Cade Keith",
+      "Jake Wilson",
+      "DJ Darling"
+     ],
+     "actual": 143.44,
+     "proj": 121.92,
+     "own": 197.4,
+     "pct": 85.3
+    }
+   ],
+   "summary": {
+    "best": 152.24,
+    "avg": 130.4,
+    "cashed": 3,
+    "top10": 1,
+    "top1": 0,
+    "best_pct": 92.9
+   }
+  },
+  "pool_best_now": 148.14,
+  "pool_best_then": 152.24,
+  "chalk_actual": [
+   {
+    "name": "Nate Sheppard",
+    "team": "DUKE",
+    "own": 63,
+    "proj_then": 26.03,
+    "proj_now": 25.32,
+    "actual": 50.0
+   },
+   {
+    "name": "Evan Medders",
+    "team": "AF",
+    "own": 63,
+    "proj_then": 21.46,
+    "proj_now": 19.71,
+    "actual": 22.6
+   },
+   {
+    "name": "Adjatay Dabbs",
+    "team": "TOL",
+    "own": 36,
+    "proj_then": 19.05,
+    "proj_now": 18.11,
+    "actual": 24.4
+   },
+   {
+    "name": "Dakorien Moore",
+    "team": "ORE",
+    "own": 34,
+    "proj_then": 19.43,
+    "proj_now": 18.37,
+    "actual": 26.1
+   },
+   {
+    "name": "CJ Miller",
+    "team": "TOL",
+    "own": 25,
+    "proj_then": 21.5,
+    "proj_now": 20.44,
+    "actual": 9.5
+   },
+   {
+    "name": "Kemper Hodges",
+    "team": "AF",
+    "own": 25,
+    "proj_then": 18.25,
+    "proj_now": 16.76,
+    "actual": 26.7
+   },
+   {
+    "name": "Toa Fa'avae",
+    "team": "UNM",
+    "own": 19,
+    "proj_then": 12.68,
+    "proj_now": 12.4,
+    "actual": 7.4
+   },
+   {
+    "name": "John Alan Richter",
+    "team": "TOL",
+    "own": 18,
+    "proj_then": 18.9,
+    "proj_now": 17.97,
+    "actual": 12.5
+   },
+   {
+    "name": "Jared Richardson",
+    "team": "DUKE",
+    "own": 18,
+    "proj_then": 8.24,
+    "proj_now": 8.01,
+    "actual": 0.9
+   },
+   {
+    "name": "Evan Stewart",
+    "team": "ORE",
+    "own": 16,
+    "proj_then": 15.26,
+    "proj_now": 14.43,
+    "actual": 4.8
+   },
+   {
+    "name": "Dylan Raiola",
+    "team": "ORE",
+    "own": 15,
+    "proj_then": 16.83,
+    "proj_now": 15.91,
+    "actual": 31.9
+   },
+   {
+    "name": "Scottre Humphrey",
+    "team": "UNM",
+    "own": 15,
+    "proj_then": 17.7,
+    "proj_now": 17.31,
+    "actual": 14.9
+   }
+  ]
+ }
+}

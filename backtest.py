@@ -263,9 +263,17 @@ def main(argv=None) -> int:
             print(day, "too few players matched", flush=True)
             continue
         nights[day] = r
+        _save(a, nights)                 # every night, so a timeout keeps the work
         m = r["methods"]
         print(f"{day} pool best {r['pool_best_pct']:.1f}pct | top1@13 {m['top1'][13]['best_pct']:.1f} "
               f"port@13 {m['port'][13]['best_pct']:.1f} | {time.time() - t0:.0f}s", flush=True)
+    summ = _save(a, nights)
+    name = a.sport + ("" if a.variant == "base" else f"-{a.variant}")
+    print(table(name, summ, len(nights)))
+    return 0
+
+
+def _save(a, nights) -> dict:
     summ = summarise(nights)
     OUT.mkdir(parents=True, exist_ok=True)
     name = a.sport + ("" if a.variant == "base" else f"-{a.variant}")
@@ -273,8 +281,7 @@ def main(argv=None) -> int:
         {"sport": a.sport, "variant": a.variant, "sims": a.sims,
          "generated_at": datetime.now(ET).isoformat(timespec="seconds"),
          "summary": summ, "nights": nights}, indent=1))
-    print(table(name, summ, len(nights)))
-    return 0
+    return summ
 
 
 if __name__ == "__main__":

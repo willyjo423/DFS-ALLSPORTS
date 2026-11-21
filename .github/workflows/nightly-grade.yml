@@ -39,7 +39,9 @@ jobs:
           cat grade.md >> "$GITHUB_STEP_SUMMARY"
       - name: Relearn Auto lineup settings
         continue-on-error: true
-        run: python auto_settings.py | tail -40
+        run: |
+          python auto_settings.py | tail -40
+          python optimize_settings.py | tee -a "$GITHUB_STEP_SUMMARY" | tail -80
       - name: Commit
         run: |
           git config user.name  "github-actions[bot]"

@@ -4,14 +4,11 @@ import requests
 
 UA = {"User-Agent": "Mozilla/5.0 (compatible; dfs-model/1.0)"}
 C = {
-    "nba_html_2024-01-15": "http://rotoguru1.com/cgi-bin/hyday.pl?game=dk&mon=1&day=15&year=2024",
-    "nba_scsv_2026-11-15": "http://rotoguru1.com/cgi-bin/hyday.pl?game=dk&mon=11&day=15&year=2026&scsv=1",
-    "nba_scsv_2025-03-10": "http://rotoguru1.com/cgi-bin/hyday.pl?game=dk&mon=3&day=10&year=2025&scsv=1",
-    "nba_html_2025-03-10": "http://rotoguru1.com/cgi-bin/hyday.pl?game=dk&mon=3&day=10&year=2025",
-    "nfl_html_2024_w10": "http://rotoguru1.com/cgi-bin/fyday.pl?week=10&year=2024&game=dk",
-    "nfl_scsv_2025_w10": "http://rotoguru1.com/cgi-bin/fyday.pl?week=10&year=2025&game=dk&scsv=1",
-    "nfl_scsv_2026_w10": "http://rotoguru1.com/cgi-bin/fyday.pl?week=10&year=2026&game=dk&scsv=1",
-    "nhl_index": "http://rotoguru1.com/hockey/",
+    "nba_scsv_2019-01-15": "http://rotoguru1.com/cgi-bin/hyday.pl?game=dk&mon=1&day=15&year=2019&scsv=1",
+    "nba_scsv_2021-03-10": "http://rotoguru1.com/cgi-bin/hyday.pl?game=dk&mon=3&day=10&year=2021&scsv=1",
+    "nba_scsv_2017-12-05": "http://rotoguru1.com/cgi-bin/hyday.pl?game=dk&mon=12&day=5&year=2017&scsv=1",
+    "nfl_scsv_2021_w10": "http://rotoguru1.com/cgi-bin/fyday.pl?week=10&year=2021&game=dk&scsv=1",
+    "nfl_scsv_2018_w5": "http://rotoguru1.com/cgi-bin/fyday.pl?week=5&year=2018&game=dk&scsv=1",
 }
 for k, u in C.items():
     try:

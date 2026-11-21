@@ -41,6 +41,8 @@ jobs:
         run: pip install -q -r requirements.txt
       - name: Replay
         if: contains(inputs.sports, matrix.sport)
+        timeout-minutes: 320
+        continue-on-error: true
         run: |
           set -o pipefail
           ARGS="--sport ${{ matrix.sport }} --sims ${{ inputs.sims }} --variant ${{ inputs.variant }}"
@@ -48,7 +50,7 @@ jobs:
           python backtest.py $ARGS | tee out.txt
           sed -n '/^### /,$p' out.txt >> "$GITHUB_STEP_SUMMARY"
       - name: Commit
-        if: contains(inputs.sports, matrix.sport)
+        if: always() && contains(inputs.sports, matrix.sport)
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"

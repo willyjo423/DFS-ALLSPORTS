@@ -4,11 +4,9 @@ import requests
 
 UA = {"User-Agent": "Mozilla/5.0 (compatible; dfs-model/1.0)"}
 C = {
-    "nba_scsv_2019-01-15": "http://rotoguru1.com/cgi-bin/hyday.pl?game=dk&mon=1&day=15&year=2019&scsv=1",
-    "nba_scsv_2021-03-10": "http://rotoguru1.com/cgi-bin/hyday.pl?game=dk&mon=3&day=10&year=2021&scsv=1",
-    "nba_scsv_2017-12-05": "http://rotoguru1.com/cgi-bin/hyday.pl?game=dk&mon=12&day=5&year=2017&scsv=1",
-    "nfl_scsv_2021_w10": "http://rotoguru1.com/cgi-bin/fyday.pl?week=10&year=2021&game=dk&scsv=1",
-    "nfl_scsv_2018_w5": "http://rotoguru1.com/cgi-bin/fyday.pl?week=5&year=2018&game=dk&scsv=1",
+    "nba_html_2019-01-15": "http://rotoguru1.com/cgi-bin/hyday.pl?game=dk&mon=1&day=15&year=2019",
+    "nba_scsv_all_2019-01-15": "http://rotoguru1.com/cgi-bin/hyday.pl?game=dk&mon=1&day=15&year=2019&scsv=1&ex=1",
+    "nba_scsv_min0_2019-01-15": "http://rotoguru1.com/cgi-bin/hyday.pl?game=dk&mon=1&day=15&year=2019&scsv=1&minp=0",
 }
 for k, u in C.items():
     try:

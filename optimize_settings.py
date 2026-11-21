@@ -141,6 +141,12 @@ def main() -> int:
         report[sport] = {}
         base = variants.get("base") or next(iter(variants.values()))
         nights = {k: v for k, v in base.items() if v.get("lineups")}
+        # Past seasons replayed with real DraftKings salaries (nba-hist-<season>,
+        # nfl-hist) count as more nights of the same thing. Keys are dates, so
+        # the both-halves check splits old seasons from newer ones.
+        for vname, vn in variants.items():
+            if vname.startswith("hist"):
+                nights.update({f"{k}": v for k, v in vn.items() if v.get("lineups")})
         report[sport]["nights"] = len(nights)
         print(f"\n=== {sport.upper()}  {len(nights)} nights ===")
         rules_out[sport] = {}
@@ -185,9 +191,11 @@ def main() -> int:
                                         "expo": chosen[2], "stack": chosen[3],
                                         "evidence": f"{len(nights)} nights, ROI {mean[chosen]:+.2f}"}
         # pool variants: best rule's ROI at 5 and 20 entries per variant
-        if len(variants) > 1:
+        if len([v for v in variants if not v.startswith("hist")]) > 1:
             report[sport]["variants"] = {}
             for vname, vn in variants.items():
+                if vname.startswith("hist"):
+                    continue
                 vn = {k: v for k, v in vn.items() if v.get("lineups")}
                 common = sorted(set(vn) & set(nights))
                 if len(common) < 5:

@@ -18,7 +18,7 @@ from __future__ import annotations
 import numpy as np
 
 WIN, TOP = 10.0, 1.0
-PICK = 20
+PICK = 40
 
 
 def payoff(ls: np.ndarray, q999: np.ndarray, q99: np.ndarray) -> np.ndarray:
@@ -48,9 +48,9 @@ def greedy(V: np.ndarray, n: int = PICK) -> list[int]:
 
 
 def assign(pool: list[dict], ls: np.ndarray, q999: np.ndarray, q99: np.ndarray,
-           n: int = PICK) -> list[int]:
+           n: int | None = None) -> list[int]:
     """Write L["port"] = 1..n (pick order) on the chosen lineups."""
-    order = greedy(payoff(ls, q999, q99), n)
+    order = greedy(payoff(ls, q999, q99), n or PICK)
     for L in pool:
         L.pop("port", None)
     for r, j in enumerate(order, 1):

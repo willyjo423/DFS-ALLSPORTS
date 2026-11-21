@@ -8,7 +8,7 @@ on:
     inputs:
       sports:
         description: "Sports, space separated"
-        default: "nhl nba"
+        default: "nhl nba cfb"
       variant:
         description: "Code variant to test (see backtest.py VARIANTS)"
         default: "base"
@@ -29,7 +29,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        sport: [nhl, nba]
+        sport: [nhl, nba, cfb]
     steps:
       - uses: actions/checkout@v4
         if: contains(inputs.sports, matrix.sport)
@@ -43,6 +43,8 @@ jobs:
         if: contains(inputs.sports, matrix.sport)
         timeout-minutes: 320
         continue-on-error: true
+        env:
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
         run: |
           set -o pipefail
           ARGS="--sport ${{ matrix.sport }} --sims ${{ inputs.sims }} --variant ${{ inputs.variant }}"
@@ -54,7 +56,8 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A docs/data/backtest data/actuals
+          rm -f out.txt
+          git add -A docs/data/backtest data/actuals data/backtest_dumps
           git diff --cached --quiet && exit 0
           git commit -m "Backtest: ${{ matrix.sport }} ${{ inputs.variant }}"
           for i in 1 2 3 4 5 6; do

@@ -312,7 +312,8 @@ function applyAuto() {
     sort = learned && (learned !== "port" || hasPort) ? learned : (hasPort ? "port" : "top1");
   }
   $("sort").value = sort;
-  why.push(N === 1 ? "single entry → sorted by cash rate" :
+  why.push(!hasSim ? "no simulated lineups on this slate → sorted by projection" :
+    N === 1 ? "single entry → sorted by cash rate" :
     `${N} entries → ${sort === "port" ? "best set" : sort === "top1" ? "top-1% rate" : sort}`);
   // exposure
   const expo = N <= 4 ? 100 : N <= 10 ? 60 : N <= 20 ? 50 : 40;
@@ -327,8 +328,10 @@ function applyAuto() {
     while (pool.filter(L => L.own >= lo && L.own <= hi).length < need && (lo > 0 || hi < 400)) {
       lo = Math.max(0, lo - 10); hi += 10;
     }
+    const size = !bucket.games ? "all sizes" : bucket.games[1] >= 99 ? `${bucket.games[0]}+ games`
+      : `${bucket.games[0]}–${bucket.games[1]} games`;
     why.push(`total own ${lo}–${hi}% (where the best lineups came from on ${bucket.slates} past ` +
-      `${SLATE.sport.toUpperCase()} slates of ${bucket.games ? bucket.games.join("–") + " games" : "all sizes"})`);
+      `${SLATE.sport.toUpperCase()} slates of ${size})`);
   }
   $("ownmin").value = lo; $("ownmax").value = hi;
   // hockey stacks
@@ -447,16 +450,27 @@ function drawLineups() {
   // Greedy portfolio: best first, skipping any lineup that would push a
   // player past the exposure cap. Locked players are exempt - you asked
   // for them in every lineup.
-  const count = new Map(), maxN = Math.max(1, Math.floor(cap * N));
-  PICKED = [];
-  for (const L of ok) {
-    if (PICKED.length >= N) break;
-    if (L.p.some(i => !LOCK.has(i) && (count.get(i) || 0) >= maxN)) continue;
-    PICKED.push(L); L.p.forEach(i => count.set(i, (count.get(i) || 0) + 1));
+  let count, capUsed = cap;
+  const pick = c => {
+    count = new Map(); PICKED = [];
+    const maxN = Math.max(1, Math.floor(c * N));
+    for (const L of ok) {
+      if (PICKED.length >= N) break;
+      if (L.p.some(i => !LOCK.has(i) && (count.get(i) || 0) >= maxN)) continue;
+      PICKED.push(L); L.p.forEach(i => count.set(i, (count.get(i) || 0) + 1));
+    }
+  };
+  pick(cap);
+  // Auto never leaves entries empty: when the pool is too concentrated for
+  // the exposure cap, raise it just enough to fill them, and say so.
+  while ($("auto").checked && PICKED.length < Math.min(N, ok.length) && capUsed < 1) {
+    capUsed = Math.min(1, capUsed + 0.1); pick(capUsed);
   }
+  if (capUsed > cap) $("expo").value = Math.round(capUsed * 100);
   $("poolinfo").textContent = `${ok.length} of ${pool.length} pool lineups match your filters` +
     (ok.length < N ? ` · fewer than ${N} match — widen the ownership range or drop a lock`
-      : PICKED.length < N ? ` · only ${PICKED.length} fit the ${Math.round(cap * 100)}% exposure cap — raise it` : "");
+      : PICKED.length < N ? ` · only ${PICKED.length} fit the ${Math.round(capUsed * 100)}% exposure cap — raise it`
+      : capUsed > cap ? ` · Auto raised max exposure to ${Math.round(capUsed * 100)}% to fill all ${N} (the pool leans hard on a few players)` : "");
   const avg = f => PICKED.length ? (PICKED.reduce((s, L) => s + L[f], 0) / PICKED.length).toFixed(1) : "–";
   $("s-n").textContent = PICKED.length; $("s-proj").textContent = avg("proj");
   $("s-own").textContent = PICKED.length ? avg("own") + "%" : "–"; $("s-ceil").textContent = avg("ceil");

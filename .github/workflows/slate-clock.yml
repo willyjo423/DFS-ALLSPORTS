@@ -24,6 +24,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 355
     steps:
+      - uses: actions/checkout@v4
+      - name: Install requests for the news watcher
+        run: python3 -m pip install --quiet requests || true
       - name: Dispatch publishes on time
         env:
           GH_TOKEN: ${{ github.token }}
@@ -56,11 +59,31 @@ jobs:
               return d.month in (10, 11, 12, 1, 2, 3, 4, 5, 6)
           def fire(wf, soon=False):
               wf = "cfb-publish.yml" if wf == "cfb-weeknight" else wf
-              extra = ["-f", "inputs[soon]=28"] if soon else []
+              mins = 28 if soon is True else soon
+              extra = ["-f", f"inputs[soon]={mins}"] if mins else []
               r = subprocess.run(["gh", "api", "-X", "POST",
                                   f"repos/{os.environ['REPO']}/actions/workflows/{wf}/dispatches",
                                   "-f", "ref=main"] + extra, capture_output=True, text=True)
               print(datetime.now(ET).strftime("%H:%M"), "dispatch", wf, "ok" if r.returncode == 0 else r.stderr[:200], flush=True)
+          try:
+              import news_watch
+              WATCH = news_watch.Watcher()
+          except Exception as exc:
+              print("news watcher off:", exc, flush=True)
+              WATCH = None
+          LAST_NEWS_FIRE = {}
+          def watch_news():
+              t = datetime.now(ET)
+              if WATCH is None or not (11 <= t.hour < 23):
+                  return
+              for sport, moved in WATCH.changes().items():
+                  if sport == "nhl" and not season("nhl-publish.yml", t.date()):
+                      continue
+                  print(t.strftime("%H:%M"), "late news", sport, "; ".join(moved)[:300], flush=True)
+                  if time.time() - LAST_NEWS_FIRE.get(sport, 0) < 8 * 60:
+                      continue
+                  LAST_NEWS_FIRE[sport] = time.time()
+                  fire(f"{sport}-publish.yml", 90)
           start = time.time()
           now = datetime.now(ET)
           todo = []
@@ -90,8 +113,14 @@ jobs:
                   print("handing over to a fresh clock run", flush=True)
                   fire("slate-clock.yml")
                   break
-              if wait > 0:
-                  time.sleep(wait)
+              # Sleep in short steps and watch for late news in between: an
+              # NBA scratch or a confirmed NHL goalie triggers a lock-lane
+              # rebuild of whatever locks in the next 90 minutes.
+              while wait > 0:
+                  step = min(wait, 6 * 60)
+                  time.sleep(step)
+                  wait -= step
+                  watch_news()
               at, wf, lock = todo.pop(0)
               fire(wf, lock)
           PY

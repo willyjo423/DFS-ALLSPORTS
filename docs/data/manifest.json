@@ -53,22 +53,6 @@
    "sport": "nhl",
    "site": "dk",
    "kind": "classic",
-   "label": "24 teams \u00b7 6:00pm",
-   "file": "data/nhl_dk_classic_156946.json",
-   "locks": "2026-11-21T23:00:00+00:00"
-  },
-  {
-   "sport": "nhl",
-   "site": "dk",
-   "kind": "classic",
-   "label": "2 teams \u00b7 6:00pm \u00b7 (BUF @ FLA)",
-   "file": "data/nhl_dk_classic_156950.json",
-   "locks": "2026-11-21T23:00:00+00:00"
-  },
-  {
-   "sport": "nhl",
-   "site": "dk",
-   "kind": "classic",
    "label": "2 teams \u00b7 9:00pm \u00b7 (ANA @ UTA)",
    "file": "data/nhl_dk_classic_156951.json",
    "locks": "2026-11-22T02:00:00+00:00"
@@ -88,6 +72,14 @@
    "label": "6 teams \u00b7 5:00pm",
    "file": "data/nhl_dk_classic_156955.json",
    "locks": "2026-11-22T22:00:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "2 teams \u00b7 8:00pm \u00b7 (CHI @ VAN)",
+   "file": "data/nhl_dk_classic_156959.json",
+   "locks": "2026-11-23T01:00:00+00:00"
   }
  ]
 }

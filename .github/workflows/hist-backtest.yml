@@ -1,0 +1,78 @@
+name: Historical backtest (NBA)
+
+# NBA 2017-18 to 2020-21 with real DraftKings salaries and points
+# (RotoGuru): scrape once (cached in data/hist), then replay each season.
+
+on:
+  workflow_dispatch:
+    inputs:
+      every:
+        description: "Use every Nth slate day"
+        default: "1"
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q -r requirements.txt
+      - name: Scrape seasons
+        run: |
+          python - <<'PY'
+          import nba_hist_backtest as H
+          for s in (2016, 2017, 2018, 2019, 2020):
+              df = H.scrape(s)
+              print(s, len(df), "rows", df["date"].nunique(), "days", flush=True)
+          PY
+      - name: Commit
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A data/hist
+          git diff --cached --quiet && exit 0
+          git commit -m "Historical NBA DraftKings salaries (RotoGuru)"
+          for i in 1 2 3 4 5; do git pull --rebase -X ours origin main && git push && exit 0; sleep $((i * 8)); done
+          exit 1
+
+  replay:
+    needs: scrape
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    strategy:
+      fail-fast: false
+      matrix:
+        season: [2017, 2018, 2019, 2020]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - run: git pull origin main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q -r requirements.txt
+      - name: Replay
+        timeout-minutes: 320
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          python nba_hist_backtest.py --season ${{ matrix.season }} --every ${{ inputs.every }} 2>&1 | grep -v "^INFO\|^WARNING" | tee out.txt
+          { echo '```'; tail -40 out.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+      - name: Commit
+        if: always()
+        run: |
+          rm -f out.txt
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A data/backtest_dumps
+          git diff --cached --quiet && exit 0
+          git commit -m "Historical backtest: NBA ${{ matrix.season }}"
+          for i in 1 2 3 4 5 6; do git pull --rebase -X ours origin main && git push && exit 0; sleep $((i * 10)); done
+          exit 1

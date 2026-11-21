@@ -43,21 +43,92 @@ METHODS = ("proj", "cash", "top1", "port")
 
 # --------------------------------------------------------------- boards
 def boards(sport: str) -> dict[str, dict]:
-    """{lock day: biggest board locking that day} from the archive."""
+    """{lock day: biggest board locking that day} from the archive. College
+    football keeps every slate of 4+ games (keyed day|draft group): a
+    Saturday's early, afternoon and night slates are different games."""
     best: dict[str, tuple[int, Path]] = {}
     for f in ARCHIVE.glob(f"*/{sport}_dk_classic_*.json"):
         try:
             b = json.loads(f.read_text())
-            day = datetime.fromisoformat(b["locks"]).astimezone(ET).date().isoformat()
+            day = (datetime.fromisoformat(b["locks"]).astimezone(ET).date().isoformat()
+                   if b.get("locks") else f.parent.name)       # CFB boards carry no lock time
         except Exception:                                      # noqa: BLE001
             continue
+        if sport == "cfb":
+            games = len({p.get("game") for p in b.get("players") or []})
+            if games < 4:
+                continue
+            day = f"{day}|{b.get('draft_group')}"
         n = len(b.get("players") or [])
         # the latest write of the biggest slate; later folders win ties
         if day not in best or (n, str(f)) > (best[day][0], str(best[day][1])):
             best[day] = (n, f)
     today = date.today().isoformat()
     return {d: json.loads(f.read_text()) for d, (n, f) in sorted(best.items())
-            if d < today}
+            if d.split("|")[0] < today}
+
+
+def cfb_week(day: str, key: str) -> int | None:
+    """The CFB week a slate dated `day` belongs to (CFBD calendar), or None if
+    that week has not finished yet. A slate published on a Wednesday belongs
+    to the coming weekend, never the last one."""
+    import cfb_data as D
+    path = ACT / "cfb" / f"calendar_{day[:4]}.json"
+    if path.exists():
+        cal = json.loads(path.read_text())
+    else:
+        cal = D.cfbd("calendar", key, year=int(day[:4]))
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(cal))
+    d = date.fromisoformat(day)
+    for w in cal:
+        if (w.get("seasonType") or w.get("season_type")) != "regular":
+            continue
+        end = str(w.get("endDate") or w.get("lastGameStart") or "")[:10]
+        if end and date.fromisoformat(end) >= d:
+            if date.fromisoformat(end) >= date.today():
+                return None
+            return int(w["week"])
+    return None
+
+
+def cfb_actuals(board: dict, day: str = "") -> dict:
+    """{primary name key: DK points} for the week this board was played, from
+    CFBD box scores (cached per week)."""
+    import os
+    import cfb_data as D
+    key = os.environ.get("CFBD_API_KEY", "").strip()
+    season = int(day[:4]) if day else 2026
+    names = {D.primary_key(p["name"]) for p in board["players"]}
+    week = cfb_week(day, key) if day else None
+    if week is None:
+        return {}
+    best = {}
+    for w in (week,):
+        path = ACT / "cfb" / f"{season}_w{w:02d}.json"
+        if path.exists():
+            wk = json.loads(path.read_text())
+        else:
+            if not key:
+                continue
+            try:
+                df = D.flatten_player_games(D.cfbd("games/players", key, year=season,
+                                                   week=w, seasonType="regular"))
+            except Exception as exc:                           # noqa: BLE001
+                log.warning("cfbd week %d: %s", w, str(exc)[:80])
+                continue
+            if df.empty:
+                continue
+            df["pts"] = D.fantasy_points(df)
+            wk = {}
+            for r in df.itertuples():
+                wk[D.primary_key(r.name)] = float(r.pts)
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(json.dumps(wk))
+        got = {k: v for k, v in wk.items() if k in names}
+        if len(got) > len(best):
+            best = got
+    return best
 
 
 def actuals(sport: str, day: str) -> dict:
@@ -92,7 +163,13 @@ def rebuild(sport: str, b: dict, sims: int) -> dict | None:
         p["_inner"] = inner
         return p if inner else None
     import projection_calibration as PC
-    from engine import lineup_pool as LP, nhl_sim as SIM
+    from engine import lineup_pool as LP
+    if sport == "cfb":
+        from engine import cfb_sim as SIM
+        if BLOWOUT:
+            apply_blowout(p)
+    else:
+        from engine import nhl_sim as SIM
     if not p.get("lineups"):
         try:
             PC.apply(p)
@@ -110,12 +187,18 @@ def rebuild(sport: str, b: dict, sims: int) -> dict | None:
 def score_night(sport: str, p: dict, inner: dict, act: dict) -> dict | None:
     pts = np.zeros(len(p["players"]))
     hit = 0
+    if sport == "cfb":
+        import cfb_data as D
     for i, pl in enumerate(p["players"]):
-        a = G.match(sport, pl, act)
+        if sport == "cfb":
+            v = act.get(D.primary_key(pl["name"]))
+            a = None if v is None else {"dk": v}
+        else:
+            a = G.match(sport, pl, act)
         if a is not None:
             pts[i] = a["dk"]
             hit += 1
-    if hit < 0.5 * len(p["players"]):
+    if hit < (0.25 if sport == "cfb" else 0.5) * len(p["players"]):
         return None
     field = np.sort(pts[inner["Fd"]].sum(axis=1))
     q = {k: float(np.quantile(field, v)) for k, v in
@@ -133,7 +216,9 @@ def score_night(sport: str, p: dict, inner: dict, act: dict) -> dict | None:
         return sorted(range(len(pool)), key=lambda i: -pool[i].get(m, 0))
 
     out = {"lines": q, "pool_best_pct": float(pct.max()),
-           "pool_best": float(score.max()), "methods": {}}
+           "pool_best": float(score.max()), "methods": {},
+           "games": len({str(pl.get("game") or pl.get("team")) for pl in p["players"]}),
+           "dump": [dump_row(p, L, float(sc), float(pc)) for L, sc, pc in zip(pool, score, pct)]}
     for m in METHODS:
         idx = order(m)
         out["methods"][m] = {}
@@ -172,6 +257,47 @@ def table(sport: str, summ: dict, n_nights: int) -> str:
             lines.append(f"| {m} | {n} | {r['best_pct']} | {r['top1']}% | {r['top10']}% | {r['cash_rate']}% |")
     lines.append(f"\nBest lineup in the whole pool, average percentile: {summ.get('pool_best_pct')}")
     return "\n".join(lines)
+
+
+def dump_row(p: dict, L: dict, actual: float, pct: float) -> dict:
+    from collections import Counter
+    pl = p["players"]
+    sk = [pl[i] for i in L["p"] if pl[i].get("pos") not in ("G", "DST")]
+    teams = sorted(Counter(x.get("team") for x in sk).values(), reverse=True) + [0, 0]
+    return {"p": L["p"], "proj": L.get("proj"), "ceil": L.get("ceil"), "own": L.get("own"),
+            "top1": L.get("top1"), "top10": L.get("top10"), "cash": L.get("cash"),
+            "port": L.get("port"), "dup": L.get("dup"), "st1": teams[0], "st2": teams[1],
+            "actual": round(actual, 2), "pct": round(pct, 2)}
+
+
+BLOWOUT = False
+
+
+def apply_blowout(p: dict) -> None:
+    """The CFB blowout discount, applied to an archived board's players."""
+    import cfb_publish as CP
+    for pl in p["players"]:
+        loss = CP.blowout_loss(pl.get("spr")) if pl.get("spr") is not None else 0.0
+        if loss <= 0.005 or pl.get("blow"):
+            continue
+        pl["q"] = [v * (1 - loss * (0.5 + q)) for v, q in zip(pl["q"], p["quantiles"])]
+        for k, m in (("med", 1.0), ("proj", 1.0), ("mean", 1.0), ("ceil", 1.4)):
+            if pl.get(k) is not None:
+                pl[k] = pl[k] * (1 - loss * m)
+        pl["blow"] = loss
+
+
+def strip_blowout(p: dict) -> None:
+    """Undo the discount on boards published with it."""
+    for pl in p["players"]:
+        loss = pl.get("blow") or 0.0
+        if loss <= 0:
+            continue
+        pl["q"] = [v / (1 - loss * (0.5 + q)) for v, q in zip(pl["q"], p["quantiles"])]
+        for k, m in (("med", 1.0), ("proj", 1.0), ("mean", 1.0), ("ceil", 1.4)):
+            if pl.get(k) is not None:
+                pl[k] = pl[k] / (1 - loss * m)
+        pl["blow"] = 0.0
 
 
 VARIANTS = {}
@@ -217,6 +343,23 @@ def _diverse():
     NP.MIN_UNIQUE = 3
 
 
+@variant("blowout")
+def _blowout():
+    """CFB: every board with the blowout discount (older boards had none)."""
+    global BLOWOUT
+    BLOWOUT = True
+
+
+@variant("noblowout")
+def _noblowout():
+    """CFB: no board with the blowout discount."""
+    global STRIP
+    STRIP = True
+
+
+STRIP = False
+
+
 @variant("bigdiverse")
 def _bigdiverse():
     _bigpool()
@@ -225,7 +368,7 @@ def _bigdiverse():
 
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--sport", choices=("nba", "nhl"), required=True)
+    ap.add_argument("--sport", choices=("nba", "nhl", "cfb"), required=True)
     ap.add_argument("--sims", type=int, default=10000)
     ap.add_argument("--variant", default="base")
     ap.add_argument("--rebuild-pools", action="store_true",
@@ -238,11 +381,11 @@ def main(argv=None) -> int:
     bs = boards(a.sport)
     days = list(bs)[-a.max_nights:]
     for day in days:
-        b = bs[day]
-        if a.rebuild_pools or a.variant != "base":
-            b = dict(b)
-            b.pop("lineups", None)
-        act = actuals(a.sport, day)
+        b = copy.deepcopy(bs[day])
+        b.pop("lineups", None)           # always today's pool builder and sim
+        if STRIP:
+            strip_blowout(b)
+        act = cfb_actuals(b, day.split('|')[0]) if a.sport == "cfb" else actuals(a.sport, day)
         if not act:
             print(day, "no actuals", flush=True)
             continue
@@ -273,14 +416,22 @@ def main(argv=None) -> int:
     return 0
 
 
+DUMPS = ROOT / "data" / "backtest_dumps"
+
+
 def _save(a, nights) -> dict:
     summ = summarise(nights)
     OUT.mkdir(parents=True, exist_ok=True)
+    DUMPS.mkdir(parents=True, exist_ok=True)
     name = a.sport + ("" if a.variant == "base" else f"-{a.variant}")
+    slim = {d: {k: v for k, v in r.items() if k != "dump"} for d, r in nights.items()}
     (OUT / f"{name}.json").write_text(json.dumps(
         {"sport": a.sport, "variant": a.variant, "sims": a.sims,
          "generated_at": datetime.now(ET).isoformat(timespec="seconds"),
-         "summary": summ, "nights": nights}, indent=1))
+         "summary": summ, "nights": slim}, indent=1))
+    (DUMPS / f"{name}.json").write_text(json.dumps(
+        {d: {"lines": r["lines"], "games": r.get("games"), "lineups": r.get("dump", [])}
+         for d, r in nights.items()}, separators=(",", ":")))
     return summ
 
 

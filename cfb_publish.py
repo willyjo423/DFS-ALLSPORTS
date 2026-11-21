@@ -279,9 +279,17 @@ def apply_market(pool: pd.DataFrame, lines: pd.DataFrame,
 # ceiling is hit harder than the median: a 40-point day needs the full game,
 # which is exactly what a blowout takes away. Underdogs in a rout get half the
 # effect: their starters usually keep playing longer, chasing.
-MARGIN_SD = 16.0
-BLOWOUT_START, BLOWOUT_FULL, BLOWOUT_LOSS = 17.0, 35.0, 0.25
-UNDERDOG_SHARE = 0.5
+#
+# FITTED 2026-11-21 on 42,281 player-games (2021-2025, CFBD lines and box
+# scores, cfb_blowout_fit.py), after controlling for the implied team total
+# the model already uses. Shortfall vs expectation by favoured-by:
+#   10.5-17.5: -3.3% (se 1.3)   17.5-24.5: -6.6% (1.6)
+#   24.5-31.5: -10.7% (2.4)     31.5+:     -23.6% (3.0)
+#   underdog by 24.5+: -4.6% (2.3); anything closer than 10: ~0
+# The curve below reproduces all nine buckets within their error bars.
+MARGIN_SD = 12.0
+BLOWOUT_START, BLOWOUT_FULL, BLOWOUT_LOSS = 20.0, 45.0, 0.35
+UNDERDOG_SHARE = 0.25
 
 
 def blowout_loss(spread: float) -> float:

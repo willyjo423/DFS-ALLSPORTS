@@ -87,11 +87,8 @@ def build_slate(dg: int, starts, label: str, hist: pd.DataFrame, p: dict,
                 rates: pd.DataFrame | None = None) -> dict | None:
     lineups = lineups or {}
     props = props or {}
-    prop_keys: dict = {}
-    for key, stats in props.items():
-        nm, tm = key.rsplit("|", 1)
-        for k in name_keys(nm):
-            prop_keys.setdefault(k, []).append((tm, stats))
+    import props_match as PM
+    prop_index = PM.build(props)
     posted = lineups.get("_teams", set())
     b = D.board(dg)
     if b.empty:
@@ -196,14 +193,14 @@ def build_slate(dg: int, starts, label: str, hist: pd.DataFrame, p: dict,
         else:
             cond, mins, sd, vac = 0.0, 0.0, 0.0, 0.0
         model_cond, w_mkt, mkt_val = cond, 0.0, None
-        cands = [c for k in name_keys(r.name) for c in prop_keys.get(k, [])]
+        st_ = PM.match(prop_index, r.name, r.team, canon=F.canon)
+        cands = [st_] if st_ else []
         stale = (r.missed is not None and r.missed >= STALE_GAMES and not cands
                  and r.starts != 1 and cond > 0)
         if stale:
             cond, mins = 0.0, 0.0
             model_cond = 0.0
         if cands and cond > 0:
-            st_ = next((c[1] for c in cands if c[0] == r.team), cands[0][1])
             rr = rates.loc[r.pid_h] if (rates is not None and r.pid_h in rates.index) else None
             mk = PR.market_dk(st_, rr, mins)
             if mk:

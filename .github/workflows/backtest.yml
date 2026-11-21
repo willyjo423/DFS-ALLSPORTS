@@ -4,6 +4,8 @@ name: Backtest
 # way of picking lineups against the real box scores (backtest.py).
 
 on:
+  schedule:
+    - cron: "0 11 * * 1"      # Mondays: replay everything with the week's new nights
   workflow_dispatch:
     inputs:
       sports:
@@ -32,22 +34,22 @@ jobs:
         sport: [nhl, nba, cfb]
     steps:
       - uses: actions/checkout@v4
-        if: contains(inputs.sports, matrix.sport)
+        if: contains(inputs.sports || 'nhl nba cfb', matrix.sport)
       - uses: actions/setup-python@v5
-        if: contains(inputs.sports, matrix.sport)
+        if: contains(inputs.sports || 'nhl nba cfb', matrix.sport)
         with:
           python-version: "3.12"
       - if: contains(inputs.sports, matrix.sport)
         run: pip install -q -r requirements.txt
       - name: Replay
-        if: contains(inputs.sports, matrix.sport)
+        if: contains(inputs.sports || 'nhl nba cfb', matrix.sport)
         timeout-minutes: 320
         continue-on-error: true
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
         run: |
           set -o pipefail
-          ARGS="--sport ${{ matrix.sport }} --sims ${{ inputs.sims }} --variant ${{ inputs.variant }}"
+          ARGS="--sport ${{ matrix.sport }} --sims ${{ inputs.sims || '8000' }} --variant ${{ inputs.variant || 'base' }}"
           [ "${{ inputs.rebuild }}" = "yes" ] && ARGS="$ARGS --rebuild-pools"
           python backtest.py $ARGS | tee out.txt
           sed -n '/^### /,$p' out.txt >> "$GITHUB_STEP_SUMMARY"

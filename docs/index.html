@@ -303,25 +303,35 @@ function applyAuto() {
   const bucket = (conf.buckets || []).find(b => games >= b.games[0] && games <= b.games[1])
     || (conf.all && conf.all.slates >= 3 ? conf.all : null);
   const why = [];
+  // Rules learned by optimize_settings.py from the replay backtest, per
+  // entry count: sort, ownership filter (relative to this pool), exposure
+  // cap and (hockey/football) a stack floor. Falls back to the defaults.
+  const rk = N <= 1 ? "1" : N <= 3 ? "3" : N <= 7 ? "5" : N <= 14 ? "10" : N <= 30 ? "20" : "40";
+  const rule = (conf.rules || {})[rk];
   // sort
   let sort;
   if (!hasSim) sort = "proj";
+  else if (rule && (rule.sort !== "port" || hasPort)) sort = rule.sort;
   else if (N === 1) sort = "cash";
-  else {
-    const learned = (conf.sort_by_entries || {})[N <= 8 ? "5" : "13"];
-    sort = learned && (learned !== "port" || hasPort) ? learned : (hasPort ? "port" : "top1");
-  }
+  else sort = hasPort ? "port" : "top1";
   $("sort").value = sort;
+  const label = {port: "best set", top1: "top-1% rate", cash: "cash rate", proj: "projection", ceil: "ceiling"};
   why.push(!hasSim ? "no simulated lineups on this slate → sorted by projection" :
-    N === 1 ? "single entry → sorted by cash rate" :
-    `${N} entries → ${sort === "port" ? "best set" : sort === "top1" ? "top-1% rate" : sort}`);
+    `${N} ${N === 1 ? "entry" : "entries"} → ${label[sort] || sort}` + (rule ? ` (backtest: ${rule.evidence})` : ""));
   // exposure
-  const expo = N <= 4 ? 100 : N <= 10 ? 60 : N <= 20 ? 50 : 40;
+  const expo = rule ? Math.round(rule.expo * 100) : N <= 4 ? 100 : N <= 10 ? 60 : N <= 20 ? 50 : 40;
   $("expo").value = expo;
   if (expo < 100) why.push(`max ${expo}% exposure`);
   // ownership range (tournament entries only)
   let lo = "", hi = "";
-  if (N > 1 && bucket) {
+  if (rule && rule.own && rule.own !== "none" && pool.length) {
+    const o = pool.map(L => L.own).sort((a, b) => a - b);
+    const qt = f => o[Math.min(o.length - 1, Math.floor(f * (o.length - 1)))];
+    if (rule.own === "low") { lo = 0; hi = Math.ceil(qt(0.5)); }
+    if (rule.own === "mid") { lo = Math.floor(qt(0.2)); hi = Math.ceil(qt(0.8)); }
+    if (rule.own === "high") { lo = Math.floor(qt(0.5)); hi = Math.ceil(o[o.length - 1]); }
+    why.push(`total own ${lo}–${hi}% (${rule.own === "low" ? "lower-owned half" : rule.own === "mid" ? "middle" : "higher-owned half"} of this pool, from the backtest)`);
+  } else if (!rule && N > 1 && bucket) {
     lo = bucket.own_lo; hi = bucket.own_hi;
     // never filter the pool below what the entries need
     const need = Math.max(N + 5, 2 * N);
@@ -337,8 +347,8 @@ function applyAuto() {
   // hockey stacks
   if (SLATE.sport === "nhl") {
     $("stkby").value = "team"; $("mpt").value = "0";
-    const st = N > 1 && bucket && bucket.stack >= 2 ? bucket.stack : 0;
-    const st2 = N > 1 && bucket && bucket.stack2 ? 2 : 0;
+    const st = rule ? (rule.stack || 0) : N > 1 && bucket && bucket.stack >= 2 ? bucket.stack : 0;
+    const st2 = rule ? 0 : N > 1 && bucket && bucket.stack2 ? 2 : 0;
     $("stk").value = String(st); $("stk2").value = String(st2);
     if (st) why.push(`${st}+ from one team${st2 ? " and a second 2+ stack" : ""} (how those slates' best lineups were built)`);
   }

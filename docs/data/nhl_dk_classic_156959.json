@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-21T23:05:35+00:00",
+ "generated_at": "2026-11-21T23:16:06+00:00",
  "sport": "nhl",
  "site": "dk",
  "kind": "classic",
@@ -2118,7 +2118,7 @@
   "Ownership is modelled and has never been graded against a real hockey field."
  ],
  "market": {
-  "source": "ESPN (DraftKings)",
+  "source": "cached 2026-11-21T23:05:36+00:00",
   "teams": 24,
   "best": [
    {
@@ -2141,7 +2141,7 @@
  },
  "news": {
   "source": "Daily Faceoff",
-  "at": "2026-11-21T23:14+00:00",
+  "at": "2026-11-21T23:25+00:00",
   "goalies_confirmed": 0,
   "teams": 2,
   "lines": 34,

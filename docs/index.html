@@ -94,7 +94,9 @@ a{color:var(--acc)}
   <section id="tab-lineups" class="hide" style="display:flex;flex-direction:column;gap:12px">
     <div class="card pad">
       <div class="grid">
-        <div class="f"><label>Lineups to build</label><input id="n" type="number" min="1" max="150" value="20"></div>
+        <div class="f"><label>Entries</label><input id="n" type="number" min="1" max="150" value="1"></div>
+        <div class="f"><label>Settings</label><label class="row" style="gap:6px;font-weight:600;text-transform:none;letter-spacing:0">
+          <input id="auto" type="checkbox" checked style="width:auto"> Auto (from past results)</label></div>
         <div class="f"><label>Min total own %</label><input id="ownmin" type="number" min="0" step="5" placeholder="none"></div>
         <div class="f"><label>Max total own %</label><input id="ownmax" type="number" min="0" step="5" placeholder="none"></div>
         <div class="f"><label>Max exposure %</label><input id="expo" type="number" min="1" max="100" step="5" value="60"></div>
@@ -131,6 +133,7 @@ a{color:var(--acc)}
       </div>
       <div class="row" style="margin-top:10px;justify-content:space-between">
         <span class="note" id="poolinfo"></span>
+        <span class="note" id="autoinfo" style="width:100%;order:-1;color:var(--acc)"></span>
         <span class="row">
           <button class="btn" id="build">Build lineups</button>
           <button class="btn ghost" id="copy">Copy</button>
@@ -272,8 +275,76 @@ async function loadSlate(file) {
   const hasSim = (SLATE.lineups || []).some(L => L.top1 != null);
   $("sort").querySelectorAll("option").forEach(o => { if (["top1", "cash"].includes(o.value)) o.disabled = !hasSim; });
   $("sort").value = hasSim ? "cash" : "proj";
+  applyAuto();
   drawPlayers(); drawLineups();
 }
+
+// ---------------------------------------------------------------- Auto
+// Settings from the entry count, the slate size and history: the ownership
+// range the nights' actual best lineups came from on slates this size, and
+// (hockey) how they were stacked - docs/data/auto_settings.json, rebuilt
+// nightly by auto_settings.py. Sort by entries comes from the replay
+// backtest when it has enough nights.
+let AUTO = null;
+fetch("data/auto_settings.json?" + Date.now()).then(r => r.ok ? r.json() : null)
+  .then(j => { AUTO = j; if (SLATE) { applyAuto(); drawLineups(); } }).catch(() => {});
+try { const v = localStorage.getItem("dfs-auto"); if (v !== null) $("auto").checked = v === "1"; } catch (e) {}
+try { const v = localStorage.getItem("dfs-entries"); if (v) $("n").value = v; } catch (e) {}
+
+function applyAuto() {
+  const on = $("auto").checked;
+  ["sort", "expo", "ownmin", "ownmax", "stk", "stk2", "stkby", "mpt"].forEach(id => $(id).disabled = on);
+  if (!on || !SLATE) { $("autoinfo").textContent = ""; return; }
+  const N = Math.max(1, +$("n").value || 1);
+  const pool = SLATE.lineups || [];
+  const hasSim = pool.some(L => L.top1 != null), hasPort = pool.some(L => L.port != null);
+  const games = new Set(SLATE.players.map(p => p.game || p.team)).size;
+  const conf = (AUTO && AUTO[SLATE.sport]) || {};
+  const bucket = (conf.buckets || []).find(b => games >= b.games[0] && games <= b.games[1])
+    || (conf.all && conf.all.slates >= 3 ? conf.all : null);
+  const why = [];
+  // sort
+  let sort;
+  if (!hasSim) sort = "proj";
+  else if (N === 1) sort = "cash";
+  else {
+    const learned = (conf.sort_by_entries || {})[N <= 8 ? "5" : "13"];
+    sort = learned && (learned !== "port" || hasPort) ? learned : (hasPort ? "port" : "top1");
+  }
+  $("sort").value = sort;
+  why.push(N === 1 ? "single entry → sorted by cash rate" :
+    `${N} entries → ${sort === "port" ? "best set" : sort === "top1" ? "top-1% rate" : sort}`);
+  // exposure
+  const expo = N <= 4 ? 100 : N <= 10 ? 60 : N <= 20 ? 50 : 40;
+  $("expo").value = expo;
+  if (expo < 100) why.push(`max ${expo}% exposure`);
+  // ownership range (tournament entries only)
+  let lo = "", hi = "";
+  if (N > 1 && bucket) {
+    lo = bucket.own_lo; hi = bucket.own_hi;
+    // never filter the pool below what the entries need
+    const need = Math.max(N + 5, 2 * N);
+    while (pool.filter(L => L.own >= lo && L.own <= hi).length < need && (lo > 0 || hi < 400)) {
+      lo = Math.max(0, lo - 10); hi += 10;
+    }
+    why.push(`total own ${lo}–${hi}% (where the best lineups came from on ${bucket.slates} past ` +
+      `${SLATE.sport.toUpperCase()} slates of ${bucket.games ? bucket.games.join("–") + " games" : "all sizes"})`);
+  }
+  $("ownmin").value = lo; $("ownmax").value = hi;
+  // hockey stacks
+  if (SLATE.sport === "nhl") {
+    $("stkby").value = "team"; $("mpt").value = "0";
+    const st = N > 1 && bucket && bucket.stack >= 2 ? bucket.stack : 0;
+    const st2 = N > 1 && bucket && bucket.stack2 ? 2 : 0;
+    $("stk").value = String(st); $("stk2").value = String(st2);
+    if (st) why.push(`${st}+ from one team${st2 ? " and a second 2+ stack" : ""} (how those slates' best lineups were built)`);
+  }
+  $("autoinfo").textContent = "Auto: " + why.join(" · ");
+}
+$("auto").onchange = () => {
+  try { localStorage.setItem("dfs-auto", $("auto").checked ? "1" : "0"); } catch (e) {}
+  applyAuto(); drawLineups();
+};
 
 $("posf").onclick = e => {
   const p = e.target.dataset.p; if (!p) return;
@@ -329,7 +400,11 @@ document.querySelector(".tabs").onclick = e => {
   $("tab-players").classList.toggle("hide", t !== "players");
   $("tab-lineups").classList.toggle("hide", t !== "lineups");
 };
-["n", "ownmin", "ownmax", "expo", "sort", "stkby", "stk", "stk2", "stkteam", "mpt"].forEach(id => $(id).oninput = drawLineups);
+["ownmin", "ownmax", "expo", "sort", "stkby", "stk", "stk2", "stkteam", "mpt"].forEach(id => $(id).oninput = drawLineups);
+$("n").oninput = () => {
+  try { localStorage.setItem("dfs-entries", $("n").value); } catch (e) {}
+  applyAuto(); drawLineups();
+};
 // Lineups already update as settings change; the button re-runs and jumps to them.
 $("build").onclick = () => { drawLineups(); $("lulist").scrollIntoView({behavior: "smooth"}); };
 

@@ -2,7 +2,7 @@
  "sport": "nba",
  "variant": "base",
  "sims": 8000,
- "generated_at": "2026-11-21T13:58:16-05:00",
+ "generated_at": "2026-11-21T16:08:25-05:00",
  "summary": {
   "proj": {
    "1": {
@@ -47,7 +47,7 @@
     "won": 33.3,
     "top1": 66.7,
     "top10": 66.7,
-    "cash_rate": 94.9
+    "cash_rate": 92.3
    }
   },
   "top1": {
@@ -89,14 +89,14 @@
     "cash_rate": 93.3
    },
    "13": {
-    "best_pct": 99.7,
+    "best_pct": 96.8,
     "won": 33.3,
-    "top1": 100.0,
+    "top1": 66.7,
     "top10": 100.0,
     "cash_rate": 87.2
    }
   },
-  "pool_best_pct": 99.8
+  "pool_best_pct": 99.4
  },
  "nights": {
   "2026-11-18": {
@@ -152,7 +152,7 @@
       "won": false,
       "top1": true,
       "top10": true,
-      "cash_rate": 1.0
+      "cash_rate": 0.9230769230769231
      }
     },
     "top1": {
@@ -194,14 +194,15 @@
       "cash_rate": 0.8
      },
      "13": {
-      "best_pct": 99.7,
+      "best_pct": 99.8,
       "won": false,
       "top1": true,
       "top10": true,
-      "cash_rate": 0.6923076923076923
+      "cash_rate": 0.7692307692307693
      }
     }
-   }
+   },
+   "games": 9
   },
   "2026-11-19": {
    "lines": {
@@ -211,7 +212,7 @@
     "cash": 222.75
    },
    "pool_best_pct": 100.0,
-   "pool_best": 318.0,
+   "pool_best": 331.5,
    "methods": {
     "proj": {
      "1": {
@@ -305,7 +306,8 @@
       "cash_rate": 1.0
      }
     }
-   }
+   },
+   "games": 4
   },
   "2026-11-20": {
    "lines": {
@@ -314,8 +316,8 @@
     "top10": 265.5250000000001,
     "cash": 229.86250000000007
    },
-   "pool_best_pct": 99.48,
-   "pool_best": 309.0,
+   "pool_best_pct": 98.38,
+   "pool_best": 294.5,
    "methods": {
     "proj": {
      "1": {
@@ -402,14 +404,15 @@
       "cash_rate": 1.0
      },
      "13": {
-      "best_pct": 99.48,
+      "best_pct": 90.62,
       "won": false,
-      "top1": true,
+      "top1": false,
       "top10": true,
-      "cash_rate": 0.9230769230769231
+      "cash_rate": 0.8461538461538461
      }
     }
-   }
+   },
+   "games": 6
   }
  }
 }

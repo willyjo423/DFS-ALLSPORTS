@@ -15,6 +15,8 @@ import json
 import logging
 from datetime import datetime, timedelta, timezone
 
+import sanity as SANITY
+from zoneinfo import ZoneInfo
 import numpy as np
 import pandas as pd
 
@@ -286,6 +288,8 @@ def write(payloads: list[dict], partial: bool = False) -> None:
     data = Path(__file__).resolve().parent / "docs" / "data"
     data.mkdir(parents=True, exist_ok=True)
     keep = set()
+    for p in payloads:
+        SANITY.attach(p, datetime.now(ZoneInfo("America/New_York")).date().isoformat(), log)
     for p in payloads:
         name = f"{SPORT}_dk_{p['kind']}_{p['draft_group']}.json"
         (data / name).write_text(json.dumps(p, indent=1, allow_nan=False))

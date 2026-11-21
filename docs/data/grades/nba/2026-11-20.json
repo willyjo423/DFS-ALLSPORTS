@@ -1,0 +1,114 @@
+{
+ "sport": "nba",
+ "date": "2026-11-20",
+ "slate": "7:00pm \u00b7 557 contests",
+ "draft_group": 156300,
+ "players": 212,
+ "graded": 120,
+ "mae_final": 7.631,
+ "props": {
+  "n": 70,
+  "mae_model": 8.395,
+  "mae_props": 7.429,
+  "mae_final": 7.872,
+  "sxy": 1556.2681000000002,
+  "sxx": 1291.9991999999997,
+  "weight": 1.205
+ },
+ "minutes": {
+  "n": 120,
+  "mae": 5.06,
+  "bias": 2.27
+ },
+ "late_scratches": [
+  "Craig Porter Jr.",
+  "DeAndre Jordan",
+  "Chaney Johnson",
+  "Jamal Cain",
+  "Hannes Steinbach"
+ ],
+ "pool": {
+  "n": 120,
+  "avg": 255.8,
+  "best": 309.0,
+  "top5_cash": [
+   220.2,
+   251.8,
+   264.8,
+   236.0,
+   216.0
+  ],
+  "top5_top1": [
+   220.2,
+   262.5,
+   251.8,
+   231.0,
+   256.8
+  ],
+  "hindsight": 395.8
+ },
+ "hindsight_lineup": [
+  "James Harden",
+  "Anthony Black",
+  "AJ Dybantsa",
+  "Julius Randle",
+  "Moussa Diabate",
+  "Dyson Daniels",
+  "Aday Mara",
+  "Allen Graves"
+ ],
+ "biggest_unders": [
+  [
+   "Ajay Mitchell",
+   37.6,
+   17.0
+  ],
+  [
+   "Josh Giddey",
+   38.0,
+   19.0
+  ],
+  [
+   "Donovan Mitchell",
+   43.9,
+   28.25
+  ],
+  [
+   "Jamal Shead",
+   20.5,
+   6.25
+  ],
+  [
+   "Nolan Traore",
+   21.2,
+   7.0
+  ]
+ ],
+ "biggest_overs": [
+  [
+   "James Harden",
+   37.8,
+   72.0
+  ],
+  [
+   "Allen Graves",
+   16.6,
+   44.5
+  ],
+  [
+   "Julius Randle",
+   35.0,
+   52.25
+  ],
+  [
+   "AJ Dybantsa",
+   31.7,
+   48.5
+  ],
+  [
+   "Peyton Watson",
+   13.4,
+   30.0
+  ]
+ ]
+}

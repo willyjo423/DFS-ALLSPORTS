@@ -5,18 +5,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with: {repository: willyjo423/NFL-DFS, ref: feat/sync-allsports}
+        with: {ref: main}
       - uses: actions/setup-python@v5
-        with: {python-version: "3.11"}
-      - run: pip install -q -r requirements.txt
+        with: {python-version: "3.12"}
+      - run: pip install -q pandas numpy requests
       - run: |
           python3 - <<'PY'
-          import data
-          w = data.player_weeks([2026])
-          print("COLS", [c for c in w.columns if c in ("team","season","week","player_id","name","position")])
-          print("MAXWEEK", w["week"].max(), sorted(w["week"].unique()))
-          for n in ["Jalen Hurts","De'Von Achane","DeVonta Smith","James Conner","Mike Evans","Christian McCaffrey","Joe Burrow"]:
-              r = w[w["name"]==n]
-              print("P", n, r[["player_id","team","week"]].values.tolist()[-12:])
-          print("PHI weeks", sorted(w[w["team"]=="PHI"]["week"].unique()))
+          import datetime as dt, pandas as pd, nba_fetch as F, time
+          rows=[]
+          for g in F.games_on(dt.date(2026,11,20)):
+              rows += F.parse(F._get(F.SUMMARY, event=g["id"]), g["id"], g["date"]); time.sleep(0.5)
+          df=pd.DataFrame(rows); df["dk"]=F.dk_points(df)
+          print("ROWS", len(df), df["game_id"].nunique())
+          for r in df.itertuples():
+              print("P|%s|%s|%s|%s|%s|%.2f" % (r.name, r.team, r.played, r.starter, r.min, r.dk))
           PY

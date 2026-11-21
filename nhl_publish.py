@@ -605,7 +605,9 @@ def write(payloads: list[dict], partial: bool = False) -> None:
         # Rank the pool by how often each lineup beats the field (contest
         # simulation with line, power-play and goalie correlation).
         try:
-            SIM.rank_pool(p)
+            inner = SIM.rank_pool(p)
+            from engine import contest_roi as CR
+            CR.attach(p, inner)
         except Exception as exc:                               # noqa: BLE001
             log.warning("contest sim failed (%s); lineups unranked", str(exc)[:80])
         SANITY.attach(p, datetime.now(EASTERN).date().isoformat(), log)

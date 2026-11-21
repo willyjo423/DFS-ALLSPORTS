@@ -270,7 +270,9 @@ def build_slate(dg: int, starts, label: str, hist: pd.DataFrame, p: dict,
     except Exception as exc:                                   # noqa: BLE001
         log.warning("chalk check failed (%s)", str(exc)[:80])
     try:
-        SIM.rank_pool(payload)
+        inner = SIM.rank_pool(payload)
+        from engine import contest_roi as CR
+        CR.attach(payload, inner)
     except Exception as exc:                                   # noqa: BLE001
         log.warning("contest sim failed (%s); lineups published unranked", exc)
     pr = [(x["props"], x["model"]) for x in players if x.get("props") is not None and x.get("model")]

@@ -1,0 +1,113 @@
+{
+ "sport": "nba",
+ "date": "2026-11-21",
+ "slate": "7:30pm \u00b7 425 contests",
+ "draft_group": 157174,
+ "players": 141,
+ "graded": 81,
+ "mae_final": 7.129,
+ "props": {
+  "n": 53,
+  "mae_model": 8.099,
+  "mae_props": 7.494,
+  "mae_final": 7.413,
+  "sxy": 924.9829999999998,
+  "sxx": 1103.4374999999998,
+  "weight": 0.838
+ },
+ "minutes": {
+  "n": 81,
+  "mae": 4.88,
+  "bias": 1.52
+ },
+ "late_scratches": [
+  "Zion Williamson",
+  "Quinten Post",
+  "Mohamed Diawara",
+  "DeAndre Jordan"
+ ],
+ "pool": {
+  "n": 120,
+  "avg": 227.9,
+  "best": 318.0,
+  "top5_cash": [
+   261.0,
+   262.5,
+   300.5,
+   243.5,
+   318.0
+  ],
+  "top5_top1": [
+   261.0,
+   255.2,
+   318.0,
+   289.5,
+   268.5
+  ],
+  "hindsight": 355.8
+ },
+ "hindsight_lineup": [
+  "Jordan Poole",
+  "Max Christie",
+  "Cedric Coward",
+  "Landry Shamet",
+  "Victor Wembanyama",
+  "Jeremiah Fears",
+  "Derik Queen",
+  "Donovan Clingan"
+ ],
+ "biggest_unders": [
+  [
+   "Saddiq Bey",
+   30.9,
+   11.25
+  ],
+  [
+   "Isaiah Jackson",
+   19.2,
+   1.0
+  ],
+  [
+   "Santi Aldama",
+   18.3,
+   1.25
+  ],
+  [
+   "Naji Marshall",
+   26.4,
+   11.25
+  ],
+  [
+   "Luke Kornet",
+   17.7,
+   3.75
+  ]
+ ],
+ "biggest_overs": [
+  [
+   "Victor Wembanyama",
+   60.0,
+   95.75
+  ],
+  [
+   "Donovan Clingan",
+   30.8,
+   50.75
+  ],
+  [
+   "Max Christie",
+   10.0,
+   27.0
+  ],
+  [
+   "James Wiseman",
+   5.6,
+   21.0
+  ],
+  [
+   "Jrue Holiday",
+   24.5,
+   38.25
+  ]
+ ]
+}

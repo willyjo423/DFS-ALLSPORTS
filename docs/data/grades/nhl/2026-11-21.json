@@ -1,0 +1,103 @@
+{
+ "sport": "nhl",
+ "date": "2026-11-21",
+ "slate": "24 teams \u00b7 6:00pm",
+ "draft_group": 156946,
+ "players": 583,
+ "graded": 453,
+ "mae_final": 4.97,
+ "props": {
+  "n": 262,
+  "mae_model": 5.518,
+  "mae_props": 5.378,
+  "mae_final": 5.392,
+  "sxy": 449.2635999999999,
+  "sxx": 315.1321,
+  "weight": 1.426
+ },
+ "pool": {
+  "n": 316,
+  "avg": 109.0,
+  "best": 196.3,
+  "top5_cash": [
+   107.8,
+   109.9,
+   100.3,
+   126.9,
+   93.7
+  ],
+  "top5_top1": [
+   103.9,
+   119.1,
+   122.7,
+   117.2,
+   103.2
+  ],
+  "hindsight": 283.8
+ },
+ "hindsight_lineup": [
+  "Sebastian Cossa",
+  "David Pastrnak",
+  "Alex DeBrincat",
+  "Josh Morrissey",
+  "Adam Fantilli",
+  "Philip Broberg",
+  "Sam Bennett",
+  "Elias Lindholm",
+  "Jake Neighbours"
+ ],
+ "biggest_unders": [
+  [
+   "Connor Hellebuyck",
+   10.1,
+   -12.6
+  ],
+  [
+   "Charlie Lindgren",
+   10.3,
+   -9.8
+  ],
+  [
+   "Jacob Fowler",
+   11.7,
+   -2.8000000000000007
+  ],
+  [
+   "Brady Tkachuk",
+   13.6,
+   1.5
+  ],
+  [
+   "Lucas Raymond",
+   10.5,
+   0.0
+  ]
+ ],
+ "biggest_overs": [
+  [
+   "Elias Lindholm",
+   8.6,
+   58.3
+  ],
+  [
+   "Sam Bennett",
+   8.6,
+   42.5
+  ],
+  [
+   "Ondrej Palat",
+   4.1,
+   28.8
+  ],
+  [
+   "Philip Broberg",
+   8.6,
+   31.4
+  ],
+  [
+   "Jake Neighbours",
+   7.0,
+   28.0
+  ]
+ ]
+}

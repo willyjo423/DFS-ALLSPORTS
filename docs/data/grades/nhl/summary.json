@@ -1,12 +1,12 @@
 {
  "sport": "nhl",
- "nights": 3,
- "props_nights": 2,
- "props_players": 345,
- "props_weight": 0.781,
- "mae_model": 5.021,
- "mae_props": 5.12,
- "mae_final": 4.944,
- "pool_avg": 96.767,
- "updated": "2026-11-20T14:25+00:00"
+ "nights": 4,
+ "props_nights": 3,
+ "props_players": 607,
+ "props_weight": 1.011,
+ "mae_model": 5.186,
+ "mae_props": 5.206,
+ "mae_final": 5.093,
+ "pool_avg": 99.825,
+ "updated": "2026-11-22T14:25+00:00"
 }

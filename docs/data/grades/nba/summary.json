@@ -1,12 +1,12 @@
 {
  "sport": "nba",
- "nights": 3,
- "props_nights": 3,
- "props_players": 237,
- "props_weight": 0.975,
- "mae_model": 8.169,
- "mae_props": 7.508,
- "mae_final": 7.679,
- "pool_avg": 255.567,
- "updated": "2026-11-21T20:16+00:00"
+ "nights": 4,
+ "props_nights": 4,
+ "props_players": 290,
+ "props_weight": 0.951,
+ "mae_model": 8.151,
+ "mae_props": 7.504,
+ "mae_final": 7.612,
+ "pool_avg": 248.65,
+ "updated": "2026-11-22T14:25+00:00"
 }

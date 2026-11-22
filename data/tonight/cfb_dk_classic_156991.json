@@ -1,0 +1,236 @@
+{
+ "board": "7 games \u00b7 14 teams \u00b7 CFB $70K Saturday Night Special [$20K to 1st] (Night)",
+ "contest": "CFB $25K End Around [$5K to 1st] (Night)",
+ "players_with_stats": "142/180",
+ "lines": {
+  "top1": 173.2,
+  "top10": 148.9,
+  "cash": 121.2
+ },
+ "pool_best": 170.2,
+ "sorts": {
+  "roi": {
+   "1": {
+    "best": 130.6,
+    "avg": 130.6,
+    "cashed": 1,
+    "top10": 0,
+    "top1": 0
+   },
+   "3": {
+    "best": 135.6,
+    "avg": 127.6,
+    "cashed": 2,
+    "top10": 0,
+    "top1": 0
+   },
+   "5": {
+    "best": 135.6,
+    "avg": 110.6,
+    "cashed": 2,
+    "top10": 0,
+    "top1": 0
+   },
+   "10": {
+    "best": 135.6,
+    "avg": 105.5,
+    "cashed": 2,
+    "top10": 0,
+    "top1": 0
+   },
+   "20": {
+    "best": 135.6,
+    "avg": 103.6,
+    "cashed": 3,
+    "top10": 0,
+    "top1": 0
+   }
+  },
+  "roilow": {
+   "1": {
+    "best": 80.3,
+    "avg": 80.3,
+    "cashed": 0,
+    "top10": 0,
+    "top1": 0
+   },
+   "3": {
+    "best": 132.1,
+    "avg": 111.8,
+    "cashed": 2,
+    "top10": 0,
+    "top1": 0
+   },
+   "5": {
+    "best": 132.1,
+    "avg": 110.2,
+    "cashed": 3,
+    "top10": 0,
+    "top1": 0
+   },
+   "10": {
+    "best": 139.8,
+    "avg": 107.8,
+    "cashed": 4,
+    "top10": 0,
+    "top1": 0
+   },
+   "20": {
+    "best": 145.8,
+    "avg": 105.7,
+    "cashed": 9,
+    "top10": 0,
+    "top1": 0
+   }
+  },
+  "port": {
+   "1": {
+    "best": 80.2,
+    "avg": 80.2,
+    "cashed": 0,
+    "top10": 0,
+    "top1": 0
+   },
+   "3": {
+    "best": 116.8,
+    "avg": 91.6,
+    "cashed": 0,
+    "top10": 0,
+    "top1": 0
+   },
+   "5": {
+    "best": 125.2,
+    "avg": 97.9,
+    "cashed": 1,
+    "top10": 0,
+    "top1": 0
+   },
+   "10": {
+    "best": 135.6,
+    "avg": 103.9,
+    "cashed": 3,
+    "top10": 0,
+    "top1": 0
+   },
+   "20": {
+    "best": 163.0,
+    "avg": 107.1,
+    "cashed": 5,
+    "top10": 1,
+    "top1": 0
+   }
+  },
+  "cash": {
+   "1": {
+    "best": 128.5,
+    "avg": 128.5,
+    "cashed": 1,
+    "top10": 0,
+    "top1": 0
+   },
+   "3": {
+    "best": 128.5,
+    "avg": 122.7,
+    "cashed": 2,
+    "top10": 0,
+    "top1": 0
+   },
+   "5": {
+    "best": 128.5,
+    "avg": 116.0,
+    "cashed": 2,
+    "top10": 0,
+    "top1": 0
+   },
+   "10": {
+    "best": 128.5,
+    "avg": 109.5,
+    "cashed": 2,
+    "top10": 0,
+    "top1": 0
+   },
+   "20": {
+    "best": 165.2,
+    "avg": 110.1,
+    "cashed": 4,
+    "top10": 1,
+    "top1": 0
+   }
+  },
+  "top1": {
+   "1": {
+    "best": 116.8,
+    "avg": 116.8,
+    "cashed": 0,
+    "top10": 0,
+    "top1": 0
+   },
+   "3": {
+    "best": 130.6,
+    "avg": 119.2,
+    "cashed": 1,
+    "top10": 0,
+    "top1": 0
+   },
+   "5": {
+    "best": 130.6,
+    "avg": 107.2,
+    "cashed": 1,
+    "top10": 0,
+    "top1": 0
+   },
+   "10": {
+    "best": 135.6,
+    "avg": 98.1,
+    "cashed": 2,
+    "top10": 0,
+    "top1": 0
+   },
+   "20": {
+    "best": 144.6,
+    "avg": 100.7,
+    "cashed": 4,
+    "top10": 0,
+    "top1": 0
+   }
+  },
+  "proj": {
+   "1": {
+    "best": 128.5,
+    "avg": 128.5,
+    "cashed": 1,
+    "top10": 0,
+    "top1": 0
+   },
+   "3": {
+    "best": 128.5,
+    "avg": 124.8,
+    "cashed": 2,
+    "top10": 0,
+    "top1": 0
+   },
+   "5": {
+    "best": 128.5,
+    "avg": 117.2,
+    "cashed": 2,
+    "top10": 0,
+    "top1": 0
+   },
+   "10": {
+    "best": 133.0,
+    "avg": 110.2,
+    "cashed": 3,
+    "top10": 0,
+    "top1": 0
+   },
+   "20": {
+    "best": 165.2,
+    "avg": 112.6,
+    "cashed": 5,
+    "top10": 1,
+    "top1": 0
+   }
+  }
+ },
+ "roi_rank_corr": -0.174
+}

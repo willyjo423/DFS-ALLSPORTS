@@ -1,236 +1,236 @@
 {
  "board": "7:30pm \u00b7 425 contests",
  "contest": "NBA $300 Quarter Jukebox [Just $0.25!] ",
- "players_with_stats": "51/141",
+ "players_with_stats": "98/141",
  "lines": {
-  "top1": 205.0,
-  "top10": 162.2,
-  "cash": 109.0
+  "top1": 292.8,
+  "top10": 263.8,
+  "cash": 228.0
  },
- "pool_best": 222.0,
+ "pool_best": 318.0,
  "sorts": {
   "roi": {
    "1": {
-    "best": 173.0,
-    "avg": 173.0,
+    "best": 318.0,
+    "avg": 318.0,
     "cashed": 1,
     "top10": 1,
-    "top1": 0
+    "top1": 1
    },
    "3": {
-    "best": 173.0,
-    "avg": 151.5,
+    "best": 318.0,
+    "avg": 305.3,
     "cashed": 3,
-    "top10": 1,
-    "top1": 0
+    "top10": 3,
+    "top1": 3
    },
    "5": {
-    "best": 173.0,
-    "avg": 119.7,
+    "best": 318.0,
+    "avg": 256.0,
     "cashed": 3,
-    "top10": 1,
-    "top1": 0
+    "top10": 3,
+    "top1": 3
    },
    "10": {
-    "best": 173.0,
-    "avg": 100.0,
-    "cashed": 5,
-    "top10": 1,
-    "top1": 0
+    "best": 318.0,
+    "avg": 247.6,
+    "cashed": 6,
+    "top10": 5,
+    "top1": 4
    },
    "20": {
-    "best": 179.2,
-    "avg": 96.9,
+    "best": 318.0,
+    "avg": 232.6,
     "cashed": 9,
-    "top10": 2,
-    "top1": 0
+    "top10": 8,
+    "top1": 5
    }
   },
   "roilow": {
    "1": {
-    "best": 98.8,
-    "avg": 98.8,
+    "best": 172.8,
+    "avg": 172.8,
     "cashed": 0,
     "top10": 0,
     "top1": 0
    },
    "3": {
-    "best": 128.0,
-    "avg": 108.6,
-    "cashed": 1,
+    "best": 202.0,
+    "avg": 187.9,
+    "cashed": 0,
     "top10": 0,
     "top1": 0
    },
    "5": {
-    "best": 134.8,
-    "avg": 117.1,
-    "cashed": 3,
+    "best": 235.5,
+    "avg": 202.5,
+    "cashed": 1,
     "top10": 0,
     "top1": 0
    },
    "10": {
-    "best": 134.8,
-    "avg": 106.4,
+    "best": 235.5,
+    "avg": 212.2,
     "cashed": 4,
     "top10": 0,
     "top1": 0
    },
    "20": {
-    "best": 144.2,
-    "avg": 106.9,
-    "cashed": 9,
-    "top10": 0,
+    "best": 268.5,
+    "avg": 215.8,
+    "cashed": 8,
+    "top10": 1,
     "top1": 0
    }
   },
   "port": {
    "1": {
-    "best": 222.0,
-    "avg": 222.0,
+    "best": 255.2,
+    "avg": 255.2,
     "cashed": 1,
-    "top10": 1,
-    "top1": 1
+    "top10": 0,
+    "top1": 0
    },
    "3": {
-    "best": 222.0,
-    "avg": 172.8,
+    "best": 289.5,
+    "avg": 271.1,
     "cashed": 3,
     "top10": 2,
-    "top1": 1
+    "top1": 0
    },
    "5": {
-    "best": 222.0,
-    "avg": 124.8,
+    "best": 289.5,
+    "avg": 229.9,
     "cashed": 3,
     "top10": 2,
-    "top1": 1
+    "top1": 0
    },
    "10": {
-    "best": 222.0,
-    "avg": 110.5,
-    "cashed": 5,
-    "top10": 2,
+    "best": 303.0,
+    "avg": 231.4,
+    "cashed": 6,
+    "top10": 3,
     "top1": 1
    },
    "20": {
-    "best": 222.0,
-    "avg": 103.8,
-    "cashed": 8,
-    "top10": 2,
-    "top1": 1
+    "best": 303.0,
+    "avg": 226.2,
+    "cashed": 9,
+    "top10": 4,
+    "top1": 2
    }
   },
   "cash": {
    "1": {
-    "best": 144.2,
-    "avg": 144.2,
+    "best": 261.0,
+    "avg": 261.0,
     "cashed": 1,
     "top10": 0,
     "top1": 0
    },
    "3": {
-    "best": 144.2,
-    "avg": 124.0,
-    "cashed": 2,
-    "top10": 0,
-    "top1": 0
+    "best": 300.5,
+    "avg": 274.7,
+    "cashed": 3,
+    "top10": 1,
+    "top1": 1
    },
    "5": {
-    "best": 144.2,
-    "avg": 103.2,
-    "cashed": 2,
-    "top10": 0,
-    "top1": 0
+    "best": 300.5,
+    "avg": 237.6,
+    "cashed": 3,
+    "top10": 1,
+    "top1": 1
    },
    "10": {
-    "best": 173.0,
-    "avg": 97.9,
-    "cashed": 4,
-    "top10": 1,
-    "top1": 0
+    "best": 318.0,
+    "avg": 232.6,
+    "cashed": 5,
+    "top10": 2,
+    "top1": 2
    },
    "20": {
-    "best": 179.2,
-    "avg": 100.6,
-    "cashed": 7,
-    "top10": 3,
-    "top1": 0
+    "best": 318.0,
+    "avg": 228.0,
+    "cashed": 9,
+    "top10": 5,
+    "top1": 3
    }
   },
   "top1": {
    "1": {
-    "best": 144.2,
-    "avg": 144.2,
+    "best": 261.0,
+    "avg": 261.0,
     "cashed": 1,
     "top10": 0,
     "top1": 0
    },
    "3": {
-    "best": 222.0,
-    "avg": 179.8,
+    "best": 318.0,
+    "avg": 278.1,
     "cashed": 3,
-    "top10": 2,
+    "top10": 1,
     "top1": 1
    },
    "5": {
-    "best": 222.0,
-    "avg": 128.9,
+    "best": 318.0,
+    "avg": 234.2,
     "cashed": 3,
-    "top10": 2,
+    "top10": 1,
     "top1": 1
    },
    "10": {
-    "best": 222.0,
-    "avg": 122.0,
+    "best": 318.0,
+    "avg": 241.2,
+    "cashed": 6,
+    "top10": 4,
+    "top1": 2
+   },
+   "20": {
+    "best": 318.0,
+    "avg": 226.2,
+    "cashed": 10,
+    "top10": 4,
+    "top1": 2
+   }
+  },
+  "proj": {
+   "1": {
+    "best": 261.0,
+    "avg": 261.0,
+    "cashed": 1,
+    "top10": 0,
+    "top1": 0
+   },
+   "3": {
+    "best": 318.0,
+    "avg": 280.5,
+    "cashed": 3,
+    "top10": 1,
+    "top1": 1
+   },
+   "5": {
+    "best": 318.0,
+    "avg": 237.6,
+    "cashed": 3,
+    "top10": 1,
+    "top1": 1
+   },
+   "10": {
+    "best": 318.0,
+    "avg": 237.5,
     "cashed": 6,
     "top10": 3,
     "top1": 1
    },
    "20": {
-    "best": 222.0,
-    "avg": 114.2,
-    "cashed": 11,
+    "best": 318.0,
+    "avg": 226.8,
+    "cashed": 9,
     "top10": 5,
-    "top1": 1
-   }
-  },
-  "proj": {
-   "1": {
-    "best": 144.2,
-    "avg": 144.2,
-    "cashed": 1,
-    "top10": 0,
-    "top1": 0
-   },
-   "3": {
-    "best": 173.0,
-    "avg": 137.9,
-    "cashed": 2,
-    "top10": 1,
-    "top1": 0
-   },
-   "5": {
-    "best": 173.0,
-    "avg": 114.0,
-    "cashed": 2,
-    "top10": 1,
-    "top1": 0
-   },
-   "10": {
-    "best": 179.2,
-    "avg": 107.2,
-    "cashed": 4,
-    "top10": 2,
-    "top1": 0
-   },
-   "20": {
-    "best": 179.2,
-    "avg": 97.7,
-    "cashed": 6,
-    "top10": 2,
-    "top1": 0
+    "top1": 2
    }
   }
  },
- "roi_rank_corr": 0.521
+ "roi_rank_corr": 0.747
 }

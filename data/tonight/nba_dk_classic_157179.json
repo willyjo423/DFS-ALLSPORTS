@@ -1,236 +1,236 @@
 {
  "board": "8:00pm (Night) \u00b7 210 contests",
  "contest": "NBA $3K mini-MAX [150 Entry Max] (Night)",
- "players_with_stats": "25/141",
+ "players_with_stats": "98/141",
  "lines": {
-  "top1": 121.0,
-  "top10": 84.8,
-  "cash": 44.2
+  "top1": 286.0,
+  "top10": 261.5,
+  "cash": 228.8
  },
- "pool_best": 112.0,
+ "pool_best": 301.5,
  "sorts": {
   "roi": {
    "1": {
-    "best": 8.0,
-    "avg": 8.0,
-    "cashed": 0,
-    "top10": 0,
-    "top1": 0
-   },
-   "3": {
-    "best": 8.0,
-    "avg": 8.0,
-    "cashed": 0,
-    "top10": 0,
-    "top1": 0
-   },
-   "5": {
-    "best": 98.8,
-    "avg": 39.9,
-    "cashed": 2,
-    "top10": 1,
-    "top1": 0
-   },
-   "10": {
-    "best": 98.8,
-    "avg": 37.4,
-    "cashed": 4,
-    "top10": 1,
-    "top1": 0
-   },
-   "20": {
-    "best": 105.8,
-    "avg": 42.1,
-    "cashed": 9,
-    "top10": 2,
-    "top1": 0
-   }
-  },
-  "roilow": {
-   "1": {
-    "best": 105.8,
-    "avg": 105.8,
+    "best": 260.5,
+    "avg": 260.5,
     "cashed": 1,
-    "top10": 1,
+    "top10": 0,
     "top1": 0
    },
    "3": {
-    "best": 105.8,
-    "avg": 81.2,
+    "best": 270.8,
+    "avg": 260.4,
     "cashed": 3,
     "top10": 1,
     "top1": 0
    },
    "5": {
-    "best": 105.8,
-    "avg": 78.2,
+    "best": 270.8,
+    "avg": 239.8,
     "cashed": 4,
-    "top10": 2,
-    "top1": 0
-   },
-   "10": {
-    "best": 105.8,
-    "avg": 65.1,
-    "cashed": 8,
     "top10": 1,
     "top1": 0
    },
+   "10": {
+    "best": 295.0,
+    "avg": 248.1,
+    "cashed": 8,
+    "top10": 3,
+    "top1": 2
+   },
    "20": {
-    "best": 105.8,
-    "avg": 64.1,
-    "cashed": 15,
-    "top10": 2,
+    "best": 301.5,
+    "avg": 245.5,
+    "cashed": 13,
+    "top10": 7,
+    "top1": 4
+   }
+  },
+  "roilow": {
+   "1": {
+    "best": 179.5,
+    "avg": 179.5,
+    "cashed": 0,
+    "top10": 0,
+    "top1": 0
+   },
+   "3": {
+    "best": 216.0,
+    "avg": 187.7,
+    "cashed": 0,
+    "top10": 0,
+    "top1": 0
+   },
+   "5": {
+    "best": 236.0,
+    "avg": 206.5,
+    "cashed": 2,
+    "top10": 0,
+    "top1": 0
+   },
+   "10": {
+    "best": 245.2,
+    "avg": 212.3,
+    "cashed": 3,
+    "top10": 0,
+    "top1": 0
+   },
+   "20": {
+    "best": 261.0,
+    "avg": 220.8,
+    "cashed": 8,
+    "top10": 0,
     "top1": 0
    }
   },
   "port": {
    "1": {
-    "best": 8.0,
-    "avg": 8.0,
-    "cashed": 0,
-    "top10": 0,
-    "top1": 0
-   },
-   "3": {
-    "best": 49.8,
-    "avg": 21.9,
+    "best": 250.0,
+    "avg": 250.0,
     "cashed": 1,
     "top10": 0,
     "top1": 0
    },
-   "5": {
-    "best": 66.8,
-    "avg": 39.9,
+   "3": {
+    "best": 293.2,
+    "avg": 274.8,
     "cashed": 3,
-    "top10": 0,
-    "top1": 0
+    "top10": 2,
+    "top1": 1
+   },
+   "5": {
+    "best": 293.2,
+    "avg": 247.8,
+    "cashed": 3,
+    "top10": 2,
+    "top1": 1
    },
    "10": {
-    "best": 76.8,
-    "avg": 38.4,
-    "cashed": 5,
-    "top10": 0,
-    "top1": 0
+    "best": 293.2,
+    "avg": 244.2,
+    "cashed": 7,
+    "top10": 3,
+    "top1": 1
    },
    "20": {
-    "best": 105.8,
-    "avg": 44.3,
-    "cashed": 10,
-    "top10": 2,
-    "top1": 0
+    "best": 293.2,
+    "avg": 234.0,
+    "cashed": 11,
+    "top10": 5,
+    "top1": 1
    }
   },
   "cash": {
    "1": {
-    "best": 8.0,
-    "avg": 8.0,
-    "cashed": 0,
-    "top10": 0,
+    "best": 264.8,
+    "avg": 264.8,
+    "cashed": 1,
+    "top10": 1,
     "top1": 0
    },
    "3": {
-    "best": 49.8,
-    "avg": 35.8,
-    "cashed": 2,
-    "top10": 0,
-    "top1": 0
+    "best": 293.2,
+    "avg": 276.7,
+    "cashed": 3,
+    "top10": 3,
+    "top1": 1
    },
    "5": {
-    "best": 76.8,
-    "avg": 46.6,
+    "best": 293.2,
+    "avg": 254.5,
     "cashed": 4,
-    "top10": 0,
-    "top1": 0
+    "top10": 3,
+    "top1": 1
    },
    "10": {
-    "best": 76.8,
-    "avg": 35.2,
-    "cashed": 5,
-    "top10": 0,
-    "top1": 0
+    "best": 293.2,
+    "avg": 246.9,
+    "cashed": 7,
+    "top10": 3,
+    "top1": 1
    },
    "20": {
-    "best": 98.8,
-    "avg": 35.1,
-    "cashed": 8,
-    "top10": 1,
-    "top1": 0
+    "best": 293.2,
+    "avg": 241.3,
+    "cashed": 14,
+    "top10": 6,
+    "top1": 1
    }
   },
   "top1": {
    "1": {
-    "best": 49.8,
-    "avg": 49.8,
+    "best": 293.2,
+    "avg": 293.2,
     "cashed": 1,
-    "top10": 0,
-    "top1": 0
+    "top10": 1,
+    "top1": 1
    },
    "3": {
-    "best": 49.8,
-    "avg": 21.9,
-    "cashed": 1,
-    "top10": 0,
-    "top1": 0
+    "best": 293.2,
+    "avg": 280.0,
+    "cashed": 3,
+    "top10": 2,
+    "top1": 2
    },
    "5": {
-    "best": 66.8,
-    "avg": 39.9,
+    "best": 293.2,
+    "avg": 250.9,
     "cashed": 3,
-    "top10": 0,
-    "top1": 0
+    "top10": 2,
+    "top1": 2
    },
    "10": {
-    "best": 98.8,
-    "avg": 37.5,
-    "cashed": 5,
-    "top10": 1,
-    "top1": 0
+    "best": 295.0,
+    "avg": 243.4,
+    "cashed": 6,
+    "top10": 4,
+    "top1": 3
    },
    "20": {
-    "best": 105.8,
-    "avg": 39.5,
-    "cashed": 7,
-    "top10": 2,
-    "top1": 0
+    "best": 301.5,
+    "avg": 247.0,
+    "cashed": 11,
+    "top10": 6,
+    "top1": 4
    }
   },
   "proj": {
    "1": {
-    "best": 8.0,
-    "avg": 8.0,
-    "cashed": 0,
-    "top10": 0,
+    "best": 264.8,
+    "avg": 264.8,
+    "cashed": 1,
+    "top10": 1,
     "top1": 0
    },
    "3": {
-    "best": 49.8,
-    "avg": 35.8,
-    "cashed": 2,
-    "top10": 0,
-    "top1": 0
+    "best": 293.2,
+    "avg": 276.7,
+    "cashed": 3,
+    "top10": 3,
+    "top1": 1
    },
    "5": {
-    "best": 76.8,
-    "avg": 46.6,
+    "best": 293.2,
+    "avg": 254.5,
     "cashed": 4,
-    "top10": 0,
-    "top1": 0
+    "top10": 3,
+    "top1": 1
    },
    "10": {
-    "best": 76.8,
-    "avg": 32.7,
-    "cashed": 4,
-    "top10": 0,
-    "top1": 0
+    "best": 293.2,
+    "avg": 251.0,
+    "cashed": 8,
+    "top10": 4,
+    "top1": 1
    },
    "20": {
-    "best": 98.8,
-    "avg": 35.7,
-    "cashed": 8,
-    "top10": 1,
-    "top1": 0
+    "best": 295.0,
+    "avg": 244.3,
+    "cashed": 14,
+    "top10": 8,
+    "top1": 2
    }
   }
  },
- "roi_rank_corr": -0.482
+ "roi_rank_corr": 0.699
 }

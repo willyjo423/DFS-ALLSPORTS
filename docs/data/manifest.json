@@ -21,7 +21,7 @@
    "sport": "nba",
    "site": "dk",
    "kind": "classic",
-   "label": "3:30pm (Early) \u00b7 185 contests",
+   "label": "3:30pm (Early) \u00b7 191 contests",
    "file": "data/nba_dk_classic_157201.json",
    "locks": "2026-11-22T20:30:00+00:00"
   },
@@ -29,7 +29,7 @@
    "sport": "nba",
    "site": "dk",
    "kind": "classic",
-   "label": "7:00pm \u00b7 339 contests",
+   "label": "7:00pm \u00b7 345 contests",
    "file": "data/nba_dk_classic_157205.json",
    "locks": "2026-11-23T00:00:00+00:00"
   },
@@ -37,9 +37,9 @@
    "sport": "nba",
    "site": "dk",
    "kind": "classic",
-   "label": "8:00pm (Night) \u00b7 177 contests",
-   "file": "data/nba_dk_classic_157210.json",
-   "locks": "2026-11-23T01:00:00+00:00"
+   "label": "7:00pm \u00b7 360 contests",
+   "file": "data/nba_dk_classic_157216.json",
+   "locks": "2026-11-24T00:00:00+00:00"
   },
   {
    "sport": "nhl",

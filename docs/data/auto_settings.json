@@ -118,6 +118,50 @@
     "line>=2": 0.02,
     "line>=3": 0.0
    }
+  },
+  "rules": {
+   "1": {
+    "sort": "cash",
+    "own": "none",
+    "expo": 1.0,
+    "stack": 0,
+    "evidence": "52 nights, ROI +0.32"
+   },
+   "3": {
+    "sort": "port",
+    "own": "none",
+    "expo": 1.0,
+    "stack": 0,
+    "evidence": "52 nights, ROI +1.13"
+   },
+   "5": {
+    "sort": "cash",
+    "own": "low",
+    "expo": 0.6,
+    "stack": 3,
+    "evidence": "52 nights, ROI +2.00"
+   },
+   "10": {
+    "sort": "port",
+    "own": "none",
+    "expo": 0.6,
+    "stack": 0,
+    "evidence": "52 nights, ROI +0.90"
+   },
+   "20": {
+    "sort": "port",
+    "own": "none",
+    "expo": 0.5,
+    "stack": 0,
+    "evidence": "52 nights, ROI +1.20"
+   },
+   "40": {
+    "sort": "port",
+    "own": "none",
+    "expo": 0.4,
+    "stack": 0,
+    "evidence": "52 nights, ROI +1.08"
+   }
   }
  },
  "cfb": {
@@ -601,6 +645,215 @@
     "adopted": false
    },
    "variants": {}
+  },
+  "nhl": {
+   "nights": 52,
+   "1": {
+    "current": {
+     "rule": [
+      "cash",
+      "none",
+      1.0,
+      0
+     ],
+     "roi": 0.315,
+     "top1_rate": 0.038
+    },
+    "best": {
+     "rule": [
+      "cash",
+      "none",
+      1.0,
+      3
+     ],
+     "roi": 0.385,
+     "p_better": 0.872,
+     "p_halves": [
+      0.643,
+      0.646
+     ],
+     "top1_rate": 0.038
+    },
+    "adopted": false
+   },
+   "3": {
+    "current": {
+     "rule": [
+      "port",
+      "none",
+      1.0,
+      0
+     ],
+     "roi": 1.126,
+     "top1_rate": 0.115
+    },
+    "best": {
+     "rule": [
+      "proj",
+      "low",
+      1.0,
+      3
+     ],
+     "roi": 1.902,
+     "p_better": 0.673,
+     "p_halves": [
+      0.846,
+      0.609
+     ],
+     "top1_rate": 0.077
+    },
+    "adopted": false
+   },
+   "5": {
+    "current": {
+     "rule": [
+      "port",
+      "none",
+      0.6,
+      0
+     ],
+     "roi": 1.029,
+     "top1_rate": 0.192
+    },
+    "best": {
+     "rule": [
+      "cash",
+      "low",
+      0.6,
+      3
+     ],
+     "roi": 1.995,
+     "p_better": 0.91,
+     "p_halves": [
+      0.785,
+      0.829
+     ],
+     "top1_rate": 0.115
+    },
+    "adopted": true
+   },
+   "10": {
+    "current": {
+     "rule": [
+      "port",
+      "none",
+      0.6,
+      0
+     ],
+     "roi": 0.899,
+     "top1_rate": 0.231
+    },
+    "best": {
+     "rule": [
+      "cash",
+      "high",
+      1.0,
+      4
+     ],
+     "roi": 1.602,
+     "p_better": 0.899,
+     "p_halves": [
+      0.909,
+      0.692
+     ],
+     "top1_rate": 0.173
+    },
+    "adopted": false
+   },
+   "20": {
+    "current": {
+     "rule": [
+      "port",
+      "none",
+      0.5,
+      0
+     ],
+     "roi": 1.198,
+     "top1_rate": 0.327
+    },
+    "best": {
+     "rule": [
+      "cash",
+      "none",
+      0.6,
+      3
+     ],
+     "roi": 1.557,
+     "p_better": 0.848,
+     "p_halves": [
+      0.963,
+      0.569
+     ],
+     "top1_rate": 0.308
+    },
+    "adopted": false
+   },
+   "40": {
+    "current": {
+     "rule": [
+      "port",
+      "none",
+      0.4,
+      0
+     ],
+     "roi": 1.075,
+     "top1_rate": 0.481
+    },
+    "best": {
+     "rule": [
+      "cash",
+      "high",
+      1.0,
+      4
+     ],
+     "roi": 1.426,
+     "p_better": 0.791,
+     "p_halves": [
+      0.898,
+      0.57
+     ],
+     "top1_rate": 0.423
+    },
+    "adopted": false
+   },
+   "variants": {
+    "diverse": {
+     "nights": 52,
+     "1": {
+      "roi": 0.281,
+      "vs_base": -0.035,
+      "p_better": 0.0
+     },
+     "5": {
+      "roi": 1.066,
+      "vs_base": -0.929,
+      "p_better": 0.106
+     },
+     "20": {
+      "roi": 0.733,
+      "vs_base": -0.465,
+      "p_better": 0.004
+     }
+    },
+    "base": {
+     "nights": 52,
+     "1": {
+      "roi": 0.315,
+      "vs_base": 0.0,
+      "p_better": 0.0
+     },
+     "5": {
+      "roi": 1.995,
+      "vs_base": 0.0,
+      "p_better": 0.0
+     },
+     "20": {
+      "roi": 1.198,
+      "vs_base": 0.0,
+      "p_better": 0.0
+     }
+    }
+   }
   }
  }
 }

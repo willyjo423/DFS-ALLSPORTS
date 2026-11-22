@@ -9,7 +9,7 @@ on:
       script:
         description: "Script to run"
         type: choice
-        options: [cfb_blowout_fit.py, salary_probe.py, tonight_check.py]
+        options: [cfb_blowout_fit.py, salary_probe.py, tonight_check.py, tail_check.py]
       args:
         description: "Arguments for the script"
         default: ""
@@ -39,7 +39,7 @@ jobs:
           rm -f out.txt
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A data
+          git add -A data docs/data/backtest
           git diff --cached --quiet && exit 0
           git commit -m "Analysis: ${{ inputs.script }}"
           for i in 1 2 3 4 5; do git pull --rebase -X ours origin main && git push && exit 0; sleep $((i * 8)); done

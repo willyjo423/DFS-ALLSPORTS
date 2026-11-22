@@ -95,6 +95,12 @@ a{color:var(--acc)}
     <div class="card pad">
       <div class="grid">
         <div class="f"><label>Entries</label><input id="n" type="number" min="1" max="150" value="1"></div>
+        <div class="f"><label>Contest</label><select id="ctier" style="width:100%">
+          <option value="auto">Match entries (1 = cash game, more = large tournament)</option>
+          <option value="cash">Double-up / cash game</option>
+          <option value="small">Small tournament (under 500 entries)</option>
+          <option value="mid">Mid tournament (500–10K entries)</option>
+          <option value="large">Large tournament (10K+ entries)</option></select></div>
         <div class="f"><label>Settings</label><label class="row" style="gap:6px;font-weight:600;text-transform:none;letter-spacing:0">
           <input id="auto" type="checkbox" checked style="width:auto"> Auto (from past results)</label></div>
         <div class="f"><label>Min total own %</label><input id="ownmin" type="number" min="0" step="5" placeholder="none"></div>
@@ -276,13 +282,8 @@ async function loadSlate(file) {
   $("stk").value = "0"; $("stk2").value = "0";
   const hasSim = (SLATE.lineups || []).some(L => L.top1 != null);
   $("sort").querySelectorAll("option").forEach(o => { if (["top1", "cash"].includes(o.value)) o.disabled = !hasSim; });
-  const hasRoi = (SLATE.lineups || []).some(L => L.roi != null);
-  const ro = $("sort").querySelector('option[value="roi"]');
-  ro.disabled = !hasRoi;
-  $("sort").querySelector('option[value="roilow"]').disabled = !hasRoi;
-  ro.textContent = hasRoi && SLATE.contest
-    ? `Simulated ROI — ${SLATE.contest.name.replace(/\s*\[.*$/, "")} ($${SLATE.contest.fee}, ${Number(SLATE.contest.entries).toLocaleString()} entries)`
-    : "Simulated ROI — featured tournament";
+  tierLabels();
+  setTierRoi();
   $("sort").value = hasSim ? "cash" : "proj";
   applyAuto();
   drawPlayers(); drawLineups();
@@ -300,6 +301,49 @@ fetch("data/auto_settings.json?" + Date.now()).then(r => r.ok ? r.json() : null)
 try { const v = localStorage.getItem("dfs-auto"); if (v !== null) $("auto").checked = v === "1"; } catch (e) {}
 try { const v = localStorage.getItem("dfs-entries"); if (v) $("n").value = v; } catch (e) {}
 
+// ---------------------------------------------------------------- contest type
+// Each lineup carries a simulated ROI for the slate's small, mid and large
+// tournament (L.roit); L._r is the one for the contest type picked here.
+function tierNow() {
+  const v = $("ctier").value;
+  if (v !== "auto") return v;
+  return Math.max(1, +$("n").value || 1) === 1 ? "cash" : "large";
+}
+function tierContest(t) {
+  if (!SLATE) return null;
+  if (SLATE.tiers && SLATE.tiers[t]) return SLATE.tiers[t];
+  return t === "large" ? SLATE.contest : null;
+}
+function tierLabels() {
+  const base = {small: "Small tournament (under 500 entries)", mid: "Mid tournament (500–10K entries)",
+    large: "Large tournament (10K+ entries)"};
+  $("ctier").querySelectorAll("option").forEach(o => {
+    const c = tierContest(o.value);
+    if (base[o.value]) o.textContent = base[o.value] + (c && c.real !== false && c.name
+      ? ` — e.g. ${c.name.replace(/\s*\[.*$/, "")} ($${c.fee}, ${Number(c.entries).toLocaleString()})` : "");
+  });
+}
+function setTierRoi() {
+  const t = tierNow();
+  (SLATE.lineups || []).forEach(L => {
+    L._r = t === "cash" ? null : ((L.roit || {})[t] ?? (t === "large" ? L.roi : null));
+  });
+  const has = t !== "cash" && (SLATE.lineups || []).some(L => L._r != null);
+  const ro = $("sort").querySelector('option[value="roi"]');
+  ro.disabled = !has;
+  $("sort").querySelector('option[value="roilow"]').disabled = !has;
+  const c = tierContest(t);
+  ro.textContent = has && c && c.name
+    ? `Simulated ROI — ${c.name.replace(/\s*\[.*$/, "")} ($${c.fee}, ${Number(c.entries).toLocaleString()} entries)`
+    : "Simulated ROI — " + (t === "cash" ? "not for cash games" : "this contest type");
+  if (!has && ["roi", "roilow"].includes($("sort").value)) $("sort").value = "cash";
+}
+try { const v = localStorage.getItem("dfs-ctier"); if (v) $("ctier").value = v; } catch (e) {}
+$("ctier").oninput = () => {
+  try { localStorage.setItem("dfs-ctier", $("ctier").value); } catch (e) {}
+  setTierRoi(); applyAuto(); drawLineups();
+};
+
 function applyAuto() {
   const on = $("auto").checked;
   ["sort", "expo", "ownmin", "ownmax", "stk", "stk2", "stkby", "mpt"].forEach(id => $(id).disabled = on);
@@ -316,17 +360,20 @@ function applyAuto() {
   // entry count: sort, ownership filter (relative to this pool), exposure
   // cap and (hockey/football) a stack floor. Falls back to the defaults.
   const rk = N <= 1 ? "1" : N <= 3 ? "3" : N <= 7 ? "5" : N <= 14 ? "10" : N <= 30 ? "20" : "40";
-  const rule = (conf.rules || {})[rk];
+  const tier = tierNow();
+  const rule = ((conf.tier_rules || {})[tier] || {})[rk]
+    || ((tier === "cash" && rk === "1") || (tier === "large" && rk !== "1") ? (conf.rules || {})[rk] : null);
   // sort
   let sort;
   if (!hasSim) sort = "proj";
-  else if (rule && (rule.sort !== "port" || hasPort)) sort = rule.sort;
+  else if (rule && (rule.sort !== "port" || hasPort) &&
+           (!["roi", "roilow"].includes(rule.sort) || pool.some(L => L._r != null))) sort = rule.sort;
   else if (N === 1) sort = "cash";
   else sort = hasPort ? "port" : "top1";
   $("sort").value = sort;
   const label = {roi: "simulated ROI", roilow: "lowest simulated ROI", port: "best set", top1: "top-1% rate", cash: "cash rate", proj: "projection", ceil: "ceiling"};
   why.push(!hasSim ? "no simulated lineups on this slate → sorted by projection" :
-    `${N} ${N === 1 ? "entry" : "entries"} → ${label[sort] || sort}` + (rule ? ` (backtest: ${rule.evidence})`
+    `${N} ${N === 1 ? "entry" : "entries"} in a ${{cash: "cash game", small: "small tournament", mid: "mid tournament", large: "large tournament"}[tier]} → ${label[sort] || sort}` + (rule ? ` (backtest: ${rule.evidence})`
       : " (standard default — not enough backtested slates for this sport yet)"));
   // exposure
   const expo = rule ? Math.round(rule.expo * 100) : N <= 4 ? 100 : N <= 10 ? 60 : N <= 20 ? 50 : 40;
@@ -432,7 +479,7 @@ document.querySelector(".tabs").onclick = e => {
 ["ownmin", "ownmax", "expo", "sort", "stkby", "stk", "stk2", "stkteam", "mpt"].forEach(id => $(id).oninput = drawLineups);
 $("n").oninput = () => {
   try { localStorage.setItem("dfs-entries", $("n").value); } catch (e) {}
-  applyAuto(); drawLineups();
+  setTierRoi(); applyAuto(); drawLineups();
 };
 // Lineups already update as settings change; the button re-runs and jumps to them.
 $("build").onclick = () => { drawLineups(); $("lulist").scrollIntoView({behavior: "smooth"}); };
@@ -474,7 +521,8 @@ function drawLineups() {
     [...LOCK].every(i => L.p.includes(i)) &&
     !L.p.some(i => EXCL.has(i)));
   ok.sort((a, b) => k === "port" ? ((a.port ?? 1e3 - (a.top1 || 0)) - (b.port ?? 1e3 - (b.top1 || 0)))
-    : k === "roilow" ? (a.roi ?? 1e9) - (b.roi ?? 1e9)
+    : k === "roilow" ? (a._r ?? 1e9) - (b._r ?? 1e9)
+    : k === "roi" ? (b._r ?? -1e9) - (a._r ?? -1e9)
     : k === "ownhi" ? b.own - a.own
     : (k === "own" || k === "dup") ? a[k] - b[k] : b[k] - a[k]);
   // Greedy portfolio: best first, skipping any lineup that would push a
@@ -509,7 +557,7 @@ function drawLineups() {
     const ps = slotOrder(L.p).map(([s, i]) =>
       `<span><span class="muted">${s}</span> ${esc(P[i].name)}</span>`).join(" ");
     return `<div class="lu"><div class="top"><b>#${n + 1}</b><span><b>${L.proj.toFixed(1)}</b> proj</span>
-      <span>${L.ceil.toFixed(0)} ceil</span>${L.top1 != null ? `<span title="share of simulated nights this lineup beats 99% of the field"><b>${L.top1.toFixed(1)}%</b> top-1%</span><span>${L.cash.toFixed(0)}% cash</span>` : ""}${L.roi != null ? `<span title="estimated return per entry in ${esc((SLATE.contest || {}).name || "the featured tournament")} - use it to compare lineups; the field model is softer than a real contest, so the level runs high"><b>${L.roi > 0 ? "+" : ""}${L.roi.toFixed(0)}%</b> ROI</span>` : ""}<span><b>${L.own.toFixed(0)}%</b> own</span>
+      <span>${L.ceil.toFixed(0)} ceil</span>${L.top1 != null ? `<span title="share of simulated nights this lineup beats 99% of the field"><b>${L.top1.toFixed(1)}%</b> top-1%</span><span>${L.cash.toFixed(0)}% cash</span>` : ""}${L._r != null ? `<span title="estimated return per entry in ${esc((tierContest(tierNow()) || {}).name || "this contest")} - use it to compare lineups; the field model is softer than a real contest, so the level runs high"><b>${L._r > 0 ? "+" : ""}${L._r.toFixed(0)}%</b> ROI</span>` : ""}<span><b>${L.own.toFixed(0)}%</b> own</span>
       <span>$${L.sal.toLocaleString()}</span>${stackTag(L)}${L.dup >= 0.5 ? `<span>~${L.dup.toFixed(1)} dupes</span>` : ""}</div>
       <div class="ps">${ps}</div></div>`;
   }).join("") || `<div class="pad note">No lineups match. Widen the ownership range or remove a lock.</div>`;

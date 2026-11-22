@@ -25,6 +25,11 @@ from pathlib import Path
 
 import numpy as np
 
+try:
+    from engine import contest_roi as CR
+except ImportError:                       # NFL repo keeps it at the top level
+    import contest_roi as CR
+
 ROOT = Path(__file__).resolve().parent
 DUMPS = ROOT / "data" / "backtest_dumps"
 OUT = ROOT / "docs" / "data" / "auto_settings.json"
@@ -34,6 +39,8 @@ GPP = [(99.9, 50.0), (99.5, 15.0), (99.0, 8.0), (98.0, 4.0), (95.0, 2.5),
        (90.0, 1.8), (80.0, 1.3)]
 GPP = [(p, m * 1.75) for p, m in GPP]          # scaled so a random entry returns ~0.85
 ENTRIES = [1, 3, 5, 10, 20, 40]
+# Contest types the page lets you pick; each is scored with its own payouts.
+TIERS = ["cash", "small", "mid", "large"]
 SORTS = ["cash", "top1", "port", "proj", "ceil", "roi", "roilow"]
 OWNF = ["none", "low", "mid", "high"]
 EXPOS = [1.0, 0.6, 0.5, 0.4]
@@ -43,7 +50,12 @@ DEFAULT = {1: ("cash", "none", 1.0, 0), 3: ("port", "none", 1.0, 0),
            20: ("port", "none", 0.5, 0), 40: ("port", "none", 0.4, 0)}
 
 
-def payout(pct: float, n: int) -> float:
+def payout(pct: float, n: int, tier: str | None = None, row: dict | None = None,
+           lines: dict | None = None) -> float:
+    if tier == "cash":
+        return 1.8 if pct >= 55 else 0.0
+    if tier is not None:
+        return CR.tier_multiple(pct, tier, lines, (row or {}).get("actual"))
     if n == 1:
         return 1.8 if pct >= 55 else 0.0
     for floor, m in GPP:
@@ -52,12 +64,19 @@ def payout(pct: float, n: int) -> float:
     return 0.0
 
 
-def order(L: list[dict], sort: str) -> list[dict]:
+def roi_of(x: dict, tier: str | None):
+    """A lineup's simulated ROI in this contest type (large = the old single ROI)."""
+    if tier in (None, "large"):
+        return (x.get("roit") or {}).get("large", x.get("roi"))
+    return (x.get("roit") or {}).get(tier)
+
+
+def order(L: list[dict], sort: str, tier: str | None = None) -> list[dict]:
     if sort in ("roi", "roilow"):
-        if not any(x.get("roi") is not None for x in L):
+        has = [x for x in L if roi_of(x, tier) is not None]
+        if not has:
             return []                        # night replayed before ROI existed: no answer
-        has = [x for x in L if x.get("roi") is not None]
-        return sorted(has, key=lambda x: (x["roi"] if sort == "roilow" else -x["roi"]))
+        return sorted(has, key=lambda x: (roi_of(x, tier) if sort == "roilow" else -roi_of(x, tier)))
     if sort == "port":
         a = sorted([x for x in L if x.get("port")], key=lambda x: x["port"])
         b = sorted([x for x in L if not x.get("port")], key=lambda x: -(x.get("top1") or 0))
@@ -75,12 +94,13 @@ def own_ok(L: list[dict], f: str):
             "high": lambda x: (x.get("own") or 0) >= q50}[f]
 
 
-def pick(L: list[dict], n: int, rule) -> list[dict]:
+def pick(L: list[dict], n: int, rule, tier: str | None = None) -> list[dict]:
     sort, f, expo, st = rule
     ok = own_ok(L, f)
-    cand = [x for x in order(L, sort) if ok(x) and (x.get("st1") or 0) >= st]
+    o = order(L, sort, tier)
+    cand = [x for x in o if ok(x) and (x.get("st1") or 0) >= st]
     if len(cand) < n:                       # never leave entries empty
-        rest = [x for x in order(L, sort) if x not in cand]
+        rest = [x for x in o if x not in cand]
         cand += rest
     c = expo
     while True:
@@ -98,27 +118,29 @@ def pick(L: list[dict], n: int, rule) -> list[dict]:
         c = min(1.0, c + 0.1)
 
 
-def night_value(night: dict, n: int, rule) -> tuple[float, float, float]:
+def night_value(night: dict, n: int, rule, tier: str | None = None) -> tuple[float, float, float]:
     L = night["lineups"]
     if not L:
         return np.nan, np.nan, np.nan
-    if rule[0] in ("roi", "roilow") and not any(x.get("roi") is not None for x in L):
+    if rule[0] in ("roi", "roilow") and not any(roi_of(x, tier) is not None for x in L):
         return np.nan, np.nan, np.nan
-    got = pick(L, min(n, len(L)), rule)
-    pays = [payout(x["pct"], n) for x in got]
+    got = pick(L, min(n, len(L)), rule, tier)
+    pays = [payout(x["pct"], n, tier, x, night.get("lines")) for x in got]
     return (float(np.mean(pays)) - 1.0,                       # ROI per entry
             float(max(x["pct"] for x in got) >= 99.0),        # any top-1%
             float(max(x["pct"] for x in got)))                # best percentile
 
 
-def evaluate(nights: dict, sport: str, n: int) -> dict:
+def evaluate(nights: dict, sport: str, n: int, tier: str | None = None) -> dict:
     rules = list(itertools.product(SORTS, OWNF, EXPOS, STACKS.get(sport, [0])))
     if n == 1:
         rules = [r for r in rules if r[2] == 1.0]
+    if tier == "cash":                     # no ROI for cash games
+        rules = [r for r in rules if r[0] not in ("roi", "roilow")]
     keys = sorted(nights)
     res = {}
     for r in rules:
-        v = np.array([night_value(nights[k], n, r) for k in keys])
+        v = np.array([night_value(nights[k], n, r, tier) for k in keys])
         res[r] = v
     return res
 
@@ -147,6 +169,7 @@ def main() -> int:
     data = load()
     report = {}
     rules_out = {}
+    tier_out = {}
     for sport, variants in data.items():
         report[sport] = {}
         base = variants.get("base") or next(iter(variants.values()))
@@ -160,11 +183,15 @@ def main() -> int:
         report[sport]["nights"] = len(nights)
         print(f"\n=== {sport.upper()}  {len(nights)} nights ===")
         rules_out[sport] = {}
-        for n in ENTRIES:
+        tier_out[sport] = {}
+        for tier, n in itertools.product(TIERS, ENTRIES):
             if not nights:
                 break
-            res = evaluate(nights, sport, n)
-            dflt = DEFAULT[n] if DEFAULT[n] in res else next(r for r in res if r[0] == DEFAULT[n][0])
+            if n == 1 and tier == "cash":
+                print(f"\n  -- {sport.upper()} by contest type --")
+            res = evaluate(nights, sport, n, tier)
+            d0 = DEFAULT[n] if tier != "cash" else ("cash", "none", DEFAULT[n][2], 0)
+            dflt = d0 if d0 in res else next(r for r in res if r[0] == d0[0])
             mean = {r: float(np.nanmean(v[:, 0])) for r, v in res.items()}
             best = max(mean, key=mean.get)
             p = bootstrap_better(res[best][:, 0], res[dflt][:, 0]) if best != dflt else 0.5
@@ -180,26 +207,31 @@ def main() -> int:
                 a, b = res[best][part, 0], res[dflt][part, 0]
                 halves.append(bootstrap_better(a, b) if len(a) >= 5 else 0.0)
             holds = min(halves) >= 0.75
-            adopt = best != dflt and p >= 0.9 and gain >= 0.05 and len(nights) >= 10 and holds
+            adopt = (best != dflt and p >= 0.9 and gain >= 0.05 and holds
+                     and int(np.sum(~np.isnan(res[best][:, 0] - res[dflt][:, 0]))) >= 10)
             chosen = best if adopt else dflt
             top = sorted(mean.items(), key=lambda kv: -kv[1])[:5]
-            print(f"  {n:>2} entries: current {dflt} ROI {mean[dflt]:+.2f} | best {best} "
+            print(f"  {tier:5} {n:>2} entries: current {dflt} ROI {mean[dflt]:+.2f} | best {best} "
                   f"ROI {mean[best]:+.2f} (P better {p:.2f}; early/late halves {halves[0]:.2f}/{halves[1]:.2f}) "
                   f"-> {'ADOPT' if adopt else 'keep'}")
             for r, m in top:
                 v = res[r]
                 print(f"        {str(r):38} ROI {m:+.2f}  top1 {np.nanmean(v[:, 1]):.0%}  "
                       f"best pct {np.nanmean(v[:, 2]):.1f}")
-            report[sport][n] = {
+            report[sport][f"{tier}-{n}"] = {
                 "current": {"rule": dflt, "roi": round(mean[dflt], 3),
                             "top1_rate": round(float(np.nanmean(res[dflt][:, 1])), 3)},
                 "best": {"rule": best, "roi": round(mean[best], 3), "p_better": round(p, 3),
                          "p_halves": [round(h, 3) for h in halves],
                          "top1_rate": round(float(np.nanmean(res[best][:, 1])), 3)},
                 "adopted": adopt}
-            rules_out[sport][str(n)] = {"sort": chosen[0], "own": chosen[1],
-                                        "expo": chosen[2], "stack": chosen[3],
-                                        "evidence": f"{len(nights)} nights, ROI {mean[chosen]:+.2f}"}
+            nn = int(np.sum(~np.isnan(res[chosen][:, 0])))
+            rule = {"sort": chosen[0], "own": chosen[1], "expo": chosen[2], "stack": chosen[3],
+                    "evidence": f"{nn} nights, ROI {mean[chosen]:+.2f}"}
+            tier_out[sport].setdefault(tier, {})[str(n)] = rule
+            # entries-only rules (older pages): 1 entry = cash game, more = large GPP
+            if (n == 1 and tier == "cash") or (n > 1 and tier == "large"):
+                rules_out[sport][str(n)] = rule
         # pool variants: best rule's ROI at 5 and 20 entries per variant
         if len([v for v in variants if not v.startswith("hist")]) > 1:
             report[sport]["variants"] = {}
@@ -212,7 +244,9 @@ def main() -> int:
                     continue
                 row = {}
                 for n in (1, 5, 20):
-                    r = rules_out[sport][str(n)]
+                    r = rules_out[sport].get(str(n))
+                    if not r:
+                        continue
                     rule = (r["sort"], r["own"], r["expo"], r["stack"])
                     a = np.array([night_value(vn[k], n, rule)[0] for k in common])
                     b = np.array([night_value(nights[k], n, rule)[0] for k in common])
@@ -227,8 +261,11 @@ def main() -> int:
     for sport, r in rules_out.items():
         if report[sport].get("nights", 0) >= 10:      # too few nights: page keeps its defaults
             conf.setdefault(sport, {})["rules"] = r
+            conf[sport]["tier_rules"] = tier_out[sport]
+            conf[sport]["tier_labels"] = CR.TIER_LABEL
         else:
             conf.get(sport, {}).pop("rules", None)
+            conf.get(sport, {}).pop("tier_rules", None)
     conf["_optimizer"] = report
     OUT.write_text(json.dumps(conf, indent=1, default=str))
     return 0

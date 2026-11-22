@@ -23,3 +23,22 @@ def test_field_average_roi_is_the_rake():
     r = CR.lineup_roi(S, Fd, Fd[:800], c, None, sharp=0.0)
     rake = c["pool"] / (c["entries"] * c["fee"]) - 1
     assert abs(r.mean() - rake) < 0.08
+
+
+def test_tiers_pick_lobby_contest_per_size_and_fall_back():
+    from engine import contest_roi as C
+    lobby = [{"dg": 7, "n": "Big [$10K to 1st]", "po": 50000, "m": 17000, "a": 3},
+             {"dg": 7, "n": "mini-MAX", "po": 3000, "m": 1200, "a": 3},
+             {"dg": 7, "n": "Double Up", "po": 900, "m": 100, "a": 10}]
+    t = C.tier_contests(7, lobby)
+    assert t["large"]["name"].startswith("Big") and t["large"]["real"]
+    assert t["mid"]["name"] == "mini-MAX"
+    assert t["small"]["real"] is False          # double-ups are not tournaments
+
+
+def test_tier_multiple_is_top_heavy_and_respects_tail():
+    from engine import contest_roi as C
+    assert C.tier_multiple(70, "large") == 0.0
+    assert C.tier_multiple(99.9, "large") > C.tier_multiple(99, "large") > C.tier_multiple(90, "large")
+    lines = {"win": 300.0, "top1": 280.0}
+    assert C.tier_multiple(100, "large", lines, 301.0) < C.tier_multiple(100, "large", lines, 340.0)

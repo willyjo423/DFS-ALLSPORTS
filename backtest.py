@@ -271,7 +271,7 @@ def dump_row(p: dict, L: dict, actual: float, pct: float) -> dict:
     return {"p": L["p"], "proj": L.get("proj"), "ceil": L.get("ceil"), "own": L.get("own"),
             "top1": L.get("top1"), "top10": L.get("top10"), "cash": L.get("cash"),
             "port": L.get("port"), "dup": L.get("dup"), "roi": L.get("roi"),
-            "st1": teams[0], "st2": teams[1],
+            "roit": L.get("roit"), "st1": teams[0], "st2": teams[1],
             "actual": round(actual, 2), "pct": round(pct, 2)}
 
 

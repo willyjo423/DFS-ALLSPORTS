@@ -14,42 +14,42 @@
     "own": "none",
     "expo": 1.0,
     "stack": 0,
-    "evidence": "480 nights, ROI +0.19"
+    "evidence": "584 nights, ROI +0.19"
    },
    "3": {
     "sort": "port",
     "own": "none",
     "expo": 1.0,
     "stack": 0,
-    "evidence": "480 nights, ROI +2.49"
+    "evidence": "584 nights, ROI +3.56"
    },
    "5": {
     "sort": "port",
     "own": "none",
     "expo": 0.6,
     "stack": 0,
-    "evidence": "480 nights, ROI +3.19"
+    "evidence": "584 nights, ROI +4.37"
    },
    "10": {
     "sort": "port",
     "own": "none",
     "expo": 0.6,
     "stack": 0,
-    "evidence": "480 nights, ROI +2.80"
+    "evidence": "584 nights, ROI +3.77"
    },
    "20": {
-    "sort": "port",
-    "own": "none",
-    "expo": 0.5,
+    "sort": "roilow",
+    "own": "mid",
+    "expo": 1.0,
     "stack": 0,
-    "evidence": "480 nights, ROI +1.93"
+    "evidence": "584 nights, ROI +6.36"
    },
    "40": {
     "sort": "ceil",
     "own": "low",
     "expo": 1.0,
     "stack": 0,
-    "evidence": "480 nights, ROI +5.57"
+    "evidence": "584 nights, ROI +5.67"
    }
   },
   "tier_rules": {
@@ -59,42 +59,42 @@
      "own": "none",
      "expo": 1.0,
      "stack": 0,
-     "evidence": "480 nights, ROI +0.19"
+     "evidence": "584 nights, ROI +0.19"
     },
     "3": {
      "sort": "cash",
      "own": "none",
      "expo": 1.0,
      "stack": 0,
-     "evidence": "480 nights, ROI +0.16"
+     "evidence": "584 nights, ROI +0.15"
     },
     "5": {
      "sort": "cash",
      "own": "none",
      "expo": 0.6,
      "stack": 0,
-     "evidence": "480 nights, ROI +0.13"
+     "evidence": "584 nights, ROI +0.12"
     },
     "10": {
      "sort": "cash",
      "own": "none",
      "expo": 0.6,
      "stack": 0,
-     "evidence": "480 nights, ROI +0.13"
+     "evidence": "584 nights, ROI +0.12"
     },
     "20": {
-     "sort": "top1",
-     "own": "high",
-     "expo": 1.0,
+     "sort": "cash",
+     "own": "none",
+     "expo": 0.5,
      "stack": 0,
-     "evidence": "480 nights, ROI +0.17"
+     "evidence": "584 nights, ROI +0.10"
     },
     "40": {
-     "sort": "top1",
-     "own": "high",
-     "expo": 1.0,
+     "sort": "cash",
+     "own": "none",
+     "expo": 0.4,
      "stack": 0,
-     "evidence": "480 nights, ROI +0.16"
+     "evidence": "584 nights, ROI +0.09"
     }
    },
    "small": {
@@ -103,86 +103,86 @@
      "own": "none",
      "expo": 1.0,
      "stack": 0,
-     "evidence": "480 nights, ROI +1.20"
+     "evidence": "584 nights, ROI +1.18"
     },
     "3": {
-     "sort": "port",
-     "own": "none",
+     "sort": "roi",
+     "own": "low",
      "expo": 1.0,
      "stack": 0,
-     "evidence": "480 nights, ROI +1.08"
+     "evidence": "584 nights, ROI +1.33"
     },
     "5": {
-     "sort": "ceil",
+     "sort": "cash",
      "own": "low",
      "expo": 1.0,
      "stack": 0,
-     "evidence": "480 nights, ROI +1.34"
+     "evidence": "584 nights, ROI +1.25"
     },
     "10": {
-     "sort": "ceil",
+     "sort": "roi",
      "own": "low",
      "expo": 1.0,
      "stack": 0,
-     "evidence": "480 nights, ROI +1.23"
+     "evidence": "584 nights, ROI +1.21"
     },
     "20": {
      "sort": "port",
      "own": "none",
      "expo": 0.5,
      "stack": 0,
-     "evidence": "480 nights, ROI +0.97"
+     "evidence": "584 nights, ROI +0.96"
     },
     "40": {
      "sort": "port",
      "own": "none",
      "expo": 0.4,
      "stack": 0,
-     "evidence": "480 nights, ROI +1.01"
+     "evidence": "584 nights, ROI +0.98"
     }
    },
    "mid": {
     "1": {
-     "sort": "port",
-     "own": "none",
+     "sort": "roilow",
+     "own": "mid",
      "expo": 1.0,
      "stack": 0,
-     "evidence": "480 nights, ROI +6.84"
+     "evidence": "584 nights, ROI +7.54"
     },
     "3": {
      "sort": "port",
      "own": "none",
      "expo": 1.0,
      "stack": 0,
-     "evidence": "480 nights, ROI +2.85"
+     "evidence": "584 nights, ROI +2.55"
     },
     "5": {
      "sort": "port",
      "own": "none",
      "expo": 0.6,
      "stack": 0,
-     "evidence": "480 nights, ROI +2.64"
+     "evidence": "584 nights, ROI +2.17"
     },
     "10": {
-     "sort": "port",
-     "own": "none",
-     "expo": 0.6,
-     "stack": 0,
-     "evidence": "480 nights, ROI +2.31"
-    },
-    "20": {
-     "sort": "port",
-     "own": "none",
+     "sort": "roilow",
+     "own": "mid",
      "expo": 0.5,
      "stack": 0,
-     "evidence": "480 nights, ROI +1.85"
+     "evidence": "584 nights, ROI +3.96"
+    },
+    "20": {
+     "sort": "roilow",
+     "own": "mid",
+     "expo": 0.6,
+     "stack": 0,
+     "evidence": "584 nights, ROI +3.54"
     },
     "40": {
-     "sort": "port",
-     "own": "none",
-     "expo": 0.4,
+     "sort": "ceil",
+     "own": "low",
+     "expo": 1.0,
      "stack": 0,
-     "evidence": "480 nights, ROI +2.28"
+     "evidence": "584 nights, ROI +3.17"
     }
    },
    "large": {
@@ -191,42 +191,42 @@
      "own": "none",
      "expo": 1.0,
      "stack": 0,
-     "evidence": "480 nights, ROI +2.45"
+     "evidence": "584 nights, ROI +2.38"
     },
     "3": {
      "sort": "port",
      "own": "none",
      "expo": 1.0,
      "stack": 0,
-     "evidence": "480 nights, ROI +2.49"
+     "evidence": "584 nights, ROI +3.56"
     },
     "5": {
      "sort": "port",
      "own": "none",
      "expo": 0.6,
      "stack": 0,
-     "evidence": "480 nights, ROI +3.19"
+     "evidence": "584 nights, ROI +4.37"
     },
     "10": {
      "sort": "port",
      "own": "none",
      "expo": 0.6,
      "stack": 0,
-     "evidence": "480 nights, ROI +2.80"
+     "evidence": "584 nights, ROI +3.77"
     },
     "20": {
-     "sort": "port",
-     "own": "none",
-     "expo": 0.5,
+     "sort": "roilow",
+     "own": "mid",
+     "expo": 1.0,
      "stack": 0,
-     "evidence": "480 nights, ROI +1.93"
+     "evidence": "584 nights, ROI +6.36"
     },
     "40": {
      "sort": "ceil",
      "own": "low",
      "expo": 1.0,
      "stack": 0,
-     "evidence": "480 nights, ROI +5.57"
+     "evidence": "584 nights, ROI +5.67"
     }
    }
   },
@@ -350,90 +350,90 @@
   "rules": {
    "1": {
     "sort": "cash",
-    "own": "none",
+    "own": "mid",
     "expo": 1.0,
-    "stack": 0,
-    "evidence": "52 nights, ROI +0.32"
+    "stack": 3,
+    "evidence": "53 nights, ROI +0.43"
    },
    "3": {
-    "sort": "port",
+    "sort": "roi",
     "own": "none",
     "expo": 1.0,
-    "stack": 0,
-    "evidence": "52 nights, ROI +7.91"
+    "stack": 4,
+    "evidence": "53 nights, ROI +35.76"
    },
    "5": {
-    "sort": "port",
+    "sort": "roi",
     "own": "none",
-    "expo": 0.6,
+    "expo": 0.5,
     "stack": 4,
-    "evidence": "52 nights, ROI +5.53"
+    "evidence": "53 nights, ROI +21.85"
    },
    "10": {
-    "sort": "port",
-    "own": "none",
-    "expo": 0.6,
-    "stack": 0,
-    "evidence": "52 nights, ROI +2.55"
+    "sort": "roi",
+    "own": "high",
+    "expo": 1.0,
+    "stack": 4,
+    "evidence": "53 nights, ROI +15.28"
    },
    "20": {
     "sort": "port",
     "own": "none",
     "expo": 0.5,
     "stack": 0,
-    "evidence": "52 nights, ROI +3.18"
+    "evidence": "53 nights, ROI +3.66"
    },
    "40": {
-    "sort": "cash",
+    "sort": "proj",
     "own": "none",
-    "expo": 0.5,
-    "stack": 0,
-    "evidence": "52 nights, ROI +4.68"
+    "expo": 0.6,
+    "stack": 4,
+    "evidence": "53 nights, ROI +7.50"
    }
   },
   "tier_rules": {
    "cash": {
     "1": {
      "sort": "cash",
-     "own": "none",
+     "own": "mid",
      "expo": 1.0,
-     "stack": 0,
-     "evidence": "52 nights, ROI +0.32"
+     "stack": 3,
+     "evidence": "53 nights, ROI +0.43"
     },
     "3": {
      "sort": "cash",
      "own": "none",
      "expo": 1.0,
      "stack": 0,
-     "evidence": "52 nights, ROI +0.37"
+     "evidence": "53 nights, ROI +0.37"
     },
     "5": {
      "sort": "cash",
-     "own": "none",
-     "expo": 1.0,
-     "stack": 3,
-     "evidence": "52 nights, ROI +0.38"
-    },
-    "10": {
-     "sort": "cash",
      "own": "high",
      "expo": 1.0,
-     "stack": 4,
-     "evidence": "52 nights, ROI +0.36"
+     "stack": 3,
+     "evidence": "53 nights, ROI +0.34"
+    },
+    "10": {
+     "sort": "ceil",
+     "own": "mid",
+     "expo": 1.0,
+     "stack": 3,
+     "evidence": "53 nights, ROI +0.33"
     },
     "20": {
-     "sort": "cash",
+     "sort": "ceil",
      "own": "mid",
      "expo": 1.0,
      "stack": 0,
-     "evidence": "52 nights, ROI +0.33"
+     "evidence": "53 nights, ROI +0.32"
     },
     "40": {
-     "sort": "cash",
-     "own": "high",
+     "sort": "ceil",
+     "own": "none",
      "expo": 1.0,
      "stack": 3,
-     "evidence": "52 nights, ROI +0.31"
+     "evidence": "53 nights, ROI +0.29"
     }
    },
    "small": {
@@ -442,42 +442,42 @@
      "own": "none",
      "expo": 1.0,
      "stack": 0,
-     "evidence": "52 nights, ROI +1.69"
+     "evidence": "53 nights, ROI +1.20"
     },
     "3": {
      "sort": "port",
      "own": "none",
      "expo": 1.0,
      "stack": 0,
-     "evidence": "52 nights, ROI +0.95"
+     "evidence": "53 nights, ROI +0.81"
     },
     "5": {
      "sort": "ceil",
      "own": "none",
-     "expo": 1.0,
+     "expo": 0.6,
      "stack": 4,
-     "evidence": "52 nights, ROI +1.86"
+     "evidence": "53 nights, ROI +1.71"
     },
     "10": {
      "sort": "port",
      "own": "none",
      "expo": 0.6,
      "stack": 0,
-     "evidence": "52 nights, ROI +1.08"
+     "evidence": "53 nights, ROI +1.09"
     },
     "20": {
      "sort": "port",
      "own": "none",
      "expo": 0.5,
      "stack": 0,
-     "evidence": "52 nights, ROI +1.13"
+     "evidence": "53 nights, ROI +1.12"
     },
     "40": {
-     "sort": "port",
-     "own": "none",
-     "expo": 0.4,
-     "stack": 0,
-     "evidence": "52 nights, ROI +1.15"
+     "sort": "cash",
+     "own": "high",
+     "expo": 1.0,
+     "stack": 4,
+     "evidence": "53 nights, ROI +1.59"
     }
    },
    "mid": {
@@ -486,42 +486,42 @@
      "own": "none",
      "expo": 1.0,
      "stack": 0,
-     "evidence": "52 nights, ROI +1.60"
+     "evidence": "53 nights, ROI +3.67"
     },
     "3": {
      "sort": "port",
      "own": "none",
      "expo": 1.0,
      "stack": 0,
-     "evidence": "52 nights, ROI +3.50"
+     "evidence": "53 nights, ROI +3.69"
     },
     "5": {
      "sort": "port",
      "own": "none",
      "expo": 0.6,
      "stack": 0,
-     "evidence": "52 nights, ROI +2.52"
+     "evidence": "53 nights, ROI +2.21"
     },
     "10": {
      "sort": "port",
      "own": "none",
      "expo": 0.6,
      "stack": 0,
-     "evidence": "52 nights, ROI +1.59"
+     "evidence": "53 nights, ROI +2.59"
     },
     "20": {
-     "sort": "port",
+     "sort": "roi",
      "own": "none",
      "expo": 0.5,
-     "stack": 0,
-     "evidence": "52 nights, ROI +2.27"
+     "stack": 3,
+     "evidence": "53 nights, ROI +4.65"
     },
     "40": {
-     "sort": "cash",
+     "sort": "port",
      "own": "none",
-     "expo": 0.5,
+     "expo": 0.4,
      "stack": 0,
-     "evidence": "52 nights, ROI +2.70"
+     "evidence": "53 nights, ROI +2.14"
     }
    },
    "large": {
@@ -530,42 +530,42 @@
      "own": "none",
      "expo": 1.0,
      "stack": 0,
-     "evidence": "52 nights, ROI +0.77"
+     "evidence": "53 nights, ROI +1.59"
     },
     "3": {
-     "sort": "port",
+     "sort": "roi",
      "own": "none",
      "expo": 1.0,
-     "stack": 0,
-     "evidence": "52 nights, ROI +7.91"
+     "stack": 4,
+     "evidence": "53 nights, ROI +35.76"
     },
     "5": {
-     "sort": "port",
+     "sort": "roi",
      "own": "none",
-     "expo": 0.6,
+     "expo": 0.5,
      "stack": 4,
-     "evidence": "52 nights, ROI +5.53"
+     "evidence": "53 nights, ROI +21.85"
     },
     "10": {
-     "sort": "port",
-     "own": "none",
-     "expo": 0.6,
-     "stack": 0,
-     "evidence": "52 nights, ROI +2.55"
+     "sort": "roi",
+     "own": "high",
+     "expo": 1.0,
+     "stack": 4,
+     "evidence": "53 nights, ROI +15.28"
     },
     "20": {
      "sort": "port",
      "own": "none",
      "expo": 0.5,
      "stack": 0,
-     "evidence": "52 nights, ROI +3.18"
+     "evidence": "53 nights, ROI +3.66"
     },
     "40": {
-     "sort": "cash",
+     "sort": "proj",
      "own": "none",
-     "expo": 0.5,
-     "stack": 0,
-     "evidence": "52 nights, ROI +4.68"
+     "expo": 0.6,
+     "stack": 4,
+     "evidence": "53 nights, ROI +7.50"
     }
    }
   },
@@ -580,90 +580,90 @@
   "rules": {
    "1": {
     "sort": "cash",
-    "own": "mid",
+    "own": "none",
     "expo": 1.0,
     "stack": 0,
-    "evidence": "27 nights, ROI +0.13"
+    "evidence": "27 nights, ROI -0.13"
    },
    "3": {
     "sort": "port",
     "own": "none",
     "expo": 1.0,
     "stack": 0,
-    "evidence": "27 nights, ROI -0.46"
+    "evidence": "27 nights, ROI -0.49"
    },
    "5": {
-    "sort": "port",
-    "own": "none",
+    "sort": "proj",
+    "own": "mid",
     "expo": 0.6,
     "stack": 0,
-    "evidence": "27 nights, ROI -0.35"
+    "evidence": "27 nights, ROI +0.95"
    },
    "10": {
     "sort": "port",
     "own": "none",
     "expo": 0.6,
     "stack": 0,
-    "evidence": "27 nights, ROI -0.12"
+    "evidence": "27 nights, ROI +0.07"
    },
    "20": {
     "sort": "port",
     "own": "none",
     "expo": 0.5,
     "stack": 0,
-    "evidence": "27 nights, ROI -0.33"
+    "evidence": "27 nights, ROI -0.20"
    },
    "40": {
     "sort": "port",
     "own": "none",
     "expo": 0.4,
     "stack": 0,
-    "evidence": "27 nights, ROI -0.35"
+    "evidence": "27 nights, ROI +0.34"
    }
   },
   "tier_rules": {
    "cash": {
     "1": {
      "sort": "cash",
-     "own": "mid",
+     "own": "none",
      "expo": 1.0,
      "stack": 0,
-     "evidence": "27 nights, ROI +0.13"
+     "evidence": "27 nights, ROI -0.13"
     },
     "3": {
      "sort": "cash",
      "own": "none",
      "expo": 1.0,
      "stack": 0,
-     "evidence": "27 nights, ROI -0.20"
+     "evidence": "27 nights, ROI -0.13"
     },
     "5": {
-     "sort": "ceil",
+     "sort": "cash",
      "own": "none",
-     "expo": 1.0,
+     "expo": 0.6,
      "stack": 0,
-     "evidence": "27 nights, ROI +0.04"
+     "evidence": "27 nights, ROI -0.16"
     },
     "10": {
      "sort": "ceil",
      "own": "none",
      "expo": 1.0,
      "stack": 0,
-     "evidence": "27 nights, ROI +0.04"
+     "evidence": "27 nights, ROI +0.05"
     },
     "20": {
      "sort": "ceil",
      "own": "high",
      "expo": 0.5,
      "stack": 0,
-     "evidence": "27 nights, ROI -0.02"
+     "evidence": "27 nights, ROI -0.01"
     },
     "40": {
      "sort": "cash",
      "own": "none",
      "expo": 0.4,
      "stack": 0,
-     "evidence": "27 nights, ROI -0.15"
+     "evidence": "27 nights, ROI -0.14"
     }
    },
    "small": {
@@ -672,42 +672,42 @@
      "own": "none",
      "expo": 1.0,
      "stack": 0,
-     "evidence": "27 nights, ROI -0.16"
+     "evidence": "27 nights, ROI -0.09"
     },
     "3": {
      "sort": "port",
      "own": "none",
      "expo": 1.0,
      "stack": 0,
-     "evidence": "27 nights, ROI -0.38"
+     "evidence": "27 nights, ROI -0.24"
     },
     "5": {
      "sort": "proj",
      "own": "mid",
      "expo": 0.6,
      "stack": 0,
-     "evidence": "27 nights, ROI +1.07"
+     "evidence": "27 nights, ROI +0.98"
     },
     "10": {
-     "sort": "proj",
+     "sort": "roi",
      "own": "mid",
      "expo": 0.6,
      "stack": 0,
-     "evidence": "27 nights, ROI +0.84"
+     "evidence": "27 nights, ROI +0.88"
     },
     "20": {
      "sort": "port",
      "own": "none",
      "expo": 0.5,
      "stack": 0,
-     "evidence": "27 nights, ROI +0.05"
+     "evidence": "27 nights, ROI +0.03"
     },
     "40": {
      "sort": "port",
      "own": "none",
      "expo": 0.4,
      "stack": 0,
-     "evidence": "27 nights, ROI +0.04"
+     "evidence": "27 nights, ROI +0.05"
     }
    },
    "mid": {
@@ -716,86 +716,86 @@
      "own": "none",
      "expo": 1.0,
      "stack": 0,
-     "evidence": "27 nights, ROI -0.56"
+     "evidence": "27 nights, ROI -0.45"
     },
     "3": {
      "sort": "port",
      "own": "none",
      "expo": 1.0,
      "stack": 0,
-     "evidence": "27 nights, ROI -0.46"
+     "evidence": "27 nights, ROI -0.48"
     },
     "5": {
-     "sort": "port",
-     "own": "none",
+     "sort": "proj",
+     "own": "mid",
      "expo": 0.6,
      "stack": 0,
-     "evidence": "27 nights, ROI -0.24"
+     "evidence": "27 nights, ROI +2.13"
     },
     "10": {
      "sort": "port",
      "own": "none",
      "expo": 0.6,
      "stack": 0,
-     "evidence": "27 nights, ROI +0.21"
+     "evidence": "27 nights, ROI +0.63"
     },
     "20": {
      "sort": "port",
      "own": "none",
      "expo": 0.5,
      "stack": 0,
-     "evidence": "27 nights, ROI -0.14"
+     "evidence": "27 nights, ROI +0.11"
     },
     "40": {
      "sort": "port",
      "own": "none",
      "expo": 0.4,
      "stack": 0,
-     "evidence": "27 nights, ROI -0.20"
+     "evidence": "27 nights, ROI +0.64"
     }
    },
    "large": {
     "1": {
-     "sort": "cash",
+     "sort": "roi",
      "own": "none",
      "expo": 1.0,
-     "stack": 0,
-     "evidence": "27 nights, ROI -0.63"
+     "stack": 3,
+     "evidence": "27 nights, ROI +3.72"
     },
     "3": {
      "sort": "port",
      "own": "none",
      "expo": 1.0,
      "stack": 0,
-     "evidence": "27 nights, ROI -0.46"
+     "evidence": "27 nights, ROI -0.49"
     },
     "5": {
-     "sort": "port",
-     "own": "none",
+     "sort": "proj",
+     "own": "mid",
      "expo": 0.6,
      "stack": 0,
-     "evidence": "27 nights, ROI -0.35"
+     "evidence": "27 nights, ROI +0.95"
     },
     "10": {
      "sort": "port",
      "own": "none",
      "expo": 0.6,
      "stack": 0,
-     "evidence": "27 nights, ROI -0.12"
+     "evidence": "27 nights, ROI +0.07"
     },
     "20": {
      "sort": "port",
      "own": "none",
      "expo": 0.5,
      "stack": 0,
-     "evidence": "27 nights, ROI -0.33"
+     "evidence": "27 nights, ROI -0.20"
     },
     "40": {
      "sort": "port",
      "own": "none",
      "expo": 0.4,
      "stack": 0,
-     "evidence": "27 nights, ROI -0.35"
+     "evidence": "27 nights, ROI +0.34"
     }
    }
   },
@@ -817,25 +817,25 @@
       1.0,
       0
      ],
-     "roi": -0.267,
+     "roi": -0.133,
      "top1_rate": 0.0
     },
     "best": {
      "rule": [
-      "cash",
-      "mid",
+      "ceil",
+      "none",
       1.0,
       0
      ],
      "roi": 0.133,
-     "p_better": 0.952,
+     "p_better": 0.862,
      "p_halves": [
-      0.895,
-      0.881
+      0.892,
+      0.595
      ],
      "top1_rate": 0.0
     },
-    "adopted": true
+    "adopted": false
    },
    "cash-3": {
     "current": {
@@ -845,7 +845,7 @@
       1.0,
       0
      ],
-     "roi": -0.2,
+     "roi": -0.133,
      "top1_rate": 0.037
     },
     "best": {
@@ -855,11 +855,11 @@
       1.0,
       0
      ],
-     "roi": 0.089,
-     "p_better": 0.979,
+     "roi": 0.067,
+     "p_better": 0.917,
      "p_halves": [
-      0.623,
-      0.995
+      0.709,
+      0.907
      ],
      "top1_rate": 0.0
     },
@@ -873,7 +873,7 @@
       0.6,
       0
      ],
-     "roi": -0.173,
+     "roi": -0.16,
      "top1_rate": 0.037
     },
     "best": {
@@ -883,15 +883,15 @@
       1.0,
       0
      ],
-     "roi": 0.04,
-     "p_better": 0.941,
+     "roi": 0.027,
+     "p_better": 0.898,
      "p_halves": [
-      0.793,
-      0.917
+      0.711,
+      0.894
      ],
      "top1_rate": 0.0
     },
-    "adopted": true
+    "adopted": false
    },
    "cash-10": {
     "current": {
@@ -901,7 +901,7 @@
       0.6,
       0
      ],
-     "roi": -0.167,
+     "roi": -0.133,
      "top1_rate": 0.037
     },
     "best": {
@@ -911,13 +911,13 @@
       1.0,
       0
      ],
-     "roi": 0.04,
-     "p_better": 0.957,
+     "roi": 0.047,
+     "p_better": 0.938,
      "p_halves": [
-      0.824,
-      0.93
+      0.828,
+      0.879
      ],
-     "top1_rate": 0.074
+     "top1_rate": 0.037
     },
     "adopted": true
    },
@@ -929,7 +929,7 @@
       0.5,
       0
      ],
-     "roi": -0.153,
+     "roi": -0.167,
      "top1_rate": 0.111
     },
     "best": {
@@ -939,11 +939,11 @@
       0.5,
       0
      ],
-     "roi": -0.017,
-     "p_better": 0.938,
+     "roi": -0.013,
+     "p_better": 0.957,
      "p_halves": [
-      0.868,
-      0.821
+      0.913,
+      0.824
      ],
      "top1_rate": 0.111
     },
@@ -957,7 +957,7 @@
       0.4,
       0
      ],
-     "roi": -0.155,
+     "roi": -0.145,
      "top1_rate": 0.222
     },
     "best": {
@@ -967,13 +967,13 @@
       1.0,
       0
      ],
-     "roi": -0.052,
-     "p_better": 0.987,
+     "roi": -0.045,
+     "p_better": 0.989,
      "p_halves": [
-      0.989,
-      0.743
+      0.993,
+      0.69
      ],
-     "top1_rate": 0.259
+     "top1_rate": 0.296
     },
     "adopted": false
    },
@@ -985,21 +985,21 @@
       1.0,
       0
      ],
-     "roi": -0.162,
+     "roi": -0.088,
      "top1_rate": 0.0
     },
     "best": {
      "rule": [
-      "ceil",
+      "proj",
       "mid",
       1.0,
       3
      ],
-     "roi": 1.107,
-     "p_better": 0.829,
+     "roi": 0.892,
+     "p_better": 0.771,
      "p_halves": [
-      0.565,
-      0.992
+      0.713,
+      0.878
      ],
      "top1_rate": 0.037
     },
@@ -1013,7 +1013,7 @@
       1.0,
       0
      ],
-     "roi": -0.383,
+     "roi": -0.241,
      "top1_rate": 0.0
     },
     "best": {
@@ -1023,11 +1023,11 @@
       0.6,
       3
      ],
-     "roi": 0.965,
-     "p_better": 0.978,
+     "roi": 0.962,
+     "p_better": 0.926,
      "p_halves": [
-      0.975,
-      0.66
+      0.938,
+      0.535
      ],
      "top1_rate": 0.074
     },
@@ -1041,8 +1041,8 @@
       0.6,
       0
      ],
-     "roi": -0.141,
-     "top1_rate": 0.037
+     "roi": 0.105,
+     "top1_rate": 0.074
     },
     "best": {
      "rule": [
@@ -1051,13 +1051,13 @@
       0.6,
       0
      ],
-     "roi": 1.071,
-     "p_better": 0.998,
+     "roi": 0.977,
+     "p_better": 0.971,
      "p_halves": [
-      0.989,
-      0.978
+      0.943,
+      0.866
      ],
-     "top1_rate": 0.222
+     "top1_rate": 0.185
     },
     "adopted": true
    },
@@ -1069,23 +1069,23 @@
       0.6,
       0
      ],
-     "roi": 0.272,
+     "roi": 0.203,
      "top1_rate": 0.148
     },
     "best": {
      "rule": [
-      "proj",
+      "roi",
       "mid",
       0.6,
       0
      ],
-     "roi": 0.842,
-     "p_better": 0.988,
+     "roi": 0.878,
+     "p_better": 0.999,
      "p_halves": [
-      0.881,
-      0.999
+      0.985,
+      0.987
      ],
-     "top1_rate": 0.296
+     "top1_rate": 0.259
     },
     "adopted": true
    },
@@ -1097,8 +1097,8 @@
       0.5,
       0
      ],
-     "roi": 0.054,
-     "top1_rate": 0.185
+     "roi": 0.028,
+     "top1_rate": 0.259
     },
     "best": {
      "rule": [
@@ -1107,11 +1107,11 @@
       1.0,
       3
      ],
-     "roi": 0.843,
-     "p_better": 0.967,
+     "roi": 0.857,
+     "p_better": 0.931,
      "p_halves": [
-      0.988,
-      0.487
+      0.948,
+      0.453
      ],
      "top1_rate": 0.259
     },
@@ -1125,7 +1125,7 @@
       0.4,
       0
      ],
-     "roi": 0.042,
+     "roi": 0.049,
      "top1_rate": 0.259
     },
     "best": {
@@ -1135,13 +1135,13 @@
       1.0,
       3
      ],
-     "roi": 0.493,
-     "p_better": 0.948,
+     "roi": 0.531,
+     "p_better": 0.938,
      "p_halves": [
-      0.958,
-      0.587
+      0.939,
+      0.677
      ],
-     "top1_rate": 0.296
+     "top1_rate": 0.37
     },
     "adopted": false
    },
@@ -1153,21 +1153,21 @@
       1.0,
       0
      ],
-     "roi": -0.557,
+     "roi": -0.454,
      "top1_rate": 0.0
     },
     "best": {
      "rule": [
-      "ceil",
+      "cash",
       "mid",
       1.0,
       3
      ],
-     "roi": 0.665,
-     "p_better": 0.831,
+     "roi": 6.854,
+     "p_better": 0.746,
      "p_halves": [
-      0.644,
-      0.992
+      0.655,
+      0.962
      ],
      "top1_rate": 0.037
     },
@@ -1181,21 +1181,21 @@
       1.0,
       0
      ],
-     "roi": -0.457,
+     "roi": -0.476,
      "top1_rate": 0.0
     },
     "best": {
      "rule": [
-      "proj",
+      "cash",
       "mid",
-      1.0,
-      0
+      0.6,
+      3
      ],
-     "roi": 1.023,
-     "p_better": 0.969,
+     "roi": 2.991,
+     "p_better": 0.951,
      "p_halves": [
-      0.958,
-      0.738
+      0.961,
+      0.44
      ],
      "top1_rate": 0.111
     },
@@ -1209,25 +1209,25 @@
       0.6,
       0
      ],
-     "roi": -0.244,
-     "top1_rate": 0.037
+     "roi": 0.997,
+     "top1_rate": 0.074
     },
     "best": {
      "rule": [
-      "top1",
-      "low",
-      1.0,
-      3
+      "proj",
+      "mid",
+      0.6,
+      0
      ],
-     "roi": 3.325,
-     "p_better": 0.772,
+     "roi": 2.126,
+     "p_better": 0.993,
      "p_halves": [
-      0.861,
-      0.011
+      0.984,
+      0.915
      ],
-     "top1_rate": 0.074
+     "top1_rate": 0.185
     },
-    "adopted": false
+    "adopted": true
    },
    "mid-10": {
     "current": {
@@ -1237,7 +1237,7 @@
       0.6,
       0
      ],
-     "roi": 0.211,
+     "roi": 0.633,
      "top1_rate": 0.148
     },
     "best": {
@@ -1247,11 +1247,11 @@
       1.0,
       3
      ],
-     "roi": 2.545,
-     "p_better": 0.758,
+     "roi": 3.762,
+     "p_better": 0.715,
      "p_halves": [
-      0.724,
-      0.767
+      0.715,
+      0.729
      ],
      "top1_rate": 0.185
     },
@@ -1265,8 +1265,8 @@
       0.5,
       0
      ],
-     "roi": -0.141,
-     "top1_rate": 0.185
+     "roi": 0.108,
+     "top1_rate": 0.259
     },
     "best": {
      "rule": [
@@ -1275,11 +1275,11 @@
       1.0,
       3
      ],
-     "roi": 1.978,
-     "p_better": 0.977,
+     "roi": 3.954,
+     "p_better": 0.858,
      "p_halves": [
-      0.985,
-      0.577
+      0.869,
+      0.534
      ],
      "top1_rate": 0.259
     },
@@ -1293,23 +1293,23 @@
       0.4,
       0
      ],
-     "roi": -0.196,
+     "roi": 0.638,
      "top1_rate": 0.259
     },
     "best": {
      "rule": [
       "top1",
       "none",
-      0.6,
+      1.0,
       3
      ],
-     "roi": 0.913,
-     "p_better": 0.978,
+     "roi": 2.186,
+     "p_better": 0.925,
      "p_halves": [
-      0.968,
-      0.738
+      0.917,
+      0.699
      ],
-     "top1_rate": 0.333
+     "top1_rate": 0.37
     },
     "adopted": false
    },
@@ -1321,25 +1321,25 @@
       1.0,
       0
      ],
-     "roi": -0.625,
+     "roi": -0.535,
      "top1_rate": 0.0
     },
     "best": {
      "rule": [
-      "cash",
-      "mid",
+      "roi",
+      "none",
       1.0,
       3
      ],
-     "roi": 0.119,
-     "p_better": 0.84,
+     "roi": 3.723,
+     "p_better": 0.955,
      "p_halves": [
-      0.675,
-      0.962
+      0.915,
+      0.883
      ],
-     "top1_rate": 0.037
+     "top1_rate": 0.074
     },
-    "adopted": false
+    "adopted": true
    },
    "large-3": {
     "current": {
@@ -1349,23 +1349,23 @@
       1.0,
       0
      ],
-     "roi": -0.463,
+     "roi": -0.488,
      "top1_rate": 0.0
     },
     "best": {
      "rule": [
-      "proj",
-      "mid",
-      1.0,
-      0
+      "roi",
+      "none",
+      0.6,
+      3
      ],
-     "roi": 0.318,
-     "p_better": 0.954,
+     "roi": 1.522,
+     "p_better": 0.99,
      "p_halves": [
-      0.933,
-      0.69
+      0.997,
+      0.428
      ],
-     "top1_rate": 0.111
+     "top1_rate": 0.148
     },
     "adopted": false
    },
@@ -1377,25 +1377,25 @@
       0.6,
       0
      ],
-     "roi": -0.352,
-     "top1_rate": 0.037
+     "roi": 0.267,
+     "top1_rate": 0.074
     },
     "best": {
      "rule": [
-      "top1",
-      "low",
-      1.0,
-      3
+      "proj",
+      "mid",
+      0.6,
+      0
      ],
-     "roi": 1.789,
-     "p_better": 0.739,
+     "roi": 0.952,
+     "p_better": 0.988,
      "p_halves": [
-      0.854,
-      0.005
+      0.967,
+      0.933
      ],
-     "top1_rate": 0.074
+     "top1_rate": 0.185
     },
-    "adopted": false
+    "adopted": true
    },
    "large-10": {
     "current": {
@@ -1405,7 +1405,7 @@
       0.6,
       0
      ],
-     "roi": -0.124,
+     "roi": 0.07,
      "top1_rate": 0.148
     },
     "best": {
@@ -1415,11 +1415,11 @@
       1.0,
       3
      ],
-     "roi": 1.449,
-     "p_better": 0.749,
+     "roi": 15.487,
+     "p_better": 0.718,
      "p_halves": [
-      0.725,
-      0.649
+      0.721,
+      0.635
      ],
      "top1_rate": 0.185
     },
@@ -1433,8 +1433,8 @@
       0.5,
       0
      ],
-     "roi": -0.333,
-     "top1_rate": 0.185
+     "roi": -0.203,
+     "top1_rate": 0.259
     },
     "best": {
      "rule": [
@@ -1443,11 +1443,11 @@
       1.0,
       3
      ],
-     "roi": 0.971,
-     "p_better": 0.946,
+     "roi": 9.17,
+     "p_better": 0.842,
      "p_halves": [
-      0.98,
-      0.344
+      0.872,
+      0.334
      ],
      "top1_rate": 0.259
     },
@@ -1461,23 +1461,23 @@
       0.4,
       0
      ],
-     "roi": -0.355,
+     "roi": 0.339,
      "top1_rate": 0.259
     },
     "best": {
      "rule": [
       "top1",
       "none",
-      0.6,
+      1.0,
       3
      ],
-     "roi": 0.323,
-     "p_better": 0.95,
+     "roi": 4.609,
+     "p_better": 0.91,
      "p_halves": [
-      0.944,
-      0.682
+      0.913,
+      0.52
      ],
-     "top1_rate": 0.333
+     "top1_rate": 0.37
     },
     "adopted": false
    },
@@ -1485,89 +1485,89 @@
     "bigpool": {
      "nights": 27,
      "1": {
-      "roi": -0.067,
-      "vs_base": -0.2,
-      "p_better": 0.043
+      "roi": -0.2,
+      "vs_base": -0.067,
+      "p_better": 0.175
      },
      "5": {
-      "roi": 0.036,
-      "vs_base": 0.179,
-      "p_better": 0.749
+      "roi": 0.125,
+      "vs_base": -1.111,
+      "p_better": 0.062
      },
      "20": {
       "roi": -0.016,
-      "vs_base": 0.032,
-      "p_better": 0.622
+      "vs_base": -0.061,
+      "p_better": 0.426
      }
     },
     "blowout": {
      "nights": 27,
      "1": {
-      "roi": -0.133,
-      "vs_base": -0.267,
+      "roi": -0.267,
+      "vs_base": -0.133,
       "p_better": 0.0
      },
      "5": {
-      "roi": 0.12,
-      "vs_base": 0.263,
-      "p_better": 0.86
+      "roi": 0.83,
+      "vs_base": -0.406,
+      "p_better": 0.361
      },
      "20": {
       "roi": 0.389,
-      "vs_base": 0.438,
-      "p_better": 0.985
+      "vs_base": 0.345,
+      "p_better": 0.814
      }
     },
     "diverse": {
      "nights": 27,
      "1": {
-      "roi": -0.133,
-      "vs_base": -0.267,
-      "p_better": 0.102
+      "roi": -0.267,
+      "vs_base": -0.133,
+      "p_better": 0.091
      },
      "5": {
-      "roi": 0.537,
-      "vs_base": 0.681,
-      "p_better": 0.848
+      "roi": 0.571,
+      "vs_base": -0.665,
+      "p_better": 0.212
      },
      "20": {
       "roi": 0.732,
-      "vs_base": 0.78,
-      "p_better": 0.999
+      "vs_base": 0.687,
+      "p_better": 0.961
      }
     },
     "noblowout": {
      "nights": 27,
      "1": {
-      "roi": 0.133,
-      "vs_base": 0.0,
+      "roi": -0.267,
+      "vs_base": -0.133,
       "p_better": 0.0
      },
      "5": {
-      "roi": -0.143,
-      "vs_base": 0.0,
-      "p_better": 0.0
+      "roi": 0.775,
+      "vs_base": -0.461,
+      "p_better": 0.365
      },
      "20": {
       "roi": -0.057,
-      "vs_base": -0.008,
-      "p_better": 0.0
+      "vs_base": -0.101,
+      "p_better": 0.331
      }
     },
     "base": {
      "nights": 27,
      "1": {
-      "roi": 0.133,
+      "roi": -0.133,
       "vs_base": 0.0,
       "p_better": 0.0
      },
      "5": {
-      "roi": -0.143,
+      "roi": 1.236,
       "vs_base": 0.0,
       "p_better": 0.0
      },
      "20": {
-      "roi": -0.048,
+      "roi": 0.044,
       "vs_base": 0.0,
       "p_better": 0.0
      }
@@ -1575,7 +1575,7 @@
    }
   },
   "nba": {
-   "nights": 480,
+   "nights": 584,
    "cash-1": {
     "current": {
      "rule": [
@@ -1584,23 +1584,23 @@
       1.0,
       0
      ],
-     "roi": 0.189,
-     "top1_rate": 0.048
+     "roi": 0.193,
+     "top1_rate": 0.045
     },
     "best": {
      "rule": [
-      "port",
+      "cash",
       "none",
       1.0,
       0
      ],
-     "roi": 0.215,
-     "p_better": 0.712,
+     "roi": 0.193,
+     "p_better": 0.5,
      "p_halves": [
-      0.34,
-      0.857
+      0.0,
+      0.0
      ],
-     "top1_rate": 0.04
+     "top1_rate": 0.045
     },
     "adopted": false
    },
@@ -1612,23 +1612,23 @@
       1.0,
       0
      ],
-     "roi": 0.159,
-     "top1_rate": 0.075
+     "roi": 0.151,
+     "top1_rate": 0.074
     },
     "best": {
      "rule": [
-      "top1",
-      "mid",
+      "proj",
+      "none",
       1.0,
       0
      ],
-     "roi": 0.171,
-     "p_better": 0.65,
+     "roi": 0.168,
+     "p_better": 0.84,
      "p_halves": [
-      0.565,
-      0.604
+      0.483,
+      0.917
      ],
-     "top1_rate": 0.073
+     "top1_rate": 0.07
     },
     "adopted": false
    },
@@ -1640,23 +1640,23 @@
       0.6,
       0
      ],
-     "roi": 0.13,
-     "top1_rate": 0.119
+     "roi": 0.124,
+     "top1_rate": 0.128
     },
     "best": {
      "rule": [
-      "top1",
-      "mid",
-      1.0,
+      "proj",
+      "high",
+      0.6,
       0
      ],
-     "roi": 0.175,
-     "p_better": 0.962,
+     "roi": 0.164,
+     "p_better": 0.988,
      "p_halves": [
-      0.844,
-      0.915
+      0.896,
+      0.974
      ],
-     "top1_rate": 0.119
+     "top1_rate": 0.116
     },
     "adopted": false
    },
@@ -1668,23 +1668,23 @@
       0.6,
       0
      ],
-     "roi": 0.125,
-     "top1_rate": 0.171
+     "roi": 0.118,
+     "top1_rate": 0.182
     },
     "best": {
      "rule": [
-      "top1",
-      "none",
-      1.0,
+      "proj",
+      "high",
+      0.6,
       0
      ],
-     "roi": 0.164,
-     "p_better": 0.978,
+     "roi": 0.156,
+     "p_better": 0.997,
      "p_halves": [
-      0.885,
-      0.947
+      0.977,
+      0.972
      ],
-     "top1_rate": 0.204
+     "top1_rate": 0.166
     },
     "adopted": false
    },
@@ -1696,25 +1696,25 @@
       0.5,
       0
      ],
-     "roi": 0.112,
-     "top1_rate": 0.283
+     "roi": 0.104,
+     "top1_rate": 0.288
     },
     "best": {
      "rule": [
-      "top1",
+      "ceil",
       "high",
-      1.0,
+      0.6,
       0
      ],
-     "roi": 0.169,
+     "roi": 0.15,
      "p_better": 0.999,
      "p_halves": [
-      0.973,
-      0.996
+      0.991,
+      0.989
      ],
-     "top1_rate": 0.269
+     "top1_rate": 0.238
     },
-    "adopted": true
+    "adopted": false
    },
    "cash-40": {
     "current": {
@@ -1724,8 +1724,8 @@
       0.4,
       0
      ],
-     "roi": 0.101,
-     "top1_rate": 0.381
+     "roi": 0.095,
+     "top1_rate": 0.394
     },
     "best": {
      "rule": [
@@ -1734,15 +1734,15 @@
       1.0,
       0
      ],
-     "roi": 0.158,
+     "roi": 0.142,
      "p_better": 1.0,
      "p_halves": [
       0.997,
-      0.999
+      0.995
      ],
-     "top1_rate": 0.356
+     "top1_rate": 0.349
     },
-    "adopted": true
+    "adopted": false
    },
    "small-1": {
     "current": {
@@ -1752,23 +1752,23 @@
       1.0,
       0
      ],
-     "roi": 1.201,
-     "top1_rate": 0.048
+     "roi": 1.18,
+     "top1_rate": 0.045
     },
     "best": {
      "rule": [
-      "top1",
-      "low",
+      "roilow",
+      "mid",
       1.0,
       0
      ],
-     "roi": 1.226,
-     "p_better": 0.529,
+     "roi": 1.28,
+     "p_better": 0.622,
      "p_halves": [
-      0.458,
-      0.584
+      0.381,
+      0.747
      ],
-     "top1_rate": 0.044
+     "top1_rate": 0.048
     },
     "adopted": false
    },
@@ -1780,25 +1780,25 @@
       1.0,
       0
      ],
-     "roi": 1.082,
-     "top1_rate": 0.081
+     "roi": 1.038,
+     "top1_rate": 0.087
     },
     "best": {
      "rule": [
-      "cash",
+      "roi",
       "low",
       1.0,
       0
      ],
-     "roi": 1.319,
-     "p_better": 0.889,
+     "roi": 1.329,
+     "p_better": 0.955,
      "p_halves": [
-      0.89,
-      0.704
+      0.863,
+      0.9
      ],
-     "top1_rate": 0.092
+     "top1_rate": 0.101
     },
-    "adopted": false
+    "adopted": true
    },
    "small-5": {
     "current": {
@@ -1808,23 +1808,23 @@
       0.6,
       0
      ],
-     "roi": 0.886,
-     "top1_rate": 0.115
+     "roi": 0.904,
+     "top1_rate": 0.128
     },
     "best": {
      "rule": [
-      "ceil",
+      "cash",
       "low",
       1.0,
       0
      ],
-     "roi": 1.341,
-     "p_better": 0.997,
+     "roi": 1.25,
+     "p_better": 0.995,
      "p_halves": [
-      0.987,
-      0.967
+      0.936,
+      0.984
      ],
-     "top1_rate": 0.133
+     "top1_rate": 0.12
     },
     "adopted": true
    },
@@ -1836,23 +1836,23 @@
       0.6,
       0
      ],
-     "roi": 0.936,
-     "top1_rate": 0.215
+     "roi": 0.967,
+     "top1_rate": 0.226
     },
     "best": {
      "rule": [
-      "ceil",
+      "roi",
       "low",
       1.0,
       0
      ],
-     "roi": 1.226,
-     "p_better": 0.985,
+     "roi": 1.213,
+     "p_better": 0.979,
      "p_halves": [
-      0.834,
-      0.982
+      0.881,
+      0.967
      ],
-     "top1_rate": 0.175
+     "top1_rate": 0.183
     },
     "adopted": true
    },
@@ -1864,7 +1864,7 @@
       0.5,
       0
      ],
-     "roi": 0.966,
+     "roi": 0.965,
      "top1_rate": 0.327
     },
     "best": {
@@ -1874,11 +1874,11 @@
       1.0,
       0
      ],
-     "roi": 1.194,
-     "p_better": 0.97,
+     "roi": 1.224,
+     "p_better": 0.992,
      "p_halves": [
-      0.665,
-      0.986
+      0.732,
+      0.998
      ],
      "top1_rate": 0.219
     },
@@ -1892,23 +1892,23 @@
       0.4,
       0
      ],
-     "roi": 1.006,
-     "top1_rate": 0.46
+     "roi": 0.983,
+     "top1_rate": 0.437
     },
     "best": {
      "rule": [
-      "ceil",
-      "low",
+      "roilow",
+      "mid",
       1.0,
       0
      ],
-     "roi": 1.147,
-     "p_better": 0.902,
+     "roi": 1.154,
+     "p_better": 0.969,
      "p_halves": [
-      0.445,
-      0.973
+      0.674,
+      0.989
      ],
-     "top1_rate": 0.304
+     "top1_rate": 0.286
     },
     "adopted": false
    },
@@ -1920,23 +1920,23 @@
       1.0,
       0
      ],
-     "roi": 2.657,
-     "top1_rate": 0.048
+     "roi": 2.696,
+     "top1_rate": 0.045
     },
     "best": {
      "rule": [
-      "port",
-      "none",
+      "roilow",
+      "mid",
       1.0,
       0
      ],
-     "roi": 6.837,
-     "p_better": 0.983,
+     "roi": 7.541,
+     "p_better": 0.984,
      "p_halves": [
-      0.786,
-      0.972
+      0.956,
+      0.885
      ],
-     "top1_rate": 0.04
+     "top1_rate": 0.048
     },
     "adopted": true
    },
@@ -1948,23 +1948,23 @@
       1.0,
       0
      ],
-     "roi": 2.853,
-     "top1_rate": 0.081
+     "roi": 2.546,
+     "top1_rate": 0.087
     },
     "best": {
      "rule": [
-      "ceil",
-      "none",
+      "roilow",
+      "mid",
       0.6,
       0
      ],
-     "roi": 3.912,
-     "p_better": 0.869,
+     "roi": 4.344,
+     "p_better": 0.915,
      "p_halves": [
-      0.845,
-      0.735
+      0.903,
+      0.732
      ],
-     "top1_rate": 0.096
+     "top1_rate": 0.087
     },
     "adopted": false
    },
@@ -1976,8 +1976,8 @@
       0.6,
       0
      ],
-     "roi": 2.642,
-     "top1_rate": 0.115
+     "roi": 2.174,
+     "top1_rate": 0.128
     },
     "best": {
      "rule": [
@@ -1986,13 +1986,13 @@
       1.0,
       0
      ],
-     "roi": 3.581,
-     "p_better": 0.793,
+     "roi": 3.838,
+     "p_better": 0.969,
      "p_halves": [
-      0.224,
-      0.896
+      0.383,
+      0.993
      ],
-     "top1_rate": 0.108
+     "top1_rate": 0.12
     },
     "adopted": false
    },
@@ -2004,25 +2004,25 @@
       0.6,
       0
      ],
-     "roi": 2.305,
-     "top1_rate": 0.215
+     "roi": 2.177,
+     "top1_rate": 0.226
     },
     "best": {
      "rule": [
-      "top1",
-      "low",
-      1.0,
+      "roilow",
+      "mid",
+      0.5,
       0
      ],
-     "roi": 3.165,
-     "p_better": 0.892,
+     "roi": 3.956,
+     "p_better": 0.986,
      "p_halves": [
-      0.542,
-      0.924
+      0.917,
+      0.965
      ],
-     "top1_rate": 0.173
+     "top1_rate": 0.17
     },
-    "adopted": false
+    "adopted": true
    },
    "mid-20": {
     "current": {
@@ -2032,25 +2032,25 @@
       0.5,
       0
      ],
-     "roi": 1.854,
+     "roi": 1.957,
      "top1_rate": 0.327
     },
     "best": {
      "rule": [
-      "top1",
-      "low",
-      1.0,
+      "roilow",
+      "mid",
+      0.6,
       0
      ],
-     "roi": 3.019,
-     "p_better": 0.964,
+     "roi": 3.545,
+     "p_better": 0.998,
      "p_halves": [
-      0.73,
-      0.959
+      0.921,
+      0.997
      ],
-     "top1_rate": 0.229
+     "top1_rate": 0.238
     },
-    "adopted": false
+    "adopted": true
    },
    "mid-40": {
     "current": {
@@ -2060,25 +2060,25 @@
       0.4,
       0
      ],
-     "roi": 2.277,
-     "top1_rate": 0.46
+     "roi": 2.076,
+     "top1_rate": 0.437
     },
     "best": {
      "rule": [
-      "cash",
+      "ceil",
       "low",
       1.0,
       0
      ],
-     "roi": 3.094,
-     "p_better": 0.959,
+     "roi": 3.168,
+     "p_better": 0.987,
      "p_halves": [
-      0.655,
-      0.982
+      0.942,
+      0.954
      ],
-     "top1_rate": 0.3
+     "top1_rate": 0.307
     },
-    "adopted": false
+    "adopted": true
    },
    "large-1": {
     "current": {
@@ -2088,23 +2088,23 @@
       1.0,
       0
      ],
-     "roi": 2.455,
-     "top1_rate": 0.048
+     "roi": 2.379,
+     "top1_rate": 0.045
     },
     "best": {
      "rule": [
-      "cash",
+      "roi",
       "low",
       1.0,
       0
      ],
-     "roi": 9.461,
-     "p_better": 0.863,
+     "roi": 11.205,
+     "p_better": 0.87,
      "p_halves": [
-      0.074,
-      0.9
+      0.304,
+      0.882
      ],
-     "top1_rate": 0.033
+     "top1_rate": 0.039
     },
     "adopted": false
    },
@@ -2116,23 +2116,23 @@
       1.0,
       0
      ],
-     "roi": 2.488,
-     "top1_rate": 0.081
+     "roi": 3.561,
+     "top1_rate": 0.087
     },
     "best": {
      "rule": [
       "cash",
       "low",
-      0.6,
+      1.0,
       0
      ],
-     "roi": 6.746,
-     "p_better": 0.867,
+     "roi": 9.861,
+     "p_better": 0.963,
      "p_halves": [
-      0.05,
-      0.973
+      0.092,
+      0.992
      ],
-     "top1_rate": 0.094
+     "top1_rate": 0.098
     },
     "adopted": false
    },
@@ -2144,8 +2144,8 @@
       0.6,
       0
      ],
-     "roi": 3.193,
-     "top1_rate": 0.115
+     "roi": 4.368,
+     "top1_rate": 0.128
     },
     "best": {
      "rule": [
@@ -2154,13 +2154,13 @@
       1.0,
       0
      ],
-     "roi": 6.927,
-     "p_better": 0.957,
+     "roi": 7.424,
+     "p_better": 0.906,
      "p_halves": [
-      0.178,
-      0.988
+      0.129,
+      0.949
      ],
-     "top1_rate": 0.133
+     "top1_rate": 0.128
     },
     "adopted": false
    },
@@ -2172,23 +2172,23 @@
       0.6,
       0
      ],
-     "roi": 2.795,
-     "top1_rate": 0.215
+     "roi": 3.769,
+     "top1_rate": 0.226
     },
     "best": {
      "rule": [
-      "top1",
-      "low",
+      "roilow",
+      "mid",
       1.0,
       0
      ],
-     "roi": 5.976,
-     "p_better": 0.969,
+     "roi": 6.616,
+     "p_better": 0.822,
      "p_halves": [
-      0.595,
-      0.987
+      0.868,
+      0.458
      ],
-     "top1_rate": 0.173
+     "top1_rate": 0.152
     },
     "adopted": false
    },
@@ -2200,25 +2200,25 @@
       0.5,
       0
      ],
-     "roi": 1.933,
+     "roi": 3.171,
      "top1_rate": 0.327
     },
     "best": {
      "rule": [
-      "top1",
-      "low",
+      "roilow",
+      "mid",
       1.0,
       0
      ],
-     "roi": 4.956,
-     "p_better": 0.976,
+     "roi": 6.356,
+     "p_better": 0.968,
      "p_halves": [
-      0.685,
-      0.985
+      0.944,
+      0.822
      ],
-     "top1_rate": 0.229
+     "top1_rate": 0.231
     },
-    "adopted": false
+    "adopted": true
    },
    "large-40": {
     "current": {
@@ -2228,8 +2228,8 @@
       0.4,
       0
      ],
-     "roi": 3.414,
-     "top1_rate": 0.46
+     "roi": 3.209,
+     "top1_rate": 0.437
     },
     "best": {
      "rule": [
@@ -2238,20 +2238,20 @@
       1.0,
       0
      ],
-     "roi": 5.574,
-     "p_better": 0.978,
+     "roi": 5.671,
+     "p_better": 0.979,
      "p_halves": [
-      0.826,
-      0.96
+      0.935,
+      0.896
      ],
-     "top1_rate": 0.304
+     "top1_rate": 0.307
     },
     "adopted": true
    },
    "variants": {}
   },
   "nhl": {
-   "nights": 52,
+   "nights": 53,
    "cash-1": {
     "current": {
      "rule": [
@@ -2260,25 +2260,25 @@
       1.0,
       0
      ],
-     "roi": 0.315,
+     "roi": 0.189,
      "top1_rate": 0.038
     },
     "best": {
      "rule": [
       "cash",
-      "none",
+      "mid",
       1.0,
       3
      ],
-     "roi": 0.385,
-     "p_better": 0.872,
+     "roi": 0.426,
+     "p_better": 0.97,
      "p_halves": [
-      0.643,
-      0.646
+      0.805,
+      0.988
      ],
-     "top1_rate": 0.038
+     "top1_rate": 0.019
     },
-    "adopted": false
+    "adopted": true
    },
    "cash-3": {
     "current": {
@@ -2288,8 +2288,8 @@
       1.0,
       0
      ],
-     "roi": 0.373,
-     "top1_rate": 0.058
+     "roi": 0.37,
+     "top1_rate": 0.094
     },
     "best": {
      "rule": [
@@ -2298,13 +2298,13 @@
       1.0,
       3
      ],
-     "roi": 0.431,
-     "p_better": 0.982,
+     "roi": 0.415,
+     "p_better": 0.826,
      "p_halves": [
-      0.643,
-      0.961
+      0.616,
+      0.785
      ],
-     "top1_rate": 0.077
+     "top1_rate": 0.113
     },
     "adopted": false
    },
@@ -2316,23 +2316,23 @@
       0.6,
       0
      ],
-     "roi": 0.205,
-     "top1_rate": 0.115
+     "roi": 0.175,
+     "top1_rate": 0.132
     },
     "best": {
      "rule": [
       "cash",
-      "none",
+      "high",
       1.0,
       3
      ],
-     "roi": 0.378,
-     "p_better": 0.999,
+     "roi": 0.345,
+     "p_better": 1.0,
      "p_halves": [
-      0.997,
-      0.966
+      0.976,
+      0.997
      ],
-     "top1_rate": 0.077
+     "top1_rate": 0.113
     },
     "adopted": true
    },
@@ -2344,23 +2344,23 @@
       0.6,
       0
      ],
-     "roi": 0.184,
-     "top1_rate": 0.212
+     "roi": 0.172,
+     "top1_rate": 0.189
     },
     "best": {
      "rule": [
-      "cash",
-      "high",
+      "ceil",
+      "mid",
       1.0,
-      4
+      3
      ],
-     "roi": 0.357,
-     "p_better": 1.0,
+     "roi": 0.328,
+     "p_better": 0.994,
      "p_halves": [
-      0.992,
-      0.995
+      0.773,
+      1.0
      ],
-     "top1_rate": 0.173
+     "top1_rate": 0.132
     },
     "adopted": true
    },
@@ -2372,23 +2372,23 @@
       0.5,
       0
      ],
-     "roi": 0.13,
-     "top1_rate": 0.327
+     "roi": 0.117,
+     "top1_rate": 0.358
     },
     "best": {
      "rule": [
-      "cash",
+      "ceil",
       "mid",
       1.0,
       0
      ],
-     "roi": 0.334,
+     "roi": 0.323,
      "p_better": 1.0,
      "p_halves": [
-      0.994,
-      0.999
+      0.992,
+      0.998
      ],
-     "top1_rate": 0.288
+     "top1_rate": 0.264
     },
     "adopted": true
    },
@@ -2400,23 +2400,23 @@
       0.4,
       0
      ],
-     "roi": 0.138,
-     "top1_rate": 0.423
+     "roi": 0.125,
+     "top1_rate": 0.472
     },
     "best": {
      "rule": [
-      "cash",
-      "high",
+      "ceil",
+      "none",
       1.0,
       3
      ],
-     "roi": 0.308,
-     "p_better": 1.0,
+     "roi": 0.288,
+     "p_better": 0.999,
      "p_halves": [
-      1.0,
-      0.985
+      0.996,
+      0.975
      ],
-     "top1_rate": 0.365
+     "top1_rate": 0.377
     },
     "adopted": true
    },
@@ -2428,23 +2428,23 @@
       1.0,
       0
      ],
-     "roi": 1.689,
+     "roi": 1.198,
      "top1_rate": 0.038
     },
     "best": {
      "rule": [
-      "proj",
-      "mid",
+      "ceil",
+      "none",
       1.0,
       4
      ],
-     "roi": 2.252,
-     "p_better": 0.664,
+     "roi": 2.073,
+     "p_better": 0.822,
      "p_halves": [
-      0.461,
-      0.825
+      0.427,
+      0.93
      ],
-     "top1_rate": 0.058
+     "top1_rate": 0.038
     },
     "adopted": false
    },
@@ -2456,8 +2456,8 @@
       1.0,
       0
      ],
-     "roi": 0.945,
-     "top1_rate": 0.115
+     "roi": 0.806,
+     "top1_rate": 0.094
     },
     "best": {
      "rule": [
@@ -2466,13 +2466,13 @@
       0.6,
       4
      ],
-     "roi": 2.076,
-     "p_better": 0.922,
+     "roi": 1.878,
+     "p_better": 0.905,
      "p_halves": [
-      0.998,
-      0.559
+      0.999,
+      0.622
      ],
-     "top1_rate": 0.096
+     "top1_rate": 0.094
     },
     "adopted": false
    },
@@ -2484,23 +2484,23 @@
       0.6,
       0
      ],
-     "roi": 1.023,
-     "top1_rate": 0.192
+     "roi": 0.776,
+     "top1_rate": 0.132
     },
     "best": {
      "rule": [
       "ceil",
       "none",
-      1.0,
+      0.6,
       4
      ],
-     "roi": 1.864,
-     "p_better": 0.908,
+     "roi": 1.714,
+     "p_better": 0.974,
      "p_halves": [
-      0.893,
-      0.768
+      0.998,
+      0.781
      ],
-     "top1_rate": 0.154
+     "top1_rate": 0.17
     },
     "adopted": true
    },
@@ -2512,23 +2512,23 @@
       0.6,
       0
      ],
-     "roi": 1.084,
-     "top1_rate": 0.231
+     "roi": 1.092,
+     "top1_rate": 0.245
     },
     "best": {
      "rule": [
-      "cash",
-      "high",
+      "ceil",
+      "none",
       1.0,
       4
      ],
-     "roi": 1.749,
-     "p_better": 0.888,
+     "roi": 1.724,
+     "p_better": 0.88,
      "p_halves": [
-      0.867,
-      0.709
+      0.826,
+      0.797
      ],
-     "top1_rate": 0.173
+     "top1_rate": 0.226
     },
     "adopted": false
    },
@@ -2540,23 +2540,23 @@
       0.5,
       0
      ],
-     "roi": 1.13,
-     "top1_rate": 0.327
+     "roi": 1.118,
+     "top1_rate": 0.377
     },
     "best": {
      "rule": [
-      "cash",
+      "ceil",
       "high",
       1.0,
       4
      ],
-     "roi": 1.713,
-     "p_better": 0.865,
+     "roi": 1.581,
+     "p_better": 0.856,
      "p_halves": [
-      0.867,
-      0.697
+      0.706,
+      0.806
      ],
-     "top1_rate": 0.231
+     "top1_rate": 0.283
     },
     "adopted": false
    },
@@ -2568,8 +2568,8 @@
       0.4,
       0
      ],
-     "roi": 1.147,
-     "top1_rate": 0.481
+     "roi": 1.001,
+     "top1_rate": 0.491
     },
     "best": {
      "rule": [
@@ -2578,15 +2578,15 @@
       1.0,
       4
      ],
-     "roi": 1.634,
-     "p_better": 0.897,
+     "roi": 1.592,
+     "p_better": 0.941,
      "p_halves": [
-      0.889,
-      0.767
+      0.93,
+      0.825
      ],
-     "top1_rate": 0.423
+     "top1_rate": 0.453
     },
-    "adopted": false
+    "adopted": true
    },
    "mid-1": {
     "current": {
@@ -2596,23 +2596,23 @@
       1.0,
       0
      ],
-     "roi": 1.605,
+     "roi": 3.67,
      "top1_rate": 0.038
     },
     "best": {
      "rule": [
-      "port",
-      "low",
+      "roi",
+      "none",
       1.0,
       4
      ],
-     "roi": 10.166,
-     "p_better": 0.742,
+     "roi": 18.651,
+     "p_better": 0.865,
      "p_halves": [
-      0.008,
-      0.97
+      0.015,
+      0.973
      ],
-     "top1_rate": 0.077
+     "top1_rate": 0.057
     },
     "adopted": false
    },
@@ -2624,23 +2624,23 @@
       1.0,
       0
      ],
-     "roi": 3.499,
-     "top1_rate": 0.115
+     "roi": 3.69,
+     "top1_rate": 0.094
     },
     "best": {
      "rule": [
-      "cash",
+      "proj",
       "low",
-      0.6,
+      1.0,
       3
      ],
-     "roi": 4.969,
-     "p_better": 0.641,
+     "roi": 10.152,
+     "p_better": 0.726,
      "p_halves": [
-      0.959,
-      0.615
+      0.806,
+      0.711
      ],
-     "top1_rate": 0.077
+     "top1_rate": 0.075
     },
     "adopted": false
    },
@@ -2652,8 +2652,8 @@
       0.6,
       0
      ],
-     "roi": 2.524,
-     "top1_rate": 0.192
+     "roi": 2.213,
+     "top1_rate": 0.132
     },
     "best": {
      "rule": [
@@ -2662,13 +2662,13 @@
       1.0,
       3
      ],
-     "roi": 4.437,
-     "p_better": 0.683,
+     "roi": 8.366,
+     "p_better": 0.751,
      "p_halves": [
-      0.123,
-      0.725
+      0.74,
+      0.747
      ],
-     "top1_rate": 0.096
+     "top1_rate": 0.113
     },
     "adopted": false
    },
@@ -2680,23 +2680,23 @@
       0.6,
       0
      ],
-     "roi": 1.593,
-     "top1_rate": 0.231
+     "roi": 2.586,
+     "top1_rate": 0.245
     },
     "best": {
      "rule": [
-      "port",
+      "proj",
       "low",
       0.6,
-      3
+      0
      ],
-     "roi": 2.435,
-     "p_better": 0.799,
+     "roi": 6.072,
+     "p_better": 0.723,
      "p_halves": [
-      0.483,
-      0.801
+      0.925,
+      0.643
      ],
-     "top1_rate": 0.212
+     "top1_rate": 0.189
     },
     "adopted": false
    },
@@ -2708,25 +2708,25 @@
       0.5,
       0
      ],
-     "roi": 2.275,
-     "top1_rate": 0.327
+     "roi": 2.691,
+     "top1_rate": 0.377
     },
     "best": {
      "rule": [
-      "port",
-      "low",
-      1.0,
+      "roi",
+      "none",
+      0.5,
       3
      ],
-     "roi": 2.696,
-     "p_better": 0.68,
+     "roi": 4.648,
+     "p_better": 0.92,
      "p_halves": [
-      0.039,
-      0.792
+      0.891,
+      0.763
      ],
-     "top1_rate": 0.212
+     "top1_rate": 0.377
     },
-    "adopted": false
+    "adopted": true
    },
    "mid-40": {
     "current": {
@@ -2736,8 +2736,8 @@
       0.4,
       0
      ],
-     "roi": 1.71,
-     "top1_rate": 0.481
+     "roi": 2.138,
+     "top1_rate": 0.491
     },
     "best": {
      "rule": [
@@ -2746,15 +2746,15 @@
       0.5,
       0
      ],
-     "roi": 2.7,
-     "p_better": 0.906,
+     "roi": 4.09,
+     "p_better": 0.955,
      "p_halves": [
-      0.867,
-      0.842
+      0.976,
+      0.745
      ],
-     "top1_rate": 0.423
+     "top1_rate": 0.453
     },
-    "adopted": true
+    "adopted": false
    },
    "large-1": {
     "current": {
@@ -2764,23 +2764,23 @@
       1.0,
       0
      ],
-     "roi": 0.767,
+     "roi": 1.595,
      "top1_rate": 0.038
     },
     "best": {
      "rule": [
-      "port",
-      "low",
+      "roi",
+      "none",
       1.0,
       4
      ],
-     "roi": 24.038,
-     "p_better": 0.721,
+     "roi": 47.323,
+     "p_better": 0.912,
      "p_halves": [
-      0.012,
-      0.954
+      0.051,
+      0.994
      ],
-     "top1_rate": 0.077
+     "top1_rate": 0.075
     },
     "adopted": false
    },
@@ -2792,25 +2792,25 @@
       1.0,
       0
      ],
-     "roi": 7.915,
-     "top1_rate": 0.115
+     "roi": 8.007,
+     "top1_rate": 0.094
     },
     "best": {
      "rule": [
-      "port",
-      "low",
+      "roi",
+      "none",
       1.0,
       4
      ],
-     "roi": 8.428,
-     "p_better": 0.807,
+     "roi": 35.764,
+     "p_better": 0.918,
      "p_halves": [
-      0.941,
-      0.324
+      0.981,
+      0.895
      ],
-     "top1_rate": 0.154
+     "top1_rate": 0.17
     },
-    "adopted": false
+    "adopted": true
    },
    "large-5": {
     "current": {
@@ -2820,23 +2820,23 @@
       0.6,
       0
      ],
-     "roi": 4.889,
-     "top1_rate": 0.192
+     "roi": 4.739,
+     "top1_rate": 0.132
     },
     "best": {
      "rule": [
-      "port",
+      "roi",
       "none",
-      0.6,
+      0.5,
       4
      ],
-     "roi": 5.527,
-     "p_better": 0.999,
+     "roi": 21.853,
+     "p_better": 0.918,
      "p_halves": [
-      0.996,
-      0.904
+      0.974,
+      0.901
      ],
-     "top1_rate": 0.192
+     "top1_rate": 0.189
     },
     "adopted": true
    },
@@ -2848,25 +2848,25 @@
       0.6,
       0
      ],
-     "roi": 2.555,
-     "top1_rate": 0.231
+     "roi": 3.546,
+     "top1_rate": 0.245
     },
     "best": {
      "rule": [
-      "port",
-      "low",
+      "roi",
+      "high",
       1.0,
-      3
+      4
      ],
-     "roi": 4.867,
-     "p_better": 0.793,
+     "roi": 15.276,
+     "p_better": 0.905,
      "p_halves": [
-      0.509,
-      0.756
+      0.993,
+      0.896
      ],
-     "top1_rate": 0.212
+     "top1_rate": 0.208
     },
-    "adopted": false
+    "adopted": true
    },
    "large-20": {
     "current": {
@@ -2876,23 +2876,23 @@
       0.5,
       0
      ],
-     "roi": 3.178,
-     "top1_rate": 0.327
+     "roi": 3.665,
+     "top1_rate": 0.377
     },
     "best": {
      "rule": [
-      "ceil",
-      "none",
-      0.6,
-      4
+      "roi",
+      "high",
+      1.0,
+      3
      ],
-     "roi": 4.435,
-     "p_better": 0.652,
+     "roi": 8.411,
+     "p_better": 0.822,
      "p_halves": [
-      0.596,
-      0.654
+      0.544,
+      0.833
      ],
-     "top1_rate": 0.404
+     "top1_rate": 0.302
     },
     "adopted": false
    },
@@ -2904,23 +2904,23 @@
       0.4,
       0
      ],
-     "roi": 2.305,
-     "top1_rate": 0.481
+     "roi": 2.753,
+     "top1_rate": 0.491
     },
     "best": {
      "rule": [
-      "cash",
+      "proj",
       "none",
-      0.5,
-      0
+      0.6,
+      4
      ],
-     "roi": 4.681,
-     "p_better": 0.943,
+     "roi": 7.497,
+     "p_better": 0.97,
      "p_halves": [
-      0.915,
-      0.919
+      0.966,
+      0.93
      ],
-     "top1_rate": 0.423
+     "top1_rate": 0.453
     },
     "adopted": true
    },
@@ -2929,52 +2929,52 @@
      "nights": 52,
      "1": {
       "roi": 0.385,
-      "vs_base": 0.069,
-      "p_better": 0.867
+      "vs_base": -0.069,
+      "p_better": 0.089
      },
      "5": {
-      "roi": 1.069,
-      "vs_base": -0.431,
-      "p_better": 0.198
+      "roi": NaN,
+      "vs_base": NaN,
+      "p_better": 0.0
      },
      "20": {
       "roi": 1.0,
-      "vs_base": -0.198,
-      "p_better": 0.098
+      "vs_base": -0.277,
+      "p_better": 0.156
      }
     },
     "diverse": {
      "nights": 52,
      "1": {
-      "roi": 0.281,
-      "vs_base": -0.035,
-      "p_better": 0.0
+      "roi": 0.315,
+      "vs_base": -0.138,
+      "p_better": 0.025
      },
      "5": {
-      "roi": 1.524,
-      "vs_base": 0.024,
-      "p_better": 0.509
+      "roi": NaN,
+      "vs_base": NaN,
+      "p_better": 0.0
      },
      "20": {
       "roi": 0.733,
-      "vs_base": -0.465,
-      "p_better": 0.004
+      "vs_base": -0.544,
+      "p_better": 0.012
      }
     },
     "base": {
-     "nights": 52,
+     "nights": 53,
      "1": {
-      "roi": 0.315,
+      "roi": 0.426,
       "vs_base": 0.0,
       "p_better": 0.0
      },
      "5": {
-      "roi": 1.5,
+      "roi": 2.212,
       "vs_base": 0.0,
       "p_better": 0.0
      },
      "20": {
-      "roi": 1.198,
+      "roi": 1.256,
       "vs_base": 0.0,
       "p_better": 0.0
      }

@@ -64,7 +64,24 @@ def mlb_actuals(day: str) -> dict:
         _MLB = pd.read_csv(B.ROOT / "data" / "mlb_2026.csv.gz", usecols=["name", "date", "points"])
         _MLB["k"] = _MLB["name"].map(MD.normalise)
     d = _MLB[_MLB["date"] == day]
-    return {k: float(v) for k, v in zip(d["k"], d["points"])}
+    if len(d):
+        return {k: float(v) for k, v in zip(d["k"], d["points"])}
+    # after the season file ends: box scores, cached like the other sports
+    import mlb_data as MD
+    path = B.ACT / "mlb" / f"{day}.json"
+    if path.exists():
+        return json.loads(path.read_text())
+    sched = MD.schedule(int(day[:4]), day, day)
+    rows = []
+    for g in sched[sched["final"]].to_dict("records"):
+        rows += MD.player_games(MD.boxscore(int(g["game_pk"])), g)
+    if not rows:
+        return {}
+    df = MD.score(pd.DataFrame(rows))
+    out = {MD.normalise(n): float(v) for n, v in zip(df["name"], df["points"])}
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(out))
+    return out
 
 
 def actual_for(sport: str, pl: dict, act: dict):

@@ -48,9 +48,10 @@ def _money(s: str) -> float | None:
     return v * {"k": 1e3, "m": 1e6}.get(m.group(2).lower(), 1.0)
 
 
-def featured(draft_group: int, contests: list[dict] | None = None) -> dict | None:
-    """The draft group's biggest tournament: pool, fee, entries, first prize."""
-    best = None
+def _eligible(draft_group, contests):
+    """The draft group's real tournaments (no double-ups, satellites, free
+    promos or unlimited matchups), as {name, pool, fee, entries, first}."""
+    out = []
     for c in contests if contests is not None else _CONTESTS:
         if str(c.get("dg")) != str(draft_group):
             continue
@@ -61,19 +62,84 @@ def featured(draft_group: int, contests: list[dict] | None = None) -> dict | Non
         fee = float(c.get("a") or 0)
         # Free promos and unlimited "matchups" (max entries 999,999,999) are
         # not tournaments with a payout curve.
-        if m < 200 or pool <= 0 or fee <= 0 or m > 2_000_000 or re.search(r"matchup", name, re.I):
+        if m < 20 or pool <= 0 or fee <= 0 or m > 2_000_000 or re.search(r"matchup", name, re.I):
             continue
-        # The BIGGEST FIELD, not the biggest pool: the biggest pool is often a
-        # 200-entry high-roller room, which is not the tournament played here.
-        if best is None or (m, pool) > (best["entries"], best["pool"]):
-            fee = fee or pool / (m * 0.88)
-            first = None
-            fm = re.search(r"\[\s*(\$[\d.,]+\s*[KkMm]?)\s*to\s*1st", name)
-            if fm:
-                first = _money(fm.group(1))
-            best = {"name": name, "pool": pool, "fee": fee, "entries": m,
-                    "first": first or 0.15 * pool, "first_from_name": bool(first)}
-    return best
+        first = None
+        fm = re.search(r"\[\s*(\$[\d.,]+\s*[KkMm]?)\s*to\s*1st", name)
+        if fm:
+            first = _money(fm.group(1))
+        out.append({"name": name, "pool": pool, "fee": fee, "entries": m,
+                    "first": first or 0.15 * pool, "first_from_name": bool(first)})
+    return out
+
+
+def featured(draft_group: int, contests: list[dict] | None = None) -> dict | None:
+    """The draft group's biggest tournament: pool, fee, entries, first prize.
+    The BIGGEST FIELD, not the biggest pool: the biggest pool is often a
+    200-entry high-roller room, which is not the tournament played here."""
+    got = [c for c in _eligible(draft_group, contests) if c["entries"] >= 200]
+    return max(got, key=lambda c: (c["entries"], c["pool"])) if got else None
+
+
+# Contest sizes the page lets you pick, each scored with its own payout curve.
+# Small fields pay flatter and reward the safest strong lineup; huge fields
+# pay almost everything to the top few hundred and reward being different.
+TIER_RANGES = {"small": (20, 500), "mid": (500, 10_000), "large": (10_000, 2_000_001)}
+TIER_LABEL = {"cash": "Double-up / cash game", "small": "Small tournament (under 500 entries)",
+              "mid": "Mid tournament (500–10K entries)", "large": "Large tournament (10K+ entries)"}
+TIERS = {   # standard contests, used for backtests and when the lobby has none in a tier
+    "small": {"name": "standard small GPP", "pool": 2_640.0, "fee": 20.0, "entries": 150,
+              "first": 600.0, "first_from_name": False},
+    "mid": {"name": "standard mid GPP", "pool": 7_920.0, "fee": 3.0, "entries": 3_000,
+            "first": 1_500.0, "first_from_name": False},
+    "large": {"name": "standard GPP (backtest)", "pool": 100_000.0, "fee": 5.0,
+              "entries": 23_000, "first": 15_000.0, "first_from_name": False},
+}
+
+
+def tier_of(entries: int) -> str:
+    return next(t for t, (lo, hi) in TIER_RANGES.items() if lo <= entries < hi)
+
+
+def tier_contests(draft_group, contests=None) -> dict:
+    """{tier: the lobby's biggest-field contest in that size range, or the
+    standard one if the lobby has none}."""
+    got = _eligible(draft_group, contests)
+    out = {}
+    for t, (lo, hi) in TIER_RANGES.items():
+        inside = [c for c in got if lo <= c["entries"] < hi]
+        if inside:
+            out[t] = dict(max(inside, key=lambda c: (c["entries"], c["pool"])), real=True)
+        else:
+            out[t] = dict(TIERS[t], real=False)
+    return out
+
+
+def tier_multiple(pct: float, tier: str, lines: dict | None = None,
+                  score: float | None = None) -> float:
+    """Prize / fee for finishing at field percentile `pct` in a tier's standard
+    contest. Beyond the top 0.1% the field sample cannot resolve a rank, so
+    when the night's lines are given the finish is extended on the same
+    exponential tail the live ROI uses (fitted between the top 1% and 0.1%)."""
+    c = TIERS[tier]
+    pay = _table(tier)
+    f = max(0.0, (100.0 - pct) / 100.0)
+    if lines and score is not None and lines.get("win") and lines.get("top1") \
+            and score > lines["win"] and lines["win"] > lines["top1"]:
+        b = (lines["win"] - lines["top1"]) / np.log(10.0)
+        f = 0.001 * float(np.exp(-(score - lines["win"]) / b))
+    rank = max(1, int(np.ceil(f * c["entries"])))
+    return float(pay[rank - 1] / c["fee"]) if rank <= len(pay) else 0.0
+
+
+_TABLES: dict = {}
+
+
+def _table(tier):
+    if tier not in _TABLES:
+        c = TIERS[tier]
+        _TABLES[tier] = payout_table(c["entries"], c["pool"], c["fee"], c["first"])
+    return _TABLES[tier]
 
 
 def payout_table(entries: int, pool: float, fee: float, first: float) -> np.ndarray:
@@ -153,8 +219,7 @@ def lineup_roi(S: np.ndarray, Fd: np.ndarray, P: np.ndarray, contest: dict,
 
 
 # For backtests, where the night's real lobby is gone: a typical big GPP.
-STANDARD_GPP = {"name": "standard GPP (backtest)", "pool": 100_000.0, "fee": 5.0,
-                "entries": 23_000, "first": 15_000.0, "first_from_name": False}
+STANDARD_GPP = TIERS["large"]
 
 
 def attach(payload: dict, inner: dict | None, contest: dict | None = None) -> None:
@@ -181,3 +246,30 @@ def attach(payload: dict, inner: dict | None, contest: dict | None = None) -> No
     best = max(pool, key=lambda L: L["roi"])
     log.info("ROI vs %s (%d entries, $%.0f): best lineup %+.0f%%",
              c["name"], c["entries"], c["fee"], best["roi"])
+    tiers = {t: dict(v, real=False) for t, v in TIERS.items()} if contest is not None \
+        else tier_contests(payload.get("draft_group"))
+    attach_tiers(payload, inner, tiers, featured_contest=c, featured_roi=roi)
+
+
+def attach_tiers(payload: dict, inner: dict, tiers: dict, featured_contest=None,
+                 featured_roi=None) -> None:
+    """L["roit"] = {tier: simulated ROI %} for the small / mid / large contest
+    of the slate, and payload["tiers"] describing each."""
+    pool = payload["lineups"]
+    P = np.array([L["p"] for L in pool])
+    field_size = float(payload.get("field_size") or 100_000)
+    base_dup = np.array([float(L.get("dup") or 0.0) for L in pool])
+    res = {}
+    for t, c in tiers.items():
+        if featured_contest is not None and featured_roi is not None and \
+                c.get("name") == featured_contest.get("name") and c.get("entries") == featured_contest.get("entries"):
+            res[t] = featured_roi
+            continue
+        try:
+            res[t] = lineup_roi(inner["S"], inner["Fd"], P, c, base_dup * (c["entries"] / field_size))
+        except Exception as exc:                               # noqa: BLE001
+            log.warning("tier ROI %s failed (%s)", t, str(exc)[:80])
+    for i, L in enumerate(pool):
+        L["roit"] = {t: round(float(r[i]) * 100, 1) for t, r in res.items()}
+    payload["tiers"] = {t: {k: (round(v, 2) if isinstance(v, float) else v) for k, v in c.items()}
+                        for t, c in tiers.items() if t in res}

@@ -58,12 +58,15 @@ def featured(draft_group: int, contests: list[dict] | None = None) -> dict | Non
         if re.search(r"double up|50/50|head|h2h|satellite|qualifier|beginner|tiers", name, re.I):
             continue
         pool, m = float(c.get("po") or 0), int(c.get("m") or 0)
-        if m < 200 or pool <= 0:
+        fee = float(c.get("a") or 0)
+        # Free promos and unlimited "matchups" (max entries 999,999,999) are
+        # not tournaments with a payout curve.
+        if m < 200 or pool <= 0 or fee <= 0 or m > 2_000_000 or re.search(r"matchup", name, re.I):
             continue
         # The BIGGEST FIELD, not the biggest pool: the biggest pool is often a
         # 200-entry high-roller room, which is not the tournament played here.
         if best is None or (m, pool) > (best["entries"], best["pool"]):
-            fee = float(c.get("a") or 0) or pool / (m * 0.88)
+            fee = fee or pool / (m * 0.88)
             first = None
             fm = re.search(r"\[\s*(\$[\d.,]+\s*[KkMm]?)\s*to\s*1st", name)
             if fm:

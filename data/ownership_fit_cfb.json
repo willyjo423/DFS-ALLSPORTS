@@ -1,0 +1,19 @@
+{
+ "points": 1.0,
+ "salary": 0.25,
+ "value": 0.25,
+ "dkppg": 1.5,
+ "implied": 0.0,
+ "concentration": 0.3,
+ "kl": 1.0119,
+ "rho": 0.69,
+ "mae_pct": 5.96,
+ "before": {
+  "rho": 0.572,
+  "mae_pct": 6.06
+ },
+ "slates": 1,
+ "contests": [
+  "contest-standings-198023620.csv"
+ ]
+}

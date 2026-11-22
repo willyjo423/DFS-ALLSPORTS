@@ -123,6 +123,7 @@ a{color:var(--acc)}
           <select id="sort" style="width:100%">
             <option value="cash">Cash rate (sim) — single entry</option>
             <option value="roi">Simulated ROI — featured tournament</option>
+            <option value="roilow">Simulated ROI, lowest first (contrarian test)</option>
             <option value="port">Best set (sim) — multi-entry tournaments</option>
             <option value="top1">Top 1% rate (sim) — big tournaments</option>
             <option value="proj">Projection</option>
@@ -278,6 +279,7 @@ async function loadSlate(file) {
   const hasRoi = (SLATE.lineups || []).some(L => L.roi != null);
   const ro = $("sort").querySelector('option[value="roi"]');
   ro.disabled = !hasRoi;
+  $("sort").querySelector('option[value="roilow"]').disabled = !hasRoi;
   ro.textContent = hasRoi && SLATE.contest
     ? `Simulated ROI — ${SLATE.contest.name.replace(/\s*\[.*$/, "")} ($${SLATE.contest.fee}, ${Number(SLATE.contest.entries).toLocaleString()} entries)`
     : "Simulated ROI — featured tournament";
@@ -322,7 +324,7 @@ function applyAuto() {
   else if (N === 1) sort = "cash";
   else sort = hasPort ? "port" : "top1";
   $("sort").value = sort;
-  const label = {port: "best set", top1: "top-1% rate", cash: "cash rate", proj: "projection", ceil: "ceiling"};
+  const label = {roi: "simulated ROI", roilow: "lowest simulated ROI", port: "best set", top1: "top-1% rate", cash: "cash rate", proj: "projection", ceil: "ceiling"};
   why.push(!hasSim ? "no simulated lineups on this slate → sorted by projection" :
     `${N} ${N === 1 ? "entry" : "entries"} → ${label[sort] || sort}` + (rule ? ` (backtest: ${rule.evidence})`
       : " (standard default — not enough backtested slates for this sport yet)"));
@@ -472,6 +474,7 @@ function drawLineups() {
     [...LOCK].every(i => L.p.includes(i)) &&
     !L.p.some(i => EXCL.has(i)));
   ok.sort((a, b) => k === "port" ? ((a.port ?? 1e3 - (a.top1 || 0)) - (b.port ?? 1e3 - (b.top1 || 0)))
+    : k === "roilow" ? (a.roi ?? 1e9) - (b.roi ?? 1e9)
     : k === "ownhi" ? b.own - a.own
     : (k === "own" || k === "dup") ? a[k] - b[k] : b[k] - a[k]);
   // Greedy portfolio: best first, skipping any lineup that would push a

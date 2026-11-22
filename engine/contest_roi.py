@@ -152,11 +152,16 @@ def lineup_roi(S: np.ndarray, Fd: np.ndarray, P: np.ndarray, contest: dict,
     return mean_pay / contest["fee"] - 1.0
 
 
-def attach(payload: dict, inner: dict | None) -> None:
+# For backtests, where the night's real lobby is gone: a typical big GPP.
+STANDARD_GPP = {"name": "standard GPP (backtest)", "pool": 100_000.0, "fee": 5.0,
+                "entries": 23_000, "first": 15_000.0, "first_from_name": False}
+
+
+def attach(payload: dict, inner: dict | None, contest: dict | None = None) -> None:
     """Add L["roi"] (simulated ROI %, featured contest) and payload["contest"]."""
     if not inner or not payload.get("lineups"):
         return
-    c = featured(payload.get("draft_group"))
+    c = contest or featured(payload.get("draft_group"))
     if not c:
         log.info("no featured tournament found for draft group %s; ROI not computed",
                  payload.get("draft_group"))

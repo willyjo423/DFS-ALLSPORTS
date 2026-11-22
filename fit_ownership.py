@@ -177,11 +177,27 @@ def main(argv=None) -> int:
         files = sorted((CONTESTS / sp).glob("*.csv"))
         if not files:
             continue
-        OWN.use_fit(sp)
+        import importlib
+        importlib.reload(OWN)                # each sport starts from the defaults,
+        OWN.use_fit(sp)                      # not the last sport's grid search
         res = fit(sp, files)
         if not res:
             continue
         out = Path(__file__).resolve().parent / "data" / f"ownership_fit_{sp}.json"
+        # Only replace the formula when the refit is clearly better than what
+        # the board used (a fit that matches it is churn, not information).
+        gain = res["rho"] - res["before"]["rho"]
+        drop = res["before"]["mae_pct"] - res["mae_pct"]
+        if gain < 0.02 and drop < 0.1:
+            print(f"{sp.upper()}: refit no better (rank corr {res['before']['rho']:.2f} -> "
+                  f"{res['rho']:.2f}) - current formula kept")
+            continue
+        try:                                 # keep hand-fitted per-position settings
+            old = json.loads(out.read_text())
+            if old.get("position_concentration") and "position_concentration" not in res:
+                res["position_concentration"] = old["position_concentration"]
+        except (OSError, ValueError):
+            pass
         out.write_text(json.dumps(res, indent=1) + "\n")
         wrote += 1
         print(f"\n{sp.upper()}: {res['slates']} slate(s). rank corr "

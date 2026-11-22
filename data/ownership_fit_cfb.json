@@ -1,16 +1,16 @@
 {
  "points": 1.0,
- "salary": 0.25,
+ "salary": 0.0,
  "value": 0.25,
  "dkppg": 1.5,
  "implied": 0.0,
  "concentration": 0.3,
- "kl": 1.0119,
+ "kl": 1.0142,
  "rho": 0.69,
- "mae_pct": 5.96,
+ "mae_pct": 5.95,
  "before": {
-  "rho": 0.572,
-  "mae_pct": 6.06
+  "rho": 0.6,
+  "mae_pct": 6.02
  },
  "slates": 1,
  "contests": [

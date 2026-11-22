@@ -34,6 +34,14 @@
    "locks": "2026-11-23T00:00:00+00:00"
   },
   {
+   "sport": "nba",
+   "site": "dk",
+   "kind": "classic",
+   "label": "8:00pm (Night) \u00b7 165 contests",
+   "file": "data/nba_dk_classic_157210.json",
+   "locks": "2026-11-23T01:00:00+00:00"
+  },
+  {
    "sport": "nhl",
    "site": "dk",
    "kind": "classic",

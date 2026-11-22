@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-22T21:44:16+00:00",
+ "updated_at": "2026-11-22T22:10:35+00:00",
  "slates": [
   {
    "sport": "cfb",
@@ -40,14 +40,6 @@
    "label": "10:00pm (Night) \u00b7 192 contests",
    "file": "data/nba_dk_classic_157224.json",
    "locks": "2026-11-24T03:00:00+00:00"
-  },
-  {
-   "sport": "nhl",
-   "site": "dk",
-   "kind": "classic",
-   "label": "8 teams \u00b7 5:00pm",
-   "file": "data/nhl_dk_classic_156955.json",
-   "locks": "2026-11-22T22:00:00+00:00"
   },
   {
    "sport": "nhl",

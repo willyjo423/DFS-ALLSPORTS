@@ -165,6 +165,7 @@ def main(argv=None) -> int:
     ap.add_argument("--season", type=int, required=True, help="start year, 2018 = 2018-19")
     ap.add_argument("--sims", type=int, default=8000)
     ap.add_argument("--every", type=int, default=1, help="use every Nth slate day")
+    ap.add_argument("--force", action="store_true", help="redo days already in the dump")
     a = ap.parse_args(argv)
     OWN.use_fit("nba")
     prev = features(scrape(a.season - 1))
@@ -173,7 +174,7 @@ def main(argv=None) -> int:
     dumps = json.loads(out_path.read_text()) if out_path.exists() else {}
     days = sorted(cur["date"].unique())
     for k, day in enumerate(days):
-        if k % a.every or day in dumps:
+        if k % a.every or (day in dumps and not a.force):
             continue
         rows = cur[cur["date"] == day]
         if rows["team"].nunique() < 8:                    # 4+ games

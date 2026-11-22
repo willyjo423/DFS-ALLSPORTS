@@ -9,7 +9,10 @@ on:
       script:
         description: "Script to run"
         type: choice
-        options: [cfb_blowout_fit.py, salary_probe.py]
+        options: [cfb_blowout_fit.py, salary_probe.py, tonight_check.py]
+      args:
+        description: "Arguments for the script"
+        default: ""
 
 permissions:
   contents: write
@@ -29,7 +32,7 @@ jobs:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
         run: |
           set -o pipefail
-          python "${{ inputs.script }}" 2>&1 | tee out.txt
+          python "${{ inputs.script }}" ${{ inputs.args }} 2>&1 | tee out.txt
           { echo '```'; tail -150 out.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
       - name: Commit
         run: |

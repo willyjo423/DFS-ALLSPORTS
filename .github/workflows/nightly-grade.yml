@@ -42,12 +42,13 @@ jobs:
         run: |
           python auto_settings.py | tail -40
           python nba_team_proj_export.py || true
+          python nhl_team_proj_export.py || true
           python optimize_settings.py | tee -a "$GITHUB_STEP_SUMMARY" | tail -80
       - name: Commit
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A docs/data/grades docs/data/auto_settings.json data/actuals data/nba_team_proj.csv
+          git add -A docs/data/grades docs/data/auto_settings.json data/actuals data/nba_team_proj.csv data/nhl_team_proj.csv
           git diff --cached --quiet && { echo "nothing new"; exit 0; }
           git commit -m "Grades: $(date -u +%Y-%m-%d)"
           for i in 1 2 3 4 5; do

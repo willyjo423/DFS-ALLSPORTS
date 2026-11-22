@@ -187,6 +187,8 @@ def main(argv=None) -> int:
         inner = SIM.rank_pool(p, sims=a.sims)
         if not inner:
             continue
+        from engine import contest_roi as CR
+        CR.attach(p, inner, CR.STANDARD_GPP)
         pts = np.array([pl["actual"] for pl in p["players"]])
         field = np.sort(pts[inner["Fd"]].sum(axis=1))
         lines = {kk: float(np.quantile(field, v)) for kk, v in

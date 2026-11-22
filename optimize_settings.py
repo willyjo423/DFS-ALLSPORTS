@@ -34,7 +34,7 @@ GPP = [(99.9, 50.0), (99.5, 15.0), (99.0, 8.0), (98.0, 4.0), (95.0, 2.5),
        (90.0, 1.8), (80.0, 1.3)]
 GPP = [(p, m * 1.75) for p, m in GPP]          # scaled so a random entry returns ~0.85
 ENTRIES = [1, 3, 5, 10, 20, 40]
-SORTS = ["cash", "top1", "port", "proj", "ceil"]
+SORTS = ["cash", "top1", "port", "proj", "ceil", "roi", "roilow"]
 OWNF = ["none", "low", "mid", "high"]
 EXPOS = [1.0, 0.6, 0.5, 0.4]
 STACKS = {"nhl": [0, 3, 4], "nfl": [0, 3, 4], "cfb": [0, 3], "nba": [0]}
@@ -53,6 +53,11 @@ def payout(pct: float, n: int) -> float:
 
 
 def order(L: list[dict], sort: str) -> list[dict]:
+    if sort in ("roi", "roilow"):
+        if not any(x.get("roi") is not None for x in L):
+            return []                        # night replayed before ROI existed: no answer
+        has = [x for x in L if x.get("roi") is not None]
+        return sorted(has, key=lambda x: (x["roi"] if sort == "roilow" else -x["roi"]))
     if sort == "port":
         a = sorted([x for x in L if x.get("port")], key=lambda x: x["port"])
         b = sorted([x for x in L if not x.get("port")], key=lambda x: -(x.get("top1") or 0))
@@ -97,6 +102,8 @@ def night_value(night: dict, n: int, rule) -> tuple[float, float, float]:
     L = night["lineups"]
     if not L:
         return np.nan, np.nan, np.nan
+    if rule[0] in ("roi", "roilow") and not any(x.get("roi") is not None for x in L):
+        return np.nan, np.nan, np.nan
     got = pick(L, min(n, len(L)), rule)
     pays = [payout(x["pct"], n) for x in got]
     return (float(np.mean(pays)) - 1.0,                       # ROI per entry
@@ -120,6 +127,9 @@ def bootstrap_better(a: np.ndarray, b: np.ndarray, iters: int = 4000, seed: int 
     """P(mean(a) > mean(b)) over nights resampled with replacement."""
     rng = np.random.default_rng(seed)
     d = a - b
+    d = d[~np.isnan(d)]
+    if len(d) < 5:
+        return 0.0
     idx = rng.integers(0, len(d), (iters, len(d)))
     return float((d[idx].mean(axis=1) > 0).mean())
 

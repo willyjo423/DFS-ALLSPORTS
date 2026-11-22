@@ -160,6 +160,8 @@ def rebuild(sport: str, b: dict, sims: int) -> dict | None:
         if not p.get("lineups"):
             p["lineups"] = POOL.safe_build(p)
         inner = SIM.rank_pool(p, sims=sims)
+        from engine import contest_roi as CR
+        CR.attach(p, inner, CR.STANDARD_GPP)
         p["_inner"] = inner
         return p if inner else None
     import projection_calibration as PC
@@ -179,6 +181,8 @@ def rebuild(sport: str, b: dict, sims: int) -> dict | None:
     if not p.get("lineups"):
         return None
     inner = SIM.rank_pool(p, sims=sims)
+    from engine import contest_roi as CR
+    CR.attach(p, inner, CR.STANDARD_GPP)
     p["_inner"] = inner
     return p if inner else None
 
@@ -266,7 +270,8 @@ def dump_row(p: dict, L: dict, actual: float, pct: float) -> dict:
     teams = sorted(Counter(x.get("team") for x in sk).values(), reverse=True) + [0, 0]
     return {"p": L["p"], "proj": L.get("proj"), "ceil": L.get("ceil"), "own": L.get("own"),
             "top1": L.get("top1"), "top10": L.get("top10"), "cash": L.get("cash"),
-            "port": L.get("port"), "dup": L.get("dup"), "st1": teams[0], "st2": teams[1],
+            "port": L.get("port"), "dup": L.get("dup"), "roi": L.get("roi"),
+            "st1": teams[0], "st2": teams[1],
             "actual": round(actual, 2), "pct": round(pct, 2)}
 
 

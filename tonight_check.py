@@ -42,10 +42,11 @@ def run(path: str) -> dict:
     sport = Path(path).name.split("_")[0]
     if sport == "nba":
         from engine import nba_sim as SIM
-        day = (b.get("lock") or "")[:10]
         # lock is UTC; US evening slates belong to the previous calendar day
         import datetime as dt
-        lk = dt.datetime.fromisoformat(b["lock"]).astimezone(dt.timezone(dt.timedelta(hours=-5)))
+        lock = b.get("lock") or b.get("locks")
+        lock = min(lock.values()) if isinstance(lock, dict) else min(lock) if isinstance(lock, list) else lock
+        lk = dt.datetime.fromisoformat(lock).astimezone(dt.timezone(dt.timedelta(hours=-5)))
         day = lk.date().isoformat()
         act = G.nba_actuals(day)
         pts = np.array([(G.match("nba", pl, act) or {}).get("dk", 0.0) for pl in b["players"]])

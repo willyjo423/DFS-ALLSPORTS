@@ -101,7 +101,9 @@ a{color:var(--acc)}
           <option value="small">Small tournament (under 500 entries)</option>
           <option value="cash">Double-up / cash game</option></select></div>
         <div class="f"><label>Settings</label><label class="row" style="gap:6px;font-weight:600;text-transform:none;letter-spacing:0">
-          <input id="auto" type="checkbox" checked style="width:auto"> Auto (from past results)</label></div>
+          <input id="auto" type="checkbox" checked style="width:auto"> Auto (from past results)</label>
+          <label class="row" style="gap:6px;font-weight:600;text-transform:none;letter-spacing:0;margin-top:4px">
+          <input id="scenonly" type="checkbox" style="width:auto"> SCENARIO lineups only</label></div>
         <div class="f"><label>Min total own %</label><input id="ownmin" type="number" min="0" step="5" placeholder="none"></div>
         <div class="f"><label>Max total own %</label><input id="ownmax" type="number" min="0" step="5" placeholder="none"></div>
         <div class="f"><label>Max exposure %</label><input id="expo" type="number" min="1" max="100" step="5" value="60"></div>
@@ -422,6 +424,11 @@ function applyAuto() {
   }
   $("autoinfo").textContent = "Auto: " + why.join(" · ");
 }
+try { $("scenonly").checked = localStorage.getItem("dfs-scenonly") === "1"; } catch (e) {}
+$("scenonly").onchange = () => {
+  try { localStorage.setItem("dfs-scenonly", $("scenonly").checked ? "1" : "0"); } catch (e) {}
+  drawLineups();
+};
 $("auto").onchange = () => {
   try { localStorage.setItem("dfs-auto", $("auto").checked ? "1" : "0"); } catch (e) {}
   applyAuto(); drawLineups();
@@ -524,7 +531,16 @@ function drawLineups() {
     (!s2 || (G(L)[1] || [, 0])[1] >= s2) &&
     (!st || G(L).some(([k, c]) => (k === st || k.startsWith(st + "-")) && c >= Math.max(s1, 2))) &&
     [...LOCK].every(i => L.p.includes(i)) &&
-    !L.p.some(i => EXCL.has(i)));
+    !L.p.some(i => EXCL.has(i)) &&
+    (!$("scenonly").checked || L.src === "scenario"));
+  if (!ok.length && $("scenonly").checked) {
+    $("poolinfo").textContent = pool.some(L => L.src === "scenario")
+      ? "No SCENARIO lineups pass these settings - loosen a filter, or untick SCENARIO lineups only."
+      : "This slate has no SCENARIO lineups (it was built before they were added, or has not been rebuilt yet).";
+    $("lulist").innerHTML = ""; $("xtbl").tBodies[0].innerHTML = ""; PICKED = [];
+    ["s-n","s-proj","s-own","s-ceil"].forEach(id => $(id).textContent = "–");
+    return;
+  }
   ok.sort((a, b) => k === "port" ? ((a.port ?? 1e3 - (a.top1 || 0)) - (b.port ?? 1e3 - (b.top1 || 0)))
     : k === "roilow" ? (a._r ?? 1e9) - (b._r ?? 1e9)
     : k === "roi" ? (b._r ?? -1e9) - (a._r ?? -1e9)

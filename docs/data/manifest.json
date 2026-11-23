@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-23T23:16:05+00:00",
+ "updated_at": "2026-11-23T23:31:13+00:00",
  "slates": [
   {
    "sport": "cfb",
@@ -21,7 +21,7 @@
    "sport": "nba",
    "site": "dk",
    "kind": "classic",
-   "label": "7:00pm \u00b7 465 contests",
+   "label": "7:00pm \u00b7 451 contests",
    "file": "data/nba_dk_classic_157216.json",
    "locks": "2026-11-24T00:00:00+00:00"
   },
@@ -32,14 +32,6 @@
    "label": "10:00pm (Night) \u00b7 245 contests",
    "file": "data/nba_dk_classic_157224.json",
    "locks": "2026-11-24T03:00:00+00:00"
-  },
-  {
-   "sport": "nhl",
-   "site": "dk",
-   "kind": "classic",
-   "label": "2 teams \u00b7 7:00pm \u00b7 (CBJ @ NJD)",
-   "file": "data/nhl_dk_classic_156961.json",
-   "locks": "2026-11-24T00:00:00+00:00"
   },
   {
    "sport": "nhl",
@@ -56,14 +48,6 @@
    "label": "4 teams \u00b7 9:40pm \u00b7 (Late)",
    "file": "data/nhl_dk_classic_156966.json",
    "locks": "2026-11-24T02:40:00+00:00"
-  },
-  {
-   "sport": "nhl",
-   "site": "dk",
-   "kind": "classic",
-   "label": "2 teams \u00b7 10:00pm \u00b7 (MIN @ SJS)",
-   "file": "data/nhl_dk_classic_156967.json",
-   "locks": "2026-11-24T03:00:00+00:00"
   }
  ]
 }

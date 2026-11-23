@@ -130,7 +130,11 @@ def run(sport: str, sims: int) -> pd.DataFrame:
             r = {"sport": sport, "day": d, "name": p["name"], "pos": p.get("pos"),
                  "salary": sal[i], "tier": TIERS[min(int(rk[i] * 4 - 1e-9), 3)],
                  "actual": float(a), "pit": float((x < a).mean() + 0.5 * (x == a).mean()),
-                 "proj": float(p.get("proj") or p.get("med") or 0)}
+                 "proj": float(p.get("proj") or p.get("med") or 0),
+                 "team": p.get("team"), "lg": p.get("lg"), "ppu": p.get("ppu"),
+                 "news": p.get("news") or "", "min": p.get("min"), "dkppg": p.get("dkppg"),
+                 "model": p.get("model"), "props": p.get("props"), "own": p.get("own"),
+                 "pp": p.get("pp"), "gst": p.get("gst"), "implied": p.get("implied")}
             for lv in (0.5,) + LEVELS:
                 r[f"p{int(lv * 100)}"] = float(np.quantile(x, lv))
             rows.append(r)

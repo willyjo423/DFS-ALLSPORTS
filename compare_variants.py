@@ -46,7 +46,7 @@ def main(argv=None) -> int:
     rows = []
     for tier in TIERS:
         for n in ENTRIES:
-            for sort in ("roi", "top1"):
+            for sort in ("roi", "top1", "port"):
                 rule = (sort, "none", 1.0 if n == 1 else O.DEFAULT[n][2], 0)
                 a = np.array([O.night_value(base[d], n, rule, tier) for d in keys])
                 b = np.array([O.night_value(var[d], n, rule, tier) for d in keys])

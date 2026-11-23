@@ -222,8 +222,19 @@ def _norm(s: str) -> str:
 def merge(a: dict, b: dict, ladders: bool) -> dict:
     """Bovada (a) + FanDuel (b). Ladders: rung by rung, same rung averaged.
     Medians: averaged where both books post the stat."""
-    idx = {_norm(k.rsplit("|", 1)[0]): k for k in a}
     out = {k: (json.loads(json.dumps(v))) for k, v in a.items()}
+    # one entry per player: a team-less copy (an earlier FanDuel-only fetch)
+    # folds into the same player's Bovada entry, which carries his team
+    idx: dict = {}
+    for k in sorted(out, key=lambda k: k.endswith("|")):     # team keys first
+        n = _norm(k.rsplit("|", 1)[0])
+        if n in idx and k.endswith("|"):
+            # fill only what the teamed entry lacks: its stats already hold
+            # this book's lines, and averaging again would double-count them
+            for stat, v in out.pop(k).items():
+                out[idx[n]].setdefault(stat, v)
+            continue
+        idx.setdefault(n, k)
     for kb, sb in b.items():
         ka = idx.get(_norm(kb.rsplit("|", 1)[0]))
         tgt = out.setdefault(ka or kb, {})

@@ -259,21 +259,24 @@ def load(day: str) -> dict:
         if props:
             break
         time.sleep(5 * (attempt + 1))
-    try:                                 # FanDuel joins Bovada (fd_props.py)
-        import fd_props
-        fd = fd_props.fetch("nhl")
-        if fd:
-            props = fd_props.merge(props or {}, fd, ladders=True)
-    except Exception as exc:                                   # noqa: BLE001
-        log.warning("fanduel NHL props unavailable (%s)", str(exc)[:80])
     if not props:
         log.warning("bovada: no NHL props returned")
     old = {}
     if os.path.exists(path):
         with open(path) as f:
             old = json.load(f).get("players", {})
+    old.update(props or {})
+    # FanDuel merges into every Bovada line we hold today, fresh or saved,
+    # by player name (fd_props.py) - never as a parallel entry.
+    try:
+        import fd_props
+        fd = fd_props.fetch("nhl")
+        if fd:
+            old = fd_props.merge(old, fd, ladders=True)
+            props = props or fd
+    except Exception as exc:                                   # noqa: BLE001
+        log.warning("fanduel NHL props unavailable (%s)", str(exc)[:80])
     if props:
-        old.update(props)
         os.makedirs(CACHE_DIR, exist_ok=True)
         with open(path, "w") as f:
             json.dump({"fetched_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),

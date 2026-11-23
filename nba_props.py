@@ -156,13 +156,24 @@ def load(day: str) -> dict:
     path = os.path.join(CACHE_DIR, f"{day}.json")
     try:
         props = fetch()
-        try:                             # FanDuel joins Bovada (fd_props.py)
-            import fd_props
-            fd = fd_props.fetch("nba")
-            if fd:
-                props = fd_props.merge(props or {}, fd, ladders=False)
-        except Exception as exc:                               # noqa: BLE001
-            log.warning("fanduel NBA props unavailable (%s)", str(exc)[:80])
+    except Exception as exc:                                   # noqa: BLE001
+        log.warning("bovada unreachable (%s)", str(exc)[:80])
+        props = {}
+    # FanDuel merges into every Bovada line we hold today, fresh or saved,
+    # by player name (fd_props.py) - never as a parallel entry.
+    try:
+        import fd_props
+        fd = fd_props.fetch("nba")
+        if fd:
+            saved = {}
+            if os.path.exists(path):
+                with open(path) as f:
+                    saved = json.load(f).get("players", {})
+            saved.update(props)
+            props = fd_props.merge(saved, fd, ladders=False)
+    except Exception as exc:                                   # noqa: BLE001
+        log.warning("fanduel NBA props unavailable (%s)", str(exc)[:80])
+    try:
         if props:
             os.makedirs(CACHE_DIR, exist_ok=True)
             old = {}
@@ -170,6 +181,11 @@ def load(day: str) -> dict:
                 with open(path) as f:
                     old = json.load(f).get("players", {})
             old.update(props)           # keep players whose games went off the board
+            try:                        # fold any team-less duplicate entries
+                import fd_props
+                old = fd_props.merge(old, {}, ladders=False)
+            except Exception:                                  # noqa: BLE001
+                pass
             with open(path, "w") as f:
                 json.dump({"fetched_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
                            "players": old}, f, separators=(",", ":"), sort_keys=True)

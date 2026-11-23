@@ -554,6 +554,13 @@ def write(payloads: list[dict], partial: bool = False) -> None:
     keep = set()
     slates = []
     for p in payloads:
+        # A two-team draft group cannot satisfy DraftKings' "skaters from at
+        # least three teams": its pool is always empty, so the page listed a
+        # slate with no lineups (2026-11-23: CBJ @ NJD, MIN @ SJS).
+        if len({x.get("team") for x in p.get("players") or []}) < 3:
+            log.info("skipping %s: fewer than three teams, no legal classic lineup",
+                     p.get("label"))
+            continue
         # The lineup pool the page filters by ownership. Built here, at the
         # last step, so it sees the final board and ownership.
         # Lines, pairs and power-play units from each team's last game, so

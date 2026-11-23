@@ -51,10 +51,10 @@ def add(payload: dict, sport: str, n: int = N_SCENARIOS, seed: int = 5,
     if not pool:
         return 0
     players, roster = payload["players"], payload["roster"]
-    rng = np.random.default_rng(seed)
-    S = draws(sport, payload, n, rng)
     if MODE == "v1" or sport in V1_SPORTS:
         n = 60
+    rng = np.random.default_rng(seed)
+    S = draws(sport, payload, n, rng)
     have = {tuple(sorted(L["p"])) for L in pool}
     freq: dict = {}
     pcount = np.zeros(len(players))

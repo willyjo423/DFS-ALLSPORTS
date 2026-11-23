@@ -1,131 +1,131 @@
 {
  "sport": "nhl",
  "variant": "base",
- "sims": 10000,
- "generated_at": "2026-11-22T00:55:00-05:00",
+ "sims": 6000,
+ "generated_at": "2026-11-22T22:43:56-05:00",
  "summary": {
   "proj": {
    "1": {
-    "best_pct": 64.6,
+    "best_pct": 64.3,
     "won": 0.0,
     "top1": 0.0,
-    "top10": 26.4,
-    "cash_rate": 64.2
+    "top10": 22.2,
+    "cash_rate": 64.8
    },
    "5": {
-    "best_pct": 82.3,
-    "won": 1.9,
-    "top1": 9.4,
-    "top10": 47.2,
-    "cash_rate": 67.5
+    "best_pct": 82.1,
+    "won": 0.0,
+    "top1": 9.3,
+    "top10": 46.3,
+    "cash_rate": 65.9
    },
    "13": {
-    "best_pct": 87.7,
-    "won": 5.7,
-    "top1": 17.0,
-    "top10": 60.4,
-    "cash_rate": 65.2
+    "best_pct": 87.3,
+    "won": 3.7,
+    "top1": 14.8,
+    "top10": 61.1,
+    "cash_rate": 64.0
    }
   },
   "cash": {
    "1": {
-    "best_pct": 67.8,
-    "won": 1.9,
-    "top1": 3.8,
-    "top10": 22.6,
-    "cash_rate": 66.0
+    "best_pct": 68.9,
+    "won": 0.0,
+    "top1": 5.6,
+    "top10": 20.4,
+    "cash_rate": 70.4
    },
    "5": {
-    "best_pct": 84.3,
-    "won": 3.8,
-    "top1": 11.3,
-    "top10": 50.9,
-    "cash_rate": 73.6
+    "best_pct": 83.0,
+    "won": 0.0,
+    "top1": 13.0,
+    "top10": 48.1,
+    "cash_rate": 71.9
    },
    "13": {
-    "best_pct": 88.9,
-    "won": 7.5,
-    "top1": 17.0,
-    "top10": 69.8,
-    "cash_rate": 71.6
+    "best_pct": 88.5,
+    "won": 3.7,
+    "top1": 20.4,
+    "top10": 70.4,
+    "cash_rate": 71.4
    }
   },
   "top1": {
    "1": {
-    "best_pct": 47.1,
-    "won": 1.9,
-    "top1": 1.9,
-    "top10": 15.1,
-    "cash_rate": 39.6
+    "best_pct": 46.0,
+    "won": 0.0,
+    "top1": 5.6,
+    "top10": 16.7,
+    "cash_rate": 37.0
    },
    "5": {
-    "best_pct": 67.0,
-    "won": 1.9,
-    "top1": 7.5,
-    "top10": 35.8,
-    "cash_rate": 41.5
+    "best_pct": 67.2,
+    "won": 0.0,
+    "top1": 7.4,
+    "top10": 31.5,
+    "cash_rate": 43.3
    },
    "13": {
-    "best_pct": 77.7,
-    "won": 3.8,
-    "top1": 9.4,
-    "top10": 47.2,
-    "cash_rate": 42.5
+    "best_pct": 76.3,
+    "won": 1.9,
+    "top1": 11.1,
+    "top10": 42.6,
+    "cash_rate": 42.6
    }
   },
   "port": {
    "1": {
-    "best_pct": 50.8,
-    "won": 1.9,
-    "top1": 5.7,
-    "top10": 22.6,
-    "cash_rate": 47.2
+    "best_pct": 45.9,
+    "won": 0.0,
+    "top1": 5.6,
+    "top10": 11.1,
+    "cash_rate": 37.0
    },
    "5": {
-    "best_pct": 85.4,
-    "won": 3.8,
-    "top1": 9.4,
-    "top10": 54.7,
-    "cash_rate": 48.7
+    "best_pct": 85.9,
+    "won": 1.9,
+    "top1": 14.8,
+    "top10": 51.9,
+    "cash_rate": 50.4
    },
    "13": {
-    "best_pct": 93.6,
-    "won": 9.4,
-    "top1": 28.3,
-    "top10": 81.1,
-    "cash_rate": 54.3
+    "best_pct": 93.1,
+    "won": 9.3,
+    "top1": 27.8,
+    "top10": 79.6,
+    "cash_rate": 54.6
    }
   },
-  "pool_best_pct": 98.8
+  "pool_best_pct": 98.9
  },
  "nights": {
   "2026-09-29": {
    "lines": {
-    "win": 168.6,
-    "top1": 141.3080000000002,
-    "top10": 112.1,
-    "cash": 69.1
+    "win": 157.20110000000022,
+    "top1": 142.9,
+    "top10": 110.79999999999998,
+    "cash": 68.5
    },
-   "pool_best_pct": 96.82,
-   "pool_best": 129.2,
+   "pool_best_pct": 96.78,
+   "pool_best": 129.39999999999998,
    "methods": {
     "proj": {
      "1": {
-      "best_pct": 35.44,
+      "best_pct": 34.699999999999996,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 93.54,
+      "best_pct": 93.22,
       "won": false,
       "top1": false,
       "top10": true,
       "cash_rate": 0.4
      },
      "13": {
-      "best_pct": 93.54,
+      "best_pct": 93.22,
       "won": false,
       "top1": false,
       "top10": true,
@@ -134,21 +134,21 @@
     },
     "cash": {
      "1": {
-      "best_pct": 50.580000000000005,
+      "best_pct": 51.6,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 50.580000000000005,
+      "best_pct": 51.6,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "13": {
-      "best_pct": 93.54,
+      "best_pct": 93.22,
       "won": false,
       "top1": false,
       "top10": true,
@@ -157,44 +157,44 @@
     },
     "top1": {
      "1": {
-      "best_pct": 23.5,
+      "best_pct": 9.44,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 41.760000000000005,
+      "best_pct": 43.28,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "13": {
-      "best_pct": 93.0,
+      "best_pct": 58.879999999999995,
       "won": false,
       "top1": false,
-      "top10": true,
-      "cash_rate": 0.15384615384615385
+      "top10": false,
+      "cash_rate": 0.07692307692307693
      }
     },
     "port": {
      "1": {
-      "best_pct": 9.08,
+      "best_pct": 16.12,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 48.36,
+      "best_pct": 46.54,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "13": {
-      "best_pct": 93.54,
+      "best_pct": 93.22,
       "won": false,
       "top1": false,
       "top10": true,
@@ -206,24 +206,24 @@
   },
   "2026-09-30": {
    "lines": {
-    "win": 119.83750000000012,
-    "top1": 103.5,
-    "top10": 81.1,
-    "cash": 55.0
+    "win": 116.0308999999996,
+    "top1": 100.8,
+    "top10": 79.61000000000007,
+    "cash": 54.3
    },
    "pool_best_pct": 100.0,
    "pool_best": 122.4,
    "methods": {
     "proj": {
      "1": {
-      "best_pct": 94.56740442655935,
+      "best_pct": 94.4954128440367,
       "won": false,
       "top1": false,
       "top10": true,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 99.11971830985915,
+      "best_pct": 99.56676860346585,
       "won": false,
       "top1": true,
       "top10": true,
@@ -239,44 +239,44 @@
     },
     "cash": {
      "1": {
-      "best_pct": 42.857142857142854,
+      "best_pct": 44.13863404689093,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 69.76861167002012,
+      "best_pct": 77.82874617737004,
       "won": false,
       "top1": false,
       "top10": false,
-      "cash_rate": 0.2
+      "cash_rate": 0.4
      },
      "13": {
-      "best_pct": 78.19416498993964,
+      "best_pct": 77.82874617737004,
       "won": false,
       "top1": false,
       "top10": false,
-      "cash_rate": 0.23076923076923078
+      "cash_rate": 0.3076923076923077
      }
     },
     "top1": {
      "1": {
-      "best_pct": 80.7344064386318,
+      "best_pct": 80.30071355759429,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 97.88732394366197,
+      "best_pct": 98.49643221202854,
       "won": false,
       "top1": false,
       "top10": true,
-      "cash_rate": 0.8
+      "cash_rate": 1.0
      },
      "13": {
-      "best_pct": 97.88732394366197,
+      "best_pct": 98.49643221202854,
       "won": false,
       "top1": false,
       "top10": true,
@@ -285,22 +285,22 @@
     },
     "port": {
      "1": {
-      "best_pct": 93.08350100603622,
+      "best_pct": 80.30071355759429,
       "won": false,
       "top1": false,
-      "top10": true,
+      "top10": false,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 94.59255533199196,
+      "best_pct": 98.49643221202854,
       "won": false,
       "top1": false,
       "top10": true,
-      "cash_rate": 0.6
+      "cash_rate": 0.8
      },
      "13": {
-      "best_pct": 100.0,
-      "won": true,
+      "best_pct": 99.71967380224261,
+      "won": false,
       "top1": true,
       "top10": true,
       "cash_rate": 0.6923076923076923
@@ -311,31 +311,31 @@
   },
   "2026-10-01": {
    "lines": {
-    "win": 175.69680000000008,
-    "top1": 156.3,
-    "top10": 130.39999999999998,
-    "cash": 102.0
+    "win": 174.8,
+    "top1": 155.3,
+    "top10": 131.5,
+    "cash": 102.27000000000002
    },
-   "pool_best_pct": 97.62886597938144,
-   "pool_best": 150.10000000000002,
+   "pool_best_pct": 96.63576158940398,
+   "pool_best": 146.89999999999998,
    "methods": {
     "proj": {
      "1": {
-      "best_pct": 66.72680412371133,
+      "best_pct": 66.27814569536424,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 86.41752577319588,
+      "best_pct": 85.93377483443709,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.8
      },
      "13": {
-      "best_pct": 86.41752577319588,
+      "best_pct": 85.93377483443709,
       "won": false,
       "top1": false,
       "top10": false,
@@ -344,21 +344,21 @@
     },
     "cash": {
      "1": {
-      "best_pct": 65.9020618556701,
+      "best_pct": 93.80132450331125,
       "won": false,
       "top1": false,
-      "top10": false,
+      "top10": true,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 93.55670103092784,
+      "best_pct": 93.80132450331125,
       "won": false,
       "top1": false,
       "top10": true,
       "cash_rate": 1.0
      },
      "13": {
-      "best_pct": 96.52061855670104,
+      "best_pct": 96.63576158940398,
       "won": false,
       "top1": false,
       "top10": true,
@@ -367,48 +367,48 @@
     },
     "top1": {
      "1": {
-      "best_pct": 17.371134020618555,
+      "best_pct": 25.43046357615894,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 52.886597938144334,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "13": {
-      "best_pct": 52.886597938144334,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     }
-    },
-    "port": {
-     "1": {
-      "best_pct": 26.95876288659794,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "5": {
-      "best_pct": 55.902061855670105,
+      "best_pct": 55.28476821192053,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.2
      },
      "13": {
-      "best_pct": 70.61855670103093,
+      "best_pct": 57.00662251655629,
       "won": false,
       "top1": false,
       "top10": false,
-      "cash_rate": 0.38461538461538464
+      "cash_rate": 0.15384615384615385
+     }
+    },
+    "port": {
+     "1": {
+      "best_pct": 32.980132450331126,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 58.092715231788084,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.2
+     },
+     "13": {
+      "best_pct": 70.59602649006622,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.46153846153846156
      }
     }
    },
@@ -416,31 +416,31 @@
   },
   "2026-10-02": {
    "lines": {
-    "win": 119.96260000000002,
-    "top1": 111.10000000000001,
-    "top10": 94.30000000000001,
-    "cash": 71.7
+    "win": 119.80400000000009,
+    "top1": 109.9,
+    "top10": 93.18,
+    "cash": 70.80000000000001
    },
-   "pool_best_pct": 99.77693508811065,
+   "pool_best_pct": 99.74960163897109,
    "pool_best": 115.9,
    "methods": {
     "proj": {
      "1": {
-      "best_pct": 80.01338389471336,
+      "best_pct": 80.08194855451856,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 80.01338389471336,
+      "best_pct": 80.08194855451856,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.4
      },
      "13": {
-      "best_pct": 80.01338389471336,
+      "best_pct": 80.08194855451856,
       "won": false,
       "top1": false,
       "top10": false,
@@ -449,44 +449,44 @@
     },
     "cash": {
      "1": {
-      "best_pct": 87.64220388132948,
+      "best_pct": 89.07352606419303,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 87.64220388132948,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.6
-     },
-     "13": {
-      "best_pct": 92.81730983716261,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.6153846153846154
-     }
-    },
-    "top1": {
-     "1": {
-      "best_pct": 45.92906535801918,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "5": {
-      "best_pct": 71.18001338389472,
+      "best_pct": 89.07352606419303,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.4
      },
      "13": {
-      "best_pct": 71.18001338389472,
+      "best_pct": 92.80673799226041,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 0.6923076923076923
+     }
+    },
+    "top1": {
+     "1": {
+      "best_pct": 0.0,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 62.96380605508764,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.2
+     },
+     "13": {
+      "best_pct": 71.63669474163441,
       "won": false,
       "top1": false,
       "top10": false,
@@ -495,21 +495,21 @@
     },
     "port": {
      "1": {
-      "best_pct": 0.06691947356680794,
+      "best_pct": 0.0,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 80.01338389471336,
+      "best_pct": 71.63669474163441,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.4
      },
      "13": {
-      "best_pct": 80.01338389471336,
+      "best_pct": 84.58911905303893,
       "won": false,
       "top1": false,
       "top10": false,
@@ -521,31 +521,31 @@
   },
   "2026-10-03": {
    "lines": {
-    "win": 177.0,
-    "top1": 140.4,
-    "top10": 109.3,
-    "cash": 85.69999999999999
+    "win": 152.6,
+    "top1": 142.88299999999987,
+    "top10": 113.9,
+    "cash": 88.1
    },
-   "pool_best_pct": 96.61100196463654,
+   "pool_best_pct": 95.00978473581213,
    "pool_best": 123.3,
    "methods": {
     "proj": {
      "1": {
-      "best_pct": 80.15717092337917,
+      "best_pct": 76.07632093933464,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 89.73477406679764,
+      "best_pct": 85.56751467710372,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 1.0
      },
      "13": {
-      "best_pct": 96.61100196463654,
+      "best_pct": 95.00978473581213,
       "won": false,
       "top1": false,
       "top10": true,
@@ -554,67 +554,67 @@
     },
     "cash": {
      "1": {
-      "best_pct": 79.12573673870334,
+      "best_pct": 56.89823874755382,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 88.31041257367387,
+      "best_pct": 74.11937377690802,
       "won": false,
       "top1": false,
       "top10": false,
-      "cash_rate": 1.0
+      "cash_rate": 0.8
      },
      "13": {
-      "best_pct": 88.31041257367387,
+      "best_pct": 83.80626223091977,
       "won": false,
       "top1": false,
       "top10": false,
-      "cash_rate": 0.8461538461538461
+      "cash_rate": 0.7692307692307693
      }
     },
     "top1": {
      "1": {
-      "best_pct": 96.61100196463654,
+      "best_pct": 95.00978473581213,
       "won": false,
       "top1": false,
       "top10": true,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 96.61100196463654,
+      "best_pct": 95.00978473581213,
       "won": false,
       "top1": false,
       "top10": true,
       "cash_rate": 0.6
      },
      "13": {
-      "best_pct": 96.61100196463654,
+      "best_pct": 95.00978473581213,
       "won": false,
       "top1": false,
       "top10": true,
-      "cash_rate": 0.7692307692307693
+      "cash_rate": 0.38461538461538464
      }
     },
     "port": {
      "1": {
-      "best_pct": 96.61100196463654,
+      "best_pct": 40.65557729941291,
       "won": false,
       "top1": false,
-      "top10": true,
-      "cash_rate": 1.0
+      "top10": false,
+      "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 96.61100196463654,
+      "best_pct": 95.00978473581213,
       "won": false,
       "top1": false,
       "top10": true,
-      "cash_rate": 0.6
+      "cash_rate": 0.2
      },
      "13": {
-      "best_pct": 96.61100196463654,
+      "best_pct": 95.00978473581213,
       "won": false,
       "top1": false,
       "top10": true,
@@ -626,31 +626,31 @@
   },
   "2026-10-04": {
    "lines": {
-    "win": 123.69999999999999,
-    "top1": 111.10100000000003,
-    "top10": 89.49999999999999,
-    "cash": 66.60000000000001
+    "win": 135.40230000000045,
+    "top1": 112.50600000000013,
+    "top10": 89.8,
+    "cash": 66.5
    },
-   "pool_best_pct": 99.33999999999999,
+   "pool_best_pct": 99.22,
    "pool_best": 114.5,
    "methods": {
     "proj": {
      "1": {
-      "best_pct": 44.5,
+      "best_pct": 44.379999999999995,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 80.28,
+      "best_pct": 80.06,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.2
      },
      "13": {
-      "best_pct": 80.28,
+      "best_pct": 80.06,
       "won": false,
       "top1": false,
       "top10": false,
@@ -659,44 +659,44 @@
     },
     "cash": {
      "1": {
-      "best_pct": 82.62,
+      "best_pct": 81.76,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 85.32,
+      "best_pct": 81.76,
       "won": false,
       "top1": false,
       "top10": false,
-      "cash_rate": 1.0
+      "cash_rate": 0.8
      },
      "13": {
-      "best_pct": 91.96,
+      "best_pct": 91.67999999999999,
       "won": false,
       "top1": false,
       "top10": true,
-      "cash_rate": 0.8461538461538461
+      "cash_rate": 0.7692307692307693
      }
     },
     "top1": {
      "1": {
-      "best_pct": 95.86,
+      "best_pct": 99.16,
       "won": false,
-      "top1": false,
+      "top1": true,
       "top10": true,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 99.28,
+      "best_pct": 99.16,
       "won": false,
       "top1": true,
       "top10": true,
       "cash_rate": 1.0
      },
      "13": {
-      "best_pct": 99.33999999999999,
+      "best_pct": 99.16,
       "won": false,
       "top1": true,
       "top10": true,
@@ -705,25 +705,25 @@
     },
     "port": {
      "1": {
-      "best_pct": 97.16,
+      "best_pct": 99.16,
       "won": false,
-      "top1": false,
+      "top1": true,
       "top10": true,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 98.72,
+      "best_pct": 99.16,
       "won": false,
-      "top1": false,
+      "top1": true,
       "top10": true,
       "cash_rate": 0.8
      },
      "13": {
-      "best_pct": 98.72,
+      "best_pct": 99.16,
       "won": false,
-      "top1": false,
+      "top1": true,
       "top10": true,
-      "cash_rate": 0.8461538461538461
+      "cash_rate": 0.7692307692307693
      }
     }
    },
@@ -731,31 +731,31 @@
   },
   "2026-10-05": {
    "lines": {
-    "win": 113.80190000000039,
-    "top1": 101.30400000000009,
-    "top10": 83.5,
-    "cash": 63.900000000000006
+    "win": 122.80000000000001,
+    "top1": 103.00100000000002,
+    "top10": 82.5,
+    "cash": 63.699999999999996
    },
-   "pool_best_pct": 98.46000000000001,
+   "pool_best_pct": 98.24000000000001,
    "pool_best": 98.4,
    "methods": {
     "proj": {
      "1": {
-      "best_pct": 28.68,
+      "best_pct": 28.7,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 79.66,
+      "best_pct": 81.67999999999999,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.4
      },
      "13": {
-      "best_pct": 79.66,
+      "best_pct": 81.67999999999999,
       "won": false,
       "top1": false,
       "top10": false,
@@ -764,21 +764,21 @@
     },
     "cash": {
      "1": {
-      "best_pct": 19.919999999999998,
+      "best_pct": 72.76,
       "won": false,
       "top1": false,
       "top10": false,
-      "cash_rate": 0.0
+      "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 72.52,
+      "best_pct": 72.76,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.2
      },
      "13": {
-      "best_pct": 73.92,
+      "best_pct": 75.2,
       "won": false,
       "top1": false,
       "top10": false,
@@ -787,21 +787,21 @@
     },
     "top1": {
      "1": {
-      "best_pct": 12.08,
+      "best_pct": 11.48,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 20.04,
+      "best_pct": 15.4,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "13": {
-      "best_pct": 20.04,
+      "best_pct": 18.240000000000002,
       "won": false,
       "top1": false,
       "top10": false,
@@ -810,25 +810,25 @@
     },
     "port": {
      "1": {
-      "best_pct": 12.08,
+      "best_pct": 11.48,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 79.22,
+      "best_pct": 80.76,
       "won": false,
       "top1": false,
       "top10": false,
-      "cash_rate": 0.2
+      "cash_rate": 0.4
      },
      "13": {
-      "best_pct": 95.72,
+      "best_pct": 86.32,
       "won": false,
       "top1": false,
-      "top10": true,
-      "cash_rate": 0.3076923076923077
+      "top10": false,
+      "cash_rate": 0.46153846153846156
      }
     }
    },
@@ -836,31 +836,31 @@
   },
   "2026-10-06": {
    "lines": {
-    "win": 162.5,
-    "top1": 141.6039999999999,
-    "top10": 117.5,
-    "cash": 90.89999999999999
+    "win": 152.1,
+    "top1": 140.69899999999996,
+    "top10": 116.0,
+    "cash": 91.45500000000001
    },
-   "pool_best_pct": 99.84615384615385,
+   "pool_best_pct": 99.92313604919293,
    "pool_best": 158.9,
    "methods": {
     "proj": {
      "1": {
-      "best_pct": 70.92307692307692,
+      "best_pct": 71.75249807840123,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 76.1923076923077,
+      "best_pct": 77.36356648731744,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.6
      },
      "13": {
-      "best_pct": 88.0,
+      "best_pct": 89.16218293620291,
       "won": false,
       "top1": false,
       "top10": false,
@@ -869,21 +869,21 @@
     },
     "cash": {
      "1": {
-      "best_pct": 70.5,
+      "best_pct": 71.40661029976941,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 99.26923076923076,
+      "best_pct": 99.19292851652574,
       "won": false,
       "top1": true,
       "top10": true,
       "cash_rate": 1.0
      },
      "13": {
-      "best_pct": 99.26923076923076,
+      "best_pct": 99.19292851652574,
       "won": false,
       "top1": true,
       "top10": true,
@@ -892,21 +892,21 @@
     },
     "top1": {
      "1": {
-      "best_pct": 9.961538461538462,
+      "best_pct": 6.22598001537279,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 31.115384615384617,
+      "best_pct": 28.747117601844735,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "13": {
-      "best_pct": 39.46153846153846,
+      "best_pct": 36.35664873174481,
       "won": false,
       "top1": false,
       "top10": false,
@@ -915,21 +915,21 @@
     },
     "port": {
      "1": {
-      "best_pct": 61.19230769230769,
+      "best_pct": 10.722521137586472,
       "won": false,
       "top1": false,
       "top10": false,
-      "cash_rate": 1.0
+      "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 61.19230769230769,
+      "best_pct": 74.9423520368947,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.2
      },
      "13": {
-      "best_pct": 98.03846153846155,
+      "best_pct": 97.7325134511914,
       "won": false,
       "top1": false,
       "top10": true,
@@ -941,31 +941,31 @@
   },
   "2026-10-07": {
    "lines": {
-    "win": 149.7,
-    "top1": 141.2,
-    "top10": 111.05,
-    "cash": 81.9
+    "win": 145.47240000000002,
+    "top1": 131.6,
+    "top10": 111.1,
+    "cash": 82.8
    },
-   "pool_best_pct": 100.0,
-   "pool_best": 165.3,
+   "pool_best_pct": 99.97806536521166,
+   "pool_best": 157.5,
    "methods": {
     "proj": {
      "1": {
-      "best_pct": 14.878815080789945,
+      "best_pct": 15.990348760693134,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 21.18491921005386,
+      "best_pct": 37.661767931563936,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "13": {
-      "best_pct": 61.13105924596051,
+      "best_pct": 60.013160780873,
       "won": false,
       "top1": false,
       "top10": false,
@@ -974,14 +974,1927 @@
     },
     "cash": {
      "1": {
-      "best_pct": 99.19210053859963,
+      "best_pct": 99.75871901732836,
       "won": false,
       "top1": true,
       "top10": true,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 99.19210053859963,
+      "best_pct": 99.75871901732836,
+      "won": false,
+      "top1": true,
+      "top10": true,
+      "cash_rate": 1.0
+     },
+     "13": {
+      "best_pct": 99.934196095635,
+      "won": true,
+      "top1": true,
+      "top10": true,
+      "cash_rate": 1.0
+     }
+    },
+    "top1": {
+     "1": {
+      "best_pct": 16.604518534766395,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 16.604518534766395,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "13": {
+      "best_pct": 45.931125246764644,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     }
+    },
+    "port": {
+     "1": {
+      "best_pct": 16.604518534766395,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 45.931125246764644,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "13": {
+      "best_pct": 99.75871901732836,
+      "won": false,
+      "top1": true,
+      "top10": true,
+      "cash_rate": 0.3076923076923077
+     }
+    }
+   },
+   "games": 3
+  },
+  "2026-10-08": {
+   "lines": {
+    "win": 192.0,
+    "top1": 151.2,
+    "top10": 123.19999999999999,
+    "cash": 93.5
+   },
+   "pool_best_pct": 99.72462627852084,
+   "pool_best": 189.89999999999998,
+   "methods": {
+    "proj": {
+     "1": {
+      "best_pct": 88.78835562549175,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 1.0
+     },
+     "5": {
+      "best_pct": 94.8859166011015,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 1.0
+     },
+     "13": {
+      "best_pct": 94.8859166011015,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 0.8461538461538461
+     }
+    },
+    "cash": {
+     "1": {
+      "best_pct": 94.8859166011015,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 1.0
+     },
+     "5": {
+      "best_pct": 94.8859166011015,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 1.0
+     },
+     "13": {
+      "best_pct": 99.09520062942565,
+      "won": false,
+      "top1": true,
+      "top10": true,
+      "cash_rate": 1.0
+     }
+    },
+    "top1": {
+     "1": {
+      "best_pct": 44.72856018882769,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 99.1345397324941,
+      "won": false,
+      "top1": true,
+      "top10": true,
+      "cash_rate": 0.8
+     },
+     "13": {
+      "best_pct": 99.33123524783635,
+      "won": false,
+      "top1": true,
+      "top10": true,
+      "cash_rate": 0.9230769230769231
+     }
+    },
+    "port": {
+     "1": {
+      "best_pct": 44.72856018882769,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 99.56726986624706,
+      "won": false,
+      "top1": true,
+      "top10": true,
+      "cash_rate": 0.6
+     },
+     "13": {
+      "best_pct": 99.56726986624706,
+      "won": false,
+      "top1": true,
+      "top10": true,
+      "cash_rate": 0.7692307692307693
+     }
+    }
+   },
+   "games": 10
+  },
+  "2026-10-09": {
+   "lines": {
+    "win": 114.60020000000003,
+    "top1": 101.90500000000011,
+    "top10": 81.0,
+    "cash": 58.400000000000006
+   },
+   "pool_best_pct": 99.11999999999999,
+   "pool_best": 104.0,
+   "methods": {
+    "proj": {
+     "1": {
+      "best_pct": 91.58,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 1.0
+     },
+     "5": {
+      "best_pct": 94.89999999999999,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 1.0
+     },
+     "13": {
+      "best_pct": 96.46000000000001,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 1.0
+     }
+    },
+    "cash": {
+     "1": {
+      "best_pct": 55.44,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 1.0
+     },
+     "5": {
+      "best_pct": 67.46,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 1.0
+     },
+     "13": {
+      "best_pct": 67.46,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.5384615384615384
+     }
+    },
+    "top1": {
+     "1": {
+      "best_pct": 25.779999999999998,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 68.14,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.2
+     },
+     "13": {
+      "best_pct": 81.2,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.46153846153846156
+     }
+    },
+    "port": {
+     "1": {
+      "best_pct": 25.779999999999998,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 76.1,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.4
+     },
+     "13": {
+      "best_pct": 81.89999999999999,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.3076923076923077
+     }
+    }
+   },
+   "games": 4
+  },
+  "2026-10-10": {
+   "lines": {
+    "win": 171.73589999999922,
+    "top1": 144.5,
+    "top10": 114.89999999999998,
+    "cash": 81.29999999999998
+   },
+   "pool_best_pct": 96.73348181143281,
+   "pool_best": 131.4,
+   "methods": {
+    "proj": {
+     "1": {
+      "best_pct": 65.21900519673348,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 1.0
+     },
+     "5": {
+      "best_pct": 77.02301410541945,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.6
+     },
+     "13": {
+      "best_pct": 77.02301410541945,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.46153846153846156
+     }
+    },
+    "cash": {
+     "1": {
+      "best_pct": 77.02301410541945,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 1.0
+     },
+     "5": {
+      "best_pct": 77.02301410541945,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.6
+     },
+     "13": {
+      "best_pct": 77.02301410541945,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.46153846153846156
+     }
+    },
+    "top1": {
+     "1": {
+      "best_pct": 40.38604305864885,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 67.92873051224944,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.6
+     },
+     "13": {
+      "best_pct": 71.67780252412769,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.38461538461538464
+     }
+    },
+    "port": {
+     "1": {
+      "best_pct": 40.38604305864885,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 56.97847067557535,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.2
+     },
+     "13": {
+      "best_pct": 61.80400890868597,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.15384615384615385
+     }
+    }
+   },
+   "games": 10
+  },
+  "2026-10-11": {
+   "lines": {
+    "win": 133.70040000000006,
+    "top1": 121.0,
+    "top10": 100.1,
+    "cash": 77.6
+   },
+   "pool_best_pct": 98.9,
+   "pool_best": 120.3,
+   "methods": {
+    "proj": {
+     "1": {
+      "best_pct": 94.52000000000001,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 1.0
+     },
+     "5": {
+      "best_pct": 98.11999999999999,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 1.0
+     },
+     "13": {
+      "best_pct": 98.9,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 0.8461538461538461
+     }
+    },
+    "cash": {
+     "1": {
+      "best_pct": 94.52000000000001,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 1.0
+     },
+     "5": {
+      "best_pct": 94.52000000000001,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 1.0
+     },
+     "13": {
+      "best_pct": 94.52000000000001,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 1.0
+     }
+    },
+    "top1": {
+     "1": {
+      "best_pct": 19.98,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 37.22,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "13": {
+      "best_pct": 58.74,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.07692307692307693
+     }
+    },
+    "port": {
+     "1": {
+      "best_pct": 19.98,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 96.82,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 0.4
+     },
+     "13": {
+      "best_pct": 97.7,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 0.6153846153846154
+     }
+    }
+   },
+   "games": 3
+  },
+  "2026-10-12": {
+   "lines": {
+    "win": 115.59999999999998,
+    "top1": 104.69999999999999,
+    "top10": 85.7,
+    "cash": 67.1
+   },
+   "pool_best_pct": 98.6,
+   "pool_best": 102.39999999999999,
+   "methods": {
+    "proj": {
+     "1": {
+      "best_pct": 43.88,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 93.28,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 0.6
+     },
+     "13": {
+      "best_pct": 93.66,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 0.7692307692307693
+     }
+    },
+    "cash": {
+     "1": {
+      "best_pct": 74.24,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 1.0
+     },
+     "5": {
+      "best_pct": 92.67999999999999,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 1.0
+     },
+     "13": {
+      "best_pct": 96.26,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 1.0
+     }
+    },
+    "top1": {
+     "1": {
+      "best_pct": 14.66,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 14.66,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "13": {
+      "best_pct": 14.66,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     }
+    },
+    "port": {
+     "1": {
+      "best_pct": 14.66,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 93.28,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 0.2
+     },
+     "13": {
+      "best_pct": 96.64,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 0.46153846153846156
+     }
+    }
+   },
+   "games": 2
+  },
+  "2026-10-13": {
+   "lines": {
+    "win": 138.55829999999872,
+    "top1": 123.00600000000004,
+    "top10": 103.4,
+    "cash": 76.2
+   },
+   "pool_best_pct": 96.11239414934565,
+   "pool_best": 113.10000000000001,
+   "methods": {
+    "proj": {
+     "1": {
+      "best_pct": 83.67975365665897,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 1.0
+     },
+     "5": {
+      "best_pct": 92.41724403387221,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 0.8
+     },
+     "13": {
+      "best_pct": 92.41724403387221,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 0.8461538461538461
+     }
+    },
+    "cash": {
+     "1": {
+      "best_pct": 54.387990762124716,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 83.67975365665897,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.8
+     },
+     "13": {
+      "best_pct": 92.41724403387221,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 0.8461538461538461
+     }
+    },
+    "top1": {
+     "1": {
+      "best_pct": 18.78367975365666,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 33.29484218629715,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "13": {
+      "best_pct": 77.63664357197845,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.15384615384615385
+     }
+    },
+    "port": {
+     "1": {
+      "best_pct": 18.78367975365666,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 92.41724403387221,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 0.6
+     },
+     "13": {
+      "best_pct": 92.41724403387221,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 0.6923076923076923
+     }
+    }
+   },
+   "games": 12
+  },
+  "2026-10-14": {
+   "lines": {
+    "win": 124.50090000000019,
+    "top1": 106.3,
+    "top10": 85.19999999999999,
+    "cash": 60.3
+   },
+   "pool_best_pct": 99.82,
+   "pool_best": 120.3,
+   "methods": {
+    "proj": {
+     "1": {
+      "best_pct": 69.86,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 1.0
+     },
+     "5": {
+      "best_pct": 91.36,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 1.0
+     },
+     "13": {
+      "best_pct": 91.36,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 0.6923076923076923
+     }
+    },
+    "cash": {
+     "1": {
+      "best_pct": 86.02,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 1.0
+     },
+     "5": {
+      "best_pct": 88.03999999999999,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 1.0
+     },
+     "13": {
+      "best_pct": 97.11999999999999,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 0.7692307692307693
+     }
+    },
+    "top1": {
+     "1": {
+      "best_pct": 73.26,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 1.0
+     },
+     "5": {
+      "best_pct": 73.26,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.4
+     },
+     "13": {
+      "best_pct": 97.11999999999999,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 0.6923076923076923
+     }
+    },
+    "port": {
+     "1": {
+      "best_pct": 19.7,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 86.82,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.8
+     },
+     "13": {
+      "best_pct": 96.86,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 0.7692307692307693
+     }
+    }
+   },
+   "games": 2
+  },
+  "2026-10-15": {
+   "lines": {
+    "win": 165.1,
+    "top1": 151.99599999999992,
+    "top10": 126.2,
+    "cash": 94.8
+   },
+   "pool_best_pct": 91.06382978723404,
+   "pool_best": 128.8,
+   "methods": {
+    "proj": {
+     "1": {
+      "best_pct": 43.868471953578336,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 53.15280464216634,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "13": {
+      "best_pct": 85.57059961315281,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.3076923076923077
+     }
+    },
+    "cash": {
+     "1": {
+      "best_pct": 55.12572533849129,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 1.0
+     },
+     "5": {
+      "best_pct": 55.12572533849129,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.2
+     },
+     "13": {
+      "best_pct": 82.05029013539652,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.23076923076923078
+     }
+    },
+    "top1": {
+     "1": {
+      "best_pct": 4.061895551257253,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 4.061895551257253,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "13": {
+      "best_pct": 28.123791102514506,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     }
+    },
+    "port": {
+     "1": {
+      "best_pct": 3.249516441005803,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 88.74274661508704,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.2
+     },
+     "13": {
+      "best_pct": 91.06382978723404,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 0.3076923076923077
+     }
+    }
+   },
+   "games": 11
+  },
+  "2026-10-16": {
+   "lines": {
+    "win": 153.89999999999998,
+    "top1": 135.60200000000003,
+    "top10": 113.72000000000006,
+    "cash": 85.6
+   },
+   "pool_best_pct": 99.76,
+   "pool_best": 148.1,
+   "methods": {
+    "proj": {
+     "1": {
+      "best_pct": 96.54,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 1.0
+     },
+     "5": {
+      "best_pct": 97.36,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 1.0
+     },
+     "13": {
+      "best_pct": 99.5,
+      "won": false,
+      "top1": true,
+      "top10": true,
+      "cash_rate": 1.0
+     }
+    },
+    "cash": {
+     "1": {
+      "best_pct": 99.58,
+      "won": false,
+      "top1": true,
+      "top10": true,
+      "cash_rate": 1.0
+     },
+     "5": {
+      "best_pct": 99.58,
+      "won": false,
+      "top1": true,
+      "top10": true,
+      "cash_rate": 1.0
+     },
+     "13": {
+      "best_pct": 99.68,
+      "won": false,
+      "top1": true,
+      "top10": true,
+      "cash_rate": 1.0
+     }
+    },
+    "top1": {
+     "1": {
+      "best_pct": 2.88,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 22.18,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "13": {
+      "best_pct": 95.39999999999999,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 0.07692307692307693
+     }
+    },
+    "port": {
+     "1": {
+      "best_pct": 15.98,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 96.78,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 0.6
+     },
+     "13": {
+      "best_pct": 99.76,
+      "won": false,
+      "top1": true,
+      "top10": true,
+      "cash_rate": 0.6923076923076923
+     }
+    }
+   },
+   "games": 2
+  },
+  "2026-10-17": {
+   "lines": {
+    "win": 151.1,
+    "top1": 130.004,
+    "top10": 107.89999999999999,
+    "cash": 80.4
+   },
+   "pool_best_pct": 91.41316904120139,
+   "pool_best": 110.1,
+   "methods": {
+    "proj": {
+     "1": {
+      "best_pct": 50.01925298421255,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 79.32229495571814,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.4
+     },
+     "13": {
+      "best_pct": 79.32229495571814,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.3076923076923077
+     }
+    },
+    "cash": {
+     "1": {
+      "best_pct": 31.651906045437045,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 71.62110127069697,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.6
+     },
+     "13": {
+      "best_pct": 78.24412783981516,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.38461538461538464
+     }
+    },
+    "top1": {
+     "1": {
+      "best_pct": 7.12360415864459,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 42.818636888717755,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "13": {
+      "best_pct": 79.32229495571814,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.07692307692307693
+     }
+    },
+    "port": {
+     "1": {
+      "best_pct": 7.12360415864459,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 79.32229495571814,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.2
+     },
+     "13": {
+      "best_pct": 91.29765113592607,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 0.46153846153846156
+     }
+    }
+   },
+   "games": 10
+  },
+  "2026-10-18": {
+   "lines": {
+    "win": 108.00180000000037,
+    "top1": 99.90200000000003,
+    "top10": 82.8,
+    "cash": 63.84500000000003
+   },
+   "pool_best_pct": 99.92,
+   "pool_best": 110.2,
+   "methods": {
+    "proj": {
+     "1": {
+      "best_pct": 97.0,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 1.0
+     },
+     "5": {
+      "best_pct": 99.18,
+      "won": false,
+      "top1": true,
+      "top10": true,
+      "cash_rate": 1.0
+     },
+     "13": {
+      "best_pct": 99.92,
+      "won": true,
+      "top1": true,
+      "top10": true,
+      "cash_rate": 1.0
+     }
+    },
+    "cash": {
+     "1": {
+      "best_pct": 67.9,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 1.0
+     },
+     "5": {
+      "best_pct": 94.39999999999999,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 1.0
+     },
+     "13": {
+      "best_pct": 94.39999999999999,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 1.0
+     }
+    },
+    "top1": {
+     "1": {
+      "best_pct": 28.660000000000004,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 51.44,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "13": {
+      "best_pct": 51.44,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     }
+    },
+    "port": {
+     "1": {
+      "best_pct": 30.919999999999998,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 89.82,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.2
+     },
+     "13": {
+      "best_pct": 96.7,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 0.5384615384615384
+     }
+    }
+   },
+   "games": 2
+  },
+  "2026-10-19": {
+   "lines": {
+    "win": 130.50370000000075,
+    "top1": 119.70200000000004,
+    "top10": 95.6,
+    "cash": 70.19999999999999
+   },
+   "pool_best_pct": 99.56,
+   "pool_best": 125.0,
+   "methods": {
+    "proj": {
+     "1": {
+      "best_pct": 69.02000000000001,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 1.0
+     },
+     "5": {
+      "best_pct": 95.16,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 1.0
+     },
+     "13": {
+      "best_pct": 95.16,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 1.0
+     }
+    },
+    "cash": {
+     "1": {
+      "best_pct": 69.02000000000001,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 1.0
+     },
+     "5": {
+      "best_pct": 90.74,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 1.0
+     },
+     "13": {
+      "best_pct": 95.16,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 1.0
+     }
+    },
+    "top1": {
+     "1": {
+      "best_pct": 38.82,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 76.32,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.4
+     },
+     "13": {
+      "best_pct": 86.46000000000001,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.6153846153846154
+     }
+    },
+    "port": {
+     "1": {
+      "best_pct": 48.199999999999996,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 97.06,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 0.8
+     },
+     "13": {
+      "best_pct": 97.06,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 0.6923076923076923
+     }
+    }
+   },
+   "games": 4
+  },
+  "2026-10-20": {
+   "lines": {
+    "win": 153.21750000000029,
+    "top1": 140.29999999999998,
+    "top10": 111.37000000000002,
+    "cash": 84.1
+   },
+   "pool_best_pct": 99.29522317932654,
+   "pool_best": 143.6,
+   "methods": {
+    "proj": {
+     "1": {
+      "best_pct": 53.56303837118246,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 61.5113547376664,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.2
+     },
+     "13": {
+      "best_pct": 61.58966327329679,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.23076923076923078
+     }
+    },
+    "cash": {
+     "1": {
+      "best_pct": 61.31558339859045,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 1.0
+     },
+     "5": {
+      "best_pct": 83.6335160532498,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 1.0
+     },
+     "13": {
+      "best_pct": 95.22317932654659,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 0.9230769230769231
+     }
+    },
+    "top1": {
+     "1": {
+      "best_pct": 16.87548942834769,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 52.70164447924823,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "13": {
+      "best_pct": 61.58966327329679,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.15384615384615385
+     }
+    },
+    "port": {
+     "1": {
+      "best_pct": 16.87548942834769,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 83.35943617854346,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.4
+     },
+     "13": {
+      "best_pct": 92.91307752545028,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 0.5384615384615384
+     }
+    }
+   },
+   "games": 11
+  },
+  "2026-10-21": {
+   "lines": {
+    "win": 94.20370000000074,
+    "top1": 82.50200000000004,
+    "top10": 66.1,
+    "cash": 47.4
+   },
+   "pool_best_pct": 99.66000000000001,
+   "pool_best": 88.6,
+   "methods": {
+    "proj": {
+     "1": {
+      "best_pct": 91.08000000000001,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 1.0
+     },
+     "5": {
+      "best_pct": 98.52,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 1.0
+     },
+     "13": {
+      "best_pct": 98.52,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 1.0
+     }
+    },
+    "cash": {
+     "1": {
+      "best_pct": 54.50000000000001,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 91.60000000000001,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 0.8
+     },
+     "13": {
+      "best_pct": 91.60000000000001,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 0.6923076923076923
+     }
+    },
+    "top1": {
+     "1": {
+      "best_pct": 91.94,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 1.0
+     },
+     "5": {
+      "best_pct": 92.42,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 1.0
+     },
+     "13": {
+      "best_pct": 92.42,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 0.6153846153846154
+     }
+    },
+    "port": {
+     "1": {
+      "best_pct": 91.94,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 1.0
+     },
+     "5": {
+      "best_pct": 98.18,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 0.8
+     },
+     "13": {
+      "best_pct": 99.08,
+      "won": false,
+      "top1": true,
+      "top10": true,
+      "cash_rate": 0.8461538461538461
+     }
+    }
+   },
+   "games": 2
+  },
+  "2026-10-22": {
+   "lines": {
+    "win": 159.8,
+    "top1": 138.6,
+    "top10": 107.6,
+    "cash": 80.7
+   },
+   "pool_best_pct": 100.0,
+   "pool_best": 160.89999999999998,
+   "methods": {
+    "proj": {
+     "1": {
+      "best_pct": 93.58269160249358,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 1.0
+     },
+     "5": {
+      "best_pct": 96.47964796479648,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 1.0
+     },
+     "13": {
+      "best_pct": 96.55298863219656,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 0.9230769230769231
+     }
+    },
+    "cash": {
+     "1": {
+      "best_pct": 77.41107444077741,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 1.0
+     },
+     "5": {
+      "best_pct": 96.47964796479648,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 1.0
+     },
+     "13": {
+      "best_pct": 98.64319765309865,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 0.9230769230769231
+     }
+    },
+    "top1": {
+     "1": {
+      "best_pct": 71.03043637697102,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 1.0
+     },
+     "5": {
+      "best_pct": 86.76200953428676,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.8
+     },
+     "13": {
+      "best_pct": 86.76200953428676,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.5384615384615384
+     }
+    },
+    "port": {
+     "1": {
+      "best_pct": 86.76200953428676,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 1.0
+     },
+     "5": {
+      "best_pct": 98.45984598459846,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 1.0
+     },
+     "13": {
+      "best_pct": 98.45984598459846,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 0.9230769230769231
+     }
+    }
+   },
+   "games": 12
+  },
+  "2026-10-23": {
+   "lines": {
+    "win": 144.9010000000002,
+    "top1": 120.8,
+    "top10": 96.4,
+    "cash": 67.24500000000002
+   },
+   "pool_best_pct": 99.88,
+   "pool_best": 137.0,
+   "methods": {
+    "proj": {
+     "1": {
+      "best_pct": 1.38,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 54.800000000000004,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "13": {
+      "best_pct": 59.599999999999994,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.15384615384615385
+     }
+    },
+    "cash": {
+     "1": {
+      "best_pct": 54.800000000000004,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 59.599999999999994,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.2
+     },
+     "13": {
+      "best_pct": 59.599999999999994,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.15384615384615385
+     }
+    },
+    "top1": {
+     "1": {
+      "best_pct": 45.78,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 68.36,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.6
+     },
+     "13": {
+      "best_pct": 81.78,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.5384615384615384
+     }
+    },
+    "port": {
+     "1": {
+      "best_pct": 45.78,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 84.0,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.6
+     },
+     "13": {
+      "best_pct": 98.38,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 0.6923076923076923
+     }
+    }
+   },
+   "games": 2
+  },
+  "2026-10-24": {
+   "lines": {
+    "win": 149.27900000000022,
+    "top1": 127.36000000000013,
+    "top10": 100.7,
+    "cash": 74.3
+   },
+   "pool_best_pct": 100.0,
+   "pool_best": 156.8,
+   "methods": {
+    "proj": {
+     "1": {
+      "best_pct": 17.324795446460335,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 87.29989327641408,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.6
+     },
+     "13": {
+      "best_pct": 90.67947349697616,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 0.5384615384615384
+     }
+    },
+    "cash": {
+     "1": {
+      "best_pct": 86.4105300604767,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 1.0
+     },
+     "5": {
+      "best_pct": 86.69512628957666,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 1.0
+     },
+     "13": {
+      "best_pct": 94.69939523301316,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 0.9230769230769231
+     }
+    },
+    "top1": {
+     "1": {
+      "best_pct": 22.376378512984704,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 87.29989327641408,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.2
+     },
+     "13": {
+      "best_pct": 87.29989327641408,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.07692307692307693
+     }
+    },
+    "port": {
+     "1": {
+      "best_pct": 87.29989327641408,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 1.0
+     },
+     "5": {
+      "best_pct": 98.15012451085023,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 0.6
+     },
+     "13": {
+      "best_pct": 100.0,
+      "won": true,
+      "top1": true,
+      "top10": true,
+      "cash_rate": 0.6923076923076923
+     }
+    }
+   },
+   "games": 10
+  },
+  "2026-10-25": {
+   "lines": {
+    "win": 144.8150999999999,
+    "top1": 130.15499999999997,
+    "top10": 103.80999999999999,
+    "cash": 78.3
+   },
+   "pool_best_pct": 100.0,
+   "pool_best": 161.39999999999998,
+   "methods": {
+    "proj": {
+     "1": {
+      "best_pct": 93.42939481268012,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 1.0
+     },
+     "5": {
+      "best_pct": 97.78097982708934,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 1.0
+     },
+     "13": {
+      "best_pct": 99.16426512968299,
+      "won": false,
+      "top1": true,
+      "top10": true,
+      "cash_rate": 1.0
+     }
+    },
+    "cash": {
+     "1": {
+      "best_pct": 93.42939481268012,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 1.0
+     },
+     "5": {
+      "best_pct": 97.78097982708934,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 1.0
+     },
+     "13": {
+      "best_pct": 97.78097982708934,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 1.0
+     }
+    },
+    "top1": {
+     "1": {
+      "best_pct": 99.74063400576368,
+      "won": false,
+      "top1": true,
+      "top10": true,
+      "cash_rate": 1.0
+     },
+     "5": {
+      "best_pct": 99.74063400576368,
       "won": false,
       "top1": true,
       "top10": true,
@@ -995,1940 +2908,27 @@
       "cash_rate": 1.0
      }
     },
-    "top1": {
-     "1": {
-      "best_pct": 15.192998204667862,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "5": {
-      "best_pct": 15.192998204667862,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "13": {
-      "best_pct": 36.512567324955114,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     }
-    },
     "port": {
      "1": {
-      "best_pct": 15.192998204667862,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "5": {
-      "best_pct": 76.3689407540395,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.2
-     },
-     "13": {
-      "best_pct": 96.99281867145422,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.23076923076923078
-     }
-    }
-   },
-   "games": 3
-  },
-  "2026-10-08": {
-   "lines": {
-    "win": 198.8,
-    "top1": 155.2,
-    "top10": 126.39999999999999,
-    "cash": 95.69999999999999
-   },
-   "pool_best_pct": 99.8056743101438,
-   "pool_best": 189.89999999999998,
-   "methods": {
-    "proj": {
-     "1": {
-      "best_pct": 86.59152739992227,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 1.0
-     },
-     "5": {
-      "best_pct": 93.12087057909055,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 1.0
-     },
-     "13": {
-      "best_pct": 93.12087057909055,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.7692307692307693
-     }
-    },
-    "cash": {
-     "1": {
-      "best_pct": 92.73221919937816,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 1.0
-     },
-     "5": {
-      "best_pct": 98.2510687912942,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 1.0
-     },
-     "13": {
-      "best_pct": 98.2510687912942,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 1.0
-     }
-    },
-    "top1": {
-     "1": {
-      "best_pct": 38.59308200544112,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "5": {
-      "best_pct": 99.65021375825884,
+      "best_pct": 99.74063400576368,
       "won": false,
       "top1": true,
       "top10": true,
-      "cash_rate": 0.8
+      "cash_rate": 1.0
      },
-     "13": {
-      "best_pct": 99.65021375825884,
+     "5": {
+      "best_pct": 99.74063400576368,
       "won": false,
       "top1": true,
       "top10": true,
-      "cash_rate": 0.9230769230769231
-     }
-    },
-    "port": {
-     "1": {
-      "best_pct": 62.37854644383988,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 1.0
-     },
-     "5": {
-      "best_pct": 98.05674310143802,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.8
-     },
-     "13": {
-      "best_pct": 98.05674310143802,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.7692307692307693
-     }
-    }
-   },
-   "games": 10
-  },
-  "2026-10-09": {
-   "lines": {
-    "win": 112.9,
-    "top1": 101.70300000000006,
-    "top10": 81.99999999999999,
-    "cash": 58.9
-   },
-   "pool_best_pct": 99.24,
-   "pool_best": 104.0,
-   "methods": {
-    "proj": {
-     "1": {
-      "best_pct": 90.74,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 1.0
-     },
-     "5": {
-      "best_pct": 94.58,
-      "won": false,
-      "top1": false,
-      "top10": true,
       "cash_rate": 1.0
      },
      "13": {
-      "best_pct": 96.56,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 1.0
-     }
-    },
-    "cash": {
-     "1": {
-      "best_pct": 54.64,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "5": {
-      "best_pct": 59.74,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.6
-     },
-     "13": {
-      "best_pct": 68.64,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.6923076923076923
-     }
-    },
-    "top1": {
-     "1": {
-      "best_pct": 24.8,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "5": {
-      "best_pct": 59.36,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.2
-     },
-     "13": {
-      "best_pct": 81.14,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.46153846153846156
-     }
-    },
-    "port": {
-     "1": {
-      "best_pct": 24.8,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "5": {
-      "best_pct": 81.58,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.4
-     },
-     "13": {
-      "best_pct": 84.26,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.38461538461538464
-     }
-    }
-   },
-   "games": 4
-  },
-  "2026-10-10": {
-   "lines": {
-    "win": 178.2139999999995,
-    "top1": 145.32999999999996,
-    "top10": 110.9,
-    "cash": 79.3
-   },
-   "pool_best_pct": 97.28725380899293,
-   "pool_best": 131.4,
-   "methods": {
-    "proj": {
-     "1": {
-      "best_pct": 66.18357487922705,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 1.0
-     },
-     "5": {
-      "best_pct": 77.51765143069491,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.6
-     },
-     "13": {
-      "best_pct": 77.51765143069491,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.6153846153846154
-     }
-    },
-    "cash": {
-     "1": {
-      "best_pct": 77.51765143069491,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 1.0
-     },
-     "5": {
-      "best_pct": 77.51765143069491,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.6
-     },
-     "13": {
-      "best_pct": 77.51765143069491,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.5384615384615384
-     }
-    },
-    "top1": {
-     "1": {
-      "best_pct": 42.51207729468599,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "5": {
-      "best_pct": 69.08212560386472,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.2
-     },
-     "13": {
-      "best_pct": 69.08212560386472,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.3076923076923077
-     }
-    },
-    "port": {
-     "1": {
-      "best_pct": 17.502787068004462,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "5": {
-      "best_pct": 60.535117056856194,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.4
-     },
-     "13": {
-      "best_pct": 63.80527684875511,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.3076923076923077
-     }
-    }
-   },
-   "games": 10
-  },
-  "2026-10-11": {
-   "lines": {
-    "win": 129.10130000000026,
-    "top1": 119.6,
-    "top10": 99.6,
-    "cash": 77.7
-   },
-   "pool_best_pct": 99.18,
-   "pool_best": 120.3,
-   "methods": {
-    "proj": {
-     "1": {
-      "best_pct": 95.3,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 1.0
-     },
-     "5": {
-      "best_pct": 98.4,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 1.0
-     },
-     "13": {
-      "best_pct": 99.18,
-      "won": false,
+      "best_pct": 99.91354466858789,
+      "won": true,
       "top1": true,
       "top10": true,
       "cash_rate": 0.8461538461538461
-     }
-    },
-    "cash": {
-     "1": {
-      "best_pct": 95.3,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 1.0
-     },
-     "5": {
-      "best_pct": 95.3,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 1.0
-     },
-     "13": {
-      "best_pct": 95.3,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 1.0
-     }
-    },
-    "top1": {
-     "1": {
-      "best_pct": 23.04,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "5": {
-      "best_pct": 37.18,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "13": {
-      "best_pct": 58.26,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.07692307692307693
-     }
-    },
-    "port": {
-     "1": {
-      "best_pct": 23.04,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "5": {
-      "best_pct": 97.39999999999999,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.2
-     },
-     "13": {
-      "best_pct": 98.04,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.5384615384615384
-     }
-    }
-   },
-   "games": 3
-  },
-  "2026-10-12": {
-   "lines": {
-    "win": 111.00180000000037,
-    "top1": 103.3,
-    "top10": 87.01000000000003,
-    "cash": 67.3
-   },
-   "pool_best_pct": 98.78,
-   "pool_best": 102.39999999999999,
-   "methods": {
-    "proj": {
-     "1": {
-      "best_pct": 43.24,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "5": {
-      "best_pct": 93.24,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.6
-     },
-     "13": {
-      "best_pct": 93.8,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.7692307692307693
-     }
-    },
-    "cash": {
-     "1": {
-      "best_pct": 73.78,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 1.0
-     },
-     "5": {
-      "best_pct": 92.25999999999999,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 1.0
-     },
-     "13": {
-      "best_pct": 96.16,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 1.0
-     }
-    },
-    "top1": {
-     "1": {
-      "best_pct": 14.12,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "5": {
-      "best_pct": 14.12,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "13": {
-      "best_pct": 14.12,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     }
-    },
-    "port": {
-     "1": {
-      "best_pct": 14.12,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "5": {
-      "best_pct": 82.3,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.2
-     },
-     "13": {
-      "best_pct": 98.78,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.38461538461538464
-     }
-    }
-   },
-   "games": 2
-  },
-  "2026-10-13": {
-   "lines": {
-    "win": 141.1,
-    "top1": 125.73600000000005,
-    "top10": 101.17000000000002,
-    "cash": 77.99999999999999
-   },
-   "pool_best_pct": 96.40092879256966,
-   "pool_best": 113.10000000000001,
-   "methods": {
-    "proj": {
-     "1": {
-      "best_pct": 85.87461300309597,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 1.0
-     },
-     "5": {
-      "best_pct": 93.80804953560371,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.8
-     },
-     "13": {
-      "best_pct": 93.80804953560371,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.7692307692307693
-     }
-    },
-    "cash": {
-     "1": {
-      "best_pct": 85.87461300309597,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 1.0
-     },
-     "5": {
-      "best_pct": 85.87461300309597,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.8
-     },
-     "13": {
-      "best_pct": 93.80804953560371,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.7692307692307693
-     }
-    },
-    "top1": {
-     "1": {
-      "best_pct": 21.052631578947366,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "5": {
-      "best_pct": 31.153250773993808,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "13": {
-      "best_pct": 51.31578947368421,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     }
-    },
-    "port": {
-     "1": {
-      "best_pct": 30.92105263157895,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "5": {
-      "best_pct": 92.37616099071208,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.4
-     },
-     "13": {
-      "best_pct": 92.37616099071208,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.46153846153846156
-     }
-    }
-   },
-   "games": 12
-  },
-  "2026-10-14": {
-   "lines": {
-    "win": 123.20010000000002,
-    "top1": 108.10100000000001,
-    "top10": 86.41000000000004,
-    "cash": 60.5
-   },
-   "pool_best_pct": 99.56,
-   "pool_best": 120.3,
-   "methods": {
-    "proj": {
-     "1": {
-      "best_pct": 67.82000000000001,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 1.0
-     },
-     "5": {
-      "best_pct": 90.7,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 1.0
-     },
-     "13": {
-      "best_pct": 90.7,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.6923076923076923
-     }
-    },
-    "cash": {
-     "1": {
-      "best_pct": 59.21999999999999,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 1.0
-     },
-     "5": {
-      "best_pct": 86.68,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.8
-     },
-     "13": {
-      "best_pct": 86.68,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.7692307692307693
-     }
-    },
-    "top1": {
-     "1": {
-      "best_pct": 71.67999999999999,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 1.0
-     },
-     "5": {
-      "best_pct": 71.67999999999999,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.4
-     },
-     "13": {
-      "best_pct": 92.42,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.6153846153846154
-     }
-    },
-    "port": {
-     "1": {
-      "best_pct": 47.82,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "5": {
-      "best_pct": 97.18,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.6
-     },
-     "13": {
-      "best_pct": 97.18,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.7692307692307693
-     }
-    }
-   },
-   "games": 2
-  },
-  "2026-10-15": {
-   "lines": {
-    "win": 168.60000000000002,
-    "top1": 156.3,
-    "top10": 126.6,
-    "cash": 94.3
-   },
-   "pool_best_pct": 91.67309175019275,
-   "pool_best": 128.8,
-   "methods": {
-    "proj": {
-     "1": {
-      "best_pct": 39.93831919814957,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "5": {
-      "best_pct": 52.19737856592136,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "13": {
-      "best_pct": 85.54356206630686,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.3076923076923077
-     }
-    },
-    "cash": {
-     "1": {
-      "best_pct": 39.55281418658442,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "5": {
-      "best_pct": 82.49807247494218,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.4
-     },
-     "13": {
-      "best_pct": 88.62760215882807,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.3076923076923077
-     }
-    },
-    "top1": {
-     "1": {
-      "best_pct": 0.8481110254433308,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "5": {
-      "best_pct": 3.546646106399383,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "13": {
-      "best_pct": 27.833461835003853,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     }
-    },
-    "port": {
-     "1": {
-      "best_pct": 3.546646106399383,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "5": {
-      "best_pct": 71.97378565921358,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.2
-     },
-     "13": {
-      "best_pct": 89.39861218195837,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.38461538461538464
-     }
-    }
-   },
-   "games": 11
-  },
-  "2026-10-16": {
-   "lines": {
-    "win": 143.50180000000037,
-    "top1": 133.9,
-    "top10": 113.5,
-    "cash": 86.29999999999998
-   },
-   "pool_best_pct": 99.96000000000001,
-   "pool_best": 148.1,
-   "methods": {
-    "proj": {
-     "1": {
-      "best_pct": 97.18,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 1.0
-     },
-     "5": {
-      "best_pct": 97.84,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 1.0
-     },
-     "13": {
-      "best_pct": 99.83999999999999,
-      "won": false,
-      "top1": true,
-      "top10": true,
-      "cash_rate": 1.0
-     }
-    },
-    "cash": {
-     "1": {
-      "best_pct": 99.9,
-      "won": true,
-      "top1": true,
-      "top10": true,
-      "cash_rate": 1.0
-     },
-     "5": {
-      "best_pct": 99.9,
-      "won": true,
-      "top1": true,
-      "top10": true,
-      "cash_rate": 1.0
-     },
-     "13": {
-      "best_pct": 99.94,
-      "won": true,
-      "top1": true,
-      "top10": true,
-      "cash_rate": 1.0
-     }
-    },
-    "top1": {
-     "1": {
-      "best_pct": 16.580000000000002,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "5": {
-      "best_pct": 16.580000000000002,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "13": {
-      "best_pct": 93.66,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.07692307692307693
-     }
-    },
-    "port": {
-     "1": {
-      "best_pct": 3.02,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "5": {
-      "best_pct": 96.02000000000001,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.4
-     },
-     "13": {
-      "best_pct": 99.4,
-      "won": false,
-      "top1": true,
-      "top10": true,
-      "cash_rate": 0.46153846153846156
-     }
-    }
-   },
-   "games": 2
-  },
-  "2026-10-17": {
-   "lines": {
-    "win": 140.5344000000012,
-    "top1": 130.2,
-    "top10": 107.58000000000001,
-    "cash": 80.19999999999999
-   },
-   "pool_best_pct": 92.76416539050535,
-   "pool_best": 110.7,
-   "methods": {
-    "proj": {
-     "1": {
-      "best_pct": 50.076569678407346,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "5": {
-      "best_pct": 79.82388973966309,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.4
-     },
-     "13": {
-      "best_pct": 79.82388973966309,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.3076923076923077
-     }
-    },
-    "cash": {
-     "1": {
-      "best_pct": 28.25421133231241,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "5": {
-      "best_pct": 71.86064318529863,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.4
-     },
-     "13": {
-      "best_pct": 71.86064318529863,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.23076923076923078
-     }
-    },
-    "top1": {
-     "1": {
-      "best_pct": 20.712098009188363,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "5": {
-      "best_pct": 44.52526799387442,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "13": {
-      "best_pct": 79.82388973966309,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.07692307692307693
-     }
-    },
-    "port": {
-     "1": {
-      "best_pct": 20.712098009188363,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "5": {
-      "best_pct": 73.20061255742726,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.2
-     },
-     "13": {
-      "best_pct": 73.81316998468607,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.23076923076923078
-     }
-    }
-   },
-   "games": 10
-  },
-  "2026-10-18": {
-   "lines": {
-    "win": 115.30030000000006,
-    "top1": 98.99999999999999,
-    "top10": 81.8,
-    "cash": 63.7
-   },
-   "pool_best_pct": 99.82,
-   "pool_best": 110.2,
-   "methods": {
-    "proj": {
-     "1": {
-      "best_pct": 97.78,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 1.0
-     },
-     "5": {
-      "best_pct": 99.36,
-      "won": false,
-      "top1": true,
-      "top10": true,
-      "cash_rate": 1.0
-     },
-     "13": {
-      "best_pct": 99.82,
-      "won": false,
-      "top1": true,
-      "top10": true,
-      "cash_rate": 1.0
-     }
-    },
-    "cash": {
-     "1": {
-      "best_pct": 66.36,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 1.0
-     },
-     "5": {
-      "best_pct": 94.98,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 1.0
-     },
-     "13": {
-      "best_pct": 94.98,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 1.0
-     }
-    },
-    "top1": {
-     "1": {
-      "best_pct": 27.939999999999998,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "5": {
-      "best_pct": 51.9,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "13": {
-      "best_pct": 51.9,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     }
-    },
-    "port": {
-     "1": {
-      "best_pct": 23.919999999999998,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "5": {
-      "best_pct": 62.56,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.2
-     },
-     "13": {
-      "best_pct": 94.98,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.38461538461538464
-     }
-    }
-   },
-   "games": 2
-  },
-  "2026-10-19": {
-   "lines": {
-    "win": 138.4,
-    "top1": 123.50200000000004,
-    "top10": 96.91000000000004,
-    "cash": 71.04500000000003
-   },
-   "pool_best_pct": 99.28,
-   "pool_best": 125.0,
-   "methods": {
-    "proj": {
-     "1": {
-      "best_pct": 67.78,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 1.0
-     },
-     "5": {
-      "best_pct": 94.64,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 1.0
-     },
-     "13": {
-      "best_pct": 94.64,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 1.0
-     }
-    },
-    "cash": {
-     "1": {
-      "best_pct": 67.78,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 1.0
-     },
-     "5": {
-      "best_pct": 94.64,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 1.0
-     },
-     "13": {
-      "best_pct": 94.64,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 1.0
-     }
-    },
-    "top1": {
-     "1": {
-      "best_pct": 74.92,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 1.0
-     },
-     "5": {
-      "best_pct": 74.92,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.4
-     },
-     "13": {
-      "best_pct": 74.92,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.38461538461538464
-     }
-    },
-    "port": {
-     "1": {
-      "best_pct": 45.72,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "5": {
-      "best_pct": 98.24000000000001,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.4
-     },
-     "13": {
-      "best_pct": 98.24000000000001,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.46153846153846156
-     }
-    }
-   },
-   "games": 4
-  },
-  "2026-10-20": {
-   "lines": {
-    "win": 151.64000000000019,
-    "top1": 136.88,
-    "top10": 111.6,
-    "cash": 84.2
-   },
-   "pool_best_pct": 99.45333853963295,
-   "pool_best": 143.6,
-   "methods": {
-    "proj": {
-     "1": {
-      "best_pct": 52.98711440843421,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "5": {
-      "best_pct": 61.811792268645064,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.2
-     },
-     "13": {
-      "best_pct": 62.31940648184303,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.23076923076923078
-     }
-    },
-    "cash": {
-     "1": {
-      "best_pct": 50.76142131979695,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "5": {
-      "best_pct": 81.14017961733698,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.8
-     },
-     "13": {
-      "best_pct": 95.00195236235845,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.8461538461538461
-     }
-    },
-    "top1": {
-     "1": {
-      "best_pct": 17.883639203436157,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "5": {
-      "best_pct": 62.31940648184303,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.2
-     },
-     "13": {
-      "best_pct": 62.31940648184303,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.15384615384615385
-     }
-    },
-    "port": {
-     "1": {
-      "best_pct": 17.883639203436157,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "5": {
-      "best_pct": 82.6239750097618,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.4
-     },
-     "13": {
-      "best_pct": 93.12768449824287,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.5384615384615384
-     }
-    }
-   },
-   "games": 11
-  },
-  "2026-10-21": {
-   "lines": {
-    "win": 92.0010000000002,
-    "top1": 84.00300000000007,
-    "top10": 66.5,
-    "cash": 48.099999999999994
-   },
-   "pool_best_pct": 99.38,
-   "pool_best": 88.6,
-   "methods": {
-    "proj": {
-     "1": {
-      "best_pct": 91.16,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 1.0
-     },
-     "5": {
-      "best_pct": 98.2,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 1.0
-     },
-     "13": {
-      "best_pct": 98.2,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 1.0
-     }
-    },
-    "cash": {
-     "1": {
-      "best_pct": 53.32,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "5": {
-      "best_pct": 91.56,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.6
-     },
-     "13": {
-      "best_pct": 91.56,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.6923076923076923
-     }
-    },
-    "top1": {
-     "1": {
-      "best_pct": 92.22,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 1.0
-     },
-     "5": {
-      "best_pct": 92.96,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.6
-     },
-     "13": {
-      "best_pct": 92.96,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.6153846153846154
-     }
-    },
-    "port": {
-     "1": {
-      "best_pct": 92.22,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 1.0
-     },
-     "5": {
-      "best_pct": 98.74000000000001,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.8
-     },
-     "13": {
-      "best_pct": 98.74000000000001,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.7692307692307693
-     }
-    }
-   },
-   "games": 2
-  },
-  "2026-10-22": {
-   "lines": {
-    "win": 162.7,
-    "top1": 138.3,
-    "top10": 108.6,
-    "cash": 78.9
-   },
-   "pool_best_pct": 99.67141292442497,
-   "pool_best": 160.89999999999998,
-   "methods": {
-    "proj": {
-     "1": {
-      "best_pct": 91.8218327856882,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 1.0
-     },
-     "5": {
-      "best_pct": 95.50930996714129,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 1.0
-     },
-     "13": {
-      "best_pct": 95.72836801752464,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 1.0
-     }
-    },
-    "cash": {
-     "1": {
-      "best_pct": 86.92953632712668,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 1.0
-     },
-     "5": {
-      "best_pct": 95.50930996714129,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 1.0
-     },
-     "13": {
-      "best_pct": 98.39357429718876,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 1.0
-     }
-    },
-    "top1": {
-     "1": {
-      "best_pct": 71.26688572471706,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 1.0
-     },
-     "5": {
-      "best_pct": 87.03906535231837,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.6
-     },
-     "13": {
-      "best_pct": 87.03906535231837,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.46153846153846156
-     }
-    },
-    "port": {
-     "1": {
-      "best_pct": 22.307411464037973,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "5": {
-      "best_pct": 87.03906535231837,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.4
-     },
-     "13": {
-      "best_pct": 95.39978094194961,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.7692307692307693
-     }
-    }
-   },
-   "games": 12
-  },
-  "2026-10-23": {
-   "lines": {
-    "win": 141.70000000000002,
-    "top1": 125.5,
-    "top10": 96.1,
-    "cash": 66.5
-   },
-   "pool_best_pct": 99.76,
-   "pool_best": 137.0,
-   "methods": {
-    "proj": {
-     "1": {
-      "best_pct": 0.9199999999999999,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "5": {
-      "best_pct": 55.98,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.2
-     },
-     "13": {
-      "best_pct": 60.58,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.23076923076923078
-     }
-    },
-    "cash": {
-     "1": {
-      "best_pct": 49.8,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "5": {
-      "best_pct": 56.84,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.4
-     },
-     "13": {
-      "best_pct": 60.58,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.23076923076923078
-     }
-    },
-    "top1": {
-     "1": {
-      "best_pct": 43.24,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "5": {
-      "best_pct": 78.64,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.6
-     },
-     "13": {
-      "best_pct": 95.14,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.6923076923076923
-     }
-    },
-    "port": {
-     "1": {
-      "best_pct": 67.25999999999999,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 1.0
-     },
-     "5": {
-      "best_pct": 69.16,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.8
-     },
-     "13": {
-      "best_pct": 95.14,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.6923076923076923
-     }
-    }
-   },
-   "games": 2
-  },
-  "2026-10-24": {
-   "lines": {
-    "win": 144.7,
-    "top1": 129.2,
-    "top10": 102.6,
-    "cash": 75.5
-   },
-   "pool_best_pct": 100.0,
-   "pool_best": 156.8,
-   "methods": {
-    "proj": {
-     "1": {
-      "best_pct": 17.025862068965516,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "5": {
-      "best_pct": 84.55459770114942,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.6
-     },
-     "13": {
-      "best_pct": 89.54741379310344,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.5384615384615384
-     }
-    },
-    "cash": {
-     "1": {
-      "best_pct": 83.97988505747126,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 1.0
-     },
-     "5": {
-      "best_pct": 88.6853448275862,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 1.0
-     },
-     "13": {
-      "best_pct": 90.26580459770115,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.9230769230769231
-     }
-    },
-    "top1": {
-     "1": {
-      "best_pct": 20.689655172413794,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "5": {
-      "best_pct": 84.55459770114942,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.2
-     },
-     "13": {
-      "best_pct": 84.55459770114942,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.07692307692307693
-     }
-    },
-    "port": {
-     "1": {
-      "best_pct": 84.55459770114942,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 1.0
-     },
-     "5": {
-      "best_pct": 84.55459770114942,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.8
-     },
-     "13": {
-      "best_pct": 99.10201149425288,
-      "won": false,
-      "top1": true,
-      "top10": true,
-      "cash_rate": 0.7692307692307693
-     }
-    }
-   },
-   "games": 10
-  },
-  "2026-10-25": {
-   "lines": {
-    "win": 143.8108,
-    "top1": 133.08599999999998,
-    "top10": 103.84,
-    "cash": 77.9
-   },
-   "pool_best_pct": 99.91296779808529,
-   "pool_best": 161.39999999999998,
-   "methods": {
-    "proj": {
-     "1": {
-      "best_pct": 92.22512329561938,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 1.0
-     },
-     "5": {
-      "best_pct": 97.01189440092834,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 1.0
-     },
-     "13": {
-      "best_pct": 99.01363504496665,
-      "won": false,
-      "top1": true,
-      "top10": true,
-      "cash_rate": 1.0
-     }
-    },
-    "cash": {
-     "1": {
-      "best_pct": 92.22512329561938,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 1.0
-     },
-     "5": {
-      "best_pct": 97.01189440092834,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 1.0
-     },
-     "13": {
-      "best_pct": 97.01189440092834,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.9230769230769231
-     }
-    },
-    "top1": {
-     "1": {
-      "best_pct": 98.86858137510879,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 1.0
-     },
-     "5": {
-      "best_pct": 99.41978532056861,
-      "won": false,
-      "top1": true,
-      "top10": true,
-      "cash_rate": 1.0
-     },
-     "13": {
-      "best_pct": 99.91296779808529,
-      "won": true,
-      "top1": true,
-      "top10": true,
-      "cash_rate": 1.0
-     }
-    },
-    "port": {
-     "1": {
-      "best_pct": 99.24572091673919,
-      "won": false,
-      "top1": true,
-      "top10": true,
-      "cash_rate": 1.0
-     },
-     "5": {
-      "best_pct": 99.44879605454018,
-      "won": false,
-      "top1": true,
-      "top10": true,
-      "cash_rate": 1.0
-     },
-     "13": {
-      "best_pct": 99.91296779808529,
-      "won": true,
-      "top1": true,
-      "top10": true,
-      "cash_rate": 0.7692307692307693
      }
     }
    },
@@ -2936,31 +2936,31 @@
   },
   "2026-10-26": {
    "lines": {
-    "win": 131.2,
-    "top1": 114.56999999999998,
-    "top10": 91.6,
-    "cash": 70.7
+    "win": 127.25950000000012,
+    "top1": 115.63799999999992,
+    "top10": 93.39999999999999,
+    "cash": 71.25500000000001
    },
    "pool_best_pct": 100.0,
    "pool_best": 140.60000000000002,
    "methods": {
     "proj": {
      "1": {
-      "best_pct": 92.7609799161333,
+      "best_pct": 91.34315037929495,
       "won": false,
       "top1": false,
       "top10": true,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 94.83557713529022,
+      "best_pct": 93.90896921017404,
       "won": false,
       "top1": false,
       "top10": true,
       "cash_rate": 0.8
      },
      "13": {
-      "best_pct": 96.62326197307438,
+      "best_pct": 95.93931280678268,
       "won": false,
       "top1": false,
       "top10": true,
@@ -2969,21 +2969,21 @@
     },
     "cash": {
      "1": {
-      "best_pct": 87.53034650187597,
+      "best_pct": 86.2115127175368,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 98.23438534539837,
+      "best_pct": 97.12182061579652,
       "won": false,
       "top1": false,
       "top10": true,
       "cash_rate": 1.0
      },
      "13": {
-      "best_pct": 98.23438534539837,
+      "best_pct": 97.12182061579652,
       "won": false,
       "top1": false,
       "top10": true,
@@ -2992,21 +2992,21 @@
     },
     "top1": {
      "1": {
-      "best_pct": 43.21341867137497,
+      "best_pct": 42.057117358322174,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 94.21761200617965,
+      "best_pct": 93.26193663543062,
       "won": false,
       "top1": false,
       "top10": true,
-      "cash_rate": 0.6
+      "cash_rate": 0.4
      },
      "13": {
-      "best_pct": 96.62326197307438,
+      "best_pct": 95.93931280678268,
       "won": false,
       "top1": false,
       "top10": true,
@@ -3015,25 +3015,25 @@
     },
     "port": {
      "1": {
-      "best_pct": 70.51423526815273,
+      "best_pct": 42.057117358322174,
       "won": false,
       "top1": false,
       "top10": false,
-      "cash_rate": 1.0
+      "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 94.21761200617965,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.6
-     },
-     "13": {
-      "best_pct": 99.29375413815936,
+      "best_pct": 99.17447568049977,
       "won": false,
       "top1": true,
       "top10": true,
-      "cash_rate": 0.7692307692307693
+      "cash_rate": 0.4
+     },
+     "13": {
+      "best_pct": 100.0,
+      "won": true,
+      "top1": true,
+      "top10": true,
+      "cash_rate": 0.38461538461538464
      }
     }
    },
@@ -3041,31 +3041,31 @@
   },
   "2026-10-27": {
    "lines": {
-    "win": 135.4949999999998,
-    "top1": 121.79999999999998,
-    "top10": 95.8,
-    "cash": 68.32500000000002
+    "win": 144.66170000000017,
+    "top1": 122.49999999999999,
+    "top10": 92.10999999999999,
+    "cash": 68.9
    },
-   "pool_best_pct": 99.06340057636888,
-   "pool_best": 122.89999999999999,
+   "pool_best_pct": 99.60288808664261,
+   "pool_best": 133.0,
    "methods": {
     "proj": {
      "1": {
-      "best_pct": 11.59942363112392,
+      "best_pct": 12.057761732851986,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 29.53890489913545,
+      "best_pct": 29.63898916967509,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "13": {
-      "best_pct": 58.35734870317003,
+      "best_pct": 57.761732851985556,
       "won": false,
       "top1": false,
       "top10": false,
@@ -3074,44 +3074,44 @@
     },
     "cash": {
      "1": {
-      "best_pct": 73.9913544668588,
+      "best_pct": 51.91335740072203,
       "won": false,
       "top1": false,
       "top10": false,
-      "cash_rate": 1.0
+      "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 91.13832853025937,
+      "best_pct": 92.67148014440433,
       "won": false,
       "top1": false,
       "top10": true,
-      "cash_rate": 0.8
+      "cash_rate": 0.6
      },
      "13": {
-      "best_pct": 91.13832853025937,
+      "best_pct": 97.54512635379061,
       "won": false,
       "top1": false,
       "top10": true,
-      "cash_rate": 0.6153846153846154
+      "cash_rate": 0.7692307692307693
      }
     },
     "top1": {
      "1": {
-      "best_pct": 32.70893371757925,
+      "best_pct": 33.537906137184116,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 32.70893371757925,
+      "best_pct": 33.537906137184116,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "13": {
-      "best_pct": 39.80547550432277,
+      "best_pct": 33.537906137184116,
       "won": false,
       "top1": false,
       "top10": false,
@@ -3120,25 +3120,25 @@
     },
     "port": {
      "1": {
-      "best_pct": 3.602305475504323,
+      "best_pct": 2.9241877256317688,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 83.53746397694525,
+      "best_pct": 94.44043321299638,
       "won": false,
       "top1": false,
-      "top10": false,
+      "top10": true,
       "cash_rate": 0.4
      },
      "13": {
-      "best_pct": 99.06340057636888,
+      "best_pct": 97.40072202166064,
       "won": false,
-      "top1": true,
+      "top1": false,
       "top10": true,
-      "cash_rate": 0.6153846153846154
+      "cash_rate": 0.5384615384615384
      }
     }
    },
@@ -3146,31 +3146,31 @@
   },
   "2026-10-28": {
    "lines": {
-    "win": 134.97059999999973,
-    "top1": 117.91599999999998,
-    "top10": 91.6,
-    "cash": 68.1
+    "win": 139.60000000000002,
+    "top1": 116.2,
+    "top10": 92.59,
+    "cash": 68.10500000000002
    },
-   "pool_best_pct": 99.801093983093,
+   "pool_best_pct": 99.8015873015873,
    "pool_best": 130.0,
    "methods": {
     "proj": {
      "1": {
-      "best_pct": 88.43858776727997,
+      "best_pct": 88.44246031746032,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 98.53306812531079,
+      "best_pct": 98.31349206349206,
       "won": false,
       "top1": false,
       "top10": true,
       "cash_rate": 1.0
      },
      "13": {
-      "best_pct": 98.53306812531079,
+      "best_pct": 98.31349206349206,
       "won": false,
       "top1": false,
       "top10": true,
@@ -3179,21 +3179,21 @@
     },
     "cash": {
      "1": {
-      "best_pct": 98.53306812531079,
+      "best_pct": 98.31349206349206,
       "won": false,
       "top1": false,
       "top10": true,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 98.70711089010442,
+      "best_pct": 98.56150793650794,
       "won": false,
       "top1": false,
       "top10": true,
       "cash_rate": 1.0
      },
      "13": {
-      "best_pct": 98.70711089010442,
+      "best_pct": 98.56150793650794,
       "won": false,
       "top1": false,
       "top10": true,
@@ -3202,21 +3202,21 @@
     },
     "top1": {
      "1": {
-      "best_pct": 89.06016907011437,
+      "best_pct": 92.70833333333334,
       "won": false,
       "top1": false,
-      "top10": false,
+      "top10": true,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 93.5604177026355,
+      "best_pct": 92.70833333333334,
       "won": false,
       "top1": false,
       "top10": true,
       "cash_rate": 1.0
      },
      "13": {
-      "best_pct": 98.60765788165092,
+      "best_pct": 98.36309523809523,
       "won": false,
       "top1": false,
       "top10": true,
@@ -3225,23 +3225,23 @@
     },
     "port": {
      "1": {
-      "best_pct": 93.5604177026355,
+      "best_pct": 88.71527777777779,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 1.0
+     },
+     "5": {
+      "best_pct": 93.12996031746032,
       "won": false,
       "top1": false,
       "top10": true,
       "cash_rate": 1.0
      },
-     "5": {
-      "best_pct": 93.5604177026355,
+     "13": {
+      "best_pct": 95.1140873015873,
       "won": false,
       "top1": false,
-      "top10": true,
-      "cash_rate": 0.8
-     },
-     "13": {
-      "best_pct": 99.801093983093,
-      "won": false,
-      "top1": true,
       "top10": true,
       "cash_rate": 0.7692307692307693
      }
@@ -3251,31 +3251,31 @@
   },
   "2026-10-29": {
    "lines": {
-    "win": 192.70080000000016,
-    "top1": 154.29999999999998,
-    "top10": 126.39999999999999,
-    "cash": 92.89999999999999
+    "win": 195.6,
+    "top1": 157.1,
+    "top10": 126.4,
+    "cash": 91.61000000000001
    },
-   "pool_best_pct": 99.85364068788877,
+   "pool_best_pct": 99.7812613926358,
    "pool_best": 190.1,
    "methods": {
     "proj": {
      "1": {
-      "best_pct": 94.2553969996341,
+      "best_pct": 94.3492526430915,
       "won": false,
       "top1": false,
       "top10": true,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 94.95060373216246,
+      "best_pct": 95.6981407218374,
       "won": false,
       "top1": false,
       "top10": true,
       "cash_rate": 1.0
      },
      "13": {
-      "best_pct": 96.59714599341383,
+      "best_pct": 97.1563981042654,
       "won": false,
       "top1": false,
       "top10": true,
@@ -3284,71 +3284,71 @@
     },
     "cash": {
      "1": {
-      "best_pct": 75.96048298572997,
+      "best_pct": 80.31352533722202,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 92.64544456641055,
+      "best_pct": 85.16223113379512,
       "won": false,
       "top1": false,
-      "top10": true,
-      "cash_rate": 1.0
+      "top10": false,
+      "cash_rate": 0.8
      },
      "13": {
-      "best_pct": 92.64544456641055,
+      "best_pct": 99.12504557054321,
       "won": false,
-      "top1": false,
+      "top1": true,
       "top10": true,
       "cash_rate": 0.9230769230769231
      }
     },
     "top1": {
      "1": {
-      "best_pct": 76.76545920234175,
+      "best_pct": 72.25665329930733,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 94.95060373216246,
+      "best_pct": 77.36055413780532,
       "won": false,
       "top1": false,
-      "top10": true,
+      "top10": false,
       "cash_rate": 0.8
      },
      "13": {
-      "best_pct": 96.59714599341383,
+      "best_pct": 94.3492526430915,
       "won": false,
       "top1": false,
       "top10": true,
-      "cash_rate": 0.8461538461538461
+      "cash_rate": 0.7692307692307693
      }
     },
     "port": {
      "1": {
-      "best_pct": 76.76545920234175,
+      "best_pct": 77.36055413780532,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 94.95060373216246,
+      "best_pct": 87.20379146919431,
       "won": false,
       "top1": false,
-      "top10": true,
+      "top10": false,
       "cash_rate": 1.0
      },
      "13": {
-      "best_pct": 98.2436882546652,
+      "best_pct": 97.81261392635801,
       "won": false,
       "top1": false,
       "top10": true,
-      "cash_rate": 0.8461538461538461
+      "cash_rate": 0.9230769230769231
      }
     }
    },
@@ -3356,31 +3356,31 @@
   },
   "2026-10-30": {
    "lines": {
-    "win": 170.80120000000025,
-    "top1": 140.1,
-    "top10": 108.11000000000003,
-    "cash": 76.39999999999999
+    "win": 152.40130000000025,
+    "top1": 139.2,
+    "top10": 106.19999999999999,
+    "cash": 75.04500000000003
    },
-   "pool_best_pct": 99.7,
+   "pool_best_pct": 99.92,
    "pool_best": 159.1,
    "methods": {
     "proj": {
      "1": {
-      "best_pct": 71.2,
+      "best_pct": 72.11999999999999,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 99.22,
+      "best_pct": 99.64,
       "won": false,
       "top1": true,
       "top10": true,
       "cash_rate": 1.0
      },
      "13": {
-      "best_pct": 99.22,
+      "best_pct": 99.64,
       "won": false,
       "top1": true,
       "top10": true,
@@ -3389,44 +3389,44 @@
     },
     "cash": {
      "1": {
-      "best_pct": 90.12,
+      "best_pct": 80.54,
       "won": false,
       "top1": false,
-      "top10": true,
+      "top10": false,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 90.12,
+      "best_pct": 91.47999999999999,
       "won": false,
       "top1": false,
       "top10": true,
-      "cash_rate": 1.0
+      "cash_rate": 0.8
      },
      "13": {
-      "best_pct": 99.44,
+      "best_pct": 94.54,
       "won": false,
-      "top1": true,
+      "top1": false,
       "top10": true,
-      "cash_rate": 0.7692307692307693
+      "cash_rate": 0.8461538461538461
      }
     },
     "top1": {
      "1": {
-      "best_pct": 21.740000000000002,
+      "best_pct": 70.44,
       "won": false,
       "top1": false,
       "top10": false,
-      "cash_rate": 0.0
+      "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 69.48,
+      "best_pct": 75.96000000000001,
       "won": false,
       "top1": false,
       "top10": false,
-      "cash_rate": 0.6
+      "cash_rate": 0.8
      },
      "13": {
-      "best_pct": 99.22,
+      "best_pct": 99.64,
       "won": false,
       "top1": true,
       "top10": true,
@@ -3435,25 +3435,25 @@
     },
     "port": {
      "1": {
-      "best_pct": 99.22,
+      "best_pct": 70.44,
       "won": false,
-      "top1": true,
-      "top10": true,
+      "top1": false,
+      "top10": false,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 99.22,
+      "best_pct": 96.6,
       "won": false,
-      "top1": true,
+      "top1": false,
       "top10": true,
-      "cash_rate": 0.6
+      "cash_rate": 0.8
      },
      "13": {
-      "best_pct": 99.22,
+      "best_pct": 97.86,
       "won": false,
-      "top1": true,
+      "top1": false,
       "top10": true,
-      "cash_rate": 0.6153846153846154
+      "cash_rate": 0.7692307692307693
      }
     }
    },
@@ -3461,31 +3461,31 @@
   },
   "2026-10-31": {
    "lines": {
-    "win": 143.92390000000057,
-    "top1": 132.18400000000003,
-    "top10": 102.13000000000001,
-    "cash": 76.89999999999999
+    "win": 147.89999999999998,
+    "top1": 132.75599999999986,
+    "top10": 103.4,
+    "cash": 75.72
    },
-   "pool_best_pct": 98.51885098743267,
+   "pool_best_pct": 98.69662921348315,
    "pool_best": 127.2,
    "methods": {
     "proj": {
      "1": {
-      "best_pct": 17.235188509874327,
+      "best_pct": 21.93258426966292,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 59.91921005385996,
+      "best_pct": 62.426966292134836,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.2
      },
      "13": {
-      "best_pct": 62.65709156193896,
+      "best_pct": 65.61797752808988,
       "won": false,
       "top1": false,
       "top10": false,
@@ -3494,71 +3494,71 @@
     },
     "cash": {
      "1": {
-      "best_pct": 17.235188509874327,
+      "best_pct": 21.93258426966292,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 48.563734290843804,
+      "best_pct": 65.61797752808988,
       "won": false,
       "top1": false,
       "top10": false,
-      "cash_rate": 0.0
+      "cash_rate": 0.2
      },
      "13": {
-      "best_pct": 55.70017953321364,
+      "best_pct": 65.61797752808988,
       "won": false,
       "top1": false,
       "top10": false,
-      "cash_rate": 0.07692307692307693
+      "cash_rate": 0.15384615384615385
      }
     },
     "top1": {
      "1": {
-      "best_pct": 64.67684021543985,
+      "best_pct": 70.02247191011236,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 67.3249551166966,
+      "best_pct": 71.05617977528091,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.8
      },
      "13": {
-      "best_pct": 86.62477558348294,
+      "best_pct": 75.91011235955057,
       "won": false,
       "top1": false,
       "top10": false,
-      "cash_rate": 0.6153846153846154
+      "cash_rate": 0.7692307692307693
      }
     },
     "port": {
      "1": {
-      "best_pct": 67.81867145421903,
+      "best_pct": 63.82022471910113,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 74.68581687612208,
+      "best_pct": 85.1685393258427,
       "won": false,
       "top1": false,
       "top10": false,
-      "cash_rate": 0.6
+      "cash_rate": 0.4
      },
      "13": {
-      "best_pct": 79.93716337522442,
+      "best_pct": 86.29213483146067,
       "won": false,
       "top1": false,
       "top10": false,
-      "cash_rate": 0.5384615384615384
+      "cash_rate": 0.46153846153846156
      }
     }
    },
@@ -3566,31 +3566,31 @@
   },
   "2026-11-01": {
    "lines": {
-    "win": 149.8,
-    "top1": 134.8,
-    "top10": 110.1,
-    "cash": 81.8
+    "win": 144.90080000000017,
+    "top1": 134.10300000000007,
+    "top10": 109.1,
+    "cash": 82.0
    },
-   "pool_best_pct": 93.84,
+   "pool_best_pct": 94.54,
    "pool_best": 115.8,
    "methods": {
     "proj": {
      "1": {
-      "best_pct": 76.3,
+      "best_pct": 77.22,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 88.16000000000001,
+      "best_pct": 88.74,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 1.0
      },
      "13": {
-      "best_pct": 88.16000000000001,
+      "best_pct": 88.74,
       "won": false,
       "top1": false,
       "top10": false,
@@ -3599,21 +3599,21 @@
     },
     "cash": {
      "1": {
-      "best_pct": 66.16,
+      "best_pct": 68.54,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 88.16000000000001,
+      "best_pct": 88.74,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.8
      },
      "13": {
-      "best_pct": 90.22,
+      "best_pct": 91.03999999999999,
       "won": false,
       "top1": false,
       "top10": true,
@@ -3622,21 +3622,21 @@
     },
     "top1": {
      "1": {
-      "best_pct": 0.36,
+      "best_pct": 0.12,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 61.019999999999996,
+      "best_pct": 61.82,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.2
      },
      "13": {
-      "best_pct": 61.019999999999996,
+      "best_pct": 61.82,
       "won": false,
       "top1": false,
       "top10": false,
@@ -3645,25 +3645,25 @@
     },
     "port": {
      "1": {
-      "best_pct": 0.36,
+      "best_pct": 61.82,
       "won": false,
       "top1": false,
       "top10": false,
-      "cash_rate": 0.0
+      "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 61.019999999999996,
+      "best_pct": 61.82,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.2
      },
      "13": {
-      "best_pct": 74.46000000000001,
+      "best_pct": 61.82,
       "won": false,
       "top1": false,
       "top10": false,
-      "cash_rate": 0.23076923076923078
+      "cash_rate": 0.15384615384615385
      }
     }
    },
@@ -3671,31 +3671,31 @@
   },
   "2026-11-02": {
    "lines": {
-    "win": 128.1,
-    "top1": 107.2,
-    "top10": 84.70000000000002,
-    "cash": 62.400000000000006
+    "win": 119.19999999999999,
+    "top1": 102.5760000000002,
+    "top10": 85.80000000000001,
+    "cash": 62.300000000000004
    },
-   "pool_best_pct": 99.8468606431853,
+   "pool_best_pct": 99.9228791773779,
    "pool_best": 125.6,
    "methods": {
     "proj": {
      "1": {
-      "best_pct": 29.530372639101582,
+      "best_pct": 27.532133676092545,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 77.05461970393057,
+      "best_pct": 75.7840616966581,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.4
      },
      "13": {
-      "best_pct": 92.0877998979071,
+      "best_pct": 92.26221079691517,
       "won": false,
       "top1": false,
       "top10": true,
@@ -3704,21 +3704,21 @@
     },
     "cash": {
      "1": {
-      "best_pct": 49.3874425727412,
+      "best_pct": 68.02056555269922,
       "won": false,
       "top1": false,
       "top10": false,
-      "cash_rate": 0.0
+      "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 72.28177641653905,
+      "best_pct": 71.31105398457584,
       "won": false,
       "top1": false,
       "top10": false,
-      "cash_rate": 0.6
+      "cash_rate": 0.4
      },
      "13": {
-      "best_pct": 87.4170495150587,
+      "best_pct": 89.0745501285347,
       "won": false,
       "top1": false,
       "top10": false,
@@ -3727,21 +3727,21 @@
     },
     "top1": {
      "1": {
-      "best_pct": 60.7197549770291,
+      "best_pct": 61.59383033419024,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 89.38233792751403,
+      "best_pct": 88.58611825192803,
       "won": false,
       "top1": false,
       "top10": false,
-      "cash_rate": 1.0
+      "cash_rate": 0.8
      },
      "13": {
-      "best_pct": 94.53802960694232,
+      "best_pct": 92.26221079691517,
       "won": false,
       "top1": false,
       "top10": true,
@@ -3750,21 +3750,21 @@
     },
     "port": {
      "1": {
-      "best_pct": 60.7197549770291,
+      "best_pct": 61.59383033419024,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 92.0877998979071,
+      "best_pct": 84.55012853470437,
       "won": false,
       "top1": false,
-      "top10": true,
+      "top10": false,
       "cash_rate": 0.6
      },
      "13": {
-      "best_pct": 95.8141909137315,
+      "best_pct": 97.84061696658097,
       "won": false,
       "top1": false,
       "top10": true,
@@ -3776,104 +3776,104 @@
   },
   "2026-11-03": {
    "lines": {
-    "win": 147.7836000000001,
-    "top1": 137.20000000000002,
-    "top10": 112.49999999999999,
-    "cash": 80.52
+    "win": 175.5,
+    "top1": 147.3,
+    "top10": 115.82000000000001,
+    "cash": 87.8
    },
    "pool_best_pct": 100.0,
    "pool_best": 181.3,
    "methods": {
     "proj": {
      "1": {
-      "best_pct": 32.11845102505695,
+      "best_pct": 33.190578158458244,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 60.820045558086555,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.2
-     },
-     "13": {
-      "best_pct": 85.19362186788155,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.23076923076923078
-     }
-    },
-    "cash": {
-     "1": {
-      "best_pct": 39.17995444191344,
+      "best_pct": 52.03426124197003,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
-     "5": {
-      "best_pct": 55.125284738041,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.2
-     },
      "13": {
-      "best_pct": 60.820045558086555,
+      "best_pct": 85.65310492505354,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.15384615384615385
      }
     },
-    "top1": {
+    "cash": {
      "1": {
-      "best_pct": 26.42369020501139,
+      "best_pct": 41.97002141327623,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 43.052391799544424,
+      "best_pct": 42.61241970021413,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "13": {
-      "best_pct": 85.19362186788155,
+      "best_pct": 52.03426124197003,
       "won": false,
       "top1": false,
       "top10": false,
-      "cash_rate": 0.23076923076923078
+      "cash_rate": 0.0
+     }
+    },
+    "top1": {
+     "1": {
+      "best_pct": 34.90364025695932,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 50.74946466809421,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "13": {
+      "best_pct": 52.03426124197003,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
      }
     },
     "port": {
      "1": {
-      "best_pct": 32.11845102505695,
+      "best_pct": 42.61241970021413,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 85.19362186788155,
+      "best_pct": 49.25053533190578,
       "won": false,
       "top1": false,
       "top10": false,
-      "cash_rate": 0.4
+      "cash_rate": 0.0
      },
      "13": {
-      "best_pct": 97.49430523917995,
+      "best_pct": 99.14346895074947,
       "won": false,
-      "top1": false,
+      "top1": true,
       "top10": true,
-      "cash_rate": 0.46153846153846156
+      "cash_rate": 0.23076923076923078
      }
     }
    },
@@ -3881,54 +3881,54 @@
   },
   "2026-11-04": {
    "lines": {
-    "win": 170.6,
-    "top1": 153.02399999999997,
-    "top10": 120.39999999999999,
-    "cash": 89.9
+    "win": 173.3,
+    "top1": 148.2420000000001,
+    "top10": 121.1,
+    "cash": 88.5
    },
-   "pool_best_pct": 98.7039764359352,
+   "pool_best_pct": 98.95470383275261,
    "pool_best": 147.8,
    "methods": {
     "proj": {
      "1": {
-      "best_pct": 77.49631811487482,
+      "best_pct": 76.56794425087108,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 80.20618556701031,
+      "best_pct": 78.83275261324042,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 1.0
      },
      "13": {
-      "best_pct": 95.75846833578792,
+      "best_pct": 96.31242740998839,
       "won": false,
       "top1": false,
       "top10": true,
-      "cash_rate": 0.7692307692307693
+      "cash_rate": 0.8461538461538461
      }
     },
     "cash": {
      "1": {
-      "best_pct": 92.25331369661266,
+      "best_pct": 85.59814169570267,
       "won": false,
       "top1": false,
-      "top10": true,
+      "top10": false,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 92.25331369661266,
+      "best_pct": 92.59581881533101,
       "won": false,
       "top1": false,
       "top10": true,
       "cash_rate": 1.0
      },
      "13": {
-      "best_pct": 97.84977908689248,
+      "best_pct": 98.46109175377468,
       "won": false,
       "top1": false,
       "top10": true,
@@ -3937,48 +3937,48 @@
     },
     "top1": {
      "1": {
-      "best_pct": 92.4300441826215,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 1.0
-     },
-     "5": {
-      "best_pct": 92.4300441826215,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.6
-     },
-     "13": {
-      "best_pct": 92.4300441826215,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.46153846153846156
-     }
-    },
-    "port": {
-     "1": {
-      "best_pct": 59.0279823269514,
+      "best_pct": 79.61672473867596,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 92.60677466863034,
+      "best_pct": 92.1602787456446,
       "won": false,
       "top1": false,
       "top10": true,
-      "cash_rate": 0.8
+      "cash_rate": 0.6
      },
      "13": {
-      "best_pct": 94.78645066273931,
+      "best_pct": 92.1602787456446,
       "won": false,
       "top1": false,
       "top10": true,
-      "cash_rate": 0.6923076923076923
+      "cash_rate": 0.5384615384615384
+     }
+    },
+    "port": {
+     "1": {
+      "best_pct": 60.16260162601627,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 1.0
+     },
+     "5": {
+      "best_pct": 92.59581881533101,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 1.0
+     },
+     "13": {
+      "best_pct": 92.59581881533101,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 0.7692307692307693
      }
     }
    },
@@ -3986,31 +3986,31 @@
   },
   "2026-11-05": {
    "lines": {
-    "win": 157.9,
-    "top1": 133.5,
-    "top10": 102.8,
-    "cash": 79.69500000000001
+    "win": 130.231,
+    "top1": 118.80599999999986,
+    "top10": 101.80000000000001,
+    "cash": 77.69999999999999
    },
-   "pool_best_pct": 95.32374100719424,
-   "pool_best": 116.1,
+   "pool_best_pct": 98.73039581777446,
+   "pool_best": 117.80000000000001,
    "methods": {
     "proj": {
      "1": {
-      "best_pct": 40.0,
+      "best_pct": 39.58177744585512,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 72.94964028776978,
+      "best_pct": 76.62434652725915,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.2
      },
      "13": {
-      "best_pct": 72.94964028776978,
+      "best_pct": 76.62434652725915,
       "won": false,
       "top1": false,
       "top10": false,
@@ -4019,67 +4019,67 @@
     },
     "cash": {
      "1": {
-      "best_pct": 82.94964028776978,
+      "best_pct": 21.28454070201643,
       "won": false,
       "top1": false,
       "top10": false,
-      "cash_rate": 1.0
+      "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 93.23741007194245,
+      "best_pct": 93.72666168782673,
       "won": false,
       "top1": false,
       "top10": true,
       "cash_rate": 0.8
      },
      "13": {
-      "best_pct": 93.23741007194245,
+      "best_pct": 93.72666168782673,
       "won": false,
       "top1": false,
       "top10": true,
-      "cash_rate": 0.6153846153846154
+      "cash_rate": 0.6923076923076923
      }
     },
     "top1": {
      "1": {
-      "best_pct": 22.302158273381295,
+      "best_pct": 21.28454070201643,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 72.94964028776978,
+      "best_pct": 76.47498132935027,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.2
      },
      "13": {
-      "best_pct": 72.94964028776978,
+      "best_pct": 76.62434652725915,
       "won": false,
       "top1": false,
       "top10": false,
-      "cash_rate": 0.23076923076923078
+      "cash_rate": 0.3076923076923077
      }
     },
     "port": {
      "1": {
-      "best_pct": 22.302158273381295,
+      "best_pct": 21.28454070201643,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 95.32374100719424,
+      "best_pct": 98.05825242718447,
       "won": false,
       "top1": false,
       "top10": true,
-      "cash_rate": 0.4
+      "cash_rate": 0.6
      },
      "13": {
-      "best_pct": 95.32374100719424,
+      "best_pct": 98.05825242718447,
       "won": false,
       "top1": false,
       "top10": true,
@@ -4091,31 +4091,31 @@
   },
   "2026-11-06": {
    "lines": {
-    "win": 157.28550000000124,
-    "top1": 135.89999999999998,
-    "top10": 114.57000000000004,
-    "cash": 92.8
+    "win": 140.8,
+    "top1": 127.74,
+    "top10": 113.3,
+    "cash": 93.99999999999999
    },
-   "pool_best_pct": 98.65162355531095,
+   "pool_best_pct": 99.80879541108987,
    "pool_best": 134.0,
    "methods": {
     "proj": {
      "1": {
-      "best_pct": 39.07539900935608,
+      "best_pct": 35.6733133023764,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 77.35277930654925,
+      "best_pct": 77.95684239278886,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.4
      },
      "13": {
-      "best_pct": 90.78150798018713,
+      "best_pct": 92.6249658563234,
       "won": false,
       "top1": false,
       "top10": true,
@@ -4124,71 +4124,71 @@
     },
     "cash": {
      "1": {
-      "best_pct": 77.35277930654925,
+      "best_pct": 77.95684239278886,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 89.79086406164006,
+      "best_pct": 91.06801420376947,
       "won": false,
       "top1": false,
-      "top10": false,
+      "top10": true,
       "cash_rate": 1.0
      },
      "13": {
-      "best_pct": 98.65162355531095,
+      "best_pct": 99.80879541108987,
       "won": false,
-      "top1": false,
+      "top1": true,
       "top10": true,
       "cash_rate": 1.0
      }
     },
     "top1": {
      "1": {
-      "best_pct": 39.07539900935608,
+      "best_pct": 9.64217426932532,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 44.88167308750688,
+      "best_pct": 27.26031139033051,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "13": {
-      "best_pct": 65.63015960374243,
+      "best_pct": 44.059000273149415,
       "won": false,
       "top1": false,
       "top10": false,
-      "cash_rate": 0.07692307692307693
+      "cash_rate": 0.0
      }
     },
     "port": {
      "1": {
-      "best_pct": 21.40891579526692,
+      "best_pct": 30.56541928434854,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 90.91909741331867,
+      "best_pct": 89.62032231630702,
       "won": false,
       "top1": false,
-      "top10": true,
-      "cash_rate": 0.4
+      "top10": false,
+      "cash_rate": 0.2
      },
      "13": {
-      "best_pct": 90.91909741331867,
+      "best_pct": 89.62032231630702,
       "won": false,
       "top1": false,
-      "top10": true,
-      "cash_rate": 0.5384615384615384
+      "top10": false,
+      "cash_rate": 0.23076923076923078
      }
     }
    },
@@ -4196,31 +4196,31 @@
   },
   "2026-11-07": {
    "lines": {
-    "win": 159.2,
-    "top1": 143.5,
-    "top10": 120.4,
-    "cash": 90.74000000000001
+    "win": 148.25280000000038,
+    "top1": 137.64799999999997,
+    "top10": 115.06000000000002,
+    "cash": 94.19999999999999
    },
-   "pool_best_pct": 95.38274605103281,
+   "pool_best_pct": 97.05535924617197,
    "pool_best": 132.2,
    "methods": {
     "proj": {
      "1": {
-      "best_pct": 63.30498177399757,
+      "best_pct": 60.42402826855123,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 90.03645200486027,
+      "best_pct": 93.75736160188457,
       "won": false,
       "top1": false,
       "top10": true,
       "cash_rate": 0.6
      },
      "13": {
-      "best_pct": 90.03645200486027,
+      "best_pct": 93.75736160188457,
       "won": false,
       "top1": false,
       "top10": true,
@@ -4229,71 +4229,71 @@
     },
     "cash": {
      "1": {
-      "best_pct": 11.907654921020656,
+      "best_pct": 9.77620730270907,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 44.8359659781288,
+      "best_pct": 45.70082449941108,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "13": {
-      "best_pct": 58.80923450789793,
+      "best_pct": 53.003533568904594,
       "won": false,
       "top1": false,
       "top10": false,
-      "cash_rate": 0.07692307692307693
+      "cash_rate": 0.0
      }
     },
     "top1": {
      "1": {
-      "best_pct": 54.434993924665854,
+      "best_pct": 48.64546525323911,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 90.03645200486027,
+      "best_pct": 93.75736160188457,
       "won": false,
       "top1": false,
       "top10": true,
       "cash_rate": 0.8
      },
      "13": {
-      "best_pct": 90.03645200486027,
+      "best_pct": 93.75736160188457,
       "won": false,
       "top1": false,
       "top10": true,
-      "cash_rate": 0.38461538461538464
+      "cash_rate": 0.5384615384615384
      }
     },
     "port": {
      "1": {
-      "best_pct": 54.434993924665854,
+      "best_pct": 65.60659599528857,
       "won": false,
       "top1": false,
       "top10": false,
-      "cash_rate": 0.0
+      "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 90.03645200486027,
+      "best_pct": 70.31802120141343,
       "won": false,
       "top1": false,
-      "top10": true,
-      "cash_rate": 0.2
+      "top10": false,
+      "cash_rate": 0.4
      },
      "13": {
-      "best_pct": 90.03645200486027,
+      "best_pct": 70.31802120141343,
       "won": false,
       "top1": false,
-      "top10": true,
-      "cash_rate": 0.3076923076923077
+      "top10": false,
+      "cash_rate": 0.15384615384615385
      }
     }
    },
@@ -4301,32 +4301,32 @@
   },
   "2026-11-08": {
    "lines": {
-    "win": 171.10490000000098,
-    "top1": 155.30200000000005,
-    "top10": 121.19999999999999,
-    "cash": 82.6
+    "win": 181.80520000000107,
+    "top1": 157.0,
+    "top10": 121.51000000000003,
+    "cash": 81.3
    },
-   "pool_best_pct": 99.92,
+   "pool_best_pct": 99.78,
    "pool_best": 178.6,
    "methods": {
     "proj": {
      "1": {
-      "best_pct": 98.26,
+      "best_pct": 97.88,
       "won": false,
       "top1": false,
       "top10": true,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 99.9,
-      "won": true,
+      "best_pct": 99.78,
+      "won": false,
       "top1": true,
       "top10": true,
       "cash_rate": 1.0
      },
      "13": {
-      "best_pct": 99.9,
-      "won": true,
+      "best_pct": 99.78,
+      "won": false,
       "top1": true,
       "top10": true,
       "cash_rate": 1.0
@@ -4334,22 +4334,22 @@
     },
     "cash": {
      "1": {
-      "best_pct": 97.68,
+      "best_pct": 97.5,
       "won": false,
       "top1": false,
       "top10": true,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 99.9,
-      "won": true,
+      "best_pct": 99.72,
+      "won": false,
       "top1": true,
       "top10": true,
       "cash_rate": 1.0
      },
      "13": {
-      "best_pct": 99.92,
-      "won": true,
+      "best_pct": 99.78,
+      "won": false,
       "top1": true,
       "top10": true,
       "cash_rate": 1.0
@@ -4357,21 +4357,21 @@
     },
     "top1": {
      "1": {
-      "best_pct": 90.3,
+      "best_pct": 90.38000000000001,
       "won": false,
       "top1": false,
       "top10": true,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 90.72,
+      "best_pct": 90.92,
       "won": false,
       "top1": false,
       "top10": true,
       "cash_rate": 1.0
      },
      "13": {
-      "best_pct": 98.58,
+      "best_pct": 98.06,
       "won": false,
       "top1": false,
       "top10": true,
@@ -4380,25 +4380,25 @@
     },
     "port": {
      "1": {
-      "best_pct": 90.3,
+      "best_pct": 90.38000000000001,
       "won": false,
       "top1": false,
       "top10": true,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 93.38,
+      "best_pct": 97.06,
       "won": false,
       "top1": false,
       "top10": true,
-      "cash_rate": 0.8
+      "cash_rate": 1.0
      },
      "13": {
-      "best_pct": 99.92,
-      "won": true,
-      "top1": true,
+      "best_pct": 97.5,
+      "won": false,
+      "top1": false,
       "top10": true,
-      "cash_rate": 0.7692307692307693
+      "cash_rate": 0.9230769230769231
      }
     }
    },
@@ -4406,77 +4406,77 @@
   },
   "2026-11-09": {
    "lines": {
-    "win": 117.60370000000076,
-    "top1": 106.49999999999999,
-    "top10": 88.4,
-    "cash": 68.10000000000001
+    "win": 118.5,
+    "top1": 108.6,
+    "top10": 88.31000000000004,
+    "cash": 67.7
    },
-   "pool_best_pct": 99.58,
+   "pool_best_pct": 99.62,
    "pool_best": 113.99999999999999,
    "methods": {
     "proj": {
      "1": {
-      "best_pct": 54.2,
+      "best_pct": 55.76,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 1.0
+     },
+     "5": {
+      "best_pct": 74.5,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.8
+     },
+     "13": {
+      "best_pct": 74.83999999999999,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.6923076923076923
+     }
+    },
+    "cash": {
+     "1": {
+      "best_pct": 73.66,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 1.0
+     },
+     "5": {
+      "best_pct": 73.66,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.8
+     },
+     "13": {
+      "best_pct": 95.74000000000001,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 0.7692307692307693
+     }
+    },
+    "top1": {
+     "1": {
+      "best_pct": 44.18,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 72.6,
+      "best_pct": 44.18,
       "won": false,
       "top1": false,
       "top10": false,
-      "cash_rate": 0.6
+      "cash_rate": 0.0
      },
      "13": {
-      "best_pct": 72.76,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.6153846153846154
-     }
-    },
-    "cash": {
-     "1": {
-      "best_pct": 67.56,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 1.0
-     },
-     "5": {
-      "best_pct": 96.52,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.8
-     },
-     "13": {
-      "best_pct": 96.52,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.6923076923076923
-     }
-    },
-    "top1": {
-     "1": {
-      "best_pct": 56.940000000000005,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 1.0
-     },
-     "5": {
-      "best_pct": 56.940000000000005,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.2
-     },
-     "13": {
-      "best_pct": 56.940000000000005,
+      "best_pct": 58.14,
       "won": false,
       "top1": false,
       "top10": false,
@@ -4485,25 +4485,25 @@
     },
     "port": {
      "1": {
-      "best_pct": 72.6,
+      "best_pct": 44.18,
       "won": false,
       "top1": false,
       "top10": false,
-      "cash_rate": 1.0
+      "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 72.6,
+      "best_pct": 60.4,
       "won": false,
       "top1": false,
       "top10": false,
-      "cash_rate": 0.4
+      "cash_rate": 0.2
      },
      "13": {
-      "best_pct": 79.22,
+      "best_pct": 71.88,
       "won": false,
       "top1": false,
       "top10": false,
-      "cash_rate": 0.46153846153846156
+      "cash_rate": 0.3076923076923077
      }
     }
    },
@@ -4511,31 +4511,31 @@
   },
   "2026-11-10": {
    "lines": {
-    "win": 135.81800000000004,
-    "top1": 120.5,
-    "top10": 92.29000000000002,
-    "cash": 67.3
+    "win": 148.4,
+    "top1": 120.49999999999999,
+    "top10": 91.4,
+    "cash": 67.19999999999999
    },
-   "pool_best_pct": 98.86943836615609,
+   "pool_best_pct": 98.94237782640408,
    "pool_best": 120.3,
    "methods": {
     "proj": {
      "1": {
-      "best_pct": 65.86433260393873,
+      "best_pct": 67.3231218088986,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 65.86433260393873,
+      "best_pct": 67.3231218088986,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 1.0
      },
      "13": {
-      "best_pct": 85.44857768052516,
+      "best_pct": 85.95915390226112,
       "won": false,
       "top1": false,
       "top10": false,
@@ -4544,21 +4544,21 @@
     },
     "cash": {
      "1": {
-      "best_pct": 98.10357403355215,
+      "best_pct": 77.75346462436178,
       "won": false,
       "top1": false,
-      "top10": true,
+      "top10": false,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 98.86943836615609,
+      "best_pct": 98.43180160466812,
       "won": false,
       "top1": false,
       "top10": true,
       "cash_rate": 1.0
      },
      "13": {
-      "best_pct": 98.86943836615609,
+      "best_pct": 98.43180160466812,
       "won": false,
       "top1": false,
       "top10": true,
@@ -4567,21 +4567,21 @@
     },
     "top1": {
      "1": {
-      "best_pct": 13.056163384390956,
+      "best_pct": 12.545587162654998,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 70.78774617067833,
+      "best_pct": 85.95915390226112,
       "won": false,
       "top1": false,
       "top10": false,
-      "cash_rate": 0.4
+      "cash_rate": 0.6
      },
      "13": {
-      "best_pct": 88.25674690007294,
+      "best_pct": 88.7308533916849,
       "won": false,
       "top1": false,
       "top10": false,
@@ -4590,21 +4590,21 @@
     },
     "port": {
      "1": {
-      "best_pct": 86.2509117432531,
+      "best_pct": 12.545587162654998,
       "won": false,
       "top1": false,
       "top10": false,
-      "cash_rate": 1.0
+      "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 91.90371991247265,
+      "best_pct": 98.03063457330416,
       "won": false,
       "top1": false,
       "top10": true,
       "cash_rate": 0.8
      },
      "13": {
-      "best_pct": 97.22830051057623,
+      "best_pct": 98.03063457330416,
       "won": false,
       "top1": false,
       "top10": true,
@@ -4616,103 +4616,103 @@
   },
   "2026-11-11": {
    "lines": {
-    "win": 163.2,
-    "top1": 137.446,
-    "top10": 111.6,
-    "cash": 81.6
+    "win": 157.8,
+    "top1": 139.7,
+    "top10": 110.2,
+    "cash": 80.23000000000002
    },
-   "pool_best_pct": 99.58304378040306,
+   "pool_best_pct": 99.86130374479889,
    "pool_best": 153.5,
    "methods": {
     "proj": {
      "1": {
-      "best_pct": 77.90132036136205,
+      "best_pct": 77.11511789181692,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 80.33356497567755,
+      "best_pct": 79.54230235783633,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.6
      },
      "13": {
-      "best_pct": 96.42112578179291,
+      "best_pct": 97.15672676837725,
       "won": false,
       "top1": false,
       "top10": true,
-      "cash_rate": 0.5384615384615384
+      "cash_rate": 0.6153846153846154
      }
     },
     "cash": {
      "1": {
-      "best_pct": 72.44614315496872,
+      "best_pct": 72.7115117891817,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 72.44614315496872,
+      "best_pct": 76.90707350901526,
       "won": false,
       "top1": false,
       "top10": false,
-      "cash_rate": 0.4
+      "cash_rate": 0.6
      },
      "13": {
-      "best_pct": 78.63099374565671,
+      "best_pct": 77.63522884882109,
       "won": false,
       "top1": false,
       "top10": false,
-      "cash_rate": 0.5384615384615384
+      "cash_rate": 0.6153846153846154
      }
     },
     "top1": {
      "1": {
-      "best_pct": 57.74843641417651,
+      "best_pct": 42.995839112343965,
       "won": false,
       "top1": false,
       "top10": false,
-      "cash_rate": 1.0
+      "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 57.74843641417651,
+      "best_pct": 60.15950069348127,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.2
      },
      "13": {
-      "best_pct": 81.75816539263377,
+      "best_pct": 60.15950069348127,
       "won": false,
       "top1": false,
       "top10": false,
-      "cash_rate": 0.3076923076923077
+      "cash_rate": 0.07692307692307693
      }
     },
     "port": {
      "1": {
-      "best_pct": 39.6455872133426,
+      "best_pct": 9.812760055478503,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 49.89576094510076,
+      "best_pct": 98.71705963938973,
       "won": false,
       "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
+      "top10": true,
+      "cash_rate": 0.4
      },
      "13": {
-      "best_pct": 83.56497567755386,
+      "best_pct": 98.71705963938973,
       "won": false,
       "top1": false,
-      "top10": false,
+      "top10": true,
       "cash_rate": 0.3076923076923077
      }
     }
@@ -4721,31 +4721,31 @@
   },
   "2026-11-12": {
    "lines": {
-    "win": 149.89999999999998,
-    "top1": 135.6,
-    "top10": 110.39999999999999,
-    "cash": 77.6
+    "win": 152.6384000000002,
+    "top1": 137.90000000000003,
+    "top10": 113.96,
+    "cash": 79.22
    },
-   "pool_best_pct": 99.73221117061975,
-   "pool_best": 142.5,
+   "pool_best_pct": 99.84761904761905,
+   "pool_best": 149.2,
    "methods": {
     "proj": {
      "1": {
-      "best_pct": 91.69854628921193,
+      "best_pct": 89.71428571428571,
       "won": false,
       "top1": false,
-      "top10": true,
+      "top10": false,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 98.31675592960978,
+      "best_pct": 97.56190476190476,
       "won": false,
       "top1": false,
       "top10": true,
       "cash_rate": 1.0
      },
      "13": {
-      "best_pct": 99.38791124713083,
+      "best_pct": 99.00952380952381,
       "won": false,
       "top1": true,
       "top10": true,
@@ -4754,67 +4754,67 @@
     },
     "cash": {
      "1": {
-      "best_pct": 98.89058913542463,
+      "best_pct": 99.35238095238094,
       "won": false,
-      "top1": false,
+      "top1": true,
       "top10": true,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 99.73221117061975,
+      "best_pct": 99.35238095238094,
       "won": false,
       "top1": true,
       "top10": true,
       "cash_rate": 1.0
      },
      "13": {
-      "best_pct": 99.73221117061975,
+      "best_pct": 99.35238095238094,
       "won": false,
       "top1": true,
       "top10": true,
-      "cash_rate": 1.0
+      "cash_rate": 0.9230769230769231
      }
     },
     "top1": {
      "1": {
-      "best_pct": 65.07268553940322,
+      "best_pct": 62.70476190476191,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 90.70390206579954,
+      "best_pct": 89.71428571428571,
       "won": false,
       "top1": false,
-      "top10": true,
+      "top10": false,
       "cash_rate": 0.8
      },
      "13": {
-      "best_pct": 91.27773527161438,
+      "best_pct": 99.00952380952381,
       "won": false,
-      "top1": false,
+      "top1": true,
       "top10": true,
-      "cash_rate": 0.7692307692307693
+      "cash_rate": 0.8461538461538461
      }
     },
     "port": {
      "1": {
-      "best_pct": 90.58913542463657,
+      "best_pct": 73.94285714285715,
       "won": false,
       "top1": false,
-      "top10": true,
+      "top10": false,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 97.70466717674063,
+      "best_pct": 87.31428571428572,
       "won": false,
       "top1": false,
-      "top10": true,
-      "cash_rate": 0.4
+      "top10": false,
+      "cash_rate": 0.8
      },
      "13": {
-      "best_pct": 97.70466717674063,
+      "best_pct": 91.23809523809524,
       "won": false,
       "top1": false,
       "top10": true,
@@ -4826,31 +4826,31 @@
   },
   "2026-11-13": {
    "lines": {
-    "win": 123.8,
-    "top1": 114.79999999999998,
-    "top10": 97.30000000000001,
-    "cash": 75.6
+    "win": 122.40140000000028,
+    "top1": 114.5,
+    "top10": 96.9,
+    "cash": 74.8
    },
-   "pool_best_pct": 99.98,
+   "pool_best_pct": 100.0,
    "pool_best": 130.20000000000002,
    "methods": {
     "proj": {
      "1": {
-      "best_pct": 82.17999999999999,
+      "best_pct": 83.5,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 93.52000000000001,
+      "best_pct": 93.26,
       "won": false,
       "top1": false,
       "top10": true,
       "cash_rate": 1.0
      },
      "13": {
-      "best_pct": 93.52000000000001,
+      "best_pct": 93.26,
       "won": false,
       "top1": false,
       "top10": true,
@@ -4859,67 +4859,67 @@
     },
     "cash": {
      "1": {
-      "best_pct": 45.16,
+      "best_pct": 46.88,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 99.3,
+      "best_pct": 99.64,
       "won": false,
       "top1": true,
       "top10": true,
       "cash_rate": 0.8
      },
      "13": {
-      "best_pct": 99.98,
+      "best_pct": 100.0,
       "won": true,
       "top1": true,
       "top10": true,
-      "cash_rate": 0.6153846153846154
+      "cash_rate": 0.9230769230769231
      }
     },
     "top1": {
      "1": {
-      "best_pct": 77.4,
+      "best_pct": 93.26,
       "won": false,
       "top1": false,
-      "top10": false,
+      "top10": true,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 96.82,
+      "best_pct": 93.26,
       "won": false,
       "top1": false,
       "top10": true,
       "cash_rate": 0.6
      },
      "13": {
-      "best_pct": 97.32,
+      "best_pct": 97.58,
       "won": false,
       "top1": false,
       "top10": true,
-      "cash_rate": 0.6923076923076923
+      "cash_rate": 0.7692307692307693
      }
     },
     "port": {
      "1": {
-      "best_pct": 93.52000000000001,
+      "best_pct": 83.5,
       "won": false,
       "top1": false,
-      "top10": true,
+      "top10": false,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 93.52000000000001,
+      "best_pct": 83.5,
       "won": false,
       "top1": false,
-      "top10": true,
-      "cash_rate": 0.4
+      "top10": false,
+      "cash_rate": 0.6
      },
      "13": {
-      "best_pct": 99.3,
+      "best_pct": 99.1,
       "won": false,
       "top1": true,
       "top10": true,
@@ -4931,31 +4931,31 @@
   },
   "2026-11-14": {
    "lines": {
-    "win": 130.11899999999974,
-    "top1": 115.70000000000002,
-    "top10": 85.39999999999999,
-    "cash": 61.6
+    "win": 138.5807999999999,
+    "top1": 116.5,
+    "top10": 86.5,
+    "cash": 61.1
    },
-   "pool_best_pct": 99.73190348525469,
+   "pool_best_pct": 99.65583173996177,
    "pool_best": 125.0,
    "methods": {
     "proj": {
      "1": {
-      "best_pct": 81.57793948678668,
+      "best_pct": 81.83556405353728,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 97.6254308693987,
+      "best_pct": 97.89674952198853,
       "won": false,
       "top1": false,
       "top10": true,
       "cash_rate": 1.0
      },
      "13": {
-      "best_pct": 97.6254308693987,
+      "best_pct": 97.89674952198853,
       "won": false,
       "top1": false,
       "top10": true,
@@ -4964,21 +4964,21 @@
     },
     "cash": {
      "1": {
-      "best_pct": 92.22520107238606,
+      "best_pct": 97.32313575525812,
       "won": false,
       "top1": false,
       "top10": true,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 96.82114132516277,
+      "best_pct": 97.32313575525812,
       "won": false,
       "top1": false,
       "top10": true,
       "cash_rate": 1.0
      },
      "13": {
-      "best_pct": 99.34890846418996,
+      "best_pct": 99.12045889101339,
       "won": false,
       "top1": true,
       "top10": true,
@@ -4987,48 +4987,48 @@
     },
     "top1": {
      "1": {
-      "best_pct": 92.26350057449253,
+      "best_pct": 91.85468451242829,
       "won": false,
       "top1": false,
       "top10": true,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 98.8893144389123,
+      "best_pct": 97.2848948374761,
       "won": false,
       "top1": false,
       "top10": true,
       "cash_rate": 1.0
      },
      "13": {
-      "best_pct": 98.8893144389123,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.9230769230769231
-     }
-    },
-    "port": {
-     "1": {
-      "best_pct": 92.26350057449253,
+      "best_pct": 98.92925430210326,
       "won": false,
       "top1": false,
       "top10": true,
       "cash_rate": 1.0
+     }
+    },
+    "port": {
+     "1": {
+      "best_pct": 89.78967495219885,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 94.79126771351972,
+      "best_pct": 97.2848948374761,
       "won": false,
       "top1": false,
       "top10": true,
       "cash_rate": 0.8
      },
      "13": {
-      "best_pct": 94.79126771351972,
+      "best_pct": 97.2848948374761,
       "won": false,
       "top1": false,
       "top10": true,
-      "cash_rate": 0.9230769230769231
+      "cash_rate": 0.8461538461538461
      }
     }
    },
@@ -5036,31 +5036,31 @@
   },
   "2026-11-15": {
    "lines": {
-    "win": 152.5,
-    "top1": 135.1,
-    "top10": 111.84,
-    "cash": 88.6
+    "win": 149.3,
+    "top1": 135.93000000000006,
+    "top10": 112.8,
+    "cash": 89.2
    },
-   "pool_best_pct": 99.9237998475997,
+   "pool_best_pct": 100.0,
    "pool_best": 152.7,
    "methods": {
     "proj": {
      "1": {
-      "best_pct": 72.11074422148845,
+      "best_pct": 72.7129750982962,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 80.28956057912116,
+      "best_pct": 81.65137614678899,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.8
      },
      "13": {
-      "best_pct": 94.61518923037846,
+      "best_pct": 92.79161205766711,
       "won": false,
       "top1": false,
       "top10": true,
@@ -5069,21 +5069,21 @@
     },
     "cash": {
      "1": {
-      "best_pct": 72.11074422148845,
+      "best_pct": 81.65137614678899,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 80.28956057912116,
+      "best_pct": 81.65137614678899,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.8
      },
      "13": {
-      "best_pct": 98.55219710439421,
+      "best_pct": 98.4010484927916,
       "won": false,
       "top1": false,
       "top10": true,
@@ -5092,21 +5092,21 @@
     },
     "top1": {
      "1": {
-      "best_pct": 52.47650495300991,
+      "best_pct": 51.82175622542595,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 94.61518923037846,
+      "best_pct": 92.8178243774574,
       "won": false,
       "top1": false,
       "top10": true,
-      "cash_rate": 0.6
+      "cash_rate": 0.8
      },
      "13": {
-      "best_pct": 96.39319278638557,
+      "best_pct": 95.91087811271296,
       "won": false,
       "top1": false,
       "top10": true,
@@ -5115,25 +5115,25 @@
     },
     "port": {
      "1": {
-      "best_pct": 52.47650495300991,
+      "best_pct": 51.82175622542595,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 83.54076708153416,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.6
-     },
-     "13": {
-      "best_pct": 99.64439928879858,
+      "best_pct": 99.50196592398427,
       "won": false,
       "top1": true,
       "top10": true,
-      "cash_rate": 0.5384615384615384
+      "cash_rate": 0.6
+     },
+     "13": {
+      "best_pct": 99.50196592398427,
+      "won": false,
+      "top1": true,
+      "top10": true,
+      "cash_rate": 0.6923076923076923
      }
     }
    },
@@ -5141,31 +5141,31 @@
   },
   "2026-11-16": {
    "lines": {
-    "win": 123.89999999999999,
-    "top1": 106.6,
-    "top10": 83.71000000000004,
-    "cash": 60.54500000000002
+    "win": 126.20340000000068,
+    "top1": 110.6,
+    "top10": 84.11000000000003,
+    "cash": 60.145000000000024
    },
    "pool_best_pct": 100.0,
    "pool_best": 156.0,
    "methods": {
     "proj": {
      "1": {
-      "best_pct": 25.22,
+      "best_pct": 25.779999999999998,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 78.48,
+      "best_pct": 79.0,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.6
      },
      "13": {
-      "best_pct": 93.10000000000001,
+      "best_pct": 92.92,
       "won": false,
       "top1": false,
       "top10": true,
@@ -5174,21 +5174,21 @@
     },
     "cash": {
      "1": {
-      "best_pct": 48.86,
+      "best_pct": 50.96000000000001,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 75.72,
+      "best_pct": 76.1,
       "won": false,
       "top1": false,
       "top10": false,
-      "cash_rate": 0.6
+      "cash_rate": 0.4
      },
      "13": {
-      "best_pct": 96.7,
+      "best_pct": 98.24000000000001,
       "won": false,
       "top1": false,
       "top10": true,
@@ -5197,44 +5197,44 @@
     },
     "top1": {
      "1": {
-      "best_pct": 41.64,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "5": {
-      "best_pct": 94.34,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.6
-     },
-     "13": {
-      "best_pct": 94.34,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.6923076923076923
-     }
-    },
-    "port": {
-     "1": {
-      "best_pct": 85.38,
+      "best_pct": 86.24000000000001,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 99.94,
+      "best_pct": 95.42,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 1.0
+     },
+     "13": {
+      "best_pct": 95.42,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 0.7692307692307693
+     }
+    },
+    "port": {
+     "1": {
+      "best_pct": 42.78,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 100.0,
       "won": true,
       "top1": true,
       "top10": true,
-      "cash_rate": 0.8
+      "cash_rate": 0.6
      },
      "13": {
-      "best_pct": 99.94,
+      "best_pct": 100.0,
       "won": true,
       "top1": true,
       "top10": true,
@@ -5246,77 +5246,77 @@
   },
   "2026-11-17": {
    "lines": {
-    "win": 181.15629999999993,
-    "top1": 156.5,
-    "top10": 124.0,
-    "cash": 88.8
+    "win": 180.00000000000003,
+    "top1": 153.8050000000001,
+    "top10": 124.4,
+    "cash": 91.5
    },
-   "pool_best_pct": 99.9687695190506,
+   "pool_best_pct": 99.9686126804771,
    "pool_best": 189.0,
    "methods": {
     "proj": {
      "1": {
-      "best_pct": 92.3797626483448,
+      "best_pct": 92.37288135593221,
       "won": false,
       "top1": false,
       "top10": true,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 92.3797626483448,
+      "best_pct": 92.37288135593221,
       "won": false,
       "top1": false,
       "top10": true,
       "cash_rate": 1.0
      },
      "13": {
-      "best_pct": 92.3797626483448,
+      "best_pct": 92.37288135593221,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 0.8461538461538461
+     }
+    },
+    "cash": {
+     "1": {
+      "best_pct": 92.37288135593221,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 1.0
+     },
+     "5": {
+      "best_pct": 92.37288135593221,
+      "won": false,
+      "top1": false,
+      "top10": true,
+      "cash_rate": 1.0
+     },
+     "13": {
+      "best_pct": 92.37288135593221,
       "won": false,
       "top1": false,
       "top10": true,
       "cash_rate": 0.9230769230769231
      }
     },
-    "cash": {
+    "top1": {
      "1": {
-      "best_pct": 43.8475952529669,
+      "best_pct": 88.70056497175142,
       "won": false,
       "top1": false,
       "top10": false,
-      "cash_rate": 0.0
+      "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 92.3797626483448,
+      "best_pct": 92.90646578782173,
       "won": false,
       "top1": false,
       "top10": true,
       "cash_rate": 0.8
      },
      "13": {
-      "best_pct": 92.3797626483448,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 0.7692307692307693
-     }
-    },
-    "top1": {
-     "1": {
-      "best_pct": 69.67520299812617,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 1.0
-     },
-     "5": {
-      "best_pct": 93.25421611492817,
-      "won": false,
-      "top1": false,
-      "top10": true,
-      "cash_rate": 1.0
-     },
-     "13": {
-      "best_pct": 93.50405996252343,
+      "best_pct": 97.48901443816698,
       "won": false,
       "top1": false,
       "top10": true,
@@ -5325,23 +5325,23 @@
     },
     "port": {
      "1": {
-      "best_pct": 87.13304184884447,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 1.0
-     },
-     "5": {
-      "best_pct": 96.31480324797002,
+      "best_pct": 92.90646578782173,
       "won": false,
       "top1": false,
       "top10": true,
-      "cash_rate": 0.8
+      "cash_rate": 1.0
+     },
+     "5": {
+      "best_pct": 99.30947897049592,
+      "won": false,
+      "top1": true,
+      "top10": true,
+      "cash_rate": 0.6
      },
      "13": {
-      "best_pct": 96.31480324797002,
+      "best_pct": 99.30947897049592,
       "won": false,
-      "top1": false,
+      "top1": true,
       "top10": true,
       "cash_rate": 0.5384615384615384
      }
@@ -5351,102 +5351,102 @@
   },
   "2026-11-18": {
    "lines": {
-    "win": 133.8005000000001,
-    "top1": 118.30200000000005,
-    "top10": 101.62000000000008,
-    "cash": 81.2
+    "win": 129.00080000000017,
+    "top1": 120.1,
+    "top10": 100.69999999999999,
+    "cash": 80.2
    },
-   "pool_best_pct": 99.62,
+   "pool_best_pct": 99.8,
    "pool_best": 127.3,
    "methods": {
     "proj": {
      "1": {
-      "best_pct": 50.4,
+      "best_pct": 52.94,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 50.4,
+      "best_pct": 52.94,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "13": {
-      "best_pct": 54.14,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     }
-    },
-    "cash": {
-     "1": {
-      "best_pct": 50.4,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "5": {
-      "best_pct": 50.4,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "13": {
-      "best_pct": 54.14,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     }
-    },
-    "top1": {
-     "1": {
-      "best_pct": 25.16,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "5": {
-      "best_pct": 35.9,
-      "won": false,
-      "top1": false,
-      "top10": false,
-      "cash_rate": 0.0
-     },
-     "13": {
-      "best_pct": 82.92,
+      "best_pct": 56.82000000000001,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.07692307692307693
      }
     },
-    "port": {
+    "cash": {
      "1": {
-      "best_pct": 15.459999999999999,
+      "best_pct": 52.94,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 82.92,
+      "best_pct": 52.94,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "13": {
+      "best_pct": 56.82000000000001,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.07692307692307693
+     }
+    },
+    "top1": {
+     "1": {
+      "best_pct": 25.86,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 83.32000000000001,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.2
      },
      "13": {
-      "best_pct": 99.36,
+      "best_pct": 83.32000000000001,
       "won": false,
-      "top1": true,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.23076923076923078
+     }
+    },
+    "port": {
+     "1": {
+      "best_pct": 25.86,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 79.10000000000001,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.2
+     },
+     "13": {
+      "best_pct": 97.36,
+      "won": false,
+      "top1": false,
       "top10": true,
       "cash_rate": 0.23076923076923078
      }
@@ -5456,32 +5456,32 @@
   },
   "2026-11-19": {
    "lines": {
-    "win": 149.02459999999869,
-    "top1": 137.086,
-    "top10": 110.96,
-    "cash": 85.2
+    "win": 153.28849999999997,
+    "top1": 136.8,
+    "top10": 112.55,
+    "cash": 85.69999999999999
    },
    "pool_best_pct": 100.0,
    "pool_best": 180.10000000000002,
    "methods": {
     "proj": {
      "1": {
-      "best_pct": 90.15437392795883,
+      "best_pct": 89.04061624649859,
       "won": false,
       "top1": false,
-      "top10": true,
+      "top10": false,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 99.14236706689536,
+      "best_pct": 99.12464985994399,
       "won": false,
       "top1": true,
       "top10": true,
       "cash_rate": 1.0
      },
      "13": {
-      "best_pct": 99.89708404802744,
-      "won": true,
+      "best_pct": 99.68487394957984,
+      "won": false,
       "top1": true,
       "top10": true,
       "cash_rate": 1.0
@@ -5489,21 +5489,21 @@
     },
     "cash": {
      "1": {
-      "best_pct": 77.15265866209262,
+      "best_pct": 75.87535014005601,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 97.56432246998284,
+      "best_pct": 99.64985994397759,
       "won": false,
-      "top1": false,
+      "top1": true,
       "top10": true,
       "cash_rate": 1.0
      },
      "13": {
-      "best_pct": 99.89708404802744,
+      "best_pct": 99.64985994397759,
       "won": false,
       "top1": true,
       "top10": true,
@@ -5512,22 +5512,22 @@
     },
     "top1": {
      "1": {
-      "best_pct": 99.89708404802744,
-      "won": true,
+      "best_pct": 99.68487394957984,
+      "won": false,
       "top1": true,
       "top10": true,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 99.89708404802744,
-      "won": true,
+      "best_pct": 99.68487394957984,
+      "won": false,
       "top1": true,
       "top10": true,
       "cash_rate": 1.0
      },
      "13": {
-      "best_pct": 99.89708404802744,
-      "won": true,
+      "best_pct": 99.68487394957984,
+      "won": false,
       "top1": true,
       "top10": true,
       "cash_rate": 1.0
@@ -5535,21 +5535,21 @@
     },
     "port": {
      "1": {
-      "best_pct": 99.89708404802744,
-      "won": true,
+      "best_pct": 99.68487394957984,
+      "won": false,
       "top1": true,
       "top10": true,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 99.89708404802744,
-      "won": true,
+      "best_pct": 99.68487394957984,
+      "won": false,
       "top1": true,
       "top10": true,
       "cash_rate": 0.8
      },
      "13": {
-      "best_pct": 99.93138936535163,
+      "best_pct": 99.96498599439776,
       "won": true,
       "top1": true,
       "top10": true,
@@ -5561,31 +5561,31 @@
   },
   "2026-11-21": {
    "lines": {
-    "win": 157.8,
-    "top1": 141.2,
-    "top10": 109.1,
-    "cash": 76.5
+    "win": 184.2,
+    "top1": 142.2210000000003,
+    "top10": 105.6,
+    "cash": 76.60000000000001
    },
-   "pool_best_pct": 99.9327731092437,
+   "pool_best_pct": 99.76206662134602,
    "pool_best": 159.8,
    "methods": {
     "proj": {
      "1": {
-      "best_pct": 57.61344537815126,
+      "best_pct": 57.477906186267845,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 1.0
      },
      "5": {
-      "best_pct": 64.16806722689076,
+      "best_pct": 63.90210740992522,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.4
      },
      "13": {
-      "best_pct": 64.16806722689076,
+      "best_pct": 63.90210740992522,
       "won": false,
       "top1": false,
       "top10": false,
@@ -5594,44 +5594,44 @@
     },
     "cash": {
      "1": {
-      "best_pct": 7.966386554621849,
+      "best_pct": 24.643099932019037,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 57.61344537815126,
+      "best_pct": 60.60503059143439,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.2
      },
      "13": {
-      "best_pct": 61.2436974789916,
+      "best_pct": 60.60503059143439,
       "won": false,
       "top1": false,
       "top10": false,
-      "cash_rate": 0.15384615384615385
+      "cash_rate": 0.07692307692307693
      }
     },
     "top1": {
      "1": {
-      "best_pct": 12.067226890756302,
+      "best_pct": 11.284840244731475,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 19.495798319327733,
+      "best_pct": 27.090414683888508,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "13": {
-      "best_pct": 34.016806722689076,
+      "best_pct": 50.30591434398368,
       "won": false,
       "top1": false,
       "top10": false,
@@ -5640,29 +5640,134 @@
     },
     "port": {
      "1": {
-      "best_pct": 12.067226890756302,
+      "best_pct": 11.284840244731475,
       "won": false,
       "top1": false,
       "top10": false,
       "cash_rate": 0.0
      },
      "5": {
-      "best_pct": 99.42857142857143,
+      "best_pct": 97.51869476546567,
       "won": false,
-      "top1": true,
+      "top1": false,
       "top10": true,
       "cash_rate": 0.2
      },
      "13": {
-      "best_pct": 99.42857142857143,
+      "best_pct": 97.51869476546567,
       "won": false,
-      "top1": true,
+      "top1": false,
       "top10": true,
-      "cash_rate": 0.23076923076923078
+      "cash_rate": 0.3076923076923077
      }
     }
    },
    "games": 12
+  },
+  "2026-11-22": {
+   "lines": {
+    "win": 130.40140000000028,
+    "top1": 109.70300000000006,
+    "top10": 85.81000000000004,
+    "cash": 62.0
+   },
+   "pool_best_pct": 99.5,
+   "pool_best": 118.1,
+   "methods": {
+    "proj": {
+     "1": {
+      "best_pct": 42.18,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 46.239999999999995,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "13": {
+      "best_pct": 53.68000000000001,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     }
+    },
+    "cash": {
+     "1": {
+      "best_pct": 34.72,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 53.68000000000001,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "13": {
+      "best_pct": 53.68000000000001,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     }
+    },
+    "top1": {
+     "1": {
+      "best_pct": 33.379999999999995,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 49.1,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "13": {
+      "best_pct": 54.02,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     }
+    },
+    "port": {
+     "1": {
+      "best_pct": 33.379999999999995,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "5": {
+      "best_pct": 53.68000000000001,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.0
+     },
+     "13": {
+      "best_pct": 78.12,
+      "won": false,
+      "top1": false,
+      "top10": false,
+      "cash_rate": 0.15384615384615385
+     }
+    }
+   },
+   "games": 4
   }
  }
 }

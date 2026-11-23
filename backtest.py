@@ -284,7 +284,8 @@ def dump_row(p: dict, L: dict, actual: float, pct: float) -> dict:
             "top1": L.get("top1"), "top10": L.get("top10"), "cash": L.get("cash"),
             "port": L.get("port"), "dup": L.get("dup"), "roi": L.get("roi"),
             "roit": L.get("roit"), "st1": teams[0], "st2": teams[1],
-            "actual": round(actual, 2), "pct": round(pct, 2)}
+            "actual": round(actual, 2), "pct": round(pct, 2),
+            "src": L.get("src"), "optin": L.get("optin")}
 
 
 BLOWOUT = False

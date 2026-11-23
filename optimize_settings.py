@@ -72,7 +72,11 @@ def roi_of(x: dict, tier: str | None):
 
 
 def order(L: list[dict], sort: str, tier: str | None = None) -> list[dict]:
+    # as the page: opt-in scenario lineups never, and the ROI sorts skip
+    # scenario lineups (their simulated ROI outruns their real results)
+    L = [x for x in L if not x.get("optin")]
     if sort in ("roi", "roilow"):
+        L = [x for x in L if x.get("src") != "scenario"]
         has = [x for x in L if roi_of(x, tier) is not None]
         if not has:
             return []                        # night replayed before ROI existed: no answer

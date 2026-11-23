@@ -9,7 +9,7 @@ on:
       script:
         description: "Script to run"
         type: choice
-        options: [cfb_blowout_fit.py, salary_probe.py, tonight_check.py, tail_check.py, study_optimal.py, replay_today.py, boom_study.py]
+        options: [cfb_blowout_fit.py, salary_probe.py, tonight_check.py, tail_check.py, study_optimal.py, replay_today.py, boom_study.py, props_probe.py]
       args:
         description: "Arguments for the script"
         default: ""

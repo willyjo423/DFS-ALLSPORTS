@@ -62,8 +62,11 @@ def check(payload: dict, today: str | None = None) -> list[dict]:
     for j, p in enumerate(players):
         used = counts[j] > 0
         model, props = _num(p.get("model")), _num(p.get("props"))
-        if model and props and model > 1 and props > 1:
-            r = props / model
+        # A tiny props number is the loudest warning there is (the books
+        # price him as barely playing), so it must not be filtered out:
+        # J.K. Dobbins, 2026-11-23, props 0.7 vs model 7.5, in 15 lineups, no flag.
+        if model is not None and props is not None and max(model, props) > 3:
+            r = max(props, 0.1) / max(model, 0.1)
             if (r >= GAP_RATIO or r <= 1 / GAP_RATIO) and (used or _is_chalk(p)):
                 add(j, "gap", f"props {props:.1f} vs model {model:.1f} "
                     f"({r:.1f}x) — confirm he is playing and it is the right player")

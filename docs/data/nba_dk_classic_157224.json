@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-23T23:15:59+00:00",
+ "generated_at": "2026-11-23T23:34:59+00:00",
  "sport": "nba",
  "site": "dk",
  "kind": "classic",
@@ -33,12 +33,12 @@
    "pid": "1373356",
    "game": "SAC@SAS",
    "salary": 12000,
-   "proj": 43.44,
-   "med": 72.4,
-   "mean": 43.44,
-   "ceil": 92.98,
-   "ceil_model": 93.81,
-   "ceil_props": 92.14,
+   "proj": 43.42,
+   "med": 72.37,
+   "mean": 43.42,
+   "ceil": 92.95,
+   "ceil_model": 93.78,
+   "ceil_props": 92.11,
    "min": 35.2,
    "pp": 0.6,
    "status": "clear",
@@ -48,12 +48,12 @@
    "spread": -12.5,
    "dkppg": 61.6,
    "model": 73.62,
-   "props": 72.19,
-   "own": 0.25492,
+   "props": 72.16,
+   "own": 0.25367,
    "lev": 0.114,
    "opt": 0.0,
    "chalk": false,
-   "sopt": 36.0
+   "sopt": 36.5
   },
   {
    "name": "Luka Doncic",
@@ -68,27 +68,27 @@
    "pid": "1121277",
    "game": "LAL@UTA",
    "salary": 11900,
-   "proj": 66.5,
-   "med": 66.5,
-   "mean": 66.5,
-   "ceil": 84.23,
-   "ceil_model": 84.85,
-   "ceil_props": 83.61,
+   "proj": 66.62,
+   "med": 66.62,
+   "mean": 66.62,
+   "ceil": 84.36,
+   "ceil_model": 84.98,
+   "ceil_props": 83.75,
    "min": 32.8,
    "pp": 1.0,
    "status": "clear",
    "doubtful": false,
-   "news": "starting (expected); props 67.5 vs model 57.0",
+   "news": "starting (expected); props 67.6 vs model 57.0",
    "implied": 119.5,
    "spread": -13.5,
    "dkppg": 62.4,
    "model": 57.04,
-   "props": 67.49,
-   "own": 0.60337,
+   "props": 67.6,
+   "own": 0.60217,
    "lev": -0.014,
    "opt": 0.675,
    "chalk": true,
-   "sopt": 54.0
+   "sopt": 53.5
   },
   {
    "name": "Darius Acuff Jr.",
@@ -104,27 +104,27 @@
    "pid": "1591016",
    "game": "SAC@SAS",
    "salary": 9000,
-   "proj": 40.02,
-   "med": 40.02,
-   "mean": 40.02,
-   "ceil": 54.76,
-   "ceil_model": 54.32,
-   "ceil_props": 55.19,
+   "proj": 39.81,
+   "med": 39.81,
+   "mean": 39.81,
+   "ceil": 54.55,
+   "ceil_model": 54.11,
+   "ceil_props": 54.99,
    "min": 30.3,
    "pp": 1.0,
    "status": "clear",
    "doubtful": false,
-   "news": "starting (expected); props 40.6 vs model 35.0",
+   "news": "starting (expected); props 40.4 vs model 35.0",
    "implied": 106.0,
    "spread": 12.5,
    "dkppg": 43.0,
    "model": 35.0,
-   "props": 40.64,
-   "own": 0.28544,
-   "lev": -0.014,
+   "props": 40.43,
+   "own": 0.28071,
+   "lev": 0.0,
    "opt": 0.125,
    "chalk": false,
-   "sopt": 24.0
+   "sopt": 23.5
   },
   {
    "name": "Domantas Sabonis",
@@ -138,23 +138,23 @@
    "pid": "850111",
    "game": "SAC@SAS",
    "salary": 8700,
-   "proj": 38.82,
-   "med": 38.82,
-   "mean": 38.82,
-   "ceil": 52.17,
-   "ceil_model": 52.56,
-   "ceil_props": 51.79,
+   "proj": 38.91,
+   "med": 38.91,
+   "mean": 38.91,
+   "ceil": 52.25,
+   "ceil_model": 52.64,
+   "ceil_props": 51.87,
    "min": 26.2,
    "pp": 1.0,
    "status": "clear",
    "doubtful": false,
-   "news": "starting (expected); props 39.3 vs model 31.9",
+   "news": "starting (expected); props 39.4 vs model 31.9",
    "implied": 106.0,
    "spread": 12.5,
    "dkppg": 40.4,
    "model": 31.95,
-   "props": 39.29,
-   "own": 0.27308,
+   "props": 39.37,
+   "own": 0.2735,
    "lev": 0.0,
    "opt": 0.05,
    "chalk": false,
@@ -176,9 +176,9 @@
    "proj": 40.38,
    "med": 40.38,
    "mean": 40.38,
-   "ceil": 54.58,
+   "ceil": 54.59,
    "ceil_model": 55.46,
-   "ceil_props": 53.7,
+   "ceil_props": 53.72,
    "min": 31.6,
    "pp": 1.0,
    "status": "clear",
@@ -188,12 +188,12 @@
    "spread": 13.5,
    "dkppg": 38.1,
    "model": 39.23,
-   "props": 40.58,
-   "own": 0.34047,
+   "props": 40.59,
+   "own": 0.33906,
    "lev": -0.014,
    "opt": 0.425,
    "chalk": true,
-   "sopt": 36.0
+   "sopt": 36.5
   },
   {
    "name": "Austin Reaves",
@@ -245,23 +245,23 @@
    "pid": "1594900",
    "game": "LAL@UTA",
    "salary": 7600,
-   "proj": 34.39,
-   "med": 34.39,
-   "mean": 34.39,
-   "ceil": 47.55,
-   "ceil_model": 47.83,
-   "ceil_props": 47.27,
+   "proj": 34.52,
+   "med": 34.52,
+   "mean": 34.52,
+   "ceil": 47.68,
+   "ceil_model": 47.95,
+   "ceil_props": 47.41,
    "min": 27.6,
    "pp": 1.0,
    "status": "clear",
    "doubtful": false,
-   "news": "starting (expected); props 34.9 vs model 30.3; +10%/min with teammates out",
+   "news": "starting (expected); props 35.1 vs model 30.3; +10%/min with teammates out",
    "implied": 106.0,
    "spread": 13.5,
    "dkppg": 31.2,
    "model": 30.3,
-   "props": 34.92,
-   "own": 0.23985,
+   "props": 35.05,
+   "own": 0.24098,
    "lev": 0.014,
    "opt": 0.15,
    "chalk": false,
@@ -280,12 +280,12 @@
    "pid": "1461118",
    "game": "SAC@SAS",
    "salary": 7500,
-   "proj": 43.1,
-   "med": 43.1,
-   "mean": 43.1,
-   "ceil": 60.78,
-   "ceil_model": 59.11,
-   "ceil_props": 62.46,
+   "proj": 43.33,
+   "med": 43.33,
+   "mean": 43.33,
+   "ceil": 61.02,
+   "ceil_model": 59.34,
+   "ceil_props": 62.7,
    "min": 34.2,
    "pp": 1.0,
    "status": "clear",
@@ -295,12 +295,12 @@
    "spread": -12.5,
    "dkppg": 33.9,
    "model": 44.3,
-   "props": 42.89,
-   "own": 0.44688,
+   "props": 43.16,
+   "own": 0.45172,
    "lev": -0.014,
    "opt": 0.7,
    "chalk": true,
-   "sopt": 55.0
+   "sopt": 55.5
   },
   {
    "name": "Lauri Markkanen",
@@ -387,27 +387,27 @@
    "pid": "1243728",
    "game": "LAL@UTA",
    "salary": 7200,
-   "proj": 41.96,
-   "med": 41.96,
-   "mean": 41.96,
-   "ceil": 56.02,
-   "ceil_model": 56.02,
-   "ceil_props": 56.02,
+   "proj": 41.77,
+   "med": 41.77,
+   "mean": 41.77,
+   "ceil": 55.85,
+   "ceil_model": 55.83,
+   "ceil_props": 55.87,
    "min": 27.3,
    "pp": 1.0,
    "status": "clear",
    "doubtful": false,
-   "news": "starting (expected); props 42.4 vs model 33.7",
+   "news": "starting (expected); props 42.2 vs model 33.7",
    "implied": 119.5,
    "spread": -13.5,
    "dkppg": 36.9,
    "model": 33.73,
-   "props": 42.39,
-   "own": 0.42924,
+   "props": 42.19,
+   "own": 0.42192,
    "lev": -0.014,
    "opt": 0.7,
    "chalk": true,
-   "sopt": 41.0
+   "sopt": 40.0
   },
   {
    "name": "De'Aaron Fox",
@@ -422,12 +422,12 @@
    "pid": "957489",
    "game": "SAC@SAS",
    "salary": 6700,
-   "proj": 20.64,
-   "med": 34.41,
-   "mean": 20.64,
-   "ceil": 51.32,
-   "ceil_model": 48.82,
-   "ceil_props": 53.82,
+   "proj": 20.82,
+   "med": 34.7,
+   "mean": 20.82,
+   "ceil": 51.62,
+   "ceil_model": 49.12,
+   "ceil_props": 54.11,
    "min": 32.2,
    "pp": 0.6,
    "status": "clear",
@@ -437,8 +437,8 @@
    "spread": -12.5,
    "dkppg": 28.3,
    "model": 35.64,
-   "props": 34.19,
-   "own": 0.10427,
+   "props": 34.54,
+   "own": 0.10529,
    "lev": 0.243,
    "opt": 0.0,
    "chalk": false,
@@ -493,12 +493,12 @@
    "pid": "1519363",
    "game": "LAL@UTA",
    "salary": 6500,
-   "proj": 28.52,
-   "med": 28.52,
-   "mean": 28.52,
-   "ceil": 40.77,
-   "ceil_model": 41.48,
-   "ceil_props": 40.05,
+   "proj": 28.55,
+   "med": 28.55,
+   "mean": 28.55,
+   "ceil": 40.82,
+   "ceil_model": 41.51,
+   "ceil_props": 40.13,
    "min": 28.0,
    "pp": 1.0,
    "status": "clear",
@@ -508,8 +508,8 @@
    "spread": 13.5,
    "dkppg": 27.8,
    "model": 27.74,
-   "props": 28.66,
-   "own": 0.19019,
+   "props": 28.69,
+   "own": 0.18993,
    "lev": 0.0,
    "opt": 0.125,
    "chalk": false,
@@ -530,12 +530,12 @@
    "pid": "743777",
    "game": "SAC@SAS",
    "salary": 6400,
-   "proj": 28.16,
-   "med": 28.16,
-   "mean": 28.16,
-   "ceil": 40.5,
-   "ceil_model": 40.57,
-   "ceil_props": 40.43,
+   "proj": 28.15,
+   "med": 28.15,
+   "mean": 28.15,
+   "ceil": 40.49,
+   "ceil_model": 40.55,
+   "ceil_props": 40.42,
    "min": 26.9,
    "pp": 1.0,
    "status": "clear",
@@ -545,9 +545,9 @@
    "spread": 12.5,
    "dkppg": 32.1,
    "model": 24.71,
-   "props": 28.6,
-   "own": 0.18867,
-   "lev": 0.0,
+   "props": 28.58,
+   "own": 0.18785,
+   "lev": 0.014,
    "opt": 0.3,
    "chalk": false,
    "sopt": 16.5
@@ -567,12 +567,12 @@
    "pid": "1132827",
    "game": "LAL@UTA",
    "salary": 6200,
-   "proj": 30.65,
-   "med": 30.65,
-   "mean": 30.65,
-   "ceil": 42.6,
-   "ceil_model": 43.32,
-   "ceil_props": 41.89,
+   "proj": 30.68,
+   "med": 30.68,
+   "mean": 30.68,
+   "ceil": 42.63,
+   "ceil_model": 43.35,
+   "ceil_props": 41.91,
    "min": 31.1,
    "pp": 1.0,
    "status": "clear",
@@ -582,12 +582,12 @@
    "spread": -13.5,
    "dkppg": 23.4,
    "model": 26.15,
-   "props": 31.1,
-   "own": 0.23416,
+   "props": 31.12,
+   "own": 0.23378,
    "lev": 0.014,
    "opt": 0.425,
    "chalk": false,
-   "sopt": 25.0
+   "sopt": 25.5
   },
   {
    "name": "De'Andre Hunter",
@@ -603,12 +603,12 @@
    "pid": "942857",
    "game": "SAC@SAS",
    "salary": 6000,
-   "proj": 24.59,
-   "med": 24.59,
-   "mean": 24.59,
-   "ceil": 36.52,
-   "ceil_model": 36.82,
-   "ceil_props": 36.21,
+   "proj": 24.62,
+   "med": 24.62,
+   "mean": 24.62,
+   "ceil": 36.55,
+   "ceil_model": 36.85,
+   "ceil_props": 36.24,
    "min": 29.9,
    "pp": 1.0,
    "status": "clear",
@@ -618,12 +618,12 @@
    "spread": 12.5,
    "dkppg": 25.1,
    "model": 23.75,
-   "props": 24.74,
-   "own": 0.1552,
+   "props": 24.78,
+   "own": 0.15501,
    "lev": 0.014,
    "opt": 0.1,
    "chalk": false,
-   "sopt": 12.0
+   "sopt": 12.5
   },
   {
    "name": "Jusuf Nurkic",
@@ -672,12 +672,12 @@
    "pid": "1231161",
    "game": "SAC@SAS",
    "salary": 5800,
-   "proj": 25.72,
-   "med": 25.72,
-   "mean": 25.72,
-   "ceil": 37.16,
-   "ceil_model": 37.52,
-   "ceil_props": 36.8,
+   "proj": 25.77,
+   "med": 25.77,
+   "mean": 25.77,
+   "ceil": 37.21,
+   "ceil_model": 37.57,
+   "ceil_props": 36.85,
    "min": 27.1,
    "pp": 1.0,
    "status": "clear",
@@ -687,12 +687,12 @@
    "spread": 12.5,
    "dkppg": 22.6,
    "model": 21.39,
-   "props": 26.06,
-   "own": 0.17474,
+   "props": 26.1,
+   "own": 0.17479,
    "lev": 0.0,
    "opt": 0.275,
    "chalk": false,
-   "sopt": 22.0
+   "sopt": 21.5
   },
   {
    "name": "Devin Vassell",
@@ -708,12 +708,12 @@
    "pid": "1132051",
    "game": "SAC@SAS",
    "salary": 5500,
-   "proj": 30.21,
-   "med": 30.21,
-   "mean": 30.21,
-   "ceil": 44.43,
-   "ceil_model": 43.84,
-   "ceil_props": 45.01,
+   "proj": 30.28,
+   "med": 30.28,
+   "mean": 30.28,
+   "ceil": 44.5,
+   "ceil_model": 43.92,
+   "ceil_props": 45.09,
    "min": 33.7,
    "pp": 1.0,
    "status": "clear",
@@ -723,9 +723,9 @@
    "spread": -12.5,
    "dkppg": 24.9,
    "model": 31.41,
-   "props": 29.99,
+   "props": 30.08,
    "own": 0.42,
-   "lev": -0.057,
+   "lev": -0.043,
    "opt": 0.7,
    "chalk": true,
    "sopt": 40.0
@@ -793,7 +793,7 @@
    "model": 30.24,
    "props": null,
    "own": 0.315,
-   "lev": -0.071,
+   "lev": -0.1,
    "opt": 0.525,
    "chalk": true,
    "sopt": 37.0
@@ -881,11 +881,11 @@
    "pid": "1408260",
    "game": "LAL@UTA",
    "salary": 5000,
-   "proj": 20.89,
-   "med": 20.89,
-   "mean": 20.89,
-   "ceil": 33.02,
-   "ceil_model": 33.02,
+   "proj": 21.03,
+   "med": 21.03,
+   "mean": 21.03,
+   "ceil": 33.15,
+   "ceil_model": 33.15,
    "ceil_props": null,
    "min": 20.4,
    "pp": 1.0,
@@ -896,8 +896,8 @@
    "spread": 13.5,
    "dkppg": 19.2,
    "model": 23.21,
-   "props": 20.34,
-   "own": 0.14054,
+   "props": 20.5,
+   "own": 0.1417,
    "lev": 0.014,
    "opt": 0.1,
    "chalk": false,
@@ -967,7 +967,7 @@
    "dkppg": 21.9,
    "model": 14.85,
    "props": null,
-   "own": 0.08549,
+   "own": 0.08525,
    "lev": 0.043,
    "opt": 0.0,
    "chalk": false,
@@ -987,12 +987,12 @@
    "pid": "1175125",
    "game": "LAL@UTA",
    "salary": 4800,
-   "proj": 15.63,
-   "med": 15.63,
-   "mean": 15.63,
-   "ceil": 25.46,
-   "ceil_model": 25.97,
-   "ceil_props": 24.96,
+   "proj": 15.52,
+   "med": 15.52,
+   "mean": 15.52,
+   "ceil": 25.36,
+   "ceil_model": 25.86,
+   "ceil_props": 24.85,
    "min": 18.7,
    "pp": 1.0,
    "status": "clear",
@@ -1002,8 +1002,8 @@
    "spread": -13.5,
    "dkppg": 17.7,
    "model": 13.51,
-   "props": 15.92,
-   "own": 0.09239,
+   "props": 15.81,
+   "own": 0.09127,
    "lev": 0.014,
    "opt": 0.0,
    "chalk": false,
@@ -1023,11 +1023,11 @@
    "pid": "1061642",
    "game": "LAL@UTA",
    "salary": 4700,
-   "proj": 19.96,
-   "med": 19.96,
-   "mean": 19.96,
-   "ceil": 31.31,
-   "ceil_model": 31.31,
+   "proj": 20.11,
+   "med": 20.11,
+   "mean": 20.11,
+   "ceil": 31.46,
+   "ceil_model": 31.46,
    "ceil_props": null,
    "min": 17.9,
    "pp": 1.0,
@@ -1038,9 +1038,9 @@
    "spread": -13.5,
    "dkppg": 18.0,
    "model": 19.0,
-   "props": 20.13,
-   "own": 0.13803,
-   "lev": 0.0,
+   "props": 20.31,
+   "own": 0.13937,
+   "lev": 0.014,
    "opt": 0.05,
    "chalk": false,
    "sopt": 19.0
@@ -1094,11 +1094,11 @@
    "pid": "1060351",
    "game": "LAL@UTA",
    "salary": 4500,
-   "proj": 20.08,
-   "med": 20.08,
-   "mean": 20.08,
-   "ceil": 31.52,
-   "ceil_model": 31.52,
+   "proj": 20.05,
+   "med": 20.05,
+   "mean": 20.05,
+   "ceil": 31.49,
+   "ceil_model": 31.49,
    "ceil_props": null,
    "min": 19.8,
    "pp": 1.0,
@@ -1109,9 +1109,9 @@
    "spread": -13.5,
    "dkppg": 20.2,
    "model": 19.46,
-   "props": 20.26,
-   "own": 0.14642,
-   "lev": -0.014,
+   "props": 20.22,
+   "own": 0.14553,
+   "lev": -0.029,
    "opt": 0.275,
    "chalk": false,
    "sopt": 22.0
@@ -1129,11 +1129,11 @@
    "pid": "884169",
    "game": "LAL@UTA",
    "salary": 4400,
-   "proj": 21.4,
-   "med": 21.4,
-   "mean": 21.4,
-   "ceil": 32.65,
-   "ceil_model": 32.65,
+   "proj": 21.41,
+   "med": 21.41,
+   "mean": 21.41,
+   "ceil": 32.67,
+   "ceil_model": 32.67,
    "ceil_props": null,
    "min": 22.5,
    "pp": 1.0,
@@ -1144,8 +1144,8 @@
    "spread": -13.5,
    "dkppg": 18.7,
    "model": 18.47,
-   "props": 22.59,
-   "own": 0.16897,
+   "props": 22.61,
+   "own": 0.16853,
    "lev": -0.014,
    "opt": 0.375,
    "chalk": false,
@@ -1181,7 +1181,7 @@
    "dkppg": 14.8,
    "model": 11.59,
    "props": null,
-   "own": 0.07035,
+   "own": 0.07018,
    "lev": 0.014,
    "opt": 0.0,
    "chalk": false,
@@ -1217,7 +1217,7 @@
    "dkppg": 18.0,
    "model": 18.4,
    "props": 17.5,
-   "own": 0.13019,
+   "own": 0.12976,
    "lev": -0.014,
    "opt": 0.175,
    "chalk": false,
@@ -1252,7 +1252,7 @@
    "dkppg": 17.0,
    "model": 16.41,
    "props": null,
-   "own": 0.11523,
+   "own": 0.11487,
    "lev": 0.0,
    "opt": 0.025,
    "chalk": false,
@@ -1288,7 +1288,7 @@
    "dkppg": 15.1,
    "model": 11.77,
    "props": null,
-   "own": 0.07535,
+   "own": 0.07514,
    "lev": 0.029,
    "opt": 0.0,
    "chalk": false,
@@ -1307,11 +1307,11 @@
    "pid": "1193670",
    "game": "LAL@UTA",
    "salary": 3900,
-   "proj": 11.74,
-   "med": 11.74,
-   "mean": 11.74,
-   "ceil": 21.84,
-   "ceil_model": 21.84,
+   "proj": 11.73,
+   "med": 11.73,
+   "mean": 11.73,
+   "ceil": 21.83,
+   "ceil_model": 21.83,
    "ceil_props": null,
    "min": 22.4,
    "pp": 1.0,
@@ -1322,8 +1322,8 @@
    "spread": 13.5,
    "dkppg": 9.6,
    "model": 12.19,
-   "props": 11.56,
-   "own": 0.07662,
+   "props": 11.55,
+   "own": 0.07634,
    "lev": 0.0,
    "opt": 0.0,
    "chalk": false,
@@ -1359,9 +1359,9 @@
    "dkppg": 8.6,
    "model": 12.82,
    "props": null,
-   "own": 0.08706,
+   "own": 0.08681,
    "lev": -0.029,
-   "opt": 0.025,
+   "opt": 0.0,
    "chalk": false,
    "sopt": 13.0
   },
@@ -1395,7 +1395,7 @@
    "dkppg": 6.1,
    "model": 10.45,
    "props": null,
-   "own": 0.06994,
+   "own": 0.06976,
    "lev": 0.0,
    "opt": 0.0,
    "chalk": false,
@@ -1431,7 +1431,7 @@
    "dkppg": 11.8,
    "model": 11.71,
    "props": null,
-   "own": 0.08133,
+   "own": 0.08111,
    "lev": -0.029,
    "opt": 0.0,
    "chalk": false,
@@ -1450,11 +1450,11 @@
    "pid": "843265",
    "game": "LAL@UTA",
    "salary": 3500,
-   "proj": 19.36,
-   "med": 19.36,
-   "mean": 19.36,
-   "ceil": 30.91,
-   "ceil_model": 30.91,
+   "proj": 19.49,
+   "med": 19.49,
+   "mean": 19.49,
+   "ceil": 31.03,
+   "ceil_model": 31.03,
    "ceil_props": null,
    "min": 24.1,
    "pp": 1.0,
@@ -1465,12 +1465,12 @@
    "spread": 13.5,
    "dkppg": 14.0,
    "model": 20.05,
-   "props": 19.11,
-   "own": 0.48,
-   "lev": -0.1,
-   "opt": 0.8,
+   "props": 19.28,
+   "own": 0.495,
+   "lev": -0.114,
+   "opt": 0.825,
    "chalk": true,
-   "sopt": 36.0
+   "sopt": 37.0
   },
   {
    "name": "Emanuel Sharp",
@@ -1502,7 +1502,7 @@
    "dkppg": 9.5,
    "model": 7.1,
    "props": null,
-   "own": 0.05184,
+   "own": 0.05173,
    "lev": 0.0,
    "opt": 0.0,
    "chalk": false,
@@ -1538,7 +1538,7 @@
    "dkppg": 10.3,
    "model": 8.79,
    "props": null,
-   "own": 0.06349,
+   "own": 0.06333,
    "lev": -0.014,
    "opt": 0.025,
    "chalk": false,
@@ -1573,7 +1573,7 @@
    "dkppg": 14.1,
    "model": 9.36,
    "props": null,
-   "own": 0.06761,
+   "own": 0.06744,
    "lev": 0.014,
    "opt": 0.0,
    "chalk": false,
@@ -1609,11 +1609,11 @@
    "dkppg": 6.9,
    "model": 11.37,
    "props": null,
-   "own": 0.08675,
+   "own": 0.0865,
    "lev": -0.086,
    "opt": 0.05,
    "chalk": false,
-   "sopt": 15.0
+   "sopt": 14.5
   },
   {
    "name": "Jordan McLaughlin",
@@ -1645,7 +1645,7 @@
    "dkppg": 9.5,
    "model": 14.16,
    "props": null,
-   "own": 0.06141,
+   "own": 0.06126,
    "lev": 0.171,
    "opt": 0.0,
    "chalk": false,
@@ -1682,7 +1682,7 @@
    "dkppg": 3.3,
    "model": 3.86,
    "props": null,
-   "own": 0.03755,
+   "own": 0.03747,
    "lev": 0.0,
    "opt": 0.0,
    "chalk": false,
@@ -1716,11 +1716,11 @@
    "dkppg": 10.8,
    "model": 14.14,
    "props": null,
-   "own": 0.12291,
+   "own": 0.12252,
    "lev": -0.071,
    "opt": 0.225,
    "chalk": false,
-   "sopt": 13.0
+   "sopt": 12.5
   },
   {
    "name": "Tony Bradley",
@@ -1750,7 +1750,7 @@
    "dkppg": 6.7,
    "model": 9.11,
    "props": null,
-   "own": 0.07053,
+   "own": 0.07034,
    "lev": -0.057,
    "opt": 0.025,
    "chalk": false,
@@ -1785,7 +1785,7 @@
    "dkppg": 3.3,
    "model": 4.33,
    "props": null,
-   "own": 0.04011,
+   "own": 0.04003,
    "lev": 0.0,
    "opt": 0.0,
    "chalk": false,
@@ -1820,7 +1820,7 @@
    "dkppg": 1.3,
    "model": 2.0,
    "props": null,
-   "own": 0.03047,
+   "own": 0.03041,
    "lev": 0.0,
    "opt": 0.0,
    "chalk": false,
@@ -1854,7 +1854,7 @@
    "dkppg": 5.1,
    "model": 5.96,
    "props": null,
-   "own": 0.04862,
+   "own": 0.04852,
    "lev": 0.0,
    "opt": 0.0,
    "chalk": false,
@@ -1890,7 +1890,7 @@
    "dkppg": 6.9,
    "model": 5.3,
    "props": null,
-   "own": 0.04497,
+   "own": 0.04488,
    "lev": 0.0,
    "opt": 0.0,
    "chalk": false,
@@ -1924,7 +1924,7 @@
    "dkppg": 6.3,
    "model": 5.58,
    "props": null,
-   "own": 0.0465,
+   "own": 0.04639,
    "lev": 0.0,
    "opt": 0.0,
    "chalk": false,
@@ -1994,7 +1994,7 @@
    "dkppg": 0.0,
    "model": null,
    "props": null,
-   "own": 0.02285,
+   "own": 0.02283,
    "lev": -0.129,
    "opt": 0.0,
    "chalk": false,
@@ -2028,7 +2028,7 @@
    "dkppg": 0.0,
    "model": null,
    "props": null,
-   "own": 0.02285,
+   "own": 0.02283,
    "lev": -0.129,
    "opt": 0.0,
    "chalk": false,
@@ -2133,7 +2133,7 @@
    "dkppg": 5.8,
    "model": 6.2,
    "props": null,
-   "own": 0.05002,
+   "own": 0.04991,
    "lev": 0.0,
    "opt": 0.0,
    "chalk": false,
@@ -2167,7 +2167,7 @@
    "dkppg": 6.4,
    "model": 9.02,
    "props": null,
-   "own": 0.06979,
+   "own": 0.0696,
    "lev": -0.029,
    "opt": 0.025,
    "chalk": false,
@@ -2203,7 +2203,7 @@
    "dkppg": 3.8,
    "model": 3.26,
    "props": null,
-   "own": 0.03535,
+   "own": 0.03529,
    "lev": 0.0,
    "opt": 0.0,
    "chalk": false,
@@ -2275,7 +2275,7 @@
    "dkppg": 1.8,
    "model": 5.96,
    "props": null,
-   "own": 0.04862,
+   "own": 0.04852,
    "lev": 0.0,
    "opt": 0.0,
    "chalk": false,
@@ -2309,7 +2309,7 @@
    "dkppg": 4.3,
    "model": 3.01,
    "props": null,
-   "own": 0.03433,
+   "own": 0.03426,
    "lev": 0.0,
    "opt": 0.0,
    "chalk": false,
@@ -2509,11 +2509,11 @@
   {
    "p": [
     1,
-    40,
-    23,
-    19,
-    10,
     7,
+    19,
+    23,
+    10,
+    40,
     15,
     47
    ],
@@ -2527,32 +2527,32 @@
     "F",
     "UTIL"
    ],
-   "proj": 273.08,
-   "ceil": 383.59,
+   "proj": 273.47,
+   "ceil": 384.01,
    "sal": 50000,
-   "own": 306.7,
-   "dup": 22.1605,
+   "own": 307.7,
+   "dup": 22.5528,
    "src": "median lam=0.0",
-   "top1": 13.03,
-   "top10": 58.6,
-   "cash": 96.0,
+   "top1": 12.86,
+   "top10": 58.5,
+   "cash": 95.9,
    "port": 3,
-   "roi": 47.9,
+   "roi": 44.3,
    "roit": {
-    "small": 432.9,
-    "mid": 47.9,
-    "large": -51.6
+    "small": 428.1,
+    "mid": 44.3,
+    "large": -52.9
    }
   },
   {
    "p": [
     1,
-    40,
-    31,
-    30,
-    21,
     7,
     19,
+    30,
+    21,
+    40,
+    31,
     10
    ],
    "s": [
@@ -2565,21 +2565,21 @@
     "F",
     "UTIL"
    ],
-   "proj": 272.85,
-   "ceil": 384.2,
+   "proj": 273.19,
+   "ceil": 384.58,
    "sal": 49800,
-   "own": 301.0,
-   "dup": 18.1839,
+   "own": 302.0,
+   "dup": 18.4337,
    "src": "median lam=0.0",
-   "top1": 13.92,
-   "top10": 58.0,
-   "cash": 95.3,
+   "top1": 13.84,
+   "top10": 57.8,
+   "cash": 95.2,
    "port": 1,
-   "roi": 123.7,
+   "roi": 130.6,
    "roit": {
-    "small": 440.4,
-    "mid": 123.7,
-    "large": -22.6
+    "small": 436.1,
+    "mid": 130.6,
+    "large": -20.6
    }
   },
   {
@@ -2603,20 +2603,20 @@
     "F",
     "UTIL"
    ],
-   "proj": 271.35,
-   "ceil": 383.08,
+   "proj": 271.71,
+   "ceil": 383.47,
    "sal": 49800,
-   "own": 311.2,
-   "dup": 21.1158,
+   "own": 312.3,
+   "dup": 21.5312,
    "src": "median lam=0.0",
-   "top1": 11.18,
-   "top10": 57.5,
+   "top1": 11.11,
+   "top10": 57.3,
    "cash": 95.5,
-   "roi": 28.0,
+   "roi": 25.6,
    "roit": {
-    "small": 349.0,
-    "mid": 28.0,
-    "large": -56.3
+    "small": 347.0,
+    "mid": 25.6,
+    "large": -56.7
    }
   },
   {
@@ -2624,48 +2624,10 @@
     1,
     7,
     31,
-    24,
-    21,
-    40,
-    23,
-    10
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 270.61,
-   "ceil": 381.29,
-   "sal": 49900,
-   "own": 291.4,
-   "dup": 13.7136,
-   "src": "median lam=0.0",
-   "top1": 13.07,
-   "top10": 53.8,
-   "cash": 93.9,
-   "port": 2,
-   "roi": 157.6,
-   "roit": {
-    "small": 420.2,
-    "mid": 157.6,
-    "large": 3.5
-   }
-  },
-  {
-   "p": [
-    1,
-    40,
-    15,
     23,
     10,
-    7,
-    44,
+    40,
+    24,
     21
    ],
    "s": [
@@ -2678,33 +2640,33 @@
     "F",
     "UTIL"
    ],
-   "proj": 270.34,
-   "ceil": 379.54,
+   "proj": 271.05,
+   "ceil": 381.76,
    "sal": 49900,
-   "own": 292.5,
-   "dup": 11.7307,
+   "own": 292.6,
+   "dup": 14.1025,
    "src": "median lam=0.0",
-   "top1": 11.57,
-   "top10": 53.2,
-   "cash": 93.7,
-   "port": 17,
-   "roi": 144.3,
+   "top1": 13.07,
+   "top10": 53.8,
+   "cash": 93.8,
+   "port": 2,
+   "roi": 139.8,
    "roit": {
-    "small": 377.3,
-    "mid": 144.3,
-    "large": 5.9
+    "small": 419.4,
+    "mid": 139.8,
+    "large": -10.4
    }
   },
   {
    "p": [
     1,
-    28,
-    31,
-    19,
+    40,
+    15,
+    44,
     10,
     7,
     23,
-    40
+    21
    ],
    "s": [
     "PG",
@@ -2716,32 +2678,70 @@
     "F",
     "UTIL"
    ],
-   "proj": 269.65,
-   "ceil": 380.35,
-   "sal": 49800,
-   "own": 301.6,
-   "dup": 17.9582,
+   "proj": 270.66,
+   "ceil": 379.89,
+   "sal": 49900,
+   "own": 293.6,
+   "dup": 11.9419,
    "src": "median lam=0.0",
-   "top1": 9.28,
-   "top10": 51.3,
-   "cash": 94.0,
-   "port": 38,
-   "roi": 41.9,
+   "top1": 11.55,
+   "top10": 52.9,
+   "cash": 93.6,
+   "port": 22,
+   "roi": 146.3,
    "roit": {
-    "small": 314.3,
-    "mid": 41.9,
-    "large": -48.0
+    "small": 375.0,
+    "mid": 146.3,
+    "large": 6.6
+   }
+  },
+  {
+   "p": [
+    28,
+    40,
+    23,
+    19,
+    10,
+    1,
+    31,
+    7
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 270.17,
+   "ceil": 380.91,
+   "sal": 49800,
+   "own": 302.9,
+   "dup": 18.4941,
+   "src": "median lam=0.0",
+   "top1": 9.33,
+   "top10": 51.4,
+   "cash": 94.0,
+   "port": 31,
+   "roi": 35.8,
+   "roit": {
+    "small": 314.9,
+    "mid": 35.8,
+    "large": -52.2
    }
   },
   {
    "p": [
     1,
-    7,
-    31,
-    23,
-    21,
     40,
     15,
+    23,
+    21,
+    7,
+    31,
     19
    ],
    "s": [
@@ -2754,69 +2754,31 @@
     "F",
     "UTIL"
    ],
-   "proj": 268.62,
-   "ceil": 379.28,
+   "proj": 269.21,
+   "ceil": 379.89,
    "sal": 49400,
-   "own": 299.8,
-   "dup": 22.3569,
+   "own": 301.6,
+   "dup": 23.1607,
    "src": "median lam=0.0",
-   "top1": 9.23,
-   "top10": 50.6,
-   "cash": 94.0,
-   "roi": 31.8,
+   "top1": 9.26,
+   "top10": 50.8,
+   "cash": 94.2,
+   "roi": 29.6,
    "roit": {
-    "small": 290.9,
-    "mid": 31.8,
-    "large": -52.5
-   }
-  },
-  {
-   "p": [
-    1,
-    40,
-    44,
-    18,
-    10,
-    7,
-    19,
-    21
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 268.46,
-   "ceil": 378.51,
-   "sal": 49900,
-   "own": 295.6,
-   "dup": 11.1413,
-   "src": "median lam=0.0",
-   "top1": 9.35,
-   "top10": 49.5,
-   "cash": 93.4,
-   "port": 21,
-   "roi": 99.9,
-   "roit": {
-    "small": 313.2,
-    "mid": 99.9,
-    "large": -19.8
+    "small": 289.3,
+    "mid": 29.6,
+    "large": -54.7
    }
   },
   {
    "p": [
     4,
     7,
+    23,
     44,
-    19,
     21,
     40,
-    23,
+    19,
     1
    ],
    "s": [
@@ -2829,33 +2791,33 @@
     "F",
     "UTIL"
    ],
-   "proj": 268.32,
-   "ceil": 379.93,
+   "proj": 268.87,
+   "ceil": 380.5,
    "sal": 49900,
-   "own": 302.2,
-   "dup": 16.6893,
+   "own": 303.9,
+   "dup": 17.2409,
    "src": "median lam=0.0",
    "top1": 10.4,
-   "top10": 52.5,
-   "cash": 94.7,
-   "port": 5,
-   "roi": 91.0,
+   "top10": 52.8,
+   "cash": 94.8,
+   "port": 4,
+   "roi": 81.6,
    "roit": {
-    "small": 349.8,
-    "mid": 91.0,
-    "large": -27.4
+    "small": 348.9,
+    "mid": 81.6,
+    "large": -30.5
    }
   },
   {
    "p": [
     1,
-    15,
-    31,
-    23,
-    10,
     40,
-    33,
-    7
+    44,
+    19,
+    10,
+    7,
+    18,
+    21
    ],
    "s": [
     "PG",
@@ -2867,32 +2829,108 @@
     "F",
     "UTIL"
    ],
-   "proj": 268.09,
-   "ceil": 376.41,
-   "sal": 50000,
-   "own": 282.3,
-   "dup": 9.4434,
+   "proj": 268.87,
+   "ceil": 378.95,
+   "sal": 49900,
+   "own": 296.7,
+   "dup": 11.3636,
    "src": "median lam=0.0",
-   "top1": 9.82,
-   "top10": 47.4,
-   "cash": 91.5,
-   "port": 8,
-   "roi": 131.5,
+   "top1": 9.35,
+   "top10": 49.6,
+   "cash": 93.4,
+   "port": 14,
+   "roi": 93.9,
    "roit": {
-    "small": 328.5,
-    "mid": 131.5,
-    "large": 1.1
+    "small": 311.6,
+    "mid": 93.9,
+    "large": -22.1
+   }
+  },
+  {
+   "p": [
+    1,
+    15,
+    33,
+    23,
+    10,
+    7,
+    31,
+    40
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 268.42,
+   "ceil": 376.78,
+   "sal": 50000,
+   "own": 283.3,
+   "dup": 9.5844,
+   "src": "median lam=0.0",
+   "top1": 9.71,
+   "top10": 47.2,
+   "cash": 91.4,
+   "port": 12,
+   "roi": 114.9,
+   "roit": {
+    "small": 325.4,
+    "mid": 114.9,
+    "large": -4.7
    }
   },
   {
    "p": [
     1,
     40,
+    31,
     19,
+    10,
+    4,
     33,
+    21
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 268.15,
+   "ceil": 375.86,
+   "sal": 49900,
+   "own": 289.1,
+   "dup": 12.337,
+   "src": "median lam=0.0",
+   "top1": 10.11,
+   "top10": 47.4,
+   "cash": 91.8,
+   "port": 6,
+   "roi": 133.9,
+   "roit": {
+    "small": 339.8,
+    "mid": 133.9,
+    "large": 0.7
+   }
+  },
+  {
+   "p": [
+    1,
+    40,
+    23,
+    39,
     21,
     4,
-    31,
+    19,
     10
    ],
    "s": [
@@ -2905,70 +2943,32 @@
     "F",
     "UTIL"
    ],
-   "proj": 268.01,
-   "ceil": 375.68,
-   "sal": 49900,
-   "own": 288.7,
-   "dup": 12.3183,
-   "src": "median lam=0.0",
-   "top1": 10.42,
-   "top10": 47.9,
-   "cash": 91.9,
-   "port": 4,
-   "roi": 138.6,
-   "roit": {
-    "small": 348.1,
-    "mid": 138.6,
-    "large": -1.0
-   }
-  },
-  {
-   "p": [
-    4,
-    40,
-    39,
-    23,
-    10,
-    1,
-    19,
-    21
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 267.52,
-   "ceil": 375.57,
+   "proj": 267.65,
+   "ceil": 375.73,
    "sal": 50000,
-   "own": 299.9,
-   "dup": 15.0289,
+   "own": 300.4,
+   "dup": 15.1001,
    "src": "median lam=0.0",
-   "top1": 9.63,
-   "top10": 47.9,
-   "cash": 92.7,
-   "port": 19,
-   "roi": 88.5,
+   "top1": 9.5,
+   "top10": 47.4,
+   "cash": 92.5,
+   "port": 23,
+   "roi": 89.4,
    "roit": {
-    "small": 318.6,
-    "mid": 88.5,
-    "large": -29.0
+    "small": 312.8,
+    "mid": 89.4,
+    "large": -30.4
    }
   },
   {
    "p": [
     4,
     7,
-    31,
+    19,
     23,
     10,
     15,
-    19,
+    31,
     21
    ],
    "s": [
@@ -2981,32 +2981,32 @@
     "F",
     "UTIL"
    ],
-   "proj": 265.1,
-   "ceil": 374.74,
+   "proj": 265.25,
+   "ceil": 374.94,
    "sal": 49100,
-   "own": 268.5,
-   "dup": 11.2815,
+   "own": 268.0,
+   "dup": 11.1156,
    "src": "median lam=0.5",
-   "top1": 8.99,
-   "top10": 44.2,
-   "cash": 88.8,
-   "roi": 71.7,
+   "top1": 8.93,
+   "top10": 43.9,
+   "cash": 88.6,
+   "roi": 69.5,
    "roit": {
-    "small": 262.2,
-    "mid": 71.7,
-    "large": -25.8
+    "small": 256.4,
+    "mid": 69.5,
+    "large": -29.5
    }
   },
   {
    "p": [
     4,
-    40,
+    7,
     19,
     13,
-    21,
-    7,
+    10,
+    40,
     15,
-    10
+    21
    ],
    "s": [
     "PG",
@@ -3018,32 +3018,33 @@
     "F",
     "UTIL"
    ],
-   "proj": 264.42,
-   "ceil": 373.75,
+   "proj": 264.72,
+   "ceil": 374.1,
    "sal": 49600,
-   "own": 285.6,
-   "dup": 18.4702,
+   "own": 286.6,
+   "dup": 18.7907,
    "src": "median lam=0.5",
-   "top1": 8.8,
-   "top10": 43.8,
-   "cash": 88.9,
-   "roi": 50.3,
+   "top1": 8.77,
+   "top10": 43.5,
+   "cash": 88.8,
+   "port": 10,
+   "roi": 44.6,
    "roit": {
-    "small": 266.5,
-    "mid": 50.3,
-    "large": -39.0
+    "small": 264.0,
+    "mid": 44.6,
+    "large": -46.6
    }
   },
   {
    "p": [
-    4,
-    40,
+    2,
+    7,
     19,
     23,
     21,
-    2,
+    40,
     15,
-    7
+    4
    ],
    "s": [
     "PG",
@@ -3055,21 +3056,20 @@
     "F",
     "UTIL"
    ],
-   "proj": 261.12,
-   "ceil": 371.74,
+   "proj": 261.37,
+   "ceil": 372.0,
    "sal": 50000,
-   "own": 285.2,
-   "dup": 21.3114,
+   "own": 286.5,
+   "dup": 21.7215,
    "src": "median lam=0.5",
-   "top1": 7.13,
-   "top10": 39.5,
-   "cash": 86.9,
-   "port": 35,
-   "roi": 10.2,
+   "top1": 6.92,
+   "top10": 39.2,
+   "cash": 86.8,
+   "roi": 3.5,
    "roit": {
-    "small": 208.2,
-    "mid": 10.2,
-    "large": -61.8
+    "small": 203.4,
+    "mid": 3.5,
+    "large": -64.0
    }
   },
   {
@@ -3081,6 +3081,44 @@
     21,
     7,
     18,
+    10
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 262.5,
+   "ceil": 370.95,
+   "sal": 49900,
+   "own": 250.2,
+   "dup": 5.0841,
+   "src": "median lam=0.5",
+   "top1": 7.7,
+   "top10": 38.6,
+   "cash": 85.4,
+   "port": 17,
+   "roi": 133.7,
+   "roit": {
+    "small": 242.2,
+    "mid": 133.7,
+    "large": 25.6
+   }
+  },
+  {
+   "p": [
+    4,
+    14,
+    19,
+    23,
+    21,
+    7,
+    24,
     10
    ],
    "s": [
@@ -3094,20 +3132,20 @@
     "UTIL"
    ],
    "proj": 262.34,
-   "ceil": 370.75,
+   "ceil": 373.28,
    "sal": 49900,
-   "own": 250.7,
-   "dup": 5.1765,
+   "own": 260.7,
+   "dup": 7.5098,
    "src": "median lam=0.5",
-   "top1": 7.79,
-   "top10": 39.0,
-   "cash": 85.6,
-   "port": 11,
-   "roi": 132.4,
+   "top1": 8.34,
+   "top10": 40.8,
+   "cash": 86.6,
+   "port": 7,
+   "roi": 118.2,
    "roit": {
-    "small": 244.3,
-    "mid": 132.4,
-    "large": 20.1
+    "small": 257.3,
+    "mid": 118.2,
+    "large": 11.4
    }
   },
   {
@@ -3131,106 +3169,31 @@
     "F",
     "UTIL"
    ],
-   "proj": 261.26,
-   "ceil": 370.32,
+   "proj": 261.37,
+   "ceil": 370.45,
    "sal": 50000,
-   "own": 278.5,
-   "dup": 14.227,
+   "own": 279.3,
+   "dup": 14.3168,
    "src": "median lam=0.5",
-   "top1": 6.62,
-   "top10": 36.6,
-   "cash": 85.2,
-   "roi": 40.3,
+   "top1": 6.48,
+   "top10": 36.1,
+   "cash": 84.9,
+   "port": 39,
+   "roi": 35.6,
    "roit": {
-    "small": 196.3,
-    "mid": 40.3,
-    "large": -44.8
+    "small": 191.3,
+    "mid": 35.6,
+    "large": -47.3
    }
   },
   {
    "p": [
     4,
-    14,
-    23,
-    19,
-    21,
     7,
-    24,
-    10
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 262.1,
-   "ceil": 373.01,
-   "sal": 49900,
-   "own": 261.1,
-   "dup": 7.5604,
-   "src": "median lam=0.5",
-   "top1": 8.3,
-   "top10": 41.1,
-   "cash": 86.8,
-   "port": 14,
-   "roi": 125.8,
-   "roit": {
-    "small": 260.6,
-    "mid": 125.8,
-    "large": 7.2
-   }
-  },
-  {
-   "p": [
-    2,
-    15,
-    19,
-    33,
-    10,
-    7,
-    23,
-    21
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 261.3,
-   "ceil": 371.47,
-   "sal": 50000,
-   "own": 259.1,
-   "dup": 7.2874,
-   "src": "median lam=0.5",
-   "top1": 7.33,
-   "top10": 38.0,
-   "cash": 85.1,
-   "port": 20,
-   "roi": 94.0,
-   "roit": {
-    "small": 221.9,
-    "mid": 94.0,
-    "large": -3.7
-   }
-  },
-  {
-   "p": [
-    4,
-    40,
     31,
     23,
     10,
-    7,
+    40,
     19,
     3
    ],
@@ -3244,21 +3207,57 @@
     "F",
     "UTIL"
    ],
-   "proj": 262.39,
-   "ceil": 371.56,
+   "proj": 262.73,
+   "ceil": 371.93,
    "sal": 49800,
-   "own": 288.9,
-   "dup": 20.0481,
+   "own": 290.0,
+   "dup": 20.4352,
    "src": "median lam=0.5",
-   "top1": 6.43,
-   "top10": 38.8,
-   "cash": 86.9,
-   "port": 36,
-   "roi": 1.8,
+   "top1": 6.36,
+   "top10": 38.6,
+   "cash": 86.8,
+   "roi": 0.2,
    "roit": {
-    "small": 201.5,
-    "mid": 1.8,
-    "large": -64.1
+    "small": 199.4,
+    "mid": 0.2,
+    "large": -64.7
+   }
+  },
+  {
+   "p": [
+    6,
+    7,
+    15,
+    19,
+    10,
+    40,
+    31,
+    4
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 261.86,
+   "ceil": 369.97,
+   "sal": 49800,
+   "own": 277.1,
+   "dup": 12.7555,
+   "src": "median lam=0.5",
+   "top1": 6.74,
+   "top10": 37.0,
+   "cash": 85.3,
+   "roi": 46.2,
+   "roit": {
+    "small": 203.3,
+    "mid": 46.2,
+    "large": -33.6
    }
   },
   {
@@ -3282,32 +3281,32 @@
     "F",
     "UTIL"
    ],
-   "proj": 261.17,
-   "ceil": 369.78,
+   "proj": 261.33,
+   "ceil": 369.99,
    "sal": 50000,
-   "own": 248.4,
-   "dup": 4.8132,
+   "own": 247.9,
+   "dup": 4.7309,
    "src": "median lam=0.5",
-   "top1": 7.09,
-   "top10": 36.9,
-   "cash": 84.3,
-   "roi": 93.1,
+   "top1": 7.08,
+   "top10": 36.6,
+   "cash": 84.1,
+   "roi": 88.4,
    "roit": {
-    "small": 219.9,
-    "mid": 93.1,
-    "large": 4.3
+    "small": 214.6,
+    "mid": 88.4,
+    "large": 3.5
    }
   },
   {
    "p": [
     4,
-    6,
-    15,
+    28,
     19,
+    13,
     10,
-    40,
-    31,
-    7
+    7,
+    23,
+    21
    ],
    "s": [
     "PG",
@@ -3319,32 +3318,32 @@
     "F",
     "UTIL"
    ],
-   "proj": 261.45,
-   "ceil": 369.52,
-   "sal": 49800,
-   "own": 276.0,
-   "dup": 12.4946,
+   "proj": 261.82,
+   "ceil": 371.92,
+   "sal": 49700,
+   "own": 260.7,
+   "dup": 7.4681,
    "src": "median lam=0.5",
-   "top1": 6.73,
-   "top10": 37.1,
-   "cash": 85.3,
-   "port": 23,
-   "roi": 54.0,
+   "top1": 7.93,
+   "top10": 39.4,
+   "cash": 85.9,
+   "port": 40,
+   "roi": 117.4,
    "roit": {
-    "small": 207.3,
-    "mid": 54.0,
-    "large": -36.8
+    "small": 245.8,
+    "mid": 117.4,
+    "large": 13.3
    }
   },
   {
    "p": [
     2,
-    40,
+    7,
+    33,
     23,
-    19,
     10,
-    4,
-    13,
+    15,
+    19,
     21
    ],
    "s": [
@@ -3357,33 +3356,33 @@
     "F",
     "UTIL"
    ],
-   "proj": 257.85,
-   "ceil": 365.15,
+   "proj": 261.23,
+   "ceil": 371.43,
    "sal": 50000,
-   "own": 279.0,
-   "dup": 16.6263,
+   "own": 258.3,
+   "dup": 7.0856,
    "src": "median lam=0.5",
-   "top1": 5.69,
-   "top10": 33.4,
-   "cash": 81.9,
-   "port": 32,
-   "roi": 21.9,
+   "top1": 7.1,
+   "top10": 37.4,
+   "cash": 84.7,
+   "port": 20,
+   "roi": 90.3,
    "roit": {
-    "small": 168.9,
-    "mid": 21.9,
-    "large": -50.1
+    "small": 214.3,
+    "mid": 90.3,
+    "large": -11.6
    }
   },
   {
    "p": [
-    4,
-    7,
-    31,
-    30,
-    10,
     6,
+    7,
     19,
-    21
+    30,
+    21,
+    4,
+    31,
+    10
    ],
    "s": [
     "PG",
@@ -3395,21 +3394,20 @@
     "F",
     "UTIL"
    ],
-   "proj": 261.76,
-   "ceil": 371.19,
+   "proj": 261.98,
+   "ceil": 371.46,
    "sal": 49900,
-   "own": 250.7,
-   "dup": 5.1272,
+   "own": 250.3,
+   "dup": 5.053,
    "src": "median lam=0.5",
-   "top1": 8.0,
-   "top10": 39.3,
-   "cash": 85.3,
-   "port": 39,
-   "roi": 133.0,
+   "top1": 7.95,
+   "top10": 39.0,
+   "cash": 85.0,
+   "roi": 123.4,
    "roit": {
-    "small": 247.8,
-    "mid": 133.0,
-    "large": 18.0
+    "small": 243.7,
+    "mid": 123.4,
+    "large": 12.4
    }
   },
   {
@@ -3417,10 +3415,10 @@
     6,
     15,
     19,
-    18,
+    23,
     21,
     4,
-    23,
+    18,
     13
    ],
    "s": [
@@ -3433,31 +3431,31 @@
     "F",
     "UTIL"
    ],
-   "proj": 247.27,
-   "ceil": 350.77,
+   "proj": 247.58,
+   "ceil": 351.11,
    "sal": 49900,
    "own": 224.4,
-   "dup": 2.7745,
+   "dup": 2.7685,
    "src": "median lam=1.0",
    "top1": 2.47,
-   "top10": 19.9,
-   "cash": 66.5,
-   "roi": -10.6,
+   "top10": 19.8,
+   "cash": 66.4,
+   "roi": -9.9,
    "roit": {
-    "small": 42.8,
-    "mid": -10.6,
-    "large": -36.6
+    "small": 43.8,
+    "mid": -9.9,
+    "large": -40.5
    }
   },
   {
    "p": [
-    4,
-    15,
+    6,
     14,
     23,
-    21,
-    6,
     19,
+    21,
+    4,
+    15,
     16
    ],
    "s": [
@@ -3470,30 +3468,30 @@
     "F",
     "UTIL"
    ],
-   "proj": 245.78,
-   "ceil": 349.86,
+   "proj": 246.03,
+   "ceil": 350.12,
    "sal": 50000,
-   "own": 222.3,
-   "dup": 2.4446,
+   "own": 222.2,
+   "dup": 2.4283,
    "src": "median lam=1.0",
-   "top1": 2.34,
-   "top10": 18.4,
-   "cash": 64.8,
-   "roi": -14.2,
+   "top1": 2.37,
+   "top10": 18.3,
+   "cash": 64.5,
+   "roi": -13.5,
    "roit": {
-    "small": 35.1,
-    "mid": -14.2,
-    "large": -43.5
+    "small": 34.1,
+    "mid": -13.5,
+    "large": -44.0
    }
   },
   {
    "p": [
-    4,
     6,
+    40,
     23,
     19,
     3,
-    40,
+    4,
     15,
     21
    ],
@@ -3507,19 +3505,19 @@
     "F",
     "UTIL"
    ],
-   "proj": 251.21,
-   "ceil": 355.92,
+   "proj": 251.66,
+   "ceil": 356.36,
    "sal": 49800,
-   "own": 263.3,
-   "dup": 10.943,
+   "own": 264.7,
+   "dup": 11.2902,
    "src": "median lam=1.0",
-   "top1": 3.28,
+   "top1": 3.32,
    "top10": 23.5,
-   "cash": 72.9,
-   "roi": -23.1,
+   "cash": 73.0,
+   "roi": -22.2,
    "roit": {
-    "small": 74.0,
-    "mid": -23.1,
+    "small": 74.5,
+    "mid": -22.2,
     "large": -64.2
    }
   },
@@ -3528,47 +3526,10 @@
     2,
     15,
     19,
-    13,
+    23,
     21,
     14,
-    23,
-    18
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 240.68,
-   "ceil": 343.9,
-   "sal": 49800,
-   "own": 213.8,
-   "dup": 1.8297,
-   "src": "median lam=1.0",
-   "top1": 1.48,
-   "top10": 12.9,
-   "cash": 56.0,
-   "roi": -40.7,
-   "roit": {
-    "small": -6.6,
-    "mid": -40.7,
-    "large": -57.0
-   }
-  },
-  {
-   "p": [
-    4,
-    2,
-    19,
-    23,
-    21,
-    15,
-    31,
+    18,
     13
    ],
    "s": [
@@ -3581,32 +3542,32 @@
     "F",
     "UTIL"
    ],
-   "proj": 248.58,
-   "ceil": 353.47,
-   "sal": 49900,
-   "own": 228.4,
-   "dup": 3.1928,
+   "proj": 240.64,
+   "ceil": 343.88,
+   "sal": 49800,
+   "own": 213.2,
+   "dup": 1.7867,
    "src": "median lam=1.0",
-   "top1": 3.06,
-   "top10": 21.3,
-   "cash": 69.0,
-   "roi": 3.8,
+   "top1": 1.4,
+   "top10": 12.6,
+   "cash": 55.4,
+   "roi": -41.4,
    "roit": {
-    "small": 64.4,
-    "mid": 3.8,
-    "large": -35.4
+    "small": -8.8,
+    "mid": -41.4,
+    "large": -57.3
    }
   },
   {
    "p": [
-    2,
-    6,
-    19,
-    13,
-    21,
-    40,
+    4,
     15,
-    14
+    19,
+    23,
+    21,
+    2,
+    13,
+    31
    ],
    "s": [
     "PG",
@@ -3618,31 +3579,68 @@
     "F",
     "UTIL"
    ],
-   "proj": 241.55,
-   "ceil": 345.18,
-   "sal": 50000,
-   "own": 235.3,
-   "dup": 3.6531,
+   "proj": 248.51,
+   "ceil": 353.44,
+   "sal": 49900,
+   "own": 227.7,
+   "dup": 3.1095,
    "src": "median lam=1.0",
-   "top1": 1.66,
-   "top10": 13.6,
-   "cash": 57.9,
-   "roi": -27.6,
+   "top1": 2.95,
+   "top10": 20.8,
+   "cash": 68.3,
+   "roi": -1.8,
    "roit": {
-    "small": 2.2,
-    "mid": -27.6,
-    "large": -55.7
+    "small": 60.0,
+    "mid": -1.8,
+    "large": -40.0
    }
   },
   {
    "p": [
     6,
     15,
-    31,
     19,
+    13,
     21,
+    2,
     14,
+    40
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 241.72,
+   "ceil": 345.36,
+   "sal": 50000,
+   "own": 236.3,
+   "dup": 3.695,
+   "src": "median lam=1.0",
+   "top1": 1.63,
+   "top10": 13.4,
+   "cash": 57.6,
+   "roi": -31.9,
+   "roit": {
+    "small": 0.5,
+    "mid": -31.9,
+    "large": -59.2
+   }
+  },
+  {
+   "p": [
+    6,
+    14,
+    31,
     18,
+    21,
+    15,
+    19,
     3
    ],
    "s": [
@@ -3655,32 +3653,32 @@
     "F",
     "UTIL"
    ],
-   "proj": 239.59,
-   "ceil": 340.72,
+   "proj": 239.96,
+   "ceil": 341.09,
    "sal": 49900,
    "own": 201.4,
-   "dup": 1.1303,
+   "dup": 1.128,
    "src": "median lam=1.0",
    "top1": 1.47,
    "top10": 12.0,
    "cash": 52.0,
-   "roi": -18.0,
+   "roi": -17.5,
    "roit": {
-    "small": -8.1,
-    "mid": -18.0,
-    "large": -31.3
+    "small": -8.3,
+    "mid": -17.5,
+    "large": -23.5
    }
   },
   {
    "p": [
     6,
-    15,
     14,
     19,
-    21,
-    4,
-    31,
-    13
+    13,
+    10,
+    15,
+    23,
+    21
    ],
    "s": [
     "PG",
@@ -3692,1888 +3690,31 @@
     "F",
     "UTIL"
    ],
-   "proj": 243.95,
-   "ceil": 346.74,
+   "proj": 251.35,
+   "ceil": 355.65,
    "sal": 49800,
-   "own": 209.7,
-   "dup": 1.5339,
+   "own": 233.9,
+   "dup": 3.7025,
    "src": "median lam=1.0",
-   "top1": 2.14,
-   "top10": 16.5,
-   "cash": 60.9,
-   "roi": -16.7,
+   "top1": 3.39,
+   "top10": 22.6,
+   "cash": 71.1,
+   "roi": 24.3,
    "roit": {
-    "small": 24.2,
-    "mid": -16.7,
-    "large": -40.6
-   }
-  },
-  {
-   "p": [
-    2,
-    15,
-    19,
-    23,
-    21,
-    40,
-    13,
-    3
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 244.98,
-   "ceil": 349.32,
-   "sal": 49800,
-   "own": 252.8,
-   "dup": 7.2748,
-   "src": "median lam=1.0",
-   "top1": 2.01,
-   "top10": 16.8,
-   "cash": 63.5,
-   "roi": -33.7,
-   "roit": {
-    "small": 22.0,
-    "mid": -33.7,
-    "large": -67.2
-   }
-  },
-  {
-   "p": [
-    6,
-    15,
-    23,
-    19,
-    10,
-    14,
-    13,
-    21
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 251.29,
-   "ceil": 355.55,
-   "sal": 49800,
-   "own": 234.7,
-   "dup": 3.7767,
-   "src": "median lam=1.0",
-   "top1": 3.5,
-   "top10": 22.9,
-   "cash": 71.5,
-   "roi": 25.0,
-   "roit": {
-    "small": 78.0,
-    "mid": 25.0,
-    "large": -18.2
-   }
-  },
-  {
-   "p": [
-    2,
-    6,
-    19,
-    23,
-    21,
-    15,
-    31,
-    14
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 242.23,
-   "ceil": 346.17,
-   "sal": 49500,
-   "own": 218.2,
-   "dup": 2.2313,
-   "src": "median lam=1.0",
-   "top1": 1.68,
-   "top10": 14.1,
-   "cash": 58.2,
-   "roi": -33.4,
-   "roit": {
-    "small": -0.3,
-    "mid": -33.4,
-    "large": -54.7
-   }
-  },
-  {
-   "p": [
-    4,
-    14,
-    19,
-    13,
-    21,
-    40,
-    15,
-    3
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 246.34,
-   "ceil": 349.62,
-   "sal": 50000,
-   "own": 244.2,
-   "dup": 4.961,
-   "src": "median lam=1.0",
-   "top1": 2.5,
-   "top10": 18.4,
-   "cash": 64.9,
-   "roi": -4.7,
-   "roit": {
-    "small": 45.2,
-    "mid": -4.7,
-    "large": -40.1
-   }
-  },
-  {
-   "p": [
-    6,
-    40,
-    14,
-    18,
-    3,
-    15,
-    13,
-    23
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 232.78,
-   "ceil": 331.68,
-   "sal": 49800,
-   "own": 211.1,
-   "dup": 1.5233,
-   "src": "median lam=1.5",
-   "top1": 0.67,
-   "top10": 7.3,
-   "cash": 42.1,
-   "roi": -62.4,
-   "roit": {
-    "small": -47.3,
-    "mid": -62.4,
-    "large": -71.3
+    "small": 76.0,
+    "mid": 24.3,
+    "large": -19.9
    }
   },
   {
    "p": [
     6,
     14,
-    23,
-    13,
-    3,
-    15,
-    24,
-    31
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 229.99,
-   "ceil": 329.28,
-   "sal": 49900,
-   "own": 176.5,
-   "dup": 0.4313,
-   "src": "median lam=1.5",
-   "top1": 0.76,
-   "top10": 6.8,
-   "cash": 38.7,
-   "roi": -61.5,
-   "roit": {
-    "small": -46.8,
-    "mid": -61.5,
-    "large": -67.4
-   }
-  },
-  {
-   "p": [
-    6,
-    14,
-    16,
-    13,
-    21,
-    15,
-    19,
-    18
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 232.48,
-   "ceil": 333.19,
-   "sal": 49300,
-   "own": 191.8,
-   "dup": 0.7231,
-   "src": "median lam=1.5",
-   "top1": 0.73,
-   "top10": 7.9,
-   "cash": 43.2,
-   "roi": -55.4,
-   "roit": {
-    "small": -45.8,
-    "mid": -55.4,
-    "large": -61.2
-   }
-  },
-  {
-   "p": [
-    28,
-    14,
-    16,
-    18,
-    3,
-    15,
-    13,
-    19
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 226.63,
-   "ceil": 325.46,
-   "sal": 49800,
-   "own": 177.4,
-   "dup": 0.3607,
-   "src": "median lam=1.5",
-   "top1": 0.48,
-   "top10": 5.4,
-   "cash": 33.6,
-   "roi": -70.0,
-   "roit": {
-    "small": -60.4,
-    "mid": -70.0,
-    "large": -73.7
-   }
-  },
-  {
-   "p": [
-    6,
-    14,
-    16,
-    19,
-    3,
-    40,
-    13,
-    18
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 229.77,
-   "ceil": 330.01,
-   "sal": 50000,
-   "own": 212.2,
-   "dup": 1.285,
-   "src": "median lam=1.5",
-   "top1": 0.52,
-   "top10": 6.4,
-   "cash": 38.7,
-   "roi": -63.4,
-   "roit": {
-    "small": -51.3,
-    "mid": -63.4,
-    "large": -72.0
-   }
-  },
-  {
-   "p": [
-    28,
-    15,
-    31,
-    13,
-    3,
-    6,
-    18,
-    16
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 224.05,
-   "ceil": 320.73,
-   "sal": 49900,
-   "own": 157.4,
-   "dup": 0.1845,
-   "src": "median lam=1.5",
-   "top1": 0.41,
-   "top10": 4.4,
-   "cash": 29.5,
-   "roi": -67.5,
-   "roit": {
-    "small": -65.5,
-    "mid": -67.5,
-    "large": -72.0
-   }
-  },
-  {
-   "p": [
-    6,
-    15,
-    23,
-    16,
-    3,
-    14,
-    33,
-    18
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 227.45,
-   "ceil": 325.72,
-   "sal": 50000,
-   "own": 172.6,
-   "dup": 0.3371,
-   "src": "median lam=1.5",
-   "top1": 0.68,
-   "top10": 5.7,
-   "cash": 34.4,
-   "roi": -63.4,
-   "roit": {
-    "small": -55.1,
-    "mid": -63.4,
-    "large": -70.2
-   }
-  },
-  {
-   "p": [
-    6,
-    14,
-    23,
-    16,
-    3,
-    15,
-    31,
-    19
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 235.38,
-   "ceil": 336.44,
-   "sal": 49900,
-   "own": 201.0,
-   "dup": 1.0517,
-   "src": "median lam=1.5",
-   "top1": 0.94,
-   "top10": 8.8,
-   "cash": 45.9,
-   "roi": -52.1,
-   "roit": {
-    "small": -34.7,
-    "mid": -52.1,
-    "large": -62.6
-   }
-  },
-  {
-   "p": [
-    28,
-    15,
-    19,
-    23,
-    3,
-    6,
-    14,
-    18
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 235.07,
-   "ceil": 335.74,
-   "sal": 50000,
-   "own": 199.9,
-   "dup": 0.9673,
-   "src": "median lam=1.5",
-   "top1": 0.9,
-   "top10": 8.7,
-   "cash": 45.2,
-   "roi": -53.0,
-   "roit": {
-    "small": -34.6,
-    "mid": -53.0,
-    "large": -62.7
-   }
-  },
-  {
-   "p": [
-    6,
-    15,
-    31,
-    18,
-    3,
-    14,
-    13,
-    33
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 225.62,
-   "ceil": 322.6,
-   "sal": 49800,
-   "own": 160.0,
-   "dup": 0.2115,
-   "src": "median lam=1.5",
-   "top1": 0.56,
-   "top10": 5.2,
-   "cash": 31.3,
-   "roi": -71.0,
-   "roit": {
-    "small": -60.2,
-    "mid": -71.0,
-    "large": -74.3
-   }
-  },
-  {
-   "p": [
-    6,
-    14,
-    31,
-    19,
-    3,
-    28,
-    15,
-    13
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 232.11,
-   "ceil": 331.98,
-   "sal": 50000,
-   "own": 185.3,
-   "dup": 0.5391,
-   "src": "median lam=1.5",
-   "top1": 0.84,
-   "top10": 7.6,
-   "cash": 41.1,
-   "roi": -57.3,
-   "roit": {
-    "small": -43.1,
-    "mid": -57.3,
-    "large": -62.2
-   }
-  },
-  {
-   "p": [
-    2,
-    15,
-    16,
-    19,
-    30,
-    14,
-    13,
-    18
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 227.95,
-   "ceil": 328.26,
-   "sal": 49900,
-   "own": 179.5,
-   "dup": 0.4,
-   "src": "median lam=1.5",
-   "top1": 0.6,
-   "top10": 5.8,
-   "cash": 35.9,
-   "roi": -56.5,
-   "roit": {
-    "small": -55.5,
-    "mid": -56.5,
-    "large": -62.9
-   }
-  },
-  {
-   "p": [
-    11,
-    28,
-    16,
-    24,
-    30,
-    14,
-    18,
-    13
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 188.56,
-   "ceil": 281.59,
-   "sal": 45600,
-   "own": 123.8,
-   "dup": 0.0288,
-   "src": "median lam=2.5",
-   "top1": 0.06,
-   "top10": 0.6,
-   "cash": 7.3,
-   "roi": -96.0,
-   "roit": {
-    "small": -94.9,
-    "mid": -96.0,
-    "large": -96.2
-   }
-  },
-  {
-   "p": [
-    6,
-    14,
-    16,
-    27,
-    30,
-    11,
-    18,
-    13
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 197.73,
-   "ceil": 290.27,
-   "sal": 48300,
-   "own": 129.2,
-   "dup": 0.0329,
-   "src": "median lam=2.5",
-   "top1": 0.1,
-   "top10": 1.3,
-   "cash": 11.4,
-   "roi": -93.4,
-   "roit": {
-    "small": -90.9,
-    "mid": -93.4,
-    "large": -93.6
-   }
-  },
-  {
-   "p": [
-    11,
-    14,
-    16,
-    33,
-    30,
-    28,
-    24,
-    0
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 195.72,
-   "ceil": 288.65,
-   "sal": 49500,
-   "own": 125.8,
-   "dup": 0.0288,
-   "src": "median lam=2.5",
-   "top1": 0.78,
-   "top10": 5.3,
-   "cash": 20.6,
-   "roi": -62.1,
-   "roit": {
-    "small": -56.5,
-    "mid": -62.1,
-    "large": -63.8
-   }
-  },
-  {
-   "p": [
-    6,
-    14,
-    16,
-    24,
-    30,
-    11,
-    33,
-    13
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 195.23,
-   "ceil": 289.87,
-   "sal": 46900,
-   "own": 129.5,
-   "dup": 0.0373,
-   "src": "median lam=2.5",
-   "top1": 0.13,
-   "top10": 1.4,
-   "cash": 11.1,
-   "roi": -92.3,
-   "roit": {
-    "small": -90.6,
-    "mid": -92.3,
-    "large": -92.9
-   }
-  },
-  {
-   "p": [
-    34,
-    28,
-    16,
-    33,
-    0,
-    11,
-    18,
-    13
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 197.24,
-   "ceil": 288.83,
-   "sal": 50000,
-   "own": 126.3,
-   "dup": 0.0284,
-   "src": "median lam=2.5",
-   "top1": 0.8,
-   "top10": 5.5,
-   "cash": 21.1,
-   "roi": -49.2,
-   "roit": {
-    "small": -53.5,
-    "mid": -49.2,
-    "large": -56.5
-   }
-  },
-  {
-   "p": [
-    34,
-    28,
-    16,
-    13,
-    30,
-    11,
-    24,
-    0
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 194.53,
-   "ceil": 287.01,
-   "sal": 49500,
-   "own": 124.5,
-   "dup": 0.0257,
-   "src": "median lam=2.5",
-   "top1": 0.72,
-   "top10": 5.2,
-   "cash": 20.0,
-   "roi": -67.5,
-   "roit": {
-    "small": -59.0,
-    "mid": -67.5,
-    "large": -72.3
-   }
-  },
-  {
-   "p": [
-    11,
-    14,
-    16,
-    18,
-    30,
-    15,
-    33,
-    13
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 196.32,
-   "ceil": 289.06,
-   "sal": 46300,
-   "own": 132.4,
-   "dup": 0.0453,
-   "src": "median lam=2.5",
-   "top1": 0.08,
-   "top10": 1.2,
-   "cash": 10.3,
-   "roi": -93.6,
-   "roit": {
-    "small": -91.8,
-    "mid": -93.6,
-    "large": -93.9
-   }
-  },
-  {
-   "p": [
-    11,
-    14,
-    16,
-    13,
-    30,
-    34,
-    31,
-    18
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 185.52,
-   "ceil": 277.2,
-   "sal": 44400,
-   "own": 124.4,
-   "dup": 0.0289,
-   "src": "median lam=2.5",
-   "top1": 0.03,
-   "top10": 0.4,
-   "cash": 5.6,
-   "roi": -97.7,
-   "roit": {
-    "small": -97.1,
-    "mid": -97.7,
-    "large": -97.7
-   }
-  },
-  {
-   "p": [
-    11,
-    14,
-    16,
-    18,
-    30,
-    6,
-    31,
-    24
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 195.87,
-   "ceil": 289.71,
-   "sal": 46400,
-   "own": 131.9,
-   "dup": 0.0445,
-   "src": "median lam=2.5",
-   "top1": 0.1,
-   "top10": 1.3,
-   "cash": 10.6,
-   "roi": -93.4,
-   "roit": {
-    "small": -91.5,
-    "mid": -93.4,
-    "large": -93.7
-   }
-  },
-  {
-   "p": [
-    11,
-    28,
-    16,
-    27,
-    0,
-    14,
-    24,
-    31
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 194.71,
-   "ceil": 286.04,
-   "sal": 50000,
-   "own": 124.3,
-   "dup": 0.0236,
-   "src": "median lam=2.5",
-   "top1": 0.68,
-   "top10": 4.8,
-   "cash": 19.4,
-   "roi": -72.7,
-   "roit": {
-    "small": -63.2,
-    "mid": -72.7,
-    "large": -67.1
-   }
-  },
-  {
-   "p": [
-    6,
-    28,
-    14,
-    16,
-    30,
-    11,
-    31,
-    13
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 197.74,
-   "ceil": 291.61,
-   "sal": 46800,
-   "own": 133.2,
-   "dup": 0.0476,
-   "src": "median lam=2.5",
-   "top1": 0.09,
-   "top10": 1.4,
-   "cash": 11.6,
-   "roi": -92.4,
-   "roit": {
-    "small": -90.6,
-    "mid": -92.4,
-    "large": -92.8
-   }
-  },
-  {
-   "p": [
-    11,
-    14,
-    33,
-    30,
-    0,
-    34,
-    16,
-    18
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 197.0,
-   "ceil": 288.77,
-   "sal": 49700,
-   "own": 127.0,
-   "dup": 0.0299,
-   "src": "median lam=2.5",
-   "top1": 0.9,
-   "top10": 5.4,
-   "cash": 20.8,
-   "roi": -60.6,
-   "roit": {
-    "small": -54.0,
-    "mid": -60.6,
-    "large": -67.4
-   }
-  },
-  {
-   "p": [
-    1,
-    40,
-    33,
-    24,
-    10,
-    7,
-    23,
-    19
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 267.14,
-   "ceil": 378.61,
-   "sal": 49900,
-   "own": 298.0,
-   "dup": 14.0882,
-   "src": "ceiling lam=0.0",
-   "top1": 8.71,
-   "top10": 48.3,
-   "cash": 93.0,
-   "port": 25,
-   "roi": 54.8,
-   "roit": {
-    "small": 300.3,
-    "mid": 54.8,
-    "large": -40.9
-   }
-  },
-  {
-   "p": [
-    1,
-    7,
-    44,
-    19,
-    21,
-    34,
-    23,
-    10
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 266.95,
-   "ceil": 377.75,
-   "sal": 49800,
-   "own": 274.6,
-   "dup": 5.0511,
-   "src": "ceiling lam=0.0",
-   "top1": 9.59,
-   "top10": 47.7,
-   "cash": 92.1,
-   "port": 40,
-   "roi": 163.3,
-   "roit": {
-    "small": 314.5,
-    "mid": 163.3,
-    "large": 40.0
-   }
-  },
-  {
-   "p": [
-    1,
-    59,
-    19,
-    23,
-    10,
-    7,
-    31,
-    21
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 266.77,
-   "ceil": 376.99,
-   "sal": 49900,
-   "own": 276.3,
-   "dup": 4.2707,
-   "src": "ceiling lam=0.0",
-   "top1": 8.28,
-   "top10": 47.1,
-   "cash": 92.3,
-   "roi": 107.0,
-   "roit": {
-    "small": 269.1,
-    "mid": 107.0,
-    "large": 12.1
-   }
-  },
-  {
-   "p": [
-    1,
-    40,
-    23,
-    33,
-    10,
-    7,
-    30,
-    21
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 266.36,
-   "ceil": 376.34,
-   "sal": 49200,
-   "own": 288.1,
-   "dup": 11.0083,
-   "src": "ceiling lam=0.0",
-   "top1": 8.53,
-   "top10": 46.1,
-   "cash": 91.3,
-   "roi": 61.3,
-   "roit": {
-    "small": 271.0,
-    "mid": 61.3,
-    "large": -30.8
-   }
-  },
-  {
-   "p": [
-    1,
-    7,
-    31,
-    23,
-    10,
-    34,
-    30,
-    21
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 266.85,
-   "ceil": 376.17,
-   "sal": 50000,
-   "own": 255.5,
-   "dup": 3.4298,
-   "src": "ceiling lam=0.0",
-   "top1": 10.27,
-   "top10": 45.7,
-   "cash": 89.9,
-   "port": 10,
-   "roi": 260.4,
-   "roit": {
-    "small": 340.5,
-    "mid": 260.4,
-    "large": 122.2
-   }
-  },
-  {
-   "p": [
-    1,
-    7,
-    19,
-    13,
-    30,
-    40,
-    23,
-    21
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 265.17,
-   "ceil": 376.32,
-   "sal": 49800,
-   "own": 293.2,
-   "dup": 15.7354,
-   "src": "ceiling lam=0.0",
-   "top1": 7.9,
-   "top10": 46.0,
-   "cash": 91.9,
-   "roi": 30.1,
-   "roit": {
-    "small": 260.4,
-    "mid": 30.1,
-    "large": -46.7
-   }
-  },
-  {
-   "p": [
-    1,
-    40,
-    31,
-    23,
-    21,
-    7,
-    33,
-    4
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 266.1,
-   "ceil": 376.03,
-   "sal": 49800,
-   "own": 281.5,
-   "dup": 10.0764,
-   "src": "ceiling lam=0.0",
-   "top1": 9.68,
-   "top10": 46.6,
-   "cash": 91.7,
-   "port": 16,
-   "roi": 141.6,
-   "roit": {
-    "small": 318.8,
-    "mid": 141.6,
-    "large": 6.2
-   }
-  },
-  {
-   "p": [
-    28,
-    40,
-    19,
-    23,
-    21,
-    7,
-    14,
-    1
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 264.69,
-   "ceil": 375.84,
-   "sal": 49900,
-   "own": 292.2,
-   "dup": 14.7152,
-   "src": "ceiling lam=0.0",
-   "top1": 7.13,
-   "top10": 44.2,
-   "cash": 91.4,
-   "port": 28,
-   "roi": 36.8,
-   "roit": {
-    "small": 243.2,
-    "mid": 36.8,
-    "large": -45.6
-   }
-  },
-  {
-   "p": [
-    63,
-    7,
-    19,
-    30,
-    21,
-    1,
-    23,
-    10
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 265.21,
-   "ceil": 375.57,
-   "sal": 50000,
-   "own": 274.0,
-   "dup": 3.5972,
-   "src": "ceiling lam=0.0",
-   "top1": 7.71,
-   "top10": 44.8,
-   "cash": 91.6,
-   "roi": 128.8,
-   "roit": {
-    "small": 251.7,
-    "mid": 128.8,
-    "large": 47.5
-   }
-  },
-  {
-   "p": [
-    1,
-    40,
-    19,
-    23,
-    10,
-    7,
-    30,
-    34
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 264.78,
-   "ceil": 375.2,
-   "sal": 49300,
-   "own": 297.1,
-   "dup": 12.9911,
-   "src": "ceiling lam=0.0",
-   "top1": 6.04,
-   "top10": 42.6,
-   "cash": 91.0,
-   "roi": 18.9,
-   "roit": {
-    "small": 206.6,
-    "mid": 18.9,
-    "large": -46.1
-   }
-  },
-  {
-   "p": [
-    1,
-    15,
-    19,
-    24,
-    21,
-    40,
-    23,
-    10
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 266.97,
-   "ceil": 374.89,
-   "sal": 49700,
-   "own": 295.2,
-   "dup": 17.8612,
-   "src": "ceiling lam=0.0",
-   "top1": 9.25,
-   "top10": 46.6,
-   "cash": 91.1,
-   "port": 9,
-   "roi": 68.1,
-   "roit": {
-    "small": 303.3,
-    "mid": 68.1,
-    "large": -37.9
-   }
-  },
-  {
-   "p": [
-    1,
-    40,
-    33,
-    19,
-    10,
-    7,
-    31,
-    18
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 266.21,
-   "ceil": 375.38,
-   "sal": 50000,
-   "own": 285.3,
-   "dup": 8.969,
-   "src": "ceiling lam=0.0",
-   "top1": 7.51,
-   "top10": 43.7,
-   "cash": 91.1,
-   "roi": 80.2,
-   "roit": {
-    "small": 259.6,
-    "mid": 80.2,
-    "large": -22.6
-   }
-  },
-  {
-   "p": [
-    2,
-    7,
-    14,
-    19,
-    10,
-    40,
-    23,
-    21
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 260.21,
-   "ceil": 371.08,
-   "sal": 49500,
-   "own": 289.5,
-   "dup": 21.6483,
-   "src": "ceiling lam=0.5",
-   "top1": 5.76,
-   "top10": 36.0,
-   "cash": 85.4,
-   "roi": -19.2,
-   "roit": {
-    "small": 160.8,
-    "mid": -19.2,
-    "large": -70.8
-   }
-  },
-  {
-   "p": [
-    4,
-    40,
-    19,
-    23,
-    21,
-    7,
-    13,
-    3
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 257.79,
-   "ceil": 367.32,
-   "sal": 50000,
-   "own": 279.6,
-   "dup": 16.5601,
-   "src": "ceiling lam=0.5",
-   "top1": 5.95,
-   "top10": 34.4,
-   "cash": 83.0,
-   "roi": 5.0,
-   "roit": {
-    "small": 176.2,
-    "mid": 5.0,
-    "large": -60.7
-   }
-  },
-  {
-   "p": [
-    4,
-    28,
-    23,
-    19,
-    21,
-    7,
-    13,
-    10
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 261.53,
-   "ceil": 371.57,
-   "sal": 49700,
-   "own": 261.0,
-   "dup": 7.4852,
-   "src": "ceiling lam=0.5",
-   "top1": 7.93,
-   "top10": 39.6,
-   "cash": 85.9,
-   "port": 7,
-   "roi": 122.3,
-   "roit": {
-    "small": 247.1,
-    "mid": 122.3,
-    "large": 13.1
-   }
-  },
-  {
-   "p": [
-    6,
-    40,
-    14,
-    19,
-    21,
-    7,
-    15,
-    4
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 256.49,
-   "ceil": 365.01,
-   "sal": 49900,
-   "own": 266.5,
-   "dup": 10.2383,
-   "src": "ceiling lam=0.5",
-   "top1": 5.03,
-   "top10": 31.2,
-   "cash": 81.2,
-   "roi": 20.4,
-   "roit": {
-    "small": 146.7,
-    "mid": 20.4,
-    "large": -48.5
-   }
-  },
-  {
-   "p": [
-    6,
-    7,
     31,
     13,
     21,
     4,
     19,
-    23
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 255.4,
-   "ceil": 364.44,
-   "sal": 49800,
-   "own": 245.1,
-   "dup": 5.1201,
-   "src": "ceiling lam=0.5",
-   "top1": 5.3,
-   "top10": 30.8,
-   "cash": 79.8,
-   "roi": 37.9,
-   "roit": {
-    "small": 150.7,
-    "mid": 37.9,
-    "large": -28.5
-   }
-  },
-  {
-   "p": [
-    4,
-    15,
-    23,
-    30,
-    21,
-    7,
-    19,
-    6
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 256.21,
-   "ceil": 365.14,
-   "sal": 49600,
-   "own": 247.3,
-   "dup": 5.4626,
-   "src": "ceiling lam=0.5",
-   "top1": 5.08,
-   "top10": 31.8,
-   "cash": 80.6,
-   "roi": 51.0,
-   "roit": {
-    "small": 146.7,
-    "mid": 51.0,
-    "large": -9.9
-   }
-  },
-  {
-   "p": [
-    6,
-    7,
-    23,
-    24,
-    21,
-    15,
-    19,
-    10
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 258.6,
-   "ceil": 368.08,
-   "sal": 49400,
-   "own": 255.6,
-   "dup": 6.6102,
-   "src": "ceiling lam=0.5",
-   "top1": 6.12,
-   "top10": 34.2,
-   "cash": 82.6,
-   "roi": 58.0,
-   "roit": {
-    "small": 177.3,
-    "mid": 58.0,
-    "large": -20.2
-   }
-  },
-  {
-   "p": [
-    2,
-    40,
-    23,
-    13,
-    21,
-    7,
-    19,
-    6
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 253.0,
-   "ceil": 362.88,
-   "sal": 50000,
-   "own": 270.7,
-   "dup": 12.1941,
-   "src": "ceiling lam=0.5",
-   "top1": 4.05,
-   "top10": 27.1,
-   "cash": 77.5,
-   "roi": -2.8,
-   "roit": {
-    "small": 106.4,
-    "mid": -2.8,
-    "large": -54.1
-   }
-  },
-  {
-   "p": [
-    4,
-    40,
-    14,
-    23,
-    10,
-    15,
-    19,
-    7
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 260.98,
-   "ceil": 369.84,
-   "sal": 49300,
-   "own": 286.9,
-   "dup": 19.1951,
-   "src": "ceiling lam=0.5",
-   "top1": 5.22,
-   "top10": 36.3,
-   "cash": 86.2,
-   "roi": -11.6,
-   "roit": {
-    "small": 160.2,
-    "mid": -11.6,
-    "large": -67.6
-   }
-  },
-  {
-   "p": [
-    4,
-    7,
-    33,
-    19,
-    10,
-    40,
-    23,
-    2
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 260.15,
-   "ceil": 370.7,
-   "sal": 49900,
-   "own": 286.2,
-   "dup": 16.1461,
-   "src": "ceiling lam=0.5",
-   "top1": 6.2,
-   "top10": 36.7,
-   "cash": 85.5,
-   "roi": 14.0,
-   "roit": {
-    "small": 189.9,
-    "mid": 14.0,
-    "large": -55.5
-   }
-  },
-  {
-   "p": [
-    4,
-    14,
-    19,
-    23,
-    21,
-    7,
-    18,
     15
    ],
    "s": [
@@ -5586,30 +3727,696 @@
     "F",
     "UTIL"
    ],
-   "proj": 255.62,
-   "ceil": 363.73,
-   "sal": 49700,
-   "own": 245.0,
-   "dup": 5.128,
-   "src": "ceiling lam=0.5",
-   "top1": 4.34,
-   "top10": 29.9,
-   "cash": 79.6,
-   "roi": 22.2,
+   "proj": 244.21,
+   "ceil": 347.04,
+   "sal": 49800,
+   "own": 209.5,
+   "dup": 1.5195,
+   "src": "median lam=1.0",
+   "top1": 2.09,
+   "top10": 16.3,
+   "cash": 60.7,
+   "roi": -18.4,
    "roit": {
-    "small": 123.1,
-    "mid": 22.2,
-    "large": -30.6
+    "small": 22.4,
+    "mid": -18.4,
+    "large": -41.6
+   }
+  },
+  {
+   "p": [
+    2,
+    40,
+    23,
+    13,
+    21,
+    15,
+    19,
+    3
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 245.12,
+   "ceil": 349.46,
+   "sal": 49800,
+   "own": 253.8,
+   "dup": 7.3671,
+   "src": "median lam=1.0",
+   "top1": 1.89,
+   "top10": 16.4,
+   "cash": 63.2,
+   "roi": -39.9,
+   "roit": {
+    "small": 19.5,
+    "mid": -39.9,
+    "large": -70.3
    }
   },
   {
    "p": [
     4,
-    7,
+    40,
+    14,
     19,
+    3,
+    15,
+    13,
+    21
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 246.68,
+   "ceil": 349.97,
+   "sal": 50000,
+   "own": 245.4,
+   "dup": 5.0654,
+   "src": "median lam=1.0",
+   "top1": 2.47,
+   "top10": 18.3,
+   "cash": 64.9,
+   "roi": -7.2,
+   "roit": {
+    "small": 43.3,
+    "mid": -7.2,
+    "large": -45.9
+   }
+  },
+  {
+   "p": [
+    2,
+    14,
+    31,
     23,
     21,
     15,
+    19,
+    6
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 242.25,
+   "ceil": 346.2,
+   "sal": 49500,
+   "own": 217.7,
+   "dup": 2.1858,
+   "src": "median lam=1.0",
+   "top1": 1.64,
+   "top10": 13.8,
+   "cash": 57.6,
+   "roi": -35.7,
+   "roit": {
+    "small": -3.3,
+    "mid": -35.7,
+    "large": -49.1
+   }
+  },
+  {
+   "p": [
+    6,
+    14,
+    15,
+    13,
+    3,
+    40,
+    23,
+    18
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 233.23,
+   "ceil": 332.13,
+   "sal": 49800,
+   "own": 212.6,
+   "dup": 1.5696,
+   "src": "median lam=1.5",
+   "top1": 0.68,
+   "top10": 7.3,
+   "cash": 42.1,
+   "roi": -61.4,
+   "roit": {
+    "small": -46.5,
+    "mid": -61.4,
+    "large": -71.2
+   }
+  },
+  {
+   "p": [
+    6,
+    15,
+    23,
+    13,
+    3,
+    14,
+    24,
+    31
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 230.41,
+   "ceil": 329.71,
+   "sal": 49900,
+   "own": 176.6,
+   "dup": 0.4332,
+   "src": "median lam=1.5",
+   "top1": 0.78,
+   "top10": 6.8,
+   "cash": 38.7,
+   "roi": -59.9,
+   "roit": {
+    "small": -46.8,
+    "mid": -59.9,
+    "large": -66.2
+   }
+  },
+  {
+   "p": [
+    6,
+    14,
+    16,
+    13,
+    21,
+    15,
+    18,
+    19
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 232.81,
+   "ceil": 333.54,
+   "sal": 49300,
+   "own": 191.7,
+   "dup": 0.7205,
+   "src": "median lam=1.5",
+   "top1": 0.72,
+   "top10": 7.9,
+   "cash": 43.2,
+   "roi": -55.0,
+   "roit": {
+    "small": -45.8,
+    "mid": -55.0,
+    "large": -61.2
+   }
+  },
+  {
+   "p": [
+    28,
+    15,
+    16,
+    18,
+    3,
+    14,
+    19,
+    13
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 227.07,
+   "ceil": 325.91,
+   "sal": 49800,
+   "own": 177.4,
+   "dup": 0.3618,
+   "src": "median lam=1.5",
+   "top1": 0.48,
+   "top10": 5.3,
+   "cash": 33.6,
+   "roi": -70.2,
+   "roit": {
+    "small": -60.0,
+    "mid": -70.2,
+    "large": -73.8
+   }
+  },
+  {
+   "p": [
+    6,
+    28,
+    31,
+    16,
+    3,
+    15,
+    18,
+    13
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 224.57,
+   "ceil": 321.27,
+   "sal": 49900,
+   "own": 157.6,
+   "dup": 0.1862,
+   "src": "median lam=1.5",
+   "top1": 0.41,
+   "top10": 4.4,
+   "cash": 29.7,
+   "roi": -64.4,
+   "roit": {
+    "small": -65.1,
+    "mid": -64.4,
+    "large": -61.9
+   }
+  },
+  {
+   "p": [
+    6,
+    40,
+    16,
+    13,
+    3,
+    14,
+    19,
+    18
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 230.29,
+   "ceil": 330.53,
+   "sal": 50000,
+   "own": 213.7,
+   "dup": 1.3246,
+   "src": "median lam=1.5",
+   "top1": 0.51,
+   "top10": 6.4,
+   "cash": 38.8,
+   "roi": -58.8,
+   "roit": {
+    "small": -51.1,
+    "mid": -58.8,
+    "large": -69.4
+   }
+  },
+  {
+   "p": [
+    6,
+    15,
+    19,
+    23,
+    3,
+    14,
+    18,
+    28
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 235.58,
+   "ceil": 336.24,
+   "sal": 50000,
+   "own": 200.0,
+   "dup": 0.9773,
+   "src": "median lam=1.5",
+   "top1": 0.9,
+   "top10": 8.7,
+   "cash": 45.3,
+   "roi": -53.1,
+   "roit": {
+    "small": -33.4,
+    "mid": -53.1,
+    "large": -62.9
+   }
+  },
+  {
+   "p": [
+    6,
+    14,
+    23,
+    16,
+    3,
+    15,
+    18,
+    33
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 227.77,
+   "ceil": 326.03,
+   "sal": 50000,
+   "own": 172.6,
+   "dup": 0.3358,
+   "src": "median lam=1.5",
+   "top1": 0.67,
+   "top10": 5.6,
+   "cash": 34.3,
+   "roi": -66.0,
+   "roit": {
+    "small": -55.1,
+    "mid": -66.0,
+    "large": -70.8
+   }
+  },
+  {
+   "p": [
+    6,
+    14,
+    16,
+    23,
+    3,
+    15,
+    31,
+    19
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 235.73,
+   "ceil": 336.79,
+   "sal": 49900,
+   "own": 201.0,
+   "dup": 1.048,
+   "src": "median lam=1.5",
+   "top1": 0.95,
+   "top10": 8.8,
+   "cash": 45.8,
+   "roi": -52.1,
+   "roit": {
+    "small": -35.3,
+    "mid": -52.1,
+    "large": -62.5
+   }
+  },
+  {
+   "p": [
+    2,
+    14,
+    19,
+    18,
+    30,
+    15,
+    16,
+    13
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 227.91,
+   "ceil": 328.24,
+   "sal": 49900,
+   "own": 178.8,
+   "dup": 0.3877,
+   "src": "median lam=1.5",
+   "top1": 0.58,
+   "top10": 5.7,
+   "cash": 35.4,
+   "roi": -60.6,
+   "roit": {
+    "small": -57.0,
+    "mid": -60.6,
+    "large": -64.8
+   }
+  },
+  {
+   "p": [
+    2,
+    15,
+    31,
+    18,
+    30,
+    6,
+    16,
+    13
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 225.41,
+   "ceil": 323.6,
+   "sal": 50000,
+   "own": 158.9,
+   "dup": 0.1996,
+   "src": "median lam=1.5",
+   "top1": 0.49,
+   "top10": 5.0,
+   "cash": 31.5,
+   "roi": -71.1,
+   "roit": {
+    "small": -62.2,
+    "mid": -71.1,
+    "large": -74.5
+   }
+  },
+  {
+   "p": [
+    6,
+    14,
+    31,
+    13,
+    3,
+    15,
+    33,
+    18
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 225.95,
+   "ceil": 322.95,
+   "sal": 49800,
+   "own": 159.9,
+   "dup": 0.2101,
+   "src": "median lam=1.5",
+   "top1": 0.55,
+   "top10": 5.2,
+   "cash": 31.2,
+   "roi": -71.1,
+   "roit": {
+    "small": -60.7,
+    "mid": -71.1,
+    "large": -74.4
+   }
+  },
+  {
+   "p": [
+    11,
+    28,
+    16,
+    24,
+    30,
+    14,
+    18,
+    13
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 189.1,
+   "ceil": 282.14,
+   "sal": 45600,
+   "own": 123.9,
+   "dup": 0.0293,
+   "src": "median lam=2.5",
+   "top1": 0.06,
+   "top10": 0.6,
+   "cash": 7.3,
+   "roi": -96.1,
+   "roit": {
+    "small": -94.9,
+    "mid": -96.1,
+    "large": -96.3
+   }
+  },
+  {
+   "p": [
+    11,
+    14,
+    27,
+    13,
+    30,
+    6,
+    18,
+    16
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 198.0,
+   "ceil": 290.57,
+   "sal": 48300,
+   "own": 129.1,
+   "dup": 0.0326,
+   "src": "median lam=2.5",
+   "top1": 0.1,
+   "top10": 1.3,
+   "cash": 11.3,
+   "roi": -93.3,
+   "roit": {
+    "small": -90.9,
+    "mid": -93.3,
+    "large": -93.6
+   }
+  },
+  {
+   "p": [
+    28,
+    14,
+    31,
+    16,
+    30,
+    11,
+    24,
+    0
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 199.61,
+   "ceil": 292.55,
+   "sal": 49700,
+   "own": 129.7,
+   "dup": 0.0377,
+   "src": "median lam=2.5",
+   "top1": 0.96,
+   "top10": 6.1,
+   "cash": 22.4,
+   "roi": -54.4,
+   "roit": {
+    "small": -47.9,
+    "mid": -54.4,
+    "large": -60.9
+   }
+  },
+  {
+   "p": [
+    11,
+    28,
+    33,
+    18,
+    0,
+    34,
     13,
     16
    ],
@@ -5623,31 +4430,739 @@
     "F",
     "UTIL"
    ],
-   "proj": 254.85,
-   "ceil": 363.36,
+   "proj": 197.66,
+   "ceil": 289.27,
    "sal": 50000,
-   "own": 243.2,
-   "dup": 4.5913,
-   "src": "ceiling lam=0.5",
-   "top1": 4.63,
-   "top10": 30.4,
-   "cash": 79.1,
-   "roi": 51.3,
+   "own": 126.3,
+   "dup": 0.0286,
+   "src": "median lam=2.5",
+   "top1": 0.78,
+   "top10": 5.4,
+   "cash": 21.1,
+   "roi": -53.7,
    "roit": {
-    "small": 135.6,
-    "mid": 51.3,
-    "large": -6.3
+    "small": -53.6,
+    "mid": -53.7,
+    "large": -52.1
    }
   },
   {
    "p": [
-    2,
+    11,
     6,
-    23,
-    13,
-    21,
-    14,
+    16,
+    24,
     30,
+    14,
+    31,
+    13
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 199.15,
+   "ceil": 293.82,
+   "sal": 47100,
+   "own": 133.5,
+   "dup": 0.0488,
+   "src": "median lam=2.5",
+   "top1": 0.12,
+   "top10": 1.7,
+   "cash": 12.4,
+   "roi": -91.0,
+   "roit": {
+    "small": -88.9,
+    "mid": -91.0,
+    "large": -91.7
+   }
+  },
+  {
+   "p": [
+    34,
+    28,
+    16,
+    24,
+    30,
+    11,
+    13,
+    0
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 195.01,
+   "ceil": 287.5,
+   "sal": 49500,
+   "own": 124.5,
+   "dup": 0.026,
+   "src": "median lam=2.5",
+   "top1": 0.72,
+   "top10": 5.2,
+   "cash": 19.9,
+   "roi": -65.3,
+   "roit": {
+    "small": -58.9,
+    "mid": -65.3,
+    "large": -70.2
+   }
+  },
+  {
+   "p": [
+    11,
+    14,
+    16,
+    18,
+    30,
+    15,
+    31,
+    13
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 200.05,
+   "ceil": 292.83,
+   "sal": 46500,
+   "own": 136.1,
+   "dup": 0.0584,
+   "src": "median lam=2.5",
+   "top1": 0.08,
+   "top10": 1.4,
+   "cash": 11.6,
+   "roi": -92.7,
+   "roit": {
+    "small": -90.4,
+    "mid": -92.7,
+    "large": -93.0
+   }
+  },
+  {
+   "p": [
+    34,
+    14,
+    16,
+    18,
+    30,
+    11,
+    33,
+    13
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 182.33,
+   "ceil": 274.02,
+   "sal": 44200,
+   "own": 120.3,
+   "dup": 0.0221,
+   "src": "median lam=2.5",
+   "top1": 0.01,
+   "top10": 0.3,
+   "cash": 4.7,
+   "roi": -98.1,
+   "roit": {
+    "small": -97.7,
+    "mid": -98.1,
+    "large": -98.1
+   }
+  },
+  {
+   "p": [
+    28,
+    14,
+    33,
+    13,
+    0,
+    11,
+    24,
+    30
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 200.09,
+   "ceil": 293.35,
+   "sal": 50000,
+   "own": 129.3,
+   "dup": 0.0355,
+   "src": "median lam=2.5",
+   "top1": 1.1,
+   "top10": 6.7,
+   "cash": 23.2,
+   "roi": -48.9,
+   "roit": {
+    "small": -41.8,
+    "mid": -48.9,
+    "large": -56.2
+   }
+  },
+  {
+   "p": [
+    28,
+    14,
+    33,
+    16,
+    0,
+    11,
+    24,
+    27
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 191.63,
+   "ceil": 282.95,
+   "sal": 49800,
+   "own": 120.4,
+   "dup": 0.0182,
+   "src": "median lam=2.5",
+   "top1": 0.45,
+   "top10": 4.1,
+   "cash": 17.5,
+   "roi": -78.2,
+   "roit": {
+    "small": -70.6,
+    "mid": -78.2,
+    "large": -80.3
+   }
+  },
+  {
+   "p": [
+    11,
+    14,
+    33,
+    16,
+    30,
+    6,
+    24,
+    18
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 192.92,
+   "ceil": 286.74,
+   "sal": 46200,
+   "own": 128.1,
+   "dup": 0.0346,
+   "src": "median lam=2.5",
+   "top1": 0.07,
+   "top10": 1.1,
+   "cash": 9.1,
+   "roi": -94.2,
+   "roit": {
+    "small": -92.4,
+    "mid": -94.2,
+    "large": -94.5
+   }
+  },
+  {
+   "p": [
+    11,
+    14,
+    16,
+    18,
+    30,
+    34,
+    31,
+    0
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 200.65,
+   "ceil": 292.44,
+   "sal": 49900,
+   "own": 130.6,
+   "dup": 0.0383,
+   "src": "median lam=2.5",
+   "top1": 1.02,
+   "top10": 6.2,
+   "cash": 22.7,
+   "roi": -53.6,
+   "roit": {
+    "small": -47.7,
+    "mid": -53.6,
+    "large": -64.0
+   }
+  },
+  {
+   "p": [
+    1,
+    7,
+    23,
+    44,
+    21,
+    34,
+    19,
+    10
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 267.18,
+   "ceil": 378.02,
+   "sal": 49800,
+   "own": 274.2,
+   "dup": 4.9787,
+   "src": "ceiling lam=0.0",
+   "top1": 9.55,
+   "top10": 47.3,
+   "cash": 91.9,
+   "roi": 165.1,
+   "roit": {
+    "small": 310.8,
+    "mid": 165.1,
+    "large": 35.1
+   }
+  },
+  {
+   "p": [
+    1,
+    7,
+    23,
+    19,
+    10,
+    40,
+    33,
+    30
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 266.66,
+   "ceil": 377.47,
+   "sal": 49400,
+   "own": 299.6,
+   "dup": 14.869,
+   "src": "ceiling lam=0.0",
+   "top1": 6.92,
+   "top10": 45.9,
+   "cash": 92.2,
+   "roi": 22.7,
+   "roit": {
+    "small": 239.3,
+    "mid": 22.7,
+    "large": -52.3
+   }
+  },
+  {
+   "p": [
+    1,
+    40,
+    19,
+    24,
+    10,
+    7,
+    23,
+    34
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 266.09,
+   "ceil": 377.22,
+   "sal": 49800,
+   "own": 297.7,
+   "dup": 12.8163,
+   "src": "ceiling lam=0.0",
+   "top1": 7.18,
+   "top10": 45.5,
+   "cash": 92.0,
+   "port": 36,
+   "roi": 53.9,
+   "roit": {
+    "small": 255.0,
+    "mid": 53.9,
+    "large": -37.4
+   }
+  },
+  {
+   "p": [
+    4,
+    7,
+    23,
+    33,
+    21,
+    1,
+    31,
+    40
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 266.59,
+   "ceil": 376.55,
+   "sal": 49800,
+   "own": 283.1,
+   "dup": 10.378,
+   "src": "ceiling lam=0.0",
+   "top1": 9.58,
+   "top10": 46.7,
+   "cash": 91.8,
+   "port": 24,
+   "roi": 139.9,
+   "roit": {
+    "small": 318.1,
+    "mid": 139.9,
+    "large": 3.5
+   }
+  },
+  {
+   "p": [
+    1,
+    7,
+    23,
+    19,
+    10,
+    59,
+    31,
+    21
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 267.01,
+   "ceil": 377.28,
+   "sal": 49900,
+   "own": 275.9,
+   "dup": 4.2146,
+   "src": "ceiling lam=0.0",
+   "top1": 8.23,
+   "top10": 46.8,
+   "cash": 92.1,
+   "roi": 108.0,
+   "roit": {
+    "small": 265.7,
+    "mid": 108.0,
+    "large": 12.5
+   }
+  },
+  {
+   "p": [
+    1,
+    7,
+    19,
+    23,
+    10,
+    63,
+    30,
+    21
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 265.41,
+   "ceil": 375.81,
+   "sal": 50000,
+   "own": 273.5,
+   "dup": 3.5381,
+   "src": "ceiling lam=0.0",
+   "top1": 7.78,
+   "top10": 44.5,
+   "cash": 91.3,
+   "roi": 124.4,
+   "roit": {
+    "small": 250.0,
+    "mid": 124.4,
+    "large": 47.7
+   }
+  },
+  {
+   "p": [
+    1,
+    14,
+    19,
+    23,
+    21,
+    7,
+    30,
+    40
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 265.32,
+   "ceil": 376.57,
+   "sal": 49700,
+   "own": 294.7,
+   "dup": 16.0706,
+   "src": "ceiling lam=0.0",
+   "top1": 7.36,
+   "top10": 44.5,
+   "cash": 91.3,
+   "roi": 32.1,
+   "roit": {
+    "small": 241.6,
+    "mid": 32.1,
+    "large": -47.8
+   }
+  },
+  {
+   "p": [
+    4,
+    7,
+    31,
+    19,
+    47,
+    1,
+    15,
+    40
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 266.33,
+   "ceil": 375.4,
+   "sal": 50000,
+   "own": 283.3,
+   "dup": 9.2557,
+   "src": "ceiling lam=0.0",
+   "top1": 8.52,
+   "top10": 44.5,
+   "cash": 91.4,
+   "port": 8,
+   "roi": 155.5,
+   "roit": {
+    "small": 304.5,
+    "mid": 155.5,
+    "large": 10.7
+   }
+  },
+  {
+   "p": [
+    1,
+    40,
+    36,
+    24,
+    21,
+    7,
+    19,
+    10
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 264.49,
+   "ceil": 375.4,
+   "sal": 49800,
+   "own": 292.4,
+   "dup": 8.1303,
+   "src": "ceiling lam=0.0",
+   "top1": 6.96,
+   "top10": 42.7,
+   "cash": 90.3,
+   "roi": 73.6,
+   "roit": {
+    "small": 235.9,
+    "mid": 73.6,
+    "large": -21.1
+   }
+  },
+  {
+   "p": [
+    34,
+    7,
+    31,
+    23,
+    21,
+    1,
+    30,
+    10
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 266.99,
+   "ceil": 376.36,
+   "sal": 50000,
+   "own": 255.0,
+   "dup": 3.3611,
+   "src": "ceiling lam=0.0",
+   "top1": 10.26,
+   "top10": 45.3,
+   "cash": 89.6,
+   "port": 9,
+   "roi": 254.2,
+   "roit": {
+    "small": 338.2,
+    "mid": 254.2,
+    "large": 126.8
+   }
+  },
+  {
+   "p": [
+    1,
+    15,
+    23,
+    24,
+    10,
+    40,
+    19,
+    21
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 267.27,
+   "ceil": 375.2,
+   "sal": 49700,
+   "own": 296.0,
+   "dup": 18.1889,
+   "src": "ceiling lam=0.0",
+   "top1": 9.23,
+   "top10": 46.4,
+   "cash": 91.1,
+   "port": 11,
+   "roi": 62.8,
+   "roit": {
+    "small": 301.0,
+    "mid": 62.8,
+    "large": -41.8
+   }
+  },
+  {
+   "p": [
+    1,
+    7,
+    31,
+    18,
+    10,
+    40,
+    33,
     19
    ],
    "s": [
@@ -5660,845 +5175,143 @@
     "F",
     "UTIL"
    ],
-   "proj": 238.78,
-   "ceil": 343.21,
-   "sal": 49900,
-   "own": 211.6,
-   "dup": 1.5704,
-   "src": "ceiling lam=1.0",
-   "top1": 1.42,
-   "top10": 12.7,
-   "cash": 54.5,
-   "roi": -37.7,
-   "roit": {
-    "small": -8.8,
-    "mid": -37.7,
-    "large": -54.1
-   }
-  },
-  {
-   "p": [
-    6,
-    14,
-    23,
-    24,
-    3,
-    15,
-    19,
-    21
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 240.52,
-   "ceil": 343.95,
-   "sal": 49800,
-   "own": 214.1,
-   "dup": 1.7755,
-   "src": "ceiling lam=1.0",
-   "top1": 1.72,
-   "top10": 13.7,
-   "cash": 55.5,
-   "roi": -25.4,
-   "roit": {
-    "small": 2.1,
-    "mid": -25.4,
-    "large": -39.8
-   }
-  },
-  {
-   "p": [
-    2,
-    6,
-    19,
-    13,
-    21,
-    15,
-    23,
-    28
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 241.15,
-   "ceil": 345.1,
-   "sal": 49900,
-   "own": 215.3,
-   "dup": 1.8374,
-   "src": "ceiling lam=1.0",
-   "top1": 1.71,
-   "top10": 14.3,
-   "cash": 57.5,
-   "roi": -29.6,
-   "roit": {
-    "small": 2.2,
-    "mid": -29.6,
-    "large": -44.2
-   }
-  },
-  {
-   "p": [
-    2,
-    6,
-    16,
-    23,
-    21,
-    14,
-    19,
-    24
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 235.66,
-   "ceil": 340.46,
-   "sal": 49900,
-   "own": 207.5,
-   "dup": 1.2301,
-   "src": "ceiling lam=1.0",
-   "top1": 1.38,
-   "top10": 11.2,
-   "cash": 49.5,
-   "roi": -30.2,
-   "roit": {
-    "small": -16.1,
-    "mid": -30.2,
-    "large": -42.1
-   }
-  },
-  {
-   "p": [
-    6,
-    14,
-    23,
-    19,
-    3,
-    28,
-    13,
-    21
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 237.46,
-   "ceil": 340.41,
-   "sal": 49800,
-   "own": 209.5,
-   "dup": 1.4163,
-   "src": "ceiling lam=1.0",
-   "top1": 1.28,
-   "top10": 11.1,
-   "cash": 51.4,
-   "roi": -39.6,
-   "roit": {
-    "small": -17.6,
-    "mid": -39.6,
-    "large": -55.9
-   }
-  },
-  {
-   "p": [
-    2,
-    15,
-    23,
-    19,
-    21,
-    6,
-    18,
-    24
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 239.28,
-   "ceil": 343.2,
-   "sal": 49500,
-   "own": 214.0,
-   "dup": 1.7188,
-   "src": "ceiling lam=1.0",
-   "top1": 1.35,
-   "top10": 12.4,
-   "cash": 54.4,
-   "roi": -42.6,
-   "roit": {
-    "small": -10.7,
-    "mid": -42.6,
-    "large": -57.7
-   }
-  },
-  {
-   "p": [
-    4,
-    2,
-    19,
-    30,
-    21,
-    14,
-    15,
-    23
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 246.9,
-   "ceil": 352.07,
-   "sal": 49900,
-   "own": 226.0,
-   "dup": 2.7446,
-   "src": "ceiling lam=1.0",
-   "top1": 2.72,
-   "top10": 19.3,
-   "cash": 66.2,
-   "roi": 2.3,
-   "roit": {
-    "small": 49.8,
-    "mid": 2.3,
-    "large": -35.8
-   }
-  },
-  {
-   "p": [
-    2,
-    14,
-    23,
-    19,
-    21,
-    4,
-    18,
-    24
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 242.78,
-   "ceil": 348.13,
+   "proj": 266.63,
+   "ceil": 375.84,
    "sal": 50000,
-   "own": 219.5,
-   "dup": 1.9659,
-   "src": "ceiling lam=1.0",
-   "top1": 2.28,
-   "top10": 16.7,
-   "cash": 60.8,
-   "roi": -10.2,
+   "own": 286.4,
+   "dup": 9.1203,
+   "src": "ceiling lam=0.0",
+   "top1": 7.36,
+   "top10": 43.7,
+   "cash": 91.2,
+   "roi": 72.4,
    "roit": {
-    "small": 26.8,
-    "mid": -10.2,
-    "large": -39.6
+    "small": 256.9,
+    "mid": 72.4,
+    "large": -25.9
    }
   },
   {
    "p": [
     2,
+    7,
+    23,
+    19,
+    10,
+    40,
+    13,
+    21
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 260.63,
+   "ceil": 371.45,
+   "sal": 49600,
+   "own": 290.4,
+   "dup": 21.9599,
+   "src": "ceiling lam=0.5",
+   "top1": 6.12,
+   "top10": 36.8,
+   "cash": 85.5,
+   "roi": 0.3,
+   "roit": {
+    "small": 176.3,
+    "mid": 0.3,
+    "large": -63.6
+   }
+  },
+  {
+   "p": [
+    4,
+    7,
+    19,
+    23,
+    3,
+    40,
+    13,
+    21
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 258.34,
+   "ceil": 367.89,
+   "sal": 50000,
+   "own": 281.4,
+   "dup": 17.194,
+   "src": "ceiling lam=0.5",
+   "top1": 6.0,
+   "top10": 34.5,
+   "cash": 83.1,
+   "port": 30,
+   "roi": 5.1,
+   "roit": {
+    "small": 178.3,
+    "mid": 5.1,
+    "large": -61.4
+   }
+  },
+  {
+   "p": [
+    6,
+    15,
+    23,
+    19,
+    21,
+    7,
+    24,
+    10
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 259.01,
+   "ceil": 368.51,
+   "sal": 49400,
+   "own": 255.5,
+   "dup": 6.6425,
+   "src": "ceiling lam=0.5",
+   "top1": 6.2,
+   "top10": 34.2,
+   "cash": 82.5,
+   "roi": 59.1,
+   "roit": {
+    "small": 176.8,
+    "mid": 59.1,
+    "large": -20.1
+   }
+  },
+  {
+   "p": [
+    4,
     40,
     15,
-    23,
-    3,
-    6,
     19,
-    31
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 242.01,
-   "ceil": 345.09,
-   "sal": 50000,
-   "own": 243.2,
-   "dup": 4.9212,
-   "src": "ceiling lam=1.0",
-   "top1": 1.55,
-   "top10": 13.0,
-   "cash": 57.0,
-   "roi": -38.1,
-   "roit": {
-    "small": 0.8,
-    "mid": -38.1,
-    "large": -66.0
-   }
-  },
-  {
-   "p": [
-    2,
-    15,
-    19,
-    13,
     21,
+    7,
     14,
-    16,
-    24
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 233.28,
-   "ceil": 336.26,
-   "sal": 49900,
-   "own": 192.9,
-   "dup": 0.6921,
-   "src": "ceiling lam=1.0",
-   "top1": 1.11,
-   "top10": 9.3,
-   "cash": 45.8,
-   "roi": -45.6,
-   "roit": {
-    "small": -27.5,
-    "mid": -45.6,
-    "large": -56.4
-   }
-  },
-  {
-   "p": [
-    6,
-    14,
-    23,
-    13,
-    21,
-    15,
-    24,
-    4
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 240.39,
-   "ceil": 342.7,
-   "sal": 50000,
-   "own": 197.9,
-   "dup": 1.0024,
-   "src": "ceiling lam=1.0",
-   "top1": 1.82,
-   "top10": 14.6,
-   "cash": 56.6,
-   "roi": -14.2,
-   "roit": {
-    "small": 9.9,
-    "mid": -14.2,
-    "large": -33.5
-   }
-  },
-  {
-   "p": [
-    4,
-    2,
-    19,
-    23,
-    21,
-    6,
-    16,
-    40
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 246.35,
-   "ceil": 352.43,
-   "sal": 49900,
-   "own": 256.6,
-   "dup": 7.5812,
-   "src": "ceiling lam=1.0",
-   "top1": 2.42,
-   "top10": 19.5,
-   "cash": 66.6,
-   "roi": -25.3,
-   "roit": {
-    "small": 47.5,
-    "mid": -25.3,
-    "large": -63.4
-   }
-  },
-  {
-   "p": [
-    28,
-    14,
-    16,
-    24,
-    3,
-    6,
-    23,
-    13
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 222.49,
-   "ceil": 321.86,
-   "sal": 50000,
-   "own": 165.6,
-   "dup": 0.2335,
-   "src": "ceiling lam=1.5",
-   "top1": 0.45,
-   "top10": 4.6,
-   "cash": 29.9,
-   "roi": -72.7,
-   "roit": {
-    "small": -64.2,
-    "mid": -72.7,
-    "large": -76.2
-   }
-  },
-  {
-   "p": [
-    2,
-    6,
-    23,
-    24,
-    30,
-    14,
-    18,
-    13
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 224.94,
-   "ceil": 325.3,
-   "sal": 49900,
-   "own": 169.6,
-   "dup": 0.2915,
-   "src": "ceiling lam=1.5",
-   "top1": 0.56,
-   "top10": 5.5,
-   "cash": 33.0,
-   "roi": -66.1,
-   "roit": {
-    "small": -59.2,
-    "mid": -66.1,
-    "large": -68.9
-   }
-  },
-  {
-   "p": [
-    6,
-    28,
-    16,
-    13,
-    30,
-    2,
-    14,
-    24
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 216.61,
-   "ceil": 315.95,
-   "sal": 49700,
-   "own": 148.4,
-   "dup": 0.1083,
-   "src": "ceiling lam=1.5",
-   "top1": 0.3,
-   "top10": 3.3,
-   "cash": 23.3,
-   "roi": -81.3,
-   "roit": {
-    "small": -75.2,
-    "mid": -81.3,
-    "large": -82.9
-   }
-  },
-  {
-   "p": [
-    2,
-    14,
-    16,
-    33,
-    30,
-    6,
-    18,
-    13
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 219.44,
-   "ceil": 317.98,
-   "sal": 50000,
-   "own": 151.1,
-   "dup": 0.127,
-   "src": "ceiling lam=1.5",
-   "top1": 0.39,
-   "top10": 3.9,
-   "cash": 26.0,
-   "roi": -76.1,
-   "roit": {
-    "small": -69.8,
-    "mid": -76.1,
-    "large": -78.8
-   }
-  },
-  {
-   "p": [
-    6,
-    28,
-    16,
-    33,
-    3,
-    14,
-    18,
-    13
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 218.12,
-   "ceil": 315.18,
-   "sal": 49900,
-   "own": 149.0,
-   "dup": 0.1145,
-   "src": "ceiling lam=1.5",
-   "top1": 0.34,
-   "top10": 3.5,
-   "cash": 24.2,
-   "roi": -80.5,
-   "roit": {
-    "small": -74.1,
-    "mid": -80.5,
-    "large": -82.4
-   }
-  },
-  {
-   "p": [
-    6,
-    15,
-    16,
-    18,
-    30,
-    14,
-    13,
-    24
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 213.0,
-   "ceil": 309.64,
-   "sal": 48000,
-   "own": 147.0,
-   "dup": 0.1125,
-   "src": "ceiling lam=1.5",
-   "top1": 0.15,
-   "top10": 1.9,
-   "cash": 18.9,
-   "roi": -89.2,
-   "roit": {
-    "small": -86.1,
-    "mid": -89.2,
-    "large": -89.6
-   }
-  },
-  {
-   "p": [
-    6,
-    14,
-    16,
-    13,
-    3,
-    15,
-    24,
-    40
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 225.38,
-   "ceil": 324.04,
-   "sal": 49900,
-   "own": 190.2,
-   "dup": 0.5762,
-   "src": "ceiling lam=1.5",
-   "top1": 0.47,
-   "top10": 5.1,
-   "cash": 32.7,
-   "roi": -71.6,
-   "roit": {
-    "small": -61.0,
-    "mid": -71.6,
-    "large": -76.0
-   }
-  },
-  {
-   "p": [
-    6,
-    28,
-    16,
-    19,
-    3,
-    14,
-    30,
-    13
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 224.73,
-   "ceil": 324.77,
-   "sal": 49900,
-   "own": 175.1,
-   "dup": 0.3096,
-   "src": "ceiling lam=1.5",
-   "top1": 0.47,
-   "top10": 5.2,
-   "cash": 32.1,
-   "roi": -71.6,
-   "roit": {
-    "small": -62.4,
-    "mid": -71.6,
-    "large": -75.0
-   }
-  },
-  {
-   "p": [
-    2,
-    14,
-    19,
-    16,
-    30,
-    6,
-    24,
-    18
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 224.06,
-   "ceil": 325.46,
-   "sal": 49800,
-   "own": 175.1,
-   "dup": 0.3028,
-   "src": "ceiling lam=1.5",
-   "top1": 0.46,
-   "top10": 5.0,
-   "cash": 31.8,
-   "roi": -67.8,
-   "roit": {
-    "small": -61.8,
-    "mid": -67.8,
-    "large": -72.1
-   }
-  },
-  {
-   "p": [
-    6,
-    14,
-    16,
-    19,
-    3,
-    28,
-    24,
-    18
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 222.74,
-   "ceil": 322.66,
-   "sal": 49700,
-   "own": 173.0,
-   "dup": 0.273,
-   "src": "ceiling lam=1.5",
-   "top1": 0.4,
-   "top10": 4.5,
-   "cash": 29.8,
-   "roi": -72.3,
-   "roit": {
-    "small": -66.0,
-    "mid": -72.3,
-    "large": -75.8
-   }
-  },
-  {
-   "p": [
-    2,
-    15,
-    16,
-    23,
-    30,
-    6,
-    13,
-    24
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 226.3,
-   "ceil": 326.76,
-   "sal": 49900,
-   "own": 172.2,
-   "dup": 0.3213,
-   "src": "ceiling lam=1.5",
-   "top1": 0.6,
-   "top10": 5.9,
-   "cash": 35.2,
-   "roi": -63.8,
-   "roit": {
-    "small": -54.1,
-    "mid": -63.8,
-    "large": -69.2
-   }
-  },
-  {
-   "p": [
-    28,
-    14,
-    16,
-    30,
-    3,
-    15,
-    18,
     6
    ],
    "s": [
@@ -6511,20 +5324,1206 @@
     "F",
     "UTIL"
    ],
-   "proj": 222.37,
-   "ceil": 319.33,
+   "proj": 257.07,
+   "ceil": 365.6,
    "sal": 49900,
-   "own": 155.0,
-   "dup": 0.1586,
+   "own": 268.3,
+   "dup": 10.6148,
+   "src": "ceiling lam=0.5",
+   "top1": 5.08,
+   "top10": 31.4,
+   "cash": 81.4,
+   "roi": 15.4,
+   "roit": {
+    "small": 146.7,
+    "mid": 15.4,
+    "large": -51.0
+   }
+  },
+  {
+   "p": [
+    4,
+    7,
+    23,
+    19,
+    21,
+    6,
+    15,
+    28
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 256.7,
+   "ceil": 365.56,
+   "sal": 49800,
+   "own": 247.0,
+   "dup": 5.2502,
+   "src": "ceiling lam=0.5",
+   "top1": 5.2,
+   "top10": 31.7,
+   "cash": 80.5,
+   "roi": 53.1,
+   "roit": {
+    "small": 152.3,
+    "mid": 53.1,
+    "large": -14.6
+   }
+  },
+  {
+   "p": [
+    6,
+    7,
+    19,
+    13,
+    21,
+    4,
+    31,
+    23
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 255.87,
+   "ceil": 364.96,
+   "sal": 49800,
+   "own": 245.5,
+   "dup": 5.1579,
+   "src": "ceiling lam=0.5",
+   "top1": 5.3,
+   "top10": 30.8,
+   "cash": 79.8,
+   "roi": 39.5,
+   "roit": {
+    "small": 151.6,
+    "mid": 39.5,
+    "large": -23.6
+   }
+  },
+  {
+   "p": [
+    4,
+    7,
+    15,
+    19,
+    10,
+    40,
+    14,
+    23
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 261.24,
+   "ceil": 370.13,
+   "sal": 49300,
+   "own": 287.9,
+   "dup": 19.4699,
+   "src": "ceiling lam=0.5",
+   "top1": 5.22,
+   "top10": 36.1,
+   "cash": 86.1,
+   "roi": -13.9,
+   "roit": {
+    "small": 157.4,
+    "mid": -13.9,
+    "large": -68.1
+   }
+  },
+  {
+   "p": [
+    4,
+    2,
+    23,
+    19,
+    21,
+    40,
+    14,
+    10
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 257.28,
+   "ceil": 364.69,
+   "sal": 49900,
+   "own": 279.0,
+   "dup": 16.3025,
+   "src": "ceiling lam=0.5",
+   "top1": 5.29,
+   "top10": 31.2,
+   "cash": 80.3,
+   "roi": -8.0,
+   "roit": {
+    "small": 143.7,
+    "mid": -8.0,
+    "large": -65.3
+   }
+  },
+  {
+   "p": [
+    4,
+    7,
+    23,
+    19,
+    10,
+    40,
+    33,
+    2
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 260.18,
+   "ceil": 370.76,
+   "sal": 49900,
+   "own": 286.8,
+   "dup": 16.1489,
+   "src": "ceiling lam=0.5",
+   "top1": 6.0,
+   "top10": 36.2,
+   "cash": 85.2,
+   "port": 35,
+   "roi": 8.3,
+   "roit": {
+    "small": 182.9,
+    "mid": 8.3,
+    "large": -57.4
+   }
+  },
+  {
+   "p": [
+    2,
+    7,
+    23,
+    19,
+    21,
+    6,
+    14,
+    40
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 252.98,
+   "ceil": 362.95,
+   "sal": 49900,
+   "own": 272.1,
+   "dup": 12.405,
+   "src": "ceiling lam=0.5",
+   "top1": 3.57,
+   "top10": 25.8,
+   "cash": 76.8,
+   "roi": -12.2,
+   "roit": {
+    "small": 91.4,
+    "mid": -12.2,
+    "large": -64.1
+   }
+  },
+  {
+   "p": [
+    4,
+    15,
+    19,
+    13,
+    21,
+    7,
+    23,
+    16
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 255.24,
+   "ceil": 363.79,
+   "sal": 50000,
+   "own": 243.4,
+   "dup": 4.6024,
+   "src": "ceiling lam=0.5",
+   "top1": 4.7,
+   "top10": 30.3,
+   "cash": 79.1,
+   "roi": 54.1,
+   "roit": {
+    "small": 135.3,
+    "mid": 54.1,
+    "large": -4.9
+   }
+  },
+  {
+   "p": [
+    4,
+    7,
+    31,
+    24,
+    10,
+    6,
+    23,
+    21
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 259.84,
+   "ceil": 368.64,
+   "sal": 50000,
+   "own": 240.9,
+   "dup": 3.8657,
+   "src": "ceiling lam=0.5",
+   "top1": 7.7,
+   "top10": 36.0,
+   "cash": 82.5,
+   "port": 18,
+   "roi": 199.4,
+   "roit": {
+    "small": 231.5,
+    "mid": 199.4,
+    "large": 73.9
+   }
+  },
+  {
+   "p": [
+    2,
+    6,
+    23,
+    13,
+    30,
+    14,
+    19,
+    21
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 238.76,
+   "ceil": 343.21,
+   "sal": 49900,
+   "own": 211.0,
+   "dup": 1.5335,
+   "src": "ceiling lam=1.0",
+   "top1": 1.41,
+   "top10": 12.5,
+   "cash": 53.9,
+   "roi": -38.5,
+   "roit": {
+    "small": -10.7,
+    "mid": -38.5,
+    "large": -55.6
+   }
+  },
+  {
+   "p": [
+    6,
+    15,
+    23,
+    13,
+    21,
+    2,
+    19,
+    28
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 241.35,
+   "ceil": 345.32,
+   "sal": 49900,
+   "own": 215.0,
+   "dup": 1.8276,
+   "src": "ceiling lam=1.0",
+   "top1": 1.61,
+   "top10": 14.2,
+   "cash": 57.3,
+   "roi": -30.2,
+   "roit": {
+    "small": 1.4,
+    "mid": -30.2,
+    "large": -49.4
+   }
+  },
+  {
+   "p": [
+    6,
+    15,
+    23,
+    19,
+    21,
+    14,
+    24,
+    3
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 240.97,
+   "ceil": 344.38,
+   "sal": 49800,
+   "own": 214.3,
+   "dup": 1.7906,
+   "src": "ceiling lam=1.0",
+   "top1": 1.74,
+   "top10": 13.8,
+   "cash": 55.5,
+   "roi": -27.0,
+   "roit": {
+    "small": 2.1,
+    "mid": -27.0,
+    "large": -42.9
+   }
+  },
+  {
+   "p": [
+    2,
+    6,
+    16,
+    24,
+    21,
+    14,
+    19,
+    23
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 235.81,
+   "ceil": 340.6,
+   "sal": 49900,
+   "own": 207.1,
+   "dup": 1.2186,
+   "src": "ceiling lam=1.0",
+   "top1": 1.32,
+   "top10": 11.0,
+   "cash": 49.2,
+   "roi": -34.0,
+   "roit": {
+    "small": -17.3,
+    "mid": -34.0,
+    "large": -43.5
+   }
+  },
+  {
+   "p": [
+    28,
+    6,
+    23,
+    19,
+    21,
+    14,
+    13,
+    3
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 237.92,
+   "ceil": 340.88,
+   "sal": 49800,
+   "own": 209.7,
+   "dup": 1.4308,
+   "src": "ceiling lam=1.0",
+   "top1": 1.31,
+   "top10": 11.2,
+   "cash": 51.5,
+   "roi": -39.8,
+   "roit": {
+    "small": -16.8,
+    "mid": -39.8,
+    "large": -55.6
+   }
+  },
+  {
+   "p": [
+    6,
+    2,
+    23,
+    19,
+    21,
+    15,
+    18,
+    24
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 239.49,
+   "ceil": 343.4,
+   "sal": 49500,
+   "own": 213.7,
+   "dup": 1.71,
+   "src": "ceiling lam=1.0",
+   "top1": 1.33,
+   "top10": 12.3,
+   "cash": 54.2,
+   "roi": -42.2,
+   "roit": {
+    "small": -11.2,
+    "mid": -42.2,
+    "large": -57.5
+   }
+  },
+  {
+   "p": [
+    4,
+    2,
+    23,
+    30,
+    21,
+    14,
+    19,
+    15
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 246.75,
+   "ceil": 351.93,
+   "sal": 49900,
+   "own": 225.2,
+   "dup": 2.6557,
+   "src": "ceiling lam=1.0",
+   "top1": 2.67,
+   "top10": 18.7,
+   "cash": 65.5,
+   "roi": -1.0,
+   "roit": {
+    "small": 46.0,
+    "mid": -1.0,
+    "large": -37.0
+   }
+  },
+  {
+   "p": [
+    2,
+    6,
+    16,
+    19,
+    21,
+    40,
+    23,
+    4
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 246.5,
+   "ceil": 352.58,
+   "sal": 49900,
+   "own": 257.6,
+   "dup": 7.6834,
+   "src": "ceiling lam=1.0",
+   "top1": 2.4,
+   "top10": 19.3,
+   "cash": 66.3,
+   "roi": -26.2,
+   "roit": {
+    "small": 45.7,
+    "mid": -26.2,
+    "large": -63.1
+   }
+  },
+  {
+   "p": [
+    4,
+    2,
+    19,
+    23,
+    21,
+    14,
+    24,
+    18
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 242.82,
+   "ceil": 348.17,
+   "sal": 50000,
+   "own": 218.9,
+   "dup": 1.9333,
+   "src": "ceiling lam=1.0",
+   "top1": 2.23,
+   "top10": 16.4,
+   "cash": 60.3,
+   "roi": -7.9,
+   "roit": {
+    "small": 24.9,
+    "mid": -7.9,
+    "large": -39.0
+   }
+  },
+  {
+   "p": [
+    2,
+    15,
+    16,
+    19,
+    21,
+    14,
+    13,
+    24
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 233.36,
+   "ceil": 336.35,
+   "sal": 49900,
+   "own": 192.4,
+   "dup": 0.6804,
+   "src": "ceiling lam=1.0",
+   "top1": 1.07,
+   "top10": 9.1,
+   "cash": 45.5,
+   "roi": -45.2,
+   "roit": {
+    "small": -29.0,
+    "mid": -45.2,
+    "large": -55.3
+   }
+  },
+  {
+   "p": [
+    4,
+    6,
+    23,
+    13,
+    21,
+    15,
+    14,
+    24
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 240.71,
+   "ceil": 343.04,
+   "sal": 50000,
+   "own": 197.8,
+   "dup": 1.0038,
+   "src": "ceiling lam=1.0",
+   "top1": 1.8,
+   "top10": 14.6,
+   "cash": 56.5,
+   "roi": -13.6,
+   "roit": {
+    "small": 9.1,
+    "mid": -13.6,
+    "large": -27.4
+   }
+  },
+  {
+   "p": [
+    6,
+    15,
+    31,
+    23,
+    3,
+    2,
+    19,
+    40
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 242.26,
+   "ceil": 345.33,
+   "sal": 50000,
+   "own": 244.2,
+   "dup": 5.0009,
+   "src": "ceiling lam=1.0",
+   "top1": 1.51,
+   "top10": 12.8,
+   "cash": 56.8,
+   "roi": -38.2,
+   "roit": {
+    "small": -1.7,
+    "mid": -38.2,
+    "large": -66.3
+   }
+  },
+  {
+   "p": [
+    28,
+    6,
+    16,
+    24,
+    3,
+    14,
+    23,
+    13
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 223.05,
+   "ceil": 322.42,
+   "sal": 50000,
+   "own": 165.8,
+   "dup": 0.2376,
+   "src": "ceiling lam=1.5",
+   "top1": 0.45,
+   "top10": 4.7,
+   "cash": 30.2,
+   "roi": -72.1,
+   "roit": {
+    "small": -63.5,
+    "mid": -72.1,
+    "large": -75.7
+   }
+  },
+  {
+   "p": [
+    6,
+    2,
+    23,
+    24,
+    30,
+    14,
+    18,
+    13
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 225.04,
+   "ceil": 325.41,
+   "sal": 49900,
+   "own": 169.1,
+   "dup": 0.2871,
+   "src": "ceiling lam=1.5",
+   "top1": 0.52,
+   "top10": 5.4,
+   "cash": 32.7,
+   "roi": -68.5,
+   "roit": {
+    "small": -60.1,
+    "mid": -68.5,
+    "large": -72.7
+   }
+  },
+  {
+   "p": [
+    6,
+    2,
+    14,
+    24,
+    30,
+    28,
+    16,
+    13
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 216.84,
+   "ceil": 316.19,
+   "sal": 49700,
+   "own": 148.1,
+   "dup": 0.1075,
+   "src": "ceiling lam=1.5",
+   "top1": 0.3,
+   "top10": 3.3,
+   "cash": 23.2,
+   "roi": -81.9,
+   "roit": {
+    "small": -75.4,
+    "mid": -81.9,
+    "large": -83.2
+   }
+  },
+  {
+   "p": [
+    2,
+    6,
+    16,
+    18,
+    30,
+    14,
+    33,
+    13
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 219.43,
+   "ceil": 317.99,
+   "sal": 50000,
+   "own": 150.5,
+   "dup": 0.1235,
    "src": "ceiling lam=1.5",
    "top1": 0.38,
-   "top10": 4.2,
-   "cash": 27.5,
-   "roi": -77.1,
+   "top10": 3.9,
+   "cash": 25.6,
+   "roi": -77.4,
    "roit": {
-    "small": -69.4,
-    "mid": -77.1,
-    "large": -79.0
+    "small": -70.7,
+    "mid": -77.4,
+    "large": -79.9
+   }
+  },
+  {
+   "p": [
+    6,
+    14,
+    16,
+    33,
+    3,
+    28,
+    18,
+    13
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 218.59,
+   "ceil": 315.66,
+   "sal": 49900,
+   "own": 149.1,
+   "dup": 0.1152,
+   "src": "ceiling lam=1.5",
+   "top1": 0.32,
+   "top10": 3.5,
+   "cash": 24.3,
+   "roi": -80.0,
+   "roit": {
+    "small": -73.7,
+    "mid": -80.0,
+    "large": -82.1
+   }
+  },
+  {
+   "p": [
+    2,
+    14,
+    16,
+    19,
+    30,
+    6,
+    24,
+    18
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 224.23,
+   "ceil": 325.62,
+   "sal": 49800,
+   "own": 174.7,
+   "dup": 0.2982,
+   "src": "ceiling lam=1.5",
+   "top1": 0.45,
+   "top10": 5.0,
+   "cash": 31.6,
+   "roi": -63.4,
+   "roit": {
+    "small": -62.3,
+    "mid": -63.4,
+    "large": -59.9
+   }
+  },
+  {
+   "p": [
+    6,
+    14,
+    16,
+    18,
+    30,
+    15,
+    24,
+    13
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 213.37,
+   "ceil": 310.02,
+   "sal": 48000,
+   "own": 147.0,
+   "dup": 0.1123,
+   "src": "ceiling lam=1.5",
+   "top1": 0.15,
+   "top10": 1.9,
+   "cash": 18.9,
+   "roi": -88.9,
+   "roit": {
+    "small": -86.2,
+    "mid": -88.9,
+    "large": -89.4
+   }
+  },
+  {
+   "p": [
+    6,
+    2,
+    16,
+    23,
+    30,
+    15,
+    24,
+    13
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 226.42,
+   "ceil": 326.89,
+   "sal": 49900,
+   "own": 171.8,
+   "dup": 0.3168,
+   "src": "ceiling lam=1.5",
+   "top1": 0.57,
+   "top10": 5.8,
+   "cash": 35.0,
+   "roi": -63.9,
+   "roit": {
+    "small": -55.1,
+    "mid": -63.9,
+    "large": -69.2
+   }
+  },
+  {
+   "p": [
+    6,
+    2,
+    31,
+    16,
+    30,
+    14,
+    19,
+    13
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 227.39,
+   "ceil": 328.75,
+   "sal": 49900,
+   "own": 178.9,
+   "dup": 0.3854,
+   "src": "ceiling lam=1.5",
+   "top1": 0.65,
+   "top10": 5.9,
+   "cash": 35.4,
+   "roi": -66.6,
+   "roit": {
+    "small": -54.4,
+    "mid": -66.6,
+    "large": -71.3
+   }
+  },
+  {
+   "p": [
+    6,
+    28,
+    16,
+    19,
+    30,
+    14,
+    13,
+    3
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 225.19,
+   "ceil": 325.24,
+   "sal": 49900,
+   "own": 175.2,
+   "dup": 0.3105,
+   "src": "ceiling lam=1.5",
+   "top1": 0.47,
+   "top10": 5.1,
+   "cash": 32.2,
+   "roi": -71.5,
+   "roit": {
+    "small": -62.3,
+    "mid": -71.5,
+    "large": -75.1
+   }
+  },
+  {
+   "p": [
+    6,
+    40,
+    16,
+    24,
+    3,
+    14,
+    15,
+    13
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 225.95,
+   "ceil": 324.6,
+   "sal": 49900,
+   "own": 191.8,
+   "dup": 0.5977,
+   "src": "ceiling lam=1.5",
+   "top1": 0.49,
+   "top10": 5.1,
+   "cash": 32.8,
+   "roi": -72.1,
+   "roit": {
+    "small": -61.0,
+    "mid": -72.1,
+    "large": -76.5
+   }
+  },
+  {
+   "p": [
+    28,
+    2,
+    14,
+    18,
+    30,
+    6,
+    19,
+    13
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 227.24,
+   "ceil": 328.2,
+   "sal": 50000,
+   "own": 177.9,
+   "dup": 0.3594,
+   "src": "ceiling lam=1.5",
+   "top1": 0.58,
+   "top10": 5.8,
+   "cash": 35.0,
+   "roi": -66.9,
+   "roit": {
+    "small": -56.2,
+    "mid": -66.9,
+    "large": -71.3
    }
   },
   {
@@ -6548,11 +6547,11 @@
     "F",
     "UTIL"
    ],
-   "proj": 164.8,
-   "ceil": 254.55,
+   "proj": 165.15,
+   "ceil": 254.9,
    "sal": 43000,
    "own": 105.1,
-   "dup": 0.0068,
+   "dup": 0.0069,
    "src": "ceiling lam=2.5",
    "top1": 0.0,
    "top10": 0.1,
@@ -6585,10 +6584,10 @@
     "F",
     "UTIL"
    ],
-   "proj": 174.14,
-   "ceil": 265.84,
+   "proj": 174.48,
+   "ceil": 266.19,
    "sal": 44100,
-   "own": 112.6,
+   "own": 112.5,
    "dup": 0.0118,
    "src": "ceiling lam=2.5",
    "top1": 0.01,
@@ -6606,11 +6605,11 @@
     34,
     28,
     16,
-    26,
+    18,
     30,
     11,
-    24,
-    18
+    26,
+    24
    ],
    "s": [
     "PG",
@@ -6622,11 +6621,11 @@
     "F",
     "UTIL"
    ],
-   "proj": 163.14,
-   "ceil": 253.04,
+   "proj": 163.66,
+   "ceil": 253.55,
    "sal": 41700,
-   "own": 106.0,
-   "dup": 0.0079,
+   "own": 106.2,
+   "dup": 0.008,
    "src": "ceiling lam=2.5",
    "top1": 0.0,
    "top10": 0.0,
@@ -6640,49 +6639,12 @@
   },
   {
    "p": [
-    34,
-    14,
-    16,
-    24,
-    30,
     11,
-    18,
-    27
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 172.12,
-   "ceil": 262.26,
-   "sal": 43300,
-   "own": 111.7,
-   "dup": 0.0117,
-   "src": "ceiling lam=2.5",
-   "top1": 0.01,
-   "top10": 0.1,
-   "cash": 2.5,
-   "roi": -99.2,
-   "roit": {
-    "small": -99.1,
-    "mid": -99.2,
-    "large": -99.2
-   }
-  },
-  {
-   "p": [
     28,
-    14,
     33,
     16,
     30,
-    11,
+    14,
     13,
     26
    ],
@@ -6696,8 +6658,8 @@
     "F",
     "UTIL"
    ],
-   "proj": 174.76,
-   "ceil": 266.04,
+   "proj": 175.11,
+   "ceil": 266.41,
    "sal": 43900,
    "own": 113.8,
    "dup": 0.0131,
@@ -6714,13 +6676,13 @@
   },
   {
    "p": [
-    28,
+    34,
     14,
+    27,
     16,
-    13,
-    32,
+    30,
     11,
-    26,
+    18,
     24
    ],
    "s": [
@@ -6733,32 +6695,32 @@
     "F",
     "UTIL"
    ],
-   "proj": 169.2,
-   "ceil": 259.92,
-   "sal": 44500,
-   "own": 107.3,
-   "dup": 0.0068,
+   "proj": 172.37,
+   "ceil": 262.51,
+   "sal": 43300,
+   "own": 111.6,
+   "dup": 0.0116,
    "src": "ceiling lam=2.5",
-   "top1": 0.0,
+   "top1": 0.01,
    "top10": 0.1,
-   "cash": 2.2,
-   "roi": -99.3,
+   "cash": 2.4,
+   "roi": -99.2,
    "roit": {
-    "small": -99.3,
-    "mid": -99.3,
-    "large": -99.3
+    "small": -99.1,
+    "mid": -99.2,
+    "large": -99.2
    }
   },
   {
    "p": [
-    11,
+    28,
     14,
     16,
-    13,
-    30,
-    34,
-    27,
-    28
+    26,
+    32,
+    11,
+    24,
+    13
    ],
    "s": [
     "PG",
@@ -6770,11 +6732,85 @@
     "F",
     "UTIL"
    ],
-   "proj": 173.99,
-   "ceil": 264.16,
+   "proj": 169.72,
+   "ceil": 260.45,
+   "sal": 44500,
+   "own": 107.5,
+   "dup": 0.0069,
+   "src": "ceiling lam=2.5",
+   "top1": 0.0,
+   "top10": 0.1,
+   "cash": 2.2,
+   "roi": -99.3,
+   "roit": {
+    "small": -99.2,
+    "mid": -99.3,
+    "large": -99.3
+   }
+  },
+  {
+   "p": [
+    11,
+    28,
+    33,
+    16,
+    30,
+    34,
+    24,
+    14
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 169.15,
+   "ceil": 260.6,
+   "sal": 41600,
+   "own": 111.9,
+   "dup": 0.0131,
+   "src": "ceiling lam=2.5",
+   "top1": 0.0,
+   "top10": 0.1,
+   "cash": 2.1,
+   "roi": -99.3,
+   "roit": {
+    "small": -99.1,
+    "mid": -99.3,
+    "large": -99.3
+   }
+  },
+  {
+   "p": [
+    11,
+    14,
+    27,
+    16,
+    30,
+    28,
+    13,
+    34
+   ],
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "proj": 174.23,
+   "ceil": 264.43,
    "sal": 43700,
-   "own": 113.0,
-   "dup": 0.0125,
+   "own": 112.9,
+   "dup": 0.0124,
    "src": "ceiling lam=2.5",
    "top1": 0.0,
    "top10": 0.1,
@@ -6789,13 +6825,13 @@
   {
    "p": [
     11,
-    28,
-    27,
-    33,
-    30,
     14,
-    18,
-    16
+    27,
+    16,
+    30,
+    28,
+    33,
+    18
    ],
    "s": [
     "PG",
@@ -6807,11 +6843,11 @@
     "F",
     "UTIL"
    ],
-   "proj": 172.74,
-   "ceil": 262.46,
+   "proj": 173.0,
+   "ceil": 262.73,
    "sal": 43100,
-   "own": 113.0,
-   "dup": 0.013,
+   "own": 112.9,
+   "dup": 0.0129,
    "src": "ceiling lam=2.5",
    "top1": 0.0,
    "top10": 0.1,
@@ -6827,12 +6863,12 @@
    "p": [
     11,
     14,
-    27,
     16,
+    18,
     32,
     28,
-    24,
-    18
+    27,
+    24
    ],
    "s": [
     "PG",
@@ -6844,11 +6880,11 @@
     "F",
     "UTIL"
    ],
-   "proj": 167.18,
-   "ceil": 256.34,
+   "proj": 167.61,
+   "ceil": 256.77,
    "sal": 43700,
-   "own": 106.4,
-   "dup": 0.0067,
+   "own": 106.5,
+   "dup": 0.0068,
    "src": "ceiling lam=2.5",
    "top1": 0.0,
    "top10": 0.1,
@@ -6862,12 +6898,12 @@
   },
   {
    "p": [
-    11,
+    34,
     14,
     16,
     18,
     32,
-    34,
+    11,
     24,
     13
    ],
@@ -6881,15 +6917,15 @@
     "F",
     "UTIL"
    ],
-   "proj": 176.52,
-   "ceil": 267.63,
+   "proj": 176.94,
+   "ceil": 268.06,
    "sal": 44800,
-   "own": 113.9,
+   "own": 114.0,
    "dup": 0.0116,
    "src": "ceiling lam=2.5",
    "top1": 0.0,
    "top10": 0.2,
-   "cash": 3.5,
+   "cash": 3.6,
    "roi": -98.6,
    "roit": {
     "small": -98.3,
@@ -6899,51 +6935,14 @@
   },
   {
    "p": [
-    34,
-    28,
-    33,
-    27,
-    30,
-    11,
-    24,
-    16
-   ],
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "proj": 156.16,
-   "ceil": 245.11,
-   "sal": 40000,
-   "own": 102.2,
-   "dup": 0.0064,
-   "src": "ceiling lam=2.5",
-   "top1": 0.0,
-   "top10": 0.0,
-   "cash": 0.7,
-   "roi": -99.9,
-   "roit": {
-    "small": -99.9,
-    "mid": -99.9,
-    "large": -99.9
-   }
-  },
-  {
-   "p": [
-    11,
-    28,
-    33,
+    35,
+    14,
+    16,
     18,
     30,
-    14,
-    24,
-    26
+    11,
+    26,
+    24
    ],
    "s": [
     "PG",
@@ -6955,20 +6954,20 @@
     "F",
     "UTIL"
    ],
-   "proj": 168.26,
-   "ceil": 258.93,
-   "sal": 42200,
-   "own": 110.8,
-   "dup": 0.0109,
+   "proj": 167.06,
+   "ceil": 257.08,
+   "sal": 43300,
+   "own": 107.1,
+   "dup": 0.0071,
    "src": "ceiling lam=2.5",
    "top1": 0.0,
    "top10": 0.1,
-   "cash": 1.9,
-   "roi": -99.4,
+   "cash": 1.6,
+   "roi": -99.5,
    "roit": {
-    "small": -99.3,
-    "mid": -99.4,
-    "large": -99.4
+    "small": -99.5,
+    "mid": -99.5,
+    "large": -99.5
    }
   },
   {
@@ -6982,11 +6981,11 @@
     18,
     10
    ],
-   "proj": 256.0,
-   "ceil": 362.23,
+   "proj": 256.28,
+   "ceil": 362.54,
    "sal": 49400,
-   "own": 257.6,
-   "dup": 6.2707,
+   "own": 258.6,
+   "dup": 6.3823,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -7001,31 +7000,31 @@
     "UTIL"
    ],
    "top1": 4.4,
-   "top10": 29.3,
-   "cash": 78.5,
-   "roi": 24.2,
+   "top10": 29.1,
+   "cash": 78.3,
+   "roi": 24.4,
    "roit": {
-    "small": 124.5,
-    "mid": 24.2,
-    "large": -37.6
+    "small": 123.2,
+    "mid": 24.4,
+    "large": -38.1
    }
   },
   {
    "p": [
     6,
     40,
-    39,
-    24,
-    21,
-    4,
     23,
-    0
+    24,
+    0,
+    4,
+    39,
+    21
    ],
-   "proj": 227.57,
-   "ceil": 327.25,
+   "proj": 227.95,
+   "ceil": 327.62,
    "sal": 50000,
-   "own": 218.2,
-   "dup": 1.1872,
+   "own": 219.7,
+   "dup": 1.2257,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -7039,14 +7038,14 @@
     "F",
     "UTIL"
    ],
-   "top1": 3.74,
-   "top10": 19.3,
+   "top1": 3.81,
+   "top10": 19.2,
    "cash": 46.3,
-   "roi": 60.8,
+   "roi": 61.1,
    "roit": {
-    "small": 82.8,
-    "mid": 60.8,
-    "large": 20.5
+    "small": 82.7,
+    "mid": 61.1,
+    "large": 26.9
    }
   },
   {
@@ -7060,11 +7059,11 @@
     42,
     21
    ],
-   "proj": 214.62,
-   "ceil": 313.71,
+   "proj": 215.27,
+   "ceil": 314.35,
    "sal": 49700,
-   "own": 199.4,
-   "dup": 0.3024,
+   "own": 201.4,
+   "dup": 0.3171,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -7078,32 +7077,32 @@
     "F",
     "UTIL"
    ],
-   "top1": 2.88,
+   "top1": 2.92,
    "top10": 13.0,
-   "cash": 35.6,
-   "roi": 13.5,
+   "cash": 35.7,
+   "roi": 16.2,
    "roit": {
-    "small": 28.2,
-    "mid": 13.5,
-    "large": -14.6
+    "small": 29.0,
+    "mid": 16.2,
+    "large": -10.6
    }
   },
   {
    "p": [
-    1,
+    11,
     45,
     23,
     33,
     21,
-    11,
+    1,
     19,
     10
    ],
-   "proj": 243.16,
-   "ceil": 343.12,
+   "proj": 243.34,
+   "ceil": 343.33,
    "sal": 49100,
-   "own": 239.3,
-   "dup": 0.9426,
+   "own": 238.5,
+   "dup": 0.9284,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -7117,14 +7116,14 @@
     "F",
     "UTIL"
    ],
-   "top1": 3.71,
-   "top10": 19.0,
-   "cash": 57.9,
-   "roi": 77.0,
+   "top1": 3.68,
+   "top10": 18.8,
+   "cash": 57.6,
+   "roi": 74.1,
    "roit": {
-    "small": 79.1,
-    "mid": 77.0,
-    "large": 38.4
+    "small": 78.0,
+    "mid": 74.1,
+    "large": 51.2
    }
   },
   {
@@ -7133,16 +7132,16 @@
     28,
     19,
     16,
-    0,
+    10,
     34,
     37,
-    10
+    0
    ],
-   "proj": 210.03,
-   "ceil": 305.18,
+   "proj": 210.25,
+   "ceil": 305.42,
    "sal": 50000,
-   "own": 170.4,
-   "dup": 0.103,
+   "own": 169.7,
+   "dup": 0.102,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -7156,32 +7155,32 @@
     "F",
     "UTIL"
    ],
-   "top1": 2.04,
-   "top10": 9.8,
-   "cash": 30.5,
-   "roi": 9.2,
+   "top1": 2.01,
+   "top10": 9.7,
+   "cash": 30.3,
+   "roi": 8.1,
    "roit": {
-    "small": -2.1,
-    "mid": 9.2,
-    "large": -6.3
+    "small": -3.7,
+    "mid": 8.1,
+    "large": -5.9
    }
   },
   {
    "p": [
-    11,
-    40,
-    31,
-    19,
-    21,
     1,
+    40,
+    19,
     24,
+    21,
+    11,
+    31,
     10
    ],
-   "proj": 251.2,
-   "ceil": 355.71,
+   "proj": 251.66,
+   "ceil": 356.19,
    "sal": 49500,
-   "own": 266.1,
-   "dup": 4.0724,
+   "own": 267.0,
+   "dup": 4.1836,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -7195,15 +7194,15 @@
     "F",
     "UTIL"
    ],
-   "top1": 6.32,
-   "top10": 26.7,
+   "top1": 6.4,
+   "top10": 26.8,
    "cash": 68.1,
-   "port": 15,
-   "roi": 176.9,
+   "port": 16,
+   "roi": 171.9,
    "roit": {
-    "small": 180.9,
-    "mid": 176.9,
-    "large": 62.8
+    "small": 180.2,
+    "mid": 171.9,
+    "large": 58.5
    }
   },
   {
@@ -7217,11 +7216,11 @@
     49,
     21
    ],
-   "proj": 253.21,
-   "ceil": 358.79,
+   "proj": 253.58,
+   "ceil": 359.21,
    "sal": 49800,
-   "own": 231.6,
-   "dup": 0.596,
+   "own": 231.4,
+   "dup": 0.5941,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -7235,14 +7234,14 @@
     "F",
     "UTIL"
    ],
-   "top1": 2.9,
+   "top1": 2.96,
    "top10": 23.6,
-   "cash": 76.0,
-   "roi": 26.7,
+   "cash": 75.7,
+   "roi": 32.2,
    "roit": {
-    "small": 75.0,
-    "mid": 26.7,
-    "large": 1.8
+    "small": 75.4,
+    "mid": 32.2,
+    "large": 3.2
    }
   },
   {
@@ -7251,16 +7250,16 @@
     15,
     27,
     16,
-    21,
+    47,
     7,
     23,
-    47
+    21
    ],
-   "proj": 252.01,
-   "ceil": 357.87,
+   "proj": 252.31,
+   "ceil": 358.2,
    "sal": 49900,
-   "own": 230.0,
-   "dup": 1.1567,
+   "own": 230.1,
+   "dup": 1.1458,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -7274,32 +7273,32 @@
     "F",
     "UTIL"
    ],
-   "top1": 2.72,
-   "top10": 22.9,
-   "cash": 74.9,
-   "roi": 47.9,
+   "top1": 2.7,
+   "top10": 22.8,
+   "cash": 74.6,
+   "roi": 39.0,
    "roit": {
-    "small": 75.5,
-    "mid": 47.9,
-    "large": 12.9
+    "small": 74.7,
+    "mid": 39.0,
+    "large": 9.2
    }
   },
   {
    "p": [
     4,
-    15,
-    31,
-    13,
-    0,
     40,
+    31,
     33,
-    21
+    21,
+    15,
+    13,
+    0
    ],
-   "proj": 231.95,
-   "ceil": 330.16,
+   "proj": 232.13,
+   "ceil": 330.37,
    "sal": 50000,
-   "own": 211.4,
-   "dup": 1.2856,
+   "own": 212.5,
+   "dup": 1.3022,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -7313,15 +7312,15 @@
     "F",
     "UTIL"
    ],
-   "top1": 4.92,
-   "top10": 22.1,
-   "cash": 48.6,
-   "port": 13,
-   "roi": 119.6,
+   "top1": 4.82,
+   "top10": 21.8,
+   "cash": 48.4,
+   "port": 15,
+   "roi": 117.4,
    "roit": {
-    "small": 124.3,
-    "mid": 119.6,
-    "large": 70.4
+    "small": 120.8,
+    "mid": 117.4,
+    "large": 64.4
    }
   },
   {
@@ -7335,11 +7334,11 @@
     14,
     47
    ],
-   "proj": 255.79,
-   "ceil": 363.11,
+   "proj": 255.89,
+   "ceil": 363.21,
    "sal": 49800,
-   "own": 274.5,
-   "dup": 8.3696,
+   "own": 275.3,
+   "dup": 8.4076,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -7353,14 +7352,132 @@
     "F",
     "UTIL"
    ],
-   "top1": 3.86,
-   "top10": 28.2,
-   "cash": 80.7,
-   "roi": 31.4,
+   "top1": 3.76,
+   "top10": 27.7,
+   "cash": 80.4,
+   "roi": 28.2,
    "roit": {
-    "small": 126.0,
-    "mid": 31.4,
-    "large": -39.7
+    "small": 120.9,
+    "mid": 28.2,
+    "large": -43.7
+   }
+  },
+  {
+   "p": [
+    1,
+    28,
+    14,
+    19,
+    21,
+    7,
+    23,
+    40
+   ],
+   "proj": 265.38,
+   "ceil": 376.54,
+   "sal": 49900,
+   "own": 294.1,
+   "dup": 15.3903,
+   "src": "scenario",
+   "freq": 1,
+   "optin": true,
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "top1": 7.27,
+   "top10": 44.6,
+   "cash": 91.6,
+   "port": 27,
+   "roi": 29.0,
+   "roit": {
+    "small": 244.4,
+    "mid": 29.0,
+    "large": -51.6
+   }
+  },
+  {
+   "p": [
+    11,
+    15,
+    33,
+    44,
+    10,
+    28,
+    18,
+    0
+   ],
+   "proj": 211.9,
+   "ceil": 304.41,
+   "sal": 50000,
+   "own": 154.5,
+   "dup": 0.072,
+   "src": "scenario",
+   "freq": 1,
+   "optin": true,
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "top1": 2.06,
+   "top10": 10.3,
+   "cash": 30.6,
+   "roi": 5.1,
+   "roit": {
+    "small": 0.7,
+    "mid": 5.1,
+    "large": -0.8
+   }
+  },
+  {
+   "p": [
+    34,
+    7,
+    14,
+    30,
+    0,
+    4,
+    31,
+    60
+   ],
+   "proj": 222.17,
+   "ceil": 321.86,
+   "sal": 49800,
+   "own": 173.1,
+   "dup": 0.1431,
+   "src": "scenario",
+   "freq": 1,
+   "optin": true,
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "top1": 2.13,
+   "top10": 14.4,
+   "cash": 40.7,
+   "roi": 3.3,
+   "roit": {
+    "small": 19.8,
+    "mid": 3.3,
+    "large": -7.6
    }
   },
   {
@@ -7374,11 +7491,11 @@
     31,
     15
    ],
-   "proj": 258.93,
-   "ceil": 365.03,
+   "proj": 259.29,
+   "ceil": 365.43,
    "sal": 49900,
-   "own": 260.5,
-   "dup": 2.9594,
+   "own": 261.5,
+   "dup": 3.0011,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -7393,31 +7510,31 @@
     "UTIL"
    ],
    "top1": 4.75,
-   "top10": 31.0,
+   "top10": 30.8,
    "cash": 82.4,
-   "roi": 70.4,
+   "roi": 72.7,
    "roit": {
-    "small": 154.7,
-    "mid": 70.4,
-    "large": 1.3
+    "small": 152.2,
+    "mid": 72.7,
+    "large": 2.2
    }
   },
   {
    "p": [
-    1,
     45,
+    7,
     19,
     33,
     10,
-    7,
+    1,
     23,
     21
    ],
-   "proj": 265.62,
-   "ceil": 373.11,
+   "proj": 265.85,
+   "ceil": 373.38,
    "sal": 49900,
-   "own": 273.6,
-   "dup": 4.0399,
+   "own": 273.2,
+   "dup": 3.983,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -7431,15 +7548,15 @@
     "F",
     "UTIL"
    ],
-   "top1": 8.97,
-   "top10": 44.9,
-   "cash": 90.6,
-   "port": 12,
-   "roi": 180.7,
+   "top1": 8.87,
+   "top10": 44.6,
+   "cash": 90.4,
+   "port": 13,
+   "roi": 175.3,
    "roit": {
-    "small": 291.9,
-    "mid": 180.7,
-    "large": 59.5
+    "small": 289.6,
+    "mid": 175.3,
+    "large": 61.1
    }
   },
   {
@@ -7447,17 +7564,17 @@
     11,
     35,
     19,
-    37,
+    23,
     0,
     7,
-    23,
+    37,
     21
    ],
-   "proj": 219.38,
-   "ceil": 320.29,
+   "proj": 219.84,
+   "ceil": 320.76,
    "sal": 49900,
-   "own": 203.3,
-   "dup": 0.3402,
+   "own": 203.8,
+   "dup": 0.3436,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -7471,33 +7588,33 @@
     "F",
     "UTIL"
    ],
-   "top1": 3.47,
+   "top1": 3.5,
    "top10": 15.7,
    "cash": 39.4,
-   "port": 33,
-   "roi": 91.5,
+   "port": 32,
+   "roi": 94.2,
    "roit": {
-    "small": 61.2,
-    "mid": 91.5,
-    "large": 62.9
+    "small": 61.5,
+    "mid": 94.2,
+    "large": 79.0
    }
   },
   {
    "p": [
+    4,
     28,
-    40,
     31,
-    19,
+    30,
     10,
     1,
-    30,
-    4
+    19,
+    40
    ],
-   "proj": 259.85,
-   "ceil": 365.65,
+   "proj": 260.11,
+   "ceil": 365.95,
    "sal": 49600,
-   "own": 272.6,
-   "dup": 6.0707,
+   "own": 273.2,
+   "dup": 6.1218,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -7511,32 +7628,32 @@
     "F",
     "UTIL"
    ],
-   "top1": 5.25,
-   "top10": 32.6,
-   "cash": 83.8,
-   "roi": 56.5,
+   "top1": 5.12,
+   "top10": 32.3,
+   "cash": 83.7,
+   "roi": 51.6,
    "roit": {
-    "small": 172.2,
-    "mid": 56.5,
-    "large": -22.4
+    "small": 168.9,
+    "mid": 51.6,
+    "large": -21.9
    }
   },
   {
    "p": [
     1,
-    45,
+    7,
     23,
     13,
     21,
-    7,
-    24,
-    19
+    45,
+    19,
+    24
    ],
-   "proj": 255.11,
-   "ceil": 361.68,
+   "proj": 255.7,
+   "ceil": 362.3,
    "sal": 50000,
-   "own": 250.7,
-   "dup": 1.9323,
+   "own": 251.2,
+   "dup": 1.958,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -7550,32 +7667,32 @@
     "F",
     "UTIL"
    ],
-   "top1": 4.54,
-   "top10": 29.6,
+   "top1": 4.64,
+   "top10": 29.7,
    "cash": 80.9,
-   "roi": 95.9,
+   "roi": 101.5,
    "roit": {
-    "small": 142.0,
-    "mid": 95.9,
-    "large": 36.0
+    "small": 144.9,
+    "mid": 101.5,
+    "large": 36.5
    }
   },
   {
    "p": [
     2,
     15,
+    31,
     16,
-    33,
     10,
     7,
-    31,
+    33,
     21
    ],
-   "proj": 249.92,
-   "ceil": 356.19,
+   "proj": 249.82,
+   "ceil": 356.13,
    "sal": 49800,
-   "own": 216.5,
-   "dup": 1.3788,
+   "own": 215.6,
+   "dup": 1.3355,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -7589,32 +7706,32 @@
     "F",
     "UTIL"
    ],
-   "top1": 3.56,
-   "top10": 22.0,
-   "cash": 69.4,
-   "roi": 74.7,
+   "top1": 3.41,
+   "top10": 21.5,
+   "cash": 68.7,
+   "roi": 61.5,
    "roit": {
-    "small": 82.2,
-    "mid": 74.7,
-    "large": 40.7
+    "small": 76.5,
+    "mid": 61.5,
+    "large": 35.9
    }
   },
   {
    "p": [
     1,
     6,
-    39,
     19,
+    39,
     21,
     4,
     24,
     47
    ],
-   "proj": 248.46,
-   "ceil": 353.79,
+   "proj": 248.92,
+   "ceil": 354.26,
    "sal": 49900,
    "own": 226.3,
-   "dup": 0.9158,
+   "dup": 0.9166,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -7628,14 +7745,14 @@
     "F",
     "UTIL"
    ],
-   "top1": 2.97,
+   "top1": 2.94,
    "top10": 20.9,
-   "cash": 70.2,
-   "roi": 45.3,
+   "cash": 70.3,
+   "roi": 42.7,
    "roit": {
-    "small": 75.7,
-    "mid": 45.3,
-    "large": 29.3
+    "small": 74.5,
+    "mid": 42.7,
+    "large": 18.8
    }
   },
   {
@@ -7649,11 +7766,11 @@
     31,
     2
    ],
-   "proj": 251.4,
-   "ceil": 359.22,
+   "proj": 251.68,
+   "ceil": 359.52,
    "sal": 49600,
-   "own": 251.7,
-   "dup": 2.2287,
+   "own": 253.0,
+   "dup": 2.2602,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -7667,14 +7784,14 @@
     "F",
     "UTIL"
    ],
-   "top1": 2.77,
-   "top10": 22.3,
-   "cash": 74.6,
-   "roi": 13.7,
+   "top1": 2.68,
+   "top10": 22.0,
+   "cash": 74.5,
+   "roi": 12.0,
    "roit": {
-    "small": 73.1,
-    "mid": 13.7,
-    "large": -24.7
+    "small": 70.2,
+    "mid": 12.0,
+    "large": -24.3
    }
   },
   {
@@ -7688,11 +7805,11 @@
     42,
     0
    ],
-   "proj": 229.87,
-   "ceil": 331.98,
+   "proj": 230.4,
+   "ceil": 332.52,
    "sal": 49800,
-   "own": 243.2,
-   "dup": 0.4337,
+   "own": 244.8,
+   "dup": 0.4456,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -7706,14 +7823,14 @@
     "F",
     "UTIL"
    ],
-   "top1": 2.84,
-   "top10": 20.1,
-   "cash": 50.0,
-   "roi": 25.1,
+   "top1": 2.79,
+   "top10": 20.0,
+   "cash": 50.1,
+   "roi": 23.7,
    "roit": {
-    "small": 65.4,
-    "mid": 25.1,
-    "large": 4.6
+    "small": 64.9,
+    "mid": 23.7,
+    "large": -5.3
    }
   },
   {
@@ -7727,11 +7844,11 @@
     31,
     21
    ],
-   "proj": 264.14,
-   "ceil": 370.97,
+   "proj": 264.38,
+   "ceil": 371.24,
    "sal": 49900,
-   "own": 280.3,
-   "dup": 9.7597,
+   "own": 280.9,
+   "dup": 9.8339,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -7745,32 +7862,33 @@
     "F",
     "UTIL"
    ],
-   "top1": 7.62,
-   "top10": 39.9,
-   "cash": 87.9,
-   "roi": 77.8,
+   "top1": 7.6,
+   "top10": 39.7,
+   "cash": 87.8,
+   "port": 38,
+   "roi": 80.4,
    "roit": {
-    "small": 251.7,
-    "mid": 77.8,
-    "large": -25.7
+    "small": 249.3,
+    "mid": 80.4,
+    "large": -24.7
    }
   },
   {
    "p": [
     1,
+    40,
+    33,
+    24,
+    21,
     7,
     23,
-    33,
-    10,
-    40,
-    24,
-    21
+    10
    ],
-   "proj": 267.17,
-   "ceil": 377.84,
+   "proj": 267.6,
+   "ceil": 378.29,
    "sal": 49700,
-   "own": 287.5,
-   "dup": 10.5662,
+   "own": 288.7,
+   "dup": 10.8582,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -7784,53 +7902,14 @@
     "F",
     "UTIL"
    ],
-   "top1": 10.22,
-   "top10": 48.4,
+   "top1": 10.19,
+   "top10": 48.5,
    "cash": 91.9,
-   "roi": 91.8,
+   "roi": 96.2,
    "roit": {
-    "small": 327.3,
-    "mid": 91.8,
-    "large": -22.5
-   }
-  },
-  {
-   "p": [
-    50,
-    41,
-    19,
-    30,
-    0,
-    1,
-    31,
-    21
-   ],
-   "proj": 220.97,
-   "ceil": 318.77,
-   "sal": 50000,
-   "own": 199.1,
-   "dup": 0.0795,
-   "src": "scenario",
-   "freq": 1,
-   "optin": true,
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "top1": 1.76,
-   "top10": 13.3,
-   "cash": 41.6,
-   "roi": -8.9,
-   "roit": {
-    "small": 4.7,
-    "mid": -8.9,
-    "large": -6.0
+    "small": 328.5,
+    "mid": 96.2,
+    "large": -20.9
    }
   },
   {
@@ -7844,11 +7923,11 @@
     13,
     21
    ],
-   "proj": 228.83,
-   "ceil": 331.96,
+   "proj": 229.29,
+   "ceil": 332.45,
    "sal": 49600,
-   "own": 214.5,
-   "dup": 0.6531,
+   "own": 215.0,
+   "dup": 0.6609,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -7862,14 +7941,14 @@
     "F",
     "UTIL"
    ],
-   "top1": 3.86,
-   "top10": 20.4,
-   "cash": 48.2,
-   "roi": 60.4,
+   "top1": 3.9,
+   "top10": 20.3,
+   "cash": 48.3,
+   "roi": 62.0,
    "roit": {
-    "small": 85.4,
-    "mid": 60.4,
-    "large": 26.6
+    "small": 85.5,
+    "mid": 62.0,
+    "large": 25.2
    }
   },
   {
@@ -7878,16 +7957,16 @@
     7,
     49,
     24,
-    10,
+    47,
     4,
     31,
-    47
+    10
    ],
-   "proj": 252.7,
-   "ceil": 358.86,
+   "proj": 253.01,
+   "ceil": 359.22,
    "sal": 50000,
-   "own": 229.2,
-   "dup": 0.4613,
+   "own": 228.8,
+   "dup": 0.4558,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -7901,14 +7980,14 @@
     "F",
     "UTIL"
    ],
-   "top1": 3.25,
-   "top10": 24.6,
-   "cash": 76.8,
-   "roi": 65.8,
+   "top1": 3.26,
+   "top10": 24.5,
+   "cash": 76.7,
+   "roi": 58.9,
    "roit": {
-    "small": 96.0,
-    "mid": 65.8,
-    "large": 29.7
+    "small": 93.0,
+    "mid": 58.9,
+    "large": 32.4
    }
   },
   {
@@ -7922,11 +8001,11 @@
     44,
     0
    ],
-   "proj": 222.51,
-   "ceil": 324.11,
+   "proj": 222.48,
+   "ceil": 324.09,
    "sal": 50000,
-   "own": 191.7,
-   "dup": 0.2226,
+   "own": 191.5,
+   "dup": 0.2177,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -7940,14 +8019,53 @@
     "F",
     "UTIL"
    ],
-   "top1": 2.6,
-   "top10": 15.5,
-   "cash": 42.8,
-   "roi": 29.1,
+   "top1": 2.59,
+   "top10": 15.2,
+   "cash": 42.3,
+   "roi": 23.8,
    "roit": {
-    "small": 35.3,
-    "mid": 29.1,
-    "large": 29.9
+    "small": 32.1,
+    "mid": 23.8,
+    "large": 7.5
+   }
+  },
+  {
+   "p": [
+    1,
+    7,
+    19,
+    18,
+    60,
+    11,
+    16,
+    40
+   ],
+   "proj": 239.95,
+   "ceil": 344.18,
+   "sal": 49900,
+   "own": 247.4,
+   "dup": 1.1228,
+   "src": "scenario",
+   "freq": 1,
+   "optin": true,
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "top1": 2.3,
+   "top10": 15.3,
+   "cash": 54.2,
+   "roi": 14.4,
+   "roit": {
+    "small": 31.8,
+    "mid": 14.4,
+    "large": -11.1
    }
   },
   {
@@ -7955,17 +8073,17 @@
     34,
     7,
     15,
-    30,
-    64,
-    1,
     19,
-    10
+    10,
+    1,
+    30,
+    64
    ],
-   "proj": 251.92,
-   "ceil": 358.29,
+   "proj": 252.15,
+   "ceil": 358.56,
    "sal": 49900,
-   "own": 243.0,
-   "dup": 0.6593,
+   "own": 242.4,
+   "dup": 0.6454,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -7980,13 +8098,13 @@
     "UTIL"
    ],
    "top1": 2.05,
-   "top10": 22.2,
-   "cash": 76.4,
-   "roi": 9.6,
+   "top10": 21.9,
+   "cash": 76.1,
+   "roi": 9.5,
    "roit": {
-    "small": 54.7,
-    "mid": 9.6,
-    "large": -7.2
+    "small": 53.1,
+    "mid": 9.5,
+    "large": -8.0
    }
   },
   {
@@ -8000,11 +8118,11 @@
     18,
     0
    ],
-   "proj": 229.15,
-   "ceil": 326.85,
+   "proj": 229.23,
+   "ceil": 326.95,
    "sal": 48700,
-   "own": 227.7,
-   "dup": 1.7574,
+   "own": 228.3,
+   "dup": 1.7602,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -8018,32 +8136,32 @@
     "F",
     "UTIL"
    ],
-   "top1": 2.95,
-   "top10": 17.4,
-   "cash": 45.6,
-   "roi": 8.2,
+   "top1": 2.89,
+   "top10": 17.1,
+   "cash": 45.3,
+   "roi": 7.2,
    "roit": {
-    "small": 50.5,
-    "mid": 8.2,
-    "large": -21.6
+    "small": 47.6,
+    "mid": 7.2,
+    "large": -23.2
    }
   },
   {
    "p": [
-    1,
-    15,
+    63,
+    40,
     31,
     44,
     0,
-    40,
-    18,
-    63
+    1,
+    15,
+    18
    ],
-   "proj": 224.4,
-   "ceil": 319.57,
+   "proj": 224.72,
+   "ceil": 319.9,
    "sal": 50000,
-   "own": 205.2,
-   "dup": 0.2153,
+   "own": 206.3,
+   "dup": 0.2185,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -8057,32 +8175,32 @@
     "F",
     "UTIL"
    ],
-   "top1": 2.04,
-   "top10": 14.1,
-   "cash": 42.4,
-   "roi": 11.1,
+   "top1": 2.01,
+   "top10": 13.9,
+   "cash": 42.3,
+   "roi": 6.9,
    "roit": {
-    "small": 17.6,
-    "mid": 11.1,
-    "large": -3.0
+    "small": 16.1,
+    "mid": 6.9,
+    "large": -4.7
    }
   },
   {
    "p": [
     1,
     45,
-    23,
     16,
+    23,
     21,
     4,
     44,
     10
    ],
-   "proj": 250.69,
+   "proj": 250.65,
    "ceil": 351.12,
    "sal": 49800,
-   "own": 232.1,
-   "dup": 0.7579,
+   "own": 231.1,
+   "dup": 0.7355,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -8096,14 +8214,14 @@
     "F",
     "UTIL"
    ],
-   "top1": 3.44,
-   "top10": 22.1,
-   "cash": 71.4,
-   "roi": 93.1,
+   "top1": 3.41,
+   "top10": 21.7,
+   "cash": 70.7,
+   "roi": 74.3,
    "roit": {
-    "small": 91.8,
-    "mid": 93.1,
-    "large": 71.1
+    "small": 88.7,
+    "mid": 74.3,
+    "large": 44.5
    }
   },
   {
@@ -8117,11 +8235,11 @@
     33,
     10
    ],
-   "proj": 258.98,
-   "ceil": 362.78,
+   "proj": 259.14,
+   "ceil": 362.98,
    "sal": 50000,
-   "own": 236.7,
-   "dup": 0.9993,
+   "own": 236.1,
+   "dup": 0.9777,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -8135,33 +8253,33 @@
     "F",
     "UTIL"
    ],
-   "top1": 6.2,
-   "top10": 32.9,
-   "cash": 81.4,
-   "port": 31,
-   "roi": 207.4,
+   "top1": 6.14,
+   "top10": 32.6,
+   "cash": 81.1,
+   "port": 33,
+   "roi": 218.8,
    "roit": {
-    "small": 195.8,
-    "mid": 207.4,
-    "large": 122.9
+    "small": 195.2,
+    "mid": 218.8,
+    "large": 154.2
    }
   },
   {
    "p": [
     11,
-    7,
-    19,
-    13,
-    21,
-    4,
+    15,
     31,
-    15
+    19,
+    21,
+    7,
+    13,
+    4
    ],
-   "proj": 245.14,
-   "ceil": 350.26,
+   "proj": 245.69,
+   "ceil": 350.86,
    "sal": 50000,
-   "own": 222.0,
-   "dup": 1.5794,
+   "own": 222.3,
+   "dup": 1.5965,
    "src": "scenario",
    "freq": 2,
    "optin": true,
@@ -8177,13 +8295,13 @@
    ],
    "top1": 5.08,
    "top10": 22.9,
-   "cash": 61.9,
-   "port": 18,
-   "roi": 127.9,
+   "cash": 62.0,
+   "port": 25,
+   "roi": 128.2,
    "roit": {
-    "small": 124.3,
-    "mid": 127.9,
-    "large": 67.4
+    "small": 126.0,
+    "mid": 128.2,
+    "large": 44.9
    }
   },
   {
@@ -8197,11 +8315,168 @@
     23,
     0
    ],
-   "proj": 228.72,
-   "ceil": 326.51,
+   "proj": 228.91,
+   "ceil": 326.7,
    "sal": 49800,
-   "own": 220.5,
-   "dup": 1.3352,
+   "own": 221.6,
+   "dup": 1.3588,
+   "src": "scenario",
+   "freq": 1,
+   "optin": true,
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "top1": 3.24,
+   "top10": 18.4,
+   "cash": 46.4,
+   "roi": 46.2,
+   "roit": {
+    "small": 66.2,
+    "mid": 46.2,
+    "large": 12.0
+   }
+  },
+  {
+   "p": [
+    1,
+    28,
+    44,
+    16,
+    10,
+    4,
+    18,
+    47
+   ],
+   "proj": 244.78,
+   "ceil": 345.94,
+   "sal": 49800,
+   "own": 204.1,
+   "dup": 0.3447,
+   "src": "scenario",
+   "freq": 1,
+   "optin": true,
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "top1": 1.91,
+   "top10": 14.8,
+   "cash": 60.2,
+   "roi": 7.6,
+   "roit": {
+    "small": 23.3,
+    "mid": 7.6,
+    "large": -7.0
+   }
+  },
+  {
+   "p": [
+    2,
+    7,
+    16,
+    23,
+    10,
+    40,
+    14,
+    21
+   ],
+   "proj": 254.57,
+   "ceil": 363.17,
+   "sal": 50000,
+   "own": 263.7,
+   "dup": 8.016,
+   "src": "scenario",
+   "freq": 1,
+   "optin": true,
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "top1": 4.36,
+   "top10": 27.5,
+   "cash": 76.8,
+   "roi": 33.1,
+   "roit": {
+    "small": 119.7,
+    "mid": 33.1,
+    "large": -28.1
+   }
+  },
+  {
+   "p": [
+    6,
+    7,
+    19,
+    30,
+    0,
+    40,
+    36,
+    21
+   ],
+   "proj": 233.06,
+   "ceil": 336.98,
+   "sal": 49800,
+   "own": 239.8,
+   "dup": 2.009,
+   "src": "scenario",
+   "freq": 1,
+   "optin": true,
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "top1": 4.75,
+   "top10": 23.0,
+   "cash": 50.8,
+   "port": 26,
+   "roi": 100.1,
+   "roit": {
+    "small": 124.6,
+    "mid": 100.1,
+    "large": 33.9
+   }
+  },
+  {
+   "p": [
+    4,
+    14,
+    44,
+    24,
+    0,
+    28,
+    19,
+    21
+   ],
+   "proj": 224.98,
+   "ceil": 324.94,
+   "sal": 50000,
+   "own": 188.3,
+   "dup": 0.3652,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -8216,171 +8491,14 @@
     "UTIL"
    ],
    "top1": 3.26,
-   "top10": 18.7,
-   "cash": 46.6,
-   "roi": 45.7,
-   "roit": {
-    "small": 67.7,
-    "mid": 45.7,
-    "large": 9.8
-   }
-  },
-  {
-   "p": [
-    1,
-    28,
-    44,
-    16,
-    47,
-    4,
-    18,
-    10
-   ],
-   "proj": 244.62,
-   "ceil": 345.74,
-   "sal": 49800,
-   "own": 205.1,
-   "dup": 0.3519,
-   "src": "scenario",
-   "freq": 1,
-   "optin": true,
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "top1": 1.92,
-   "top10": 14.9,
-   "cash": 60.6,
-   "roi": 9.2,
-   "roit": {
-    "small": 24.9,
-    "mid": 9.2,
-    "large": 3.3
-   }
-  },
-  {
-   "p": [
-    2,
-    40,
-    14,
-    23,
-    21,
-    7,
-    16,
-    10
-   ],
-   "proj": 254.59,
-   "ceil": 363.17,
-   "sal": 50000,
-   "own": 263.0,
-   "dup": 7.9996,
-   "src": "scenario",
-   "freq": 1,
-   "optin": true,
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "top1": 4.48,
-   "top10": 27.9,
-   "cash": 77.4,
-   "roi": 27.5,
-   "roit": {
-    "small": 124.2,
-    "mid": 27.5,
-    "large": -40.5
-   }
-  },
-  {
-   "p": [
-    6,
-    7,
-    19,
-    30,
-    0,
-    40,
-    36,
-    21
-   ],
-   "proj": 232.56,
-   "ceil": 336.48,
-   "sal": 49800,
-   "own": 238.0,
-   "dup": 1.9466,
-   "src": "scenario",
-   "freq": 1,
-   "optin": true,
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "top1": 4.68,
-   "top10": 23.1,
-   "cash": 50.8,
-   "port": 24,
-   "roi": 100.4,
-   "roit": {
-    "small": 124.2,
-    "mid": 100.4,
-    "large": 28.8
-   }
-  },
-  {
-   "p": [
-    4,
-    14,
-    44,
-    24,
-    0,
-    28,
-    19,
-    21
-   ],
-   "proj": 224.65,
-   "ceil": 324.61,
-   "sal": 50000,
-   "own": 188.4,
-   "dup": 0.3646,
-   "src": "scenario",
-   "freq": 1,
-   "optin": true,
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "top1": 3.29,
-   "top10": 17.2,
+   "top10": 17.0,
    "cash": 43.6,
    "port": 37,
-   "roi": 56.5,
+   "roi": 50.9,
    "roit": {
-    "small": 64.2,
-    "mid": 56.5,
-    "large": 17.9
+    "small": 63.0,
+    "mid": 50.9,
+    "large": 20.9
    }
   },
   {
@@ -8394,11 +8512,11 @@
     24,
     33
    ],
-   "proj": 249.3,
-   "ceil": 354.85,
+   "proj": 249.66,
+   "ceil": 355.25,
    "sal": 50000,
-   "own": 216.9,
-   "dup": 0.4711,
+   "own": 216.6,
+   "dup": 0.4671,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -8412,14 +8530,14 @@
     "F",
     "UTIL"
    ],
-   "top1": 2.36,
+   "top1": 2.35,
    "top10": 19.5,
    "cash": 68.8,
-   "roi": 33.4,
+   "roi": 32.1,
    "roit": {
-    "small": 47.8,
-    "mid": 33.4,
-    "large": 11.5
+    "small": 46.7,
+    "mid": 32.1,
+    "large": 12.9
    }
   },
   {
@@ -8428,16 +8546,16 @@
     7,
     44,
     33,
-    0,
+    10,
     34,
     37,
-    10
+    0
    ],
-   "proj": 227.44,
-   "ceil": 328.01,
+   "proj": 227.46,
+   "ceil": 328.07,
    "sal": 49900,
-   "own": 189.1,
-   "dup": 0.1886,
+   "own": 188.4,
+   "dup": 0.1835,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -8451,14 +8569,14 @@
     "F",
     "UTIL"
    ],
-   "top1": 3.65,
-   "top10": 18.8,
-   "cash": 45.7,
-   "roi": 50.6,
+   "top1": 3.6,
+   "top10": 18.5,
+   "cash": 45.4,
+   "roi": 50.0,
    "roit": {
-    "small": 75.0,
-    "mid": 50.6,
-    "large": 25.1
+    "small": 71.3,
+    "mid": 50.0,
+    "large": 27.2
    }
   },
   {
@@ -8466,17 +8584,17 @@
     4,
     28,
     33,
-    38,
+    19,
     21,
     11,
-    19,
+    38,
     0
    ],
-   "proj": 213.28,
-   "ceil": 309.99,
+   "proj": 213.66,
+   "ceil": 310.38,
    "sal": 50000,
-   "own": 177.3,
-   "dup": 0.1505,
+   "own": 177.2,
+   "dup": 0.1512,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -8490,14 +8608,14 @@
     "F",
     "UTIL"
    ],
-   "top1": 2.66,
-   "top10": 12.6,
+   "top1": 2.64,
+   "top10": 12.5,
    "cash": 33.6,
-   "roi": 40.7,
+   "roi": 37.5,
    "roit": {
-    "small": 28.2,
-    "mid": 40.7,
-    "large": 14.6
+    "small": 26.8,
+    "mid": 37.5,
+    "large": 9.5
    }
   },
   {
@@ -8511,11 +8629,11 @@
     23,
     10
    ],
-   "proj": 233.61,
-   "ceil": 336.96,
+   "proj": 233.85,
+   "ceil": 337.23,
    "sal": 49300,
-   "own": 222.1,
-   "dup": 0.9351,
+   "own": 221.8,
+   "dup": 0.9279,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -8529,53 +8647,14 @@
     "F",
     "UTIL"
    ],
-   "top1": 4.85,
-   "top10": 23.3,
-   "cash": 51.0,
-   "roi": 79.2,
+   "top1": 4.76,
+   "top10": 23.1,
+   "cash": 50.9,
+   "roi": 77.8,
    "roit": {
-    "small": 124.7,
-    "mid": 79.2,
-    "large": 25.6
-   }
-  },
-  {
-   "p": [
-    34,
-    45,
-    19,
-    13,
-    10,
-    1,
-    44,
-    4
-   ],
-   "proj": 243.84,
-   "ceil": 343.41,
-   "sal": 49500,
-   "own": 224.7,
-   "dup": 0.4324,
-   "src": "scenario",
-   "freq": 1,
-   "optin": true,
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "top1": 1.58,
-   "top10": 14.2,
-   "cash": 61.7,
-   "roi": 0.9,
-   "roit": {
-    "small": 14.6,
-    "mid": 0.9,
-    "large": -6.4
+    "small": 122.8,
+    "mid": 77.8,
+    "large": 22.7
    }
   },
   {
@@ -8589,11 +8668,11 @@
     23,
     0
    ],
-   "proj": 226.43,
-   "ceil": 329.08,
+   "proj": 226.55,
+   "ceil": 329.2,
    "sal": 49500,
-   "own": 227.6,
-   "dup": 1.0784,
+   "own": 228.9,
+   "dup": 1.0929,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -8607,32 +8686,32 @@
     "F",
     "UTIL"
    ],
-   "top1": 2.94,
-   "top10": 17.8,
-   "cash": 45.8,
-   "roi": 17.7,
+   "top1": 2.9,
+   "top10": 17.5,
+   "cash": 45.6,
+   "roi": 15.2,
    "roit": {
-    "small": 53.5,
-    "mid": 17.7,
-    "large": -10.2
+    "small": 50.5,
+    "mid": 15.2,
+    "large": -11.8
    }
   },
   {
    "p": [
     4,
-    7,
+    15,
     23,
     33,
-    3,
-    15,
+    10,
+    7,
     44,
-    10
+    3
    ],
-   "proj": 251.4,
-   "ceil": 356.69,
+   "proj": 251.56,
+   "ceil": 356.88,
    "sal": 50000,
-   "own": 227.1,
-   "dup": 1.5564,
+   "own": 226.6,
+   "dup": 1.5304,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -8646,14 +8725,14 @@
     "F",
     "UTIL"
    ],
-   "top1": 3.44,
-   "top10": 23.3,
-   "cash": 72.2,
-   "roi": 63.3,
+   "top1": 3.39,
+   "top10": 23.0,
+   "cash": 71.8,
+   "roi": 69.6,
    "roit": {
-    "small": 90.1,
-    "mid": 63.3,
-    "large": 12.1
+    "small": 88.6,
+    "mid": 69.6,
+    "large": 24.2
    }
   },
   {
@@ -8667,11 +8746,11 @@
     43,
     40
    ],
-   "proj": 227.73,
-   "ceil": 329.08,
+   "proj": 228.1,
+   "ceil": 329.48,
    "sal": 49900,
-   "own": 222.5,
-   "dup": 0.9103,
+   "own": 224.2,
+   "dup": 0.9338,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -8685,32 +8764,32 @@
     "F",
     "UTIL"
    ],
-   "top1": 3.03,
-   "top10": 19.4,
+   "top1": 3.05,
+   "top10": 19.2,
    "cash": 47.2,
-   "roi": 19.9,
+   "roi": 21.5,
    "roit": {
-    "small": 62.6,
-    "mid": 19.9,
-    "large": -8.9
+    "small": 63.6,
+    "mid": 21.5,
+    "large": -6.5
    }
   },
   {
    "p": [
-    28,
-    7,
-    31,
-    19,
-    48,
     1,
+    7,
     23,
-    10
+    19,
+    10,
+    28,
+    31,
+    48
    ],
-   "proj": 259.4,
-   "ceil": 368.08,
+   "proj": 259.79,
+   "ceil": 368.52,
    "sal": 49300,
-   "own": 260.7,
-   "dup": 2.6387,
+   "own": 260.4,
+   "dup": 2.628,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -8724,14 +8803,14 @@
     "F",
     "UTIL"
    ],
-   "top1": 4.01,
+   "top1": 3.96,
    "top10": 32.3,
-   "cash": 84.7,
-   "roi": 40.0,
+   "cash": 84.6,
+   "roi": 38.4,
    "roit": {
-    "small": 132.4,
-    "mid": 40.0,
-    "large": -9.7
+    "small": 131.1,
+    "mid": 38.4,
+    "large": -11.0
    }
   },
   {
@@ -8745,11 +8824,11 @@
     18,
     21
    ],
-   "proj": 254.8,
-   "ceil": 361.3,
+   "proj": 255.16,
+   "ceil": 361.7,
    "sal": 49900,
-   "own": 230.5,
-   "dup": 0.774,
+   "own": 230.2,
+   "dup": 0.7707,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -8764,13 +8843,13 @@
     "UTIL"
    ],
    "top1": 3.8,
-   "top10": 26.4,
-   "cash": 77.6,
-   "roi": 76.5,
+   "top10": 26.2,
+   "cash": 77.4,
+   "roi": 83.4,
    "roit": {
     "small": 108.3,
-    "mid": 76.5,
-    "large": 39.4
+    "mid": 83.4,
+    "large": 44.5
    }
   },
   {
@@ -8779,16 +8858,16 @@
     2,
     14,
     23,
-    21,
+    10,
     34,
     15,
-    10
+    21
    ],
-   "proj": 235.24,
-   "ceil": 335.64,
+   "proj": 235.04,
+   "ceil": 335.46,
    "sal": 50000,
-   "own": 200.2,
-   "dup": 0.6761,
+   "own": 198.9,
+   "dup": 0.6539,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -8802,32 +8881,32 @@
     "F",
     "UTIL"
    ],
-   "top1": 2.57,
-   "top10": 13.6,
-   "cash": 46.6,
-   "roi": 52.1,
+   "top1": 2.55,
+   "top10": 13.3,
+   "cash": 46.1,
+   "roi": 45.9,
    "roit": {
-    "small": 26.7,
-    "mid": 52.1,
-    "large": 31.2
+    "small": 23.9,
+    "mid": 45.9,
+    "large": 30.9
    }
   },
   {
    "p": [
-    4,
-    7,
-    31,
-    19,
-    47,
     1,
+    40,
+    19,
     16,
-    40
+    47,
+    4,
+    31,
+    7
    ],
-   "proj": 259.68,
-   "ceil": 368.7,
+   "proj": 260.27,
+   "ceil": 369.32,
    "sal": 49800,
-   "own": 273.8,
-   "dup": 5.9653,
+   "own": 275.4,
+   "dup": 6.1371,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -8841,15 +8920,14 @@
     "F",
     "UTIL"
    ],
-   "top1": 5.24,
-   "top10": 34.5,
-   "cash": 86.3,
-   "port": 30,
-   "roi": 100.7,
+   "top1": 5.16,
+   "top10": 34.6,
+   "cash": 86.5,
+   "roi": 83.6,
    "roit": {
-    "small": 188.3,
-    "mid": 100.7,
-    "large": 18.8
+    "small": 184.8,
+    "mid": 83.6,
+    "large": -9.7
    }
   },
   {
@@ -8857,17 +8935,17 @@
     1,
     40,
     31,
-    39,
-    0,
-    34,
     44,
-    10
+    10,
+    34,
+    39,
+    0
    ],
-   "proj": 232.15,
-   "ceil": 329.93,
+   "proj": 232.2,
+   "ceil": 330.01,
    "sal": 49900,
-   "own": 222.0,
-   "dup": 0.4353,
+   "own": 222.4,
+   "dup": 0.4333,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -8881,15 +8959,15 @@
     "F",
     "UTIL"
    ],
-   "top1": 4.28,
-   "top10": 20.3,
-   "cash": 48.5,
-   "port": 22,
-   "roi": 94.8,
+   "top1": 4.22,
+   "top10": 20.0,
+   "cash": 48.2,
+   "port": 21,
+   "roi": 91.6,
    "roit": {
-    "small": 103.7,
-    "mid": 94.8,
-    "large": 53.4
+    "small": 99.6,
+    "mid": 91.6,
+    "large": 52.5
    }
   },
   {
@@ -8903,11 +8981,11 @@
     19,
     60
    ],
-   "proj": 259.48,
-   "ceil": 367.32,
+   "proj": 259.71,
+   "ceil": 367.59,
    "sal": 50000,
-   "own": 248.0,
-   "dup": 1.5143,
+   "own": 247.4,
+   "dup": 1.4811,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -8921,14 +8999,14 @@
     "F",
     "UTIL"
    ],
-   "top1": 5.02,
-   "top10": 33.3,
-   "cash": 83.9,
-   "roi": 96.8,
+   "top1": 4.93,
+   "top10": 32.9,
+   "cash": 83.7,
+   "roi": 93.5,
    "roit": {
-    "small": 166.5,
-    "mid": 96.8,
-    "large": 43.2
+    "small": 163.0,
+    "mid": 93.5,
+    "large": 47.6
    }
   },
   {
@@ -8942,11 +9020,11 @@
     37,
     21
    ],
-   "proj": 247.2,
-   "ceil": 349.43,
+   "proj": 247.47,
+   "ceil": 349.74,
    "sal": 50000,
-   "own": 253.9,
-   "dup": 2.2311,
+   "own": 254.6,
+   "dup": 2.2695,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -8962,13 +9040,13 @@
    ],
    "top1": 4.76,
    "top10": 22.4,
-   "cash": 63.0,
-   "port": 27,
-   "roi": 125.3,
+   "cash": 62.7,
+   "port": 29,
+   "roi": 123.2,
    "roit": {
-    "small": 123.6,
-    "mid": 125.3,
-    "large": 67.2
+    "small": 125.5,
+    "mid": 123.2,
+    "large": 59.0
    }
   },
   {
@@ -8982,11 +9060,364 @@
     33,
     0
    ],
-   "proj": 230.92,
-   "ceil": 332.06,
+   "proj": 231.22,
+   "ceil": 332.35,
    "sal": 49600,
-   "own": 235.9,
-   "dup": 3.1473,
+   "own": 237.2,
+   "dup": 3.2202,
+   "src": "scenario",
+   "freq": 1,
+   "optin": true,
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "top1": 4.22,
+   "top10": 20.9,
+   "cash": 48.8,
+   "port": 34,
+   "roi": 54.6,
+   "roit": {
+    "small": 97.5,
+    "mid": 54.6,
+    "large": 6.4
+   }
+  },
+  {
+   "p": [
+    28,
+    15,
+    37,
+    19,
+    21,
+    7,
+    31,
+    0
+   ],
+   "proj": 232.29,
+   "ceil": 334.74,
+   "sal": 49400,
+   "own": 206.9,
+   "dup": 0.7226,
+   "src": "scenario",
+   "freq": 1,
+   "optin": true,
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "top1": 4.21,
+   "top10": 21.6,
+   "cash": 49.4,
+   "roi": 75.1,
+   "roit": {
+    "small": 99.5,
+    "mid": 75.1,
+    "large": 35.2
+   }
+  },
+  {
+   "p": [
+    34,
+    40,
+    19,
+    30,
+    10,
+    7,
+    23,
+    0
+   ],
+   "proj": 241.91,
+   "ceil": 346.97,
+   "sal": 49400,
+   "own": 263.3,
+   "dup": 5.5449,
+   "src": "scenario",
+   "freq": 1,
+   "optin": true,
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "top1": 8.06,
+   "top10": 31.2,
+   "cash": 56.8,
+   "port": 5,
+   "roi": 173.2,
+   "roit": {
+    "small": 240.2,
+    "mid": 173.2,
+    "large": 45.5
+   }
+  },
+  {
+   "p": [
+    1,
+    28,
+    14,
+    23,
+    0,
+    40,
+    43,
+    47
+   ],
+   "proj": 228.45,
+   "ceil": 326.67,
+   "sal": 50000,
+   "own": 219.8,
+   "dup": 0.5398,
+   "src": "scenario",
+   "freq": 1,
+   "optin": true,
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "top1": 3.21,
+   "top10": 17.5,
+   "cash": 45.8,
+   "roi": 44.3,
+   "roit": {
+    "small": 63.4,
+    "mid": 44.3,
+    "large": 10.7
+   }
+  },
+  {
+   "p": [
+    1,
+    7,
+    19,
+    24,
+    30,
+    11,
+    31,
+    33
+   ],
+   "proj": 241.5,
+   "ceil": 347.36,
+   "sal": 49700,
+   "own": 216.5,
+   "dup": 0.5425,
+   "src": "scenario",
+   "freq": 1,
+   "optin": true,
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "top1": 3.41,
+   "top10": 17.9,
+   "cash": 56.7,
+   "roi": 61.6,
+   "roit": {
+    "small": 67.1,
+    "mid": 61.6,
+    "large": 72.3
+   }
+  },
+  {
+   "p": [
+    1,
+    40,
+    39,
+    44,
+    0,
+    34,
+    30,
+    10
+   ],
+   "proj": 230.84,
+   "ceil": 328.83,
+   "sal": 50000,
+   "own": 220.1,
+   "dup": 0.3742,
+   "src": "scenario",
+   "freq": 1,
+   "optin": true,
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "top1": 3.93,
+   "top10": 19.3,
+   "cash": 47.3,
+   "roi": 85.0,
+   "roit": {
+    "small": 90.2,
+    "mid": 85.0,
+    "large": 39.2
+   }
+  },
+  {
+   "p": [
+    34,
+    7,
+    19,
+    23,
+    10,
+    2,
+    18,
+    21
+   ],
+   "proj": 254.77,
+   "ceil": 364.1,
+   "sal": 49500,
+   "own": 250.9,
+   "dup": 4.6898,
+   "src": "scenario",
+   "freq": 1,
+   "optin": true,
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "top1": 3.9,
+   "top10": 27.6,
+   "cash": 77.3,
+   "roi": 31.7,
+   "roit": {
+    "small": 107.2,
+    "mid": 31.7,
+    "large": -15.9
+   }
+  },
+  {
+   "p": [
+    11,
+    6,
+    33,
+    19,
+    10,
+    1,
+    44,
+    40
+   ],
+   "proj": 242.83,
+   "ceil": 344.91,
+   "sal": 49800,
+   "own": 250.2,
+   "dup": 1.5043,
+   "src": "scenario",
+   "freq": 1,
+   "optin": true,
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "top1": 3.23,
+   "top10": 17.8,
+   "cash": 56.7,
+   "roi": 49.4,
+   "roit": {
+    "small": 63.2,
+    "mid": 49.4,
+    "large": 12.3
+   }
+  },
+  {
+   "p": [
+    1,
+    7,
+    19,
+    33,
+    47,
+    6,
+    42,
+    11
+   ],
+   "proj": 236.46,
+   "ceil": 340.59,
+   "sal": 49800,
+   "own": 213.6,
+   "dup": 0.2919,
+   "src": "scenario",
+   "freq": 1,
+   "optin": true,
+   "s": [
+    "PG",
+    "SG",
+    "SF",
+    "PF",
+    "C",
+    "G",
+    "F",
+    "UTIL"
+   ],
+   "top1": 2.16,
+   "top10": 13.8,
+   "cash": 50.3,
+   "roi": 14.3,
+   "roit": {
+    "small": 20.6,
+    "mid": 14.3,
+    "large": -7.6
+   }
+  },
+  {
+   "p": [
+    4,
+    40,
+    37,
+    23,
+    0,
+    34,
+    15,
+    10
+   ],
+   "proj": 232.13,
+   "ceil": 330.21,
+   "sal": 49800,
+   "own": 227.5,
+   "dup": 1.3819,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -9001,445 +9432,14 @@
     "UTIL"
    ],
    "top1": 4.23,
-   "top10": 21.1,
-   "cash": 48.9,
-   "port": 34,
-   "roi": 57.5,
+   "top10": 20.9,
+   "cash": 48.5,
+   "port": 28,
+   "roi": 99.1,
    "roit": {
-    "small": 99.5,
-    "mid": 57.5,
-    "large": 1.8
-   }
-  },
-  {
-   "p": [
-    28,
-    15,
-    31,
-    19,
-    0,
-    7,
-    37,
-    21
-   ],
-   "proj": 231.82,
-   "ceil": 334.25,
-   "sal": 49400,
-   "own": 206.5,
-   "dup": 0.7166,
-   "src": "scenario",
-   "freq": 1,
-   "optin": true,
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "top1": 4.24,
-   "top10": 21.7,
-   "cash": 49.4,
-   "roi": 74.0,
-   "roit": {
-    "small": 101.1,
-    "mid": 74.0,
-    "large": 32.3
-   }
-  },
-  {
-   "p": [
-    34,
-    40,
-    19,
-    30,
-    10,
-    7,
-    23,
-    0
-   ],
-   "proj": 241.72,
-   "ceil": 346.76,
-   "sal": 49400,
-   "own": 262.3,
-   "dup": 5.4886,
-   "src": "scenario",
-   "freq": 1,
-   "optin": true,
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "top1": 8.15,
-   "top10": 31.4,
-   "cash": 56.9,
-   "port": 6,
-   "roi": 164.1,
-   "roit": {
-    "small": 242.7,
-    "mid": 164.1,
-    "large": 40.2
-   }
-  },
-  {
-   "p": [
-    1,
-    40,
-    14,
-    23,
-    47,
-    28,
-    43,
-    0
-   ],
-   "proj": 228.08,
-   "ceil": 326.3,
-   "sal": 50000,
-   "own": 218.6,
-   "dup": 0.5273,
-   "src": "scenario",
-   "freq": 1,
-   "optin": true,
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "top1": 3.18,
-   "top10": 17.6,
-   "cash": 45.9,
-   "roi": 44.4,
-   "roit": {
-    "small": 63.6,
-    "mid": 44.4,
-    "large": 33.4
-   }
-  },
-  {
-   "p": [
-    11,
-    7,
-    19,
-    33,
-    30,
-    1,
-    31,
-    24
-   ],
-   "proj": 240.78,
-   "ceil": 346.62,
-   "sal": 49700,
-   "own": 216.1,
-   "dup": 0.5345,
-   "src": "scenario",
-   "freq": 1,
-   "optin": true,
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "top1": 3.37,
-   "top10": 17.8,
-   "cash": 56.4,
-   "roi": 70.5,
-   "roit": {
-    "small": 65.8,
-    "mid": 70.5,
-    "large": 64.7
-   }
-  },
-  {
-   "p": [
-    1,
-    40,
-    44,
-    39,
-    10,
-    34,
-    30,
-    0
-   ],
-   "proj": 230.83,
-   "ceil": 328.8,
-   "sal": 50000,
-   "own": 219.7,
-   "dup": 0.3772,
-   "src": "scenario",
-   "freq": 1,
-   "optin": true,
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "top1": 4.0,
-   "top10": 19.6,
-   "cash": 47.6,
-   "roi": 87.7,
-   "roit": {
-    "small": 94.1,
-    "mid": 87.7,
-    "large": 40.3
-   }
-  },
-  {
-   "p": [
-    34,
-    2,
-    19,
-    18,
-    10,
-    7,
-    23,
-    21
-   ],
-   "proj": 254.82,
-   "ceil": 364.12,
-   "sal": 49500,
-   "own": 251.7,
-   "dup": 4.8132,
-   "src": "scenario",
-   "freq": 1,
-   "optin": true,
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "top1": 3.97,
-   "top10": 28.1,
-   "cash": 77.9,
-   "roi": 31.7,
-   "roit": {
-    "small": 111.3,
-    "mid": 31.7,
-    "large": -18.3
-   }
-  },
-  {
-   "p": [
-    1,
-    6,
-    44,
-    19,
-    10,
-    11,
-    33,
-    40
-   ],
-   "proj": 242.39,
-   "ceil": 344.45,
-   "sal": 49800,
-   "own": 249.4,
-   "dup": 1.4748,
-   "src": "scenario",
-   "freq": 1,
-   "optin": true,
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "top1": 3.26,
-   "top10": 17.8,
-   "cash": 56.7,
-   "roi": 49.9,
-   "roit": {
-    "small": 63.3,
-    "mid": 49.9,
-    "large": 8.2
-   }
-  },
-  {
-   "p": [
-    1,
-    7,
-    33,
-    19,
-    47,
-    6,
-    42,
-    11
-   ],
-   "proj": 235.73,
-   "ceil": 339.84,
-   "sal": 49800,
-   "own": 213.1,
-   "dup": 0.2877,
-   "src": "scenario",
-   "freq": 1,
-   "optin": true,
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "top1": 2.17,
-   "top10": 13.7,
-   "cash": 49.9,
-   "roi": 14.5,
-   "roit": {
-    "small": 18.9,
-    "mid": 14.5,
-    "large": -8.8
-   }
-  },
-  {
-   "p": [
-    11,
-    40,
-    33,
-    16,
-    3,
-    7,
-    19,
-    4
-   ],
-   "proj": 235.06,
-   "ceil": 339.38,
-   "sal": 50000,
-   "own": 235.0,
-   "dup": 1.7647,
-   "src": "scenario",
-   "freq": 1,
-   "optin": true,
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "top1": 2.39,
-   "top10": 14.0,
-   "cash": 49.2,
-   "roi": 30.4,
-   "roit": {
-    "small": 28.9,
-    "mid": 30.4,
-    "large": -7.8
-   }
-  },
-  {
-   "p": [
-    4,
-    40,
-    37,
-    23,
-    0,
-    34,
-    15,
-    10
-   ],
-   "proj": 232.18,
-   "ceil": 330.24,
-   "sal": 49800,
-   "own": 227.1,
-   "dup": 1.3862,
-   "src": "scenario",
-   "freq": 1,
-   "optin": true,
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "top1": 4.27,
-   "top10": 21.3,
-   "cash": 48.8,
-   "port": 29,
-   "roi": 85.1,
-   "roit": {
-    "small": 107.6,
-    "mid": 85.1,
-    "large": 25.1
-   }
-  },
-  {
-   "p": [
-    1,
-    45,
-    15,
-    23,
-    47,
-    11,
-    30,
-    2
-   ],
-   "proj": 227.68,
-   "ceil": 323.29,
-   "sal": 49700,
-   "own": 188.8,
-   "dup": 0.1534,
-   "src": "scenario",
-   "freq": 1,
-   "optin": true,
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "top1": 1.45,
-   "top10": 8.9,
-   "cash": 37.4,
-   "roi": -9.5,
-   "roit": {
-    "small": -16.7,
-    "mid": -9.5,
-    "large": -9.1
+    "small": 103.9,
+    "mid": 99.1,
+    "large": 37.9
    }
   },
   {
@@ -9447,17 +9447,17 @@
     4,
     7,
     31,
-    23,
-    0,
-    40,
     32,
+    0,
+    40,
+    23,
     21
    ],
-   "proj": 236.67,
-   "ceil": 339.97,
+   "proj": 237.02,
+   "ceil": 340.34,
    "sal": 50000,
-   "own": 240.7,
-   "dup": 2.3005,
+   "own": 242.3,
+   "dup": 2.3645,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -9472,32 +9472,32 @@
     "UTIL"
    ],
    "top1": 6.18,
-   "top10": 26.9,
-   "cash": 54.1,
-   "port": 26,
-   "roi": 120.4,
+   "top10": 26.8,
+   "cash": 54.0,
+   "port": 19,
+   "roi": 123.1,
    "roit": {
-    "small": 168.0,
-    "mid": 120.4,
-    "large": 56.7
+    "small": 166.6,
+    "mid": 123.1,
+    "large": 55.6
    }
   },
   {
    "p": [
     6,
     7,
-    33,
     39,
+    33,
     47,
     1,
     31,
     10
    ],
-   "proj": 251.16,
-   "ceil": 356.75,
+   "proj": 251.46,
+   "ceil": 357.1,
    "sal": 49500,
-   "own": 222.3,
-   "dup": 0.6104,
+   "own": 221.9,
+   "dup": 0.601,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -9511,32 +9511,32 @@
     "F",
     "UTIL"
    ],
-   "top1": 2.9,
-   "top10": 21.6,
-   "cash": 71.9,
-   "roi": 62.3,
+   "top1": 2.83,
+   "top10": 21.5,
+   "cash": 71.8,
+   "roi": 60.0,
    "roit": {
-    "small": 73.8,
-    "mid": 62.3,
-    "large": 23.3
+    "small": 72.1,
+    "mid": 60.0,
+    "large": 24.6
    }
   },
   {
    "p": [
-    11,
-    7,
-    33,
-    23,
-    47,
     1,
-    18,
-    24
+    7,
+    23,
+    24,
+    47,
+    11,
+    33,
+    18
    ],
-   "proj": 236.11,
-   "ceil": 339.8,
+   "proj": 236.83,
+   "ceil": 340.53,
    "sal": 49300,
-   "own": 205.3,
-   "dup": 0.3646,
+   "own": 205.8,
+   "dup": 0.3722,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -9550,14 +9550,14 @@
     "F",
     "UTIL"
    ],
-   "top1": 2.21,
-   "top10": 14.4,
-   "cash": 50.1,
-   "roi": 16.5,
+   "top1": 2.24,
+   "top10": 14.6,
+   "cash": 50.4,
+   "roi": 9.8,
    "roit": {
-    "small": 22.5,
-    "mid": 16.5,
-    "large": 0.1
+    "small": 24.6,
+    "mid": 9.8,
+    "large": -10.2
    }
   },
   {
@@ -9571,11 +9571,11 @@
     14,
     4
    ],
-   "proj": 236.27,
-   "ceil": 339.71,
+   "proj": 236.81,
+   "ceil": 340.28,
    "sal": 50000,
-   "own": 193.4,
-   "dup": 0.4975,
+   "own": 193.8,
+   "dup": 0.5029,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -9589,14 +9589,14 @@
     "F",
     "UTIL"
    ],
-   "top1": 2.96,
-   "top10": 15.5,
-   "cash": 50.3,
-   "roi": 71.1,
+   "top1": 2.95,
+   "top10": 15.6,
+   "cash": 50.4,
+   "roi": 64.2,
    "roit": {
-    "small": 46.3,
-    "mid": 71.1,
-    "large": 44.0
+    "small": 46.8,
+    "mid": 64.2,
+    "large": 45.6
    }
   },
   {
@@ -9610,11 +9610,11 @@
     33,
     1
    ],
-   "proj": 253.36,
-   "ceil": 357.79,
+   "proj": 253.54,
+   "ceil": 358.0,
    "sal": 49000,
-   "own": 259.8,
-   "dup": 3.6751,
+   "own": 260.3,
+   "dup": 3.7035,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -9628,71 +9628,32 @@
     "F",
     "UTIL"
    ],
-   "top1": 2.98,
-   "top10": 23.8,
-   "cash": 75.9,
-   "roi": 28.3,
+   "top1": 2.91,
+   "top10": 23.5,
+   "cash": 75.6,
+   "roi": 19.3,
    "roit": {
-    "small": 83.7,
-    "mid": 28.3,
-    "large": -24.8
+    "small": 82.6,
+    "mid": 19.3,
+    "large": -31.0
    }
   },
   {
    "p": [
-    11,
-    6,
-    23,
-    44,
-    10,
-    7,
-    13,
-    21
-   ],
-   "proj": 237.38,
-   "ceil": 340.91,
-   "sal": 49100,
-   "own": 214.2,
-   "dup": 0.8228,
-   "src": "scenario",
-   "freq": 1,
-   "optin": true,
-   "s": [
-    "PG",
-    "SG",
-    "SF",
-    "PF",
-    "C",
-    "G",
-    "F",
-    "UTIL"
-   ],
-   "top1": 2.74,
-   "top10": 15.5,
-   "cash": 51.6,
-   "roi": 19.1,
-   "roit": {
-    "small": 37.9,
-    "mid": 19.1,
-    "large": -7.0
-   }
-  },
-  {
-   "p": [
-    28,
+    35,
     7,
     31,
     23,
-    0,
-    35,
+    10,
+    28,
     24,
-    10
+    0
    ],
-   "proj": 229.68,
-   "ceil": 331.38,
+   "proj": 230.0,
+   "ceil": 331.73,
    "sal": 49900,
-   "own": 198.4,
-   "dup": 0.3985,
+   "own": 198.2,
+   "dup": 0.399,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -9706,32 +9667,32 @@
     "F",
     "UTIL"
    ],
-   "top1": 3.96,
-   "top10": 19.7,
+   "top1": 3.99,
+   "top10": 19.6,
    "cash": 47.3,
-   "roi": 96.4,
+   "roi": 83.8,
    "roit": {
-    "small": 86.3,
-    "mid": 96.4,
-    "large": 60.2
+    "small": 84.0,
+    "mid": 83.8,
+    "large": 42.0
    }
   },
   {
    "p": [
-    34,
-    7,
-    23,
-    33,
-    47,
     1,
+    7,
+    33,
+    23,
+    47,
+    4,
     18,
-    4
+    34
    ],
-   "proj": 251.37,
-   "ceil": 357.86,
+   "proj": 251.77,
+   "ceil": 358.29,
    "sal": 49600,
-   "own": 226.4,
-   "dup": 0.9761,
+   "own": 226.5,
+   "dup": 0.9715,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -9746,31 +9707,31 @@
     "UTIL"
    ],
    "top1": 3.0,
-   "top10": 22.9,
-   "cash": 74.5,
-   "roi": 66.7,
+   "top10": 22.8,
+   "cash": 74.4,
+   "roi": 57.1,
    "roit": {
-    "small": 87.5,
-    "mid": 66.7,
-    "large": 22.4
+    "small": 86.1,
+    "mid": 57.1,
+    "large": 19.7
    }
   },
   {
    "p": [
-    45,
-    28,
-    43,
-    44,
-    0,
     1,
+    45,
+    43,
     30,
-    10
+    10,
+    28,
+    44,
+    0
    ],
-   "proj": 221.16,
-   "ceil": 313.9,
+   "proj": 221.19,
+   "ceil": 313.96,
    "sal": 50000,
-   "own": 178.8,
-   "dup": 0.0481,
+   "own": 177.8,
+   "dup": 0.0467,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -9784,32 +9745,32 @@
     "F",
     "UTIL"
    ],
-   "top1": 2.36,
-   "top10": 12.6,
-   "cash": 39.1,
-   "roi": 43.1,
+   "top1": 2.29,
+   "top10": 12.4,
+   "cash": 38.7,
+   "roi": 48.9,
    "roit": {
-    "small": 20.6,
-    "mid": 43.1,
-    "large": 55.1
+    "small": 18.5,
+    "mid": 48.9,
+    "large": 69.1
    }
   },
   {
    "p": [
     1,
-    7,
+    40,
     23,
     38,
     48,
-    40,
+    7,
     42,
     0
    ],
-   "proj": 227.91,
-   "ceil": 328.86,
+   "proj": 228.37,
+   "ceil": 329.33,
    "sal": 50000,
-   "own": 231.9,
-   "dup": 0.341,
+   "own": 233.6,
+   "dup": 0.3503,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -9825,12 +9786,12 @@
    ],
    "top1": 2.48,
    "top10": 17.6,
-   "cash": 47.8,
-   "roi": 25.3,
+   "cash": 47.9,
+   "roi": 19.1,
    "roit": {
-    "small": 46.4,
-    "mid": 25.3,
-    "large": 23.9
+    "small": 45.9,
+    "mid": 19.1,
+    "large": 6.0
    }
   },
   {
@@ -9844,11 +9805,11 @@
     19,
     10
    ],
-   "proj": 228.25,
-   "ceil": 326.3,
+   "proj": 228.43,
+   "ceil": 326.5,
    "sal": 50000,
-   "own": 224.3,
-   "dup": 1.1771,
+   "own": 225.0,
+   "dup": 1.1869,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -9862,32 +9823,32 @@
     "F",
     "UTIL"
    ],
-   "top1": 2.78,
-   "top10": 17.3,
-   "cash": 45.1,
-   "roi": 9.8,
+   "top1": 2.76,
+   "top10": 17.1,
+   "cash": 44.9,
+   "roi": 8.5,
    "roit": {
-    "small": 47.3,
-    "mid": 9.8,
-    "large": -16.1
+    "small": 44.5,
+    "mid": 8.5,
+    "large": -17.3
    }
   },
   {
    "p": [
-    4,
+    1,
     40,
-    36,
+    23,
     19,
     10,
-    1,
-    30,
-    23
+    4,
+    36,
+    30
    ],
-   "proj": 257.39,
-   "ceil": 363.55,
+   "proj": 257.48,
+   "ceil": 363.67,
    "sal": 49500,
-   "own": 282.6,
-   "dup": 6.5813,
+   "own": 283.0,
+   "dup": 6.566,
    "src": "scenario",
    "freq": 1,
    "optin": true,
@@ -9901,14 +9862,14 @@
     "F",
     "UTIL"
    ],
-   "top1": 3.46,
-   "top10": 29.0,
-   "cash": 83.3,
-   "roi": 20.6,
+   "top1": 3.41,
+   "top10": 28.5,
+   "cash": 82.9,
+   "roi": 17.1,
    "roit": {
-    "small": 114.5,
-    "mid": 20.6,
-    "large": -38.5
+    "small": 111.9,
+    "mid": 17.1,
+    "large": -41.7
    }
   }
  ],

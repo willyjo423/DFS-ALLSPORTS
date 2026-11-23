@@ -26,9 +26,9 @@ BASE = "https://sbapi.nj.sportsbook.fanduel.com/api"
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/131.0 Safari/537.36")
 ONE_SIDED_POW = 1.12
-TABS = {"nhl": ("", "points-assists", "shots", "goalie-props", "goal-scorer", "blocks"),
-        "nba": ("player-points", "player-rebounds", "player-assists", "player-threes",
-                "player-defense")}
+TABS = {"nhl": ("", "popular", "goals", "points-assists", "shots", "goalies"),
+        "nba": ("popular", "player-points", "player-rebounds", "player-assists",
+                "player-threes", "player-defense", "player-combos")}
 SKIP = ("PERIOD", "QUARTER", "HALF", "OVERTIME", "FIRST_", "1ST_", "2ND_", "3RD_",
         "GAME_SPECIALS", "TEAM_", "EACH_PERIOD", "COMBINE", "MOST_", "DOUBLE", "TRIPLE")
 
@@ -117,7 +117,9 @@ def nhl_parse(markets: dict) -> dict:
             rn = str(r.get("runnerName") or "")
             p = _prob(_odds(r))
             ml = re.search(r"(\d+)\+", rn)
-            name = re.split(r"\s+(?:-\s+)?(?:Over|Under|\d+\+)", rn)[0].strip(" -")
+            name = re.split(r"\s*(?:-\s+)?(?:Over|Under|\d+\+)", rn)[0].strip(" -")
+            if not name:                         # "21+" rows: "Cam Talbot Alt Saves"
+                name = re.sub(r"\s+(Alt|Total)\b.*$", "", str(m.get("marketName") or "")).strip()
             if ml:
                 add(name, stat, int(ml.group(1)), p ** ONE_SIDED_POW if p else None)
                 continue
@@ -132,14 +134,17 @@ def nhl_parse(markets: dict) -> dict:
 
 
 # --------------------------------------------------------------------- NBA
-NBA_STAT = (("REBOUNDS", "R"), ("ASSISTS", "A"), ("THREE", "3"), ("STEALS", "S"),
-            ("BLOCKS", "B"), ("POINTS", "P"))
+NBA_STAT = (("REBOUNDS", "R"), ("ASSISTS", "A"), ("THREE", "3"), ("MADE_3", "3"),
+            ("STEALS", "S"), ("BLOCKS", "B"), ("POINTS", "P"))
 
 
 def _nba_stat(text: str):
+    t = text.upper().replace("POINTS", "PTS").replace("REBOUNDS", "REB").replace("ASSISTS", "AST")
+    if "+" in t:                                 # combos: Bovada's PR / PA / RA / PRA
+        has = [k for k in ("PTS", "REB", "AST") if k in t]
+        return {("PTS", "REB", "AST"): "PRA", ("PTS", "REB"): "PR", ("PTS", "AST"): "PA",
+                ("REB", "AST"): "RA"}.get(tuple(has))
     t = text.upper()
-    if any(c in t for c in ("+", "_&_", " & ", "PTS_REB", "PTS_AST", "REB_AST", "_PRA")):
-        return None
     return next((s for k, s in NBA_STAT if k in t), None)
 
 
@@ -147,6 +152,7 @@ def nba_parse(markets: dict) -> dict:
     """{"Name|": {stat: median}}"""
     import nba_props as NP
     rungs: dict = {}
+    dd: dict = {}
 
     def add(name, stat, line, po, pu):
         if name and po is not None:
@@ -154,9 +160,17 @@ def nba_parse(markets: dict) -> dict:
 
     for m in markets.values():
         mt = str(m.get("marketType") or "")
-        if any(s in mt for s in SKIP):
-            continue
         runners = m.get("runners") or []
+        if mt in ("TO_RECORD_A_DOUBLE_DOUBLE", "TO_RECORD_A_TRIPLE_DOUBLE"):
+            for r in runners:                    # bonus probabilities, kept as is
+                p = _prob(_odds(r))
+                if p and r.get("runnerName"):
+                    dd.setdefault(r["runnerName"].strip(), {})[
+                        "DD" if "DOUBLE_DOUBLE" in mt else "TD"] = round(p ** ONE_SIDED_POW, 4)
+            continue
+        if any(x in mt for x in SKIP):
+            continue
+        mt = re.sub(r"^(\d+)\+_MADE_THREES$", r"TO_RECORD_\1+_THREES", mt)
         mm = re.match(r"TO_(?:SCORE|RECORD)_(\d+)\+_(.+)$", mt)
         if mm:                                   # "25+ Points": runners are players
             stat = _nba_stat(mm.group(2))
@@ -196,6 +210,8 @@ def nba_parse(markets: dict) -> dict:
         med = {k: round(v, 2) for k, v in med.items() if v is not None}
         if med:
             out[f"{name}|"] = med
+    for name, d in dd.items():
+        out.setdefault(f"{name}|", {}).update(d)
     return out
 
 

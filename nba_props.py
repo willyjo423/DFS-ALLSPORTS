@@ -228,12 +228,26 @@ def per_minute_rates(hist: pd.DataFrame, games: int = 20) -> pd.DataFrame:
     h = hist[(hist["played"] == 1) & (hist["min"] > 0)].copy()
     h["fp"] = F.dk_points(h)
     h["other"] = h["fp"] - h["pts"] - 1.25 * h["reb"] - 1.5 * h["ast"]
+    tens = sum((h[c] >= 10).astype(int) for c in ("pts", "reb", "ast", "stl", "blk"))
+    h["dd"], h["td"] = (tens >= 2).astype(float), (tens >= 3).astype(float)
     h = h.sort_values("date").groupby("player_id").tail(games)
-    g = h.groupby("player_id")[["min", "pts", "reb", "ast", "other"]].sum()
+    cols = ["min", "pts", "reb", "ast", "other", "tpm", "stl", "blk", "tov"]
+    g = h.groupby("player_id")[[c for c in cols if c in h.columns]].sum()
+    n = h.groupby("player_id").size()
     out = pd.DataFrame({"P": g["pts"] / g["min"], "R": g["reb"] / g["min"],
                         "A": g["ast"] / g["min"], "other": g["other"] / g["min"],
-                        "min_avg": g["min"] / h.groupby("player_id").size()})
+                        "min_avg": g["min"] / n})
+    for k, c in (("3", "tpm"), ("S", "stl"), ("B", "blk"), ("T", "tov")):
+        if c in g:
+            out[k] = g[c] / g["min"]
+    out["DD"] = h.groupby("player_id")["dd"].mean()
+    out["TD"] = h.groupby("player_id")["td"].mean()
     return out
+
+
+# DraftKings value of the stats the books post beyond P / R / A
+EXTRA_W = {"3": 0.5, "S": 2.0, "B": 2.0, "T": -0.5}
+BONUS_W = {"DD": 1.5, "TD": 3.0}
 
 
 def market_dk(stats: dict, rates: pd.Series | None, minutes: float | None) -> tuple[float, float] | None:
@@ -250,6 +264,18 @@ def market_dk(stats: dict, rates: pd.Series | None, minutes: float | None) -> tu
                 return None
             filled += DK_W[k] * float(rates[k]) * m
     other = float(rates["other"]) * m if rates is not None and m else 0.0
+    # Threes, steals, blocks (and the double/triple-double odds) straight from
+    # the books where posted: swap the player's own-rate share of `other` for
+    # the market's number.
+    if rates is not None and m:
+        for k, w in EXTRA_W.items():
+            if stats.get(k) is not None and k in rates and rates[k] == rates[k]:
+                other += w * (float(stats[k]) - float(rates[k]) * m)
+                covered += w * float(stats[k])
+        for k, w in BONUS_W.items():
+            if stats.get(k) is not None and k in rates and rates[k] == rates[k]:
+                other += w * (float(stats[k]) - float(rates[k]))
+                covered += w * float(stats[k])
     total = covered + filled + other
     return (total, covered / total if total > 0 else 0.0)
 

@@ -4,8 +4,8 @@
  "slate": "7:30pm \u00b7 425 contests",
  "draft_group": 157174,
  "players": 141,
- "graded": 81,
- "mae_final": 7.129,
+ "graded": 82,
+ "mae_final": 7.116,
  "props": {
   "n": 53,
   "mae_model": 8.099,
@@ -16,9 +16,9 @@
   "weight": 0.838
  },
  "minutes": {
-  "n": 81,
-  "mae": 4.88,
-  "bias": 1.52
+  "n": 82,
+  "mae": 4.84,
+  "bias": 1.48
  },
  "late_scratches": [
   "Zion Williamson",
@@ -47,12 +47,12 @@
   "hindsight": 355.8
  },
  "hindsight_lineup": [
-  "Jordan Poole",
+  "Jeremiah Fears",
   "Max Christie",
   "Cedric Coward",
   "Landry Shamet",
   "Victor Wembanyama",
-  "Jeremiah Fears",
+  "Jordan Poole",
   "Derik Queen",
   "Donovan Clingan"
  ],

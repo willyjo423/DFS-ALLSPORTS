@@ -4,8 +4,8 @@
  "slate": "24 teams \u00b7 6:00pm",
  "draft_group": 156946,
  "players": 583,
- "graded": 453,
- "mae_final": 4.951,
+ "graded": 455,
+ "mae_final": 5.002,
  "props": {
   "n": 262,
   "mae_model": 5.48,
@@ -17,7 +17,7 @@
  },
  "pool": {
   "n": 316,
-  "avg": 108.0,
+  "avg": 108.1,
   "best": 195.0,
   "top5_cash": [
    107.2,
@@ -33,17 +33,17 @@
    115.9,
    102.6
   ],
-  "hindsight": 283.8
+  "hindsight": 289.3
  },
  "hindsight_lineup": [
   "Sebastian Cossa",
   "David Pastrnak",
-  "Alex DeBrincat",
-  "Josh Morrissey",
-  "Adam Fantilli",
+  "Zach Werenski",
+  "Tim Stuetzle",
   "Philip Broberg",
   "Sam Bennett",
   "Elias Lindholm",
+  "Matthew Knies",
   "Jake Neighbours"
  ],
  "role_misses": [
@@ -61,25 +61,6 @@
    "of": 316,
    "top13": 0,
    "own": 0.04993,
-   "signals": [],
-   "kind": "blind",
-   "line": "L1",
-   "news": null
-  },
-  {
-   "name": "Tim Stuetzle",
-   "team": "OTT",
-   "pos": "C",
-   "salary": 6300,
-   "proj": 11.23,
-   "act": 0.0,
-   "reason": "scratched",
-   "role_proj": 20.48,
-   "role_act": 0.0,
-   "lineups": 1,
-   "of": 316,
-   "top13": 0,
-   "own": 0.03184,
    "signals": [],
    "kind": "blind",
    "line": "L1",

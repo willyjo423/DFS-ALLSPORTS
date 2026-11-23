@@ -4,16 +4,16 @@
  "slate": "24 teams \u00b7 7:00pm",
  "draft_group": 156935,
  "players": 588,
- "graded": 451,
- "mae_final": 4.551,
+ "graded": 453,
+ "mae_final": 4.541,
  "props": {
-  "n": 317,
-  "mae_model": 5.221,
-  "mae_props": 5.218,
-  "mae_final": 5.225,
-  "sxy": 397.65939999999995,
-  "sxx": 419.3042000000001,
-  "weight": 0.948
+  "n": 318,
+  "mae_model": 5.213,
+  "mae_props": 5.214,
+  "mae_final": 5.219,
+  "sxy": 394.9257999999999,
+  "sxx": 420.34460000000007,
+  "weight": 0.94
  },
  "pool": {
   "n": 347,

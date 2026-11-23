@@ -4,11 +4,11 @@
  "slate": "22 teams \u00b7 7:00pm",
  "draft_group": 156626,
  "players": 483,
- "graded": 412,
- "mae_final": 5.146,
+ "graded": 414,
+ "mae_final": 5.135,
  "pool": {
   "n": 258,
-  "avg": 98.5,
+  "avg": 98.6,
   "best": 171.8,
   "hindsight": 315.2
  },
@@ -42,27 +42,6 @@
    "kind": "blind",
    "line": null,
    "news": null
-  },
-  {
-   "name": "Jiri Kulich",
-   "team": "BUF",
-   "pos": "W",
-   "salary": 2700,
-   "proj": 5.74,
-   "act": 0.0,
-   "reason": "scratched",
-   "role_proj": 14.57,
-   "role_act": 0.0,
-   "lineups": 2,
-   "of": 258,
-   "top13": 1,
-   "own": 0.02512,
-   "signals": [
-    "5 games in 30 days"
-   ],
-   "kind": "warned",
-   "line": "L1",
-   "news": "moved up (L2/PP2 -> L1/PP2)"
   },
   {
    "name": "Brandon Hagel",

@@ -21,27 +21,6 @@
     "news": null
    },
    {
-    "name": "Jiri Kulich",
-    "team": "BUF",
-    "pos": "W",
-    "salary": 2700,
-    "proj": 5.74,
-    "act": 0.0,
-    "reason": "scratched",
-    "role_proj": 14.57,
-    "role_act": 0.0,
-    "lineups": 2,
-    "of": 258,
-    "top13": 1,
-    "own": 0.02512,
-    "signals": [
-     "5 games in 30 days"
-    ],
-    "kind": "warned",
-    "line": "L1",
-    "news": "moved up (L2/PP2 -> L1/PP2)"
-   },
-   {
     "name": "Brandon Hagel",
     "team": "TBL",
     "pos": "W",
@@ -126,25 +105,6 @@
     "kind": "blind",
     "line": "L1",
     "news": null
-   },
-   {
-    "name": "Tim Stuetzle",
-    "team": "OTT",
-    "pos": "C",
-    "salary": 6300,
-    "proj": 11.23,
-    "act": 0.0,
-    "reason": "scratched",
-    "role_proj": 20.48,
-    "role_act": 0.0,
-    "lineups": 1,
-    "of": 316,
-    "top13": 0,
-    "own": 0.03184,
-    "signals": [],
-    "kind": "blind",
-    "line": "L1",
-    "news": null
    }
   ],
   "2026-11-22": [
@@ -173,15 +133,15 @@
  },
  "summary": {
   "nights": 5,
-  "misses_in_lineups": 8,
-  "blind": 4,
-  "warned": 4,
+  "misses_in_lineups": 6,
+  "blind": 3,
+  "warned": 3,
   "by_reason": {
-   "scratched": 6,
+   "scratched": 4,
    "goalie did not start": 2
   },
   "warning_ignored": {
-   "5 games in 30 days": 3,
+   "5 games in 30 days": 2,
    "chance": 1,
    "doubtful tag": 1,
    "news: not in": 1

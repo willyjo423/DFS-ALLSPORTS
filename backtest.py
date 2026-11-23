@@ -403,6 +403,14 @@ def _portfloor():
     PF.MIN_GAIN_SHARE = 0.05
 
 
+@variant("v3")
+def _v3():
+    """Scenario lineups: 400 simulated slates, keep 100."""
+    from engine import scenario_pool as SP_
+    SP_.N_SCENARIOS, SP_.KEEP, SP_.MAX_SECONDS = 400, 100, 400
+    SP_.trim.__defaults__ = (100,)
+
+
 @variant("scen1")
 def _scen1():
     """Scenario lineups as first shipped (60 slates, all kept)."""

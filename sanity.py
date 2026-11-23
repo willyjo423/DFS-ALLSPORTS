@@ -225,6 +225,51 @@ def cap_unlikely(payload: dict, log=None) -> dict:
     return payload
 
 
+# How long before lock each feed should be posted. Earlier than this an empty
+# feed is normal (props for Sunday's NFL slate go up through the week).
+PROPS_WINDOW_H = {"nba": 6, "nhl": 6, "cfb": 24, "nfl": 30}
+
+
+def feeds(payload: dict, now=None) -> list[dict]:
+    """Did each outside feed actually land on this board? Judged from the
+    board itself, so it catches every way a feed can fail - an error, an
+    empty answer, a changed page - not just the ones someone logged.
+    [{"feed", "msg"}] for each feed that looks broken; empty when healthy."""
+    from datetime import datetime, timezone
+    sport = payload.get("sport", "")
+    P = payload.get("players") or []
+    now = now or datetime.now(timezone.utc)
+    try:
+        hrs = (datetime.fromisoformat(str(payload.get("locks"))) - now).total_seconds() / 3600
+    except (TypeError, ValueError):
+        hrs = None
+    bad = []
+    if hrs is None or hrs < -0.5:
+        return bad                      # unknown lock, or already locked
+    skill = [p for p in P if p.get("pos") not in ("DST", "K", "G")
+             and str(p.get("status") or "clear").lower() != "out"]
+    key = sorted(skill, key=lambda p: -(_num(p.get("proj")) or 0))[:40]
+    if key and hrs <= PROPS_WINDOW_H.get(sport, 6):
+        have = sum(p.get("props") is not None for p in key)
+        if have < 0.25 * len(key):
+            bad.append({"feed": "props", "msg": f"player props on only {have} of the top {len(key)} "
+                        "players - the FanDuel/Bovada feed may have failed; projections are model-only"})
+    if sport == "nhl":
+        sk = [p for p in skill if (_num(p.get("toi")) or 0) >= 12]
+        if sk and sum(bool(p.get("line")) for p in sk) < 0.5 * len(sk):
+            bad.append({"feed": "lines", "msg": "forward lines and power-play units missing for most "
+                        "skaters - stacks are built without them"})
+        g = [p for p in P if p.get("pos") == "G"]
+        if g and hrs <= 3 and not any((_num(p.get("pp")) or 0) >= 0.85 for p in g):
+            bad.append({"feed": "goalies", "msg": "no starting goalie confirmed or likely for any "
+                        "team - the Daily Faceoff feed may have failed"})
+    if sport == "nba" and hrs <= 3 and P:
+        if not any("starting" in str(p.get("news") or "") for p in P):
+            bad.append({"feed": "lineups", "msg": "no NBA starting lineups on the board - the NBA "
+                        "lineups feed may have failed; starters and minutes are last game's"})
+    return bad
+
+
 def attach(payload: dict, today: str | None = None, log=None) -> dict:
     enforce(payload, log)
     cap_unlikely(payload, log)
@@ -238,6 +283,15 @@ def attach(payload: dict, today: str | None = None, log=None) -> dict:
                               f"{len(pin)} players — their real ownership is likely different; don't lean on these numbers",
                        "top": 0})
     payload["checks"] = checks
+    try:
+        payload["feeds"] = feeds(payload)
+    except Exception as exc:                                   # noqa: BLE001
+        payload["feeds"] = []
+        if log is not None:
+            log.warning("feed health check failed: %s", exc)
+    if log is not None and payload["feeds"]:
+        log.error("FEED DOWN for %s: %s", payload.get("label", ""),
+                  " | ".join(f["msg"] for f in payload["feeds"]))
     tags: dict[int, list[str]] = {}
     for c in checks:
         tags.setdefault(c["i"], []).append(c["msg"])

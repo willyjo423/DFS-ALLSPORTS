@@ -395,6 +395,13 @@ def _v2():
     """Same as base (named run, so it does not overwrite the base dump)."""
 
 
+@variant("portfloor")
+def _portfloor():
+    """Best set: a pick must add 5% of the best lineup's value."""
+    from engine import portfolio as PF
+    PF.MIN_GAIN_SHARE = 0.05
+
+
 @variant("scen1")
 def _scen1():
     """Scenario lineups as first shipped (60 slates, all kept)."""

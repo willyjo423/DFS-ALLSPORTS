@@ -19,6 +19,10 @@ import numpy as np
 
 WIN, TOP = 10.0, 1.0
 PICK = 40
+# A pick must add at least this share of the best single lineup's value;
+# below it the rest fill by own value. 0 = off. On small slates the greedy
+# kept "diversifying" into $38K, 76-point lineups (2026-11-22, NFL Mon-Wed).
+MIN_GAIN_SHARE = 0.0
 
 
 def payoff(ls: np.ndarray, q999: np.ndarray, q99: np.ndarray) -> np.ndarray:
@@ -33,12 +37,13 @@ def greedy(V: np.ndarray, n: int = PICK) -> list[int]:
     n = min(n, k)
     best = np.zeros(sims, np.float32)
     chosen: list[int] = []
+    floor = MIN_GAIN_SHARE * float(V.mean(axis=0).max()) if k else 0.0
     avail = np.ones(k, bool)
     for _ in range(n):
         gain = np.maximum(V, best[:, None]).mean(axis=0) - best.mean()
         gain[~avail] = -1.0
         j = int(np.argmax(gain))
-        if gain[j] <= 0:                 # nothing adds anything: fill by own value
+        if gain[j] <= floor:             # nothing adds enough: fill by own value
             rest = np.where(avail)[0]
             j = int(rest[np.argmax(V[:, rest].mean(axis=0))])
         chosen.append(j)

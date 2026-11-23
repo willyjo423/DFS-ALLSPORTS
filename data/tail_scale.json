@@ -1,0 +1,23 @@
+{
+ "nhl": {
+  "k": {
+   "punt": 1.285,
+   "low": 1.324,
+   "mid": 1.231,
+   "high": 1.0
+  },
+  "n": 12933,
+  "nights": 53
+ },
+ "cfb": {
+  "k": {
+   "punt": 1.0,
+   "low": 1.0,
+   "mid": 1.0,
+   "high": 1.0
+  },
+  "n": 4033,
+  "nights": 11,
+  "note": "mid tier beat its 90th 14% but not its 97th; 11 nights - left at 1.0"
+ }
+}

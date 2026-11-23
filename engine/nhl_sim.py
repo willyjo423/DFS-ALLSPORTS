@@ -62,6 +62,8 @@ def simulate_scores(payload: dict, sims: int, rng) -> np.ndarray:
     zt = rng.normal(size=(sims, len(teams)))
     zl = rng.normal(size=(sims, max(len(lines), 1)))
     zu = rng.normal(size=(sims, max(len(units), 1)))
+    from engine import tail_scale as TS
+    kf = TS.factors("nhl", players)
     out = np.zeros((sims, n))
     # The books or our model, per team (see nba_sim): in MODEL_SCENARIO of
     # simulated nights the model's number, not the props blend, is the truth
@@ -92,6 +94,7 @@ def simulate_scores(payload: dict, sims: int, rng) -> np.ndarray:
         from scipy.special import ndtr
         u = np.clip(ndtr(z), 1e-4, 1 - 1e-4)
         q = p.get("q") or [p.get("med") or 0.0] * len(qs)
+        q = TS.stretch(qs, q, float(kf[i]))
         x = _inverse_cdf(qs, q, u)
         # Published quantiles are the model's; `proj` is the calibrated
         # number the pool optimises - "if he plays" for anyone likely to

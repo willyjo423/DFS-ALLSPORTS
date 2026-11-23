@@ -47,6 +47,8 @@ def simulate_scores(payload: dict, sims: int, rng) -> np.ndarray:
     zt = rng.normal(size=(sims, len(teams)))
     zp = rng.normal(size=(sims, len(teams)))
     zg = rng.normal(size=(sims, len(games)))
+    from engine import tail_scale as TS
+    kf = TS.factors("cfb", players)
     out = np.zeros((sims, len(players)))
     for i, p in enumerate(players):
         if p.get("status") == "out":
@@ -58,6 +60,7 @@ def simulate_scores(payload: dict, sims: int, rng) -> np.ndarray:
              + np.sqrt(max(1 - wg - wp, 0.0)) * rng.normal(size=sims))
         u = np.clip(ndtr(z), 1e-4, 1 - 1e-4)
         q = p.get("q") or [p.get("med") or 0.0] * len(qs)
+        q = TS.stretch(qs, q, float(kf[i]))
         x = _inverse_cdf(qs, q, u)
         pp = float(p.get("pp") or 1.0)
         target = (p.get("proj") or p.get("med") or 0.0) / (pp if 0 < pp < 0.5 else 1.0)

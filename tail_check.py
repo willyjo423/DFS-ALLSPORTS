@@ -131,7 +131,7 @@ def run(sport: str, sims: int) -> pd.DataFrame:
                  "salary": sal[i], "tier": TIERS[min(int(rk[i] * 4 - 1e-9), 3)],
                  "actual": float(a), "pit": float((x < a).mean() + 0.5 * (x == a).mean()),
                  "proj": float(p.get("proj") or p.get("med") or 0)}
-            for lv in LEVELS:
+            for lv in (0.5,) + LEVELS:
                 r[f"p{int(lv * 100)}"] = float(np.quantile(x, lv))
             rows.append(r)
         print(f"  {sport} {day}: {got}/{len(P)} players matched")
@@ -162,11 +162,63 @@ def summary(df: pd.DataFrame) -> list[dict]:
     return out
 
 
+def _rel_k(g: pd.DataFrame) -> float:
+    """Factor on the spread above the median that makes this tier beat its
+    90th / 97th percentiles 10% / 3% of the time (average of the two)."""
+    ks = []
+    for lv, e in ((90, 0.10), (97, 0.03)):
+        d = g[g[f"p{lv}"] > g["p50"]]
+        if len(d) < 200:
+            continue
+        lo, hi = 0.3, 3.0
+        for _ in range(40):
+            k = (lo + hi) / 2
+            r = float((d["actual"] > d["p50"] + k * (d[f"p{lv}"] - d["p50"])).mean())
+            lo, hi = (k, hi) if r > e else (lo, k)
+        ks.append((lo + hi) / 2)
+    return float(np.mean(ks)) if ks else 1.0
+
+
+def fit(sports, sims) -> dict:
+    """Fit data/tail_scale.json: measure with the scale off, stretch tiers whose
+    miss is clear (|z| >= 2 at the 90th or 97th), re-measure, refine once."""
+    import os
+    from engine import tail_scale as TS
+    out = {}
+    os.environ["TAIL_SCALE_OFF"] = "1"
+    for s in sports:
+        df = run(s, sims)
+        if df.empty:
+            continue
+        k = {}
+        for r in summary(df):
+            if r["tier"] == "all":
+                continue
+            clear = abs(r["z_p90"]) >= 2 or abs(r["z_p97"]) >= 2
+            k[r["tier"]] = round(_rel_k(df[df.tier == r["tier"]]), 3) if clear else 1.0
+        out[s] = {"k": k, "n": int(len(df)), "nights": int(df["day"].nunique())}
+    del os.environ["TAIL_SCALE_OFF"]
+    TS.PATH.write_text(json.dumps(out, indent=1))
+    TS._CACHE = None
+    for s in list(out):                       # one refinement pass with the scale on
+        df = run(s, sims)
+        for t, k in list(out[s]["k"].items()):
+            if k != 1.0:
+                out[s]["k"][t] = round(k * _rel_k(df[df.tier == t]), 3)
+    TS.PATH.write_text(json.dumps(out, indent=1))
+    TS._CACHE = None
+    print(json.dumps(out, indent=1))
+    return out
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--sports", nargs="+", default=["nba", "nhl", "cfb", "mlb"])
     ap.add_argument("--sims", type=int, default=4000)
+    ap.add_argument("--fit", action="store_true", help="fit data/tail_scale.json, then report with it on")
     a = ap.parse_args(argv)
+    if a.fit:
+        fit([s for s in a.sports if s in ("nhl", "cfb")], a.sims)
     frames = []
     for s in a.sports:
         try:

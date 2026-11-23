@@ -379,6 +379,13 @@ def _scenario():
     """Kept for the 2026-11-22 comparison dumps; same as base now."""
 
 
+@variant("notail")
+def _notail():
+    """Simulated ranges without the per-tier stretch (engine/tail_scale)."""
+    import os
+    os.environ["TAIL_SCALE_OFF"] = "1"
+
+
 @variant("noscenario")
 def _noscenario():
     """The pool without scenario lineups (before 2026-11-22)."""

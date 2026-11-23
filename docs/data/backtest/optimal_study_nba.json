@@ -1,0 +1,218 @@
+{
+ "generated": "2026-11-23T00:57:32.998120",
+ "sources": {
+  "nba": {
+   "summary": {
+    "nights": 4,
+    "optimal": 364.0,
+    "reachable": 347.38,
+    "pool_best": 297.88,
+    "pool_best_share": 0.821,
+    "reach_share": 0.955,
+    "overlap_max": 4.25,
+    "opt_in_pool": 6.0,
+    "best_rank_top1": 31.25,
+    "best_rank_roi": 31.25,
+    "pool_n": 120.0,
+    "pool_best_beats_win": 0.25,
+    "optimal_over_win": 57.8,
+    "traits": {
+     "proj": {
+      "optimal": 247.93,
+      "pool": 266.35
+     },
+     "own": {
+      "optimal": 94.16,
+      "pool": 108.43
+     },
+     "salary": {
+      "optimal": 49600.0,
+      "pool": 49916.25
+     },
+     "cheap": {
+      "optimal": 0.0,
+      "pool": 0.09
+     },
+     "proj_rank": {
+      "optimal": 0.87,
+      "pool": 0.91
+     },
+     "value_rank": {
+      "optimal": 0.86,
+      "pool": 0.93
+     },
+     "max_team": {
+      "optimal": 2.5,
+      "pool": 2.61
+     },
+     "max_game": {
+      "optimal": 3.5,
+      "pool": 3.27
+     },
+     "top_games": {
+      "optimal": 1.5,
+      "pool": 2.08
+     }
+    }
+   },
+   "nights": {
+    "2026-11-18": {
+     "optimal": 370.25,
+     "pool_best": 299.5,
+     "reachable": 334.5,
+     "overlap_max": 2,
+     "slots": 8,
+     "opt_in_pool": 2,
+     "pool_players": 38,
+     "best_rank_top1": 5,
+     "best_rank_roi": 7,
+     "pool_n": 120,
+     "opt": {
+      "proj": 246.85,
+      "own": 63.117000000000004,
+      "salary": 49900,
+      "cheap": 0.0,
+      "proj_rank": 0.8383697280399366,
+      "value_rank": 0.8121044303797469,
+      "max_team": 2,
+      "max_game": 3,
+      "top_games": 3,
+      "line_mates": null
+     },
+     "pool": {
+      "proj": 286.67741666666666,
+      "own": 77.498925,
+      "salary": 49887.5,
+      "cheap": 0.016666666666666666,
+      "proj_rank": 0.914251669173565,
+      "value_rank": 0.9632548786919831,
+      "max_team": 2.7083333333333335,
+      "max_game": 2.8583333333333334,
+      "top_games": 1.9416666666666667,
+      "line_mates": NaN
+     },
+     "win_line": 312.50225000000046,
+     "top1_line": 288.50250000000005,
+     "pool_best_pct": 99.62
+    },
+    "2026-11-19": {
+     "optimal": 348.25,
+     "pool_best": 331.5,
+     "reachable": 348.25,
+     "overlap_max": 6,
+     "slots": 8,
+     "opt_in_pool": 8,
+     "pool_players": 36,
+     "best_rank_top1": 47,
+     "best_rank_roi": 43,
+     "pool_n": 120,
+     "opt": {
+      "proj": 252.66000000000003,
+      "own": 115.773,
+      "salary": 49500,
+      "cheap": 0.0,
+      "proj_rank": 0.8940058479532164,
+      "value_rank": 0.9033687943262412,
+      "max_team": 4,
+      "max_game": 5,
+      "top_games": 1,
+      "line_mates": null
+     },
+     "pool": {
+      "proj": 256.30958333333336,
+      "own": 127.91907499999999,
+      "salary": 49906.666666666664,
+      "cheap": 0.03333333333333333,
+      "proj_rank": 0.9261349092448324,
+      "value_rank": 0.9090277777777778,
+      "max_team": 2.7333333333333334,
+      "max_game": 3.65,
+      "top_games": 3.1333333333333333,
+      "line_mates": NaN
+     },
+     "win_line": 301.75075000000015,
+     "top1_line": 279.25250000000005,
+     "pool_best_pct": 100.0
+    },
+    "2026-11-20": {
+     "optimal": 395.75,
+     "pool_best": 290.0,
+     "reachable": 377.0,
+     "overlap_max": 4,
+     "slots": 8,
+     "opt_in_pool": 7,
+     "pool_players": 45,
+     "best_rank_top1": 28,
+     "best_rank_roi": 31,
+     "pool_n": 120,
+     "opt": {
+      "proj": 251.82,
+      "own": 95.44200000000001,
+      "salary": 50000,
+      "cheap": 0.0,
+      "proj_rank": 0.8575370718462824,
+      "value_rank": 0.8814858490566038,
+      "max_team": 1,
+      "max_game": 2,
+      "top_games": 1,
+      "line_mates": null
+     },
+     "pool": {
+      "proj": 259.59808333333336,
+      "own": 94.95105833333334,
+      "salary": 49969.166666666664,
+      "cheap": 0.025,
+      "proj_rank": 0.8910157190519032,
+      "value_rank": 0.9444673742138365,
+      "max_team": 2.091666666666667,
+      "max_game": 2.658333333333333,
+      "top_games": 1.6833333333333333,
+      "line_mates": NaN
+     },
+     "win_line": 324.5015000000003,
+     "top1_line": 302.00250000000005,
+     "pool_best_pct": 97.66
+    },
+    "2026-11-21": {
+     "optimal": 341.75,
+     "pool_best": 270.5,
+     "reachable": 329.75,
+     "overlap_max": 5,
+     "slots": 8,
+     "opt_in_pool": 7,
+     "pool_players": 36,
+     "best_rank_top1": 45,
+     "best_rank_roi": 44,
+     "pool_n": 120,
+     "opt": {
+      "proj": 240.4,
+      "own": 102.325,
+      "salary": 49000,
+      "cheap": 0.0,
+      "proj_rank": 0.8902093596059113,
+      "value_rank": 0.8324468085106383,
+      "max_team": 3,
+      "max_game": 4,
+      "top_games": 1,
+      "line_mates": null
+     },
+     "pool": {
+      "proj": 262.8210833333333,
+      "own": 133.33145,
+      "salary": 49901.666666666664,
+      "cheap": 0.275,
+      "proj_rank": 0.900138714024263,
+      "value_rank": 0.9033909574468083,
+      "max_team": 2.8916666666666666,
+      "max_game": 3.933333333333333,
+      "top_games": 1.55,
+      "line_mates": NaN
+     },
+     "win_line": 286.00225000000046,
+     "top1_line": 261.25250000000005,
+     "pool_best_pct": 99.56
+    }
+   }
+  }
+ }
+}

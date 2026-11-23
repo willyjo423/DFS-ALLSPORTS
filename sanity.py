@@ -270,6 +270,30 @@ def feeds(payload: dict, now=None) -> list[dict]:
     return bad
 
 
+def mark_stale(sport: str, dg, why: str, log=None) -> None:
+    """A rebuild that failed leaves the previous board on the page with no
+    sign it is old (NFL 2026-11-22: morning boards stayed up through kickoff
+    with players ruled out since). Put a red banner on it saying how old."""
+    import json
+    from pathlib import Path
+    f = Path(__file__).resolve().parent / "docs" / "data" / f"{sport}_dk_classic_{dg}.json"
+    if not f.exists():
+        return
+    try:
+        b = json.loads(f.read_text())
+        age = str(b.get("generated_at") or b.get("generated") or "")[:16].replace("T", " ")
+        b["feeds"] = [x for x in (b.get("feeds") or []) if x.get("feed") != "rebuild"] + [{
+            "feed": "rebuild",
+            "msg": f"the latest rebuild failed ({why[:120]}) - this board is from {age or 'an earlier run'} "
+                   "and does NOT include injury, lineup or goalie news since; check every player"}]
+        f.write_text(json.dumps(b, separators=(",", ":")))
+        if log is not None:
+            log.error("%s %s: rebuild failed, older board marked stale", sport, dg)
+    except Exception as exc:                                   # noqa: BLE001
+        if log is not None:
+            log.warning("could not mark %s %s stale: %s", sport, dg, exc)
+
+
 def attach(payload: dict, today: str | None = None, log=None) -> dict:
     enforce(payload, log)
     cap_unlikely(payload, log)

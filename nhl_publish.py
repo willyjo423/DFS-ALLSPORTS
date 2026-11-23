@@ -899,6 +899,7 @@ def main(argv=None) -> int:
             # raised past the handler.
             log.error("draft group %s failed (%s: %s) - the other boards are "
                       "unaffected", dg, type(exc).__name__, str(exc)[:160])
+            SANITY.mark_stale("nhl", dg, f"{type(exc).__name__}: {exc}", log)
             continue
 
     if not payloads:

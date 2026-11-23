@@ -391,6 +391,7 @@ def main(argv=None) -> int:
                               lines, day, feats, lineups, props, rates)
         except Exception as exc:                               # noqa: BLE001
             log.exception("draft group %s failed: %s", r.draft_group, exc)
+            SANITY.mark_stale("nba", r.draft_group, f"{type(exc).__name__}: {exc}", log)
             continue
         if pay:
             payloads.append(pay)

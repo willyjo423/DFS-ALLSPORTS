@@ -51,3 +51,14 @@ def test_football_dnp_and_barely_played():
          {"name": "K", "proj": 5, "_found": True, "_snaps": 9, "_snap_pct": 0.14}]
     m = RA.audit("nfl", _board(P, [{"p": [0, 1, 2]}]))
     assert [(x["name"], x["reason"]) for x in m] == [("Hudson", "did not play"), ("W", "barely played")]
+
+
+def test_cap_unlikely():
+    import sanity as S
+    P = [{"name": "Hagel", "pp": 0.25}, {"name": "A", "pp": 1.0}, {"name": "Out", "pp": 0.0, "status": "out"}]
+    L = [{"p": [0, 1], "top1": 5 - k * 0.1} for k in range(30)] + [{"p": [1], "top1": 1} for _ in range(70)]
+    pay = S.cap_unlikely({"players": P, "lineups": L})
+    unl = [x for x in pay["lineups"] if x.get("unl")]
+    assert len(pay["lineups"]) == 80 and len(unl) == 10 and unl[0]["top1"] == 5
+    import optimize_settings as O
+    assert not any(x.get("unl") for x in O.order(pay["lineups"], "top1")[:13])

@@ -453,7 +453,8 @@ function drawSbs() {
     const cand = pool.filter(L => so ? L.src === "scenario"
       : !L.optin && !(L.src === "scenario" && lab === "Highest ROI"));
     if (!cand.length) return "";
-    const L = cand.reduce((a, b) => f(b) > f(a) ? b : a);
+    const safe = cand.filter(L => !L.unl);
+    const L = (safe.length ? safe : cand).reduce((a, b) => f(b) > f(a) ? b : a);
     return `<div style="margin-top:4px"><b>${lab}:</b> ${L.proj.toFixed(1)} proj` +
       (L.top1 != null ? ` · ${L.top1.toFixed(1)}% top-1%` : "") +
       (L._r != null ? ` · ${L._r > 0 ? "+" : ""}${L._r.toFixed(0)}% ROI` : "") +
@@ -588,6 +589,8 @@ function drawLineups() {
     : k === "roi" ? (b._r ?? -1e9) - (a._r ?? -1e9)
     : k === "ownhi" ? b.own - a.own
     : (k === "own" || k === "dup") ? a[k] - b[k] : b[k] - a[k]);
+  // Lineups built on a player under 50% to play always go after the rest.
+  ok.sort((a, b) => (a.unl ? 1 : 0) - (b.unl ? 1 : 0));
   // Greedy portfolio: best first, skipping any lineup that would push a
   // player past the exposure cap. Locked players are exempt - you asked
   // for them in every lineup.

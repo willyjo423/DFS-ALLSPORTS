@@ -180,8 +180,54 @@ def enforce(payload: dict, log=None) -> dict:
     return payload
 
 
+UNLIKELY_PP = 0.5        # under this chance to play is "probably not playing"
+UNLIKELY_SHARE = 0.10    # most of the pool such lineups may take
+TOP_CLEAR = 13           # and never inside the lineups anyone actually plays
+
+
+def cap_unlikely(payload: dict, log=None) -> dict:
+    """Lineups built on a player who probably will not play.
+
+    The audit found a 25%-to-play skater (Hagel, 2026-11-17) in 115 of 258
+    lineups: his conditional upside kept winning simulations he would not be
+    in. Now: such lineups are marked `unl`, at most 10% of the pool keeps
+    them (the best by top-1%), and the page and the settings optimiser sort
+    them after every other lineup, so none reaches the first 13 picked.
+    A confirmation flips his chance to play and the late-news rebuild
+    brings him back in full."""
+    P = payload.get("players") or []
+    L = payload.get("lineups") or []
+    if not L:
+        return payload
+    bad = {j for j, p in enumerate(P)
+           if (_num(p.get("pp")) if p.get("pp") is not None else 1.0) < UNLIKELY_PP
+           and str(p.get("status") or "clear").lower() != "out"}
+    if not bad:
+        return payload
+    risky = [x for x in L if any(i in bad for i in x.get("p", []))]
+    if not risky:
+        return payload
+    keep_n = int(UNLIKELY_SHARE * len(L))
+    risky.sort(key=lambda x: -(_num(x.get("top1")) or 0))
+    kept = set(map(id, risky[:keep_n]))
+    out = []
+    for x in L:
+        if any(i in bad for i in x.get("p", [])):
+            if id(x) not in kept:
+                continue
+            x["unl"] = True
+        out.append(x)
+    payload["lineups"] = out
+    if log is not None:
+        log.warning("unlikely players (%s): %d lineups used them, kept %d of %d",
+                    ", ".join(P[j]["name"] for j in sorted(bad))[:200],
+                    len(risky), min(keep_n, len(risky)), len(L))
+    return payload
+
+
 def attach(payload: dict, today: str | None = None, log=None) -> dict:
     enforce(payload, log)
+    cap_unlikely(payload, log)
     checks = check(payload, today)
     pin = (payload.get("integrity") or {}).get("own_pinned") or []
     if pin:

@@ -72,6 +72,12 @@ def roi_of(x: dict, tier: str | None):
 
 
 def order(L: list[dict], sort: str, tier: str | None = None) -> list[dict]:
+    # lineups built on a player under 50% to play go last (sanity.cap_unlikely)
+    r = _order(L, sort, tier)
+    return [x for x in r if not x.get("unl")] + [x for x in r if x.get("unl")]
+
+
+def _order(L: list[dict], sort: str, tier: str | None = None) -> list[dict]:
     # as the page: opt-in scenario lineups never, and the ROI sorts skip
     # scenario lineups (their simulated ROI outruns their real results)
     L = [x for x in L if not x.get("optin")]

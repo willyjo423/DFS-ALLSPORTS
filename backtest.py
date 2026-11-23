@@ -145,7 +145,9 @@ def actuals(sport: str, day: str) -> dict:
             time.sleep(5 * (i + 1))
     else:
         return {}
-    if act:
+    # Only cache a finished day: a mid-day fetch holds just the early games and,
+    # cached, hid the rest of the night from every later grade (2026-11-22).
+    if act and day < datetime.now(ET).date().isoformat():
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(act))
     return act

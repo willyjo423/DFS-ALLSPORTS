@@ -9,7 +9,7 @@ on:
       script:
         description: "Script to run"
         type: choice
-        options: [cfb_blowout_fit.py, salary_probe.py, tonight_check.py, tail_check.py]
+        options: [cfb_blowout_fit.py, salary_probe.py, tonight_check.py, tail_check.py, study_optimal.py]
       args:
         description: "Arguments for the script"
         default: ""
@@ -20,7 +20,7 @@ permissions:
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 240
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5

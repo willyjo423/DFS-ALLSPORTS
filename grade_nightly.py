@@ -111,18 +111,29 @@ def nhl_actuals(day: str) -> dict:
                     sh = p.get("shPoints", 0) or 0
                     dk = (8.5 * gl + 5 * a + 1.5 * s + 1.3 * bl + 2 * sh
                           + 3 * (gl >= 3) + 3 * (s >= 5) + 3 * (bl >= 3) + 3 * (gl + a >= 3))
-                    out[_nhl_key(p, team)] = {"dk": dk, "team": team}
+                    out[_nhl_key(p, team)] = {"dk": dk, "team": team,
+                                              "toi": _mins(p.get("toi"))}
             for p in st.get("goalies", []):
                 dec = p.get("decision")
                 sv, ga = p.get("saves") or 0, p.get("goalsAgainst") or 0
+                started = (bool(p.get("starter")) if "starter" in p
+                           else _mins(p.get("toi")) >= 30)
                 if not dec and not sv:
-                    out[_nhl_key(p, team)] = {"dk": 0.0, "team": team}
+                    out[_nhl_key(p, team)] = {"dk": 0.0, "team": team, "started": started}
                     continue
                 dk = (0.7 * sv - 3.5 * ga + 6 * (dec == "W") + 2 * (dec == "O")
                       + 4 * (ga == 0 and dec == "W") + 3 * (sv >= 35))
-                out[_nhl_key(p, team)] = {"dk": dk, "team": team}
+                out[_nhl_key(p, team)] = {"dk": dk, "team": team, "started": started}
         time.sleep(0.3)
     return out
+
+
+def _mins(mmss) -> float:
+    try:
+        m, s = str(mmss).split(":")
+        return int(m) + int(s) / 60
+    except (ValueError, AttributeError):
+        return 0.0
 
 
 def _nhl_key(p, team):
@@ -154,6 +165,8 @@ def grade(sport: str, day: str) -> dict | None:
         p["_act"] = float(a["dk"]) if a else 0.0
         p["_found"] = a is not None
         p["_min"] = (a or {}).get("min")
+        p["_toi"] = (a or {}).get("toi")
+        p["_started"] = (a or {}).get("started")
     played = [p for p in P if p["_found"] and p.get("status") != "out"
               and (sport != "nba" or (p["_min"] or 0) > 0)]
 
@@ -217,6 +230,11 @@ def grade(sport: str, day: str) -> dict | None:
           if p.get("ceil_model") is not None and p.get("ceil_props") is not None]
     if cr:
         out["ceil_rows"] = cr
+    try:
+        import role_audit as RA
+        out["role_misses"] = RA.audit(sport, board)
+    except Exception as exc:                                   # noqa: BLE001
+        log.warning("role audit failed: %s", exc)
     miss = sorted(played, key=lambda p: p["_act"] - float(p.get("proj") or 0))
     out["biggest_unders"] = [(p["name"], round(float(p["proj"]), 1), p["_act"]) for p in miss[:5]]
     out["biggest_overs"] = [(p["name"], round(float(p["proj"]), 1), p["_act"]) for p in miss[-5:][::-1]]
@@ -307,6 +325,10 @@ def main(argv=None) -> int:
                   f"{pr['mae_props']} / final {pr['mae_final']}, weight tonight {pr['weight']}")
         if g.get("minutes"):
             print(f"- minutes MAE {g['minutes']['mae']} (bias {g['minutes']['bias']:+})")
+        if "role_misses" in g:
+            import role_audit as RA
+            rs = RA.update_running(OUT / f"role_audit_{sport}.json", day, g["role_misses"])
+            print("\n".join(RA.report(sport, day, g["role_misses"], rs)))
         print(f"- running: {s['props_nights']} nights, props weight {s['props_weight']} "
               f"over {s['props_players']} players")
     return 0

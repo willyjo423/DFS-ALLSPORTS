@@ -30,6 +30,7 @@ jobs:
       - name: Run
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
         run: |
           set -o pipefail
           python "${{ inputs.script }}" ${{ inputs.args }} 2>&1 | tee out.txt

@@ -48,7 +48,7 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A docs/data/grades docs/data/auto_settings.json data/actuals data/nba_team_proj.csv data/nhl_team_proj.csv
+          git add -A docs/data/grades docs/data/auto_settings.json data/actuals data/nba_team_proj.csv data/nhl_team_proj.csv data/ceiling_weight.json
           git diff --cached --quiet && { echo "nothing new"; exit 0; }
           git commit -m "Grades: $(date -u +%Y-%m-%d)"
           for i in 1 2 3 4 5; do

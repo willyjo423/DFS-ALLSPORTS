@@ -212,6 +212,11 @@ def grade(sport: str, day: str) -> dict | None:
             out["hindsight_lineup"] = [P[i]["name"] for i in o]
     except Exception as exc:                                   # noqa: BLE001
         log.warning("hindsight optimal failed: %s", exc)
+    # model vs ladder ceilings, for engine/ladder_ceiling's weight
+    cr = [[float(p["ceil_model"]), float(p["ceil_props"]), p["_act"]] for p in played
+          if p.get("ceil_model") is not None and p.get("ceil_props") is not None]
+    if cr:
+        out["ceil_rows"] = cr
     miss = sorted(played, key=lambda p: p["_act"] - float(p.get("proj") or 0))
     out["biggest_unders"] = [(p["name"], round(float(p["proj"]), 1), p["_act"]) for p in miss[:5]]
     out["biggest_overs"] = [(p["name"], round(float(p["proj"]), 1), p["_act"]) for p in miss[-5:][::-1]]
@@ -234,8 +239,39 @@ def summarise(sport: str) -> dict:
          "mae_final": _avg(pr, "mae_final"),
          "pool_avg": _avg([n["pool"] for n in nights if n.get("pool")], "avg"),
          "updated": datetime.now(timezone.utc).isoformat(timespec="minutes")}
+    s["ceiling"] = tune_ceiling(sport, [r for n in nights for r in n.get("ceil_rows", [])])
     (OUT / sport / "summary.json").write_text(json.dumps(s, indent=1))
     return s
+
+
+CEIL_LEVEL = {"nhl": 0.97, "nba": 0.90}     # what each board's `ceil` is
+CEIL_MIN_ROWS = 300
+
+
+def tune_ceiling(sport: str, rows: list) -> dict | None:
+    """The share of the books' ladder ceiling (vs the model's) whose ceilings
+    are beaten at the rate they should be, written to data/ceiling_weight.json
+    once there are enough graded players."""
+    if not rows or sport not in CEIL_LEVEL:
+        return None
+    a = np.array(rows, float)
+    want = 1 - CEIL_LEVEL[sport]
+    rate = lambda w: float((a[:, 2] > (1 - w) * a[:, 0] + w * a[:, 1]).mean())
+    grid = [round(x, 1) for x in np.arange(0, 1.01, 0.1)]
+    best = min(grid, key=lambda w: abs(rate(w) - want))
+    out = {"n": len(a), "target": want, "model_rate": round(rate(0.0), 4),
+           "props_rate": round(rate(1.0), 4), "best_w": best}
+    if len(a) >= CEIL_MIN_ROWS:
+        from engine import ladder_ceiling as LC
+        try:
+            cfg = json.loads(LC.PATH.read_text())
+        except Exception:                                      # noqa: BLE001
+            cfg = {}
+        cfg.setdefault(sport, {})["w"] = best
+        cfg[sport]["n"] = len(a)
+        LC.PATH.write_text(json.dumps(cfg, indent=1))
+        out["applied"] = True
+    return out
 
 
 def _avg(rows, k):

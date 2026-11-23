@@ -30,6 +30,9 @@ KEEP = 60             # scenario lineups kept after the contest sim ranks them
 # box): 189 historical NBA nights, they lowered tournament ROI under the
 # ROI and top-1% sorts without adding top-1% finishes (2026-11-23).
 OPT_IN = {"nba"}
+# Sports kept on the first version (60 slates, every optimum kept): NHL's
+# 54-night backtest went from 37% to 22% 20-entry top-1% nights under v2.
+V1_SPORTS = {"nhl"}
 MODE = "v2"           # "v1" = 60 slates, every distinct optimum kept (2026-11-22)
 MAX_SECONDS = 150     # per slate, so a publish run never times out on them
 
@@ -50,7 +53,7 @@ def add(payload: dict, sport: str, n: int = N_SCENARIOS, seed: int = 5,
     players, roster = payload["players"], payload["roster"]
     rng = np.random.default_rng(seed)
     S = draws(sport, payload, n, rng)
-    if MODE == "v1":
+    if MODE == "v1" or sport in V1_SPORTS:
         n = 60
     have = {tuple(sorted(L["p"])) for L in pool}
     freq: dict = {}
@@ -121,7 +124,7 @@ def trim(payload: dict, keep: int = KEEP) -> int:
     """After the contest sim: keep the scenario lineups that rank in the top
     `keep` by large-tournament ROI or by top-1% rate, that the portfolio
     picked, or that were the best lineup in 2+ simulated slates."""
-    if MODE == "v1":
+    if MODE == "v1" or payload.get("sport") in V1_SPORTS:
         return 0
     pool = payload.get("lineups") or []
     sc = [L for L in pool if L.get("src") == "scenario"]

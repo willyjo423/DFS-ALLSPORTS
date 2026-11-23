@@ -54,7 +54,7 @@ def signals(p: dict, flagged: set) -> list[str]:
     if st not in ("clear", ""):
         s.append(f"status {st}")
     pp = _f(p.get("pp"), 1.0)
-    if pp < 0.95:
+    if pp < 0.90:                       # NFL's no-news base rate is ~0.94: not a warning
         s.append(f"chance to play {pp:.0%}")
     if p.get("doubtful"):
         s.append("doubtful tag")

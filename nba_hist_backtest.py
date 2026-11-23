@@ -166,11 +166,13 @@ def main(argv=None) -> int:
     ap.add_argument("--sims", type=int, default=8000)
     ap.add_argument("--every", type=int, default=1, help="use every Nth slate day")
     ap.add_argument("--force", action="store_true", help="redo days already in the dump")
+    ap.add_argument("--scenarios", type=int, default=0,
+                    help="add N scenario lineups per night (own dump: nba-scenhist-<season>.json; not read by the Auto rules)")
     a = ap.parse_args(argv)
     OWN.use_fit("nba")
     prev = features(scrape(a.season - 1))
     cur = features(scrape(a.season))
-    out_path = DUMPS / f"nba-hist-{a.season}.json"
+    out_path = DUMPS / (f"nba-scenhist-{a.season}.json" if a.scenarios else f"nba-hist-{a.season}.json")
     dumps = json.loads(out_path.read_text()) if out_path.exists() else {}
     days = sorted(cur["date"].unique())
     for k, day in enumerate(days):
@@ -185,6 +187,9 @@ def main(argv=None) -> int:
         p["lineups"] = POOL.safe_build(p)
         if not p["lineups"]:
             continue
+        if a.scenarios:
+            from engine import scenario_pool as SP
+            SP.add(p, "nba", a.scenarios)
         inner = SIM.rank_pool(p, sims=a.sims)
         if not inner:
             continue

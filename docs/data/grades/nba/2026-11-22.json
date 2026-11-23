@@ -1,0 +1,113 @@
+{
+ "sport": "nba",
+ "date": "2026-11-22",
+ "slate": "7:00pm \u00b7 355 contests",
+ "draft_group": 157205,
+ "players": 175,
+ "graded": 110,
+ "mae_final": 7.492,
+ "props": {
+  "n": 62,
+  "mae_model": 8.408,
+  "mae_props": 9.017,
+  "mae_final": 9.461,
+  "sxy": -156.65870000000007,
+  "sxx": 514.6351999999999,
+  "weight": -0.304
+ },
+ "minutes": {
+  "n": 109,
+  "mae": 4.83,
+  "bias": 1.82
+ },
+ "late_scratches": [
+  "Devin Carter",
+  "Miles McBride",
+  "Graham Ike",
+  "Leonard Miller"
+ ],
+ "pool": {
+  "n": 117,
+  "avg": 277.8,
+  "best": 342.0,
+  "top5_cash": [
+   301.0,
+   306.8,
+   285.2,
+   291.8,
+   295.5
+  ],
+  "top5_top1": [
+   302.5,
+   291.8,
+   306.8,
+   235.2,
+   324.8
+  ],
+  "hindsight": 449.8
+ },
+ "hindsight_lineup": [
+  "Josh Giddey",
+  "Svi Mykhailiuk",
+  "Josh Hart",
+  "Karl-Anthony Towns",
+  "Jalen Smith",
+  "Buddy Hield",
+  "Caleb Martin",
+  "Jamal Murray"
+ ],
+ "biggest_unders": [
+  [
+   "Darryn Peterson",
+   35.1,
+   15.25
+  ],
+  [
+   "DeMar DeRozan",
+   19.4,
+   5.0
+  ],
+  [
+   "Yaxel Lendeborg",
+   38.6,
+   25.5
+  ],
+  [
+   "Georges Niang",
+   14.0,
+   1.25
+  ],
+  [
+   "Jarace Walker",
+   12.6,
+   0.0
+  ]
+ ],
+ "biggest_overs": [
+  [
+   "Josh Giddey",
+   34.9,
+   78.5
+  ],
+  [
+   "Karl-Anthony Towns",
+   27.7,
+   66.75
+  ],
+  [
+   "Svi Mykhailiuk",
+   16.8,
+   53.25
+  ],
+  [
+   "Buddy Hield",
+   20.8,
+   54.75
+  ],
+  [
+   "Jamal Murray",
+   41.7,
+   73.75
+  ]
+ ]
+}

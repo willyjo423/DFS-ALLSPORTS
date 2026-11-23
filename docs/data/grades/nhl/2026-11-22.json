@@ -1,0 +1,103 @@
+{
+ "sport": "nhl",
+ "date": "2026-11-22",
+ "slate": "8 teams \u00b7 5:00pm",
+ "draft_group": 156955,
+ "players": 192,
+ "graded": 153,
+ "mae_final": 4.798,
+ "props": {
+  "n": 104,
+  "mae_model": 5.273,
+  "mae_props": 5.465,
+  "mae_final": 5.407,
+  "sxy": 89.36000000000003,
+  "sxx": 189.0813,
+  "weight": 0.473
+ },
+ "pool": {
+  "n": 353,
+  "avg": 98.5,
+  "best": 176.0,
+  "top5_cash": [
+   90.8,
+   95.4,
+   82.5,
+   84.4,
+   69.3
+  ],
+  "top5_top1": [
+   97.4,
+   77.0,
+   76.1,
+   69.0,
+   69.0
+  ],
+  "hindsight": 228.7
+ },
+ "hindsight_lineup": [
+  "Jake Oettinger",
+  "Tage Thompson",
+  "Evan Bouchard",
+  "Roman Kantserov",
+  "Zach Benson",
+  "Frank Nazar",
+  "Philip Broberg",
+  "Tyler Bertuzzi",
+  "Noah Ostlund"
+ ],
+ "biggest_unders": [
+  [
+   "Nikita Tolopilo",
+   8.7,
+   -9.100000000000001
+  ],
+  [
+   "Dennis Hildeby",
+   11.4,
+   -2.1000000000000014
+  ],
+  [
+   "Jason Robertson",
+   13.8,
+   1.5
+  ],
+  [
+   "Connor McDavid",
+   18.0,
+   8.0
+  ],
+  [
+   "Brayden Point",
+   12.2,
+   3.0
+  ]
+ ],
+ "biggest_overs": [
+  [
+   "Roman Kantserov",
+   9.0,
+   42.5
+  ],
+  [
+   "Jake Oettinger",
+   11.0,
+   33.099999999999994
+  ],
+  [
+   "Zach Benson",
+   8.6,
+   27.5
+  ],
+  [
+   "Tyler Bertuzzi",
+   8.6,
+   27.5
+  ],
+  [
+   "Dominic Toninato",
+   0.5,
+   19.0
+  ]
+ ]
+}

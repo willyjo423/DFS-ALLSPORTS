@@ -1,40 +1,37 @@
-"""FanDuel sportsbook (public endpoints, no login): which player-prop markets
-does one NBA / NHL / NFL game carry? Prints market names and counts."""
-import requests
+"""FanDuel sportsbook (public, no login): sample player-prop markets per sport
+- market type, name, and a few runners with handicap and American odds."""
+import json, requests
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0 Safari/537.36",
       "Accept": "application/json"}
 AK = "FhMFpcPWXMeyZxOx"
 BASE = "https://sbapi.nj.sportsbook.fanduel.com/api"
-for sport in ("nba", "nhl", "nfl"):
-    try:
-        js = requests.get(f"{BASE}/content-managed-page", params={"page": "CUSTOM", "customPageId": sport, "_ak": AK},
-                          headers=UA, timeout=30).json()
-        ev = list((js.get("attachments") or {}).get("events", {}).values())
-        print(f"== {sport}: {len(ev)} events on the page", flush=True)
-        if not ev:
-            continue
-        games = sorted([x for x in ev if " @ " in str(x.get("name")) or " v " in str(x.get("name"))],
-                       key=lambda x: str(x.get("openDate")))
-        print("   games:", len(games))
-        if not games:
-            continue
-        e = games[0]
-        print("   sample event:", e.get("name"), e.get("openDate"))
-        names = {}
-        for tab in ("", "player-points", "player-props", "popular", "player-rebounds", "player-assists",
-                    "player-threes", "shots", "points-assists", "passing-props", "receiving-props", "rushing-props", "td-scorer-props"):
-            p = {"eventId": e["eventId"], "_ak": AK}
-            if tab:
-                p["tab"] = tab
-            r = requests.get(f"{BASE}/event-page", params=p, headers=UA, timeout=30)
-            if not r.ok:
-                print(f"   tab {tab or '(main)'}: HTTP {r.status_code}"); continue
-            mk = (r.json().get("attachments") or {}).get("markets") or {}
-            for m in mk.values():
-                n = m.get("marketType") or m.get("marketName")
-                names[n] = names.get(n, 0) + 1
-        print(f"   {len(names)} market types; with player in name/type:")
-        print("   " + ", ".join(f"{k}" for k in sorted(names) if any(w in str(k).upper() for w in
-              ("PLAYER", "POINTS", "REBOUND", "ASSIST", "THREE", "SHOTS", "BLOCK", "STEAL", "RECEPTION", "YARDS", "TD", "TOUCHDOWN", "SAVES", "GOAL")))[:1800])
-    except Exception as exc:  # noqa: BLE001
-        print(sport, "failed:", str(exc)[:200])
+TABS = {"nfl": ["", "passing-props", "receiving-props", "rushing-props", "td-scorer-props"],
+        "nhl": ["", "points-assists", "shots", "goalie-props", "goal-scorer"],
+        "nba": ["", "player-points", "player-rebounds", "player-assists", "player-threes", "player-combos", "player-defense"]}
+KEEP = ("PLAYER", "TOUCHDOWN", "GOAL_SCORER", "SAVES", "SHOTS", "POINTS", "REBOUND", "ASSIST", "THREE", "BLOCK", "STEAL", "RECEPTION", "YARDS")
+for sport, tabs in TABS.items():
+    js = requests.get(f"{BASE}/content-managed-page", params={"page": "CUSTOM", "customPageId": sport, "_ak": AK}, headers=UA, timeout=30).json()
+    ev = sorted([x for x in (js.get("attachments") or {}).get("events", {}).values() if " @ " in str(x.get("name"))],
+                key=lambda x: str(x.get("openDate")))
+    ev = [x for x in ev if "(" not in str(x.get("name"))]
+    if not ev:
+        print("==", sport, "no games"); continue
+    e = ev[0]
+    print(f"== {sport}: {e['name']} {e['openDate']} eventId {e['eventId']}")
+    seen = {}
+    for tab in tabs:
+        p = {"eventId": e["eventId"], "_ak": AK}
+        if tab: p["tab"] = tab
+        r = requests.get(f"{BASE}/event-page", params=p, headers=UA, timeout=30)
+        if not r.ok:
+            print("  tab", tab, r.status_code); continue
+        for m in ((r.json().get("attachments") or {}).get("markets") or {}).values():
+            t = str(m.get("marketType"))
+            if t in seen or not any(k in t for k in KEEP) or "PERIOD" in t or "QUARTER" in t or "HALF" in t or "DRIVE" in t:
+                continue
+            seen[t] = 1
+            runs = []
+            for rr in (m.get("runners") or [])[:4]:
+                odds = (((rr.get("winRunnerOdds") or {}).get("americanDisplayOdds") or {}).get("americanOdds"))
+                runs.append(f"{rr.get('runnerName')} | hc={rr.get('handicap')} | {odds}")
+            print(f"  [{tab}] {t} :: {m.get('marketName')} :: " + " || ".join(runs))

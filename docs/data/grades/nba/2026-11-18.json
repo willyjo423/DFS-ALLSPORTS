@@ -5,15 +5,15 @@
  "draft_group": 156831,
  "players": 316,
  "graded": 198,
- "mae_final": 6.888,
+ "mae_final": 6.858,
  "props": {
   "n": 114,
-  "mae_model": 8.334,
-  "mae_props": 7.777,
-  "mae_final": 7.682,
-  "sxy": 2272.0049000000004,
-  "sxx": 2315.3246000000004,
-  "weight": 0.981
+  "mae_model": 8.299,
+  "mae_props": 7.742,
+  "mae_final": 7.647,
+  "sxy": 2268.4649000000004,
+  "sxx": 2315.3246,
+  "weight": 0.98
  },
  "minutes": {
   "n": 196,
@@ -28,8 +28,8 @@
  ],
  "pool": {
   "n": 120,
-  "avg": 244.1,
-  "best": 301.5,
+  "avg": 244.0,
+  "best": 299.5,
   "top5_cash": [
    275.8,
    237.5,
@@ -44,17 +44,59 @@
    227.2,
    258.2
   ],
-  "hindsight": 371.5
+  "hindsight": 370.2
  },
  "hindsight_lineup": [
-  "Kasparas Jakucionis",
-  "VJ Edgecombe",
-  "Ja'Kobe Walter",
-  "Javonte Green",
-  "Joel Embiid",
   "Josh Giddey",
+  "VJ Edgecombe",
+  "Franz Wagner",
   "Matas Buzelis",
-  "Franz Wagner"
+  "Joel Embiid",
+  "Egor Demin",
+  "Kasparas Jakucionis",
+  "Jordan Poole"
+ ],
+ "role_misses": [
+  {
+   "name": "Collin Murray-Boyles",
+   "team": "TOR",
+   "pos": "PF/C",
+   "salary": 5700,
+   "proj": 32.59,
+   "act": 5.0,
+   "reason": "minutes cut",
+   "role_proj": 26.5,
+   "role_act": 5.0,
+   "lineups": 62,
+   "of": 120,
+   "top13": 5,
+   "own": 0.0644,
+   "signals": [],
+   "kind": "blind",
+   "line": null,
+   "news": "+28%/min with teammates out"
+  },
+  {
+   "name": "Rayan Rupert",
+   "team": "PHI",
+   "pos": "SG/SF",
+   "salary": 3300,
+   "proj": 19.4,
+   "act": 0.0,
+   "reason": "did not play",
+   "role_proj": 19.1,
+   "role_act": 0.0,
+   "lineups": 7,
+   "of": 120,
+   "top13": 1,
+   "own": 0.04138,
+   "signals": [
+    "no props posted"
+   ],
+   "kind": "warned",
+   "line": null,
+   "news": "+20%/min with teammates out"
+  }
  ],
  "biggest_unders": [
   [

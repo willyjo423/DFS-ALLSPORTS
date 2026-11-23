@@ -4,9 +4,10 @@
  "props_nights": 5,
  "props_players": 352,
  "props_weight": 0.855,
- "mae_model": 8.203,
- "mae_props": 7.807,
- "mae_final": 7.982,
- "pool_avg": 254.48,
- "updated": "2026-11-23T16:12+00:00"
+ "mae_model": 8.196,
+ "mae_props": 7.8,
+ "mae_final": 7.975,
+ "pool_avg": 254.5,
+ "updated": "2026-11-23T20:49+00:00",
+ "ceiling": null
 }

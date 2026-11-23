@@ -23,6 +23,111 @@
   "Logan Mailloux",
   "Martin Pospisil"
  ],
+ "role_misses": [
+  {
+   "name": "Juuse Saros",
+   "team": "NSH",
+   "pos": "G",
+   "salary": 6900,
+   "proj": 13.51,
+   "act": 8.4,
+   "reason": "goalie did not start",
+   "role_proj": 1.0,
+   "role_act": 0.0,
+   "lineups": 76,
+   "of": 258,
+   "top13": 13,
+   "own": 0.05834,
+   "signals": [],
+   "kind": "blind",
+   "line": null,
+   "news": null
+  },
+  {
+   "name": "Jiri Kulich",
+   "team": "BUF",
+   "pos": "W",
+   "salary": 2700,
+   "proj": 5.74,
+   "act": 0.0,
+   "reason": "scratched",
+   "role_proj": 14.57,
+   "role_act": 0.0,
+   "lineups": 2,
+   "of": 258,
+   "top13": 1,
+   "own": 0.02512,
+   "signals": [
+    "5 games in 30 days"
+   ],
+   "kind": "warned",
+   "line": "L1",
+   "news": "moved up (L2/PP2 -> L1/PP2)"
+  },
+  {
+   "name": "Brandon Hagel",
+   "team": "TBL",
+   "pos": "W",
+   "salary": 7500,
+   "proj": 2.99,
+   "act": 0.0,
+   "reason": "scratched",
+   "role_proj": 19.03,
+   "role_act": 0.0,
+   "lineups": 115,
+   "of": 258,
+   "top13": 0,
+   "own": 0.00287,
+   "signals": [
+    "chance to play 25%",
+    "doubtful tag",
+    "news: not in"
+   ],
+   "kind": "warned",
+   "line": "L1",
+   "news": "not in tonight's lines"
+  },
+  {
+   "name": "Laurent Brossoit",
+   "team": "ANA",
+   "pos": "G",
+   "salary": 6500,
+   "proj": 12.85,
+   "act": 0.0,
+   "reason": "goalie did not start",
+   "role_proj": 1.0,
+   "role_act": 0.0,
+   "lineups": 13,
+   "of": 258,
+   "top13": 0,
+   "own": 0.05255,
+   "signals": [
+    "5 games in 30 days"
+   ],
+   "kind": "warned",
+   "line": null,
+   "news": null
+  },
+  {
+   "name": "Beckett Sennecke",
+   "team": "ANA",
+   "pos": "W",
+   "salary": 6800,
+   "proj": 11.13,
+   "act": 0.0,
+   "reason": "scratched",
+   "role_proj": 18.86,
+   "role_act": 0.0,
+   "lineups": 3,
+   "of": 258,
+   "top13": 0,
+   "own": 0.03112,
+   "signals": [],
+   "kind": "blind",
+   "line": "L2",
+   "news": null
+  }
+ ],
  "biggest_unders": [
   [
    "Justus Annunen",

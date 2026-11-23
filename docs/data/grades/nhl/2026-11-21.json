@@ -5,33 +5,33 @@
  "draft_group": 156946,
  "players": 583,
  "graded": 453,
- "mae_final": 4.97,
+ "mae_final": 4.951,
  "props": {
   "n": 262,
-  "mae_model": 5.518,
-  "mae_props": 5.378,
-  "mae_final": 5.392,
-  "sxy": 449.2635999999999,
-  "sxx": 315.1321,
-  "weight": 1.426
+  "mae_model": 5.48,
+  "mae_props": 5.34,
+  "mae_final": 5.354,
+  "sxy": 429.6925999999999,
+  "sxx": 315.1320999999999,
+  "weight": 1.364
  },
  "pool": {
   "n": 316,
-  "avg": 109.0,
-  "best": 196.3,
+  "avg": 108.0,
+  "best": 195.0,
   "top5_cash": [
-   107.8,
-   109.9,
-   100.3,
-   126.9,
-   93.7
+   107.2,
+   110.6,
+   99.0,
+   126.3,
+   92.4
   ],
   "top5_top1": [
-   103.9,
-   119.1,
-   122.7,
-   117.2,
-   103.2
+   102.6,
+   118.5,
+   121.4,
+   115.9,
+   102.6
   ],
   "hindsight": 283.8
  },
@@ -45,6 +45,46 @@
   "Sam Bennett",
   "Elias Lindholm",
   "Jake Neighbours"
+ ],
+ "role_misses": [
+  {
+   "name": "Clayton Keller",
+   "team": "UTA",
+   "pos": "W",
+   "salary": 7400,
+   "proj": 15.12,
+   "act": 0.0,
+   "reason": "scratched",
+   "role_proj": 18.98,
+   "role_act": 0.0,
+   "lineups": 53,
+   "of": 316,
+   "top13": 0,
+   "own": 0.04993,
+   "signals": [],
+   "kind": "blind",
+   "line": "L1",
+   "news": null
+  },
+  {
+   "name": "Tim Stuetzle",
+   "team": "OTT",
+   "pos": "C",
+   "salary": 6300,
+   "proj": 11.23,
+   "act": 0.0,
+   "reason": "scratched",
+   "role_proj": 20.48,
+   "role_act": 0.0,
+   "lineups": 1,
+   "of": 316,
+   "top13": 0,
+   "own": 0.03184,
+   "signals": [],
+   "kind": "blind",
+   "line": "L1",
+   "news": null
+  }
  ],
  "biggest_unders": [
   [

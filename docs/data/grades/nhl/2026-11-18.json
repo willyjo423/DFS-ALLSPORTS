@@ -11,8 +11,8 @@
   "mae_model": 4.848,
   "mae_props": 5.051,
   "mae_final": 4.696,
-  "sxy": 60.84340000000004,
-  "sxx": 149.57879999999997,
+  "sxy": 60.843400000000024,
+  "sxx": 149.57880000000003,
   "weight": 0.407
  },
  "pool": {
@@ -46,6 +46,7 @@
   "Casey Mittelstadt",
   "Kevin Stenlund"
  ],
+ "role_misses": [],
  "biggest_unders": [
   [
    "Jack Hughes",

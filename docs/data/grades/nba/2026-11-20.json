@@ -57,6 +57,46 @@
   "Aday Mara",
   "Julius Randle"
  ],
+ "role_misses": [
+  {
+   "name": "Chaney Johnson",
+   "team": "BKN",
+   "pos": "PF",
+   "salary": 3100,
+   "proj": 18.81,
+   "act": 0.0,
+   "reason": "did not play",
+   "role_proj": 10.1,
+   "role_act": 0.0,
+   "lineups": 27,
+   "of": 120,
+   "top13": 12,
+   "own": 0.315,
+   "signals": [],
+   "kind": "blind",
+   "line": null,
+   "news": "props 19.4 vs model 8.2"
+  },
+  {
+   "name": "Alexandre Sarr",
+   "team": "WAS",
+   "pos": "C",
+   "salary": 5800,
+   "proj": 27.1,
+   "act": 0.0,
+   "reason": "did not play",
+   "role_proj": 23.9,
+   "role_act": 0.0,
+   "lineups": 1,
+   "of": 120,
+   "top13": 0,
+   "own": 0.0622,
+   "signals": [],
+   "kind": "blind",
+   "line": null,
+   "news": "starting (expected)"
+  }
+ ],
  "biggest_unders": [
   [
    "Ajay Mitchell",

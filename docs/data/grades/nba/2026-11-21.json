@@ -11,8 +11,8 @@
   "mae_model": 8.099,
   "mae_props": 7.494,
   "mae_final": 7.413,
-  "sxy": 924.9829999999998,
-  "sxx": 1103.4374999999998,
+  "sxy": 924.9829999999997,
+  "sxx": 1103.4375,
   "weight": 0.838
  },
  "minutes": {
@@ -55,6 +55,27 @@
   "Jeremiah Fears",
   "Derik Queen",
   "Donovan Clingan"
+ ],
+ "role_misses": [
+  {
+   "name": "Zion Williamson",
+   "team": "NOP",
+   "pos": "PF",
+   "salary": 7100,
+   "proj": 33.85,
+   "act": 0.0,
+   "reason": "did not play",
+   "role_proj": 30.4,
+   "role_act": 0.0,
+   "lineups": 38,
+   "of": 120,
+   "top13": 2,
+   "own": 0.12552,
+   "signals": [],
+   "kind": "blind",
+   "line": null,
+   "news": "+15%/min with teammates out"
+  }
  ],
  "biggest_unders": [
   [

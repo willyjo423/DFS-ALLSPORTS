@@ -11,9 +11,9 @@
   "mae_model": 7.842,
   "mae_props": 7.381,
   "mae_final": 7.546,
-  "sxy": 1176.9609999999996,
+  "sxy": 1179.7859999999996,
   "sxx": 1513.1660000000002,
-  "weight": 0.778
+  "weight": 0.78
  },
  "minutes": {
   "n": 86,
@@ -26,7 +26,7 @@
  ],
  "pool": {
   "n": 120,
-  "avg": 266.8,
+  "avg": 267.0,
   "best": 318.0,
   "top5_cash": [
    245.5,
@@ -45,15 +45,16 @@
   "hindsight": 348.2
  },
  "hindsight_lineup": [
-  "Ryan Rollins",
   "Damian Lillard",
+  "Scoot Henderson",
   "Jrue Holiday",
   "Karl-Anthony Towns",
   "Charles Bassey",
-  "Scoot Henderson",
+  "Stephon Castle",
   "Toumani Camara",
-  "Stephon Castle"
+  "Ryan Rollins"
  ],
+ "role_misses": [],
  "biggest_unders": [
   [
    "Jerami Grant",

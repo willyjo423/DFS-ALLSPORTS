@@ -96,8 +96,101 @@ def check(payload: dict, today: str | None = None) -> list[dict]:
     return out
 
 
+# ------------------------------------------------------------- legality
+# 2026-11-22 had three bad lineups reach the page: Jordan Hudson (no role,
+# NFL), and an NBA lineup holding Tre Jones twice after a line-level git merge
+# spliced two pools. These checks run on every board before it is written:
+# an illegal lineup, or one holding a player who cannot score, never publishes.
+FLEX_SLOTS = {"UTIL", "FLEX", "SFLEX"}   # NBA G/F checked by eligibility instead
+
+
+def _legal(L: dict, players: list, roster: dict) -> str | None:
+    slots = list(roster.get("slots") or [])
+    p = L.get("p")
+    if not isinstance(p, list) or (slots and len(p) != len(slots)):
+        return "wrong size"
+    if len(set(p)) != len(p):
+        return "player twice"
+    if any(not isinstance(i, int) or i < 0 or i >= len(players) for i in p):
+        return "unknown player"
+    if len({players[i]["name"] for i in p}) != len(p):
+        return "player twice"
+    cap = roster.get("salary_cap")
+    if cap and sum(int(players[i].get("salary") or 0) for i in p) > cap:
+        return "over the cap"
+    for i in p:
+        q = players[i]
+        if str(q.get("status") or "clear") == "out" or float(q.get("pp") if q.get("pp") is not None else 1) <= 0:
+            return f"{q['name']} is out"
+    s = L.get("s")
+    if s and len(s) == len(p) and any(players[i].get("elig") for i in p):
+        if any(players[i].get("elig") and sl not in players[i]["elig"] for i, sl in zip(p, s)):
+            return "player in a slot he cannot fill"
+    elif slots and not any(players[i].get("elig") for i in p):
+        # position counts: every fixed slot filled, extras only where a flex allows
+        need = {}
+        for sl in slots:
+            if sl not in FLEX_SLOTS:
+                need[sl] = need.get(sl, 0) + 1
+        have = {}
+        for i in p:
+            have[str(players[i].get("pos"))] = have.get(str(players[i].get("pos")), 0) + 1
+        flex_pos = set(roster.get("flex_positions") or [])
+        n_flex = sum(1 for sl in slots if sl in FLEX_SLOTS)
+        extra = 0
+        for pos, c in have.items():
+            r = need.get(pos, 0)
+            if c < r:
+                return f"too few {pos}"
+            if c > r:
+                if pos not in flex_pos:
+                    return f"too many {pos}"
+                extra += c - r
+        if any(have.get(pos, 0) < r for pos, r in need.items()):
+            return "a slot left empty"
+        if extra != n_flex:
+            return "flex slots do not add up"
+        for pos, m in (roster.get("max_position") or {}).items():
+            if have.get(pos, 0) > m:
+                return f"too many {pos}"
+    return None
+
+
+def enforce(payload: dict, log=None) -> dict:
+    players = payload.get("players") or []
+    roster = payload.get("roster") or {}
+    keep, why = [], {}
+    for L in payload.get("lineups") or []:
+        r = _legal(L, players, roster) if isinstance(L, dict) else "not a lineup"
+        if r:
+            why[r] = why.get(r, 0) + 1
+        else:
+            keep.append(L)
+    if why:
+        payload["lineups"] = keep
+        if log is not None:
+            log.warning("lineup check dropped %d lineups from %s: %s", sum(why.values()),
+                        payload.get("label", ""), why)
+    # ownership estimates pinned at the cap: the estimate ran out of room
+    own = [float(p.get("own") or 0) for p in players]
+    top = max(own) if own else 0
+    pinned = [p["name"] for p, o in zip(players, own) if top >= 0.5 and abs(o - top) < 1e-6]
+    payload["integrity"] = {"dropped": sum(why.values()), "reasons": why,
+                            "own_pinned": pinned if len(pinned) >= 3 else []}
+    return payload
+
+
 def attach(payload: dict, today: str | None = None, log=None) -> dict:
+    enforce(payload, log)
     checks = check(payload, today)
+    pin = (payload.get("integrity") or {}).get("own_pinned") or []
+    if pin:
+        idx = {p["name"]: j for j, p in enumerate(payload.get("players") or [])}
+        j = idx[pin[0]]
+        checks.append({"i": j, "name": ", ".join(pin), "kind": "own",
+                       "msg": f"ownership estimate hit its {100 * float(payload['players'][j].get('own') or 0):.0f}% ceiling for "
+                              f"{len(pin)} players — their real ownership is likely different; don't lean on these numbers",
+                       "top": 0})
     payload["checks"] = checks
     tags: dict[int, list[str]] = {}
     for c in checks:

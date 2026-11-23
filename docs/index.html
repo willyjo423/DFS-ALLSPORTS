@@ -96,11 +96,10 @@ a{color:var(--acc)}
       <div class="grid">
         <div class="f"><label>Entries</label><input id="n" type="number" min="1" max="150" value="1"></div>
         <div class="f"><label>Contest</label><select id="ctier" style="width:100%">
-          <option value="auto">Match entries (1 = cash game, more = large tournament)</option>
-          <option value="cash">Double-up / cash game</option>
-          <option value="small">Small tournament (under 500 entries)</option>
+          <option value="large">Large tournament (10K+ entries)</option>
           <option value="mid">Mid tournament (500–10K entries)</option>
-          <option value="large">Large tournament (10K+ entries)</option></select></div>
+          <option value="small">Small tournament (under 500 entries)</option>
+          <option value="cash">Double-up / cash game</option></select></div>
         <div class="f"><label>Settings</label><label class="row" style="gap:6px;font-weight:600;text-transform:none;letter-spacing:0">
           <input id="auto" type="checkbox" checked style="width:auto"> Auto (from past results)</label></div>
         <div class="f"><label>Min total own %</label><input id="ownmin" type="number" min="0" step="5" placeholder="none"></div>
@@ -311,8 +310,9 @@ try { const v = localStorage.getItem("dfs-entries"); if (v) $("n").value = v; } 
 // tournament (L.roit); L._r is the one for the contest type picked here.
 function tierNow() {
   const v = $("ctier").value;
-  if (v !== "auto") return v;
-  return Math.max(1, +$("n").value || 1) === 1 ? "cash" : "large";
+  // The contest type is always what you pick; entering 1 lineup no longer
+  // means "cash game" (a single tournament entry was getting cash settings).
+  return v && v !== "auto" ? v : "large";
 }
 function tierContest(t) {
   if (!SLATE) return null;
@@ -343,7 +343,7 @@ function setTierRoi() {
     : "Simulated ROI — " + (t === "cash" ? "not for cash games" : "this contest type");
   if (!has && ["roi", "roilow"].includes($("sort").value)) $("sort").value = "cash";
 }
-try { const v = localStorage.getItem("dfs-ctier"); if (v) $("ctier").value = v; } catch (e) {}
+try { const v = localStorage.getItem("dfs-ctier"); if (v && v !== "auto") $("ctier").value = v; } catch (e) {}
 $("ctier").oninput = () => {
   try { localStorage.setItem("dfs-ctier", $("ctier").value); } catch (e) {}
   setTierRoi(); applyAuto(); drawLineups();
@@ -360,7 +360,7 @@ function applyAuto() {
   const conf = (AUTO && AUTO[SLATE.sport]) || {};
   const bucket = (conf.buckets || []).find(b => games >= b.games[0] && games <= b.games[1])
     || (conf.all && conf.all.slates >= 3 ? conf.all : null);
-  const why = [];
+  const why = [`for a ${({cash: "cash game", small: "small tournament", mid: "mid tournament", large: "large tournament"})[tierNow()]} — change Contest above if that's wrong`];
   // Rules learned by optimize_settings.py from the replay backtest, per
   // entry count: sort, ownership filter (relative to this pool), exposure
   // cap and (hockey/football) a stack floor. Falls back to the defaults.
@@ -561,7 +561,7 @@ function drawLineups() {
   $("lulist").innerHTML = PICKED.map((L, n) => {
     const ps = slotOrder(L.p).map(([s, i]) =>
       `<span><span class="muted">${s}</span> ${esc(P[i].name)}</span>`).join(" ");
-    return `<div class="lu"><div class="top"><b>#${n + 1}</b><span><b>${L.proj.toFixed(1)}</b> proj</span>
+    return `<div class="lu"><div class="top"><b>#${n + 1}</b>${L.src === "scenario" ? `<span title="New: the best lineup in one simulated version of tonight's slate" style="background:#e8f0fe;color:#1a4fb4;border-radius:4px;padding:0 5px;font-size:11px;font-weight:700">SCENARIO</span>` : ""}<span><b>${L.proj.toFixed(1)}</b> proj</span>
       <span>${L.ceil.toFixed(0)} ceil</span>${L.top1 != null ? `<span title="share of simulated nights this lineup beats 99% of the field"><b>${L.top1.toFixed(1)}%</b> top-1%</span><span>${L.cash.toFixed(0)}% cash</span>` : ""}${L._r != null ? `<span title="estimated return per entry in ${esc((tierContest(tierNow()) || {}).name || "this contest")} - use it to compare lineups; the field model is softer than a real contest, so the level runs high"><b>${L._r > 0 ? "+" : ""}${L._r.toFixed(0)}%</b> ROI</span>` : ""}<span><b>${L.own.toFixed(0)}%</b> own</span>
       <span>$${L.sal.toLocaleString()}</span>${stackTag(L)}${L.dup >= 0.5 ? `<span>~${L.dup.toFixed(1)} dupes</span>` : ""}</div>
       <div class="ps">${ps}</div></div>`;

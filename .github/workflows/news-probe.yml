@@ -1,0 +1,31 @@
+name: News probe
+
+# Reads every late-news source the slate clock watches, once, and prints what
+# it sees. Builds nothing and writes nothing.
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python3 -m pip install --quiet requests
+      - name: Read each source
+        run: |
+          python3 - <<'PY'
+          import news_watch as W
+          for name in ("nba_snapshot", "nba_lineups_snapshot", "nhl_snapshot", "nhl_lines_snapshot"):
+              try:
+                  s = getattr(W, name)()
+                  print(f"{name}: {len(s)} entries")
+                  for k in list(s)[:3]:
+                      print("   ", k, str(s[k])[:200])
+              except Exception as exc:
+                  print(f"{name}: FAILED {exc}")
+          PY

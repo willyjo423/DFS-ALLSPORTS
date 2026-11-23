@@ -72,6 +72,8 @@ jobs:
               print("news watcher off:", exc, flush=True)
               WATCH = None
           LAST_NEWS_FIRE = {}
+          PENDING_NEWS = set()
+          STEP = 3 * 60      # how often late news is checked
           def watch_news():
               t = datetime.now(ET)
               if WATCH is None or not (11 <= t.hour < 23):
@@ -80,8 +82,13 @@ jobs:
                   if sport == "nhl" and not season("nhl-publish.yml", t.date()):
                       continue
                   print(t.strftime("%H:%M"), "late news", sport, "; ".join(moved)[:300], flush=True)
+                  PENDING_NEWS.add(sport)
+              # News inside the cooldown is held, not dropped: it fires as
+              # soon as the cooldown ends.
+              for sport in sorted(PENDING_NEWS):
                   if time.time() - LAST_NEWS_FIRE.get(sport, 0) < 8 * 60:
                       continue
+                  PENDING_NEWS.discard(sport)
                   LAST_NEWS_FIRE[sport] = time.time()
                   fire(f"{sport}-publish.yml", 90)
           start = time.time()
@@ -108,8 +115,10 @@ jobs:
               wait = (nxt - datetime.now(ET)).total_seconds()
               if time.time() - start + max(wait, 0) > 340 * 60 or not todo:
                   left = 340 * 60 - (time.time() - start)
-                  if left > 0 and todo:
-                      time.sleep(left)
+                  while left > 0 and todo:      # keep watching news while waiting
+                      time.sleep(min(left, STEP))
+                      left -= STEP
+                      watch_news()
                   print("handing over to a fresh clock run", flush=True)
                   fire("slate-clock.yml")
                   break
@@ -117,7 +126,7 @@ jobs:
               # NBA scratch or a confirmed NHL goalie triggers a lock-lane
               # rebuild of whatever locks in the next 90 minutes.
               while wait > 0:
-                  step = min(wait, 6 * 60)
+                  step = min(wait, STEP)
                   time.sleep(step)
                   wait -= step
                   watch_news()

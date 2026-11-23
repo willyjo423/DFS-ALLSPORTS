@@ -159,6 +159,9 @@ def rebuild(sport: str, b: dict, sims: int) -> dict | None:
         from engine import nba_pool as POOL, nba_sim as SIM
         if not p.get("lineups"):
             p["lineups"] = POOL.safe_build(p)
+        if SCENARIOS:
+            from engine import scenario_pool as SP
+            SP.add(p, sport, SCENARIOS)
         inner = SIM.rank_pool(p, sims=sims)
         from engine import contest_roi as CR
         CR.attach(p, inner, CR.STANDARD_GPP)
@@ -180,6 +183,9 @@ def rebuild(sport: str, b: dict, sims: int) -> dict | None:
         p["lineups"] = LP.safe_build(p)
     if not p.get("lineups"):
         return None
+    if SCENARIOS:
+        from engine import scenario_pool as SP
+        SP.add(p, sport, SCENARIOS)
     inner = SIM.rank_pool(p, sims=sims)
     from engine import contest_roi as CR
     CR.attach(p, inner, CR.STANDARD_GPP)
@@ -363,6 +369,14 @@ def _noblowout():
 
 
 STRIP = False
+SCENARIOS = 0
+
+
+@variant("scenario")
+def _scenario():
+    """Add the best lineup of each of 60 simulated slates (engine/scenario_pool)."""
+    global SCENARIOS
+    SCENARIOS = 60
 
 
 @variant("bigdiverse")

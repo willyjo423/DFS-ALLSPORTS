@@ -1,0 +1,166 @@
+{
+ "nhl": {
+  "rows": 13086,
+  "nights": 54,
+  "boom97_all": 0.032,
+  "signals": [
+   {
+    "signal": "props_up",
+    "n": 99,
+    "boom97_rate": 0.0101,
+    "boom97_expected": 0.0328,
+    "boom97_z": -1.27,
+    "boom90_rate": 0.1111,
+    "boom90_expected": 0.135,
+    "boom90_z": -0.7,
+    "z97_halves": [
+     null,
+     -1.38
+    ],
+    "holds": false
+   },
+   {
+    "signal": "low_own_for_tier",
+    "n": 3291,
+    "boom97_rate": 0.0328,
+    "boom97_expected": 0.0317,
+    "boom97_z": 0.36,
+    "boom90_rate": 0.1699,
+    "boom90_expected": 0.1166,
+    "boom90_z": 9.53,
+    "z97_halves": [
+     -1.11,
+     1.56
+    ],
+    "holds": false
+   },
+   {
+    "signal": "top_line",
+    "n": 236,
+    "boom97_rate": 0.0678,
+    "boom97_expected": 0.0283,
+    "boom97_z": 3.66,
+    "boom90_rate": 0.1441,
+    "boom90_expected": 0.1176,
+    "boom90_z": 1.26,
+    "z97_halves": [
+     null,
+     3.26
+    ],
+    "holds": false
+   },
+   {
+    "signal": "line_promoted",
+    "n": 70,
+    "boom97_rate": 0.0714,
+    "boom97_expected": 0.0326,
+    "boom97_z": 1.83,
+    "boom90_rate": 0.1571,
+    "boom90_expected": 0.1326,
+    "boom90_z": 0.6,
+    "z97_halves": [
+     null,
+     1.62
+    ],
+    "holds": false
+   },
+   {
+    "signal": "line_demoted",
+    "n": 53,
+    "boom97_rate": 0.0,
+    "boom97_expected": 0.0323,
+    "boom97_z": -1.33,
+    "boom90_rate": 0.0755,
+    "boom90_expected": 0.1316,
+    "boom90_z": -1.21,
+    "z97_halves": [
+     null,
+     -1.39
+    ],
+    "holds": false
+   },
+   {
+    "signal": "pp1",
+    "n": 401,
+    "boom97_rate": 0.0399,
+    "boom97_expected": 0.0289,
+    "boom97_z": 1.32,
+    "boom90_rate": 0.1272,
+    "boom90_expected": 0.1181,
+    "boom90_z": 0.56,
+    "z97_halves": [
+     null,
+     0.81
+    ],
+    "holds": false
+   },
+   {
+    "signal": "pp_gained",
+    "n": 337,
+    "boom97_rate": 0.0504,
+    "boom97_expected": 0.0304,
+    "boom97_z": 2.14,
+    "boom90_rate": 0.1217,
+    "boom90_expected": 0.1263,
+    "boom90_z": -0.26,
+    "z97_halves": [
+     null,
+     1.67
+    ],
+    "holds": false
+   }
+  ]
+ },
+ "nba": {
+  "rows": 645,
+  "nights": 5,
+  "boom97_all": 0.0248,
+  "signals": [
+   {
+    "signal": "low_own_for_tier",
+    "n": 163,
+    "boom97_rate": 0.0184,
+    "boom97_expected": 0.027,
+    "boom97_z": -0.68,
+    "boom90_rate": 0.1166,
+    "boom90_expected": 0.0828,
+    "boom90_z": 1.57,
+    "z97_halves": [
+     -0.74,
+     -0.25
+    ],
+    "holds": false
+   },
+   {
+    "signal": "teammates_out",
+    "n": 313,
+    "boom97_rate": 0.0256,
+    "boom97_expected": 0.0243,
+    "boom97_z": 0.14,
+    "boom90_rate": 0.0799,
+    "boom90_expected": 0.1032,
+    "boom90_z": -1.37,
+    "z97_halves": [
+     0.03,
+     0.14
+    ],
+    "holds": false
+   },
+   {
+    "signal": "starting",
+    "n": 214,
+    "boom97_rate": 0.0234,
+    "boom97_expected": 0.0289,
+    "boom97_z": -0.48,
+    "boom90_rate": 0.1121,
+    "boom90_expected": 0.1431,
+    "boom90_z": -1.3,
+    "z97_halves": [
+     -0.66,
+     -0.16
+    ],
+    "holds": false
+   }
+  ]
+ }
+}

@@ -156,6 +156,13 @@ def load(day: str) -> dict:
     path = os.path.join(CACHE_DIR, f"{day}.json")
     try:
         props = fetch()
+        try:                             # FanDuel joins Bovada (fd_props.py)
+            import fd_props
+            fd = fd_props.fetch("nba")
+            if fd:
+                props = fd_props.merge(props or {}, fd, ladders=False)
+        except Exception as exc:                               # noqa: BLE001
+            log.warning("fanduel NBA props unavailable (%s)", str(exc)[:80])
         if props:
             os.makedirs(CACHE_DIR, exist_ok=True)
             old = {}

@@ -259,6 +259,13 @@ def load(day: str) -> dict:
         if props:
             break
         time.sleep(5 * (attempt + 1))
+    try:                                 # FanDuel joins Bovada (fd_props.py)
+        import fd_props
+        fd = fd_props.fetch("nhl")
+        if fd:
+            props = fd_props.merge(props or {}, fd, ladders=True)
+    except Exception as exc:                                   # noqa: BLE001
+        log.warning("fanduel NHL props unavailable (%s)", str(exc)[:80])
     if not props:
         log.warning("bovada: no NHL props returned")
     old = {}

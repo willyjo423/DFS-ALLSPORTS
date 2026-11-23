@@ -143,6 +143,7 @@ a{color:var(--acc)}
       <div class="row" style="margin-top:10px;justify-content:space-between">
         <span class="note" id="poolinfo"></span>
         <span class="note" id="autoinfo" style="width:100%;order:-1;color:var(--acc)"></span>
+        <div class="note" id="sbs" style="width:100%;order:-1;display:none"></div>
         <span class="row">
           <button class="btn" id="build">Build lineups</button>
           <button class="btn ghost" id="copy">Copy</button>
@@ -166,6 +167,12 @@ a{color:var(--acc)}
       <div class="pad"><b>Exposure</b> <span class="muted">— share of your lineups each player is in, next to his projected field ownership</span></div>
       <div class="scroll" style="max-height:50vh"><table class="tbl" id="xtbl"><thead><tr>
         <th class="l">Player</th><th>Pos</th><th>Yours</th><th>Field</th><th class="l" style="width:35%"></th></tr></thead><tbody></tbody></table></div>
+    </div>
+
+    <div class="card" id="optcard" style="display:none">
+      <div class="pad"><b>Optimal % vs ownership</b> <span class="muted">— how often each player was in the best lineup of a simulated version of this slate, next to his projected field ownership. Well above his ownership = under-owned for his upside.</span></div>
+      <div class="scroll" style="max-height:50vh"><table class="tbl" id="otbl"><thead><tr>
+        <th class="l">Player</th><th>Pos</th><th>Salary</th><th>Optimal</th><th>Field</th><th>Edge</th></tr></thead><tbody></tbody></table></div>
     </div>
   </section>
 
@@ -422,7 +429,34 @@ function applyAuto() {
     $("stk").value = String(st);
     if (st) why.push(`${st}+ from one team (QB stack; from the backtest)`);
   }
+  // How much to trust this: nights behind the rule, and 1-3 entries learn
+  // from very few top-1% finishes, so the sorts are hard to tell apart there.
+  const nights = +((((rule || {}).evidence || "").match(/(\d+) nights/) || [])[1] || 0);
+  const lv = ["weak", "medium", "strong"];
+  let li = nights >= 300 ? 2 : nights >= 80 ? 1 : 0;
+  if (N <= 3) li = Math.max(0, li - 1);
+  why.push(`evidence: ${lv[li]}${nights ? ` (${nights} past slates)` : " (defaults)"}` +
+    (N <= 3 ? " — with 1–3 entries the sorts are close; compare the #1 of each below" : ""));
   $("autoinfo").textContent = "Auto: " + why.join(" · ");
+}
+
+// For 1-3 entries: the #1 lineup under each sort, side by side.
+function drawSbs() {
+  const N = Math.max(1, +$("n").value || 1), pool = SLATE && SLATE.lineups || [];
+  const box = $("sbs");
+  if (N > 3 || !pool.length) { box.style.display = "none"; return; }
+  const P = SLATE.players;
+  const sorts = [["Highest ROI", L => L._r ?? -1e9], ["Top 1%", L => L.top1 ?? -1e9],
+                 ["Cash", L => L.cash ?? -1e9], ["Projection", L => L.proj]];
+  box.innerHTML = "<b>#1 lineup by each sort</b>" + sorts.map(([lab, f]) => {
+    const L = pool.reduce((a, b) => f(b) > f(a) ? b : a);
+    return `<div style="margin-top:4px"><b>${lab}:</b> ${L.proj.toFixed(1)} proj` +
+      (L.top1 != null ? ` · ${L.top1.toFixed(1)}% top-1%` : "") +
+      (L._r != null ? ` · ${L._r > 0 ? "+" : ""}${L._r.toFixed(0)}% ROI` : "") +
+      ` · ${L.own.toFixed(0)}% own${L.src === "scenario" ? " · SCENARIO" : ""}<br><span class="muted">` +
+      L.p.map(i => esc(P[i].name)).join(", ") + "</span></div>";
+  }).join("");
+  box.style.display = "";
 }
 try { $("scenonly").checked = localStorage.getItem("dfs-scenonly") === "1"; } catch (e) {}
 $("scenonly").onchange = () => {
@@ -582,11 +616,27 @@ function drawLineups() {
       <span>$${L.sal.toLocaleString()}</span>${stackTag(L)}${L.dup >= 0.5 ? `<span>~${L.dup.toFixed(1)} dupes</span>` : ""}</div>
       <div class="ps">${ps}</div></div>`;
   }).join("") || `<div class="pad note">No lineups match. Widen the ownership range or remove a lock.</div>`;
+  drawOpt();
+  drawSbs();
   const xs = [...count.entries()].sort((a, b) => b[1] - a[1]);
   $("xtbl").tBodies[0].innerHTML = xs.map(([i, c]) => {
     const mine = 100 * c / Math.max(1, PICKED.length), field = 100 * (P[i].own || 0);
     return `<tr><td class="l">${esc(P[i].name)}</td><td>${esc(P[i].pos)}</td><td><b>${mine.toFixed(0)}%</b></td>
       <td>${field.toFixed(0)}%</td><td class="l"><div class="bar"><i style="width:${Math.min(100, mine)}%"></i></div></td></tr>`;
+  }).join("");
+}
+
+function drawOpt() {
+  const P = SLATE.players || [];
+  const rows = P.map((p, i) => [i, p.sopt]).filter(([, o]) => o != null && o > 0);
+  $("optcard").style.display = rows.length ? "" : "none";
+  if (!rows.length) return;
+  rows.sort((a, b) => b[1] - a[1]);
+  $("otbl").tBodies[0].innerHTML = rows.slice(0, 40).map(([i, o]) => {
+    const f = 100 * (P[i].own || 0), e = o - f;
+    return `<tr><td class="l">${esc(P[i].name)}</td><td>${esc(P[i].pos)}</td><td>$${(P[i].salary || 0).toLocaleString()}</td>
+      <td><b>${o.toFixed(0)}%</b></td><td>${f.toFixed(0)}%</td>
+      <td style="color:${e >= 5 ? "#1a7f37" : e <= -10 ? "#b42318" : "inherit"}"><b>${e > 0 ? "+" : ""}${e.toFixed(0)}</b></td></tr>`;
   }).join("");
 }
 

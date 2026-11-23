@@ -205,8 +205,15 @@ async function boot() {
   let m;
   try { m = await (await fetch("data/manifest.json?" + Date.now())).json(); }
   catch (e) { $("status").textContent = "No published slates yet."; return; }
-  SLATES = (m.slates || []).filter(s => s.file);
+  // Finished slates stay in the manifest until their sport publishes again
+  // (Saturday's college board was the page's default on Monday; an October
+  // MLB board was still listed). Hide anything that locked over 6 hours ago.
+  const cutoff = Date.now() - 6 * 3600e3;
+  SLATES = (m.slates || []).filter(s => s.file && s.locks && new Date(s.locks) > cutoff);
   $("updated").textContent = "Updated " + fmtTime(m.updated_at);
+  // Open on the sport whose next slate locks soonest, not whichever the
+  // manifest happens to list first.
+  SLATES.sort((a, b) => new Date(a.locks) - new Date(b.locks));
   const sports = [...new Set(SLATES.map(s => s.sport))];
   $("sports").innerHTML = sports.map(s => `<button data-s="${s}">${s.toUpperCase()}</button>`).join("");
   $("sports").onclick = e => { const s = e.target.dataset.s; if (s) pickSport(s); };

@@ -1415,7 +1415,10 @@ def main(argv=None) -> int:
                 "kind": "classic",
                 "draft_group": dg,
                 "label": slate_label(board, pool, label or starts_text),
-                "locks": None,
+                # Without a lock time the page cannot tell a finished slate from
+                # a live one: Saturday's board was still the page's default on
+                # Monday.
+                "locks": D.LOCKS.get(dg) or D.LOCKS.get(int(dg)),
                 "field_size": args.field,
                 "quantiles": quantiles,
                 "loadings": loadings_for_page(),

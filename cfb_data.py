@@ -38,6 +38,7 @@ from __future__ import annotations
 
 import logging
 import re
+from datetime import datetime, timezone
 import time
 
 import numpy as np
@@ -218,6 +219,9 @@ def cfbd(path: str, key: str, **params):
 
 # ---------------------------------------------------------------- draftkings
 
+LOCKS: dict = {}      # draft group -> earliest contest start (UTC ISO), from the lobby
+
+
 def slates() -> pd.DataFrame:
     """Every college football draft group DraftKings is currently selling."""
     payload = _get_json(DK_CONTESTS)
@@ -239,6 +243,10 @@ def slates() -> pd.DataFrame:
             "example": c.get("n"),
         })
         r["contests"] += 1
+        m = re.search(r"(\d{10,})", str(c.get("sd") or ""))
+        if m:                            # "/Date(1763856000000)/" -> lock time
+            t = datetime.fromtimestamp(int(m.group(1)) / 1000, tz=timezone.utc).isoformat()
+            LOCKS[dg] = min(LOCKS.get(dg, t), t)
         r["biggest_prize"] = max(r["biggest_prize"], c.get("po") or 0)
         r["biggest_field"] = max(r["biggest_field"], c.get("m") or 0)
     out = pd.DataFrame(rows.values())

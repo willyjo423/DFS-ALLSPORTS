@@ -426,7 +426,9 @@ async function boot() {
     return;
   }
   const sel = $("slate");
-  const live = (manifest.slates || []).filter(s => s.file);
+  const live = (manifest.slates || []).filter(s => s.file && s.locks &&
+    new Date(s.locks) > Date.now() - 6 * 3600e3)
+    .sort((a, b) => new Date(a.locks) - new Date(b.locks));
   if (!live.length) {
     $("status").textContent = "The manifest has no slates in it yet.";
     return;

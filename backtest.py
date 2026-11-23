@@ -369,14 +369,19 @@ def _noblowout():
 
 
 STRIP = False
-SCENARIOS = 0
+SCENARIOS = 60      # live since 2026-11-22: replays use what the boards publish
 
 
 @variant("scenario")
 def _scenario():
-    """Add the best lineup of each of 60 simulated slates (engine/scenario_pool)."""
+    """Kept for the 2026-11-22 comparison dumps; same as base now."""
+
+
+@variant("noscenario")
+def _noscenario():
+    """The pool without scenario lineups (before 2026-11-22)."""
     global SCENARIOS
-    SCENARIOS = 60
+    SCENARIOS = 0
 
 
 @variant("bigdiverse")

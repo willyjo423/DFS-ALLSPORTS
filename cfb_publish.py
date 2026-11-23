@@ -985,6 +985,8 @@ def write(payloads: list[dict]) -> None:
             log.warning("chalk check failed (%s)", str(exc)[:80])
         # Rank the pool by how often each lineup beats a simulated field
         # (game, team and QB-to-receiver correlation).
+        from engine import scenario_pool as SP
+        SP.safe_add(p, "cfb", log)
         try:
             from engine import cfb_sim as CSIM
             inner = CSIM.rank_pool(p)

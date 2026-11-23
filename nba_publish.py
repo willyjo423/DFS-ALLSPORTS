@@ -269,6 +269,8 @@ def build_slate(dg: int, starts, label: str, hist: pd.DataFrame, p: dict,
         OWN.chalk_adjust(payload, POOL.optimal_lineup)
     except Exception as exc:                                   # noqa: BLE001
         log.warning("chalk check failed (%s)", str(exc)[:80])
+    from engine import scenario_pool as SP
+    SP.safe_add(payload, "nba", log)
     try:
         inner = SIM.rank_pool(payload)
         from engine import contest_roi as CR

@@ -604,6 +604,8 @@ def write(payloads: list[dict], partial: bool = False) -> None:
             log.warning("chalk check failed (%s)", str(exc)[:80])
         # Rank the pool by how often each lineup beats the field (contest
         # simulation with line, power-play and goalie correlation).
+        from engine import scenario_pool as SP
+        SP.safe_add(p, "nhl", log)
         try:
             inner = SIM.rank_pool(p)
             from engine import contest_roi as CR

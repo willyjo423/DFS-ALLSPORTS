@@ -19,11 +19,13 @@ from __future__ import annotations
 import copy
 import logging
 import math
+import time
 
 import numpy as np
 
 log = logging.getLogger("scenario_pool")
 N_SCENARIOS = 60
+MAX_SECONDS = 150     # per slate, so a publish run never times out on them
 
 
 def draws(sport: str, payload: dict, n: int, rng) -> np.ndarray:
@@ -34,7 +36,8 @@ def draws(sport: str, payload: dict, n: int, rng) -> np.ndarray:
     return SIM.simulate_scores(payload, n, rng)
 
 
-def add(payload: dict, sport: str, n: int = N_SCENARIOS, seed: int = 5) -> int:
+def add(payload: dict, sport: str, n: int = N_SCENARIOS, seed: int = 5,
+        max_seconds: float | None = None) -> int:
     pool = payload.get("lineups")
     if not pool:
         return 0
@@ -49,7 +52,10 @@ def add(payload: dict, sport: str, n: int = N_SCENARIOS, seed: int = 5) -> int:
     size = len(roster["slots"])
     fs = int(payload.get("field_size") or 100_000)
     added = 0
+    t0 = time.time()
     for k in range(len(S)):
+        if max_seconds and time.time() - t0 > max_seconds:
+            break
         pl = copy.deepcopy(players)
         for i, p in enumerate(pl):
             v = max(float(S[k, i]), 0.0)
@@ -85,3 +91,12 @@ def add(payload: dict, sport: str, n: int = N_SCENARIOS, seed: int = 5) -> int:
         added += 1
     log.info("scenario lineups: %d of %d scenarios added a new lineup", added, len(S))
     return added
+
+
+def safe_add(payload: dict, sport: str, log_=None) -> None:
+    """For the publishers: scenario lineups, never at the cost of the slate."""
+    try:
+        k = add(payload, sport, max_seconds=MAX_SECONDS)
+        (log_ or log).info("scenario lineups: %d added", k)
+    except Exception as exc:                                   # noqa: BLE001
+        (log_ or log).warning("scenario lineups failed (%s)", str(exc)[:80])

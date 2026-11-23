@@ -320,6 +320,16 @@ def apply(payload: dict, props: dict | None = None) -> int:
         if p.get("q"):
             p["q"] = [round(float(v) * f, 3) for v in p["q"]]
         p["model"], p["props"] = round(model, 2), round(mk["dk"], 2)
+        try:                                     # ceiling from the ladders
+            from engine import ladder_ceiling as LC
+            lc = LC.football(st, p.get("pos", ""), yards_fit, count_expected)
+            qs = payload.get("quantiles") or [0.1, 0.25, 0.5, 0.75, 0.9, 0.97]
+            if lc and lc["mean"] > 0 and p.get("q"):
+                mkt97 = lc["q97"] * target / lc["mean"]
+                p["ceil_model"], p["ceil_props"] = round(float(p["q"][-1]), 2), round(mkt97, 2)
+                LC.stretch_to(p, qs, LC.blend(float(p["q"][-1]), mkt97, "cfb"))
+        except Exception as exc:                               # noqa: BLE001
+            log.debug("ladder ceiling failed for %s (%s)", p.get("name"), exc)
         gaps.append(mk["dk"] - model)
         n += 1
     if n:

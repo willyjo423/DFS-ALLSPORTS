@@ -142,11 +142,31 @@ def _nhl_key(p, team):
     return f"{team}|{first[:1].lower()}|{key(last or nm)}"
 
 
+def _loose(s: str) -> str:
+    """German-style transliterations folded: Stuetzle = Stutzle (Stützle)."""
+    for a, b in (("ue", "u"), ("oe", "o"), ("ae", "a")):
+        s = s.replace(a, b)
+    return s.replace("-", " ").replace(" ", "")
+
+
 def match(sport: str, p: dict, act: dict):
     if sport == "nba":
-        return act.get(key(p["name"]))
+        hit = act.get(key(p["name"]))
+        if hit is None:
+            want = _loose(key(p["name"]))
+            hits = [v for k, v in act.items() if _loose(k) == want]
+            hit = hits[0] if len(hits) == 1 else None
+        return hit
     first, _, last = p["name"].partition(" ")
-    return act.get(f"{p['team']}|{first[:1].lower()}|{key(last)}")
+    hit = act.get(f"{p['team']}|{first[:1].lower()}|{key(last)}")
+    if hit is None:                     # same team and initial, loose surname
+        want = (f"{p['team']}|{first[:1].lower()}|", _loose(key(last)))
+        hits = [v for k, v in act.items() if k.startswith(want[0])
+                and (_loose(k[len(want[0]):]) == want[1]
+                     or _loose(k[len(want[0]):]).endswith(want[1])
+                     or want[1].endswith(_loose(k[len(want[0]):])))]
+        hit = hits[0] if len(hits) == 1 else None
+    return hit
 
 
 # ------------------------------------------------------------------- grade
@@ -160,7 +180,11 @@ def grade(sport: str, day: str) -> dict | None:
         log.info("%s %s: no final box scores", sport, day)
         return None
     P = board["players"]
+    teams_in = {v.get("team") for v in act.values()}
     for p in P:
+        # A team whose game is missing from the box scores (postponed, not
+        # final) says nothing about its players: never call them scratched.
+        p["_team_in"] = p.get("team") in teams_in
         a = match(sport, p, act)
         p["_act"] = float(a["dk"]) if a else 0.0
         p["_found"] = a is not None

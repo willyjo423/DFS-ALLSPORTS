@@ -8,8 +8,8 @@ role we projected with the role he got:
           (projected 12+).
 * NHL   - skater missing from the box score (scratched), or under 60% of his
           projected ice time; a goalie we projected to start who did not.
-* NFL / college football use the same record shape (snaps), from their own
-          weekly grade.
+* NFL   - no stat line (did not play), or under 25% of offensive snaps for
+          a player projected 8+ points. From the weekly grade.
 
 Each miss records what the board knew at lock - status, chance of playing,
 the news/role note, games in the last 30 days, line, whether props were
@@ -33,6 +33,8 @@ from pathlib import Path
 NBA_MIN_PROJ = 12.0       # minutes projection worth auditing
 NBA_CUT = 0.5             # under half the projected minutes is a role miss
 NHL_TOI_CUT = 0.6         # under 60% of projected ice time
+FB_SNAP_CUT = 0.25        # under a quarter of the offense's snaps
+FB_MIN_PROJ = 8.0         # ... for a player projected like a real role
 CHALK_OWN = 0.20          # audit the field's chalk even if we avoided it
 KEEP_NIGHTS = 60
 
@@ -100,6 +102,8 @@ def audit(sport: str, board: dict) -> list[dict]:
             continue
         if str(p.get("status") or "").lower() == "out":
             continue                    # the board already had him out
+        if p.get("_team_in") is False:
+            continue                    # his game is not in the box scores
         reason, proj_role, act_role = None, None, None
         if sport == "nba":
             pm, am = _f(p.get("min")), _f(p.get("_min"), 0.0)
@@ -120,13 +124,13 @@ def audit(sport: str, board: dict) -> list[dict]:
                 elif pt and at < NHL_TOI_CUT * pt:
                     reason = "ice time cut"
                 proj_role, act_role = pt, at
-        else:                           # football: snaps share
-            ps, as_ = _f(p.get("snap_proj")), _f(p.get("_snaps"), 0.0)
-            if not p.get("_found") or as_ == 0:
+        else:                           # football: share of offensive snaps
+            sp = _f(p.get("_snap_pct"))
+            if not p.get("_found") or _f(p.get("_snaps"), 1.0) == 0:
                 reason = "did not play"
-            elif ps and as_ < 0.5 * ps:
-                reason = "snaps cut"
-            proj_role, act_role = ps, as_
+            elif sp is not None and sp < FB_SNAP_CUT and _f(p.get("proj"), 0) >= FB_MIN_PROJ:
+                reason = "barely played"
+            proj_role, act_role = None, (None if sp is None else round(sp * 100))
         if not reason:
             continue
         sig = signals(p, flagged)
@@ -176,7 +180,10 @@ def report(sport: str, day: str, misses: list[dict], summary: dict) -> list[str]
     lines = [f"- role audit: {len(used)} lineup player(s) lost their role"
              + (f" ({sum(m['kind'] == 'blind' for m in used)} with no warning)" if used else "")]
     for m in used[:8]:
-        rp = "" if m["role_proj"] is None else f" {m['role_proj']:.0f}->{m['role_act']:.0f}"
+        rp = ("" if m["role_proj"] is None or m["role_act"] is None
+              else f" {m['role_proj']:.0f}->{m['role_act']:.0f}")
+        if m["role_proj"] is None and m["role_act"] is not None:
+            rp = f" {m['role_act']:.0f}% snaps"
         lines.append(f"  - {m['name']} ({m['team']}) {m['reason']}{rp}; in {m['lineups']}/{m['of']} "
                      f"lineups, top-13 {m['top13']}; "
                      + (("warned: " + "; ".join(m["signals"])) if m["signals"] else "BLIND"))

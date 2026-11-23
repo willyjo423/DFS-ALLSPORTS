@@ -43,3 +43,11 @@ def test_running_summary(tmp_path):
     s = RA.update_running(f, "2026-11-21", miss)
     assert s["nights"] == 2 and s["warned"] == 2 and s["repeat_players"] == ["A"]
     assert s["warning_ignored"] == {"status": 2}
+
+
+def test_football_dnp_and_barely_played():
+    P = [{"name": "Hudson", "proj": 9, "_found": False, "model": 9},
+         {"name": "W", "proj": 12, "_found": True, "_snaps": 9, "_snap_pct": 0.14, "props": 11, "model": 12},
+         {"name": "K", "proj": 5, "_found": True, "_snaps": 9, "_snap_pct": 0.14}]
+    m = RA.audit("nfl", _board(P, [{"p": [0, 1, 2]}]))
+    assert [(x["name"], x["reason"]) for x in m] == [("Hudson", "did not play"), ("W", "barely played")]

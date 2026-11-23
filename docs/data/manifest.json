@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-23T00:49:56+00:00",
+ "updated_at": "2026-11-23T01:04:24+00:00",
  "slates": [
   {
    "sport": "cfb",
@@ -53,9 +53,33 @@
    "sport": "nhl",
    "site": "dk",
    "kind": "classic",
-   "label": "2 teams \u00b7 8:00pm \u00b7 (CHI @ VAN)",
-   "file": "data/nhl_dk_classic_156959.json",
-   "locks": "2026-11-23T01:00:00+00:00"
+   "label": "2 teams \u00b7 7:00pm \u00b7 (CBJ @ NJD)",
+   "file": "data/nhl_dk_classic_156961.json",
+   "locks": "2026-11-24T00:00:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "12 teams \u00b7 7:30pm",
+   "file": "data/nhl_dk_classic_156962.json",
+   "locks": "2026-11-24T00:30:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "4 teams \u00b7 9:40pm \u00b7 (Late)",
+   "file": "data/nhl_dk_classic_156966.json",
+   "locks": "2026-11-24T02:40:00+00:00"
+  },
+  {
+   "sport": "nhl",
+   "site": "dk",
+   "kind": "classic",
+   "label": "2 teams \u00b7 10:00pm \u00b7 (MIN @ SJS)",
+   "file": "data/nhl_dk_classic_156967.json",
+   "locks": "2026-11-24T03:00:00+00:00"
   }
  ]
 }

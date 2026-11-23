@@ -226,6 +226,11 @@ async function loadSlate(file) {
     const r = await fetch(file + "?" + Date.now());
     if (!r.ok) throw new Error("HTTP " + r.status);
     SLATE = await r.json();
+    // never show a malformed lineup (wrong size, a player twice, an unknown index)
+    { const n = ((SLATE.roster || {}).slots || []).length, P = SLATE.players || [];
+      SLATE.lineups = (SLATE.lineups || []).filter(L => Array.isArray(L.p) && (!n || L.p.length === n)
+        && new Set(L.p).size === L.p.length && L.p.every(i => i >= 0 && i < P.length)
+        && new Set(L.p.map(i => P[i].name)).size === L.p.length); }
   } catch (e) { $("status").textContent = "Could not load " + file + " (" + e.message + ")"; return; }
   $("status").textContent = "";
   if (SLATE.sport === "nhl" && "market" in SLATE && !SLATE.market)

@@ -1,0 +1,4 @@
+# Generated JSON must never be merged line by line: two runs writing the same
+# board at once spliced lineup arrays together (Tre Jones twice, 2026-11-22).
+# Whole-file merges only; the workflows' -X ours/theirs then picks one side.
+*.json merge=binary

@@ -13,7 +13,12 @@ for sport in ("nba", "nhl", "nfl"):
         print(f"== {sport}: {len(ev)} events on the page", flush=True)
         if not ev:
             continue
-        e = ev[0]
+        games = sorted([x for x in ev if " @ " in str(x.get("name")) or " v " in str(x.get("name"))],
+                       key=lambda x: str(x.get("openDate")))
+        print("   games:", len(games))
+        if not games:
+            continue
+        e = games[0]
         print("   sample event:", e.get("name"), e.get("openDate"))
         names = {}
         for tab in ("", "player-points", "player-props", "popular", "player-rebounds", "player-assists",

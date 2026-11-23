@@ -26,6 +26,10 @@ import numpy as np
 log = logging.getLogger("scenario_pool")
 N_SCENARIOS = 200     # simulated slates solved per board (time budget permitting)
 KEEP = 60             # scenario lineups kept after the contest sim ranks them
+# Sports where scenario lineups only appear on request (the SCENARIO-only
+# box): 189 historical NBA nights, they lowered tournament ROI under the
+# ROI and top-1% sorts without adding top-1% finishes (2026-11-23).
+OPT_IN = {"nba"}
 MODE = "v2"           # "v1" = 60 slates, every distinct optimum kept (2026-11-22)
 MAX_SECONDS = 150     # per slate, so a publish run never times out on them
 
@@ -98,6 +102,8 @@ def add(payload: dict, sport: str, n: int = N_SCENARIOS, seed: int = 5,
                "own": round(float(100 * o.sum()), 1),
                "dup": round(float(fs * math.prod(max(x, 1e-4) for x in o)), 4),
                "src": "scenario", "freq": 1}
+        if sport in OPT_IN:
+            new["optin"] = True
         if "s" in L:
             new["s"] = L["s"]
         pool.append(new)

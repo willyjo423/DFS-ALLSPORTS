@@ -449,7 +449,11 @@ function drawSbs() {
   const sorts = [["Highest ROI", L => L._r ?? -1e9], ["Top 1%", L => L.top1 ?? -1e9],
                  ["Cash", L => L.cash ?? -1e9], ["Projection", L => L.proj]];
   box.innerHTML = "<b>#1 lineup by each sort</b>" + sorts.map(([lab, f]) => {
-    const L = pool.reduce((a, b) => f(b) > f(a) ? b : a);
+    const so = $("scenonly").checked;
+    const cand = pool.filter(L => so ? L.src === "scenario"
+      : !L.optin && !(L.src === "scenario" && lab === "Highest ROI"));
+    if (!cand.length) return "";
+    const L = cand.reduce((a, b) => f(b) > f(a) ? b : a);
     return `<div style="margin-top:4px"><b>${lab}:</b> ${L.proj.toFixed(1)} proj` +
       (L.top1 != null ? ` · ${L.top1.toFixed(1)}% top-1%` : "") +
       (L._r != null ? ` · ${L._r > 0 ? "+" : ""}${L._r.toFixed(0)}% ROI` : "") +
@@ -566,7 +570,11 @@ function drawLineups() {
     (!st || G(L).some(([k, c]) => (k === st || k.startsWith(st + "-")) && c >= Math.max(s1, 2))) &&
     [...LOCK].every(i => L.p.includes(i)) &&
     !L.p.some(i => EXCL.has(i)) &&
-    (!$("scenonly").checked || L.src === "scenario"));
+    ($("scenonly").checked ? L.src === "scenario"
+      // Scenario lineups' simulated ROI runs ahead of their real results
+      // (NFL 2019-21, NBA 2017-21 backtests), so the ROI sorts skip them;
+      // opt-in sports (NBA) show them only when asked for.
+      : !L.optin && !(L.src === "scenario" && (k === "roi" || k === "roilow"))));
   if (!ok.length && $("scenonly").checked) {
     $("poolinfo").textContent = pool.some(L => L.src === "scenario")
       ? "No SCENARIO lineups pass these settings - loosen a filter, or untick SCENARIO lineups only."

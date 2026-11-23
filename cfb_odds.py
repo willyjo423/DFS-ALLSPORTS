@@ -248,6 +248,13 @@ def espn_fetch() -> list:
         if not (home and away) or o.get("overUnder") is None or o.get("spread") is None:
             continue
         sp = abs(float(o["spread"]))
+        # ESPN's numeric spread is now and then garbled (2026-11-23: Auburn at
+        # Alabama read 55); its text line ("ALA -5.5") is the one to trust.
+        md = re.search(r"-\s*(\d+(?:\.\d+)?)\s*$", str(o.get("details") or ""))
+        if md and abs(float(md.group(1)) - sp) > 0.01:
+            log.warning("odds: %s at %s - numeric spread %s vs text '%s'; using the text",
+                        away, home, o.get("spread"), o.get("details"))
+            sp = float(md.group(1))
         fav_home = bool((o.get("homeTeamOdds") or {}).get("favorite"))
         home_pt = -sp if fav_home else sp
         games.append({

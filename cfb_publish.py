@@ -977,6 +977,14 @@ def write(payloads: list[dict]) -> None:
         # last step, so it sees the final board and ownership.
         # Calibrated expected points first: the lineup pool optimises them.
         PC.apply(p)
+        try:                             # FanDuel college props (cfb_props.py)
+            import cfb_props
+            _CFB_PROPS = getattr(write, "_props", None)
+            if _CFB_PROPS is None:
+                _CFB_PROPS = write._props = cfb_props.load()
+            cfb_props.apply(p, _CFB_PROPS)
+        except Exception as exc:                               # noqa: BLE001
+            log.warning("college props not applied (%s)", str(exc)[:80])
         if "lineups" not in p:
             p["lineups"] = LP.safe_build(p)
         try:

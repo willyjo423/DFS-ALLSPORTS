@@ -163,10 +163,12 @@ def rebuild(sport: str, b: dict, sims: int) -> dict | None:
             p["lineups"] = POOL.safe_build(p)
         if SCENARIOS:
             from engine import scenario_pool as SP
-            SP.add(p, sport, SCENARIOS)
+            SP.add(p, sport, SP.N_SCENARIOS, max_seconds=SP.MAX_SECONDS)
         inner = SIM.rank_pool(p, sims=sims)
         from engine import contest_roi as CR
         CR.attach(p, inner, CR.STANDARD_GPP)
+        if SCENARIOS:
+            SP.trim(p)
         p["_inner"] = inner
         return p if inner else None
     import projection_calibration as PC
@@ -187,10 +189,12 @@ def rebuild(sport: str, b: dict, sims: int) -> dict | None:
         return None
     if SCENARIOS:
         from engine import scenario_pool as SP
-        SP.add(p, sport, SCENARIOS)
+        SP.add(p, sport, SP.N_SCENARIOS, max_seconds=SP.MAX_SECONDS)
     inner = SIM.rank_pool(p, sims=sims)
     from engine import contest_roi as CR
     CR.attach(p, inner, CR.STANDARD_GPP)
+    if SCENARIOS:
+        SP.trim(p)
     p["_inner"] = inner
     return p if inner else None
 
@@ -384,6 +388,18 @@ def _notail():
     """Simulated ranges without the per-tier stretch (engine/tail_scale)."""
     import os
     os.environ["TAIL_SCALE_OFF"] = "1"
+
+
+@variant("v2")
+def _v2():
+    """Same as base (named run, so it does not overwrite the base dump)."""
+
+
+@variant("scen1")
+def _scen1():
+    """Scenario lineups as first shipped (60 slates, all kept)."""
+    from engine import scenario_pool as SP_
+    SP_.MODE = "v1"
 
 
 @variant("noscenario")

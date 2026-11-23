@@ -166,13 +166,14 @@ def main(argv=None) -> int:
     ap.add_argument("--sims", type=int, default=8000)
     ap.add_argument("--every", type=int, default=1, help="use every Nth slate day")
     ap.add_argument("--force", action="store_true", help="redo days already in the dump")
+    ap.add_argument("--tag", default="", help="suffix for the scenario dump name (comparison runs)")
     ap.add_argument("--scenarios", type=int, default=0,
                     help="add N scenario lineups per night (own dump: nba-scenhist-<season>.json; not read by the Auto rules)")
     a = ap.parse_args(argv)
     OWN.use_fit("nba")
     prev = features(scrape(a.season - 1))
     cur = features(scrape(a.season))
-    out_path = DUMPS / (f"nba-scenhist-{a.season}.json" if a.scenarios else f"nba-hist-{a.season}.json")
+    out_path = DUMPS / (f"nba-scen{a.tag}hist-{a.season}.json" if a.scenarios else f"nba-hist-{a.season}.json")
     dumps = json.loads(out_path.read_text()) if out_path.exists() else {}
     days = sorted(cur["date"].unique())
     for k, day in enumerate(days):
@@ -189,12 +190,14 @@ def main(argv=None) -> int:
             continue
         if a.scenarios:
             from engine import scenario_pool as SP
-            SP.add(p, "nba", a.scenarios)
+            SP.add(p, "nba", a.scenarios, max_seconds=SP.MAX_SECONDS)
         inner = SIM.rank_pool(p, sims=a.sims)
         if not inner:
             continue
         from engine import contest_roi as CR
         CR.attach(p, inner, CR.STANDARD_GPP)
+        if a.scenarios:
+            SP.trim(p)
         pts = np.array([pl["actual"] for pl in p["players"]])
         field = np.sort(pts[inner["Fd"]].sum(axis=1))
         lines = {kk: float(np.quantile(field, v)) for kk, v in

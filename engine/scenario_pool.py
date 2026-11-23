@@ -24,7 +24,9 @@ import time
 import numpy as np
 
 log = logging.getLogger("scenario_pool")
-N_SCENARIOS = 60
+N_SCENARIOS = 200     # simulated slates solved per board (time budget permitting)
+KEEP = 60             # scenario lineups kept after the contest sim ranks them
+MODE = "v2"           # "v1" = 60 slates, every distinct optimum kept (2026-11-22)
 MAX_SECONDS = 150     # per slate, so a publish run never times out on them
 
 
@@ -44,7 +46,12 @@ def add(payload: dict, sport: str, n: int = N_SCENARIOS, seed: int = 5,
     players, roster = payload["players"], payload["roster"]
     rng = np.random.default_rng(seed)
     S = draws(sport, payload, n, rng)
+    if MODE == "v1":
+        n = 60
     have = {tuple(sorted(L["p"])) for L in pool}
+    freq: dict = {}
+    pcount = np.zeros(len(players))
+    solved = 0
     proj = np.array([float(p.get("proj") or p.get("med") or 0) for p in players])
     ceil = np.array([float(p.get("ceil") or p.get("proj") or 0) * min(float(p.get("pp") or 1.0), 1.0)
                      for p in players])
@@ -74,7 +81,13 @@ def add(payload: dict, sport: str, n: int = N_SCENARIOS, seed: int = 5,
         if not L:
             continue
         key = tuple(sorted(L["p"]))
+        solved += 1
+        pcount[list(L["p"])] += 1
+        freq[key] = freq.get(key, 0) + 1
         if key in have:
+            for x in pool:
+                if x.get("src") == "scenario" and tuple(sorted(x["p"])) == key:
+                    x["freq"] = freq[key]
             continue
         have.add(key)
         idx = list(L["p"])
@@ -84,19 +97,52 @@ def add(payload: dict, sport: str, n: int = N_SCENARIOS, seed: int = 5,
                "sal": int(sum(players[i]["salary"] for i in idx)),
                "own": round(float(100 * o.sum()), 1),
                "dup": round(float(fs * math.prod(max(x, 1e-4) for x in o)), 4),
-               "src": "scenario"}
+               "src": "scenario", "freq": 1}
         if "s" in L:
             new["s"] = L["s"]
         pool.append(new)
         added += 1
-    log.info("scenario lineups: %d of %d scenarios added a new lineup", added, len(S))
+    # each player's share of the simulated slates' best lineups ("optimal %")
+    if solved:
+        for i, p in enumerate(players):
+            p["sopt"] = round(float(100 * pcount[i] / solved), 1)
+        payload["scenarios"] = {"solved": solved}
+    log.info("scenario lineups: %d distinct from %d solved slates", added, solved)
     return added
+
+
+def trim(payload: dict, keep: int = KEEP) -> int:
+    """After the contest sim: keep the scenario lineups that rank in the top
+    `keep` by large-tournament ROI or by top-1% rate, that the portfolio
+    picked, or that were the best lineup in 2+ simulated slates."""
+    if MODE == "v1":
+        return 0
+    pool = payload.get("lineups") or []
+    sc = [L for L in pool if L.get("src") == "scenario"]
+    if len(sc) <= keep:
+        return 0
+    roi = lambda L: ((L.get("roit") or {}).get("large", L.get("roi")) or -1e9)
+    ok = {id(L) for L in sorted(sc, key=lambda L: -roi(L))[:keep]}
+    ok |= {id(L) for L in sorted(sc, key=lambda L: -(L.get("top1") or 0))[:keep]}
+    ok |= {id(L) for L in sc if "port" in L or (L.get("freq") or 1) >= 2}
+    before = len(pool)
+    payload["lineups"] = [L for L in pool if L.get("src") != "scenario" or id(L) in ok]
+    return before - len(payload["lineups"])
 
 
 def safe_add(payload: dict, sport: str, log_=None) -> None:
     """For the publishers: scenario lineups, never at the cost of the slate."""
     try:
-        k = add(payload, sport, max_seconds=MAX_SECONDS)
+        k = add(payload, sport, N_SCENARIOS, max_seconds=MAX_SECONDS)
         (log_ or log).info("scenario lineups: %d added", k)
     except Exception as exc:                                   # noqa: BLE001
         (log_ or log).warning("scenario lineups failed (%s)", str(exc)[:80])
+
+
+def safe_trim(payload: dict, log_=None) -> None:
+    try:
+        k = trim(payload)
+        if k:
+            (log_ or log).info("scenario lineups: %d trimmed after ranking", k)
+    except Exception as exc:                                   # noqa: BLE001
+        (log_ or log).warning("scenario trim failed (%s)", str(exc)[:80])

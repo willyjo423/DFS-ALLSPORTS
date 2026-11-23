@@ -14,8 +14,11 @@ on:
         type: boolean
         default: false
       scenarios:
-        description: "Scenario lineups per night (0 = off; writes nba-scenhist-<season>.json)"
+        description: "Scenario lineups per night (0 = off; writes nba-scen<tag>hist-<season>.json)"
         default: "0"
+      tag:
+        description: "Name for the scenario comparison dump"
+        default: ""
 
 permissions:
   contents: write
@@ -70,7 +73,7 @@ jobs:
         continue-on-error: true
         run: |
           set -o pipefail
-          python nba_hist_backtest.py --season ${{ matrix.season }} --every ${{ inputs.every }} ${{ inputs.force && '--force' || '' }} --scenarios ${{ inputs.scenarios || 0 }} 2>&1 | grep -v "^INFO\|^WARNING" | tee out.txt
+          python nba_hist_backtest.py --season ${{ matrix.season }} --every ${{ inputs.every }} ${{ inputs.force && '--force' || '' }} --scenarios ${{ inputs.scenarios || 0 }} ${{ inputs.tag && format('--tag {0}', inputs.tag) || '' }} 2>&1 | grep -v "^INFO\|^WARNING" | tee out.txt
           { echo '```'; tail -40 out.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
       - name: Commit
         if: always()

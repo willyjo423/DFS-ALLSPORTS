@@ -275,6 +275,8 @@ def build_slate(dg: int, starts, label: str, hist: pd.DataFrame, p: dict,
         inner = SIM.rank_pool(payload)
         from engine import contest_roi as CR
         CR.attach(payload, inner)
+        from engine import scenario_pool as SP
+        SP.safe_trim(payload, log)
     except Exception as exc:                                   # noqa: BLE001
         log.warning("contest sim failed (%s); lineups published unranked", exc)
     pr = [(x["props"], x["model"]) for x in players if x.get("props") is not None and x.get("model")]

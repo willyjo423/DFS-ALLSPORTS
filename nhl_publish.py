@@ -610,6 +610,8 @@ def write(payloads: list[dict], partial: bool = False) -> None:
             inner = SIM.rank_pool(p)
             from engine import contest_roi as CR
             CR.attach(p, inner)
+            from engine import scenario_pool as SP
+            SP.safe_trim(p, log)
         except Exception as exc:                               # noqa: BLE001
             log.warning("contest sim failed (%s); lineups unranked", str(exc)[:80])
         SANITY.attach(p, datetime.now(EASTERN).date().isoformat(), log)

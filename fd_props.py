@@ -208,11 +208,36 @@ def nba_parse(markets: dict) -> dict:
     for name, st in rungs.items():
         med = {k: NP.ladder_median(v) for k, v in st.items()}
         med = {k: round(v, 2) for k, v in med.items() if v is not None}
+        for k, v in st.items():                  # the ladder's spread too (ceilings)
+            sd = _ladder_sd(v)
+            if sd and k in med:
+                med[f"sd_{k}"] = round(sd, 2)
         if med:
             out[f"{name}|"] = med
     for name, d in dd.items():
         out.setdefault(f"{name}|", {}).update(d)
     return out
+
+
+def _ladder_sd(rungs) -> float | None:
+    """Spread of a stat from its ladder: z = a + b*line on the de-vigged
+    under-probabilities, sd = 1/b. Needs two or more distinct lines."""
+    import numpy as np
+    from statistics import NormalDist
+    pts = []
+    for line, po, pu in rungs:
+        if po is None or pu is None or po + pu <= 0:
+            continue
+        p_over = po / (po + pu)
+        if p_over < 0.25:                        # long shots: padded more
+            p_over = p_over ** 1.10
+        if 0.02 < p_over < 0.98:
+            pts.append((line, NormalDist().inv_cdf(1 - p_over)))
+    if len({x for x, _ in pts}) < 2:
+        return None
+    x = np.array([a for a, _ in pts]); z = np.array([b for _, b in pts])
+    b, _a = np.polyfit(x, z, 1)
+    return float(1 / b) if b > 0 else None
 
 
 def fetch(sport: str) -> dict:

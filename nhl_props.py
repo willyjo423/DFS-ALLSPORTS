@@ -382,6 +382,20 @@ def apply(payload: dict) -> int:
             p["q"] = [round(float(v) * f, 3) for v in p["q"]]
         p["props"] = mk["dk"]
         p["model"] = round(model, 2)
+        # The top of his range from the ladders too (engine/ladder_ceiling).
+        try:
+            from engine import ladder_ceiling as LC
+            lc = LC.nhl_skater(st, p.get("pos", "F"), fit_rate,
+                               BLOCKS_AVG.get(p.get("pos", "F"), 0.6),
+                               GOAL_SHARE.get(p.get("pos", "F"), 0.42))
+            qs = payload.get("quantiles") or [0.1, 0.25, 0.5, 0.75, 0.9, 0.97]
+            if lc and p.get("q"):
+                mkt97 = lc["q97"] * (target / lc["mean"]) if lc["mean"] > 0 else lc["q97"]
+                p["ceil_props"] = round(mkt97, 2)
+                p["ceil_model"] = round(float(p["q"][-1]), 2)
+                LC.stretch_to(p, qs, LC.blend(float(p["q"][-1]), mkt97, "nhl"))
+        except Exception as exc:                               # noqa: BLE001
+            log.debug("ladder ceiling failed for %s (%s)", p.get("name"), exc)
         gaps.append(mk["dk"] * pp - model)
         if abs(mk["dk"] * pp - model) >= max(2.0, 0.2 * model):
             note = f"props {mk['dk']:.1f} vs model {model:.1f}"

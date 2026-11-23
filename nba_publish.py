@@ -39,6 +39,17 @@ STALE_GAMES = 5    # team games missed with no props/start -> not projected
 P_PLAY = {"Out": 0.0, "Doubtful": 0.15, "Questionable": 0.6, "Day-To-Day": 0.75}
 
 
+def _ceil(cond: float, sd: float, st) -> float:
+    """90th percentile: the model's spread, blended with the books' ladder
+    spread where FanDuel posts one (engine/ladder_ceiling weight)."""
+    model = cond + 1.28 * sd
+    msd = PR.market_sd(st) if st else None
+    if not msd:
+        return model
+    from engine import ladder_ceiling as LC
+    return LC.blend(model, cond + 1.28 * msd, "nba")
+
+
 def _status(row, inj: dict) -> tuple[float, str]:
     """(chance he plays, note) from the DraftKings tag and ESPN's report."""
     tag = str(row.get("dk_status") or "").upper()
@@ -225,7 +236,7 @@ def build_slate(dg: int, starts, label: str, hist: pd.DataFrame, p: dict,
             "game": "@".join(sorted([r.team, r.opponent])),
             "salary": int(r.salary),
             "proj": round(mean, 2), "med": round(cond, 2), "mean": round(mean, 2),
-            "ceil": round(cond + 1.28 * sd, 2) if cond else 0.0,
+            "ceil": round(_ceil(cond, sd, st_ if cands else None), 2) if cond else 0.0,
             "min": round(mins, 1) if mins else None,
             "pp": round(float(r.pp), 2),
             "status": "out" if (r.pp == 0 or stale) else "clear",

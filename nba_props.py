@@ -295,3 +295,19 @@ def blend(model_cond: float, mkt: tuple[float, float] | None) -> tuple[float, fl
         w = W_MARKET + (W_GAP_MAX - W_MARKET) * min(1.0, (gap - 0.10) / 0.15)
     w *= min(1.0, share / 0.85)
     return (1 - w) * model_cond + w * total, w
+
+
+def market_sd(stats: dict) -> float | None:
+    """Spread of DraftKings points from the books' ladders (points, rebounds,
+    assists, threes, steals, blocks), with a modest shared factor."""
+    import math
+    parts = [(w, stats.get(f"sd_{k}")) for k, w in
+             (("P", 1.0), ("R", 1.25), ("A", 1.5), ("3", 0.5), ("S", 2.0), ("B", 2.0))]
+    if not all(stats.get(f"sd_{k}") for k in ("P", "R", "A")):
+        return None                      # a partial picture would shrink the spread
+    parts = [(w, sd) for w, sd in parts if sd]
+    var = sum((w * sd) ** 2 for w, sd in parts)
+    for i in range(len(parts)):
+        for j in range(i + 1, len(parts)):
+            var += 2 * 0.3 * parts[i][0] * parts[i][1] * parts[j][0] * parts[j][1]
+    return math.sqrt(var)

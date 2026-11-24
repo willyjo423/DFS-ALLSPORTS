@@ -1,52 +1,52 @@
 {
  "sport": "nhl",
- "fitted_through": "2026-11-15",
- "games": 10846,
+ "fitted_through": "2026-11-21",
+ "games": 12155,
  "features": "proj = a + b * salary/1000 + c * model median",
  "positions": {
   "C": {
-   "a": -0.2859,
-   "b": 1.0193,
-   "c": 0.6067,
-   "n": 2445
+   "a": -0.2046,
+   "b": 0.9188,
+   "c": 0.6769,
+   "n": 2749
   },
   "D": {
-   "a": -0.8253,
-   "b": 0.9658,
-   "c": 0.7133,
-   "n": 3693
+   "a": -0.7967,
+   "b": 0.8975,
+   "c": 0.7669,
+   "n": 4138
   },
   "W": {
-   "a": -0.2724,
-   "b": 0.6094,
-   "c": 0.9075,
-   "n": 4708
+   "a": -0.4506,
+   "b": 0.6575,
+   "c": 0.9076,
+   "n": 5268
   }
  },
  "holdout": {
   "C": {
-   "from": "2026-10-31",
-   "n": 818,
-   "rho_model": 0.408,
-   "rho_calibrated": 0.429,
-   "bias_model": 1.62,
-   "bias_calibrated": -0.02
+   "from": "2026-11-03",
+   "n": 978,
+   "rho_model": 0.411,
+   "rho_calibrated": 0.426,
+   "bias_model": 1.77,
+   "bias_calibrated": 0.1
   },
   "D": {
-   "from": "2026-10-31",
-   "n": 1224,
-   "rho_model": 0.369,
-   "rho_calibrated": 0.384,
-   "bias_model": 1.16,
-   "bias_calibrated": 0.23
+   "from": "2026-11-03",
+   "n": 1454,
+   "rho_model": 0.36,
+   "rho_calibrated": 0.362,
+   "bias_model": 1.24,
+   "bias_calibrated": 0.25
   },
   "W": {
-   "from": "2026-10-31",
-   "n": 1572,
-   "rho_model": 0.402,
-   "rho_calibrated": 0.418,
-   "bias_model": 1.62,
-   "bias_calibrated": -0.01
+   "from": "2026-11-03",
+   "n": 1860,
+   "rho_model": 0.434,
+   "rho_calibrated": 0.447,
+   "bias_model": 1.67,
+   "bias_calibrated": 0.06
   }
  }
 }

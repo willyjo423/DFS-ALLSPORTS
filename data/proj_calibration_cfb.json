@@ -1,49 +1,49 @@
 {
  "sport": "cfb",
- "fitted_through": "week 11",
- "games": 3027,
+ "fitted_through": "week 12",
+ "games": 3667,
  "features": "proj = a + b * salary/1000 + c * model median",
  "positions": {
   "QB": {
-   "a": -2.8303,
-   "b": 0.946,
-   "c": 0.7409,
-   "n": 402
+   "a": -1.4047,
+   "b": 0.7165,
+   "c": 0.7553,
+   "n": 494
   },
   "RB": {
-   "a": -10.6476,
-   "b": 3.3558,
-   "c": 0.1907,
-   "n": 907
+   "a": -10.0825,
+   "b": 3.244,
+   "c": 0.2041,
+   "n": 1104
   },
   "WR": {
-   "a": -4.0791,
-   "b": 2.2496,
-   "c": 0.4165,
-   "n": 1718
+   "a": -3.9407,
+   "b": 2.1098,
+   "c": 0.4778,
+   "n": 2069
   }
  },
  "holdout": {
   "QB": {
-   "from_week": 10,
-   "n": 85,
-   "rho_model": 0.418,
-   "rho_salary": 0.347,
-   "rho_calibrated": 0.423
+   "from_week": 11,
+   "n": 122,
+   "rho_model": 0.471,
+   "rho_salary": 0.356,
+   "rho_calibrated": 0.485
   },
   "RB": {
-   "from_week": 10,
-   "n": 212,
-   "rho_model": 0.459,
-   "rho_salary": 0.563,
-   "rho_calibrated": 0.549
+   "from_week": 11,
+   "n": 274,
+   "rho_model": 0.554,
+   "rho_salary": 0.596,
+   "rho_calibrated": 0.61
   },
   "WR": {
-   "from_week": 10,
-   "n": 383,
-   "rho_model": 0.445,
-   "rho_salary": 0.497,
-   "rho_calibrated": 0.508
+   "from_week": 11,
+   "n": 480,
+   "rho_model": 0.517,
+   "rho_salary": 0.553,
+   "rho_calibrated": 0.579
   }
  }
 }

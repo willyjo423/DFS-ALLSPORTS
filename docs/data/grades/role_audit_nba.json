@@ -104,19 +104,126 @@
     "news": "+15%/min with teammates out"
    }
   ],
-  "2026-11-22": []
+  "2026-11-22": [],
+  "2026-11-23": [
+   {
+    "name": "Nique Clifford",
+    "team": "OKC",
+    "pos": "SG/SF",
+    "salary": 3700,
+    "proj": 18.22,
+    "act": 0.0,
+    "reason": "minutes cut",
+    "role_proj": 19.1,
+    "role_act": 6.0,
+    "lineups": 14,
+    "of": 186,
+    "top13": 0,
+    "own": 0.03636,
+    "signals": [
+     "no props posted"
+    ],
+    "kind": "warned",
+    "line": null,
+    "news": "+25%/min with teammates out"
+   },
+   {
+    "name": "Ousmane Dieng",
+    "team": "MIL",
+    "pos": "PF/C",
+    "salary": 3000,
+    "proj": 10.8,
+    "act": 0.0,
+    "reason": "did not play",
+    "role_proj": 13.4,
+    "role_act": 0.0,
+    "lineups": 4,
+    "of": 186,
+    "top13": 0,
+    "own": 0.02005,
+    "signals": [
+     "no props posted"
+    ],
+    "kind": "warned",
+    "line": null,
+    "news": null
+   },
+   {
+    "name": "Jay Huff",
+    "team": "IND",
+    "pos": "C",
+    "salary": 3100,
+    "proj": 11.17,
+    "act": 0.0,
+    "reason": "did not play",
+    "role_proj": 10.4,
+    "role_act": 0.0,
+    "lineups": 1,
+    "of": 186,
+    "top13": 0,
+    "own": 0.02033,
+    "signals": [
+     "no props posted"
+    ],
+    "kind": "warned",
+    "line": null,
+    "news": "+10%/min with teammates out"
+   },
+   {
+    "name": "Hannes Steinbach",
+    "team": "CHA",
+    "pos": "C",
+    "salary": 3000,
+    "proj": 10.81,
+    "act": 6.25,
+    "reason": "minutes cut",
+    "role_proj": 13.5,
+    "role_act": 4.0,
+    "lineups": 1,
+    "of": 186,
+    "top13": 0,
+    "own": 0.02007,
+    "signals": [
+     "no props posted"
+    ],
+    "kind": "warned",
+    "line": null,
+    "news": "+7%/min with teammates out"
+   },
+   {
+    "name": "Larry Nance Jr.",
+    "team": "IND",
+    "pos": "PF/C",
+    "salary": 3200,
+    "proj": 10.65,
+    "act": 0.0,
+    "reason": "minutes cut",
+    "role_proj": 12.1,
+    "role_act": 4.0,
+    "lineups": 1,
+    "of": 186,
+    "top13": 0,
+    "own": 0.01864,
+    "signals": [
+     "no props posted"
+    ],
+    "kind": "warned",
+    "line": null,
+    "news": "+10%/min with teammates out"
+   }
+  ]
  },
  "summary": {
-  "nights": 5,
-  "misses_in_lineups": 5,
+  "nights": 6,
+  "misses_in_lineups": 10,
   "blind": 4,
-  "warned": 1,
+  "warned": 6,
   "by_reason": {
-   "did not play": 4,
-   "minutes cut": 1
+   "did not play": 6,
+   "minutes cut": 4
   },
   "warning_ignored": {
-   "no props posted": 1
+   "no props posted": 6
   },
   "repeat_players": [],
   "repeat_teams": []

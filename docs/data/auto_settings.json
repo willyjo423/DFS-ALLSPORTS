@@ -1,12 +1,12 @@
 {
  "nba": {
-  "slates": 5,
+  "slates": 6,
   "buckets": [],
   "all": {
-   "slates": 5,
-   "own_lo": 65,
-   "own_hi": 111,
-   "own_median": 96
+   "slates": 6,
+   "own_lo": 51,
+   "own_hi": 110,
+   "own_median": 94
   },
   "rules": {
    "1": {
@@ -326,7 +326,7 @@
   }
  },
  "nhl": {
-  "slates": 54,
+  "slates": 55,
   "buckets": [
    {
     "games": [
@@ -355,20 +355,20 @@
      4,
      6
     ],
-    "slates": 16,
+    "slates": 17,
     "own_lo": 71,
     "own_hi": 159,
-    "own_median": 113,
+    "own_median": 110,
     "stack": 3,
     "stack2": 2,
     "line": 0,
     "stack_shares": {
-     "first>=2": 1.0,
-     "first>=3": 0.75,
-     "first>=4": 0.22,
+     "first>=2": 0.99,
+     "first>=3": 0.71,
+     "first>=4": 0.21,
      "first>=5": 0.04,
-     "second>=2": 0.89,
-     "line>=2": 0.06,
+     "second>=2": 0.87,
+     "line>=2": 0.08,
      "line>=3": 0.03
     }
    },
@@ -418,19 +418,19 @@
    }
   ],
   "all": {
-   "slates": 54,
+   "slates": 55,
    "own_lo": 42,
-   "own_hi": 192,
-   "own_median": 91,
+   "own_hi": 191,
+   "own_median": 90,
    "stack": 3,
    "stack2": 2,
    "line": 0,
    "stack_shares": {
     "first>=2": 0.97,
-    "first>=3": 0.54,
+    "first>=3": 0.53,
     "first>=4": 0.19,
     "first>=5": 0.02,
-    "second>=2": 0.75,
+    "second>=2": 0.74,
     "line>=2": 0.06,
     "line>=3": 0.01
    }

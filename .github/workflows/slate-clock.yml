@@ -1,5 +1,10 @@
 name: Slate clock
 
+# RETIRED 2026-11-24. A job that re-dispatched itself around the clock is the
+# likeliest reason GitHub blocked NFL-DFS under its terms of service; the
+# publish, props and grade workflows now run on their own schedules. Kept for
+# a one-off manual run only - it no longer schedules itself.
+
 # GitHub's own scheduler can run hours late (2026-11-18: a 10:20 UTC job ran
 # at 18:53 and no publish cron fired all day). This job keeps its own clock:
 # once started it dispatches the publish workflows at fixed Eastern times,
@@ -8,8 +13,6 @@ name: Slate clock
 
 on:
   workflow_dispatch: {}
-  schedule:
-    - cron: "5 14 * * *"     # ~9:05am ET start; late is fine, it catches up
 
 permissions:
   actions: write
@@ -119,8 +122,7 @@ jobs:
                       time.sleep(min(left, STEP))
                       left -= STEP
                       watch_news()
-                  print("handing over to a fresh clock run", flush=True)
-                  fire("slate-clock.yml")
+                  print("clock retired: not handing over", flush=True)
                   break
               # Sleep in short steps and watch for late news in between: an
               # NBA scratch or a confirmed NHL goalie triggers a lock-lane

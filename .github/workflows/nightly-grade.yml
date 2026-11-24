@@ -5,6 +5,8 @@ name: Nightly grade
 # (props_weight.py). Dispatched each morning by the slate clock.
 
 on:
+  schedule:
+    - cron: "25 14 * * *"        # ~9:25am ET
   workflow_dispatch:
     inputs:
       dates:

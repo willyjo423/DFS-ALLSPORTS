@@ -7,6 +7,12 @@ name: Props fetch
 
 on:
   workflow_dispatch: {}
+  schedule:                      # ET: 10:20am, 12:50, 3:50, 5:58, 6:55pm
+    - cron: "20 15 * * *"
+    - cron: "50 17 * * *"
+    - cron: "50 20 * * *"
+    - cron: "58 22 * * *"
+    - cron: "55 23 * * *"
 
 permissions:
   contents: write

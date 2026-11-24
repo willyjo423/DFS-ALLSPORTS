@@ -1,0 +1,306 @@
+{
+ "board": "12 teams \u00b7 7:30pm",
+ "contest": "NHL $2.5K mini-MAX [150 Entry Max]",
+ "players_with_stats": "154/287",
+ "lines": {
+  "top1": 96.7,
+  "top10": 72.1,
+  "cash": 48.8
+ },
+ "pool_best": 113.0,
+ "sorts": {
+  "roi": {
+   "1": {
+    "best": 64.4,
+    "avg": 64.4,
+    "cashed": 1,
+    "top10": 0,
+    "top1": 0
+   },
+   "3": {
+    "best": 71.8,
+    "avg": 67.4,
+    "cashed": 3,
+    "top10": 0,
+    "top1": 0
+   },
+   "5": {
+    "best": 71.8,
+    "avg": 59.5,
+    "cashed": 4,
+    "top10": 0,
+    "top1": 0
+   },
+   "10": {
+    "best": 81.1,
+    "avg": 60.4,
+    "cashed": 7,
+    "top10": 3,
+    "top1": 0
+   },
+   "20": {
+    "best": 81.1,
+    "avg": 52.3,
+    "cashed": 11,
+    "top10": 3,
+    "top1": 0
+   }
+  },
+  "roilow": {
+   "1": {
+    "best": 57.1,
+    "avg": 57.1,
+    "cashed": 1,
+    "top10": 0,
+    "top1": 0
+   },
+   "3": {
+    "best": 62.4,
+    "avg": 55.5,
+    "cashed": 2,
+    "top10": 0,
+    "top1": 0
+   },
+   "5": {
+    "best": 62.4,
+    "avg": 51.4,
+    "cashed": 3,
+    "top10": 0,
+    "top1": 0
+   },
+   "10": {
+    "best": 62.4,
+    "avg": 48.6,
+    "cashed": 4,
+    "top10": 0,
+    "top1": 0
+   },
+   "20": {
+    "best": 65.2,
+    "avg": 46.5,
+    "cashed": 8,
+    "top10": 0,
+    "top1": 0
+   }
+  },
+  "port": {
+   "1": {
+    "best": 80.2,
+    "avg": 80.2,
+    "cashed": 1,
+    "top10": 1,
+    "top1": 0
+   },
+   "3": {
+    "best": 80.2,
+    "avg": 66.8,
+    "cashed": 3,
+    "top10": 1,
+    "top1": 0
+   },
+   "5": {
+    "best": 80.2,
+    "avg": 58.4,
+    "cashed": 4,
+    "top10": 2,
+    "top1": 0
+   },
+   "10": {
+    "best": 80.2,
+    "avg": 61.5,
+    "cashed": 9,
+    "top10": 3,
+    "top1": 0
+   },
+   "20": {
+    "best": 80.2,
+    "avg": 52.6,
+    "cashed": 13,
+    "top10": 4,
+    "top1": 0
+   }
+  },
+  "cash": {
+   "1": {
+    "best": 63.0,
+    "avg": 63.0,
+    "cashed": 1,
+    "top10": 0,
+    "top1": 0
+   },
+   "3": {
+    "best": 68.8,
+    "avg": 62.0,
+    "cashed": 3,
+    "top10": 0,
+    "top1": 0
+   },
+   "5": {
+    "best": 68.8,
+    "avg": 57.8,
+    "cashed": 4,
+    "top10": 0,
+    "top1": 0
+   },
+   "10": {
+    "best": 68.8,
+    "avg": 55.6,
+    "cashed": 8,
+    "top10": 0,
+    "top1": 0
+   },
+   "20": {
+    "best": 81.7,
+    "avg": 56.6,
+    "cashed": 14,
+    "top10": 3,
+    "top1": 0
+   }
+  },
+  "top1": {
+   "1": {
+    "best": 80.2,
+    "avg": 80.2,
+    "cashed": 1,
+    "top10": 1,
+    "top1": 0
+   },
+   "3": {
+    "best": 80.2,
+    "avg": 75.3,
+    "cashed": 3,
+    "top10": 2,
+    "top1": 0
+   },
+   "5": {
+    "best": 80.2,
+    "avg": 54.5,
+    "cashed": 3,
+    "top10": 2,
+    "top1": 0
+   },
+   "10": {
+    "best": 91.5,
+    "avg": 62.8,
+    "cashed": 8,
+    "top10": 4,
+    "top1": 0
+   },
+   "20": {
+    "best": 91.5,
+    "avg": 61.0,
+    "cashed": 14,
+    "top10": 8,
+    "top1": 0
+   }
+  },
+  "proj": {
+   "1": {
+    "best": 63.0,
+    "avg": 63.0,
+    "cashed": 1,
+    "top10": 0,
+    "top1": 0
+   },
+   "3": {
+    "best": 66.5,
+    "avg": 63.6,
+    "cashed": 3,
+    "top10": 0,
+    "top1": 0
+   },
+   "5": {
+    "best": 66.5,
+    "avg": 53.9,
+    "cashed": 4,
+    "top10": 0,
+    "top1": 0
+   },
+   "10": {
+    "best": 66.5,
+    "avg": 54.9,
+    "cashed": 8,
+    "top10": 0,
+    "top1": 0
+   },
+   "20": {
+    "best": 81.3,
+    "avg": 54.7,
+    "cashed": 15,
+    "top10": 2,
+    "top1": 0
+   }
+  },
+  "ceil": {
+   "1": {
+    "best": 47.9,
+    "avg": 47.9,
+    "cashed": 0,
+    "top10": 0,
+    "top1": 0
+   },
+   "3": {
+    "best": 61.3,
+    "avg": 56.8,
+    "cashed": 2,
+    "top10": 0,
+    "top1": 0
+   },
+   "5": {
+    "best": 61.3,
+    "avg": 47.0,
+    "cashed": 2,
+    "top10": 0,
+    "top1": 0
+   },
+   "10": {
+    "best": 62.4,
+    "avg": 50.8,
+    "cashed": 6,
+    "top10": 0,
+    "top1": 0
+   },
+   "20": {
+    "best": 81.3,
+    "avg": 47.6,
+    "cashed": 10,
+    "top10": 1,
+    "top1": 0
+   }
+  }
+ },
+ "optimal": 193.2,
+ "optimal_lineup": [
+  "Linus Ullmark",
+  "Kyle Connor",
+  "Lane Hutson",
+  "Darren Raddysh",
+  "Shane Pinto",
+  "Gabriel Vilardi",
+  "Alex Laferriere",
+  "Gavin McKenna",
+  "Trevor Moore"
+ ],
+ "pool_best_shares": 3,
+ "pool_best_lineup": [
+  "Linus Ullmark",
+  "Auston Matthews",
+  "Kyle Connor",
+  "Vincent Trocheck",
+  "Alex Laferriere",
+  "Brandt Clarke",
+  "Dylan Cozens",
+  "Jonas Brodin",
+  "Alex Newhook"
+ ],
+ "best_rank": {
+  "roi": 120,
+  "roilow": 254,
+  "port": 329,
+  "cash": 245,
+  "top1": 327,
+  "proj": 281,
+  "ceil": 325
+ },
+ "roi_rank_corr": 0.173
+}

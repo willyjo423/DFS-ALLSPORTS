@@ -1,0 +1,304 @@
+{
+ "board": "7:00pm \u00b7 383 contests",
+ "contest": "NBA $200K Fadeaway [$50K to 1st]",
+ "players_with_stats": "158/281",
+ "lines": {
+  "top1": 275.0,
+  "top10": 238.0,
+  "cash": 189.6
+ },
+ "pool_best": 319.8,
+ "sorts": {
+  "roi": {
+   "1": {
+    "best": 271.8,
+    "avg": 271.8,
+    "cashed": 1,
+    "top10": 1,
+    "top1": 0
+   },
+   "3": {
+    "best": 292.0,
+    "avg": 272.1,
+    "cashed": 3,
+    "top10": 3,
+    "top1": 1
+   },
+   "5": {
+    "best": 292.0,
+    "avg": 246.3,
+    "cashed": 4,
+    "top10": 4,
+    "top1": 1
+   },
+   "10": {
+    "best": 305.5,
+    "avg": 248.0,
+    "cashed": 8,
+    "top10": 7,
+    "top1": 2
+   },
+   "20": {
+    "best": 305.5,
+    "avg": 240.7,
+    "cashed": 17,
+    "top10": 10,
+    "top1": 3
+   }
+  },
+  "roilow": {
+   "1": {
+    "best": 198.0,
+    "avg": 198.0,
+    "cashed": 1,
+    "top10": 0,
+    "top1": 0
+   },
+   "3": {
+    "best": 206.5,
+    "avg": 181.3,
+    "cashed": 2,
+    "top10": 0,
+    "top1": 0
+   },
+   "5": {
+    "best": 266.0,
+    "avg": 212.2,
+    "cashed": 4,
+    "top10": 2,
+    "top1": 0
+   },
+   "10": {
+    "best": 266.0,
+    "avg": 211.7,
+    "cashed": 8,
+    "top10": 4,
+    "top1": 0
+   },
+   "20": {
+    "best": 315.0,
+    "avg": 225.9,
+    "cashed": 17,
+    "top10": 10,
+    "top1": 1
+   }
+  },
+  "port": {
+   "1": {
+    "best": 269.5,
+    "avg": 269.5,
+    "cashed": 1,
+    "top10": 1,
+    "top1": 0
+   },
+   "3": {
+    "best": 314.2,
+    "avg": 271.3,
+    "cashed": 3,
+    "top10": 2,
+    "top1": 1
+   },
+   "5": {
+    "best": 314.2,
+    "avg": 251.0,
+    "cashed": 4,
+    "top10": 3,
+    "top1": 1
+   },
+   "10": {
+    "best": 314.2,
+    "avg": 240.1,
+    "cashed": 8,
+    "top10": 6,
+    "top1": 1
+   },
+   "20": {
+    "best": 319.8,
+    "avg": 247.0,
+    "cashed": 17,
+    "top10": 11,
+    "top1": 4
+   }
+  },
+  "cash": {
+   "1": {
+    "best": 269.5,
+    "avg": 269.5,
+    "cashed": 1,
+    "top10": 1,
+    "top1": 0
+   },
+   "3": {
+    "best": 269.5,
+    "avg": 256.0,
+    "cashed": 3,
+    "top10": 3,
+    "top1": 0
+   },
+   "5": {
+    "best": 305.5,
+    "avg": 258.7,
+    "cashed": 5,
+    "top10": 4,
+    "top1": 1
+   },
+   "10": {
+    "best": 308.5,
+    "avg": 257.1,
+    "cashed": 9,
+    "top10": 8,
+    "top1": 3
+   },
+   "20": {
+    "best": 308.5,
+    "avg": 249.2,
+    "cashed": 17,
+    "top10": 14,
+    "top1": 5
+   }
+  },
+  "top1": {
+   "1": {
+    "best": 269.5,
+    "avg": 269.5,
+    "cashed": 1,
+    "top10": 1,
+    "top1": 0
+   },
+   "3": {
+    "best": 292.0,
+    "avg": 277.8,
+    "cashed": 3,
+    "top10": 3,
+    "top1": 1
+   },
+   "5": {
+    "best": 292.0,
+    "avg": 265.6,
+    "cashed": 5,
+    "top10": 5,
+    "top1": 1
+   },
+   "10": {
+    "best": 305.5,
+    "avg": 264.6,
+    "cashed": 10,
+    "top10": 9,
+    "top1": 3
+   },
+   "20": {
+    "best": 310.5,
+    "avg": 253.7,
+    "cashed": 17,
+    "top10": 15,
+    "top1": 6
+   }
+  },
+  "proj": {
+   "1": {
+    "best": 243.0,
+    "avg": 243.0,
+    "cashed": 1,
+    "top10": 1,
+    "top1": 0
+   },
+   "3": {
+    "best": 271.5,
+    "avg": 261.3,
+    "cashed": 3,
+    "top10": 3,
+    "top1": 0
+   },
+   "5": {
+    "best": 271.5,
+    "avg": 228.7,
+    "cashed": 4,
+    "top10": 3,
+    "top1": 0
+   },
+   "10": {
+    "best": 280.2,
+    "avg": 238.8,
+    "cashed": 7,
+    "top10": 7,
+    "top1": 1
+   },
+   "20": {
+    "best": 294.0,
+    "avg": 244.7,
+    "cashed": 17,
+    "top10": 14,
+    "top1": 3
+   }
+  },
+  "ceil": {
+   "1": {
+    "best": 269.5,
+    "avg": 269.5,
+    "cashed": 1,
+    "top10": 1,
+    "top1": 0
+   },
+   "3": {
+    "best": 294.0,
+    "avg": 285.2,
+    "cashed": 3,
+    "top10": 3,
+    "top1": 2
+   },
+   "5": {
+    "best": 294.0,
+    "avg": 258.1,
+    "cashed": 4,
+    "top10": 4,
+    "top1": 2
+   },
+   "10": {
+    "best": 305.5,
+    "avg": 264.3,
+    "cashed": 9,
+    "top10": 9,
+    "top1": 4
+   },
+   "20": {
+    "best": 305.5,
+    "avg": 250.7,
+    "cashed": 17,
+    "top10": 15,
+    "top1": 5
+   }
+  }
+ },
+ "optimal": 402.2,
+ "optimal_lineup": [
+  "Scottie Barnes",
+  "Tre Jones",
+  "Jalen Slawson",
+  "Jaden McDaniels",
+  "Myles Turner",
+  "Tyler Herro",
+  "Kenrich Williams",
+  "Donovan Clingan"
+ ],
+ "pool_best_shares": 2,
+ "pool_best_lineup": [
+  "Ayo Dosunmu",
+  "Mikel Brown Jr.",
+  "Scottie Barnes",
+  "Jalen Slawson",
+  "Zach Edey",
+  "Sam Merrill",
+  "Brandon Miller",
+  "Shai Gilgeous-Alexander"
+ ],
+ "best_rank": {
+  "roi": 28,
+  "roilow": 159,
+  "port": 31,
+  "cash": 139,
+  "top1": 127,
+  "proj": 139,
+  "ceil": 137
+ },
+ "roi_rank_corr": 0.249
+}

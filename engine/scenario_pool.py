@@ -33,6 +33,7 @@ OPT_IN = {"nba"}
 # Sports kept on the first version (60 slates, every optimum kept): NHL's
 # 54-night backtest went from 37% to 22% 20-entry top-1% nights under v2.
 V1_SPORTS = {"nhl"}
+V1_N = 60             # slates solved in v1 mode
 MODE = "v2"           # "v1" = 60 slates, every distinct optimum kept (2026-11-22)
 MAX_SECONDS = 150     # per slate, so a publish run never times out on them
 
@@ -52,7 +53,7 @@ def add(payload: dict, sport: str, n: int = N_SCENARIOS, seed: int = 5,
         return 0
     players, roster = payload["players"], payload["roster"]
     if MODE == "v1" or sport in V1_SPORTS:
-        n = 60
+        n = V1_N
     rng = np.random.default_rng(seed)
     S = draws(sport, payload, n, rng)
     have = {tuple(sorted(L["p"])) for L in pool}

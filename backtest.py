@@ -154,9 +154,17 @@ def actuals(sport: str, day: str) -> dict:
 
 
 # ------------------------------------------------------------ rebuild
+ROSTER_PATCH: dict = {}      # variants: roster rules changed before the pool is built
+BOARD_HOOK = None            # variants: a function applied to each board first
+
+
 def rebuild(sport: str, b: dict, sims: int) -> dict | None:
     """Pool (if the archive has none) and sim ranking, with today's code."""
     p = copy.deepcopy(b)
+    if ROSTER_PATCH and sport == "nhl":
+        p["roster"] = {**(p.get("roster") or {}), **ROSTER_PATCH}
+    if BOARD_HOOK is not None and sport == "nhl":
+        BOARD_HOOK(p)
     if sport == "nba":
         from engine import nba_pool as POOL, nba_sim as SIM
         if not p.get("lineups"):
@@ -423,6 +431,55 @@ def _noscenario():
     """The pool without scenario lineups (before 2026-11-22)."""
     global SCENARIOS
     SCENARIOS = 0
+
+
+@variant("floor93")
+def _floor93():
+    """NHL: lineups may leave up to 7% of the cap unspent (was 1%). The best
+    lineups of 54 nights averaged $46.8K; the pool could not go below $49.5K."""
+    ROSTER_PATCH["min_salary_pct"] = 0.93
+
+
+@variant("floor90")
+def _floor90():
+    ROSTER_PATCH["min_salary_pct"] = 0.90
+
+
+def _cheap_upside(p: dict, f: float = 1.15) -> None:
+    """Cheap skaters on a top-six line or the first power-play unit get a
+    fatter upper tail: their ceiling and every quantile above the median
+    stretched by f, the median and below untouched."""
+    for pl in p.get("players") or []:
+        if pl.get("pos") == "G" or (pl.get("salary") or 9e9) > 4500:
+            continue
+        if not (str(pl.get("line") or "") in ("L1", "L2") or pl.get("ppu") == 1):
+            continue
+        q = pl.get("q")
+        if isinstance(q, list) and len(q) >= 5:
+            mid = len(q) // 2
+            pl["q"] = [v if k <= mid else q[mid] + (v - q[mid]) * f for k, v in enumerate(q)]
+        if pl.get("ceil") is not None and pl.get("med") is not None:
+            pl["ceil"] = pl["med"] + (pl["ceil"] - pl["med"]) * f
+
+
+@variant("cheapup")
+def _cheapup():
+    global BOARD_HOOK
+    BOARD_HOOK = _cheap_upside
+
+
+@variant("floor93cheap")
+def _floor93cheap():
+    _floor93()
+    _cheapup()
+
+
+@variant("floor93scen")
+def _floor93scen():
+    """Floor 93% and twice the scenario slates (120, every distinct optimum kept)."""
+    _floor93()
+    from engine import scenario_pool as SP_
+    SP_.V1_N = 120
 
 
 @variant("bigdiverse")

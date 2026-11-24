@@ -24,7 +24,7 @@ import replay_night as R
 ROOT = Path(__file__).resolve().parent
 OUT = ROOT / "data" / "tonight"
 NS = [1, 3, 5, 10, 20]
-SORTS = ["roi", "roilow", "port", "cash", "top1", "proj"]
+SORTS = ["roi", "roilow", "port", "cash", "top1", "proj", "ceil"]
 
 
 def order(pool, s):
@@ -51,6 +51,13 @@ def run(path: str) -> dict:
         act = G.nba_actuals(day)
         pts = np.array([(G.match("nba", pl, act) or {}).get("dk", 0.0) for pl in b["players"]])
         hit = sum(G.match("nba", pl, act) is not None for pl in b["players"])
+    elif sport == "nhl":
+        from engine import nhl_sim as SIM
+        import datetime as dt
+        lk = dt.datetime.fromisoformat(b["locks"]).astimezone(dt.timezone(dt.timedelta(hours=-5)))
+        act = G.nhl_actuals(lk.date().isoformat())       # final games only
+        pts = np.array([(G.match("nhl", pl, act) or {}).get("dk", 0.0) for pl in b["players"]])
+        hit = sum(G.match("nhl", pl, act) is not None for pl in b["players"])
     else:
         import cfb_data as D
         from engine import cfb_sim as SIM
@@ -69,6 +76,34 @@ def run(path: str) -> dict:
            "players_with_stats": f"{hit}/{len(b['players'])}",
            "lines": {k: round(v, 1) for k, v in lines.items()},
            "pool_best": round(max(L["_act"] for L in pool), 1), "sorts": {}}
+    # The best lineup that could have been built, and how many of its players
+    # the pool's best lineup shared.
+    try:
+        Q = copy.deepcopy(b["players"])
+        for q, v in zip(Q, pts):
+            q["proj"] = q["med"] = q["mean"] = q["ceil"] = float(v)
+            q["pp"] = 1.0
+            q["status"] = "clear"
+        if sport == "nba":
+            from engine import nba_pool as POOL
+            o = POOL.optimal_lineup(Q)
+        else:
+            from engine import lineup_pool as LP
+            o = LP.optimal_lineup(Q, b["roster"])
+        if o:
+            res["optimal"] = round(float(pts[list(o)].sum()), 1)
+            res["optimal_lineup"] = [b["players"][i]["name"] for i in o]
+            bestL = max(pool, key=lambda L: L["_act"])
+            res["pool_best_shares"] = len(set(o) & set(bestL["p"]))
+            res["pool_best_lineup"] = [b["players"][i]["name"] for i in bestL["p"]]
+            # where the best pool lineup ranked under each sort
+            res["best_rank"] = {}
+            for s in SORTS:
+                oo = order(pool, s)
+                if bestL in oo:
+                    res["best_rank"][s] = oo.index(bestL) + 1
+    except Exception as exc:                                  # noqa: BLE001
+        res["optimal_error"] = str(exc)[:120]
     for s in SORTS:
         o = order(pool, s)
         if not o:
@@ -101,6 +136,10 @@ def main(argv):
         (OUT / Path(path).name).write_text(json.dumps(res, indent=1))
         print(f"\n== {res['board']} | {res['contest']} | stats {res['players_with_stats']} "
               f"| lines {res['lines']} | pool best {res['pool_best']} | roi rank corr {res.get('roi_rank_corr')}")
+        if res.get("optimal") is not None:
+            print(f"  optimal {res['optimal']}: {', '.join(res['optimal_lineup'])}")
+            print(f"  pool best {res['pool_best']} shares {res['pool_best_shares']} players: "
+                  f"{', '.join(res['pool_best_lineup'])}; its rank by sort {res.get('best_rank')}")
         for s, byn in res["sorts"].items():
             print(f"  {s:7s} " + "  ".join(
                 f"{n}e: best {v['best']} cash {v['cashed']}/{n} t10 {v['top10']} t1 {v['top1']}"

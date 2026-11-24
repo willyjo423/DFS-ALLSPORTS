@@ -194,12 +194,14 @@ def main() -> int:
         print(f"\n=== {sport.upper()}  {len(nights)} nights ===")
         rules_out[sport] = {}
         tier_out[sport] = {}
+        RES = {}
         for tier, n in itertools.product(TIERS, ENTRIES):
             if not nights:
                 break
             if n == 1 and tier == "cash":
                 print(f"\n  -- {sport.upper()} by contest type --")
             res = evaluate(nights, sport, n, tier)
+            RES[(tier, n)] = res
             d0 = DEFAULT[n] if tier != "cash" else ("cash", "none", DEFAULT[n][2], 0)
             dflt = d0 if d0 in res else next(r for r in res if r[0] == d0[0])
             mean = {r: float(np.nanmean(v[:, 0])) for r, v in res.items()}
@@ -242,6 +244,31 @@ def main() -> int:
             # entries-only rules (older pages): 1 entry = cash game, more = large GPP
             if (n == 1 and tier == "cash") or (n > 1 and tier == "large"):
                 rules_out[sport][str(n)] = rule
+        # Contests near a tier line (e.g. 555 entries, just over "mid"): the
+        # rule that does best averaged over BOTH neighbouring tiers' payout
+        # curves, under the same guard against the default as a single tier.
+        for a_t, b_t in (("small", "mid"), ("mid", "large")):
+            for n in ENTRIES:
+                ra, rb = RES.get((a_t, n)), RES.get((b_t, n))
+                if not ra or not rb:
+                    continue
+                both = {r: (ra[r][:, 0] + rb[r][:, 0]) / 2 for r in ra if r in rb}
+                if not both:
+                    continue
+                mean = {r: float(np.nanmean(v)) for r, v in both.items()}
+                dflt = DEFAULT[n] if DEFAULT[n] in both else next(iter(both))
+                best = max(mean, key=mean.get)
+                half = len(nights) // 2
+                halves = [bootstrap_better(both[best][pt], both[dflt][pt]) if len(both[best][pt]) >= 5 else 0.0
+                          for pt in (slice(0, half), slice(half, None))]
+                p = bootstrap_better(both[best], both[dflt]) if best != dflt else 0.5
+                adopt = (best != dflt and p >= 0.9 and mean[best] - mean[dflt] >= 0.05
+                         and min(halves) >= 0.75)
+                ch = best if adopt else dflt
+                nn = int(np.sum(~np.isnan(both[ch])))
+                tier_out[sport].setdefault(f"{a_t}-{b_t}", {})[str(n)] = {
+                    "sort": ch[0], "own": ch[1], "expo": ch[2], "stack": ch[3],
+                    "evidence": f"{nn} nights, ROI {mean[ch]:+.2f} (avg of {a_t} and {b_t})"}
         # pool variants: best rule's ROI at 5 and 20 entries per variant
         if len([v for v in variants if not v.startswith("hist")]) > 1:
             report[sport]["variants"] = {}

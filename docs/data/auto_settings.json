@@ -106,25 +106,25 @@
      "evidence": "585 nights, ROI +1.19"
     },
     "3": {
-     "sort": "cash",
-     "own": "low",
+     "sort": "port",
+     "own": "none",
      "expo": 1.0,
      "stack": 0,
-     "evidence": "585 nights, ROI +1.35"
+     "evidence": "585 nights, ROI +1.04"
     },
     "5": {
-     "sort": "cash",
-     "own": "low",
-     "expo": 1.0,
+     "sort": "port",
+     "own": "none",
+     "expo": 0.6,
      "stack": 0,
-     "evidence": "585 nights, ROI +1.25"
+     "evidence": "585 nights, ROI +0.92"
     },
     "10": {
-     "sort": "roi",
-     "own": "low",
-     "expo": 1.0,
+     "sort": "port",
+     "own": "none",
+     "expo": 0.6,
      "stack": 0,
-     "evidence": "585 nights, ROI +1.24"
+     "evidence": "585 nights, ROI +0.98"
     },
     "20": {
      "sort": "port",
@@ -150,11 +150,11 @@
      "evidence": "585 nights, ROI +7.54"
     },
     "3": {
-     "sort": "roilow",
-     "own": "mid",
-     "expo": 0.6,
+     "sort": "port",
+     "own": "none",
+     "expo": 1.0,
      "stack": 0,
-     "evidence": "585 nights, ROI +4.46"
+     "evidence": "585 nights, ROI +2.55"
     },
     "5": {
      "sort": "port",
@@ -296,11 +296,11 @@
      "evidence": "585 nights, ROI +3.28 (avg of mid and large)"
     },
     "10": {
-     "sort": "roilow",
-     "own": "mid",
-     "expo": 1.0,
+     "sort": "port",
+     "own": "none",
+     "expo": 0.6,
      "stack": 0,
-     "evidence": "585 nights, ROI +5.51 (avg of mid and large)"
+     "evidence": "585 nights, ROI +3.04 (avg of mid and large)"
     },
     "20": {
      "sort": "roilow",
@@ -692,11 +692,11 @@
      "evidence": "54 nights, ROI +2.63 (avg of small and mid)"
     },
     "20": {
-     "sort": "roilow",
+     "sort": "port",
      "own": "none",
-     "expo": 1.0,
-     "stack": 3,
-     "evidence": "54 nights, ROI +1.98 (avg of small and mid)"
+     "expo": 0.5,
+     "stack": 0,
+     "evidence": "54 nights, ROI +0.59 (avg of small and mid)"
     },
     "40": {
      "sort": "cash",
@@ -2140,7 +2140,7 @@
      ],
      "top1_rate": 0.099
     },
-    "adopted": true
+    "adopted": false
    },
    "small-5": {
     "current": {
@@ -2168,7 +2168,7 @@
      ],
      "top1_rate": 0.121
     },
-    "adopted": true
+    "adopted": false
    },
    "small-10": {
     "current": {
@@ -2196,7 +2196,7 @@
      ],
      "top1_rate": 0.186
     },
-    "adopted": true
+    "adopted": false
    },
    "small-20": {
     "current": {
@@ -2308,7 +2308,7 @@
      ],
      "top1_rate": 0.089
     },
-    "adopted": true
+    "adopted": false
    },
    "mid-5": {
     "current": {

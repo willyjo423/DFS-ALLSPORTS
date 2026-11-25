@@ -50,6 +50,20 @@ DEFAULT = {1: ("cash", "none", 1.0, 0), 3: ("port", "none", 1.0, 0),
            20: ("port", "none", 0.5, 0), 40: ("port", "none", 0.4, 0)}
 
 
+# How clearly another rule must beat the default before Auto uses it. In a
+# tournament with 2+ entries the default is Best set; on 2026-11-24 Auto took
+# Cash for 2 entries in a 111-entry contest on a +1.23 vs +1.13 "win" over 585
+# nights - a tie - and Best set won the night. In tournaments a rule now has to
+# win by at least 0.5 ROI and a quarter of the default's own ROI, with 95%
+# confidence; cash games keep the old bar.
+def P_NEED(tier, n):
+    return 0.9 if tier == "cash" or n == 1 else 0.95
+
+
+def GAIN_NEED(tier, n, base):
+    return 0.05 if tier == "cash" or n == 1 else max(0.5, 0.25 * abs(base))
+
+
 def payout(pct: float, n: int, tier: str | None = None, row: dict | None = None,
            lines: dict | None = None) -> float:
     if tier == "cash":
@@ -219,7 +233,7 @@ def main() -> int:
                 a, b = res[best][part, 0], res[dflt][part, 0]
                 halves.append(bootstrap_better(a, b) if len(a) >= 5 else 0.0)
             holds = min(halves) >= 0.75
-            adopt = (best != dflt and p >= 0.9 and gain >= 0.05 and holds
+            adopt = (best != dflt and p >= P_NEED(tier, n) and gain >= GAIN_NEED(tier, n, mean[dflt]) and holds
                      and int(np.sum(~np.isnan(res[best][:, 0] - res[dflt][:, 0]))) >= 10)
             chosen = best if adopt else dflt
             top = sorted(mean.items(), key=lambda kv: -kv[1])[:5]
@@ -262,7 +276,8 @@ def main() -> int:
                 halves = [bootstrap_better(both[best][pt], both[dflt][pt]) if len(both[best][pt]) >= 5 else 0.0
                           for pt in (slice(0, half), slice(half, None))]
                 p = bootstrap_better(both[best], both[dflt]) if best != dflt else 0.5
-                adopt = (best != dflt and p >= 0.9 and mean[best] - mean[dflt] >= 0.05
+                adopt = (best != dflt and p >= P_NEED(b_t, n)
+                         and mean[best] - mean[dflt] >= GAIN_NEED(b_t, n, mean[dflt])
                          and min(halves) >= 0.75)
                 ch = best if adopt else dflt
                 nn = int(np.sum(~np.isnan(both[ch])))

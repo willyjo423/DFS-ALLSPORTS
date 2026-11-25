@@ -1,0 +1,304 @@
+{
+ "board": "7:00pm \u00b7 491 contests",
+ "contest": "NBA $5K High Five [Single Entry]",
+ "players_with_stats": "76/105",
+ "lines": {
+  "top1": 300.0,
+  "top10": 270.2,
+  "cash": 237.5
+ },
+ "pool_best": 329.2,
+ "sorts": {
+  "roi": {
+   "1": {
+    "best": 261.2,
+    "avg": 261.2,
+    "cashed": 1,
+    "top10": 0,
+    "top1": 0
+   },
+   "3": {
+    "best": 276.2,
+    "avg": 267.8,
+    "cashed": 3,
+    "top10": 1,
+    "top1": 0
+   },
+   "5": {
+    "best": 276.2,
+    "avg": 258.7,
+    "cashed": 4,
+    "top10": 2,
+    "top1": 0
+   },
+   "10": {
+    "best": 308.0,
+    "avg": 264.8,
+    "cashed": 8,
+    "top10": 4,
+    "top1": 1
+   },
+   "20": {
+    "best": 308.0,
+    "avg": 251.7,
+    "cashed": 13,
+    "top10": 5,
+    "top1": 1
+   }
+  },
+  "roilow": {
+   "1": {
+    "best": 240.0,
+    "avg": 240.0,
+    "cashed": 1,
+    "top10": 0,
+    "top1": 0
+   },
+   "3": {
+    "best": 240.0,
+    "avg": 230.0,
+    "cashed": 1,
+    "top10": 0,
+    "top1": 0
+   },
+   "5": {
+    "best": 240.0,
+    "avg": 228.9,
+    "cashed": 2,
+    "top10": 0,
+    "top1": 0
+   },
+   "10": {
+    "best": 274.8,
+    "avg": 228.4,
+    "cashed": 3,
+    "top10": 1,
+    "top1": 0
+   },
+   "20": {
+    "best": 285.8,
+    "avg": 236.7,
+    "cashed": 8,
+    "top10": 2,
+    "top1": 0
+   }
+  },
+  "port": {
+   "1": {
+    "best": 276.2,
+    "avg": 276.2,
+    "cashed": 1,
+    "top10": 1,
+    "top1": 0
+   },
+   "3": {
+    "best": 308.0,
+    "avg": 283.3,
+    "cashed": 3,
+    "top10": 2,
+    "top1": 1
+   },
+   "5": {
+    "best": 308.0,
+    "avg": 259.3,
+    "cashed": 3,
+    "top10": 2,
+    "top1": 1
+   },
+   "10": {
+    "best": 308.0,
+    "avg": 267.8,
+    "cashed": 8,
+    "top10": 5,
+    "top1": 2
+   },
+   "20": {
+    "best": 318.0,
+    "avg": 258.6,
+    "cashed": 13,
+    "top10": 7,
+    "top1": 3
+   }
+  },
+  "cash": {
+   "1": {
+    "best": 265.8,
+    "avg": 265.8,
+    "cashed": 1,
+    "top10": 0,
+    "top1": 0
+   },
+   "3": {
+    "best": 265.8,
+    "avg": 249.9,
+    "cashed": 2,
+    "top10": 0,
+    "top1": 0
+   },
+   "5": {
+    "best": 274.2,
+    "avg": 253.2,
+    "cashed": 4,
+    "top10": 1,
+    "top1": 0
+   },
+   "10": {
+    "best": 276.2,
+    "avg": 252.7,
+    "cashed": 8,
+    "top10": 2,
+    "top1": 0
+   },
+   "20": {
+    "best": 276.2,
+    "avg": 247.2,
+    "cashed": 15,
+    "top10": 2,
+    "top1": 0
+   }
+  },
+  "top1": {
+   "1": {
+    "best": 276.2,
+    "avg": 276.2,
+    "cashed": 1,
+    "top10": 1,
+    "top1": 0
+   },
+   "3": {
+    "best": 276.2,
+    "avg": 254.8,
+    "cashed": 2,
+    "top10": 1,
+    "top1": 0
+   },
+   "5": {
+    "best": 276.2,
+    "avg": 250.9,
+    "cashed": 3,
+    "top10": 2,
+    "top1": 0
+   },
+   "10": {
+    "best": 276.2,
+    "avg": 251.2,
+    "cashed": 8,
+    "top10": 2,
+    "top1": 0
+   },
+   "20": {
+    "best": 308.0,
+    "avg": 248.3,
+    "cashed": 12,
+    "top10": 4,
+    "top1": 1
+   }
+  },
+  "proj": {
+   "1": {
+    "best": 265.8,
+    "avg": 265.8,
+    "cashed": 1,
+    "top10": 0,
+    "top1": 0
+   },
+   "3": {
+    "best": 265.8,
+    "avg": 245.8,
+    "cashed": 2,
+    "top10": 0,
+    "top1": 0
+   },
+   "5": {
+    "best": 265.8,
+    "avg": 240.8,
+    "cashed": 3,
+    "top10": 0,
+    "top1": 0
+   },
+   "10": {
+    "best": 276.2,
+    "avg": 247.2,
+    "cashed": 7,
+    "top10": 2,
+    "top1": 0
+   },
+   "20": {
+    "best": 276.2,
+    "avg": 247.3,
+    "cashed": 15,
+    "top10": 2,
+    "top1": 0
+   }
+  },
+  "ceil": {
+   "1": {
+    "best": 265.8,
+    "avg": 265.8,
+    "cashed": 1,
+    "top10": 0,
+    "top1": 0
+   },
+   "3": {
+    "best": 265.8,
+    "avg": 245.8,
+    "cashed": 2,
+    "top10": 0,
+    "top1": 0
+   },
+   "5": {
+    "best": 265.8,
+    "avg": 237.9,
+    "cashed": 2,
+    "top10": 0,
+    "top1": 0
+   },
+   "10": {
+    "best": 276.2,
+    "avg": 250.0,
+    "cashed": 8,
+    "top10": 2,
+    "top1": 0
+   },
+   "20": {
+    "best": 308.0,
+    "avg": 249.2,
+    "cashed": 14,
+    "top10": 3,
+    "top1": 1
+   }
+  }
+ },
+ "optimal": 349.8,
+ "optimal_lineup": [
+  "Daniss Jenkins",
+  "Isaiah Joe",
+  "AJ Dybantsa",
+  "Paul George",
+  "Neemias Queta",
+  "Caleb Martin",
+  "Jayson Tatum",
+  "Kyshawn George"
+ ],
+ "pool_best_shares": 6,
+ "pool_best_lineup": [
+  "Daniss Jenkins",
+  "Isaiah Joe",
+  "Jayson Tatum",
+  "Paul George",
+  "Daniel Gafford",
+  "Desmond Bane",
+  "AJ Dybantsa",
+  "Neemias Queta"
+ ],
+ "best_rank": {
+  "roi": 12,
+  "roilow": 178,
+  "port": 47,
+  "cash": 33,
+  "top1": 16,
+  "proj": 25,
+  "ceil": 16
+ },
+ "roi_rank_corr": 0.486
+}

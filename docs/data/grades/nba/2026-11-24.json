@@ -1,0 +1,310 @@
+{
+ "sport": "nba",
+ "date": "2026-11-24",
+ "slate": "7:00pm \u00b7 491 contests",
+ "draft_group": 156301,
+ "players": 105,
+ "graded": 65,
+ "mae_final": 6.28,
+ "props": {
+  "n": 37,
+  "mae_model": 7.722,
+  "mae_props": 7.153,
+  "mae_final": 7.179,
+  "sxy": 679.2085999999999,
+  "sxx": 1091.6162999999995,
+  "weight": 0.622
+ },
+ "minutes": {
+  "n": 64,
+  "mae": 4.52,
+  "bias": 1.36
+ },
+ "late_scratches": [
+  "Nikola Vucevic"
+ ],
+ "pool": {
+  "n": 189,
+  "avg": 260.1,
+  "best": 329.2,
+  "top5_cash": [
+   265.8,
+   257.2,
+   226.8,
+   276.2,
+   259.5
+  ],
+  "top5_top1": [
+   276.2,
+   226.8,
+   261.2,
+   265.8,
+   244.8
+  ],
+  "hindsight": 349.8
+ },
+ "hindsight_lineup": [
+  "Daniss Jenkins",
+  "Isaiah Joe",
+  "AJ Dybantsa",
+  "Paul George",
+  "Neemias Queta",
+  "Caleb Martin",
+  "Jayson Tatum",
+  "Kyshawn George"
+ ],
+ "ceil_rows": [
+  [
+   84.83,
+   83.93,
+   40.75
+  ],
+  [
+   68.62,
+   68.05,
+   68.0
+  ],
+  [
+   64.31,
+   62.93,
+   51.0
+  ],
+  [
+   60.24,
+   58.98,
+   41.25
+  ],
+  [
+   59.59,
+   60.88,
+   57.75
+  ],
+  [
+   58.23,
+   56.92,
+   31.0
+  ],
+  [
+   55.51,
+   54.55,
+   30.25
+  ],
+  [
+   54.07,
+   55.87,
+   51.0
+  ],
+  [
+   48.32,
+   48.36,
+   40.5
+  ],
+  [
+   51.32,
+   48.03,
+   38.0
+  ],
+  [
+   43.52,
+   44.0,
+   25.25
+  ],
+  [
+   46.07,
+   46.44,
+   45.25
+  ],
+  [
+   46.2,
+   44.71,
+   12.5
+  ],
+  [
+   45.86,
+   45.37,
+   43.25
+  ],
+  [
+   44.96,
+   43.32,
+   31.75
+  ],
+  [
+   52.46,
+   50.49,
+   38.5
+  ],
+  [
+   38.39,
+   37.86,
+   25.0
+  ],
+  [
+   39.03,
+   37.12,
+   34.25
+  ],
+  [
+   39.09,
+   37.39,
+   28.5
+  ],
+  [
+   38.44,
+   37.18,
+   17.75
+  ],
+  [
+   39.15,
+   36.4,
+   30.0
+  ],
+  [
+   38.65,
+   38.01,
+   11.25
+  ],
+  [
+   33.66,
+   32.37,
+   20.25
+  ],
+  [
+   35.54,
+   33.18,
+   21.0
+  ],
+  [
+   37.69,
+   35.59,
+   30.0
+  ],
+  [
+   31.15,
+   30.53,
+   22.75
+  ],
+  [
+   27.94,
+   25.1,
+   15.75
+  ]
+ ],
+ "role_misses": [
+  {
+   "name": "Devin Carter",
+   "team": "BOS",
+   "pos": "PG",
+   "salary": 3100,
+   "proj": 13.69,
+   "act": 0.0,
+   "reason": "did not play",
+   "role_proj": 13.0,
+   "role_act": 0.0,
+   "lineups": 11,
+   "of": 189,
+   "top13": 3,
+   "own": 0.06959,
+   "signals": [
+    "no props posted"
+   ],
+   "kind": "warned",
+   "line": null,
+   "news": null
+  },
+  {
+   "name": "Alexandre Sarr",
+   "team": "WAS",
+   "pos": "C",
+   "salary": 5300,
+   "proj": 25.42,
+   "act": 0.0,
+   "reason": "did not play",
+   "role_proj": 23.4,
+   "role_act": 0.0,
+   "lineups": 16,
+   "of": 189,
+   "top13": 0,
+   "own": 0.11312,
+   "signals": [],
+   "kind": "blind",
+   "line": null,
+   "news": "starting (expected)"
+  },
+  {
+   "name": "EJ Harkless",
+   "team": "DET",
+   "pos": "PG",
+   "salary": 3000,
+   "proj": 11.16,
+   "act": 0.0,
+   "reason": "did not play",
+   "role_proj": 13.1,
+   "role_act": 0.0,
+   "lineups": 8,
+   "of": 189,
+   "top13": 0,
+   "own": 0.05396,
+   "signals": [
+    "no props posted"
+   ],
+   "kind": "warned",
+   "line": null,
+   "news": "+13%/min with teammates out"
+  }
+ ],
+ "biggest_unders": [
+  [
+   "Nikola Jokic",
+   67.5,
+   40.75
+  ],
+  [
+   "Anthony Black",
+   33.0,
+   12.5
+  ],
+  [
+   "Aaron Gordon",
+   26.8,
+   11.25
+  ],
+  [
+   "Jamal Murray",
+   43.5,
+   31.0
+  ],
+  [
+   "Tre Johnson",
+   11.2,
+   0.25
+  ]
+ ],
+ "biggest_overs": [
+  [
+   "Caleb Martin",
+   16.3,
+   39.0
+  ],
+  [
+   "Jayson Tatum",
+   52.8,
+   68.0
+  ],
+  [
+   "Anthony Davis",
+   44.5,
+   57.75
+  ],
+  [
+   "AJ Dybantsa",
+   33.0,
+   45.25
+  ],
+  [
+   "PJ Washington",
+   16.9,
+   28.0
+  ]
+ ]
+}

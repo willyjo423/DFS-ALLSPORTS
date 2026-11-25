@@ -211,21 +211,86 @@
     "line": null,
     "news": "+10%/min with teammates out"
    }
+  ],
+  "2026-11-24": [
+   {
+    "name": "Devin Carter",
+    "team": "BOS",
+    "pos": "PG",
+    "salary": 3100,
+    "proj": 13.69,
+    "act": 0.0,
+    "reason": "did not play",
+    "role_proj": 13.0,
+    "role_act": 0.0,
+    "lineups": 11,
+    "of": 189,
+    "top13": 3,
+    "own": 0.06959,
+    "signals": [
+     "no props posted"
+    ],
+    "kind": "warned",
+    "line": null,
+    "news": null
+   },
+   {
+    "name": "Alexandre Sarr",
+    "team": "WAS",
+    "pos": "C",
+    "salary": 5300,
+    "proj": 25.42,
+    "act": 0.0,
+    "reason": "did not play",
+    "role_proj": 23.4,
+    "role_act": 0.0,
+    "lineups": 16,
+    "of": 189,
+    "top13": 0,
+    "own": 0.11312,
+    "signals": [],
+    "kind": "blind",
+    "line": null,
+    "news": "starting (expected)"
+   },
+   {
+    "name": "EJ Harkless",
+    "team": "DET",
+    "pos": "PG",
+    "salary": 3000,
+    "proj": 11.16,
+    "act": 0.0,
+    "reason": "did not play",
+    "role_proj": 13.1,
+    "role_act": 0.0,
+    "lineups": 8,
+    "of": 189,
+    "top13": 0,
+    "own": 0.05396,
+    "signals": [
+     "no props posted"
+    ],
+    "kind": "warned",
+    "line": null,
+    "news": "+13%/min with teammates out"
+   }
   ]
  },
  "summary": {
-  "nights": 6,
-  "misses_in_lineups": 10,
-  "blind": 4,
-  "warned": 6,
+  "nights": 7,
+  "misses_in_lineups": 13,
+  "blind": 5,
+  "warned": 8,
   "by_reason": {
-   "did not play": 6,
+   "did not play": 9,
    "minutes cut": 4
   },
   "warning_ignored": {
-   "no props posted": 6
+   "no props posted": 8
   },
-  "repeat_players": [],
+  "repeat_players": [
+   "Alexandre Sarr"
+  ],
   "repeat_teams": []
  }
 }

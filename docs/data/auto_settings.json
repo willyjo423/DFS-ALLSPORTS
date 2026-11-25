@@ -1,12 +1,12 @@
 {
  "nba": {
-  "slates": 6,
+  "slates": 7,
   "buckets": [],
   "all": {
-   "slates": 6,
-   "own_lo": 51,
-   "own_hi": 110,
-   "own_median": 94
+   "slates": 7,
+   "own_lo": 52,
+   "own_hi": 129,
+   "own_median": 96
   },
   "rules": {
    "1": {

@@ -94,6 +94,10 @@ def team_avg(hist: pd.DataFrame) -> dict:
             for t, s in g.groupby("team")}
 
 
+BENCH_NO_PROPS_MIN = 16.0   # see "NO PROPS, SHORT MINUTES" in build_slate
+BENCH_NO_PROPS_PP = 0.8
+
+
 def build_slate(dg: int, starts, label: str, hist: pd.DataFrame, p: dict,
                 inj: dict, lines: dict, day: str, feats: pd.DataFrame,
                 lineups: dict | None = None, props: dict | None = None,
@@ -251,7 +255,26 @@ def build_slate(dg: int, starts, label: str, hist: pd.DataFrame, p: dict,
             "dkppg": (round(float(r.dk_ppg), 1) if pd.notna(r.dk_ppg) else None),
             "model": round(model_cond, 2) if model_cond else None,
             "props": round(mkt_val, 2) if mkt_val is not None else None,
+            "_starter": r.starts == 1,
         })
+    # NO PROPS, SHORT MINUTES. The books post props on everyone with a real
+    # role, so a player projected under 16 minutes with none - on a team the
+    # books did cover - is a bench guy whose minutes are not his own. On the
+    # lock boards of 2026-11-18..23 those players sat 21% of the time and lost
+    # their role 33% (players with props at the same minutes: 7% / 20%; at
+    # 16+ minutes it is 2% either way). Devin Carter (13 min, no props) sat on
+    # 2026-11-24 while in 9 of the Night board's top 13 lineups. His chance of
+    # playing is now discounted by that rate, which lowers his mean and his
+    # place in the pool; a confirmed starter is exempt.
+    covered = {x["team"] for x in players if x["props"] is not None}
+    for x in players:
+        st = x.pop("_starter")
+        if (x["props"] is None and x["team"] in covered and not st and x["status"] != "out"
+                and x["min"] is not None and x["min"] < BENCH_NO_PROPS_MIN and x["pp"] > 0):
+            x["pp"] = round(x["pp"] * BENCH_NO_PROPS_PP, 2)
+            x["proj"] = x["mean"] = round(x["med"] * x["pp"], 2)
+            x["doubtful"] = x["doubtful"] or x["pp"] < 0.7
+            x["news"] = "; ".join(v for v in (x["news"], "no props and a bench role - sits ~1 in 5 of these nights") if v)
     pl = pd.DataFrame(players)
     pool = pd.DataFrame({"position": "ALL", "salary": pl["salary"],
                          "mean": pl["mean"], "median": pl["med"],

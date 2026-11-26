@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-26T02:59:43+00:00",
+ "updated_at": "2026-11-26T03:56:51+00:00",
  "slates": [
   {
    "sport": "cfb",
@@ -45,7 +45,7 @@
    "sport": "nhl",
    "site": "dk",
    "kind": "classic",
-   "label": "11 teams \u00b7 4:00pm",
+   "label": "14 teams \u00b7 4:00pm",
    "file": "data/nhl_dk_classic_157487.json",
    "locks": "2026-11-27T21:00:00+00:00"
   }

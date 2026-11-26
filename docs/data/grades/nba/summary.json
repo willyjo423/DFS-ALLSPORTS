@@ -1,19 +1,19 @@
 {
  "sport": "nba",
- "nights": 7,
- "props_nights": 7,
- "props_players": 503,
- "props_weight": 0.825,
- "mae_model": 8.061,
- "mae_props": 7.62,
- "mae_final": 7.74,
- "pool_avg": 256.143,
- "updated": "2026-11-25T23:10+00:00",
+ "nights": 8,
+ "props_nights": 8,
+ "props_players": 590,
+ "props_weight": 0.822,
+ "mae_model": 8.051,
+ "mae_props": 7.588,
+ "mae_final": 7.701,
+ "pool_avg": 258.1,
+ "updated": "2026-11-26T23:06+00:00",
  "ceiling": {
-  "n": 112,
+  "n": 181,
   "target": 0.09999999999999998,
-  "model_rate": 0.0536,
-  "props_rate": 0.0625,
+  "model_rate": 0.0663,
+  "props_rate": 0.0718,
   "best_w": 0.2
  }
 }

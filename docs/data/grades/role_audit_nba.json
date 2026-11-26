@@ -274,23 +274,113 @@
     "line": null,
     "news": "+13%/min with teammates out"
    }
+  ],
+  "2026-11-25": [
+   {
+    "name": "Zach Edey",
+    "team": "MEM",
+    "pos": "C",
+    "salary": 5200,
+    "proj": 23.57,
+    "act": 19.0,
+    "reason": "minutes cut",
+    "role_proj": 20.8,
+    "role_act": 9.0,
+    "lineups": 5,
+    "of": 191,
+    "top13": 0,
+    "own": 0.05577,
+    "signals": [],
+    "kind": "blind",
+    "line": null,
+    "news": "starting (expected); +7%/min with teammates out"
+   },
+   {
+    "name": "Nique Clifford",
+    "team": "OKC",
+    "pos": "SG/SF",
+    "salary": 3500,
+    "proj": 10.77,
+    "act": 0.0,
+    "reason": "did not play",
+    "role_proj": 15.2,
+    "role_act": 0.0,
+    "lineups": 2,
+    "of": 191,
+    "top13": 0,
+    "own": 0.02439,
+    "signals": [
+     "chance to play 80%",
+     "no props posted"
+    ],
+    "kind": "warned",
+    "line": null,
+    "news": "+19%/min with teammates out; no props and a bench role - sits ~1 in 5 of these nights"
+   },
+   {
+    "name": "Josh Dix",
+    "team": "OKC",
+    "pos": "SG/SF",
+    "salary": 3400,
+    "proj": 10.64,
+    "act": 0.0,
+    "reason": "did not play",
+    "role_proj": 19.1,
+    "role_act": 0.0,
+    "lineups": 1,
+    "of": 191,
+    "top13": 0,
+    "own": 0.02487,
+    "signals": [
+     "no props posted"
+    ],
+    "kind": "warned",
+    "line": null,
+    "news": "+19%/min with teammates out"
+   },
+   {
+    "name": "Gradey Dick",
+    "team": "LAC",
+    "pos": "SF/PF",
+    "salary": 3000,
+    "proj": 8.17,
+    "act": 4.5,
+    "reason": "minutes cut",
+    "role_proj": 12.6,
+    "role_act": 5.0,
+    "lineups": 1,
+    "of": 191,
+    "top13": 0,
+    "own": 0.02035,
+    "signals": [
+     "chance to play 80%",
+     "no props posted"
+    ],
+    "kind": "warned",
+    "line": null,
+    "news": "no props and a bench role - sits ~1 in 5 of these nights"
+   }
   ]
  },
  "summary": {
-  "nights": 7,
-  "misses_in_lineups": 13,
-  "blind": 5,
-  "warned": 8,
+  "nights": 8,
+  "misses_in_lineups": 17,
+  "blind": 6,
+  "warned": 11,
   "by_reason": {
-   "did not play": 9,
-   "minutes cut": 4
+   "did not play": 11,
+   "minutes cut": 6
   },
   "warning_ignored": {
-   "no props posted": 8
+   "no props posted": 11,
+   "chance": 2
   },
   "repeat_players": [
-   "Alexandre Sarr"
+   "Alexandre Sarr",
+   "Nique Clifford"
   ],
-  "repeat_teams": []
+  "repeat_teams": [
+   "OKC"
+  ]
  }
 }

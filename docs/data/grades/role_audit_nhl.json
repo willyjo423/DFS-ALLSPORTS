@@ -365,30 +365,262 @@
     "line": null,
     "news": "not in tonight's lines"
    }
+  ],
+  "2026-11-25": [
+   {
+    "name": "Tyler Bertuzzi",
+    "team": "CHI",
+    "pos": "W",
+    "salary": 4100,
+    "proj": 8.29,
+    "act": 0.0,
+    "reason": "scratched",
+    "role_proj": 16.53,
+    "role_act": 0.0,
+    "lineups": 3,
+    "of": 371,
+    "top13": 0,
+    "own": 0.01262,
+    "signals": [],
+    "kind": "blind",
+    "line": "L1",
+    "news": "moved up (L3/PP1 -> L1/PP1)"
+   },
+   {
+    "name": "Jagger Firkus",
+    "team": "SEA",
+    "pos": "W",
+    "salary": 2500,
+    "proj": 1.96,
+    "act": 0.0,
+    "reason": "scratched",
+    "role_proj": 14.34,
+    "role_act": 0.0,
+    "lineups": 2,
+    "of": 371,
+    "top13": 0,
+    "own": 0.00054,
+    "signals": [
+     "chance to play 25%",
+     "news: not in",
+     "1 games in 30 days"
+    ],
+    "kind": "warned",
+    "line": null,
+    "news": "not in tonight's lines"
+   },
+   {
+    "name": "Luca Cagnoni",
+    "team": "SJS",
+    "pos": "D",
+    "salary": 2500,
+    "proj": 1.66,
+    "act": 0.0,
+    "reason": "scratched",
+    "role_proj": 17.74,
+    "role_act": 0.0,
+    "lineups": 1,
+    "of": 371,
+    "top13": 0,
+    "own": 0.00149,
+    "signals": [
+     "chance to play 25%",
+     "news: not in",
+     "1 games in 30 days"
+    ],
+    "kind": "warned",
+    "line": null,
+    "news": "not in tonight's lines"
+   },
+   {
+    "name": "Tyson Hinds",
+    "team": "ANA",
+    "pos": "D",
+    "salary": 2500,
+    "proj": 1.58,
+    "act": 0.0,
+    "reason": "scratched",
+    "role_proj": 16.6,
+    "role_act": 0.0,
+    "lineups": 1,
+    "of": 371,
+    "top13": 0,
+    "own": 0.00127,
+    "signals": [
+     "chance to play 25%",
+     "news: not in",
+     "5 games in 30 days"
+    ],
+    "kind": "warned",
+    "line": null,
+    "news": "not in tonight's lines"
+   },
+   {
+    "name": "Justin Holl",
+    "team": "WSH",
+    "pos": "D",
+    "salary": 2500,
+    "proj": 1.16,
+    "act": 0.0,
+    "reason": "scratched",
+    "role_proj": 15.52,
+    "role_act": 0.0,
+    "lineups": 1,
+    "of": 371,
+    "top13": 0,
+    "own": 0.00127,
+    "signals": [
+     "chance to play 25%",
+     "news: not in",
+     "1 games in 30 days"
+    ],
+    "kind": "warned",
+    "line": "D2",
+    "news": "not in tonight's lines"
+   },
+   {
+    "name": "Alex Gagne",
+    "team": "COL",
+    "pos": "D",
+    "salary": 2500,
+    "proj": 1.49,
+    "act": 0.0,
+    "reason": "scratched",
+    "role_proj": 16.72,
+    "role_act": 0.0,
+    "lineups": 1,
+    "of": 371,
+    "top13": 0,
+    "own": 0.00124,
+    "signals": [
+     "chance to play 25%",
+     "news: not in",
+     "2 games in 30 days"
+    ],
+    "kind": "warned",
+    "line": null,
+    "news": "not in tonight's lines"
+   },
+   {
+    "name": "Filip Bystedt",
+    "team": "SJS",
+    "pos": "C",
+    "salary": 2500,
+    "proj": 1.32,
+    "act": 0.0,
+    "reason": "scratched",
+    "role_proj": 12.04,
+    "role_act": 0.0,
+    "lineups": 1,
+    "of": 371,
+    "top13": 0,
+    "own": 0.0008,
+    "signals": [
+     "chance to play 25%",
+     "news: not in",
+     "5 games in 30 days"
+    ],
+    "kind": "warned",
+    "line": null,
+    "news": "not in tonight's lines"
+   },
+   {
+    "name": "Jani Nyman",
+    "team": "SEA",
+    "pos": "W",
+    "salary": 2500,
+    "proj": 1.5,
+    "act": 0.0,
+    "reason": "scratched",
+    "role_proj": 11.44,
+    "role_act": 0.0,
+    "lineups": 1,
+    "of": 371,
+    "top13": 0,
+    "own": 0.00059,
+    "signals": [
+     "chance to play 25%",
+     "news: not in",
+     "4 games in 30 days"
+    ],
+    "kind": "warned",
+    "line": null,
+    "news": "not in tonight's lines"
+   },
+   {
+    "name": "Georgii Merkulov",
+    "team": "COL",
+    "pos": "C",
+    "salary": 2500,
+    "proj": 0.67,
+    "act": 0.0,
+    "reason": "scratched",
+    "role_proj": 13.38,
+    "role_act": 0.0,
+    "lineups": 1,
+    "of": 371,
+    "top13": 0,
+    "own": 0.00043,
+    "signals": [
+     "chance to play 10%",
+     "doubtful tag",
+     "news: not in",
+     "0 games in 30 days"
+    ],
+    "kind": "warned",
+    "line": null,
+    "news": "not in tonight's lines"
+   },
+   {
+    "name": "Matt Rempe",
+    "team": "NYR",
+    "pos": "W",
+    "salary": 2500,
+    "proj": 0.85,
+    "act": 0.0,
+    "reason": "scratched",
+    "role_proj": 9.44,
+    "role_act": 0.0,
+    "lineups": 1,
+    "of": 371,
+    "top13": 0,
+    "own": 0.00038,
+    "signals": [
+     "chance to play 25%",
+     "news: not in",
+     "5 games in 30 days"
+    ],
+    "kind": "warned",
+    "line": "L4",
+    "news": "not in tonight's lines"
+   }
   ]
  },
  "summary": {
-  "nights": 6,
-  "misses_in_lineups": 17,
-  "blind": 7,
-  "warned": 10,
+  "nights": 7,
+  "misses_in_lineups": 27,
+  "blind": 8,
+  "warned": 19,
   "by_reason": {
-   "scratched": 10,
+   "scratched": 20,
    "ice time cut": 5,
    "goalie did not start": 2
   },
   "warning_ignored": {
-   "chance": 7,
-   "news: not in": 7,
-   "5 games in 30 days": 3,
-   "doubtful tag": 2,
-   "4 games in 30 days": 2,
+   "chance": 16,
+   "news: not in": 16,
+   "5 games in 30 days": 6,
+   "1 games in 30 days": 4,
+   "doubtful tag": 3,
+   "4 games in 30 days": 3,
    "3 games in 30 days": 1,
-   "1 games in 30 days": 1
+   "2 games in 30 days": 1,
+   "0 games in 30 days": 1
   },
   "repeat_players": [],
   "repeat_teams": [
-   "ANA"
+   "ANA",
+   "SEA"
   ]
  }
 }

@@ -1,6 +1,13 @@
 {
- "nhl": {"w": 0.5},
- "nba": {"w": 0.5},
- "cfb": {"w": 0.5},
+ "nhl": {
+  "w": 0.0,
+  "n": 479
+ },
+ "nba": {
+  "w": 0.5
+ },
+ "cfb": {
+  "w": 0.5
+ },
  "note": "share of each player ceiling taken from the books ladders (engine/ladder_ceiling); grade_nightly moves it toward whichever ceiling real scores agree with"
 }

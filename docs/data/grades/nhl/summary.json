@@ -1,19 +1,20 @@
 {
  "sport": "nhl",
- "nights": 6,
- "props_nights": 5,
- "props_players": 864,
- "props_weight": 0.872,
- "mae_model": 5.181,
- "mae_props": 5.246,
- "mae_final": 5.166,
- "pool_avg": 97.283,
- "updated": "2026-11-24T14:25+00:00",
+ "nights": 7,
+ "props_nights": 6,
+ "props_players": 1228,
+ "props_weight": 0.858,
+ "mae_model": 5.183,
+ "mae_props": 5.242,
+ "mae_final": 5.182,
+ "pool_avg": 97.143,
+ "updated": "2026-11-26T23:07+00:00",
  "ceiling": {
-  "n": 140,
+  "n": 479,
   "target": 0.030000000000000027,
-  "model_rate": 0.0143,
-  "props_rate": 0.0071,
-  "best_w": 0.0
+  "model_rate": 0.0209,
+  "props_rate": 0.0104,
+  "best_w": 0.0,
+  "applied": true
  }
 }

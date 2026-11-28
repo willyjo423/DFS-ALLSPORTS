@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-28T00:00:34+00:00",
+ "updated_at": "2026-11-28T01:40:45+00:00",
  "slates": [
   {
    "sport": "cfb",
@@ -21,25 +21,9 @@
    "sport": "nba",
    "site": "dk",
    "kind": "classic",
-   "label": "7:00pm \u00b7 510 contests",
-   "file": "data/nba_dk_classic_156303.json",
-   "locks": "2026-11-28T00:00:00+00:00"
-  },
-  {
-   "sport": "nba",
-   "site": "dk",
-   "kind": "classic",
-   "label": "9:30pm (Night) \u00b7 291 contests",
+   "label": "9:30pm (Night) \u00b7 285 contests",
    "file": "data/nba_dk_classic_157354.json",
    "locks": "2026-11-28T02:30:00+00:00"
-  },
-  {
-   "sport": "nba",
-   "site": "dk",
-   "kind": "classic",
-   "label": "5:00pm \u00b7 381 contests",
-   "file": "data/nba_dk_classic_157365.json",
-   "locks": "2026-11-28T22:00:00+00:00"
   },
   {
    "sport": "nhl",
